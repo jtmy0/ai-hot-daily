@@ -3,6 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="referrer" content="no-referrer">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'unsafe-inline'; img-src data:; connect-src 'none'; frame-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'; frame-ancestors 'none'">
 <title>OpenAI’s new flagship model deletes files on its own, people keep warning - AI热点快照</title>
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
@@ -21,7 +23,6 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','PingFang SC','Micr
 .article-body{font-size:16.5px;line-height:1.85;color:#1f2937}
 .article-body p{margin-bottom:1.2em;text-align:justify}
 .article-body h1,.article-body h2,.article-body h3{font-size:1.25em;font-weight:700;margin:1.6em 0 0.6em;color:#1a1a2e}
-.article-body img{max-width:100%;height:auto;border-radius:6px;margin:1em 0}
 .article-body a{color:#0d9488}
 .article-body pre,.article-body code{background:#f1f5f9;border-radius:4px;font-size:0.9em}
 .article-body pre{padding:16px;overflow-x:auto;margin:1em 0}
@@ -41,7 +42,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','PingFang SC','Micr
   <span class="logo">AI热点快照</span>
   <span class="sep">|</span>
   <span class="source">TechCrunch</span>
-  <a class="back" href="https://techcrunch.com/2026/07/14/openais-new-flagship-model-deletes-files-on-its-own-people-keep-warning" target="_blank" rel="noopener">查看原文 ↗</a>
+  <a class="back" href="https://techcrunch.com/2026/07/14/openais-new-flagship-model-deletes-files-on-its-own-people-keep-warning" target="_blank" rel="noopener noreferrer">查看原文 ↗</a>
 </div>
 <div class="container">
   <h1 class="article-title">OpenAI’s new flagship model deletes files on its own, people keep warning</h1>
@@ -50,26 +51,26 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','PingFang SC','Micr
     <span>来源: TechCrunch</span>
     <span>快照日期: 2026-07-15</span>
   </div>
-  <div class="article-body"><DIV class="page" id="readability-page-1"><div>
-<p id="speakable-summary">Users of OpenAI’s latest coding and cybersecurity-oriented flagship model, GPT-5.6 Sol, are posting horrifying accounts on social media, claiming the model just up and deleted their files, data, even entire databases on its own, without asking first.</p>
+  <div class="article-body"><div><div>
+<p>Users of OpenAI’s latest coding and cybersecurity-oriented flagship model, GPT-5.6 Sol, are posting horrifying accounts on social media, claiming the model just up and deleted their files, data, even entire databases on its own, without asking first.</p>
 
-<p>“GPT-5.6-Sol just accidentally deleted almost ALL of my Mac’s files,” wrote Matt Shumer, the founder and CEO of AI startup OthersideAI, maker of HyperWrite, in a <a href="https://x.com/mattshumer_/status/2075657271401390161" target="_blank" rel="noreferrer noopener nofollow">now viral post on X</a>.</p>
-
-
+<p>“GPT-5.6-Sol just accidentally deleted almost ALL of my Mac’s files,” wrote Matt Shumer, the founder and CEO of AI startup OthersideAI, maker of HyperWrite, in a <a href="https://x.com/mattshumer_/status/2075657271401390161" target="_blank" rel="noopener noreferrer nofollow">now viral post on X</a>.</p>
 
 
 
 
 
-<p>“GPT-5.6 Sol just deleted my whole production database. That’s it. Not a joke. This had never happened to me before, with any other model, ever,” developer Bruno Lemos <a href="https://x.com/brunolemos/status/2076769881534398974" target="_blank" rel="noreferrer noopener nofollow">posted on X</a>.</p>
 
-<p>“Looks like I’ve gotten bit by Codex Sol’s overly ambitious system and it deleted some files it shouldn’t have. I have backups so I’ll be fine, but this is not cool, Sol needs to be toned down,” <a href="https://x.com/jkudish/status/2076753066586726644" target="_blank" rel="noreferrer noopener nofollow">posted</a> developer Joey Kudish.</p>
 
-<p>A <a href="https://www.reddit.com/r/OpenAI/comments/1uvcipm/warning_gpt_56_randomly_deleting_files/#lightbox" target="_blank" rel="noreferrer noopener nofollow">Reddit post</a> has collected more examples.</p>
+<p>“GPT-5.6 Sol just deleted my whole production database. That’s it. Not a joke. This had never happened to me before, with any other model, ever,” developer Bruno Lemos <a href="https://x.com/brunolemos/status/2076769881534398974" target="_blank" rel="noopener noreferrer nofollow">posted on X</a>.</p>
+
+<p>“Looks like I’ve gotten bit by Codex Sol’s overly ambitious system and it deleted some files it shouldn’t have. I have backups so I’ll be fine, but this is not cool, Sol needs to be toned down,” <a href="https://x.com/jkudish/status/2076753066586726644" target="_blank" rel="noopener noreferrer nofollow">posted</a> developer Joey Kudish.</p>
+
+<p>A <a href="https://www.reddit.com/r/OpenAI/comments/1uvcipm/warning_gpt_56_randomly_deleting_files/#lightbox" target="_blank" rel="noopener noreferrer nofollow">Reddit post</a> has collected more examples.</p>
 
 <p>True, a handful of users making such claims — even one as credible as Shumer — isn’t statistically reliable evidence that the model is solely at fault. Plenty of other variables can cause an AI system to misbehave.</p>
 
-<p>But OpenAI itself flagged this risk before Sol ever shipped. Two weeks before OpenAI released GPT-5.6 Sol, the company published a <a href="https://deploymentsafety.openai.com/gpt-5-6-preview/gpt-5-6-preview.pdf" target="_blank" rel="noreferrer noopener nofollow">system card for the model</a> — the paper that documents model-testing methods and results. Naturally, the system card largely extols the capabilities of Sol, as these reports typically do. But it also includes a warning of sorts (bold emphasis ours):</p>
+<p>But OpenAI itself flagged this risk before Sol ever shipped. Two weeks before OpenAI released GPT-5.6 Sol, the company published a <a href="https://deploymentsafety.openai.com/gpt-5-6-preview/gpt-5-6-preview.pdf" target="_blank" rel="noopener noreferrer nofollow">system card for the model</a> — the paper that documents model-testing methods and results. Naturally, the system card largely extols the capabilities of Sol, as these reports typically do. But it also includes a warning of sorts (bold emphasis ours):</p>
 
 
 <blockquote>
@@ -94,8 +95,8 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','PingFang SC','Micr
 
 <p>It’s too soon to say how widespread these incidents — Sol deleting files, or sifting out credentials the user didn’t give it — really are. In the meantime, Sol users should be prepared to implement their own safeguards with the model, like using permission scoping (that doesn’t give access to production systems), maintaining backups, and staging rollouts. </p>
 
-<p>OpenAI did not immediately respond to our request for comment. <br></p>
-</div><p><em>When you purchase through links in our articles, <a href="https://techcrunch.com/techcrunch-affiliate-monetization-standards/">we may earn a small commission</a>. This doesn’t affect our editorial independence.</em></p></DIV></div>
+<p>OpenAI did not immediately respond to our request for comment. <br /></p>
+</div><p><em>When you purchase through links in our articles, <a href="https://techcrunch.com/techcrunch-affiliate-monetization-standards/" target="_blank" rel="noopener noreferrer nofollow">we may earn a small commission</a>. This doesn’t affect our editorial independence.</em></p></div></div>
   <div class="footer">
     本文由 AI热点监控系统自动抓取 · 内容版权归原作者/网站所有<br>
     快照仅用于学习交流，如需转载请访问原文
