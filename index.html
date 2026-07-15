@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI 热点日报 · 归档</title>
+<style>
+:root{--bg:#2d2d2d;--page:#f8f6f1;--t1:#1a1a1a;--t2:#555;--muted:#999;--border:#e0dcd4;--green:#98d4bb}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);font-family:'DM Sans',sans-serif;min-height:100vh;display:flex;justify-content:center;padding:clamp(1rem,3vw,3rem)}
+.nb{background:var(--page);width:min(92vw,720px);border-radius:8px;box-shadow:0 4px 6px rgba(0,0,0,.1),0 20px 60px rgba(0,0,0,.3);padding:clamp(2rem,5vw,3.5rem);position:relative;animation:pi .5s ease-out}
+.nb::before{content:'';position:absolute;left:clamp(14px,2vw,24px);top:0;bottom:0;width:2px;background:repeating-linear-gradient(to bottom,transparent 0,transparent 30px,var(--border) 30px,var(--border) 32px)}
+.h{position:absolute;left:clamp(8px,1.5vw,16px);width:clamp(10px,1.5vw,16px);height:clamp(10px,1.5vw,16px);border-radius:50%;background:var(--bg);border:1.5px solid #bbb}
+.h:nth-child(1){top:12%}.h:nth-child(2){top:50%}.h:nth-child(3){top:88%}
+.hd{margin-bottom:clamp(1rem,2vw,2rem);padding-bottom:clamp(.6rem,1.2vw,1rem);border-bottom:2px solid var(--t1);padding-left:clamp(1rem,2vw,1.5rem)}
+.hd h1{font-size:clamp(1.4rem,3.5vw,2.2rem);font-weight:700;letter-spacing:-.02em;color:var(--t1)}
+.hd .sub{font-style:italic;font-size:clamp(.7rem,1.1vw,.9rem);color:var(--t2);margin-top:.3rem}
+.latest{margin:0 clamp(1rem,2vw,1.5rem) clamp(1rem,2vw,1.5rem);padding:clamp(1rem,2vw,1.4rem);background:linear-gradient(135deg,#e8f5e9,#e3f2fd);border-radius:8px;border:2px solid #a5d6a7;text-decoration:none;display:block;transition:all .25s}
+.latest:hover{transform:translateY(-2px);box-shadow:0 4px 16px rgba(0,0,0,.12);border-color:#66bb6a}
+.latest .lb{font-size:clamp(.55rem,.8vw,.7rem);font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:#2e7d32;margin-bottom:.3rem}
+.latest .tt{font-size:clamp(1rem,1.6vw,1.25rem);font-weight:700;color:var(--t1)}
+.at{font-size:clamp(.75rem,1.1vw,.95rem);color:var(--muted);letter-spacing:.08em;text-transform:uppercase;padding-left:clamp(1rem,2vw,1.5rem);margin-bottom:clamp(.5rem,1vw,.8rem)}
+.al{list-style:none;padding:0 clamp(1rem,2vw,1.5rem)}
+.al li{animation:fi .4s ease-out backwards}
+.al li:nth-child(1){animation-delay:.1s}.al li:nth-child(2){animation-delay:.15s}.al li:nth-child(3){animation-delay:.2s}
+.al a{display:flex;align-items:center;gap:clamp(.5rem,1vw,1rem);padding:clamp(.7rem,1.2vw,1rem) 0;border-bottom:1px solid var(--border);text-decoration:none;transition:padding-left .2s;border-radius:4px}
+.al a:hover{padding-left:6px;background:rgba(0,0,0,.02)}
+.al .dot{width:clamp(8px,1vw,10px);height:clamp(8px,1vw,10px);border-radius:50%;flex-shrink:0;background:var(--green)}
+.al .day{font-size:clamp(.8rem,1.2vw,1rem);font-weight:500;color:var(--t1)}
+.al .arrow{color:var(--muted);font-size:clamp(.7rem,1vw,.85rem);transition:transform .2s}
+.al a:hover .arrow{transform:translateX(3px);color:var(--t1)}
+.ft{margin-top:clamp(1.5rem,3vw,2.5rem);padding:clamp(.5rem,1vw,1rem) clamp(1rem,2vw,1.5rem) 0;border-top:1px solid var(--border);font-size:clamp(.55rem,.8vw,.7rem);color:var(--muted);font-style:italic;text-align:center}
+@keyframes pi{from{opacity:0;transform:scale(.97)}to{opacity:1;transform:scale(1)}}
+@keyframes fi{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+</style>
+</head>
+<body>
+  <div class="nb">
+    <div class="h"></div><div class="h"></div><div class="h"></div>
+    <div class="hd">
+      <h1>AI 热点日报</h1>
+      <div class="sub">一手信息源监控 · 四层过滤 · 道法术器解读</div>
+    </div>
+    <a class="latest" href="./hot-2026-07-15.html">
+      <div class="lb">📌 最新日报</div>
+      <div class="tt">7月15日 · 星期三</div>
+    </a>
+    <div class="at">历史归档</div>
+    <ul class="al">
+      <li>
+        <a href="./hot-2026-07-14.html">
+          <div class="dot"></div>
+          <div class="info">
+            <div class="day">7月14日 · 星期二</div>
+          </div>
+          <span class="arrow">→</span>
+        </a>
+      </li>
+      <li>
+        <a href="./hot-2026-07-13.html">
+          <div class="dot"></div>
+          <div class="info">
+            <div class="day">7月13日 · 星期一</div>
+          </div>
+          <span class="arrow">→</span>
+        </a>
+      </li>
+      <li>
+        <a href="./hot-2026-07-12.html">
+          <div class="dot"></div>
+          <div class="info">
+            <div class="day">7月12日 · 星期日</div>
+          </div>
+          <span class="arrow">→</span>
+        </a>
+      </li>
+    </ul>
+    
+    <div class="at" style="margin-top:clamp(.8rem,1.5vw,1.2rem)">趋势周报</div>
+    <ul class="al">
+      <li>
+      <a href="./weekly-report-2026-W28.html">
+        <div class="dot" style="background:#818cf8"></div>
+        <div class="info">
+          <div class="day">📊 第 28 周趋势周报（2026）</div>
+        </div>
+        <span class="arrow">→</span>
+      </a>
+    </li>
+      <li>
+      <a href="./weekly-report-2026-W27.html">
+        <div class="dot" style="background:#818cf8"></div>
+        <div class="info">
+          <div class="day">📊 第 27 周趋势周报（2026）</div>
+        </div>
+        <span class="arrow">→</span>
+      </a>
+    </li>
+      <li>
+      <a href="./weekly-report-2026-W26.html">
+        <div class="dot" style="background:#818cf8"></div>
+        <div class="info">
+          <div class="day">📊 第 26 周趋势周报（2026）</div>
+        </div>
+        <span class="arrow">→</span>
+      </a>
+    </li>
+      <li>
+      <a href="./weekly-report-2026-W25.html">
+        <div class="dot" style="background:#818cf8"></div>
+        <div class="info">
+          <div class="day">📊 第 25 周趋势周报（2026）</div>
+        </div>
+        <span class="arrow">→</span>
+      </a>
+    </li>
+      <li>
+      <a href="./weekly-report-2026-W24.html">
+        <div class="dot" style="background:#818cf8"></div>
+        <div class="info">
+          <div class="day">📊 第 24 周趋势周报（2026）</div>
+        </div>
+        <span class="arrow">→</span>
+      </a>
+    </li>
+      <li>
+      <a href="./weekly-report-2026-W23.html">
+        <div class="dot" style="background:#818cf8"></div>
+        <div class="info">
+          <div class="day">📊 第 23 周趋势周报（2026）</div>
+        </div>
+        <span class="arrow">→</span>
+      </a>
+    </li>
+    </ul>
+    <div class="ft">Generated by AI Hot Monitor v2 · DeepSeek</div>
+  </div>
+</body>
+</html>
