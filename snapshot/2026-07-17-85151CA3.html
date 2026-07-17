@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="referrer" content="no-referrer">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'unsafe-inline'; img-src data:; connect-src 'none'; frame-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'; frame-ancestors 'none'">
+<title>PerceptionBench: Evaluating Atomic Visual Perception in MLLMs - AI热点快照</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','PingFang SC','Microsoft YaHei',sans-serif;background:#f8f9fa;color:#1a1a2e;line-height:1.8;min-height:100vh}
+.top-bar{background:#fff;border-bottom:1px solid #e5e7eb;padding:10px 20px;display:flex;align-items:center;gap:12px;position:sticky;top:0;z-index:10}
+.top-bar .logo{font-size:14px;font-weight:700;color:#0d9488}
+.top-bar .sep{color:#d1d5db}
+.top-bar .source{font-size:13px;color:#6b7280}
+.top-bar .back{margin-left:auto;font-size:13px;color:#0d9488;text-decoration:none}
+.top-bar .back:hover{text-decoration:underline}
+.container{max-width:760px;margin:0 auto;padding:40px 24px 80px}
+.article-title{font-size:1.8rem;font-weight:700;line-height:1.35;margin-bottom:16px;color:#1a1a2e}
+.article-meta{display:flex;flex-wrap:wrap;gap:16px;padding-bottom:20px;margin-bottom:28px;border-bottom:1px solid #e5e7eb;font-size:14px;color:#6b7280}
+.article-meta a{color:#0d9488;text-decoration:none}
+.article-meta a:hover{text-decoration:underline}
+.article-body{font-size:16.5px;line-height:1.85;color:#1f2937}
+.article-body p{margin-bottom:1.2em;text-align:justify}
+.article-body h1,.article-body h2,.article-body h3{font-size:1.25em;font-weight:700;margin:1.6em 0 0.6em;color:#1a1a2e}
+.article-body a{color:#0d9488}
+.article-body pre,.article-body code{background:#f1f5f9;border-radius:4px;font-size:0.9em}
+.article-body pre{padding:16px;overflow-x:auto;margin:1em 0}
+.article-body code{padding:2px 6px}
+.article-body blockquote{border-left:3px solid #0d9488;padding-left:16px;color:#4b5563;margin:1em 0}
+.article-body ul,.article-body ol{padding-left:1.6em;margin-bottom:1em}
+.article-body li{margin-bottom:0.4em}
+.article-body figure{margin:1.2em 0}
+.article-body figcaption{font-size:13px;color:#9ca3af;text-align:center;margin-top:6px}
+.footer{margin-top:48px;padding-top:20px;border-top:1px solid #e5e7eb;font-size:13px;color:#9ca3af;text-align:center}
+</style>
+</head>
+<body>
+<div class="top-bar">
+  <a class="back" href="../" style="font-size:13px;color:#6b7280;text-decoration:none">← 日报首页</a>
+  <span class="sep">|</span>
+  <span class="logo">AI热点快照</span>
+  <span class="sep">|</span>
+  <span class="source">Kimi</span>
+  <a class="back" href="https://www.kimi.com/blog/perception-bench" target="_blank" rel="noopener noreferrer">查看原文 ↗</a>
+</div>
+<div class="container">
+  <h1 class="article-title">PerceptionBench: Evaluating Atomic Visual Perception in MLLMs</h1>
+  <div class="article-meta">
+    <span>作者: Kimi</span>
+    <span>来源: Kimi</span>
+    <span>快照日期: 2026-07-17</span>
+  </div>
+  <div class="article-body"><div><div><div><ol><li><span><span>Research</span></span></li></ol></div><div><h2>Introducing PerceptionBench</h2>
+<p><strong>Evaluating Atomic Visual Perception in Multimodal Large Language Models</strong></p>
+<p><strong>Authors</strong> Kimi Team</p>
+<hr />
+<h2>Overview</h2>
+<p>We are releasing <strong>PerceptionBench</strong>, a benchmark that isolates visual perception and evaluates it as a set of atomic capabilities—<strong>discovered from how today's models fail, not defined in advance.</strong> By attributing frontier-model failures across 40+ benchmarks to their earliest visual cause, we distill 10 perceptual capabilities and 3,000 verified questions, each answerable by looking, with no reasoning or outside knowledge required.</p>
+<p>The result is a sharp diagnosis rather than one more score. No model we evaluate clears 60% accuracy, and models with nearly identical overall scores can exhibit very different perceptual strengths and weaknesses. More strikingly, a large share of correct answers fail to survive a repeated ask—evidence that current models often guess rather than perceive. PerceptionBench is built to expose exactly where perception breaks, and to drive progress toward multimodal AI that sees faithfully and consistently.</p>
+<div><p>Overall Model Accuracy</p><div><p></p>Accuracy (%)<p></p></div></div>
+<h2>Using PerceptionBench to Compare Models</h2>
+<div><table><thead><tr><th>#</th><th>Model</th><th>Overall</th><th>VRel</th><th>Count</th><th>Attr</th><th>Depth</th><th>Loc</th><th>Comp</th><th>FGR</th><th>Context</th><th>OCR</th><th>Hallu</th></tr></thead><tbody><tr><td>🥇</td><td>GPT-5.6-Sol</td><td>59.7</td><td>69.7</td><td>62.4</td><td>62.1</td><td>55.5</td><td>76.7</td><td>67.0</td><td>55.9</td><td>60.0</td><td>54.9</td><td>26.9</td></tr><tr><td>🥈</td><td>Kimi-K3</td><td>58.5</td><td>68.5</td><td>59.7</td><td>59.4</td><td>52.7</td><td>70.6</td><td>59.5</td><td>55.9</td><td>53.7</td><td>61.2</td><td>42.1</td></tr><tr><td>🥉</td><td>Claude-Fable-5</td><td>57.2</td><td>58.5</td><td>52.9</td><td>60.9</td><td>51.5</td><td>70.4</td><td>56.1</td><td>51.6</td><td>59.8</td><td>64.3</td><td>45.0</td></tr><tr><td>4</td><td>Gemini-3.1-Pro</td><td>56.2</td><td>58.8</td><td>56.9</td><td>61.8</td><td>50.0</td><td>52.7</td><td>61.7</td><td>54.8</td><td>61.2</td><td>64.3</td><td>40.6</td></tr><tr><td>5</td><td>GPT-5.5</td><td>55.8</td><td>61.9</td><td>55.8</td><td>60.9</td><td>48.8</td><td>65.8</td><td>65.6</td><td>47.2</td><td>58.0</td><td>56.5</td><td>34.7</td></tr><tr><td>6</td><td>Seed-2.1-Pro</td><td>55.0</td><td>57.6</td><td>51.2</td><td>58.2</td><td>43.6</td><td>50.0</td><td>59.5</td><td>56.6</td><td>60.4</td><td>66.7</td><td>49.8</td></tr><tr><td>7</td><td>Gemini-3.5-Flash</td><td>51.5</td><td>53.0</td><td>43.3</td><td>53.9</td><td>49.1</td><td>50.3</td><td>54.5</td><td>51.4</td><td>52.9</td><td>58.8</td><td>50.2</td></tr><tr><td>8</td><td>Qwen3.7-Plus</td><td>51.1</td><td>59.1</td><td>53.3</td><td>55.8</td><td>48.5</td><td>52.7</td><td>55.9</td><td>46.8</td><td>52.2</td><td>54.5</td><td>29.5</td></tr><tr><td>9</td><td>Qwen3.5-397B-A17B</td><td>47.5</td><td>55.2</td><td>49.1</td><td>53.0</td><td>44.6</td><td>46.7</td><td>49.8</td><td>44.8</td><td>50.2</td><td>52.9</td><td>26.9</td></tr><tr><td>10</td><td>Claude-Opus-4.8</td><td>47.2</td><td>51.4</td><td>44.2</td><td>49.4</td><td>40.6</td><td>58.8</td><td>48.4</td><td>40.7</td><td>44.7</td><td>54.1</td><td>38.7</td></tr><tr><td>11</td><td>Kimi-K2.6</td><td>42.6</td><td>50.9</td><td>45.2</td><td>43.6</td><td>42.4</td><td>45.2</td><td>39.1</td><td>34.5</td><td>40.4</td><td>40.8</td><td>41.0</td></tr><tr><td>12</td><td>Grok-4.5</td><td>41.0</td><td>47.0</td><td>35.2</td><td>39.4</td><td>41.2</td><td>39.7</td><td>43.7</td><td>36.2</td><td>39.6</td><td>43.9</td><td>44.7</td></tr><tr><td>13</td><td>Gemma-4-31B</td><td>40.7</td><td>42.7</td><td>33.9</td><td>40.3</td><td>39.1</td><td>44.9</td><td>43.7</td><td>39.0</td><td>45.9</td><td>46.7</td><td>32.1</td></tr><tr><td>14</td><td>GLM-5V-Turbo</td><td>39.6</td><td>41.2</td><td>40.0</td><td>41.2</td><td>41.2</td><td>43.9</td><td>45.2</td><td>36.6</td><td>32.9</td><td>43.5</td><td>28.0</td></tr><tr><td>15</td><td>Minimax-M3</td><td>33.1</td><td>40.0</td><td>30.3</td><td>34.6</td><td>36.7</td><td>33.3</td><td>31.2</td><td>26.6</td><td>31.0</td><td>35.7</td><td>29.9</td></tr><tr><td>16</td><td>GLM-4.6V</td><td>32.5</td><td>35.2</td><td>31.8</td><td>35.2</td><td>29.1</td><td>30.6</td><td>34.8</td><td>29.3</td><td>33.7</td><td>39.2</td><td>26.9</td></tr></tbody></table></div>
+<hr />
+<p>Each source benchmark captures a narrow slice of perception errors, and these slices overlap only weakly (mean pairwise weighted Jaccard 0.20). No single benchmark—or small group of them—covers perception as a whole, which motivates a capability-centric benchmark that aggregates and rebalances these fragmented views.</p>
+<div><p></p></div>
+<h2>The Dataset</h2>
+<p>The dataset consists of <strong>3,000</strong> high-quality verified samples. The distribution aims to isolate atomic perceptual capabilities from confounding factors, and distinguishes itself through three core design principles:</p>
+<ul>
+<li><strong>Failure-Driven Taxonomy:</strong> Every category is discovered from real model failures, attributed to the earliest erroneous step across 40+ existing benchmarks.</li>
+<li><strong>Ten Atomic Perceptual Categories:</strong> Visual Relation, Counting, Attribute, Depth &amp; 3D, Localization, Comparison, Fine-grained Recognition, Context Integration, OCR, and Hallucination.</li>
+<li><strong>Perception, Not Reasoning:</strong> Samples are curated, decomposed, and difficulty-balanced so that difficulty stems from perception rather than reasoning.</li>
+</ul>
+<blockquote>
+<p><strong>Note on Quality</strong>: To make the benchmark a reliable gold standard, all samples underwent rigorous verification and difficulty-balancing, keeping only genuinely perceptual failures with a single verifiable answer.</p>
+</blockquote>
+<hr />
+
+<h3>Distribution of Tasks per Category</h3>
+<div><table><thead><tr><th>Statistics</th><th>Number</th></tr></thead><tbody><tr><td colspan="2"><span>Data</span></td></tr><tr><td><span>Total</span></td><td><span>3,000</span></td></tr><tr><td><span>Atomic perceptual categories</span></td><td><span>10</span></td></tr><tr><td colspan="2"><span>Task Categories</span></td></tr><tr><td><span>Depth 3D Perception Error</span></td><td><span>330 (11.00%)</span></td></tr><tr><td><span>Visual Counting Error</span></td><td><span>330 (11.00%)</span></td></tr><tr><td><span>Fine-Grained Recognition Error</span></td><td><span>290 (9.67%)</span></td></tr><tr><td><span>Visual Relation Error</span></td><td><span>330 (11.00%)</span></td></tr><tr><td><span>Visual Attribute Error</span></td><td><span>330 (11.00%)</span></td></tr><tr><td><span>Visual Localization Error</span></td><td><span>330 (11.00%)</span></td></tr><tr><td><span>Visual Comparison Error</span></td><td><span>279 (9.30%)</span></td></tr><tr><td><span>Context Integration Error</span></td><td><span>255 (8.50%)</span></td></tr><tr><td><span>Hallucination</span></td><td><span>271 (9.03%)</span></td></tr><tr><td><span>OCR Error</span></td><td><span>255 (8.50%)</span></td></tr></tbody></table></div>
+<h2>Conclusion</h2>
+<p>PerceptionBench is a simple but challenging benchmark for evaluating atomic visual perception in frontier models. It measures what multimodal models actually see rather than what they infer, providing a faithful and fine-grained diagnosis of the perceptual capabilities of current and future multimodal models.</p></div></div></div></div>
+  <div class="footer">
+    本文由 AI热点监控系统自动抓取 · 内容版权归原作者/网站所有<br>
+    快照仅用于学习交流，如需转载请访问原文
+  </div>
+</div>
+</body>
+</html>
