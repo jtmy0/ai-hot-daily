@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="referrer" content="no-referrer">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'unsafe-inline'; img-src data:; connect-src 'none'; frame-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'; frame-ancestors 'none'">
+<title>The Kimi K3 Moment - AI热点快照</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','PingFang SC','Microsoft YaHei',sans-serif;background:#f8f9fa;color:#1a1a2e;line-height:1.8;min-height:100vh}
+.top-bar{background:#fff;border-bottom:1px solid #e5e7eb;padding:10px 20px;display:flex;align-items:center;gap:12px;position:sticky;top:0;z-index:10}
+.top-bar .logo{font-size:14px;font-weight:700;color:#0d9488}
+.top-bar .sep{color:#d1d5db}
+.top-bar .source{font-size:13px;color:#6b7280}
+.top-bar .back{margin-left:auto;font-size:13px;color:#0d9488;text-decoration:none}
+.top-bar .back:hover{text-decoration:underline}
+.container{max-width:760px;margin:0 auto;padding:40px 24px 80px}
+.article-title{font-size:1.8rem;font-weight:700;line-height:1.35;margin-bottom:16px;color:#1a1a2e}
+.article-meta{display:flex;flex-wrap:wrap;gap:16px;padding-bottom:20px;margin-bottom:28px;border-bottom:1px solid #e5e7eb;font-size:14px;color:#6b7280}
+.article-meta a{color:#0d9488;text-decoration:none}
+.article-meta a:hover{text-decoration:underline}
+.article-body{font-size:16.5px;line-height:1.85;color:#1f2937}
+.article-body p{margin-bottom:1.2em;text-align:justify}
+.article-body h1,.article-body h2,.article-body h3{font-size:1.25em;font-weight:700;margin:1.6em 0 0.6em;color:#1a1a2e}
+.article-body a{color:#0d9488}
+.article-body pre,.article-body code{background:#f1f5f9;border-radius:4px;font-size:0.9em}
+.article-body pre{padding:16px;overflow-x:auto;margin:1em 0}
+.article-body code{padding:2px 6px}
+.article-body blockquote{border-left:3px solid #0d9488;padding-left:16px;color:#4b5563;margin:1em 0}
+.article-body ul,.article-body ol{padding-left:1.6em;margin-bottom:1em}
+.article-body li{margin-bottom:0.4em}
+.article-body figure{margin:1.2em 0}
+.article-body figcaption{font-size:13px;color:#9ca3af;text-align:center;margin-top:6px}
+.footer{margin-top:48px;padding-top:20px;border-top:1px solid #e5e7eb;font-size:13px;color:#9ca3af;text-align:center}
+</style>
+</head>
+<body>
+<div class="top-bar">
+  <a class="back" href="../" style="font-size:13px;color:#6b7280;text-decoration:none">← 日报首页</a>
+  <span class="sep">|</span>
+  <span class="logo">AI热点快照</span>
+  <span class="sep">|</span>
+  <span class="source">Hacker News</span>
+  <a class="back" href="https://stephen.bochinski.dev/blog/2026/07/18/the-kimi-k3-moment/" target="_blank" rel="noopener noreferrer">查看原文 ↗</a>
+</div>
+<div class="container">
+  <h1 class="article-title">The Kimi K3 Moment</h1>
+  <div class="article-meta">
+    
+    <span>来源: Hacker News</span>
+    <span>快照日期: 2026-07-19</span>
+  </div>
+  <div class="article-body"><div><div>
+        
+  
+  
+  
+  
+  <div>
+    <p>I’ve been running <a href="https://venturebeat.com/technology/chinas-moonshot-ai-releases-kimi-k3-the-largest-open-source-model-ever-rivaling-top-u-s-systems" target="_blank" rel="noopener noreferrer nofollow">Kimi K3</a> alongside Claude on my normal coding work, and for all practical purposes I can’t tell them apart. Same tasks, same quality of output, and near identical token counts to get there. I expected an open model to be sloppier or to grind through more tokens on the way to the same answer, and neither turned out to be true.</p>
+
+<p>The prices are nowhere near each other. K3’s API runs $3 per million input tokens and $15 per million output. Claude’s top model costs $10 and $50 for the same units. The subscription side is even more lopsided. Kimi’s paid plans start at $19 a month, and the $39 coding tier is far more generous than anything Claude sells anywhere near that price. Claude’s plans are metered tightly enough that a normal day of agent work can chew through the allowance before lunch.</p>
+
+<p>Then there’s the fine print. Claude couldn’t sustain Fable access on the twenty dollar plan, so they turned it off, and the plan quietly falls back to Opus. When the headline model on your plan can be switched off because the economics don’t work, the plan was never really selling you the headline model. Kimi’s tiers don’t come with that asterisk.</p>
+
+<p>Step back and the bigger story is what an unmitigated failure US AI policy has been. The administration held Fable back, and what finally shipped is a hindered version that refuses whole categories of work. Meanwhile a frontier quality model with none of those restrictions is a download away, released by a Chinese lab the US government has no ability to regulate. Whatever the theory behind gating American models was, it plainly wasn’t thought through, because the only people the gates constrain are American customers. <a href="https://semgrep.dev/blog/2026/we-have-mythos-at-home-glm-52-beats-claude-in-our-cyber-benchmarks/" target="_blank" rel="noopener noreferrer nofollow">Semgrep found GLM 5.2 beating Claude on their cyber benchmarks</a> for exactly this reason. The restricted model declines the work and the open one just does it.</p>
+
+<p>And it isn’t only Kimi. GLM 5.2 came out under an MIT license, beats the latest Opus release on real work while not even claiming to be frontier, and costs a fraction of it. OpenAI got pushed through the same government gauntlet with <a href="https://www.cnbc.com/2026/07/08/openai-expanding-gpt-5point6-ai-model-release-ending-government-limits.html" target="_blank" rel="noopener noreferrer nofollow">GPT-5.6</a> but came out the other side able to put their flagship on the twenty dollar plan. Whatever you think of OpenAI, they have runway here that Anthropic clearly doesn’t.</p>
+
+<p>I think I can see where this goes. The government will try to regulate AI and open source in particular, and it will run the playbook it ran for the auto industry. Decades of subsidies, bailouts, and protective tariffs produced American carmakers that sell trucks at home and barely register anywhere else in the world. I expect the current administration to reach for the same tools here. Public private partnerships propping up domestic models that only get used inside the US and can’t compete internationally. That’s a sad future where America is the one country without access to the best models at the best prices, buying models deeply tied to the corrupt Trump administration that are neither the highest quality nor the cheapest. Until then, at least, I can’t come up with a reason to keep paying for Claude.</p>
+
+  </div>
+  
+
+
+      </div></div></div>
+  <div class="footer">
+    本文由 AI热点监控系统自动抓取 · 内容版权归原作者/网站所有<br>
+    快照仅用于学习交流，如需转载请访问原文
+  </div>
+</div>
+</body>
+</html>
