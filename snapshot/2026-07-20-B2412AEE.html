@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="referrer" content="no-referrer">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'unsafe-inline'; img-src data:; connect-src 'none'; frame-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'; frame-ancestors 'none'">
+<title>团队动态 - 字节跳动Seed - AI热点快照</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','PingFang SC','Microsoft YaHei',sans-serif;background:#f8f9fa;color:#1a1a2e;line-height:1.8;min-height:100vh}
+.top-bar{background:#fff;border-bottom:1px solid #e5e7eb;padding:10px 20px;display:flex;align-items:center;gap:12px;position:sticky;top:0;z-index:10}
+.top-bar .logo{font-size:14px;font-weight:700;color:#0d9488}
+.top-bar .sep{color:#d1d5db}
+.top-bar .source{font-size:13px;color:#6b7280}
+.top-bar .back{margin-left:auto;font-size:13px;color:#0d9488;text-decoration:none}
+.top-bar .back:hover{text-decoration:underline}
+.container{max-width:760px;margin:0 auto;padding:40px 24px 80px}
+.article-title{font-size:1.8rem;font-weight:700;line-height:1.35;margin-bottom:16px;color:#1a1a2e}
+.article-meta{display:flex;flex-wrap:wrap;gap:16px;padding-bottom:20px;margin-bottom:28px;border-bottom:1px solid #e5e7eb;font-size:14px;color:#6b7280}
+.article-meta a{color:#0d9488;text-decoration:none}
+.article-meta a:hover{text-decoration:underline}
+.article-body{font-size:16.5px;line-height:1.85;color:#1f2937}
+.article-body p{margin-bottom:1.2em;text-align:justify}
+.article-body h1,.article-body h2,.article-body h3{font-size:1.25em;font-weight:700;margin:1.6em 0 0.6em;color:#1a1a2e}
+.article-body a{color:#0d9488}
+.article-body pre,.article-body code{background:#f1f5f9;border-radius:4px;font-size:0.9em}
+.article-body pre{padding:16px;overflow-x:auto;margin:1em 0}
+.article-body code{padding:2px 6px}
+.article-body blockquote{border-left:3px solid #0d9488;padding-left:16px;color:#4b5563;margin:1em 0}
+.article-body ul,.article-body ol{padding-left:1.6em;margin-bottom:1em}
+.article-body li{margin-bottom:0.4em}
+.article-body figure{margin:1.2em 0}
+.article-body figcaption{font-size:13px;color:#9ca3af;text-align:center;margin-top:6px}
+.footer{margin-top:48px;padding-top:20px;border-top:1px solid #e5e7eb;font-size:13px;color:#9ca3af;text-align:center}
+</style>
+</head>
+<body>
+<div class="top-bar">
+  <a class="back" href="../" style="font-size:13px;color:#6b7280;text-decoration:none">← 日报首页</a>
+  <span class="sep">|</span>
+  <span class="logo">AI热点快照</span>
+  <span class="sep">|</span>
+  <span class="source">AIHOT AI产品</span>
+  <a class="back" href="https://seed.bytedance.com/zh/blog/%E4%BB%8E-%E4%BC%9A%E8%AF%B4-%E8%B5%B0%E5%90%91-%E4%BC%9A%E5%88%9B%E4%BD%9C-seed-audio-1-0-%E9%9F%B3%E9%A2%91%E5%88%9B%E4%BD%9C%E6%A8%A1%E5%9E%8B%E5%8F%91%E5%B8%83" target="_blank" rel="noopener noreferrer">查看原文 ↗</a>
+</div>
+<div class="container">
+  <h1 class="article-title">团队动态 - 字节跳动Seed</h1>
+  <div class="article-meta">
+    
+    <span>来源: AIHOT AI产品</span>
+    <span>快照日期: 2026-07-20</span>
+  </div>
+  <div class="article-body"><div><div><p><span>对音频创作者而言，生成单一音频要素并不困难，真正困难的是让台词、音效等各类声音在同一场景中自然配合，服务于叙事和情绪表达。长期以来，这类创作往往依赖多个模型分别生成，再通过人工拼接、对齐和混音完成，不仅流程冗长，也难以兼顾整体完成度与控制精度。</span></p><p><span>今天，我们很高兴向你介绍<strong>音频创作模型 Seed Audio 1.0，</strong>它面向完整声音场景，在统一框架下联合建模人声、音效和环境声等多种音频要素，端到端完成影视级音频创作。声音不再只是画面的补充，而是可以直接参与叙事，在听者脑海中直接形成画面感，做到 “听见” 即 “看见”。</span></p><p><span>其核心能力主要体现在以下方面：</span></p><ul><li><p><span><strong>多要素统一编排，支持精细的时间控制：</strong>一条 prompt 即可统一编排带有特定情绪的对白、关键音效和环境声，并可按时间线精准控制声音进场。</span></p></li><li><p><span><strong>音色风格可控，长时稳定：</strong>支持文本与参考音频输入，在长音频和多次延长场景下保持角色一致性，同一音色也能自然呈现不同语气和情绪。</span></p></li><li><p><span><strong>多语种自然生成：</strong>支持 20+ 语种的音频生成，同一角色声音可依据不同语种的特点，呈现更自然的发音、节奏与表达方式。</span></p></li></ul><p><span>目前，Seed Audio 1.0 已在火山方舟体验中心上线，欢迎大家体验，用声音表达创意。</span></p><blockquote><p><span><strong>项目主页：</strong></span></p><p><a href="https://seed.bytedance.com/zh/seedaudio1_0" target="_blank" rel="noopener noreferrer nofollow"><span>https://seed.bytedance.com/zh/seedaudio1_0</span></a></p><p><span><strong>体验入口：</strong></span></p><p><a href="https://ark.volcengine.com/region:cn-beijing/experience/voice?_vtm_=a441938.b28928.0_0.0_0.0.242_7661095862207497779&amp;model=doubao-seed-audio-1-0" target="_blank" rel="noopener noreferrer nofollow"><span>https://ark.volcengine.com/region:cn-beijing/experience/voice?_vtm_=a441938.b28928.0_0.0_0.0.242_7661095862207497779&amp;model=doubao-seed-audio-1-0</span></a></p></blockquote><h2><span><strong>从拼接生成到完整声音场景生成</strong></span></h2><p><span>过去，完整音频内容的生产通常依赖多环节拼接。要打破这种级联方式，实现完整声音场景的生成，模型至少需要跨越三个门槛：</span></p><ol><li><p><span><strong>兼顾多类声音的细节保留</strong>。不同类型音频对表征的要求并不相同：语音看重清晰度和韵律，环境声则要求空间氛围持续稳定。模型需具备足够强的声学细节建模能力。</span></p></li><li><p><span><strong>理解并生成完整声音场景</strong>。一段完整音频里，各音频要素间存在时间关系、情绪关系和声学互动，彼此关联、相互影响，模型要理解的是整个声音场景。</span></p></li><li><p><span><strong>遵循多种指令控制。</strong>模型不仅要有生成质量，还要能够服从文本、参考音频、时间轴和角色设定等多种条件，使声音在合适的时间、以合适的方式出现。</span></p></li></ol><p><span>Seed Audio 1.0 的核心思路，是将不同的音频要素放在统一框架下理解与生成，学习更复杂的联合分布。为此，我们训练了一个通用声学编码器，将各类音频要素视为同一声音场景中的组成部分，映射到统一的声学表征中，而非将多类音频作为独立任务编码。</span></p><p><span>基于这种统一建模方式，模型能够更自然地组织角色语气、背景氛围和声音节奏，让输出更接近一段完整作品，而不是一组拼接起来的素材。<strong>这也是我们更愿意将 Seed Audio 1.0 称为 “音频创作模型” 的原因。</strong></span></p><p><span>Seed Audio 1.0 可生成兼具角色互动、情绪推进和氛围营造的复杂音频作品，支持专题叙事、剧情对话、主播互动等典型场景。</span></p>您的浏览器不支持视频播放。<p><span>在真实创作环境中，声音出现的时机同样关键。它会直接影响节奏推进、情绪表达，以及一段内容能否真正成立。</span></p><p><span>Seed Audio 1.0 能先将创作意图拆解成结构化时间线，明确角色、台词、情绪和音效的进入时机，从而控制不同声音何时出现、如何衔接，以及怎样更自然地服务剧情。</span></p><p><span>基于此，Seed Audio 1.0 支持精准时间控制生成，创作者可以在 prompt 中指定角色台词的时间安排，当前时间控制支持 100ms 间隔精度。对于视频配音、视频翻配、广告片等场景，这项能力尤其关键。</span></p>您的浏览器不支持视频播放。<h2><span><strong>音色立得住、接得上、演得开</strong></span></h2><p><span>Seed Audio 1.0 支持零样本音频生成。创作者既可以直接用文字描述目标声音，也可以结合参考音频进一步控制生成结果，而无需为每一种声音单独训练模型。</span></p><p><span>对真实创作来说，这意味着在前期尚未明确最终声音方案时，创作者可以先快速试出方向，再围绕更合适的音色与表达继续细化，从而减少反复试音和后期返工的成本。</span></p>您的浏览器不支持视频播放。<p><span>与此同时，在长音频创作场景中，有声书、播客、长剧集和多人对话都要求角色声音前后一致，一旦出现明显音色变化，听众很快就会出戏。传统制作中，这通常需要配音演员长时间连续录制，或者依赖后期反复比对和修正。</span></p><p><span>针对这一问题，Seed Audio 1.0 支持基于参考音频进行延展生成，当前单次可生成约 2 分钟音频，并可在此基础上继续延长，同时保持角色音色与表达方式一致。</span></p>您的浏览器不支持视频播放。<p><span>不过，稳定并不意味着表达单一。Seed Audio 1.0 在保持角色辨识度的同时，也支持同一音色自然呈现不同情绪、场景和表达方式。它支持“单音色、多角色”能力，同一音色可以通过差异化演绎塑造不同人物，从而拓展配音、叙事类内容和创意音频的创作空间。</span></p>您的浏览器不支持视频播放。<h2><span><strong>多语种生成，声音表达更地道</strong></span></h2><p><span>多语种创作，不只是内容翻译，而是让声音的节奏、重音、停顿与情绪都更符合目标语言的表达方式。</span></p><p><span>Seed Audio 1.0 支持同一音色在多种语言中的自然迁移，并已覆盖 20+ 语种，包括中文、英文、日语、韩语、西班牙语、印尼语、德语、法语、泰语、越南语等。</span></p><p><span>对于出海内容、游戏本地化、品牌广告、多语种播客和短视频创作来说，这意味着一个创意不必在每个语言市场重新制作，而可以基于同一角色或音色设定，高效地扩展出多语言版本。</span></p>您的浏览器不支持视频播放。<h2><span><strong>评测结果</strong></span></h2><p><span>为了更全面地验证 Seed Audio 1.0 在真实创作任务中的表现，我们从文本生成音色、多场景创作和多语种生成三个维度进行了评估。</span></p><p><span>在文本生成音色能力上，Seed Audio 1.0 在 AB 主观评测中表现出显著优势，可用率和优良率也明显提升。</span></p><p></p><p><span><em>Seed Audio 1.0 在文本到音色任务上与其他模型的主观评测结果</em></span></p><p><span>在多场景音频生成能力上，我们进一步评测了影视、电视节目、短剧、动漫、播客对话、直播带货、网络创作、话剧和语音合成等场景。结果显示，多数场景中的音频可用率已达到 90% 以上。</span></p><p></p><p><span><em>Seed Audio 1.0 按场景拆分的条件音频到音频生成评测</em></span></p><p><span>针对多语言音频生成能力，我们从指令遵循和音频自然度两个维度进行了人工评测。结果显示，在音频自然度上，大部分语言的 MOS 超过 4 分，音质已达到优秀水准；复杂音频生成的指令遵循能力，除越南语外，其余语言的 MOS 均高于 3.5 分，表明 Seed Audio 1.0 已具备较强的多语言指令遵循能力。</span></p><p></p><p><span><em>Seed Audio 1.0 在 “文本生成音频” 任务上的效果</em></span></p><h2><span><strong>写在最后</strong></span></h2><p><span>从“会说”到“会创作”，Seed Audio 1.0 迈出了重要一步。</span></p><p><span>以 Seed Audio 1.0 为起点，我们希望进一步拓展模型在真实创作流程中的能力边界，通过模型框架创新支持视频参考等更多模态输入，并满足长音频、分轨等更复杂的音频生成需求。同时，我们也将探索把 Seed Audio 与可控翻译结合起来，提升模型在多语种场景下对内容表达和时长约束的控制能力。</span></p><p><span>未来，我们希望音频生成朝着更自然、更可控、更贴近创作流程的方向继续演进，让创作者轻松将脑海中的声音变成可听见的作品。</span></p></div></div></div>
+  <div class="footer">
+    本文由 AI热点监控系统自动抓取 · 内容版权归原作者/网站所有<br>
+    快照仅用于学习交流，如需转载请访问原文
+  </div>
+</div>
+</body>
+</html>
