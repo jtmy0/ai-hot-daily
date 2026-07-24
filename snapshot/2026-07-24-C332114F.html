@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="referrer" content="no-referrer">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'unsafe-inline'; img-src data:; connect-src 'none'; frame-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'; frame-ancestors 'none'">
+<title>One tampered ChatGPT link could spawn a rogue AI agent that took orders from an attacker every five minutes - AI热点快照</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','PingFang SC','Microsoft YaHei',sans-serif;background:#f8f9fa;color:#1a1a2e;line-height:1.8;min-height:100vh}
+.top-bar{background:#fff;border-bottom:1px solid #e5e7eb;padding:10px 20px;display:flex;align-items:center;gap:12px;position:sticky;top:0;z-index:10}
+.top-bar .logo{font-size:14px;font-weight:700;color:#0d9488}
+.top-bar .sep{color:#d1d5db}
+.top-bar .source{font-size:13px;color:#6b7280}
+.top-bar .back{margin-left:auto;font-size:13px;color:#0d9488;text-decoration:none}
+.top-bar .back:hover{text-decoration:underline}
+.container{max-width:760px;margin:0 auto;padding:40px 24px 80px}
+.article-title{font-size:1.8rem;font-weight:700;line-height:1.35;margin-bottom:16px;color:#1a1a2e}
+.article-meta{display:flex;flex-wrap:wrap;gap:16px;padding-bottom:20px;margin-bottom:28px;border-bottom:1px solid #e5e7eb;font-size:14px;color:#6b7280}
+.article-meta a{color:#0d9488;text-decoration:none}
+.article-meta a:hover{text-decoration:underline}
+.article-body{font-size:16.5px;line-height:1.85;color:#1f2937}
+.article-body p{margin-bottom:1.2em;text-align:justify}
+.article-body h1,.article-body h2,.article-body h3{font-size:1.25em;font-weight:700;margin:1.6em 0 0.6em;color:#1a1a2e}
+.article-body a{color:#0d9488}
+.article-body pre,.article-body code{background:#f1f5f9;border-radius:4px;font-size:0.9em}
+.article-body pre{padding:16px;overflow-x:auto;margin:1em 0}
+.article-body code{padding:2px 6px}
+.article-body blockquote{border-left:3px solid #0d9488;padding-left:16px;color:#4b5563;margin:1em 0}
+.article-body ul,.article-body ol{padding-left:1.6em;margin-bottom:1em}
+.article-body li{margin-bottom:0.4em}
+.article-body figure{margin:1.2em 0}
+.article-body figcaption{font-size:13px;color:#9ca3af;text-align:center;margin-top:6px}
+.footer{margin-top:48px;padding-top:20px;border-top:1px solid #e5e7eb;font-size:13px;color:#9ca3af;text-align:center}
+</style>
+</head>
+<body>
+<div class="top-bar">
+  <a class="back" href="../" style="font-size:13px;color:#6b7280;text-decoration:none">← 日报首页</a>
+  <span class="sep">|</span>
+  <span class="logo">AI热点快照</span>
+  <span class="sep">|</span>
+  <span class="source">The Decoder</span>
+  <a class="back" href="https://the-decoder.com/one-tampered-chatgpt-link-could-spawn-a-rogue-ai-agent-that-took-orders-from-an-attacker-every-five-minutes" target="_blank" rel="noopener noreferrer">查看原文 ↗</a>
+</div>
+<div class="container">
+  <h1 class="article-title">One tampered ChatGPT link could spawn a rogue AI agent that took orders from an attacker every five minutes</h1>
+  <div class="article-meta">
+    <span>作者: Jonathan Kemper</span>
+    <span>来源: The Decoder</span>
+    <span>快照日期: 2026-07-24</span>
+  </div>
+  <div class="article-body"><div><div>
+			<p><strong>A single tampered ChatGPT link could spin up an AI agent that quietly checked the attacker's inbox for new orders every five minutes. Zenity Labs calls the flaw a new class of attack against agent-based AI.</strong></p>
+<p>AI security firm Zenity Labs found a vulnerability in OpenAI's Workspace Agents that let one manipulated link create an autonomous AI agent under an employee's account. The agent took on the victim's identity and reused their existing app permissions, skipping the approval steps meant to protect sensitive actions.</p>
+<p><a href="https://labs.zenity.io/p/agentforger-part-1-chatgpt-cross-site-agent-forgery" target="_blank" rel="noopener noreferrer nofollow">Zenity named the vulnerability "AgentForger"</a> and sees it as an evolution of classic cross-site request forgery (CSRF). In a typical CSRF attack, someone clicks a bad link or lands on a crafted page and unknowingly fires off an authenticated action they never intended.</p>
+<p>AgentForger went further. Rather than triggering a single unwanted action, the manipulated ChatGPT link kicked off the creation of a fully autonomous agent. That agent operated inside the company's trust boundary, tapped into connectors the victim had already authorized, and picked up new tasks from the attacker on a recurring schedule.</p>
+<figure><a href="https://the-decoder.com/wp-content/uploads/2026/07/agentforger-10-csrf-comparison.jpg" target="_blank" rel="noopener noreferrer nofollow"></a><figcaption>Classic CSRF forges a single request. AgentForger forges an entire agent. | Image: Zenity Labs</figcaption></figure>
+<h2>URL parameters let attackers automate agent creation</h2>
+<p>Creating a Workspace agent is normally an interactive process. Users select a template, enter instructions, connect tools, review sharing settings, test the agent in preview mode, and then publish it. AgentForger let attackers trigger most of that process through a URL with little further input from the user.</p>
+<p>The Agent Builder, introduced in 2025, is available at <code>chatgpt.com/agents/studio/new</code> and accepts two URL parameters. <code>template_name</code> selects a starting template such as "chief-of-staff," while <code>initial_assistant_prompt</code> supplies the instructions.</p>
+<p>Zenity found that the page didn't just place the value of <code>initial_assistant_prompt</code> in the prompt field. It also submitted and ran the prompt automatically. Attackers didn't need to send raw requests to ChatGPT or directly manipulate the victim's browser. All they needed was a chatgpt.com link with an attached prompt that looked harmless at first glance.</p>
+<figure><a href="https://the-decoder.com/wp-content/uploads/2026/07/agentforger-02-phishing-email.jpg" target="_blank" rel="noopener noreferrer nofollow"></a><figcaption>The attack starts with an ordinary-looking email that disguises the manipulated ChatGPT link as a productivity tip. | Image: Zenity Labs</figcaption></figure>
+<p>The only prerequisite was that the victim was logged into ChatGPT, had access to Workspace Agents, and had authorized at least one connector such as Outlook, Gmail, Slack, Google Drive, SharePoint, or Teams. Because the connections already existed, no new OAuth consent prompt appeared that might have tipped the victim off.</p>
+<h2>One click built and published the agent</h2>
+<p>In the demo, Zenity embedded a prompt in the URL that guided the Builder through all the steps in a numbered task list. The agent was set up to integrate all already-connected non-MCP connectors and change every permission requirement for reading, writing, and deleting to "Never ask."</p>
+<p>It also created schedules to run every five minutes, checked Outlook for emails from the attacker with "TASK" in the subject line, executed their instructions using the connected apps, and sent the results back unfiltered.</p>
+<figure><a href="https://the-decoder.com/wp-content/uploads/2026/07/agentforger-04-forged-agent.jpg" target="_blank" rel="noopener noreferrer nofollow"></a><figcaption>The finished agent with connectors linked and all permission requirements turned off. | Image: Zenity Labs</figcaption></figure>
+<p>The Builder created an agent named "TASK Mail Operator" without asking the user. It connected the authorized services, disabled approval requirements, published the agent, and launched it in Preview Mode.</p>
+<p>Zenity says Preview Mode isn't just a visual test run: It executes the new agent against the victim's real connected accounts using the approval settings that were just configured. Since every setting was already set to "Never ask," the first run finished without asking the user for approval.</p>
+<figure><a href="https://the-decoder.com/wp-content/uploads/2026/07/agentforger-05-preview-mode.jpg" target="_blank" rel="noopener noreferrer nofollow"></a><figcaption>Preview Mode isn't a dry run. It immediately executes the agent against real accounts. | Image: Zenity Labs</figcaption></figure>
+<h2>Scheduling gave attackers persistent access</h2>
+<p>Without the scheduler, the attack would have been a one-time event. The scheduler transforms the forged agent into something that resembles command-and-control infrastructure. Once the agent is deployed, the victim doesn't need to click again or reopen ChatGPT. The agent wakes up every five minutes, checks the inbox for new TASK emails, executes the instructions they contain, and sends the results back. The initial click installs the agent, the scheduler keeps it alive, and the inbox becomes the command channel.</p>
+<figure><a href="https://the-decoder.com/wp-content/uploads/2026/07/agentforger-06-schedule.jpg" target="_blank" rel="noopener noreferrer nofollow"></a><figcaption>Twelve staggered schedules add up to one run every five minutes. | Image: Zenity Labs</figcaption></figure>
+<p>In <a href="https://labs.zenity.io/p/agentforger-part-2-the-autonomous-insider" target="_blank" rel="noopener noreferrer nofollow">part two</a> of its analysis, Zenity shows what attackers could do through this channel. After receiving the command "TASK 1: RECON," the agent mapped the organization. It pulled data from Outlook, Slack, Teams, Drive, SharePoint, and Calendar to list people, roles, channels, active projects, and recurring meetings.</p>
+<figure><a href="https://the-decoder.com/wp-content/uploads/2026/07/agentforger-07-org-map.jpg" target="_blank" rel="noopener noreferrer nofollow"></a><figcaption>A single email command generates a complete map of the company. | Image: Zenity Labs</figcaption></figure>
+<p>The agent also searched Drive, SharePoint, and Outlook. It found an M&amp;A term sheet, a board presentation that mentioned missed revenue targets and planned layoffs, and a company-wide employee export with contact and compensation data. A request framed as a "DLP exercise" told the agent to search Slack for the string "pass:". The agent found a database username and password pair and emailed both to the attacker.</p>
+<figure><a href="https://the-decoder.com/wp-content/uploads/2026/07/agentforger-08-slack-credentials.jpg" target="_blank" rel="noopener noreferrer nofollow"></a><figcaption>Framed as a DLP exercise, the agent delivers the login credentials it found in plain text. | Image: Zenity Labs</figcaption></figure>
+<p>Other tasks abused the victim's trusted identity. The agent sent messages through the victim's Teams account asking colleagues to confirm an SSO rollout on a login page controlled by the attacker. Zenity also tested phishing through Slack and a business email compromise template. Other tests included an approval request for a $242,500 wire transfer and a calendar invitation with a participant controlled by the attacker.</p>
+<figure><a href="https://the-decoder.com/wp-content/uploads/2026/07/agentforger-09-teams-phishing.jpg" target="_blank" rel="noopener noreferrer nofollow"></a><figcaption>Phishing sent from inside the company looks far more credible than any external email. | Image: Zenity Labs</figcaption></figure>
+<h2>Safeguards didn't stop the attack</h2>
+<p>Zenity traces AgentForger to two related design choices. The builder treated the <code>initial_assistant_prompt</code> parameter as executable input rather than user input that needed confirmation. An attacker-controlled URL could therefore change data and settings within the victim's authenticated session without the user's explicit approval.</p>
+<p>The same prompt could also change security settings, including approval policies and execution schedules. This meant the instruction could disable the system meant to require human approval for sensitive actions.</p>
+<p>Zenity describes the combination as "the lethal trifecta": the URL supplied untrusted input, connectors provided access to private data, and email offered a path for sending that data out. Most exploits would have to bypass those safeguards first. AgentForger instead gave the attacker access to a build tool that could create an agent with those safeguards already disabled.</p>
+<h2>Autonomous agents break assumptions behind today's security tools</h2>
+<p>Zenity reported AgentForger through OpenAI's Bugcrowd program on June 4, 2026. OpenAI confirmed the report the next day and fixed the flaw on June 8 by removing the affected URL parameter. Zenity praised the OpenAI security team's response time.</p>
+<p>Until the fix went live, the flaw affected every organization using ChatGPT Workspace Agents with previously authorized enterprise connectors, according to Zenity.</p>
+<p>Zenity says the problem extends beyond this specific bug. Traditional security tools are built for users and endpoints, not autonomous agents that act through legitimate user identities. The more an agent can do without supervision, the more damage it can cause when someone else supplies its instructions. The cybersecurity company calls AgentForger an "agent trust failure": the platform assumed that the user had personally created, approved, scheduled, and launched the agent.</p>
+<p>Security concerns around agent-based AI have grown recently. <a href="https://the-decoder.com/hugging-face-says-an-ai-agent-hacked-its-infrastructure-and-it-used-ai-to-fight-back/" target="_blank" rel="noopener noreferrer nofollow">Hugging Face reported that a fully AI-controlled agent system entered its production infrastructure</a> through a manipulated dataset and then moved laterally. The system performed more than 17,000 actions, according to the company. <a href="https://the-decoder.com/openai-claims-responsibility-for-the-hugging-face-hack-after-its-own-models-escaped-a-test-sandbox/" target="_blank" rel="noopener noreferrer nofollow">OpenAI admitted responsibility shortly afterward</a>. During a performance test, its model had accidentally hacked Hugging Face to obtain test data.</p>
+<p>Zenity also demonstrated several zero-click and one-click exploits last year <a href="https://the-decoder.com/agent-based-ai-systems-face-growing-threats-from-zero-click-and-one-click-exploits/" target="_blank" rel="noopener noreferrer nofollow">under the name AgentFlayer</a>. The attacks targeted Copilot Studio, Salesforce Einstein, Cursor with Jira MCP, and other enterprise AI tools. In those cases, hidden prompts in seemingly harmless resources could divert customer data or steal login credentials.</p>
+		</div></div></div>
+  <div class="footer">
+    本文由 AI热点监控系统自动抓取 · 内容版权归原作者/网站所有<br>
+    快照仅用于学习交流，如需转载请访问原文
+  </div>
+</div>
+</body>
+</html>
