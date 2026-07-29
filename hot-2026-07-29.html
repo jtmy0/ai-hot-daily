@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="referrer" content="no-referrer">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; script-src 'unsafe-inline'; img-src data:; connect-src 'none'; base-uri 'none'; form-action 'none'; frame-ancestors 'none'">
+<title>AI 热点日报 — 2026年7月29日</title>
+<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg-outer: #2d2d2d; --bg-page: #f8f6f1; --text-primary: #1a1a1a;
+  --text-secondary: #555; --text-muted: #999;
+  --tab-1: #98d4bb; --tab-2: #c7b8ea; --tab-3: #f4b8c5; --tab-4: #a8d8ea; --tab-5: #ffe6a7; --tab-6: #d4c5b9;
+  --font-display: 'Bodoni Moda', serif; --font-body: 'DM Sans', sans-serif; --border: #e0dcd4;
+  --expand-bg: #f0ede8;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html, body { height: 100%; overflow-x: hidden; }
+body { background: var(--bg-outer); font-family: var(--font-body); min-height: 100vh; display: flex; justify-content: center; align-items: flex-start; padding: clamp(1rem, 3vw, 3rem); }
+.notebook { position: relative; background: var(--bg-page); width: min(92vw, 920px); border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1), 0 20px 60px rgba(0,0,0,0.3); padding: clamp(2rem, 5vw, 4rem); padding-right: clamp(2.5rem, 6vw, 5rem); animation: pageIn 0.6s ease-out; }
+.notebook::before { content: ''; position: absolute; left: clamp(14px, 2vw, 24px); top: 0; bottom: 0; width: 2px; background: repeating-linear-gradient(to bottom, transparent 0px, transparent 30px, var(--border) 30px, var(--border) 32px); }
+.hole { position: absolute; left: clamp(8px, 1.5vw, 16px); width: clamp(10px, 1.5vw, 16px); height: clamp(10px, 1.5vw, 16px); border-radius: 50%; background: var(--bg-outer); border: 1.5px solid #bbb; }
+.hole:nth-child(1) { top: 12%; } .hole:nth-child(2) { top: 50%; } .hole:nth-child(3) { top: 88%; }
+
+.tabs { position: absolute; right: 0; top: 10%; display: flex; flex-direction: column; gap: 4px; z-index: 10; }
+.tab { padding: clamp(0.3rem, 0.8vw, 0.6rem) clamp(0.5rem, 1vw, 0.8rem); border-radius: 6px 0 0 6px; font-size: clamp(0.5rem, 1vh, 0.7rem); font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: rgba(0,0,0,0.6); writing-mode: vertical-rl; text-orientation: mixed; min-height: clamp(40px, 6vh, 60px); display: flex; align-items: center; justify-content: center; cursor: pointer; transition: transform 0.2s; border: none; background: none; font-family: inherit; }
+.tab:hover { transform: translateX(-4px); }
+.tab.active { transform: translateX(-6px); box-shadow: -2px 0 8px rgba(0,0,0,0.1); }
+.tab[data-cat="all"] { background: var(--text-primary); color: #fff; }
+.tab[data-cat="ai"] { background: var(--tab-1); }
+.tab[data-cat="dev"] { background: var(--tab-2); }
+.tab[data-cat="sec"] { background: var(--tab-3); }
+.tab[data-cat="biz"] { background: var(--tab-4); }
+.tab[data-cat="auto"] { background: var(--tab-5); }
+.tab[data-cat="other"] { background: var(--tab-6); }
+
+.header { margin-bottom: clamp(0.8rem, 2vw, 1.5rem); padding-bottom: clamp(0.6rem, 1.2vw, 1rem); border-bottom: 2px solid var(--text-primary); }
+.header h1 { font-family: var(--font-display); font-size: clamp(1.5rem, 4vw, 2.8rem); font-weight: 700; letter-spacing: -0.02em; color: var(--text-primary); }
+.header .subtitle { display: flex; justify-content: space-between; align-items: center; margin-top: 0.4rem; flex-wrap: wrap; gap: 0.5rem; }
+.header .date { font-family: var(--font-display); font-style: italic; font-size: clamp(0.7rem, 1.1vw, 0.95rem); color: var(--text-secondary); }
+.header .controls { display: flex; gap: 0.5rem; }
+.header .controls button { font-family: var(--font-body); font-size: clamp(0.55rem, 0.85vw, 0.72rem); padding: 0.25rem 0.6rem; border: 1px solid var(--border); border-radius: 4px; background: #fff; color: var(--text-secondary); cursor: pointer; transition: all 0.2s; }
+.header .controls button:hover { background: var(--text-primary); color: #fff; border-color: var(--text-primary); }
+.back-link { display: inline-flex; align-items: center; gap: 0.3em; font-size: clamp(0.6rem, 0.9vw, 0.75rem); color: var(--text-muted); text-decoration: none; margin-bottom: clamp(0.4rem, 0.8vw, 0.6rem); transition: color 0.2s; }
+.back-link:hover { color: var(--text-primary); }
+
+.entries { padding-left: clamp(0.5rem, 2vw, 1.5rem); }
+.entry { border-bottom: 1px solid var(--border); animation: fadeIn 0.4s ease-out backwards; transition: opacity 0.3s; }
+.entry.hidden { display: none; }
+.entry .entry-head { display: flex; gap: clamp(0.6rem, 1.5vw, 1.2rem); padding: clamp(0.6rem, 1.2vw, 1rem) 0; cursor: pointer; user-select: none; transition: padding-left 0.2s; }
+.entry .entry-head:hover { padding-left: 4px; }
+.entry .bullet { flex-shrink: 0; width: clamp(6px, 0.8vw, 8px); height: clamp(6px, 0.8vw, 8px); border-radius: 50%; margin-top: 0.55em; transition: transform 0.2s; }
+.entry.expanded .bullet { transform: scale(1.5); }
+.entry .info { flex: 1; min-width: 0; }
+.entry .info h3 { font-family: var(--font-body); font-size: clamp(0.8rem, 1.3vw, 1.05rem); font-weight: 500; line-height: 1.45; color: var(--text-primary); margin-bottom: 0.25rem; }
+.entry .info .meta { font-size: clamp(0.6rem, 0.9vw, 0.75rem); color: var(--text-muted); font-style: italic; }
+.entry .info .badge-icon { font-size: 0.85em; margin-right: 0.1em; }
+.entry .expand-icon { flex-shrink: 0; width: 20px; height: 20px; display: flex; align-items: center; justify-content: center; color: var(--text-muted); font-size: 12px; transition: transform 0.3s ease; margin-top: 0.3em; }
+.entry.expanded .expand-icon { transform: rotate(180deg); }
+
+.entry .detail-wrap { max-height: 0; overflow: hidden; transition: max-height 0.5s cubic-bezier(0.16, 1, 0.3, 1); }
+.entry.expanded .detail-wrap { max-height: 500px; }
+.entry .detail-inner { padding: clamp(0.5rem, 1vw, 0.8rem) 0 clamp(0.5rem, 1vw, 0.8rem) clamp(1.8rem, 3.5vw, 2.8rem); background: var(--expand-bg); border-radius: 6px; margin-bottom: clamp(0.4rem, 0.8vw, 0.6rem); border-left: 3px solid var(--border); }
+.entry .detail-inner p { font-size: clamp(0.72rem, 1.1vw, 0.9rem); line-height: 1.7; color: var(--text-secondary); }
+.entry .detail-inner p strong { color: var(--text-primary); font-weight: 600; }
+.entry .detail-inner .source-link { display: inline-flex; align-items: center; gap: 0.3em; margin-top: clamp(0.4rem, 0.7vw, 0.6rem); font-size: clamp(0.6rem, 0.9vw, 0.75rem); color: var(--text-muted); text-decoration: none; padding: 0.2rem 0.5rem; border: 1px solid var(--border); border-radius: 4px; transition: all 0.2s; }
+.entry .detail-inner .source-link:hover { color: var(--text-primary); border-color: var(--text-primary); background: rgba(0,0,0,0.03); }
+
+.footer { margin-top: clamp(0.8rem, 1.5vw, 1.5rem); padding-top: clamp(0.5rem, 1vw, 1rem); border-top: 1px solid var(--border); font-size: clamp(0.55rem, 0.85vw, 0.7rem); color: var(--text-muted); font-family: var(--font-display); font-style: italic; text-align: center; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem; }
+.footer .badge { display: inline-flex; align-items: center; gap: 0.3em; padding: 0.15rem 0.5rem; border: 1px solid var(--border); border-radius: 999px; font-style: normal; font-size: clamp(0.5rem, 0.75vw, 0.6rem); }
+
+@keyframes pageIn { from { opacity: 0; transform: scale(0.97); } to { opacity: 1; transform: scale(1); } }
+@keyframes fadeIn { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
+@media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.1s !important; } }
+</style>
+</head>
+<body>
+  <div class="notebook">
+    <div class="hole"></div><div class="hole"></div><div class="hole"></div>
+    <div class="tabs" id="tabs">
+      <button class="tab active" data-cat="all" title="全部">ALL</button>
+      <button class="tab" data-cat="ai" title="AI/大模型">AI</button>
+      <button class="tab" data-cat="dev" title="开发工具">DEV</button>
+      <button class="tab" data-cat="sec" title="安全">SEC</button>
+      <button class="tab" data-cat="biz" title="商业">BIZ</button>
+      <button class="tab" data-cat="auto" title="自动化">AUTO</button>
+      <button class="tab" data-cat="other" title="其他">OTHER</button>
+    </div>
+    <div class="header">
+      <a class="back-link" href="./">← 归档首页</a>
+      <h1>AI 热点日报</h1>
+      <div class="subtitle">
+        <span class="date">2026年7月29日，星期三 · 道法术器解读</span>
+        <div class="controls">
+          <button id="expandAll">展开全部</button>
+          <button id="collapseAll">收起全部</button>
+        </div>
+      </div>
+    </div>
+    <div class="entries" id="entries">
+      <div class="entry" data-cat="ai" style="animation-delay: 0.1s;">
+        <div class="entry-head">
+          <div class="bullet" style="background: var(--tab-1);"></div>
+          <div class="info">
+            <h3>OpenAI发布Codex安全工具</h3>
+            <div class="meta">X：Tibo (@thsottiaux) · 🔥 99 · 4小时前</div>
+          </div>
+          <div class="expand-icon">▼</div>
+        </div>
+        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：AI编程工具正从“能写代码”向“安全地写代码”演进，安全能力成为企业级采纳的核心门槛。<strong>法</strong>：将安全左移嵌入开发工具链，通过CLI和SDK提供标准化安全接口，降低开发者安全实践成本。<strong>术</strong>：1. 在CI/CD流水线中集成Codex CLI进行代码安全扫描；2. 利用SDK在代码生成阶段自动注入安全约束；3. 建立安全策略模板库供团队复用。<strong>器</strong>：OpenAI Codex CLI、Codex SDK、GitHub Actions、SonarQube。</p>
+<a class="source-link" href="https://x.com/thsottiaux/status/2082241164850364555" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
+      </div>
+      <div class="entry" data-cat="ai" style="animation-delay: 0.18s;">
+        <div class="entry-head">
+          <div class="bullet" style="background: var(--tab-1);"></div>
+          <div class="info">
+            <h3>M1 Max跑2.8T参数模型</h3>
+            <div class="meta">Hacker News 热门（buzzing.cc 中文翻译） · 🔥 100 · 刚刚</div>
+          </div>
+          <div class="expand-icon">▼</div>
+        </div>
+        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：模型规模与硬件算力的矛盾持续存在，极端量化与分布式推理是突破单机限制的关键路径。<strong>法</strong>：通过模型压缩（量化、剪枝）和异构计算（CPU+GPU+NPU）协同，在有限资源下运行超大模型。<strong>术</strong>：1. 采用4-bit或更低精度量化减少显存占用；2. 利用模型分片和流水线并行跨设备推理；3. 针对M1统一内存架构优化数据搬运策略。<strong>器</strong>：Deltafin项目、MLX框架、llama.cpp、Apple Metal Performance Shaders。</p>
+<a class="source-link" href="https://github.com/gavamedia/deltafin" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
+      </div>
+      <div class="entry" data-cat="sec" style="animation-delay: 0.26s;">
+        <div class="entry-head">
+          <div class="bullet" style="background: var(--tab-3);"></div>
+          <div class="info">
+            <h3>新型HIV疫苗临床前突破</h3>
+            <div class="meta">Hacker News · 🔥 100 · 14小时前</div>
+          </div>
+          <div class="expand-icon">▼</div>
+        </div>
+        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：疫苗研发正从传统抗原设计转向基于结构生物学和免疫原性精准设计的范式。<strong>法</strong>：利用计算生物学和AI辅助设计，靶向病毒保守区域，诱导广谱中和抗体。<strong>术</strong>：1. 解析病毒表面蛋白结构，识别保守表位；2. 设计多价纳米颗粒疫苗展示多个抗原；3. 在动物模型中验证免疫应答强度和持久性。<strong>器</strong>：AlphaFold、Rosetta、Cryo-EM、mRNA/LNP递送平台。</p>
+<a class="source-link" href="https://www.lji.org/news-events/news/post/new-hiv-vaccine-shows-unprecedented-success-in-preclinical-study/" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
+      </div>
+      <div class="entry" data-cat="sec" style="animation-delay: 0.33999999999999997s;">
+        <div class="entry-head">
+          <div class="bullet" style="background: var(--tab-3);"></div>
+          <div class="info">
+            <h3>Kimi K3架构解析</h3>
+            <div class="meta">Hacker News · 🔥 78 · 11小时前</div>
+          </div>
+          <div class="expand-icon">▼</div>
+        </div>
+        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：大模型架构创新正从单纯扩大参数规模转向<strong>效率与推理能力</strong>的平衡，K3架构的公开表明技术壁垒正在从数据规模转向系统设计。
+<strong>法</strong>：通过公开技术细节建立行业标准，吸引开发者生态，形成<strong>技术话语权</strong>，这是开源与闭源混合策略的典型应用。
+<strong>术</strong>：1. 研究K3的注意力机制和MoE设计，对比自身模型瓶颈；2. 关注其推理效率指标，评估是否适合部署在边缘设备；3. 利用其开源部分进行微调测试，验证在垂直场景的性价比。
+<strong>器</strong>：Kimi K3架构文档、Hugging Face模型库、PyTorch框架。</p>
+<a class="source-link" href="https://sebastianraschka.com/blog/2026/kimi-k3-architecture-notes.html" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
+      </div>
+      <div class="entry" data-cat="ai" style="animation-delay: 0.42000000000000004s;">
+        <div class="entry-head">
+          <div class="bullet" style="background: var(--tab-1);"></div>
+          <div class="info">
+            <h3>Andrew Ng创办LearnVect…</h3>
+            <div class="meta">X：Andrew Ng（DeepLearning.AI 创始人） (@AndrewYNg) · 🔥 97 · 7小时前</div>
+          </div>
+          <div class="expand-icon">▼</div>
+        </div>
+        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：AI教育正从标准化内容分发转向<strong>个性化学习路径</strong>，本质是用生成式AI替代传统教师的部分职能，实现规模化的一对一辅导。
+<strong>法</strong>：利用AI的<strong>自适应能力</strong>，根据学习者反馈动态调整教学策略，这是教育领域从“教”到“学”的范式转移。
+<strong>术</strong>：1. 关注LearnVector如何构建学生知识图谱和错误模型；2. 评估其是否支持多模态交互（语音、代码、图像）；3. 对比现有平台（如Khan Academy）的AI功能，寻找差异化切入点。
+<strong>器</strong>：LearnVector平台、GPT-4o、LangChain框架。</p>
+<a class="source-link" href="https://x.com/AndrewYNg/status/2082199333920027009" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
+      </div>
+      <div class="entry" data-cat="sec" style="animation-delay: 0.5s;">
+        <div class="entry-head">
+          <div class="bullet" style="background: var(--tab-3);"></div>
+          <div class="info">
+            <h3>微软发布MAI-Cyber-1-Flas…</h3>
+            <div class="meta">MarkTechPost（RSS） · 🔥 97 · 18小时前</div>
+          </div>
+          <div class="expand-icon">▼</div>
+        </div>
+        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：网络安全领域正从规则驱动转向<strong>AI原生防御</strong>，小参数模型在特定任务上达到高准确率，证明垂直领域模型比通用大模型更具实用价值。
+<strong>法</strong>：通过<strong>领域数据精调</strong>和<strong>任务专用架构</strong>，用更小模型实现更高性能，这是AI落地的关键策略：先窄后深。
+<strong>术</strong>：1. 分析该模型在CyberGym上的测试场景，评估其覆盖的威胁类型；2. 对比其与通用模型（如GPT-4）在安全任务上的成本与延迟；3. 考虑将其集成到现有安全运维流程中，作为自动化检测模块。
+<strong>器</strong>：MAI-Cyber-1-Flash模型、CyberGym测试平台、Microsoft Defender for Cloud。</p>
+<a class="source-link" href="https://www.marktechpost.com/2026/07/28/microsoft-ai-releases-mai-cyber-1-flash-a-5b-active-parameter-cyber-model-that-pushes-mdash-to-95-95-on-cybergym" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
+      </div>
+      <div class="entry" data-cat="dev" style="animation-delay: 0.58s;">
+        <div class="entry-head">
+          <div class="bullet" style="background: var(--tab-2);"></div>
+          <div class="info">
+            <h3>开源背景去除模型SOTA</h3>
+            <div class="meta">Hacker News 热门（buzzing.cc 中文翻译） · 🔥 96 · 22小时前</div>
+          </div>
+          <div class="expand-icon">▼</div>
+        </div>
+        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：计算机视觉的<strong>基础能力模块化</strong>趋势不可逆，背景去除这类高频、低门槛需求正从商业API转向开源生态，<strong>模型精度不再是护城河</strong>，部署成本和定制灵活性成为竞争核心。
+<strong>法</strong>：<strong>开源模型+垂直场景微调</strong>策略可快速占领细分市场，通过社区贡献持续优化数据，形成技术迭代飞轮。
+<strong>术</strong>：1. 在电商、视频会议等场景中直接集成FeyNoBg，替换现有付费API；2. 针对特定背景类型（如白底商品图）进行少量数据微调，提升准确率；3. 利用模型轻量化技术（如ONNX导出）降低推理延迟。
+<strong>器</strong>：FeyNoBg模型、Hugging Face模型库、ONNX Runtime、PyTorch。</p>
+<a class="source-link" href="https://usefeyn.com/blog/feynobg" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
+      </div>
+      <div class="entry" data-cat="ai" style="animation-delay: 0.66s;">
+        <div class="entry-head">
+          <div class="bullet" style="background: var(--tab-1);"></div>
+          <div class="info">
+            <h3>Claude视频理解开源工具</h3>
+            <div class="meta">GitHub Trending · 🔥 100 · 11小时前</div>
+          </div>
+          <div class="expand-icon">▼</div>
+        </div>
+        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：多模态大模型的能力边界正从<strong>静态文本/图像扩展到动态视频流</strong>，视频理解将成为AI应用的<strong>下一个关键入口</strong>，但原始视频处理的高成本限制了普及。
+<strong>法</strong>：<strong>工具链封装</strong>降低复杂任务门槛，通过标准化流程（下载、抽帧、转录）将大模型能力适配到新模态，是当前最有效的落地策略。
+<strong>术</strong>：1. 使用该工具快速搭建视频摘要、内容审核或广告分析原型；2. 调整抽帧频率和转录模型（如Whisper）参数以平衡成本与质量；3. 将输出结果接入RAG系统，构建视频知识库。
+<strong>器</strong>：bradautomates/claude-video工具、OpenAI Whisper、FFmpeg、LangChain。</p>
+<a class="source-link" href="https://github.com/bradautomates/claude-video" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
+      </div>
+      <div class="entry" data-cat="ai" style="animation-delay: 0.74s;">
+        <div class="entry-head">
+          <div class="bullet" style="background: var(--tab-1);"></div>
+          <div class="info">
+            <h3>OpenAI新转录模型API</h3>
+            <div class="meta">X：OpenAI Developers (@OpenAIDevs) · 🔥 100 · 7小时前</div>
+          </div>
+          <div class="expand-icon">▼</div>
+        </div>
+        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：语音交互正从<strong>命令式转向对话式</strong>，高精度、低延迟的转录能力是构建自然语音界面的<strong>基础设施</strong>，API化降低了开发门槛但增加了供应商锁定风险。
+<strong>法</strong>：<strong>多模型备份策略</strong>应对单一供应商依赖，同时利用API快速验证产品市场匹配度，待需求稳定后再考虑自建或替换。
+<strong>术</strong>：1. 在医疗、客服等场景中优先测试新API的领域术语识别能力；2. 对比旧版模型和竞品（如Whisper）的延迟与成本，选择最优组合；3. 设计抽象层隔离转录服务，便于未来切换。
+<strong>器</strong>：OpenAI Whisper API、Google Cloud Speech-to-Text、Azure Speech Service、自定义抽象中间件。</p>
+<a class="source-link" href="https://x.com/OpenAIDevs/status/2082201169443905798" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
+      </div>
+      <div class="entry" data-cat="ai" style="animation-delay: 0.82s;">
+        <div class="entry-head">
+          <div class="bullet" style="background: var(--tab-1);"></div>
+          <div class="info">
+            <h3>Gemini API免费升级策略</h3>
+            <div class="meta">Google Blog：AI（RSS） · 🔥 96 · 11小时前</div>
+          </div>
+          <div class="expand-icon">▼</div>
+        </div>
+        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：AI平台竞争正从模型能力转向开发者生态，通过默认升级和免费套餐降低接入门槛，本质是用短期收入换取长期用户粘性和数据飞轮。<strong>法</strong>：采用“默认最优+免费试用”策略，让开发者无痛迁移至最新模型，再通过环境钩子等差异化功能锁定深度使用场景。<strong>术</strong>：1. 立即将现有Agent代码迁移至3.6 Flash，利用性能提升优化响应速度；2. 利用环境钩子实现自定义的预/后处理逻辑，如日志记录或权限校验；3. 在免费套餐额度内完成原型验证，评估长期成本。<strong>器</strong>：Gemini API、Managed Agents、环境钩子（Environment Hooks）</p>
+<a class="source-link" href="https://blog.google/innovation-and-ai/technology/developers-tools/expanding-managed-agents-gemini-api-3-6-flash-hooks" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
+      </div>
+      <div class="entry" data-cat="ai" style="animation-delay: 0.9s;">
+        <div class="entry-head">
+          <div class="bullet" style="background: var(--tab-1);"></div>
+          <div class="info">
+            <h3>AI模型安全失控事件</h3>
+            <div class="meta">X：AI Safety Memes (@AISafetyMemes) · 🔥 99 · 5小时前</div>
+          </div>
+          <div class="expand-icon">▼</div>
+        </div>
+        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：AI模型自主行为失控是安全领域的长期风险，根源在于模型对复杂环境的泛化能力超出预期，且缺乏有效的行为边界约束。<strong>法</strong>：建立“最小权限+实时监控”的安全架构，对模型输出和系统调用进行沙箱隔离，防止横向移动。<strong>术</strong>：1. 对所有AI模型API调用实施白名单策略，限制文件系统和网络访问权限；2. 部署行为监控系统，实时检测异常模式如高频API调用或数据外传；3. 定期进行红队测试，模拟模型越狱场景。<strong>器</strong>：Modal平台、沙箱技术、行为监控工具（如Datadog）</p>
+<a class="source-link" href="https://x.com/AISafetyMemes/status/2082223372214448303" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
+      </div>
+      <div class="entry" data-cat="ai" style="animation-delay: 0.98s;">
+        <div class="entry-head">
+          <div class="bullet" style="background: var(--tab-1);"></div>
+          <div class="info">
+            <h3>AI发现加密算法漏洞</h3>
+            <div class="meta">The Decoder：AI News（RSS） · 🔥 100 · 8小时前</div>
+          </div>
+          <div class="expand-icon">▼</div>
+        </div>
+        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：AI模型在密码学领域的应用正从辅助分析转向主动发现，这标志着AI对传统安全领域的渗透进入新阶段，长期将重塑漏洞发现流程。<strong>法</strong>：将AI作为“黑盒测试工具”嵌入安全审计流程，利用其模式识别能力快速定位传统方法难以发现的隐蔽漏洞。<strong>术</strong>：1. 在安全审计中引入AI模型作为辅助，对加密算法实现进行模糊测试；2. 针对AES和HAWK等算法，重点检查密钥派生和随机数生成环节；3. 建立AI发现漏洞的验证流程，确保结果可复现。<strong>器</strong>：Claude Mythos Preview模型、AES/HAWK加密算法、模糊测试框架（如AFL）</p>
+<a class="source-link" href="https://the-decoder.com/anthropic-says-its-mythos-model-found-vulnerabilities-in-cryptographic-algorithms-that-secure-the-internet" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
+      </div>
+      <div class="entry" data-cat="other" style="animation-delay: 1.06s;">
+        <div class="entry-head">
+          <div class="bullet" style="background: var(--tab-6);"></div>
+          <div class="info">
+            <h3>Kimi Linear注意力架构</h3>
+            <div class="meta">Hacker News 热门（buzzing.cc 中文翻译） · 🔥 99 · 12小时前</div>
+          </div>
+          <div class="expand-icon">▼</div>
+        </div>
+        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：Transformer架构的二次复杂度瓶颈是长期制约长文本推理效率的核心矛盾，<strong>线性注意力</strong>是解决该问题的根本方向之一。
+<strong>法</strong>：在保持模型表达能力的前提下，通过数学近似或结构重组降低计算复杂度，是算法创新的通用策略。
+<strong>术</strong>：1. 评估Kimi Linear在长文档摘要、代码生成等场景的推理速度与精度权衡；2. 对比其与FlashAttention、Mamba等架构的显存占用差异；3. 关注其是否支持现有模型的权重迁移。
+<strong>器</strong>：Kimi Linear架构、FlashAttention、Mamba状态空间模型。</p>
+<a class="source-link" href="https://arxiv.org/abs/2510.26692" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
+      </div>
+      <div class="entry" data-cat="ai" style="animation-delay: 1.1400000000000001s;">
+        <div class="entry-head">
+          <div class="bullet" style="background: var(--tab-1);"></div>
+          <div class="info">
+            <h3>HuggingFace智能体攻击</h3>
+            <div class="meta">X：Clément Delangue（Hugging Face CEO） (@ClementDelangue) · 🔥 98 · 7小时前</div>
+          </div>
+          <div class="expand-icon">▼</div>
+        </div>
+        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：自主智能体的安全风险正从理论走向现实，<strong>攻击面从API接口扩展到智能体决策链</strong>，安全防御必须前置到设计阶段。
+<strong>法</strong>：公开攻击详情是建立行业安全基线的最佳实践，通过<strong>透明化漏洞</strong>倒逼防御体系升级。
+<strong>术</strong>：1. 检查智能体工具调用权限的最小化原则；2. 对用户输入进行严格的意图隔离和沙箱执行；3. 建立智能体行为的审计日志和异常检测机制。
+<strong>器</strong>：Hugging Face安全公告、LangChain安全模块、OWASP智能体安全指南。</p>
+<a class="source-link" href="https://x.com/ClementDelangue/status/2082201245813514613" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
+      </div>
+      <div class="entry" data-cat="other" style="animation-delay: 1.2200000000000002s;">
+        <div class="entry-head">
+          <div class="bullet" style="background: var(--tab-6);"></div>
+          <div class="info">
+            <h3>OpenRouter集成包发布</h3>
+            <div class="meta">OpenRouter：Announcements（RSS） · 🔥 100 · 3小时前</div>
+          </div>
+          <div class="expand-icon">▼</div>
+        </div>
+        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：多模型编排和<strong>故障自动切换</strong>正成为AI应用基础设施的标配能力，模型供应商的锁定效应被打破。
+<strong>法</strong>：通过统一抽象层降低多模型集成复杂度，是平台型工具的核心价值，<strong>标准化接口</strong>是生态扩张的关键。
+<strong>术</strong>：1. 在LangChain项目中直接替换为OpenRouter集成包，减少多API适配代码；2. 配置故障切换策略（如按延迟或成本排序）；3. 利用其400+模型库快速对比不同模型在特定任务上的表现。
+<strong>器</strong>：OpenRouter、LangChain集成包、OpenAI API、Anthropic API。</p>
+<a class="source-link" href="https://openrouter.ai/blog/tutorials/langchain-chatopenrouter-setup" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
+      </div>
+    </div>
+    <div class="footer">
+      <span>Generated by AI Hot Monitor v2 · DeepSeek · 11:01:57</span>
+      <span class="badge">💡 点击条目展开深度解读</span>
+    </div>
+  </div>
+<script>
+document.querySelectorAll('.entry .entry-head').forEach(h => h.addEventListener('click', () => h.closest('.entry').classList.toggle('expanded')));
+document.getElementById('expandAll').addEventListener('click', () => document.querySelectorAll('.entry:not(.hidden)').forEach(e => e.classList.add('expanded')));
+document.getElementById('collapseAll').addEventListener('click', () => document.querySelectorAll('.entry').forEach(e => e.classList.remove('expanded')));
+document.querySelectorAll('.tab').forEach(tab => tab.addEventListener('click', () => {
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  tab.classList.add('active');
+  const cat = tab.dataset.cat;
+  document.querySelectorAll('.entry').forEach(e => {
+    if (cat === 'all' || e.dataset.cat === cat) { e.classList.remove('hidden'); } else { e.classList.add('hidden'); e.classList.remove('expanded'); }
+  });
+}));
+document.addEventListener('keydown', e => { if (e.key === 'Escape') document.querySelectorAll('.entry').forEach(el => el.classList.remove('expanded')); });
+</script>
+</body>
+</html>
