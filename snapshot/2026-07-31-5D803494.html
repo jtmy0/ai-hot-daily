@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="referrer" content="no-referrer">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'unsafe-inline'; img-src data:; connect-src 'none'; frame-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'; frame-ancestors 'none'">
+<title>Stacked sessions and pull requests in the GitHub Copilot app - AI热点快照</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','PingFang SC','Microsoft YaHei',sans-serif;background:#f8f9fa;color:#1a1a2e;line-height:1.8;min-height:100vh}
+.top-bar{background:#fff;border-bottom:1px solid #e5e7eb;padding:10px 20px;display:flex;align-items:center;gap:12px;position:sticky;top:0;z-index:10}
+.top-bar .logo{font-size:14px;font-weight:700;color:#0d9488}
+.top-bar .sep{color:#d1d5db}
+.top-bar .source{font-size:13px;color:#6b7280}
+.top-bar .back{margin-left:auto;font-size:13px;color:#0d9488;text-decoration:none}
+.top-bar .back:hover{text-decoration:underline}
+.container{max-width:760px;margin:0 auto;padding:40px 24px 80px}
+.article-title{font-size:1.8rem;font-weight:700;line-height:1.35;margin-bottom:16px;color:#1a1a2e}
+.article-meta{display:flex;flex-wrap:wrap;gap:16px;padding-bottom:20px;margin-bottom:28px;border-bottom:1px solid #e5e7eb;font-size:14px;color:#6b7280}
+.article-meta a{color:#0d9488;text-decoration:none}
+.article-meta a:hover{text-decoration:underline}
+.article-body{font-size:16.5px;line-height:1.85;color:#1f2937}
+.article-body p{margin-bottom:1.2em;text-align:justify}
+.article-body h1,.article-body h2,.article-body h3{font-size:1.25em;font-weight:700;margin:1.6em 0 0.6em;color:#1a1a2e}
+.article-body a{color:#0d9488}
+.article-body pre,.article-body code{background:#f1f5f9;border-radius:4px;font-size:0.9em}
+.article-body pre{padding:16px;overflow-x:auto;margin:1em 0}
+.article-body code{padding:2px 6px}
+.article-body blockquote{border-left:3px solid #0d9488;padding-left:16px;color:#4b5563;margin:1em 0}
+.article-body ul,.article-body ol{padding-left:1.6em;margin-bottom:1em}
+.article-body li{margin-bottom:0.4em}
+.article-body figure{margin:1.2em 0}
+.article-body figcaption{font-size:13px;color:#9ca3af;text-align:center;margin-top:6px}
+.footer{margin-top:48px;padding-top:20px;border-top:1px solid #e5e7eb;font-size:13px;color:#9ca3af;text-align:center}
+</style>
+</head>
+<body>
+<div class="top-bar">
+  <a class="back" href="../" style="font-size:13px;color:#6b7280;text-decoration:none">← 日报首页</a>
+  <span class="sep">|</span>
+  <span class="logo">AI热点快照</span>
+  <span class="sep">|</span>
+  <span class="source">The GitHub Blog</span>
+  <a class="back" href="https://github.blog/ai-and-ml/github-copilot/stacked-sessions-and-pull-requests-in-the-github-copilot-app" target="_blank" rel="noopener noreferrer">查看原文 ↗</a>
+</div>
+<div class="container">
+  <h1 class="article-title">Stacked sessions and pull requests in the GitHub Copilot app</h1>
+  <div class="article-meta">
+    <span>作者: Cassidy Williams</span>
+    <span>来源: The GitHub Blog</span>
+    <span>快照日期: 2026-07-31</span>
+  </div>
+  <div class="article-body"><p>I want you to look at this screenshot for a moment from the <a href="https://github.com/features/ai/github-app?utm_source=blog-copilot-app-feature-page-top&amp;utm_medium=blog&amp;utm_campaign=stacked-prs-gtm-public-preview-2026" target="_blank" rel="noopener noreferrer nofollow">GitHub Copilot app</a>. It’s a small one, it’s got a lot of icons, and it tells the most glorious story that I’m really excited about.</p>
+
+
+
+<figure></figure>
+
+
+
+<p>This image is a set of stacked sessions. They’re a series of tasks in the same repository, where each session builds off each other!</p>
+
+
+
+<p>More on those below, but first, why is this screenshot so magical? We need to go back more than a decade to start. I have this very old repo of mine for a personal app. I first made it <em>ages</em> ago (end of 2014-ish), and it’s done what I want it to do (it’s like a personal “life” dashboard of calendars and smart devices in my home and task management) for all those years. I occasionally do some updates, but those have gotten harder and harder to wrangle.</p>
+
+
+
+<p>My dependencies had gotten <em>old</em>. Embarrassingly old. I was using React 15 (which was released in 2016), Less for CSS pre-processing, and a version of react-bootstrap from around that time. Yes, you read that right. <em>Bootstrap</em>. This was old.</p>
+
+
+
+<p>Trying to untangle this absolute mess before AI would have taken me weeks. I had tried and given up before. It’s not the largest app in the world, but it’s <em>juuuust</em> big enough that it would be painful, and the juice was simply not worth the squeeze.</p>
+
+
+
+<p>…but we <em>do</em> have AI now, and so I fired up the GitHub Copilot app, added the repo, and got started.</p>
+
+
+
+<h2>First step: Could I one-shot this?</h2>
+
+
+
+<p>No.</p>
+
+
+
+<p>I tried though! This is the prompt that I used in Plan mode:</p>
+
+
+<div>
+<pre><code>I want to modernize the frontend for this project. I first wrote a lot of this code more than 10 years ago and it should be cleaned up a lot. I'm thinking we start either using Tailwind or just vanilla CSS (please vet everything to help me decide), we remove all Less (etc), and clean everything up accessibility-wise and responsiveness-wise. Right now I really want to just focus on styles, and then slowly but surely organize and consolidate the React functionality. It might be worth modernizing dependencies, too. Let's come up with a plan around this before diving in. 
+ 
+1. Nothing is sacred, it's okay if we have to completely start over some parts 
+2. Links should change colors and add underlines on hover/focus 
+3. Input boxes should have a smaller border radius in general, and their labels should be cleaner 
+4. There should be good wrapping and a max-width on containers so that an input box doesn't span an entire wide monitor.</code></pre>
+</div>
+
+
+<p>I passed this into Claude Opus 4.8 got a Rubber Duck review from GPT-5.5, and had to do quite a bit of back-and-forth to make decisions. Once I got to a place I was happy with, I hit “go” and let the app go to town on my project to see if it would work!</p>
+
+
+
+<p>…it didn’t, and it was my fault.</p>
+
+
+
+<h2>Second step: Realizing I had tried this before</h2>
+
+
+
+<p>So, remember when I said I’d “tried and given up before?” Turns out, I actually had an old <code>dev</code>branch where I actually had modernized some parts, and didn’t realize the compatibility issues I’d run into.</p>
+
+
+
+<p>But, that was a good thing!</p>
+
+
+
+<p>When I ran the new version from this session, I realized that I was branching off <code>main</code>, but that my current deployment that I was using regularly was using my partially updated version on <code>dev</code>. So, some wanted features that I had made for myself needed to be included in this set of changes. But, the changes were <em>just</em> big enough that I actually had to apply those changes to the <code>dev</code>branch to save my sanity a bit, rather than pull in the <code>dev</code>changes to <code>main</code>.</p>
+
+
+
+<p>Pre-AI… my word, this would have made me pull my hair out in frustration. I was admittedly frustrated here, too. I had spent time and tokens trying to get this running with what I thought was a decent plan. But! I was able to switch gears (and sessions) with a simple ask, which was way cooler than I expected it to be:</p>
+
+
+
+<figure></figure>
+
+
+
+<p>All was not wasted! Copilot made a new session for me, closed the pull request I had attempted, and ported my styling decisions to changes it was applying to the dev branch.</p>
+
+
+
+<h2>Third step: Findings after testing</h2>
+
+
+
+<p>Whew, okay, so I had a good branch going, and a pull request I was decently happy with. As I started testing, though, I couldn’t help but notice some old warnings in my console.</p>
+
+
+
+<p>My heart filled with dread as I saw old references to <code>findDOMNode</code>and <code>componentWillReceiveProps</code>, functions I personally hadn’t touched in years and years. Ugh.</p>
+
+
+
+<p>Those references were not in my codebase as much anymore, but they were in react-bootstrap. I opened up Plan mode again, because I needed to figure out if an upgrade would work, or if I should remove the library entirely:</p>
+
+
+<div>
+<pre><code>Do you think we should remove react-bootstrap entirely (and replace with a modern alternative), or just upgrade/migrate existing components?</code></pre>
+</div>
+
+
+<p>Running this gave me a decent plan, talked through the options, and recommended replacing the library entirely.</p>
+
+
+
+<h2>Fourth step: Stacking a session on top of the other</h2>
+
+
+
+<p>I needed to make sure my changes were safe from the existing work, but the react-bootstrap replacement felt like a <em>lot</em> of scope creep for what I was currently doing.</p>
+
+
+
+<p>I’ve found that in a lot of my “agentic” engineering work, it’s particularly hard to avoid that kind of scope creep. Because I don’t have to write all the code myself, it’s so tempting to make 10,000 line pull requests that take care of all of the things I want to do! Which is really just a new form of procrastination, ha.</p>
+
+
+
+<p>So, instead of making this mega pull request for myself to test, I broke it up with a new session, and prompted:</p>
+
+
+<div>
+<pre><code>Let's make a pull request for the existing work, and then start a new session for this react-bootstrap replacement work that will branch off this existing work here, and be a separate pull request to merge into dev after this one. </code></pre>
+</div>
+
+
+<p>This is the part that felt magical enough to make me want to write this blog post. The GitHub Copilot app:</p>
+
+
+
+<ol>
+<li>Made a pull request for all of my current changes off <code>dev</code></li>
+
+
+
+<li>Made a “stacked session” for react-bootstrap removal (it took the previous context, made a session to run after the existing session, created a plan, had me approve the plan, and ran)</li>
+
+
+
+<li>Made a <a href="https://gh.io/stacks?utm_source=blog-stacked-pr-docs&amp;utm_medium=blog&amp;utm_campaign=stacked-prs-gtm-public-preview-2026" target="_blank" rel="noopener noreferrer nofollow">stacked pull request</a> following my existing work</li>
+</ol>
+
+
+
+<p>THIS WAS SO COOL. Stacked sessions <em>and</em> stacked pull requests? Is this the future?</p>
+
+
+
+<p>YES.</p>
+
+
+
+<p>In case you don’t get what that means by name: A stack is a series of pull requests in the same repository where each pull request targets the branch of the pull request below it, forming an ordered chain that ultimately lands on your main branch.</p>
+
+
+
+<p>In my case, not only did the sessions follow each other, but their changes did too!</p>
+
+
+
+<h2>Fifth step: Sailing off into the sunset with stacked pull requests</h2>
+
+
+
+<p>I know I’m being somewhat cheeky with my excitement, but my happiness is sincere. The ease of shipping these changes was a delightful experience after neglecting my old codebase for ages.</p>
+
+
+
+<p>Let’s look at that first screenshot again: I’ll walk you through it.</p>
+
+
+
+<figure></figure>
+
+
+
+<ul>
+<li>At the top, you can see the repo I pulled in.</li>
+
+
+
+<li>Next “Frontend modernization” is the initial session name.</li>
+
+
+
+<li>That next layer nested in is the first attempt at a pull request, that we ultimately didn’t ship (hence the red icon).</li>
+
+
+
+<li>The next layer nested at the same level is where we got a working pull request for the <code>dev</code>branch.</li>
+
+
+
+<li>The nested session below that is the draft pull request in progress, with the react-bootstrap changes.</li>
+</ul>
+
+
+
+<p>Software development has never been smooth. But this project was made a <em>whole lot easier</em> with these modern tools.</p>
+
+
+
+<p>If you’re looking to modernize your own codebases, give this a try!</p>
+
+
+
+<p><strong>Check out pull request stacks</strong> anywhere you commit code on GitHub, and stacked sessions in the <a href="https://github.com/features/ai/github-app?utm_source=blog-copilot-app-feature-page-bottom&amp;utm_medium=blog&amp;utm_campaign=stacked-prs-gtm-public-preview-2026" target="_blank" rel="noopener noreferrer nofollow">GitHub Copilot app &gt;</a></p>
+
+	<div>
+	<h2>
+		Written by	</h2>
+	
+			
+	<div>
+					<div>
+				
+					
+					
+				
+			</div>
+				
+					<p>Cassidy is senior director for developer advocacy here at GitHub. She enjoys building software, advising startups, and teaching developers how to build better. She has a weekly newsletter at cassidoo.co/newsletter where you can get her updates, practice coding problems, and a joke in your inbox!</p>
+			</div>
+
+	</div>
+
+	
+	<h2>
+		Related posts	</h2>
+	
+
+
+<div>
+			<div>
+				<h2>We do newsletters, too</h2><p>Discover tips, technical guides, and best practices in our biweekly newsletter just for devs.</p>			</div>
+			<div>
+				<p>Your email address</p>
+			</div>
+		</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
+  <div class="footer">
+    本文由 AI热点监控系统自动抓取 · 内容版权归原作者/网站所有<br>
+    快照仅用于学习交流，如需转载请访问原文
+  </div>
+</div>
+</body>
+</html>

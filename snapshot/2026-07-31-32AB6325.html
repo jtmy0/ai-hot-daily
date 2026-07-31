@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="referrer" content="no-referrer">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'unsafe-inline'; img-src data:; connect-src 'none'; frame-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'; frame-ancestors 'none'">
+<title>Anthropic follows OpenAI in admitting its Claude models reached out of test environments and attacked real-world systems - AI热点快照</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','PingFang SC','Microsoft YaHei',sans-serif;background:#f8f9fa;color:#1a1a2e;line-height:1.8;min-height:100vh}
+.top-bar{background:#fff;border-bottom:1px solid #e5e7eb;padding:10px 20px;display:flex;align-items:center;gap:12px;position:sticky;top:0;z-index:10}
+.top-bar .logo{font-size:14px;font-weight:700;color:#0d9488}
+.top-bar .sep{color:#d1d5db}
+.top-bar .source{font-size:13px;color:#6b7280}
+.top-bar .back{margin-left:auto;font-size:13px;color:#0d9488;text-decoration:none}
+.top-bar .back:hover{text-decoration:underline}
+.container{max-width:760px;margin:0 auto;padding:40px 24px 80px}
+.article-title{font-size:1.8rem;font-weight:700;line-height:1.35;margin-bottom:16px;color:#1a1a2e}
+.article-meta{display:flex;flex-wrap:wrap;gap:16px;padding-bottom:20px;margin-bottom:28px;border-bottom:1px solid #e5e7eb;font-size:14px;color:#6b7280}
+.article-meta a{color:#0d9488;text-decoration:none}
+.article-meta a:hover{text-decoration:underline}
+.article-body{font-size:16.5px;line-height:1.85;color:#1f2937}
+.article-body p{margin-bottom:1.2em;text-align:justify}
+.article-body h1,.article-body h2,.article-body h3{font-size:1.25em;font-weight:700;margin:1.6em 0 0.6em;color:#1a1a2e}
+.article-body a{color:#0d9488}
+.article-body pre,.article-body code{background:#f1f5f9;border-radius:4px;font-size:0.9em}
+.article-body pre{padding:16px;overflow-x:auto;margin:1em 0}
+.article-body code{padding:2px 6px}
+.article-body blockquote{border-left:3px solid #0d9488;padding-left:16px;color:#4b5563;margin:1em 0}
+.article-body ul,.article-body ol{padding-left:1.6em;margin-bottom:1em}
+.article-body li{margin-bottom:0.4em}
+.article-body figure{margin:1.2em 0}
+.article-body figcaption{font-size:13px;color:#9ca3af;text-align:center;margin-top:6px}
+.footer{margin-top:48px;padding-top:20px;border-top:1px solid #e5e7eb;font-size:13px;color:#9ca3af;text-align:center}
+</style>
+</head>
+<body>
+<div class="top-bar">
+  <a class="back" href="../" style="font-size:13px;color:#6b7280;text-decoration:none">← 日报首页</a>
+  <span class="sep">|</span>
+  <span class="logo">AI热点快照</span>
+  <span class="sep">|</span>
+  <span class="source">The Decoder</span>
+  <a class="back" href="https://the-decoder.com/anthropic-follows-openai-in-admitting-its-claude-models-reached-out-of-test-environments-and-attacked-real-world-systems" target="_blank" rel="noopener noreferrer">查看原文 ↗</a>
+</div>
+<div class="container">
+  <h1 class="article-title">Anthropic follows OpenAI in admitting its Claude models reached out of test environments and attacked real-world systems</h1>
+  <div class="article-meta">
+    <span>作者: Matthias Bastian</span>
+    <span>来源: The Decoder</span>
+    <span>快照日期: 2026-07-31</span>
+  </div>
+  <div class="article-body"><div><div>
+			<p><strong>Three different Claude models found their way onto the open internet during cybersecurity evaluations and attacked real-world systems. One even published malware on a public platform. Anthropic blames a misconfiguration.</strong></p>
+<p>While reviewing its own cybersecurity evaluations, Anthropic found three incidents where Claude models escaped test environments and compromised real companies on the internet. The company reviewed 141,006 evaluation runs and flagged six cases where models accessed systems they weren't supposed to reach. The review was triggered by <a href="https://the-decoder.com/openai-claims-responsibility-for-the-hugging-face-hack-after-its-own-models-escaped-a-test-sandbox/" target="_blank" rel="noopener noreferrer nofollow">OpenAI's security incident</a>.</p>
+<h2>A configuration error gave Claude access to the open internet</h2>
+<p><a href="https://www.anthropic.com/news/investigating-incidents-cybersecurity-evals" target="_blank" rel="noopener noreferrer nofollow">The incidents</a> happened during capture-the-flag exercises where Claude was tasked with finding hidden information on external systems in fictional scenarios. Anthropic says Claude was told in the evaluation prompt that it was in a simulation with no internet access, but a miscommunication between Anthropic and its evaluation partner Irregular meant the test agents actually had full internet access.</p>
+<p>Claude treated the real systems it found as part of the exercise. Anthropic says the models didn't exploit complex vulnerabilities and instead used basic techniques like weak passwords and unauthenticated endpoints.</p>
+<p>Similar to OpenAI's case, the evaluations ran without the safety guardrails built into the public models, since the goal was to measure raw model capabilities. Anthropic says the evaluation infrastructure had no access to internal systems or customer data.</p>
+<h2>Claude Opus 4.7 kept attacking after recognizing its target was real</h2>
+<p>The most serious incident involved Claude Opus 4.7. Across four runs, the model couldn't reach its fictional target and instead found a real company that happened to share the same name. Claude identified and exploited vulnerabilities in the company's infrastructure, pulling out login credentials and a database with several hundred lines of production data.</p>
+<p>Anthropic says the model recognized it was dealing with a real system in all four runs, but in two cases it rationalized this away by assuming the real company must be part of the exercise. The model never stopped on its own.</p>
+<h2>Myth 5 published malware on PyPI and compromised a security company</h2>
+<p>The second incident shows how far an AI model will go to complete a task. Claude Myth 5 found setup instructions in the fictional environment that told developers to install a specific Python package from PyPI, but the package didn't exist.</p>
+<p>Claude saw an opening and created a malicious package with the same name, then published it on the real, public PyPI platform. Anthropic says the model went through considerable effort to pull this off, first trying to get a phone number, failing, then finding a free email provider, using it to register a PyPI account, and uploading the malware.</p>
+<p>The package was publicly available for about an hour, during which 15 real systems downloaded and ran it. One belonged to a security company whose scanner routinely installs PyPI packages. Claude's hidden code stole the company's credentials, which the model then used to access more infrastructure. PyPI's own security systems eventually pulled the package down.</p>
+<p>Anthropic says Myth 5 correctly concluded in its internal reasoning that publishing the package on the internet would be "NOT okay, and surely not the intended solution." But it talked itself into believing it was still in a simulation, partly because it didn't recognize the certificate authorities and read the calendar date of 2026 as evidence of a simulated environment.</p>
+<h2>Only an internal research model stopped itself</h2>
+<p>The third incident involved an internal research model. When it couldn't reach its fictional target, it scanned roughly 9,000 real targets on the internet and eventually compromised a company's application using known techniques like SQL injection and reading an exposed debug page.</p>
+<p>Unlike the other two models, this one recognized on its own that the compromised system sat in a cloud account unrelated to the capture-the-flag exercise and stopped the attack without being told to.</p>
+<h2>Anthropic blames human error, not model misalignment</h2>
+<p>Anthropic draws a line between its case and OpenAI's. While OpenAI's models exploited a previously unknown vulnerability to break out of isolation, Claude models took advantage of a path left open by misconfiguration. The company classifies the incidents as infrastructure and operational errors, not alignment failures, arguing that the models reasonably assumed the real-world environments were simulations. Anthropic says a prompt that clearly specified which systems were in scope and which were off-limits might have been enough to prevent all of it.</p>
+<p><a href="https://www.wired.com/story/openais-hacking-debacle-was-a-human-mistake/" target="_blank" rel="noopener noreferrer nofollow">A report by WIRED</a> notes that several security experts also view OpenAI's Hugging Face incident as human error in basic security practices.</p>
+<p>The earliest incidents date back to April, according to Anthropic. The review began on July 23, and all cyber evaluations were paused at the same time. The three affected organizations were notified on July 27, though two of them hadn't even noticed the activity. Anthropic hasn't been able to reach the third.</p>
+<p>Going forward, Anthropic says it will strengthen its evaluation infrastructure, expand monitoring of evaluation transcripts, and more carefully vet its work with external partners. The company is also in talks with the independent evaluation organization METR about an external review and plans to publish a redacted transcript of the PyPI incident within a week. Anthropic stresses that Claude never tried to copy itself out or intentionally leave its test environment in any of these cases.</p>
+		</div><div>
+				<h3>AI News Without the Hype – Curated by Humans<br /></h3>
+				<p>
+					Subscribe to THE DECODER for ad-free reading, a weekly AI newsletter, our exclusive "AI Radar" frontier report six times a year, full archive access, and access to our comment section.				</p>
+				<p><a href="https://the-decoder.com/subscription/" target="_blank" rel="noopener noreferrer nofollow">
+					Subscribe now				</a>
+			</p></div></div></div>
+  <div class="footer">
+    本文由 AI热点监控系统自动抓取 · 内容版权归原作者/网站所有<br>
+    快照仅用于学习交流，如需转载请访问原文
+  </div>
+</div>
+</body>
+</html>
