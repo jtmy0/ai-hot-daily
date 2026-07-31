@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="referrer" content="no-referrer">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'unsafe-inline'; img-src data:; connect-src 'none'; frame-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'; frame-ancestors 'none'">
+<title>RadixArk Joins Forces with Google to Bring Full SGLang Features to TPUs - AI热点快照</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','PingFang SC','Microsoft YaHei',sans-serif;background:#f8f9fa;color:#1a1a2e;line-height:1.8;min-height:100vh}
+.top-bar{background:#fff;border-bottom:1px solid #e5e7eb;padding:10px 20px;display:flex;align-items:center;gap:12px;position:sticky;top:0;z-index:10}
+.top-bar .logo{font-size:14px;font-weight:700;color:#0d9488}
+.top-bar .sep{color:#d1d5db}
+.top-bar .source{font-size:13px;color:#6b7280}
+.top-bar .back{margin-left:auto;font-size:13px;color:#0d9488;text-decoration:none}
+.top-bar .back:hover{text-decoration:underline}
+.container{max-width:760px;margin:0 auto;padding:40px 24px 80px}
+.article-title{font-size:1.8rem;font-weight:700;line-height:1.35;margin-bottom:16px;color:#1a1a2e}
+.article-meta{display:flex;flex-wrap:wrap;gap:16px;padding-bottom:20px;margin-bottom:28px;border-bottom:1px solid #e5e7eb;font-size:14px;color:#6b7280}
+.article-meta a{color:#0d9488;text-decoration:none}
+.article-meta a:hover{text-decoration:underline}
+.article-body{font-size:16.5px;line-height:1.85;color:#1f2937}
+.article-body p{margin-bottom:1.2em;text-align:justify}
+.article-body h1,.article-body h2,.article-body h3{font-size:1.25em;font-weight:700;margin:1.6em 0 0.6em;color:#1a1a2e}
+.article-body a{color:#0d9488}
+.article-body pre,.article-body code{background:#f1f5f9;border-radius:4px;font-size:0.9em}
+.article-body pre{padding:16px;overflow-x:auto;margin:1em 0}
+.article-body code{padding:2px 6px}
+.article-body blockquote{border-left:3px solid #0d9488;padding-left:16px;color:#4b5563;margin:1em 0}
+.article-body ul,.article-body ol{padding-left:1.6em;margin-bottom:1em}
+.article-body li{margin-bottom:0.4em}
+.article-body figure{margin:1.2em 0}
+.article-body figcaption{font-size:13px;color:#9ca3af;text-align:center;margin-top:6px}
+.footer{margin-top:48px;padding-top:20px;border-top:1px solid #e5e7eb;font-size:13px;color:#9ca3af;text-align:center}
+</style>
+</head>
+<body>
+<div class="top-bar">
+  <a class="back" href="../" style="font-size:13px;color:#6b7280;text-decoration:none">← 日报首页</a>
+  <span class="sep">|</span>
+  <span class="logo">AI热点快照</span>
+  <span class="sep">|</span>
+  <span class="source">AIHOT 行业动态</span>
+  <a class="back" href="https://www.lmsys.org/blog/2026-07-30-sglang-google-tpu" target="_blank" rel="noopener noreferrer">查看原文 ↗</a>
+</div>
+<div class="container">
+  <h1 class="article-title">RadixArk Joins Forces with Google to Bring Full SGLang Features to TPUs</h1>
+  <div class="article-meta">
+    <span>作者: RadixArk &amp; Google</span>
+    <span>来源: AIHOT 行业动态</span>
+    <span>快照日期: 2026-07-31</span>
+  </div>
+  <div class="article-body"><div><div><p>RadixArk and Google Cloud are partnering to bring <a href="https://github.com/sgl-project/sglang" target="_blank" rel="noopener noreferrer nofollow">SGLang</a> to TPUs, giving developers ultimate flexibility for running workloads on their choice of hardware.</p>
+<p>SGLang is an open source inference framework built for high throughput and low latency at production scale. With more than 30,000 GitHub stars and over 1,700 contributors, it runs on hundreds of thousands of GPUs worldwide and generates trillions of tokens in production every day. <a href="https://www.radixark.com/" target="_blank" rel="noopener noreferrer nofollow">RadixArk</a> is a maintainer of the SGLang project.</p>
+<p>Currently, developers can run SGLang on the latest TPU generations through <a href="https://github.com/sgl-project/sglang-jax" target="_blank" rel="noopener noreferrer nofollow">SGL-JAX</a>, with support for major large language model and multimodal families including Gemma, Qwen, DeepSeek, GLM, Mimo, Kimi, Ling, MiniMax, and Grok, as well as diffusion models for video and image generation including Wan and Flux. Later this year, RadixArk will roll out <span>SGL-torchtpu</span> as an additional <span>PyTorch-native TPU backend</span>, featuring eager execution, PyTorch ecosystem compatibility, and MPMD support. It will let any AI researcher or engineer in the industry run LLMs with SGLang on Google's TPUs using standard PyTorch tooling, with high performance, scalability, and state-of-the-art features. These include the leading open models at full size on multi-host TPUs, with quality matched to published baselines, plus parallelism (data, tensor, expert, context, and pipeline), Radix Cache, HiCache, quantization, and speculative decoding — powered by TPU Pallas kernels built by RadixArk, Google, and the SGLang community.</p>
+<p>Going forward, SGLang will enable new open models to run on TPU the same day they run on GPU, with that Day 0 support extending to every new TPU generation.</p>
+<p>These make TPUs a drop-in, cost-efficient path to frontier inference. Teams run the same SGLang API and features they use on GPUs, with the freedom to choose hardware based on workload needs and price-performance.</p>
+<p>"RadixArk's mission is to make frontier AI infrastructure open and accessible to every builder. SGLang embodies that, and we're excited to work with Google Cloud to bring its performance and flexibility to the TPU ecosystem," said <strong>Ying Sheng</strong>, CEO of RadixArk.</p>
+<p>"To truly accelerate the frontier AI innovation, developers must have the freedom to choose and use AI training and serving platforms with better performance, reliability, scalability, and cost," said <strong>Bill Jia</strong>, Vice President of Engineering, Core ML/AI, Google. "Our collaboration with RadixArk is a critical step in delivering on our vision of programmable heterogeneity, where software serves as an open bridge rather than a lock-in mechanism. By bringing SGLang's high-throughput serving framework to Google TPUs, we are effectively eliminating the 'migration tax' for developers, allowing them to run their production workloads seamlessly across their choices of hardware (e.g. GPU, TPU) and AI framework (e.g. PyTorch, JAX) using the exact same SGLang inference APIs."</p>
+<p>SGL-JAX, a joint effort by RadixArk and the SGLang community, is available today at <a href="https://github.com/sgl-project/sglang-jax" target="_blank" rel="noopener noreferrer nofollow">github.com/sgl-project/sglang-jax</a>.</p>
+<p>The SGL family always welcomes new contributors to help build an open, high-performance serving engine together!</p></div></div></div>
+  <div class="footer">
+    本文由 AI热点监控系统自动抓取 · 内容版权归原作者/网站所有<br>
+    快照仅用于学习交流，如需转载请访问原文
+  </div>
+</div>
+</body>
+</html>

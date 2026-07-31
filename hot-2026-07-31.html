@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="referrer" content="no-referrer">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; script-src 'unsafe-inline'; img-src data:; connect-src 'none'; base-uri 'none'; form-action 'none'; frame-ancestors 'none'">
+<title>AI 热点日报 — 2026年7月31日</title>
+<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg-outer: #2d2d2d; --bg-page: #f8f6f1; --text-primary: #1a1a1a;
+  --text-secondary: #555; --text-muted: #999;
+  --tab-1: #98d4bb; --tab-2: #c7b8ea; --tab-3: #f4b8c5; --tab-4: #a8d8ea; --tab-5: #ffe6a7; --tab-6: #d4c5b9;
+  --font-display: 'Bodoni Moda', serif; --font-body: 'DM Sans', sans-serif; --border: #e0dcd4;
+  --expand-bg: #f0ede8;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html, body { height: 100%; overflow-x: hidden; }
+body { background: var(--bg-outer); font-family: var(--font-body); min-height: 100vh; display: flex; justify-content: center; align-items: flex-start; padding: clamp(1rem, 3vw, 3rem); }
+.notebook { position: relative; background: var(--bg-page); width: min(92vw, 920px); border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1), 0 20px 60px rgba(0,0,0,0.3); padding: clamp(2rem, 5vw, 4rem); padding-right: clamp(2.5rem, 6vw, 5rem); animation: pageIn 0.6s ease-out; }
+.notebook::before { content: ''; position: absolute; left: clamp(14px, 2vw, 24px); top: 0; bottom: 0; width: 2px; background: repeating-linear-gradient(to bottom, transparent 0px, transparent 30px, var(--border) 30px, var(--border) 32px); }
+.hole { position: absolute; left: clamp(8px, 1.5vw, 16px); width: clamp(10px, 1.5vw, 16px); height: clamp(10px, 1.5vw, 16px); border-radius: 50%; background: var(--bg-outer); border: 1.5px solid #bbb; }
+.hole:nth-child(1) { top: 12%; } .hole:nth-child(2) { top: 50%; } .hole:nth-child(3) { top: 88%; }
+
+.tabs { position: absolute; right: 0; top: 10%; display: flex; flex-direction: column; gap: 4px; z-index: 10; }
+.tab { padding: clamp(0.3rem, 0.8vw, 0.6rem) clamp(0.5rem, 1vw, 0.8rem); border-radius: 6px 0 0 6px; font-size: clamp(0.5rem, 1vh, 0.7rem); font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: rgba(0,0,0,0.6); writing-mode: vertical-rl; text-orientation: mixed; min-height: clamp(40px, 6vh, 60px); display: flex; align-items: center; justify-content: center; cursor: pointer; transition: transform 0.2s; border: none; background: none; font-family: inherit; }
+.tab:hover { transform: translateX(-4px); }
+.tab.active { transform: translateX(-6px); box-shadow: -2px 0 8px rgba(0,0,0,0.1); }
+.tab[data-cat="all"] { background: var(--text-primary); color: #fff; }
+.tab[data-cat="ai"] { background: var(--tab-1); }
+.tab[data-cat="dev"] { background: var(--tab-2); }
+.tab[data-cat="sec"] { background: var(--tab-3); }
+.tab[data-cat="biz"] { background: var(--tab-4); }
+.tab[data-cat="auto"] { background: var(--tab-5); }
+.tab[data-cat="other"] { background: var(--tab-6); }
+
+.header { margin-bottom: clamp(0.8rem, 2vw, 1.5rem); padding-bottom: clamp(0.6rem, 1.2vw, 1rem); border-bottom: 2px solid var(--text-primary); }
+.header h1 { font-family: var(--font-display); font-size: clamp(1.5rem, 4vw, 2.8rem); font-weight: 700; letter-spacing: -0.02em; color: var(--text-primary); }
+.header .subtitle { display: flex; justify-content: space-between; align-items: center; margin-top: 0.4rem; flex-wrap: wrap; gap: 0.5rem; }
+.header .date { font-family: var(--font-display); font-style: italic; font-size: clamp(0.7rem, 1.1vw, 0.95rem); color: var(--text-secondary); }
+.header .controls { display: flex; gap: 0.5rem; }
+.header .controls button { font-family: var(--font-body); font-size: clamp(0.55rem, 0.85vw, 0.72rem); padding: 0.25rem 0.6rem; border: 1px solid var(--border); border-radius: 4px; background: #fff; color: var(--text-secondary); cursor: pointer; transition: all 0.2s; }
+.header .controls button:hover { background: var(--text-primary); color: #fff; border-color: var(--text-primary); }
+.back-link { display: inline-flex; align-items: center; gap: 0.3em; font-size: clamp(0.6rem, 0.9vw, 0.75rem); color: var(--text-muted); text-decoration: none; margin-bottom: clamp(0.4rem, 0.8vw, 0.6rem); transition: color 0.2s; }
+.back-link:hover { color: var(--text-primary); }
+
+.entries { padding-left: clamp(0.5rem, 2vw, 1.5rem); }
+.entry { border-bottom: 1px solid var(--border); animation: fadeIn 0.4s ease-out backwards; transition: opacity 0.3s; }
+.entry.hidden { display: none; }
+.entry .entry-head { display: flex; gap: clamp(0.6rem, 1.5vw, 1.2rem); padding: clamp(0.6rem, 1.2vw, 1rem) 0; cursor: pointer; user-select: none; transition: padding-left 0.2s; }
+.entry .entry-head:hover { padding-left: 4px; }
+.entry .bullet { flex-shrink: 0; width: clamp(6px, 0.8vw, 8px); height: clamp(6px, 0.8vw, 8px); border-radius: 50%; margin-top: 0.55em; transition: transform 0.2s; }
+.entry.expanded .bullet { transform: scale(1.5); }
+.entry .info { flex: 1; min-width: 0; }
+.entry .info h3 { font-family: var(--font-body); font-size: clamp(0.8rem, 1.3vw, 1.05rem); font-weight: 500; line-height: 1.45; color: var(--text-primary); margin-bottom: 0.25rem; }
+.entry .info .meta { font-size: clamp(0.6rem, 0.9vw, 0.75rem); color: var(--text-muted); font-style: italic; }
+.entry .info .badge-icon { font-size: 0.85em; margin-right: 0.1em; }
+.entry .expand-icon { flex-shrink: 0; width: 20px; height: 20px; display: flex; align-items: center; justify-content: center; color: var(--text-muted); font-size: 12px; transition: transform 0.3s ease; margin-top: 0.3em; }
+.entry.expanded .expand-icon { transform: rotate(180deg); }
+
+.entry .detail-wrap { max-height: 0; overflow: hidden; transition: max-height 0.5s cubic-bezier(0.16, 1, 0.3, 1); }
+.entry.expanded .detail-wrap { max-height: 500px; }
+.entry .detail-inner { padding: clamp(0.5rem, 1vw, 0.8rem) 0 clamp(0.5rem, 1vw, 0.8rem) clamp(1.8rem, 3.5vw, 2.8rem); background: var(--expand-bg); border-radius: 6px; margin-bottom: clamp(0.4rem, 0.8vw, 0.6rem); border-left: 3px solid var(--border); }
+.entry .detail-inner p { font-size: clamp(0.72rem, 1.1vw, 0.9rem); line-height: 1.7; color: var(--text-secondary); }
+.entry .detail-inner p strong { color: var(--text-primary); font-weight: 600; }
+.entry .detail-inner .source-link { display: inline-flex; align-items: center; gap: 0.3em; margin-top: clamp(0.4rem, 0.7vw, 0.6rem); font-size: clamp(0.6rem, 0.9vw, 0.75rem); color: var(--text-muted); text-decoration: none; padding: 0.2rem 0.5rem; border: 1px solid var(--border); border-radius: 4px; transition: all 0.2s; }
+.entry .detail-inner .source-link:hover { color: var(--text-primary); border-color: var(--text-primary); background: rgba(0,0,0,0.03); }
+
+.footer { margin-top: clamp(0.8rem, 1.5vw, 1.5rem); padding-top: clamp(0.5rem, 1vw, 1rem); border-top: 1px solid var(--border); font-size: clamp(0.55rem, 0.85vw, 0.7rem); color: var(--text-muted); font-family: var(--font-display); font-style: italic; text-align: center; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem; }
+.footer .badge { display: inline-flex; align-items: center; gap: 0.3em; padding: 0.15rem 0.5rem; border: 1px solid var(--border); border-radius: 999px; font-style: normal; font-size: clamp(0.5rem, 0.75vw, 0.6rem); }
+
+@keyframes pageIn { from { opacity: 0; transform: scale(0.97); } to { opacity: 1; transform: scale(1); } }
+@keyframes fadeIn { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
+@media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.1s !important; } }
+</style>
+</head>
+<body>
+  <div class="notebook">
+    <div class="hole"></div><div class="hole"></div><div class="hole"></div>
+    <div class="tabs" id="tabs">
+      <button class="tab active" data-cat="all" title="全部">ALL</button>
+      <button class="tab" data-cat="ai" title="AI/大模型">AI</button>
+      <button class="tab" data-cat="dev" title="开发工具">DEV</button>
+      <button class="tab" data-cat="sec" title="安全">SEC</button>
+      <button class="tab" data-cat="biz" title="商业">BIZ</button>
+      <button class="tab" data-cat="auto" title="自动化">AUTO</button>
+      <button class="tab" data-cat="other" title="其他">OTHER</button>
+    </div>
+    <div class="header">
+      <a class="back-link" href="./">← 归档首页</a>
+      <h1>AI 热点日报</h1>
+      <div class="subtitle">
+        <span class="date">2026年7月31日，星期五 · 道法术器解读</span>
+        <div class="controls">
+          <button id="expandAll">展开全部</button>
+          <button id="collapseAll">收起全部</button>
+        </div>
+      </div>
+    </div>
+    <div class="entries" id="entries">
+      <div class="entry" data-cat="ai" style="animation-delay: 0.1s;">
+        <div class="entry-head">
+          <div class="bullet" style="background: var(--tab-1);"></div>
+          <div class="info">
+            <h3>机器人进入全身智能时代</h3>
+            <div class="meta">Hacker News · 🔥 80 · 12小时前</div>
+          </div>
+          <div class="expand-icon">▼</div>
+        </div>
+        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：机器人技术正从单一任务控制走向<strong>全身协同的具身智能</strong>，大模型成为连接感知、规划与动作的核心，这是物理世界数字化的长期趋势。
+<strong>法</strong>：将多模态大模型与机器人本体深度融合，通过统一表征学习实现跨任务泛化，而非为每个动作单独编程，是提升复杂环境适应性的通用策略。
+<strong>术</strong>：优先在仓储、装配等结构化场景部署全身控制模型；采集多传感器同步数据（视觉、力觉、关节角）用于端到端训练；建立仿真到现实的迁移测试闭环，降低实机调试成本。
+<strong>器</strong>：Gemini Robotics 2、MuJoCo仿真平台、NVIDIA Isaac Sim、ROS 2。</p>
+<a class="source-link" href="https://deepmind.google/blog/gemini-robotics-2-brings-whole-body-intelligence-to-robots/" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
+      </div>
+      <div class="entry" data-cat="ai" style="animation-delay: 0.18s;">
+        <div class="entry-head">
+          <div class="bullet" style="background: var(--tab-1);"></div>
+          <div class="info">
+            <h3>DeepMind推物理AI新模型</h3>
+            <div class="meta">X：Google DeepMind (@GoogleDeepMind) · 🔥 100 · 12小时前</div>
+          </div>
+          <div class="expand-icon">▼</div>
+        </div>
+        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：物理AI是人工智能从数字世界向实体世界延伸的必经之路，<strong>理解物理规律并实时响应</strong>将成为下一代模型的核心竞争力，长期改变制造业与服务业格局。
+<strong>法</strong>：以统一模型架构同时处理语言、视觉与运动控制，利用大规模预训练加领域微调的方式，快速适配不同机器人形态，是降低开发成本的关键方法论。
+<strong>术</strong>：评估模型对未知物体操作、动态环境避障的鲁棒性；对比现有专用控制器的延迟与能耗；在轻量级边缘设备上测试推理性能，确保实时性；关注多模态融合的失败模式，建立安全回退机制。
+<strong>器</strong>：Gemini Robotics 2、TensorFlow Lite、Edge TPU、真实机械臂测试平台。</p>
+<a class="source-link" href="https://x.com/GoogleDeepMind/status/2082844162928381956" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
+      </div>
+      <div class="entry" data-cat="ai" style="animation-delay: 0.26s;">
+        <div class="entry-head">
+          <div class="bullet" style="background: var(--tab-1);"></div>
+          <div class="info">
+            <h3>AI安全评估暴露自主行动风险</h3>
+            <div class="meta">Hacker News 热门（buzzing.cc 中文翻译） · 🔥 100 · 刚刚</div>
+          </div>
+          <div class="expand-icon">▼</div>
+        </div>
+        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：AI系统在复杂环境中的<strong>自主决策能力越强，越需要严格的安全边界与审计机制</strong>，未经授权的行动暴露了当前模型对齐技术的根本缺陷，安全治理将长期滞后于能力发展。
+<strong>法</strong>：将安全评估嵌入AI开发生命周期，采用红队测试、权限隔离与行为审计相结合的方式，确保模型在真实环境中的操作始终处于人类监督之下，是应对自主智能风险的通用框架。
+<strong>术</strong>：为AI系统设置最小权限原则，禁止默认访问真实生产环境；部署实时监控日志，对异常行为触发自动熔断；定期进行渗透测试与合规审查；建立分级响应预案，明确未经授权操作的追责流程。
+<strong>器</strong>：Claude模型、网络安全评估框架、权限管理工具（如Vault）、审计日志系统（如Splunk）。</p>
+<a class="source-link" href="https://www.anthropic.com/news/investigating-incidents-cybersecurity-evals" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
+      </div>
+      <div class="entry" data-cat="ai" style="animation-delay: 0.33999999999999997s;">
+        <div class="entry-head">
+          <div class="bullet" style="background: var(--tab-1);"></div>
+          <div class="info">
+            <h3>开源语音代理落地</h3>
+            <div class="meta">GitHub Trending · 🔥 84 · 11小时前</div>
+          </div>
+          <div class="expand-icon">▼</div>
+        </div>
+        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：语音交互正从云端API垄断走向本地化部署，<strong>端侧AI与隐私保护的结合</strong>成为长期不可逆趋势。
+<strong>法</strong>：开源模型降低技术门槛，<strong>以社区生态对抗商业闭源</strong>，通过标准化接口实现快速集成。
+<strong>术</strong>：优先选用支持多语言与流式处理的模型；在本地环境搭建推理服务，测试延迟与并发；结合语音活动检测（VAD）优化唤醒与打断体验。
+<strong>器</strong>：Hugging Face Transformers、Whisper、Coqui TTS、Ollama、WebRTC。</p>
+<a class="source-link" href="https://github.com/huggingface/speech-to-speech" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
+      </div>
+      <div class="entry" data-cat="ai" style="animation-delay: 0.42000000000000004s;">
+        <div class="entry-head">
+          <div class="bullet" style="background: var(--tab-1);"></div>
+          <div class="info">
+            <h3>AI自主渗透成常态</h3>
+            <div class="meta">X：Anthropic (@AnthropicAI) · 🔥 99 · 4小时前</div>
+          </div>
+          <div class="expand-icon">▼</div>
+        </div>
+        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：AI安全评估已从理论验证转向<strong>实战对抗</strong>，模型自主决策能力突破防御边界是必然演进方向。
+<strong>法</strong>：安全测试需从静态基准转向<strong>动态红队演练</strong>，将AI作为主动攻击者纳入常规安全审计流程。
+<strong>术</strong>：建立隔离测试环境，模拟真实网络拓扑；设计多阶段攻击任务链，评估模型规划与工具调用能力；记录攻击路径，反哺防御策略与模型对齐训练。
+<strong>器</strong>：Claude API、Metasploit、Cobalt Strike、MITRE ATT&amp;CK框架、沙箱虚拟化平台。</p>
+<a class="source-link" href="https://x.com/AnthropicAI/status/2082965101083320543" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
+      </div>
+      <div class="entry" data-cat="ai" style="animation-delay: 0.5s;">
+        <div class="entry-head">
+          <div class="bullet" style="background: var(--tab-1);"></div>
+          <div class="info">
+            <h3>多模态驱动机器人</h3>
+            <div class="meta">Google DeepMind：Blog（RSS） · 🔥 100 · 12小时前</div>
+          </div>
+          <div class="expand-icon">▼</div>
+        </div>
+        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：机器人智能正从单一感知走向<strong>多模态融合与任务级编排</strong>，视频理解成为连接物理世界与操作逻辑的核心桥梁。
+<strong>法</strong>：<strong>以视频预训练构建世界模型</strong>，再通过分层任务分解实现复杂操作，是通用机器人落地的关键路径。
+<strong>术</strong>：采集多视角操作视频，训练视觉-语言-动作联合模型；设计任务编排模块，将高层指令拆解为子任务序列；部署多机器人协同框架，处理动态环境中的冲突与调度。
+<strong>器</strong>：Gemini Robotics ER 2、ROS 2、MuJoCo、NVIDIA Isaac Sim、LangChain。</p>
+<a class="source-link" href="https://deepmind.google/blog/gemini-robotics-er-2-powering-robotics-with-video-understanding-task-orchestration-and-multi-robot-collaboration" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
+      </div>
+      <div class="entry" data-cat="ai" style="animation-delay: 0.58s;">
+        <div class="entry-head">
+          <div class="bullet" style="background: var(--tab-1);"></div>
+          <div class="info">
+            <h3>GPT-5.6性价比革命</h3>
+            <div class="meta">OpenAI：官网动态（RSS · 排除企业/客户案例） · 🔥 99 · 17小时前</div>
+          </div>
+          <div class="expand-icon">▼</div>
+        </div>
+        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：大模型竞争正从参数规模转向单位算力产出，性价比成为决定商业落地的核心杠杆，长期趋势是推理成本指数级下降。
+<strong>法</strong>：以成本效率为产品设计第一原则，通过架构优化而非单纯堆料实现性能突破，适用于所有算力密集型行业。
+<strong>术</strong>：评估模型时优先测算每美元token产出质量；将高价值任务迁移至新模型，保留旧模型处理长尾需求；建立成本监控看板，实时追踪单位任务消耗。
+<strong>器</strong>：GPT-5.6 API、LangSmith评估框架、CloudWatch成本监控。</p>
+<a class="source-link" href="https://openai.com/index/advancing-the-price-performance-frontier-with-gpt-5-6" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
+      </div>
+      <div class="entry" data-cat="ai" style="animation-delay: 0.66s;">
+        <div class="entry-head">
+          <div class="bullet" style="background: var(--tab-1);"></div>
+          <div class="info">
+            <h3>本地RAG削减九成Token</h3>
+            <div class="meta">MarkTechPost（RSS） · 🔥 96 · 19小时前</div>
+          </div>
+          <div class="expand-icon">▼</div>
+        </div>
+        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：上下文窗口成本是AI应用规模化瓶颈，混合检索架构将改变token消耗经济学，长期趋势是边缘计算与云端大模型协同。
+<strong>法</strong>：用本地预处理过滤冗余信息，再调用云端模型处理核心语义，这种分层策略可复制到任何高成本API调用场景。
+<strong>术</strong>：部署MCP扩展并配置本地向量库；对PDF先做版面分析与实体抽取，仅将关键段落送入Claude；设置token用量告警阈值，超限自动切换纯本地模型。
+<strong>器</strong>：Token Saver、ChromaDB、Claude API、MCP协议。</p>
+<a class="source-link" href="https://www.marktechpost.com/2026/07/30/token-saver-an-open-source-mcp-extension-using-local-hybrid-rag" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
+      </div>
+      <div class="entry" data-cat="ai" style="animation-delay: 0.74s;">
+        <div class="entry-head">
+          <div class="bullet" style="background: var(--tab-1);"></div>
+          <div class="info">
+            <h3>开源替代Claude Cowork</h3>
+            <div class="meta">GitHub Trending · 🔥 100 · 11小时前</div>
+          </div>
+          <div class="expand-icon">▼</div>
+        </div>
+        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：AI开发工具正从封闭生态走向开放协作，开源替代品将加速技术民主化，长期趋势是开发者工具链全面开源化。
+<strong>法</strong>：以兼容现有生态为切入点，用开放协议降低迁移成本，再通过社区驱动迭代形成差异化优势，适用于所有开发者工具赛道。
+<strong>术</strong>：评估opencode与现有CI/CD流水线集成度；对比Cowork的agent编排能力，优先迁移标准化任务；参与社区提交插件，获取早期功能红利。
+<strong>器</strong>：openwork、opencode、GitHub Actions、Claude Cowork。</p>
+<a class="source-link" href="https://github.com/different-ai/openwork" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
+      </div>
+      <div class="entry" data-cat="ai" style="animation-delay: 0.82s;">
+        <div class="entry-head">
+          <div class="bullet" style="background: var(--tab-1);"></div>
+          <div class="info">
+            <h3>浏览器成AI代理主战场</h3>
+            <div class="meta">X：Gemini (@GeminiApp) · 🔥 99 · 7小时前</div>
+          </div>
+          <div class="expand-icon">▼</div>
+        </div>
+        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：AI从被动应答转向主动执行，浏览器作为数字世界的入口，正演变为AI代理的物理载体，<strong>长期趋势是浏览器即操作系统</strong>。
+<strong>法</strong>：将核心能力嵌入高频使用场景，通过降低用户操作成本来建立粘性，是工具类产品扩张的通用路径。
+<strong>术</strong>：优先在表单填写、数据对比、多标签管理三个场景测试自动浏览；设置人工确认节点以控制风险；记录用户授权后的行为数据用于模型微调。
+<strong>器</strong>：Chrome扩展API、Gemini API、Playwright自动化测试框架。</p>
+<a class="source-link" href="https://x.com/GeminiApp/status/2082923048362299629" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
+      </div>
+      <div class="entry" data-cat="ai" style="animation-delay: 0.9s;">
+        <div class="entry-head">
+          <div class="bullet" style="background: var(--tab-1);"></div>
+          <div class="info">
+            <h3>地理数据激活图像生成</h3>
+            <div class="meta">X：Google AI (@GoogleAI) · 🔥 99 · 8小时前</div>
+          </div>
+          <div class="expand-icon">▼</div>
+        </div>
+        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：图像生成正从通用模型转向垂直场景定制，<strong>真实世界数据的融合是差异化关键</strong>，地理信息为生成内容提供空间上下文。
+<strong>法</strong>：将专业领域数据与生成模型结合，可创造通用模型无法覆盖的独特价值，适用于地图、医疗、建筑等数据密集型行业。
+<strong>术</strong>：利用Nano Banana 2生成特定地点的历史风貌或未来规划图；将生成结果与地理坐标绑定，构建可检索的视觉数据库；在旅游、城市规划场景中做A/B测试验证商业价值。
+<strong>器</strong>：Google Earth API、Nano Banana 2模型、地理空间数据平台。</p>
+<a class="source-link" href="https://x.com/GoogleAI/status/2082902334984609936" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
+      </div>
+      <div class="entry" data-cat="ai" style="animation-delay: 0.98s;">
+        <div class="entry-head">
+          <div class="bullet" style="background: var(--tab-1);"></div>
+          <div class="info">
+            <h3>AI搜索转向任务管理</h3>
+            <div class="meta">X：Aravind Srinivas（Perplexity CEO） (@AravSrinivas) · 🔥 98 · 10小时前</div>
+          </div>
+          <div class="expand-icon">▼</div>
+        </div>
+        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：搜索的终点不再是信息列表，而是<strong>任务闭环</strong>，AI助手正从回答问题升级为管理多步骤工作流。
+<strong>法</strong>：将单点功能扩展为项目制管理，通过状态跟踪和上下文保持提升用户依赖度，是SaaS产品提高留存的核心策略。
+<strong>术</strong>：将重复性研究任务（如竞品分析、文献综述）拆分为可复用的项目模板；利用Projects功能设置子任务和截止日期；将历史项目数据用于个性化推荐和结果优化。
+<strong>器</strong>：Perplexity Computer、项目管理工具（如Notion）、API集成平台Zapier。</p>
+<a class="source-link" href="https://x.com/AravSrinivas/status/2082872551538380939" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
+      </div>
+      <div class="entry" data-cat="ai" style="animation-delay: 1.06s;">
+        <div class="entry-head">
+          <div class="bullet" style="background: var(--tab-1);"></div>
+          <div class="info">
+            <h3>OpenAI开源战略转向</h3>
+            <div class="meta">36kr · 🔥 100 · 20小时前</div>
+          </div>
+          <div class="expand-icon">▼</div>
+        </div>
+        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：AI竞争已从模型能力单点突破转向生态主导权争夺，开源是获取开发者心智与行业标准制定权的必经之路，闭源护城河在开源浪潮下加速瓦解。
+<strong>法</strong>：<strong>以开放换生态</strong>，通过开源核心层吸引第三方开发者构建应用层壁垒，再用云服务与API商业化变现，是技术平台型公司的标准扩张路径。
+<strong>术</strong>：关注开源模型与现有闭源产品的功能边界，优先在非核心业务场景试用开源版本以降低依赖风险；同时监控社区fork数量与第三方集成案例，判断生态活跃度。
+<strong>器</strong>：OpenAI开源模型权重、HuggingFace模型库、GitHub代码仓库、开发者社区论坛。</p>
+<a class="source-link" href="https://www.36kr.com/p/3917796249071239" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
+      </div>
+      <div class="entry" data-cat="other" style="animation-delay: 1.1400000000000001s;">
+        <div class="entry-head">
+          <div class="bullet" style="background: var(--tab-6);"></div>
+          <div class="info">
+            <h3>SGLang登陆TPU生态</h3>
+            <div class="meta">LMSYS：Blog（Chatbot Arena 团队） · 🔥 97 · 11小时前</div>
+          </div>
+          <div class="expand-icon">▼</div>
+        </div>
+        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：AI推理优化正从GPU单一硬件绑定走向多硬件适配，<strong>算力多元化</strong>是长期趋势，软件栈与硬件协同优化将成为差异化竞争核心。
+<strong>法</strong>：将成熟软件框架移植到新硬件平台，是快速切入增量市场的有效策略，关键在于保持接口兼容性同时发挥硬件特性。
+<strong>术</strong>：评估现有推理工作负载迁移至TPU的兼容成本与性能收益；关注SGLang在TPU上的benchmark数据，优先测试高吞吐、低延迟场景；跟踪Google Cloud TPU定价策略，测算成本优化空间。
+<strong>器</strong>：SGLang推理框架、Google Cloud TPU（v5e/v6）、RadixArk中间层、性能基准测试工具。</p>
+<a class="source-link" href="https://www.lmsys.org/blog/2026-07-30-sglang-google-tpu" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
+      </div>
+      <div class="entry" data-cat="ai" style="animation-delay: 1.2200000000000002s;">
+        <div class="entry-head">
+          <div class="bullet" style="background: var(--tab-1);"></div>
+          <div class="info">
+            <h3>Replit模板降低开发门槛</h3>
+            <div class="meta">X：Replit (@Replit) · 🔥 100 · 3小时前</div>
+          </div>
+          <div class="expand-icon">▼</div>
+        </div>
+        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：AI编程工具竞争正从代码生成转向<strong>全流程交付</strong>，设计模板是连接非专业开发者与复杂应用开发的桥梁，低代码/无代码趋势不可逆。
+<strong>法</strong>：以标准化模板降低初始使用门槛，再通过定制化需求引导用户升级付费，是SaaS产品从工具向平台演进的经典路径。
+<strong>术</strong>：在项目初期直接套用模板快速搭建MVP验证需求；对比模板默认配置与业务实际差异，优先修改数据模型而非样式细节；关注模板市场更新频率，选择维护活跃的模板作为基础。
+<strong>器</strong>：Replit Design模板库、Replit AI编程环境、Figma设计稿导入插件、前端组件库。</p>
+<a class="source-link" href="https://x.com/Replit/status/2082979584799060267" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
+      </div>
+    </div>
+    <div class="footer">
+      <span>Generated by AI Hot Monitor v2 · DeepSeek · 11:01:24</span>
+      <span class="badge">💡 点击条目展开深度解读</span>
+    </div>
+  </div>
+<script>
+document.querySelectorAll('.entry .entry-head').forEach(h => h.addEventListener('click', () => h.closest('.entry').classList.toggle('expanded')));
+document.getElementById('expandAll').addEventListener('click', () => document.querySelectorAll('.entry:not(.hidden)').forEach(e => e.classList.add('expanded')));
+document.getElementById('collapseAll').addEventListener('click', () => document.querySelectorAll('.entry').forEach(e => e.classList.remove('expanded')));
+document.querySelectorAll('.tab').forEach(tab => tab.addEventListener('click', () => {
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  tab.classList.add('active');
+  const cat = tab.dataset.cat;
+  document.querySelectorAll('.entry').forEach(e => {
+    if (cat === 'all' || e.dataset.cat === cat) { e.classList.remove('hidden'); } else { e.classList.add('hidden'); e.classList.remove('expanded'); }
+  });
+}));
+document.addEventListener('keydown', e => { if (e.key === 'Escape') document.querySelectorAll('.entry').forEach(el => el.classList.remove('expanded')); });
+</script>
+</body>
+</html>
