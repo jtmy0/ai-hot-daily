@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="referrer" content="no-referrer">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'unsafe-inline'; img-src data:; connect-src 'none'; frame-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'; frame-ancestors 'none'">
+<title>The Greenhouse and the Lens: Two Modes of Agentic AI Work - AI热点快照</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','PingFang SC','Microsoft YaHei',sans-serif;background:#f8f9fa;color:#1a1a2e;line-height:1.8;min-height:100vh}
+.top-bar{background:#fff;border-bottom:1px solid #e5e7eb;padding:10px 20px;display:flex;align-items:center;gap:12px;position:sticky;top:0;z-index:10}
+.top-bar .logo{font-size:14px;font-weight:700;color:#0d9488}
+.top-bar .sep{color:#d1d5db}
+.top-bar .source{font-size:13px;color:#6b7280}
+.top-bar .back{margin-left:auto;font-size:13px;color:#0d9488;text-decoration:none}
+.top-bar .back:hover{text-decoration:underline}
+.container{max-width:760px;margin:0 auto;padding:40px 24px 80px}
+.article-title{font-size:1.8rem;font-weight:700;line-height:1.35;margin-bottom:16px;color:#1a1a2e}
+.article-meta{display:flex;flex-wrap:wrap;gap:16px;padding-bottom:20px;margin-bottom:28px;border-bottom:1px solid #e5e7eb;font-size:14px;color:#6b7280}
+.article-meta a{color:#0d9488;text-decoration:none}
+.article-meta a:hover{text-decoration:underline}
+.article-body{font-size:16.5px;line-height:1.85;color:#1f2937}
+.article-body p{margin-bottom:1.2em;text-align:justify}
+.article-body h1,.article-body h2,.article-body h3{font-size:1.25em;font-weight:700;margin:1.6em 0 0.6em;color:#1a1a2e}
+.article-body a{color:#0d9488}
+.article-body pre,.article-body code{background:#f1f5f9;border-radius:4px;font-size:0.9em}
+.article-body pre{padding:16px;overflow-x:auto;margin:1em 0}
+.article-body code{padding:2px 6px}
+.article-body blockquote{border-left:3px solid #0d9488;padding-left:16px;color:#4b5563;margin:1em 0}
+.article-body ul,.article-body ol{padding-left:1.6em;margin-bottom:1em}
+.article-body li{margin-bottom:0.4em}
+.article-body figure{margin:1.2em 0}
+.article-body figcaption{font-size:13px;color:#9ca3af;text-align:center;margin-top:6px}
+.footer{margin-top:48px;padding-top:20px;border-top:1px solid #e5e7eb;font-size:13px;color:#9ca3af;text-align:center}
+</style>
+</head>
+<body>
+<div class="top-bar">
+  <a class="back" href="../" style="font-size:13px;color:#6b7280;text-decoration:none">← 日报首页</a>
+  <span class="sep">|</span>
+  <span class="logo">AI热点快照</span>
+  <span class="sep">|</span>
+  <span class="source">Aaron Brethorst</span>
+  <a class="back" href="https://www.brethorsting.com/blog/2026/08/the-greenhouse-and-the-lens-two-modes-of-agentic-ai-work/" target="_blank" rel="noopener noreferrer">查看原文 ↗</a>
+</div>
+<div class="container">
+  <h1 class="article-title">The Greenhouse and the Lens: Two Modes of Agentic AI Work</h1>
+  <div class="article-meta">
+    
+    <span>来源: Aaron Brethorst</span>
+    <span>快照日期: 2026-08-02</span>
+  </div>
+  <div class="article-body"><div><div>
+  <p>A greenhouse and a lens both run on sunlight, and they do opposite things with it. The greenhouse traps ambient heat and holds it, so everything inside grows a little faster than it would outside: flowers, herbs, weeds, whatever happens to be in the soil. The lens takes the same light and concentrates it on a single point until that point catches fire. One gathers energy and lets everything grow at once, diffuse and a little chaotic. The other is a discrete event you engineer: aim, focus, hold steady, ignition.</p>
+
+<p>At first, I thought the two modes mapped cleanly onto software engineering experience: the junior engineer lives in the greenhouse, growing weeds and flowers indiscriminately, while the senior engineer aims a lens at one well-defined spot at a time. But when I applied the metaphor to my own work, the mapping fell apart. Neither mode is the advanced one. They’re distinct tools for distinct jobs, and much of the frustration I see with agentic AI comes from running one mode when the work demands the other.</p>
+
+<p>Greenhouse mode is for when you don’t yet know what you want. My AxiDraw plotter experiments are pure greenhouse: I’ve had Claude Code generate dozens of tools for making plottable art. Most of the results were mediocre, a few were delightful, but none of them were really <em>planned</em>. I just played and evaluated the results afterwards.</p>
+
+<p>The same was true for a small macOS/SwiftUI app I made (well, Claude made) that converts Markdown to Word documents. There was never a spec, a design, or a plan. I asked Claude to build a tool that had an audience of one and a shelf life of maybe a week.</p>
+
+<p>These tools came about because the cost of trying things out has dropped to nearly zero. I wrote about a version of this when I said <span>Claude Code is unreasonably good at building MVPs</span>: build a tool or a toy, see if it’s useful or fun, and go from there.</p>
+
+<p>Lens mode is the opposite discipline. You know exactly what done looks like, and you concentrate everything on getting there. The agent proposes ten things and you discard nine because they aren’t on the line between here and done. When people talk about the shocking power of agentic AI tools, this is usually the mode they mean, but it’s worth being precise about what that power is: leverage on a known target. Both a lens and the most powerful generative AI model in the world can be useless when you don’t know where to point it. Picking the target—and focusing on it—is your job.</p>
+
+<p>Furthermore, I’d argue that the really advanced skill is knowing which mode the work in front of you requires, recognizing which mode you’re currently in, and understanding how to shift yourself to the correct mode when drift has occurred.</p>
+
+<p>For instance, I sit down to ship a specific feature, obvious lens work, and forty minutes later Claude Code is scaffolding an admin panel I never asked for. And I nod along, because watching things grow feels like progress. It runs the other direction too: I set out to explore and end up polishing one half-formed idea to production quality, because finishing is comfortable and wandering isn’t. In both cases the failure is the same: I lost track of which mode I was in.</p>
+
+<p>In May I argued that <span>domain expertise has always been the real moat</span>: the scarce asset in an agentic world is a verified mental model of the domain, like an oracle that tells a right answer from a plausible wrong one. That same oracle works here, too. In the greenhouse, the oracle sifts through the thousand sprouting plants to find the three worth keeping. With a lens, it rejects the plausible-but-wrong output that would pull you off the line between here and done. And it’s the oracle that notices drift: you can only feel yourself wandering off target if you hold the target in your head.</p>
+
+<p>So, as your work progresses and you start to get into your flow, do a gut-check: greenhouse or lens? They’re both legitimate and productive approaches in the right circumstance, but expertise means cultivating the sense of which to apply and when.</p>
+
+</div></div></div>
+  <div class="footer">
+    本文由 AI热点监控系统自动抓取 · 内容版权归原作者/网站所有<br>
+    快照仅用于学习交流，如需转载请访问原文
+  </div>
+</div>
+</body>
+</html>

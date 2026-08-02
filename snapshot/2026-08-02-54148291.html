@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="referrer" content="no-referrer">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'unsafe-inline'; img-src data:; connect-src 'none'; frame-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'; frame-ancestors 'none'">
+<title>NetBSD Blog - AI热点快照</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','PingFang SC','Microsoft YaHei',sans-serif;background:#f8f9fa;color:#1a1a2e;line-height:1.8;min-height:100vh}
+.top-bar{background:#fff;border-bottom:1px solid #e5e7eb;padding:10px 20px;display:flex;align-items:center;gap:12px;position:sticky;top:0;z-index:10}
+.top-bar .logo{font-size:14px;font-weight:700;color:#0d9488}
+.top-bar .sep{color:#d1d5db}
+.top-bar .source{font-size:13px;color:#6b7280}
+.top-bar .back{margin-left:auto;font-size:13px;color:#0d9488;text-decoration:none}
+.top-bar .back:hover{text-decoration:underline}
+.container{max-width:760px;margin:0 auto;padding:40px 24px 80px}
+.article-title{font-size:1.8rem;font-weight:700;line-height:1.35;margin-bottom:16px;color:#1a1a2e}
+.article-meta{display:flex;flex-wrap:wrap;gap:16px;padding-bottom:20px;margin-bottom:28px;border-bottom:1px solid #e5e7eb;font-size:14px;color:#6b7280}
+.article-meta a{color:#0d9488;text-decoration:none}
+.article-meta a:hover{text-decoration:underline}
+.article-body{font-size:16.5px;line-height:1.85;color:#1f2937}
+.article-body p{margin-bottom:1.2em;text-align:justify}
+.article-body h1,.article-body h2,.article-body h3{font-size:1.25em;font-weight:700;margin:1.6em 0 0.6em;color:#1a1a2e}
+.article-body a{color:#0d9488}
+.article-body pre,.article-body code{background:#f1f5f9;border-radius:4px;font-size:0.9em}
+.article-body pre{padding:16px;overflow-x:auto;margin:1em 0}
+.article-body code{padding:2px 6px}
+.article-body blockquote{border-left:3px solid #0d9488;padding-left:16px;color:#4b5563;margin:1em 0}
+.article-body ul,.article-body ol{padding-left:1.6em;margin-bottom:1em}
+.article-body li{margin-bottom:0.4em}
+.article-body figure{margin:1.2em 0}
+.article-body figcaption{font-size:13px;color:#9ca3af;text-align:center;margin-top:6px}
+.footer{margin-top:48px;padding-top:20px;border-top:1px solid #e5e7eb;font-size:13px;color:#9ca3af;text-align:center}
+</style>
+</head>
+<body>
+<div class="top-bar">
+  <a class="back" href="../" style="font-size:13px;color:#6b7280;text-decoration:none">← 日报首页</a>
+  <span class="sep">|</span>
+  <span class="logo">AI热点快照</span>
+  <span class="sep">|</span>
+  <span class="source">Hacker News</span>
+  <a class="back" href="https://blog.netbsd.org/tnf/entry/netbsd_11_0_released" target="_blank" rel="noopener noreferrer">查看原文 ↗</a>
+</div>
+<div class="container">
+  <h1 class="article-title">NetBSD Blog</h1>
+  <div class="article-meta">
+    
+    <span>来源: Hacker News</span>
+    <span>快照日期: 2026-08-02</span>
+  </div>
+  <div class="article-body"><div><div>
+							  		              <h2><span>NetBSD 11.0 released!</span></h2>
+<p>August 01, 2026 posted by <i>Martin Husemann</i></p>
+
+  <p>
+The NetBSD project is pleased to (finally) announce the 
+<a href="https://cdn.netbsd.org/pub/NetBSD/NetBSD-11.0/" target="_blank" rel="noopener noreferrer nofollow">NetBSD 11.0 release</a>!<br />
+See the <a href="https://netbsd.org/releases/formal-11/NetBSD-11.0.html" target="_blank" rel="noopener noreferrer nofollow">release announcement</a> for details.
+</p>
+<p>
+If you want to try out 11.0 please check the <a href="https://cdn.netbsd.org/pub/NetBSD/NetBSD-11.0/amd64/INSTALL.html" target="_blank" rel="noopener noreferrer nofollow">installation notes</a> for your architecture and download the preferred 
+<a href="https://cdn.netbsd.org/pub/NetBSD/NetBSD-11.0/images/" target="_blank" rel="noopener noreferrer nofollow">install image</a> from the CDN. If you are using an ARM based device, obtain a netbsd-11 image pre-configured with U-Boot from the <a href="https://armbsd.org/" target="_blank" rel="noopener noreferrer nofollow">bootable ARM images</a> page.
+</p>
+<p>
+Please note that the various ISO images have been split into separate &lt;700MB images for CD-ROM media and full-sized DVD images.
+If you are not restricted by the size limits of a CD-ROM, make sure to pick the image with "-dvd.iso" in the name.
+If you are using flash-based media (e.g. a USB drive), you must use the .img files rather than the .iso images.
+Note that they need to be decompressed first, e.g. with gunzip or 7-Zip.
+</p>
+<p>
+If you have any issues with installation or run into issues with the system during use, please contact us on one of the
+<a href="https://mail-index.netbsd.org/" target="_blank" rel="noopener noreferrer nofollow">mailing lists</a> or file a <a href="https://www.netbsd.org/cgi-bin/sendpr.cgi?gndb=netbsd" target="_blank" rel="noopener noreferrer nofollow">problem report</a>.
+</p>
+<p><strong>Important note about open security issues:</strong></p>
+<p>
+As you are probably aware, the number of security issues found or suspected everywhere has massively increased with the advent of AI tools. As a consequence, we can't publish a release without open issues. Instead of delaying the release further to fix them (new ones are being reported all the time), we've instead chosen to be transparent about this.
+</p>
+<p>
+This release has been quite delayed already, since we've waited for third-party components to make stable releases so we can get the fixes. We have avoided publishing any change without making a release candidate to give users time to test it. Our release process has been streamlined and automated as far as possible, but besides the time required to build and generate checksums for every platform, manual intervention is still required (e.g. security officer signing the release hashes). The overall process is still limited by the slowest step - the time it takes to transfer every file for every architecture over the network.
+</p>
+<p>
+The open security related pullup requests (and associated gnats problem reports) are:
+</p><ul>
+<li><a href="https://releng.netbsd.org/cgi-bin/req-11.cgi?show=396" target="_blank" rel="noopener noreferrer nofollow">hdaudio(4): Apply access checks to ioctl commands</a>, PR <a href="https://gnats.netbsd.org/60492" target="_blank" rel="noopener noreferrer nofollow">60492</a>; missing local user privilege check, easy manual workaround (remove /dev/hdaudio*; audio will still be functional).</li>
+<li><a href="https://releng.netbsd.org/cgi-bin/req-11.cgi?show=397" target="_blank" rel="noopener noreferrer nofollow">ipfilter: Fix remotely triggerable null pointer deref</a>, PR <a href="https://gnats.netbsd.org/60484" target="_blank" rel="noopener noreferrer nofollow">60484</a>; IPF is not included in any released kernel by default.</li>
+<li><a href="https://releng.netbsd.org/cgi-bin/req-11.cgi?show=398" target="_blank" rel="noopener noreferrer nofollow">pf: Fix use-after-free in fragment reassembly</a>, PR <a href="https://gnats.netbsd.org/60485" target="_blank" rel="noopener noreferrer nofollow">60485</a>; PF is deprecated and not included in any released kernel by default.</li>
+</ul>
+
+<p>
+All the open pullup requests will be committed to the stable branch shortly after the 11.0 release, and become part of the upcoming 11.1 release. We are currently aiming to release 11.1 within the next two months.
+</p><p>
+
+   [<span>8 comments</span>]
+ 
+</p>
+
+
+
+
+
+    		  
+		  		     
+		     		     
+    
+		  				</div></div></div>
+  <div class="footer">
+    本文由 AI热点监控系统自动抓取 · 内容版权归原作者/网站所有<br>
+    快照仅用于学习交流，如需转载请访问原文
+  </div>
+</div>
+</body>
+</html>

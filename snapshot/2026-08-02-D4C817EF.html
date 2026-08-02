@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="referrer" content="no-referrer">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'unsafe-inline'; img-src data:; connect-src 'none'; frame-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'; frame-ancestors 'none'">
+<title>How Google helped destroy adoption of RSS feeds - AI热点快照</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','PingFang SC','Microsoft YaHei',sans-serif;background:#f8f9fa;color:#1a1a2e;line-height:1.8;min-height:100vh}
+.top-bar{background:#fff;border-bottom:1px solid #e5e7eb;padding:10px 20px;display:flex;align-items:center;gap:12px;position:sticky;top:0;z-index:10}
+.top-bar .logo{font-size:14px;font-weight:700;color:#0d9488}
+.top-bar .sep{color:#d1d5db}
+.top-bar .source{font-size:13px;color:#6b7280}
+.top-bar .back{margin-left:auto;font-size:13px;color:#0d9488;text-decoration:none}
+.top-bar .back:hover{text-decoration:underline}
+.container{max-width:760px;margin:0 auto;padding:40px 24px 80px}
+.article-title{font-size:1.8rem;font-weight:700;line-height:1.35;margin-bottom:16px;color:#1a1a2e}
+.article-meta{display:flex;flex-wrap:wrap;gap:16px;padding-bottom:20px;margin-bottom:28px;border-bottom:1px solid #e5e7eb;font-size:14px;color:#6b7280}
+.article-meta a{color:#0d9488;text-decoration:none}
+.article-meta a:hover{text-decoration:underline}
+.article-body{font-size:16.5px;line-height:1.85;color:#1f2937}
+.article-body p{margin-bottom:1.2em;text-align:justify}
+.article-body h1,.article-body h2,.article-body h3{font-size:1.25em;font-weight:700;margin:1.6em 0 0.6em;color:#1a1a2e}
+.article-body a{color:#0d9488}
+.article-body pre,.article-body code{background:#f1f5f9;border-radius:4px;font-size:0.9em}
+.article-body pre{padding:16px;overflow-x:auto;margin:1em 0}
+.article-body code{padding:2px 6px}
+.article-body blockquote{border-left:3px solid #0d9488;padding-left:16px;color:#4b5563;margin:1em 0}
+.article-body ul,.article-body ol{padding-left:1.6em;margin-bottom:1em}
+.article-body li{margin-bottom:0.4em}
+.article-body figure{margin:1.2em 0}
+.article-body figcaption{font-size:13px;color:#9ca3af;text-align:center;margin-top:6px}
+.footer{margin-top:48px;padding-top:20px;border-top:1px solid #e5e7eb;font-size:13px;color:#9ca3af;text-align:center}
+</style>
+</head>
+<body>
+<div class="top-bar">
+  <a class="back" href="../" style="font-size:13px;color:#6b7280;text-decoration:none">← 日报首页</a>
+  <span class="sep">|</span>
+  <span class="logo">AI热点快照</span>
+  <span class="sep">|</span>
+  <span class="source">Hacker News</span>
+  <a class="back" href="https://openrss.org/blog/how-google-helped-destroy-adoption-of-rss-feeds" target="_blank" rel="noopener noreferrer">查看原文 ↗</a>
+</div>
+<div class="container">
+  <h1 class="article-title">How Google helped destroy adoption of RSS feeds</h1>
+  <div class="article-meta">
+    
+    <span>来源: Hacker News</span>
+    <span>快照日期: 2026-08-02</span>
+  </div>
+  <div class="article-body"><div><div>
+                    
+                        
+                            August 14, 2023
+                            
+                            
+                        
+                        <p>Although RSS feeds are alive and still heavily used today, their level of adoption has suffered because of how difficult a handful of popular technology companies have made it to use them. Google, especially, has relied on the open web RSS protocol to gain so much market share and influence, but continues to engage in behavior that exploits the open web at the expense of its users. As a result, Google has single-handedly contributed to the reason many users who once relied on RSS feeds have stopped using them.</p>
+
+
+<p>Below, we dive deeper into Google's track record of what appears to be an <a href="https://en.wikipedia.org/wiki/Embrace,_extend,_and_extinguish" target="_blank" rel="noopener noreferrer nofollow">Embrace, Extend, and Extinguish</a> model. The company has continuously built and extended their products around the free and open RSS protocol to gain user trust, only to then remove RSS support once they've locked users in, and ignore any complaints or requests to restore it. Not only is it a blatant disregard for RSS and a huge disappointment to those who use it, it poses one of the biggest threats to the freedom and openness of the internet.</p>
+<span><h2>Google removes RSS button from Chrome browser</h2></span>
+<p>Early versions of Chromium (on which the Google Chrome browser is based) once came with RSS integration baked in. The browser had a <a href="https://www.chromium.org/user-experience/feed-subscriptions/" target="_blank" rel="noopener noreferrer nofollow">built-in RSS button</a> that would display in the browser location bar when any website you're on had an RSS feed available. Clicking the button would then take you to the RSS feed for that web page, allowing a user to easily subscribe.</p>
+<figure>
+
+<figcaption>RSS subscribe icon in the toolbar of Google Chromium</figcaption>
+</figure>
+
+<p>Then, the RSS button disappeared without notice, and no reason was given for its removal.</p>
+<span><h2>Google acquires FeedBurner and limits RSS</h2></span>
+<p>In 2007, Google acquired <a href="https://en.wikipedia.org/wiki/FeedBurner" target="_blank" rel="noopener noreferrer nofollow">FeedBurner</a>, an RSS feed service that allows website owners to monetize their RSS feeds. FeedBurner works by replacing ordinary RSS feeds with private ones that only Google owns. The feeds are modified to include advertisements, affiliate links, and other tracking mechanisms like read counts, click-through rates and subscriber counts. The feeds are then used by FeedBurner users to track their readers and monetize from their behavior.</p>
+<figure>
+
+<figcaption>Google FeedBurner dashboard</figcaption>
+</figure>
+
+<p>After acquiring FeedBurner, Google <a href="https://web.archive.org/web/20140111101204/https://developers.google.com/feedburner/?csw=1" target="_blank" rel="noopener noreferrer nofollow">shut down FeedBurner APIs</a> in October 2012, which prevented developers from creating third-party RSS integrations to the service. Then, in July 2022, Google drastically changed FeedBurner's infrastructure and operation model by <a href="https://archive.ph/WqZM8" target="_blank" rel="noopener noreferrer nofollow">removing most of the FeedBurner services</a> that its RSS users depended on, which included email subscriptions. This left many people with non-working RSS feed URLs in their subscription emails with no way to fix them.</p>
+<span><h2>Google shuts down Google Reader</h2></span>
+<p>Back in 2005, Google created Google Reader, a web-based RSS Reader application. It allowed you to add RSS feeds anywhere on the internet, organize them into folders in a clean, minimalistic interface. Then in 2013, after years of users relying on it for their RSS feeds, Google <a href="https://googleblog.blogspot.com/2013/03/a-second-spring-of-cleaning.html" target="_blank" rel="noopener noreferrer nofollow">killed it</a>.</p>
+<figure>
+
+<figcaption>Google Reader dashboard after the shutdown announcement</figcaption>
+</figure>
+
+<p>The reason Google gave for axing Google Reader was in an announcement where they claimed that "while the product has a loyal following, over the years usage has declined". But an engineer, who worked for Google at the time, <a href="https://www.theverge.com/23778253/google-reader-death-2013-rss-social" target="_blank" rel="noopener noreferrer nofollow">said</a> "it felt like the entire time I was on the project, various people were trying to kill it."</p>
+<p>Nevertheless, Google's allegation of low usage didn't instill a lot of user confidence in the viability of RSS feeds. Users were left with no RSS reader application, no comparable alternative, and no education from Google on how to continue using their RSS feeds without Google Reader. This led users to not only discontinue using Google Reader, but abandon RSS feeds altogether.</p>
+<span><h2>Google removes RSS from Google Alerts</h2></span>
+<p>Google Alerts is a service offered by Google that will notify you with an alert when there is new content on the web that matches a search term you specify. In October 2008, Google <a href="https://googlesystem.blogspot.com/2008/10/feeds-for-google-alerts.html" target="_blank" rel="noopener noreferrer nofollow">added the ability to receive Google Alerts in an RSS feed</a>. But, in July 2013, Google decided to <a href="https://googlesystem.blogspot.com/2013/07/google-alerts-drops-rss-feeds.html" target="_blank" rel="noopener noreferrer nofollow">remove it</a>, making email the only option to receive Google Alerts. A reason for the removal wasn't clear, but the big, yellow banner on the top of every users' Google Alert dashboard was.</p>
+<figure>
+
+<figcaption>A screenshot of the Google Alerts dashboard with a banner communicating that Google Reader RSS feeds can no longer be used and must be changed to email delivery</figcaption>
+</figure>
+
+<p>Eventually, after receiving backlash, Google <a href="https://thenextweb.com/news/google-alerts-regains-rss-delivery-option-it-lost-after-google-readers-demise" target="_blank" rel="noopener noreferrer nofollow">reinstated the RSS feeds for Google Alerts</a>. But by this time, many users already abandoned RSS feeds due to Google's shut down of Google Reader (mentioned above), so the damage was already done.</p>
+<span><h2>Google kills its RSS browser extension</h2></span>
+<p>Google provided a Google Chrome extension that places a small RSS icon next to a website's URL in the browser bar if you're on a web page that has an RSS feed.</p>
+<figure>
+
+<figcaption>Google's RSS browser extension in Chrome Web Store</figcaption>
+</figure>
+
+<p>Despite this extension being used, Google <a href="https://techcrunch.com/2013/03/15/google-kills-rss/" target="_blank" rel="noopener noreferrer nofollow">removed it</a>. But then, after backlash, <a href="https://www.cnet.com/tech/services-and-software/google-undeletes-rss-extension-for-chrome-browser/" target="_blank" rel="noopener noreferrer nofollow">reinstated it</a> within a week afterward, claiming it was removed by mistake. And while reinstating it was better than not, removing it was still a blow to user confidence in RSS feed usage overall. And if it's true that it was done unintentionally, it still shows how little of a priority RSS has become to Google, despite how much RSS has contributed to the company's growth.</p>
+<span><h2>Google removes RSS integration from Google News</h2></span>
+<p>In 2002, Google announced <a href="https://en.wikipedia.org/wiki/Google_News" target="_blank" rel="noopener noreferrer nofollow">Google News</a>, the company's first media aggregation site, with the ability to add RSS feed URLs from all over the web.</p>
+<figure>
+
+<figcaption>The dashboard of Google News mobile app</figcaption>
+</figure>
+
+<p>Then, after many RSS users were locked in and relying on the Google News app for their RSS feeds, Google <a href="https://searchengineland.com/google-news-deprecate-old-rss-feed-urls-december-1-2017-286149" target="_blank" rel="noopener noreferrer nofollow">deprecated RSS support</a>, causing <a href="https://www.seroundtable.com/google-news-rss-feeds-deprecated-24717.html" target="_blank" rel="noopener noreferrer nofollow">users' RSS feeds to stop working</a>. Then, Google <a href="https://www.seroundtable.com/google-news-rss-feed-gone-25795.html" target="_blank" rel="noopener noreferrer nofollow">shut down its RSS feed support entirely</a> in December 2017. The company gave no reason for killing off support for RSS feeds in its Google News app. As a result, users had no choice but to find alternative RSS links for each feed they added to the Google News app, while proprietary Google News links continued to work fine.</p>
+<span><h2>Google's still at it...</h2></span>
+<p>The most recent incident was in May 2021, where Google announced they're working on <a href="https://blog.chromium.org/2021/05/an-experiment-in-helping-users-and-web.html" target="_blank" rel="noopener noreferrer nofollow">an update to Google Chrome that brings back RSS support</a>. But there has been no word on an official launch since it was announced years ago. It's unclear of what the implications of this feature will be. But it's clear that Google has a history of building products with RSS and killing the RSS support once it's established a user base. So there's no guarantee that, even if the feature launches, it'll continue to be available and reliable to RSS users over time.</p>
+<p>Because Google undoubtedly has a tremendous amount of influence, we hope that it understands incorporating RSS features into their products and then removing them negatively impacts user perception and confidence around RSS overall. RSS feeds are a vital part of the open web. So, If Google should decide to continue integrating RSS features in its products, it's critical that Google will support them, maintain them over time, and ensure they always remain a priority.</p>
+ 
+    
+        <br />
+        ❤
+        <em>
+            Open RSS is a registered 501(c)(3) nonprofit headquartered in the
+            District of Columbia, USA and funded only by voluntary donations of
+            its users. If you enjoy using Open RSS, we'd be so grateful if you'd
+            consider
+            <a href="https://openrss.org/donate" target="_blank" rel="noopener noreferrer nofollow">donating</a> to help us grow and
+            continue to provide you with a quality and reliable service.
+        </em>
+    
+
+                    
+                </div></div></div>
+  <div class="footer">
+    本文由 AI热点监控系统自动抓取 · 内容版权归原作者/网站所有<br>
+    快照仅用于学习交流，如需转载请访问原文
+  </div>
+</div>
+</body>
+</html>
