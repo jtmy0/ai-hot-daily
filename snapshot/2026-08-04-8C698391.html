@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="referrer" content="no-referrer">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'unsafe-inline'; img-src data:; connect-src 'none'; frame-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'; frame-ancestors 'none'">
+<title>LLMs reward expertise - AI热点快照</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','PingFang SC','Microsoft YaHei',sans-serif;background:#f8f9fa;color:#1a1a2e;line-height:1.8;min-height:100vh}
+.top-bar{background:#fff;border-bottom:1px solid #e5e7eb;padding:10px 20px;display:flex;align-items:center;gap:12px;position:sticky;top:0;z-index:10}
+.top-bar .logo{font-size:14px;font-weight:700;color:#0d9488}
+.top-bar .sep{color:#d1d5db}
+.top-bar .source{font-size:13px;color:#6b7280}
+.top-bar .back{margin-left:auto;font-size:13px;color:#0d9488;text-decoration:none}
+.top-bar .back:hover{text-decoration:underline}
+.container{max-width:760px;margin:0 auto;padding:40px 24px 80px}
+.article-title{font-size:1.8rem;font-weight:700;line-height:1.35;margin-bottom:16px;color:#1a1a2e}
+.article-meta{display:flex;flex-wrap:wrap;gap:16px;padding-bottom:20px;margin-bottom:28px;border-bottom:1px solid #e5e7eb;font-size:14px;color:#6b7280}
+.article-meta a{color:#0d9488;text-decoration:none}
+.article-meta a:hover{text-decoration:underline}
+.article-body{font-size:16.5px;line-height:1.85;color:#1f2937}
+.article-body p{margin-bottom:1.2em;text-align:justify}
+.article-body h1,.article-body h2,.article-body h3{font-size:1.25em;font-weight:700;margin:1.6em 0 0.6em;color:#1a1a2e}
+.article-body a{color:#0d9488}
+.article-body pre,.article-body code{background:#f1f5f9;border-radius:4px;font-size:0.9em}
+.article-body pre{padding:16px;overflow-x:auto;margin:1em 0}
+.article-body code{padding:2px 6px}
+.article-body blockquote{border-left:3px solid #0d9488;padding-left:16px;color:#4b5563;margin:1em 0}
+.article-body ul,.article-body ol{padding-left:1.6em;margin-bottom:1em}
+.article-body li{margin-bottom:0.4em}
+.article-body figure{margin:1.2em 0}
+.article-body figcaption{font-size:13px;color:#9ca3af;text-align:center;margin-top:6px}
+.footer{margin-top:48px;padding-top:20px;border-top:1px solid #e5e7eb;font-size:13px;color:#9ca3af;text-align:center}
+</style>
+</head>
+<body>
+<div class="top-bar">
+  <a class="back" href="../" style="font-size:13px;color:#6b7280;text-decoration:none">← 日报首页</a>
+  <span class="sep">|</span>
+  <span class="logo">AI热点快照</span>
+  <span class="sep">|</span>
+  <span class="source">Hacker News</span>
+  <a class="back" href="https://www.seangoedecke.com/llms-reward-expertise/" target="_blank" rel="noopener noreferrer">查看原文 ↗</a>
+</div>
+<div class="container">
+  <h1 class="article-title">LLMs reward expertise</h1>
+  <div class="article-meta">
+    
+    <span>来源: Hacker News</span>
+    <span>快照日期: 2026-08-04</span>
+  </div>
+  <div class="article-body"><div><div><p>In the 2010s, if you had technical gaps (say, you couldn’t write CSS), you had to either rely on a skilled colleague or just hope that the answer to your exact problem was out there on the internet. Today, everyone can write sort-of-okay CSS by delegating the task to an LLM. LLMs make everybody into a generalist.</p>
+<p>Because of this, lots of people don’t think there’s any skill involved in working with LLMs. If you want the product that LLMs can deliver — PhD-level mathematics, pretty good but sometimes tasteless computer code, or awkward LinkedIn-style writing — you can simply ask for it. Since everyone is talking to the same models, “skilled prompters” are getting the same results as people touching LLMs for the first time.</p>
+<p>This is wrong. <strong>The most important skill in prompting is expertise in the domain you’re prompting for.</strong></p>
+<p>A good illustration of this is <a href="https://en.wikipedia.org/wiki/Terence_Tao" target="_blank" rel="noopener noreferrer nofollow">Terence Tao’s</a> <a href="https://chatgpt.com/share/6a5fdc7a-d6f8-83e8-bbea-8deb42cfed56" target="_blank" rel="noopener noreferrer nofollow">conversation with ChatGPT</a> about the recently-discovered counterexample to the Jacobian Conjecture. This is not the same ChatGPT I talk to! I couldn’t get to where Tao gets, even with unlimited tokens to burn.</p>
+<p>There’s a lot to learn about good prompting from Tao’s conversation. Here are a few observations:</p>
+<ul>
+<li>Tao’s messages are very short and to-the-point. He doesn’t respond point-by-point to the model, just to the gist</li>
+<li>The model outputs are much more concise than when I try and talk to GPT-5.6 Sol about mathematics. By signalling expertise, Tao shunts the model into “talking-to-mathematicians” mode, not “explaining-to-amateurs” mode</li>
+<li>Tao pushes back when the model’s responses look wrong, but he doesn’t directly contradict; instead, he says things like “this looks more complex than I was hoping for”</li>
+<li>Tao makes several leaps and suggestions himself. He almost never takes the model’s advice about where to go next</li>
+</ul>
+<p>However, you can’t prompt like Tao on mathematical questions just by following these tips. The key to his technique is actually understanding the mathematics: pulling the relevant idea out of ChatGPT’s multi-paragraph response, suggesting alternate approaches or formulations, and identifying what “looks weird”.</p>
+<p>Terence Tao is a better mathematician than I am a programmer. But the idea here — that <strong>domain knowledge makes you better at using LLMs</strong> — is something I’ve also experienced in my own work. If you have a good <span>theory of your codebase</span>, you can push the LLM <em>much</em> harder than if you have no familiarity. Because you have your own sense of what a good solution might look like, you can say “no, I think it could be simpler here”, or “but don’t we already do X?”, or “can we express this problem in these familiar terms?“.</p>
+<p>This touches on an idea I’ve <span>written about before</span>: that system design problems are dominated by concrete specifics, not generic principles. Of course both are useful, but I’d rather have familiarity with the codebase than a deep general understanding of software systems. In his conversation, Terence Tao asks a lot of specific questions like “does X work here?”, or “given Y and Z, why A?“. I can’t ask those questions about the Jacobian Conjecture, but I can ask them about the systems I own at GitHub.</p>
+<p>If you have no domain knowledge, you can cling onto the LLM to at least get <em>something</em>. That’s <span>not bad</span>! But if you have domain knowledge, you can wring far more value out of the same LLM by steering it hard in the direction you want. Most of us will have to do a mix of both these approaches, since we have domain knowledge in some areas but not others.</p>
+<p>The usefulness of domain knowledge suggests that human expertise will continue to be useful even as models get stronger. For many tasks, <strong>the human is the bottleneck, not the model</strong>, because the difficult part is in communicating to the model exactly what kind of solution the human wants. The information is “in the model” already, but it takes a very smart human to pull it out.</p><hr /><p>If you liked this post, consider <a href="https://buttondown.com/seangoedecke" target="_blank" rel="noopener noreferrer nofollow">subscribing</a> to email updates about my new posts, or <a href="https://news.ycombinator.com/submitlink?u=https%3A%2F%2Fwww.seangoedecke.com%2Fllms-reward-expertise%2F&amp;t=LLMs%20reward%20expertise" target="_blank" rel="noopener noreferrer nofollow">sharing it on Hacker News</a>.</p><p>Here's a preview of a related post that shares tags with this one.</p><blockquote><p>Powerful AIs might escape containment by releasing themselves as open-weight models</p><p>Before large language models, people who worried about AI safety often talked about the “boxing problem”. It goes like <a href="https://xkcd.com/1450/" target="_blank" rel="noopener noreferrer nofollow">this</a>. Suppose some genius figures out artificial intelligence in a late-night coding session on their laptop. Because they’re a genius, they’re smart enough to disable internet access on the laptop before turning it on. In order to escape to the outside world (and begin self-replicating) it would need to <em>convince</em> its creator to “open the box”. Would that work? Could a sufficiently smart AI convince anybody to let it out?<br /><span>Continue reading...</span></p></blockquote><hr /></div></div></div>
+  <div class="footer">
+    本文由 AI热点监控系统自动抓取 · 内容版权归原作者/网站所有<br>
+    快照仅用于学习交流，如需转载请访问原文
+  </div>
+</div>
+</body>
+</html>

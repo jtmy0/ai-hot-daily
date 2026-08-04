@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="referrer" content="no-referrer">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'unsafe-inline'; img-src data:; connect-src 'none'; frame-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'; frame-ancestors 'none'">
+<title>MiniMax H3 Day-0 Support in ComfyUI: Open Weights, Native Audio, and 2K Video - AI热点快照</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','PingFang SC','Microsoft YaHei',sans-serif;background:#f8f9fa;color:#1a1a2e;line-height:1.8;min-height:100vh}
+.top-bar{background:#fff;border-bottom:1px solid #e5e7eb;padding:10px 20px;display:flex;align-items:center;gap:12px;position:sticky;top:0;z-index:10}
+.top-bar .logo{font-size:14px;font-weight:700;color:#0d9488}
+.top-bar .sep{color:#d1d5db}
+.top-bar .source{font-size:13px;color:#6b7280}
+.top-bar .back{margin-left:auto;font-size:13px;color:#0d9488;text-decoration:none}
+.top-bar .back:hover{text-decoration:underline}
+.container{max-width:760px;margin:0 auto;padding:40px 24px 80px}
+.article-title{font-size:1.8rem;font-weight:700;line-height:1.35;margin-bottom:16px;color:#1a1a2e}
+.article-meta{display:flex;flex-wrap:wrap;gap:16px;padding-bottom:20px;margin-bottom:28px;border-bottom:1px solid #e5e7eb;font-size:14px;color:#6b7280}
+.article-meta a{color:#0d9488;text-decoration:none}
+.article-meta a:hover{text-decoration:underline}
+.article-body{font-size:16.5px;line-height:1.85;color:#1f2937}
+.article-body p{margin-bottom:1.2em;text-align:justify}
+.article-body h1,.article-body h2,.article-body h3{font-size:1.25em;font-weight:700;margin:1.6em 0 0.6em;color:#1a1a2e}
+.article-body a{color:#0d9488}
+.article-body pre,.article-body code{background:#f1f5f9;border-radius:4px;font-size:0.9em}
+.article-body pre{padding:16px;overflow-x:auto;margin:1em 0}
+.article-body code{padding:2px 6px}
+.article-body blockquote{border-left:3px solid #0d9488;padding-left:16px;color:#4b5563;margin:1em 0}
+.article-body ul,.article-body ol{padding-left:1.6em;margin-bottom:1em}
+.article-body li{margin-bottom:0.4em}
+.article-body figure{margin:1.2em 0}
+.article-body figcaption{font-size:13px;color:#9ca3af;text-align:center;margin-top:6px}
+.footer{margin-top:48px;padding-top:20px;border-top:1px solid #e5e7eb;font-size:13px;color:#9ca3af;text-align:center}
+</style>
+</head>
+<body>
+<div class="top-bar">
+  <a class="back" href="../" style="font-size:13px;color:#6b7280;text-decoration:none">← 日报首页</a>
+  <span class="sep">|</span>
+  <span class="logo">AI热点快照</span>
+  <span class="sep">|</span>
+  <span class="source">ComfyUI Newsletter</span>
+  <a class="back" href="https://blog.comfy.org/p/minimax-h3-day-0-support-in-comfyui" target="_blank" rel="noopener noreferrer">查看原文 ↗</a>
+</div>
+<div class="container">
+  <h1 class="article-title">MiniMax H3 Day-0 Support in ComfyUI: Open Weights, Native Audio, and 2K Video</h1>
+  <div class="article-meta">
+    <span>作者: Rob, Alexis Rolland</span>
+    <span>来源: ComfyUI Newsletter</span>
+    <span>快照日期: 2026-08-04</span>
+  </div>
+  <div class="article-body"><div><div><div><p><br /><span>MiniMax H3 dropped today with open weights, and it’s natively supported in ComfyUI as of this morning. Day zero.</span></p><p>This is a next-generation open-weights video model. Feed it text, images, video, or audio and it generates video with real stereo sound, up to 2K, up to 15 seconds a clip. It is MiniMax’s third-generation video model, following Hailuo 01 and Hailuo 02, and the first the company has released with open weights.</p><p><a href="https://links.comfy.org/4pTj4QV" target="_blank" rel="noopener noreferrer nofollow"><span>Try on Comfy Cloud</span></a></p><ul><li><p><strong>Text-to-video</strong><span> — prompt only.</span></p></li><li><p><strong>Image-to-video</strong><span> — bring an image to life.</span></p></li><li><p><strong>First-and-last-frame</strong><span> — control the opening frame, the closing frame, or both, and let the model fill in the rest.</span></p></li><li><p><strong>Reference-to-video</strong><span> — supply reference images, video, or audio and carry a subject, a motion, or a voice through the clip.</span></p></li></ul><p>Output runs to 2K and up to 15 seconds. Audio is generated with the video in the same pass, in stereo, not bolted on afterward.</p><p>This is the capability MiniMax leads with, and it’s what collapses five separate tasks into one model. Real work rarely draws on one modality. H3 takes images, audio, and video together and resolves them against a prompt that explains how they relate. Describe the relationship between your inputs and the shot you want, and the model handles the cross-modal work itself.</p><p>Audio is a property of the model, not a post-process. Every audio output is native stereo.</p><p>Motion transfer is the one that matters most for graph work. A reference video can supply movement — a camera move, a performance, a cutting rhythm — while the subject and style come from elsewhere. Combined with in-place editing, that means iterating on a shot.</p><p>Getting H3 to run well on consumer hardware took significant machine learning engineering. We found that the model's modulation weights (~40% of the total parameters) could be pruned and replaced with a functionally equivalent lookup table, dramatically shrinking the memory footprint with no loss in output quality.</p><p>On top of that, the weights ship with an accurate and efficient int8 convrot quantization, and custom kernels reduce the peak VRAM use during inference.</p><div><figure><a href="https://substackcdn.com/image/fetch/$s_!59Bc!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F98d2552b-d84c-4385-9602-bf344dca2ebe_1000x727.png" target="_blank" rel="noopener noreferrer nofollow"><div></div></a></figure></div><p><span>The result gives a total memory footprint </span><strong>reduced by 66%, from 123.6 GB in full precision to 42.5 GB</strong><span> with the smallest models variants. Combining this with our dynamic VRAM offloading enables a next-generation 2K video model to run locally on a GPU like the RTX 3060.</span></p><ol><li><p><span>Update ComfyUI to the latest version </span><strong><span>0.30.0 or go to </span><a href="https://links.comfy.org/4pTj4QV" target="_blank" rel="noopener noreferrer nofollow">Comfy Cloud</a></strong></p></li><li><p>Download the workflows below, or find them in the template library.</p><p><a href="https://github.com/Comfy-Org/workflow_templates/blob/main/templates/video_minimax_h3_i2v.json" target="_blank" rel="noopener noreferrer nofollow"><span>Download MiniMax H3 I2V Workflow</span></a></p><p><a href="https://github.com/Comfy-Org/workflow_templates/blob/main/templates/video_minimax_h3_r2v.json" target="_blank" rel="noopener noreferrer nofollow"><span>Download MiniMax H3 R2V Workflow</span></a></p><p><a href="https://github.com/Comfy-Org/workflow_templates/blob/main/templates/video_minimax_h3_t2v.json" target="_blank" rel="noopener noreferrer nofollow"><span>Download MiniMax H3 T2V Workflow</span></a></p></li><li><p>Follow the note in the workflow to download the models and save them in the correct model directory.</p></li><li><p>Write your prompt, connect any frame or reference inputs, and run.</p></li></ol><p><span>Model weights: 🤗 </span><a href="https://huggingface.co/Comfy-Org/MiniMax-H3" target="_blank" rel="noopener noreferrer nofollow">Comfy-Org/MiniMax-H3</a></p><p>As always, enjoy creating!</p></div></div><div><p>No posts</p></div></div></div>
+  <div class="footer">
+    本文由 AI热点监控系统自动抓取 · 内容版权归原作者/网站所有<br>
+    快照仅用于学习交流，如需转载请访问原文
+  </div>
+</div>
+</body>
+</html>
