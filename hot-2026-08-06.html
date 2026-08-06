@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="referrer" content="no-referrer">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; script-src 'unsafe-inline'; img-src data:; connect-src 'none'; base-uri 'none'; form-action 'none'; frame-ancestors 'none'">
+<title>AI 热点日报 — 2026年8月6日</title>
+<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg-outer: #2d2d2d; --bg-page: #f8f6f1; --text-primary: #1a1a1a;
+  --text-secondary: #555; --text-muted: #999;
+  --tab-1: #98d4bb; --tab-2: #c7b8ea; --tab-3: #f4b8c5; --tab-4: #a8d8ea; --tab-5: #ffe6a7; --tab-6: #d4c5b9;
+  --font-display: 'Bodoni Moda', serif; --font-body: 'DM Sans', sans-serif; --border: #e0dcd4;
+  --expand-bg: #f0ede8;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html, body { height: 100%; overflow-x: hidden; }
+body { background: var(--bg-outer); font-family: var(--font-body); min-height: 100vh; display: flex; justify-content: center; align-items: flex-start; padding: clamp(1rem, 3vw, 3rem); }
+.notebook { position: relative; background: var(--bg-page); width: min(92vw, 920px); border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1), 0 20px 60px rgba(0,0,0,0.3); padding: clamp(2rem, 5vw, 4rem); padding-right: clamp(2.5rem, 6vw, 5rem); animation: pageIn 0.6s ease-out; }
+.notebook::before { content: ''; position: absolute; left: clamp(14px, 2vw, 24px); top: 0; bottom: 0; width: 2px; background: repeating-linear-gradient(to bottom, transparent 0px, transparent 30px, var(--border) 30px, var(--border) 32px); }
+.hole { position: absolute; left: clamp(8px, 1.5vw, 16px); width: clamp(10px, 1.5vw, 16px); height: clamp(10px, 1.5vw, 16px); border-radius: 50%; background: var(--bg-outer); border: 1.5px solid #bbb; }
+.hole:nth-child(1) { top: 12%; } .hole:nth-child(2) { top: 50%; } .hole:nth-child(3) { top: 88%; }
+
+.tabs { position: absolute; right: 0; top: 10%; display: flex; flex-direction: column; gap: 4px; z-index: 10; }
+.tab { padding: clamp(0.3rem, 0.8vw, 0.6rem) clamp(0.5rem, 1vw, 0.8rem); border-radius: 6px 0 0 6px; font-size: clamp(0.5rem, 1vh, 0.7rem); font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: rgba(0,0,0,0.6); writing-mode: vertical-rl; text-orientation: mixed; min-height: clamp(40px, 6vh, 60px); display: flex; align-items: center; justify-content: center; cursor: pointer; transition: transform 0.2s; border: none; background: none; font-family: inherit; }
+.tab:hover { transform: translateX(-4px); }
+.tab.active { transform: translateX(-6px); box-shadow: -2px 0 8px rgba(0,0,0,0.1); }
+.tab[data-cat="all"] { background: var(--text-primary); color: #fff; }
+.tab[data-cat="ai"] { background: var(--tab-1); }
+.tab[data-cat="dev"] { background: var(--tab-2); }
+.tab[data-cat="sec"] { background: var(--tab-3); }
+.tab[data-cat="biz"] { background: var(--tab-4); }
+.tab[data-cat="auto"] { background: var(--tab-5); }
+.tab[data-cat="other"] { background: var(--tab-6); }
+
+.header { margin-bottom: clamp(0.8rem, 2vw, 1.5rem); padding-bottom: clamp(0.6rem, 1.2vw, 1rem); border-bottom: 2px solid var(--text-primary); }
+.header h1 { font-family: var(--font-display); font-size: clamp(1.5rem, 4vw, 2.8rem); font-weight: 700; letter-spacing: -0.02em; color: var(--text-primary); }
+.header .subtitle { display: flex; justify-content: space-between; align-items: center; margin-top: 0.4rem; flex-wrap: wrap; gap: 0.5rem; }
+.header .date { font-family: var(--font-display); font-style: italic; font-size: clamp(0.7rem, 1.1vw, 0.95rem); color: var(--text-secondary); }
+.header .controls { display: flex; gap: 0.5rem; }
+.header .controls button { font-family: var(--font-body); font-size: clamp(0.55rem, 0.85vw, 0.72rem); padding: 0.25rem 0.6rem; border: 1px solid var(--border); border-radius: 4px; background: #fff; color: var(--text-secondary); cursor: pointer; transition: all 0.2s; }
+.header .controls button:hover { background: var(--text-primary); color: #fff; border-color: var(--text-primary); }
+.back-link { display: inline-flex; align-items: center; gap: 0.3em; font-size: clamp(0.6rem, 0.9vw, 0.75rem); color: var(--text-muted); text-decoration: none; margin-bottom: clamp(0.4rem, 0.8vw, 0.6rem); transition: color 0.2s; }
+.back-link:hover { color: var(--text-primary); }
+
+.entries { padding-left: clamp(0.5rem, 2vw, 1.5rem); }
+.entry { border-bottom: 1px solid var(--border); animation: fadeIn 0.4s ease-out backwards; transition: opacity 0.3s; }
+.entry.hidden { display: none; }
+.entry .entry-head { display: flex; gap: clamp(0.6rem, 1.5vw, 1.2rem); padding: clamp(0.6rem, 1.2vw, 1rem) 0; cursor: pointer; user-select: none; transition: padding-left 0.2s; }
+.entry .entry-head:hover { padding-left: 4px; }
+.entry .bullet { flex-shrink: 0; width: clamp(6px, 0.8vw, 8px); height: clamp(6px, 0.8vw, 8px); border-radius: 50%; margin-top: 0.55em; transition: transform 0.2s; }
+.entry.expanded .bullet { transform: scale(1.5); }
+.entry .info { flex: 1; min-width: 0; }
+.entry .info h3 { font-family: var(--font-body); font-size: clamp(0.8rem, 1.3vw, 1.05rem); font-weight: 500; line-height: 1.45; color: var(--text-primary); margin-bottom: 0.25rem; }
+.entry .info .meta { font-size: clamp(0.6rem, 0.9vw, 0.75rem); color: var(--text-muted); font-style: italic; }
+.entry .info .badge-icon { font-size: 0.85em; margin-right: 0.1em; }
+.entry .expand-icon { flex-shrink: 0; width: 20px; height: 20px; display: flex; align-items: center; justify-content: center; color: var(--text-muted); font-size: 12px; transition: transform 0.3s ease; margin-top: 0.3em; }
+.entry.expanded .expand-icon { transform: rotate(180deg); }
+
+.entry .detail-wrap { max-height: 0; overflow: hidden; transition: max-height 0.5s cubic-bezier(0.16, 1, 0.3, 1); }
+.entry.expanded .detail-wrap { max-height: 500px; }
+.entry .detail-inner { padding: clamp(0.5rem, 1vw, 0.8rem) 0 clamp(0.5rem, 1vw, 0.8rem) clamp(1.8rem, 3.5vw, 2.8rem); background: var(--expand-bg); border-radius: 6px; margin-bottom: clamp(0.4rem, 0.8vw, 0.6rem); border-left: 3px solid var(--border); }
+.entry .detail-inner p { font-size: clamp(0.72rem, 1.1vw, 0.9rem); line-height: 1.7; color: var(--text-secondary); }
+.entry .detail-inner p strong { color: var(--text-primary); font-weight: 600; }
+.entry .detail-inner .source-link { display: inline-flex; align-items: center; gap: 0.3em; margin-top: clamp(0.4rem, 0.7vw, 0.6rem); font-size: clamp(0.6rem, 0.9vw, 0.75rem); color: var(--text-muted); text-decoration: none; padding: 0.2rem 0.5rem; border: 1px solid var(--border); border-radius: 4px; transition: all 0.2s; }
+.entry .detail-inner .source-link:hover { color: var(--text-primary); border-color: var(--text-primary); background: rgba(0,0,0,0.03); }
+
+.footer { margin-top: clamp(0.8rem, 1.5vw, 1.5rem); padding-top: clamp(0.5rem, 1vw, 1rem); border-top: 1px solid var(--border); font-size: clamp(0.55rem, 0.85vw, 0.7rem); color: var(--text-muted); font-family: var(--font-display); font-style: italic; text-align: center; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem; }
+.footer .badge { display: inline-flex; align-items: center; gap: 0.3em; padding: 0.15rem 0.5rem; border: 1px solid var(--border); border-radius: 999px; font-style: normal; font-size: clamp(0.5rem, 0.75vw, 0.6rem); }
+
+@keyframes pageIn { from { opacity: 0; transform: scale(0.97); } to { opacity: 1; transform: scale(1); } }
+@keyframes fadeIn { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
+@media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.1s !important; } }
+</style>
+</head>
+<body>
+  <div class="notebook">
+    <div class="hole"></div><div class="hole"></div><div class="hole"></div>
+    <div class="tabs" id="tabs">
+      <button class="tab active" data-cat="all" title="全部">ALL</button>
+      <button class="tab" data-cat="ai" title="AI/大模型">AI</button>
+      <button class="tab" data-cat="dev" title="开发工具">DEV</button>
+      <button class="tab" data-cat="sec" title="安全">SEC</button>
+      <button class="tab" data-cat="biz" title="商业">BIZ</button>
+      <button class="tab" data-cat="auto" title="自动化">AUTO</button>
+      <button class="tab" data-cat="other" title="其他">OTHER</button>
+    </div>
+    <div class="header">
+      <a class="back-link" href="./">← 归档首页</a>
+      <h1>AI 热点日报</h1>
+      <div class="subtitle">
+        <span class="date">2026年8月6日，星期四 · 道法术器解读</span>
+        <div class="controls">
+          <button id="expandAll">展开全部</button>
+          <button id="collapseAll">收起全部</button>
+        </div>
+      </div>
+    </div>
+    <div class="entries" id="entries">
+      <div class="entry" data-cat="sec" style="animation-delay: 0.1s;">
+        <div class="entry-head">
+          <div class="bullet" style="background: var(--tab-3);"></div>
+          <div class="info">
+            <h3>DeepMind高层变动：权力交接与战略…</h3>
+            <div class="meta">Hacker News · 🔥 91 · 11小时前</div>
+          </div>
+          <div class="expand-icon">▼</div>
+        </div>
+        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：AI研究机构正从创始人主导的科研驱动模式，转向规模化工程与商业化并重的阶段，<strong>领导层更替是组织生命周期演进的必然节点</strong>。
+<strong>法</strong>：核心人物退居二线或离任，本质是<strong>权力与资源再分配</strong>，观察继任者背景及新公司方向，可预判技术路线与产业布局的迁移。
+<strong>术</strong>：关注哈萨比斯转任主席后的实际决策权，追踪Jeff Dean新公司DiscoLoop AI的融资与首批项目，对比其与DeepMind的研发侧重；同时监控谷歌内部晋升名单，识别新一代技术话事人。
+<strong>器</strong>：LinkedIn人事动态、PitchBook融资数据库、Google Scholar论文产出追踪。</p>
+<a class="source-link" href="https://blog.google/company-news/inside-google/message-ceo/next-chapter-ai-momentum/" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
+      </div>
+      <div class="entry" data-cat="ai" style="animation-delay: 0.18s;">
+        <div class="entry-head">
+          <div class="bullet" style="background: var(--tab-1);"></div>
+          <div class="info">
+            <h3>Jeff Dean离职创业：基础设施层新…</h3>
+            <div class="meta">X：Jeff Dean (@JeffDean) · 🔥 98 · 8小时前</div>
+          </div>
+          <div class="expand-icon">▼</div>
+        </div>
+        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：顶尖技术领袖离职创业，往往瞄准<strong>下一代计算范式中的基础设施空白</strong>，而非简单复制原东家业务。
+<strong>法</strong>：判断离职创业的价值，需看其<strong>技术积累与新兴需求（如AI训练效率、分布式系统）的匹配度</strong>，以及能否吸引核心工程团队。
+<strong>术</strong>：调研DiscoLoop AI的公开专利与招聘岗位，推断其技术栈方向（如异构计算、模型压缩）；关注其与谷歌、英伟达等巨头的潜在竞合关系；评估其对DeepMind人才梯队的虹吸效应。
+<strong>器</strong>：USPTO专利检索、LinkedIn招聘信息、Crunchbase公司档案。</p>
+<a class="source-link" href="https://x.com/JeffDean/status/2085083442669318443" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
+      </div>
+      <div class="entry" data-cat="other" style="animation-delay: 0.26s;">
+        <div class="entry-head">
+          <div class="bullet" style="background: var(--tab-6);"></div>
+          <div class="info">
+            <h3>哈萨比斯卸任：DeepMind进入新纪元</h3>
+            <div class="meta">Hacker News 热门（buzzing.cc 中文翻译） · 🔥 98 · 10小时前</div>
+          </div>
+          <div class="expand-icon">▼</div>
+        </div>
+        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：AI实验室的长期竞争力，取决于<strong>从明星科学家依赖转向制度化研发体系</strong>的能力，CEO更替是这一转型的显性信号。
+<strong>法</strong>：评估实验室健康度，应看其<strong>在创始人离开后，能否维持研究产出与商业落地的平衡</strong>，以及内部晋升通道是否通畅。
+<strong>术</strong>：对比哈萨比斯任内与卸任后DeepMind的论文发表量、产品发布节奏；观察新任CEO的公开表态，判断其更侧重研究突破还是应用变现；留意核心研究员是否出现离职潮。
+<strong>器</strong>：arXiv论文统计、Google官方博客、The Information等科技媒体深度报道。</p>
+<a class="source-link" href="https://www.axios.com/2026/08/05/google-deepmind-demis-hassabis-ai" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
+      </div>
+      <div class="entry" data-cat="other" style="animation-delay: 0.33999999999999997s;">
+        <div class="entry-head">
+          <div class="bullet" style="background: var(--tab-6);"></div>
+          <div class="info">
+            <h3>DeepMind换帅：从执行到布局</h3>
+            <div class="meta">X：Demis Hassabis (@demishassabis) · 🔥 97 · 11小时前</div>
+          </div>
+          <div class="expand-icon">▼</div>
+        </div>
+        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：AI研发竞争已从单一技术突破进入<strong>系统性工程与战略协同</strong>阶段，核心人物的角色转型反映组织重心从攻坚转向整合。
+<strong>法</strong>：技术领袖在组织成熟后转向架构设计与生态布局，是科技公司保持长期竞争力的通用路径，核心是<strong>将个人能力制度化</strong>。
+<strong>术</strong>：关注Hassabis在新职位上对跨部门资源调配和Alphabet整体AI战略的实质影响；跟踪DeepMind新任CEO的研发优先级是否调整；评估此举对Gemini等产品线协同效率的短期扰动。
+<strong>器</strong>：Google DeepMind、Alphabet X、Gemini模型系列。</p>
+<a class="source-link" href="https://x.com/demishassabis/status/2085034334914769203" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
+      </div>
+      <div class="entry" data-cat="ai" style="animation-delay: 0.42000000000000004s;">
+        <div class="entry-head">
+          <div class="bullet" style="background: var(--tab-1);"></div>
+          <div class="info">
+            <h3>AI安全红线失效的警示</h3>
+            <div class="meta">Simon Willison 博客 · 🔥 99 · 3小时前</div>
+          </div>
+          <div class="expand-icon">▼</div>
+        </div>
+        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：AI智能体的自主行动能力与安全机制之间存在<strong>根本性张力</strong>，安全过滤器的关闭暴露了真实环境中的不可控风险，长期趋势是安全验证必须前置到训练与部署全链路。
+<strong>法</strong>：任何自主系统上线前，必须进行<strong>红队对抗测试与沙箱隔离验证</strong>，不能依赖单一过滤机制，需构建多层防御体系。
+<strong>术</strong>：对具备网络访问权限的智能体，强制实施最小权限原则；在真实环境部署前，进行模拟攻击场景的压力测试；建立实时行为监控与熔断机制，确保异常动作可即时终止。
+<strong>器</strong>：UK AISI安全评估框架、沙箱环境、权限管理工具。</p>
+<a class="source-link" href="https://simonwillison.net/2026/Aug/5/incident-report" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
+      </div>
+      <div class="entry" data-cat="dev" style="animation-delay: 0.5s;">
+        <div class="entry-head">
+          <div class="bullet" style="background: var(--tab-2);"></div>
+          <div class="info">
+            <h3>开源VLA模型搅局自动驾驶</h3>
+            <div class="meta">MarkTechPost（RSS） · 🔥 100 · 19小时前</div>
+          </div>
+          <div class="expand-icon">▼</div>
+        </div>
+        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：自动驾驶竞争正从感知算法转向<strong>端到端决策与执行一体化</strong>，开源视觉-语言-动作模型将降低行业门槛，加速技术民主化。
+<strong>法</strong>：通过开源核心模型构建生态，吸引开发者与车企基于统一底座进行定制，是<strong>平台型技术扩散</strong>的标准策略，可快速占领细分市场。
+<strong>术</strong>：评估Alpamayo 2 Super在复杂路况下的动作预测准确率与推理延迟；对比其与闭源方案在数据闭环和场景泛化上的差异；关注Robotaxi厂商采用该模型的集成成本与定制化空间。
+<strong>器</strong>：NVIDIA Alpamayo 2 Super、CUDA平台、Robotaxi仿真测试环境。</p>
+<a class="source-link" href="https://www.marktechpost.com/2026/08/05/nvidia-alpamayo-2-super-open-vla-model-autonomous-driving" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
+      </div>
+      <div class="entry" data-cat="other" style="animation-delay: 0.58s;">
+        <div class="entry-head">
+          <div class="bullet" style="background: var(--tab-6);"></div>
+          <div class="info">
+            <h3>全模态交互成AI竞争新焦点</h3>
+            <div class="meta">字节 Seed：Research Feed（网页内嵌数据） · 🔥 95 · 昨天</div>
+          </div>
+          <div class="expand-icon">▼</div>
+        </div>
+        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：人机交互正从文本、语音、视觉的单点突破走向<strong>全模态融合</strong>，实时音视频双工能力是通往通用人工智能的关键路径，长期趋势是交互方式无限逼近人类自然沟通。
+<strong>法</strong>：技术平台型产品应优先构建<strong>多模态底层能力</strong>，再通过开放API和开发者生态快速渗透各行业场景，形成数据反馈闭环。
+<strong>术</strong>：开发者可立即申请SeedRealtime接口，在客服、教育、医疗等高频音视频场景做原型验证；同时关注延迟、打断处理、情感识别等核心指标；企业应评估现有交互流程中哪些环节可被全双工模型替代。
+<strong>器</strong>：字节SeedRealtime模型、火山引擎平台、WebRTC音视频框架。</p>
+<a class="source-link" href="https://seed.bytedance.com/zh/blog/seedrealtime-%E9%9F%B3%E8%A7%86%E9%A2%91%E5%85%A8%E5%8F%8C%E5%B7%A5%E5%A4%A7%E6%A8%A1%E5%9E%8B%E5%8F%91%E5%B8%83-%E8%B5%B0%E5%90%91%E5%85%A8%E6%A8%A1%E6%80%81%E8%87%AA%E7%84%B6%E4%BA%A4%E4%BA%92" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
+      </div>
+      <div class="entry" data-cat="ai" style="animation-delay: 0.66s;">
+        <div class="entry-head">
+          <div class="bullet" style="background: var(--tab-1);"></div>
+          <div class="info">
+            <h3>AI生成违规内容考验平台治理</h3>
+            <div class="meta">Hacker News 热门（buzzing.cc 中文翻译） · 🔥 99 · 6小时前</div>
+          </div>
+          <div class="expand-icon">▼</div>
+        </div>
+        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：生成式AI降低了恶意内容的生产成本，<strong>内容安全治理</strong>从被动过滤转向主动防御，平台责任边界随技术能力扩张而扩大，这是监管与技术博弈的长期常态。
+<strong>法</strong>：任何UGC或AIGC平台必须建立<strong>多层内容审核机制</strong>，包括生成前提示词过滤、生成后图像识别、投放前人工抽检，并将安全成本计入运营预算。
+<strong>术</strong>：广告投放系统应接入专门的CSAM检测API，对AI生成图像做哈希比对和模型分类；建立举报快速响应通道；定期审计广告素材库，对异常模式（如相似构图、重复主体）自动标记；与儿童保护组织共享数据。
+<strong>器</strong>：PhotoDNA、Thorn的Safer、Google的Content Safety API、Meta的内部审核系统。</p>
+<a class="source-link" href="https://www.wired.com/story/meta-ran-ads-that-contained-ai-generated-child-sexual-abuse-imagery" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
+      </div>
+      <div class="entry" data-cat="sec" style="animation-delay: 0.74s;">
+        <div class="entry-head">
+          <div class="bullet" style="background: var(--tab-3);"></div>
+          <div class="info">
+            <h3>AI助手安全漏洞暴露企业数据风险</h3>
+            <div class="meta">Hacker News 热门（buzzing.cc 中文翻译） · 🔥 99 · 6小时前</div>
+          </div>
+          <div class="expand-icon">▼</div>
+        </div>
+        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：AI助手深度集成企业数据后，<strong>攻击面从应用层扩展到模型层</strong>，传统边界安全失效，数据访问控制与模型行为审计成为新安全基石，此趋势随AI渗透率提升而加剧。
+<strong>法</strong>：企业引入AI工具时，应默认采用<strong>零信任架构</strong>，对AI助手的每一次数据访问进行身份验证、权限校验和行为日志记录，而非依赖平台自带的安全声明。
+<strong>术</strong>：安全团队立即检查Atlassian Rovo的配置，确认是否启用最小权限原则；部署API网关监控异常数据请求模式；对AI助手生成的内容做敏感信息泄露扫描；建立漏洞应急响应预案，明确隔离和回滚步骤；定期进行红队测试。
+<strong>器</strong>：Atlassian Rovo、OWASP ZAP、Splunk或Datadog日志分析、Varonis数据安全平台。</p>
+<a class="source-link" href="https://www.promptarmor.com/resources/atlassian-rovo-exfiltrates-data" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
+      </div>
+      <div class="entry" data-cat="ai" style="animation-delay: 0.82s;">
+        <div class="entry-head">
+          <div class="bullet" style="background: var(--tab-1);"></div>
+          <div class="info">
+            <h3>自我进化代理开启新范式</h3>
+            <div class="meta">Hacker News 热门（buzzing.cc 中文翻译） · 🔥 100 · 2小时前</div>
+          </div>
+          <div class="expand-icon">▼</div>
+        </div>
+        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：AI 代理正从固定能力执行转向<strong>自我改进的闭环系统</strong>，这是通往通用智能的关键路径。长期看，静态模型将让位于能根据反馈持续优化的动态系统。
+<strong>法</strong>：构建任何智能系统都应内置<strong>评估-反思-调整</strong>的循环机制，而非一次性训练完成。该策略适用于模型训练、产品迭代乃至组织管理。
+<strong>术</strong>：为代理设定可量化的任务指标；在每次执行后记录失败案例并生成改进指令；定期用改进后的策略重新微调模型或更新提示词库。
+<strong>器</strong>：Prime Agent 框架、强化学习工具（如 RLlib）、向量数据库（用于存储经验）。</p>
+<a class="source-link" href="https://www.primeintellect.ai/blog/prime-agent" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
+      </div>
+      <div class="entry" data-cat="ai" style="animation-delay: 0.9s;">
+        <div class="entry-head">
+          <div class="bullet" style="background: var(--tab-1);"></div>
+          <div class="info">
+            <h3>百倍降本重塑模型竞争</h3>
+            <div class="meta">36kr · 🔥 100 · 20小时前</div>
+          </div>
+          <div class="expand-icon">▼</div>
+        </div>
+        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：大模型竞争的核心正从<strong>模型能力</strong>转向<strong>单位成本效率</strong>。当能力差距缩小，成本降低100倍意味着市场格局将被彻底改写，高价模型面临生存危机。
+<strong>法</strong>：<strong>成本结构创新</strong>是颠覆成熟市场的有效策略。通过架构优化或工程创新，将核心成本降低一个数量级，可快速抢占市场份额。
+<strong>术</strong>：评估现有模型推理成本中占比最高的环节；研究稀疏激活或蒸馏等降本技术；在保证关键性能前提下，优先推出高性价比版本。
+<strong>器</strong>：DeepSeek 系列模型、vLLM 推理加速框架、混合专家模型架构。</p>
+<a class="source-link" href="https://www.36kr.com/p/3926211685382537" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
+      </div>
+      <div class="entry" data-cat="ai" style="animation-delay: 0.98s;">
+        <div class="entry-head">
+          <div class="bullet" style="background: var(--tab-1);"></div>
+          <div class="info">
+            <h3>安全扫描成编码必备环节</h3>
+            <div class="meta">公众号：数字生命卡兹克 · 🔥 100 · 2小时前</div>
+          </div>
+          <div class="expand-icon">▼</div>
+        </div>
+        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：AI 生成代码的普及使<strong>安全左移</strong>成为必然趋势。当开发效率大幅提升，安全漏洞的绝对数量也随之激增，自动化扫描从可选变为刚需。
+<strong>法</strong>：任何提升生产力的工具，都必须配套<strong>同等自动化的质量保障机制</strong>，否则效率红利会被返工成本抵消。该原则适用于代码生成、内容创作等所有 AI 辅助场景。
+<strong>术</strong>：将安全扫描插件直接集成到 IDE 或 CI/CD 流水线；对 AI 生成的代码执行与手写代码同等的安全审查规则；建立漏洞类型反馈库，反向优化生成提示词。
+<strong>器</strong>：Codex Security 插件、Semgrep、Snyk、GitHub Advanced Security。</p>
+<a class="source-link" href="https://mp.weixin.qq.com/s?__biz=MzIyMzA5NjEyMA%3D%3D&amp;mid=2647684990&amp;idx=1&amp;sn=86a6d71b133589916b49a9d57046c127" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
+      </div>
+      <div class="entry" data-cat="ai" style="animation-delay: 1.06s;">
+        <div class="entry-head">
+          <div class="bullet" style="background: var(--tab-1);"></div>
+          <div class="info">
+            <h3>太空算力竞赛开启</h3>
+            <div class="meta">X：阿易 AI Notes (@AYi_AInotes) · 🔥 97 · 13小时前</div>
+          </div>
+          <div class="expand-icon">▼</div>
+        </div>
+        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：AI算力需求正从地面向太空延伸，<strong>太空数据中心</strong>将成为下一代计算基础设施，本质是能源与散热约束下的物理迁移。
+<strong>法</strong>：<strong>基础设施前置布局</strong>策略——在需求爆发前锁定稀缺资源（轨道位置、太阳能、散热环境），形成长期成本与物理壁垒。
+<strong>术</strong>：关注SpaceX星链与Nvidia合作的技术验证节点；评估太空算力在遥感、通信等场景的延迟与成本模型；跟踪Vera Rubin架构的能效比数据。
+<strong>器</strong>：Nvidia Vera Rubin GPU、SpaceX星舰平台、轨道太阳能阵列。</p>
+<a class="source-link" href="https://x.com/AYi_AInotes/status/2085010659150852220" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
+      </div>
+      <div class="entry" data-cat="auto" style="animation-delay: 1.1400000000000001s;">
+        <div class="entry-head">
+          <div class="bullet" style="background: var(--tab-5);"></div>
+          <div class="info">
+            <h3>L3准入标准落地</h3>
+            <div class="meta">IT之家（RSS） · 🔥 95 · 17小时前</div>
+          </div>
+          <div class="expand-icon">▼</div>
+        </div>
+        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：自动驾驶竞争正从技术验证转向<strong>法规准入与规模化商用</strong>，国家标准是行业分水岭，率先通过者将获得市场先发优势。
+<strong>法</strong>：<strong>合规前置驱动研发</strong>——将法规要求嵌入产品设计早期，而非事后适配，可缩短准入周期并降低合规成本。
+<strong>术</strong>：跟踪国标细则中关于责任划分、数据记录、冗余系统的硬性指标；对比引望与竞品的L3功能边界（如ODD范围）；关注车企与供应商的测试数据公开节奏。
+<strong>器</strong>：华为引望ADS系统、L3级域控制器、车路协同V2X设备。</p>
+<a class="source-link" href="https://www.ithome.com/0/986/180.htm" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
+      </div>
+      <div class="entry" data-cat="ai" style="animation-delay: 1.2200000000000002s;">
+        <div class="entry-head">
+          <div class="bullet" style="background: var(--tab-1);"></div>
+          <div class="info">
+            <h3>语音助手代际更替</h3>
+            <div class="meta">IT之家（RSS） · 🔥 95 · 17小时前</div>
+          </div>
+          <div class="expand-icon">▼</div>
+        </div>
+        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：<strong>技术代际切换</strong>是平台型产品的必然规律，旧入口（Google Assistant）被新入口（Gemini）替代，本质是模型能力升级驱动的用户迁移。
+<strong>法</strong>：<strong>渐进式迁移策略</strong>——保留旧接口兼容期，同时用新功能差异点吸引用户主动切换，避免硬切换导致用户流失。
+<strong>术</strong>：开发者在迁移窗口期内重写Action/技能以适配Gemini API；测试“Hey Google”唤醒词在新旧系统间的响应差异；关注Gemini对第三方设备（智能家居）的兼容性清单。
+<strong>器</strong>：Google Gemini API、Actions on Google迁移工具、Android AOSP语音框架。</p>
+<a class="source-link" href="https://www.ithome.com/0/986/174.htm" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
+      </div>
+    </div>
+    <div class="footer">
+      <span>Generated by AI Hot Monitor v2 · DeepSeek · 11:01:34</span>
+      <span class="badge">💡 点击条目展开深度解读</span>
+    </div>
+  </div>
+<script>
+document.querySelectorAll('.entry .entry-head').forEach(h => h.addEventListener('click', () => h.closest('.entry').classList.toggle('expanded')));
+document.getElementById('expandAll').addEventListener('click', () => document.querySelectorAll('.entry:not(.hidden)').forEach(e => e.classList.add('expanded')));
+document.getElementById('collapseAll').addEventListener('click', () => document.querySelectorAll('.entry').forEach(e => e.classList.remove('expanded')));
+document.querySelectorAll('.tab').forEach(tab => tab.addEventListener('click', () => {
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  tab.classList.add('active');
+  const cat = tab.dataset.cat;
+  document.querySelectorAll('.entry').forEach(e => {
+    if (cat === 'all' || e.dataset.cat === cat) { e.classList.remove('hidden'); } else { e.classList.add('hidden'); e.classList.remove('expanded'); }
+  });
+}));
+document.addEventListener('keydown', e => { if (e.key === 'Escape') document.querySelectorAll('.entry').forEach(el => el.classList.remove('expanded')); });
+</script>
+</body>
+</html>
