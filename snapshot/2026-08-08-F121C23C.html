@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="referrer" content="no-referrer">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'unsafe-inline'; img-src data:; connect-src 'none'; frame-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'; frame-ancestors 'none'">
+<title>Into the Omniverse: How Open World Models Push the Frontier of Physical AI - AI热点快照</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','PingFang SC','Microsoft YaHei',sans-serif;background:#f8f9fa;color:#1a1a2e;line-height:1.8;min-height:100vh}
+.top-bar{background:#fff;border-bottom:1px solid #e5e7eb;padding:10px 20px;display:flex;align-items:center;gap:12px;position:sticky;top:0;z-index:10}
+.top-bar .logo{font-size:14px;font-weight:700;color:#0d9488}
+.top-bar .sep{color:#d1d5db}
+.top-bar .source{font-size:13px;color:#6b7280}
+.top-bar .back{margin-left:auto;font-size:13px;color:#0d9488;text-decoration:none}
+.top-bar .back:hover{text-decoration:underline}
+.container{max-width:760px;margin:0 auto;padding:40px 24px 80px}
+.article-title{font-size:1.8rem;font-weight:700;line-height:1.35;margin-bottom:16px;color:#1a1a2e}
+.article-meta{display:flex;flex-wrap:wrap;gap:16px;padding-bottom:20px;margin-bottom:28px;border-bottom:1px solid #e5e7eb;font-size:14px;color:#6b7280}
+.article-meta a{color:#0d9488;text-decoration:none}
+.article-meta a:hover{text-decoration:underline}
+.article-body{font-size:16.5px;line-height:1.85;color:#1f2937}
+.article-body p{margin-bottom:1.2em;text-align:justify}
+.article-body h1,.article-body h2,.article-body h3{font-size:1.25em;font-weight:700;margin:1.6em 0 0.6em;color:#1a1a2e}
+.article-body a{color:#0d9488}
+.article-body pre,.article-body code{background:#f1f5f9;border-radius:4px;font-size:0.9em}
+.article-body pre{padding:16px;overflow-x:auto;margin:1em 0}
+.article-body code{padding:2px 6px}
+.article-body blockquote{border-left:3px solid #0d9488;padding-left:16px;color:#4b5563;margin:1em 0}
+.article-body ul,.article-body ol{padding-left:1.6em;margin-bottom:1em}
+.article-body li{margin-bottom:0.4em}
+.article-body figure{margin:1.2em 0}
+.article-body figcaption{font-size:13px;color:#9ca3af;text-align:center;margin-top:6px}
+.footer{margin-top:48px;padding-top:20px;border-top:1px solid #e5e7eb;font-size:13px;color:#9ca3af;text-align:center}
+</style>
+</head>
+<body>
+<div class="top-bar">
+  <a class="back" href="../" style="font-size:13px;color:#6b7280;text-decoration:none">← 日报首页</a>
+  <span class="sep">|</span>
+  <span class="logo">AI热点快照</span>
+  <span class="sep">|</span>
+  <span class="source">NVIDIA Blog</span>
+  <a class="back" href="https://blogs.nvidia.com/blog/open-world-models-physical-ai" target="_blank" rel="noopener noreferrer">查看原文 ↗</a>
+</div>
+<div class="container">
+  <h1 class="article-title">Into the Omniverse: How Open World Models Push the Frontier of Physical AI</h1>
+  <div class="article-meta">
+    <span>作者: Ming-Yu Liu</span>
+    <span>来源: NVIDIA Blog</span>
+    <span>快照日期: 2026-08-08</span>
+  </div>
+  <div class="article-body"><div><div>
+			<p><em>Editor’s note: This post is part of </em><a href="https://www.nvidia.com/en-us/omniverse/news/" target="_blank" rel="noopener noreferrer nofollow"><em>Into the Omniverse</em></a><em>, a series focused on how developers, 3D practitioners and enterprises can transform their workflows using the latest advancements in </em><a href="https://www.nvidia.com/en-us/omniverse/usd/" target="_blank" rel="noopener noreferrer nofollow"><em>OpenUSD</em></a><em> and </em><a href="https://www.nvidia.com/en-us/omniverse/" target="_blank" rel="noopener noreferrer nofollow"><em>NVIDIA Omniverse</em></a><em>.</em></p>
+
+
+
+<p>In July, NVIDIA joined more than 200 companies and organizations in signing “<a href="https://images.nvidia.com/pdf/Open-Weights-and-American-AI-Leadership.pdf" target="_blank" rel="noopener noreferrer nofollow">Open Weights and American AI Leadership</a>,” an open letter arguing that AI leadership will be measured not by any single frontier model but by whether an open ecosystem reaches every sector. </p>
+
+
+
+<p><a href="https://www.nvidia.com/en-us/glossary/open-models/" target="_blank" rel="noopener noreferrer nofollow">Open models</a>, which anyone can download, inspect, modify and run on their own infrastructure, are what make that possible. Nowhere is that more crucial than in <a href="https://www.nvidia.com/en-us/glossary/generative-physical-ai/" target="_blank" rel="noopener noreferrer nofollow">physical AI</a>, where every deployment is a specialization problem.</p>
+
+
+
+<p>Physical AI has to understand and predict consequences, not just appearances. </p>
+
+
+
+<p>To make this possible, w<a href="https://www.nvidia.com/en-us/glossary/world-models/" target="_blank" rel="noopener noreferrer nofollow">orld models</a> learn how physical environments behave, what may happen next and which following actions make sense. They can generate physically grounded world and action data, simulate future states and provide a foundation that teams can specialize for a robot, autonomous vehicle or vision AI system.</p>
+
+
+
+<p>Open world models are already being used to generate training data, test policies and specialize physical AI systems. <a href="https://www.nvidia.com/en-us/ai/cosmos/" target="_blank" rel="noopener noreferrer nofollow">NVIDIA Cosmos 3</a> brings these capabilities together in an open model family, with leading benchmark results and adoption across robotics, autonomous vehicles and vision AI.</p>
+
+
+
+<p>And <a href="https://www.nvidia.com/en-us/omniverse/" target="_blank" rel="noopener noreferrer nofollow">NVIDIA Omniverse</a> libraries, part of NVIDIA Agent Toolkit, provides prebuilt capabilities for building simulation-ready worlds that physical AI teams can use to train, test and validate systems before real-world deployment.</p>
+
+
+
+<p></p>
+
+
+
+<h2><strong><strong>World Models Are the Foundation of Physical AI</strong></strong></h2>
+
+
+
+<p>The data behind physical AI is difficult and expensive to collect at the scale required. Rare events and long-tail scenarios can be especially difficult to reproduce safely and repeatedly. </p>
+
+
+
+<p>World models enable:</p>
+
+
+
+<ul>
+<li>
+<p>More useful data by learning physical relationships from large-scale multimodal scenarios.</p>
+</li>
+
+
+
+<li>
+<p>More diverse environments that vary in weather, lighting, objects and trajectories.</p>
+</li>
+
+
+
+<li>
+<p>A better foundation to build on and adapt to a particular robot, vehicle, sensor configuration, task or operating environment. </p>
+</li>
+</ul>
+
+
+
+
+
+<p><a href="https://blogs.nvidia.com/wp-content/uploads/2026/08/cosmos-corp-blog-promo-1920x1080-1.mp4" target="_blank" rel="noopener noreferrer nofollow">https://blogs.nvidia.com/wp-content/uploads/2026/08/cosmos-corp-blog-promo-1920x1080-1.mp4</a></p>
+
+<p>A general model hasn’t seen a team’s particular robot, sensors or operating environment. Closing that gap requires access to model weights, a license that permits adaptation and the tools needed for post-training. </p>
+
+
+
+<p>NVIDIA Cosmos world foundation models are available under the Linux Foundation’s OpenMDW 1.1 license, enabling teams to post-train models on their own data and hardware. Specialization is where openness becomes a practical technical requirement.</p>
+
+
+
+<p>Specializing a model is only part of the workflow. Teams also need environments to generate data, run simulations and test behavior. </p>
+
+
+
+<p>Omniverse libraries help developers build simulation-ready environments, while <a href="https://www.nvidia.com/en-us/glossary/openusd/" target="_blank" rel="noopener noreferrer nofollow">OpenUSD</a> provides the open framework for composing, reusing and exchanging complex 3D data across <a href="https://www.nvidia.com/en-us/glossary/digital-twin/" target="_blank" rel="noopener noreferrer nofollow">digital twins</a>, simulations and <a href="https://www.nvidia.com/en-us/glossary/synthetic-data-generation/" target="_blank" rel="noopener noreferrer nofollow">synthetic data generation</a> workflows. Together, Omniverse and OpenUSD cut the duplicated work that can otherwise pile up every time assets, sensor configurations or environmental conditions change.</p>
+
+
+
+<h2><strong><strong>Cosmos 3: The Frontier Model</strong></strong></h2>
+
+
+
+<p></p>
+
+
+
+<p>NVIDIA Cosmos 3 — a frontier open physical AI foundation <a href="https://www.nvidia.com/en-us/glossary/omni-model/" target="_blank" rel="noopener noreferrer nofollow">omni-model</a> built on a <a href="https://www.nvidia.com/en-us/glossary/mixture-of-transformers/" target="_blank" rel="noopener noreferrer nofollow">mixture-of-transformers</a> architecture — combines vision reasoning, world generation and action prediction, letting developers use one model family to understand scenes, generate synthetic data, simulate future states and build specialized <a href="https://www.nvidia.com/en-us/glossary/world-action-model/" target="_blank" rel="noopener noreferrer nofollow">world action models</a>.</p>
+
+
+
+<p>Developers can use Cosmos 3 as a <a href="https://www.nvidia.com/en-us/glossary/vision-language-models/" target="_blank" rel="noopener noreferrer nofollow">vision language model</a>, as a physics-grounded world simulator that predicts future world states and generates large-scale synthetic data, or as the backbone for world action models, instead of assembling and maintaining a separate model for each capability.</p>
+
+
+
+<p>The family includes Cosmos 3 Super (64B) for high-fidelity world modeling, Cosmos 3 Nano (16B) for efficient reasoning and post-training, and <a href="https://huggingface.co/nvidia/Cosmos3-Edge" target="_blank" rel="noopener noreferrer nofollow">Cosmos 3 Edge</a> (4B) for on-device vision reasoning and robot policy deployment. Lightweight enough to run on edge GPUs, Cosmos 3 Edge can be deployed across NVIDIA RTX GPUs, NVIDIA DGX systems and NVIDIA Jetson, including Jetson Thor platforms.</p>
+
+
+
+<p>Across benchmark evaluations, Cosmos 3 ranks No. 1 on<a href="https://artificialanalysis.ai/image/leaderboard/text-to-image/open-weights" target="_blank" rel="noopener noreferrer nofollow"> Artificial Analysis</a> for open weights text-to-image and image-to-video generation, on<a href="https://huggingface.co/spaces/shi-labs/physical-ai-bench-leaderboard" target="_blank" rel="noopener noreferrer nofollow"> PAI-Bench</a> for world generation and in the image-to-video category of<a href="https://physics-iq.github.io/" target="_blank" rel="noopener noreferrer nofollow"> Physics-IQ</a>. For robot policy, it ranks No. 1 on<a href="https://research.nvidia.com/labs/srl/projects/robolab/leaderboard.html" target="_blank" rel="noopener noreferrer nofollow"> RoboLab</a>. Cosmos 3 Super is also the highest-ranked open model on<a href="https://huggingface.co/spaces/clemson-computing/VANTAGE-Bench-Leaderboard" target="_blank" rel="noopener noreferrer nofollow"> VANTAGE-Bench</a> for vision understanding.</p>
+
+
+
+<p><br />In addition to Cosmos, NVIDIA’s physical AI stack includes <a href="https://developer.nvidia.com/isaac/gr00t" target="_blank" rel="noopener noreferrer nofollow">Isaac GR00T</a> for robotics, <a href="https://www.nvidia.com/en-us/solutions/autonomous-vehicles/alpamayo/" target="_blank" rel="noopener noreferrer nofollow">Alpamayo</a> for autonomous vehicles and <a href="https://www.nvidia.com/en-us/autonomous-machines/intelligent-video-analytics-platform/" target="_blank" rel="noopener noreferrer nofollow">Metropolis</a> for vision AI. </p>
+
+
+
+<h2><strong><strong>How Developers Are Putting Cosmos 3 to Work</strong></strong></h2>
+<p></p>
+
+
+
+
+
+<p>Across industries, developers are building on NVIDIA Cosmos for physical AI applications: Doosan Robotics, LG Electronics, Samsung Electronics and Skild AI in robotics; Li Auto, Xiaomi and Afari in autonomous vehicles; and <a href="https://www.centific.com/blog/centific-brings-last-mile-physical-ai-to-production-with-nvidia-cosmos-3" target="_blank" rel="noopener noreferrer nofollow">Centific</a>, <a href="https://fogsphere.com/fogsphere-announces-cosmos-3-support/" target="_blank" rel="noopener noreferrer nofollow">Fogsphere</a>, <a href="https://www.linkervision.com/post/linker-vision-unveils-application-driven-ai-grid-for-agentic-video-reasoning-at-scale" target="_blank" rel="noopener noreferrer nofollow">Linker Vision</a>, <a href="https://www.milestonesys.com/resources/content/articles/milestone-hafnia-nvidia-cosmos-3/" target="_blank" rel="noopener noreferrer nofollow">Milestone Systems</a> and <a href="https://www.yuan.com.tw/news/preview-news?id=336&amp;t=d74eb353274d4fd78e460600ae11a561" target="_blank" rel="noopener noreferrer nofollow">Yuan</a> for <a href="https://www.nvidia.com/en-us/use-cases/video-analytics-ai-agents/" target="_blank" rel="noopener noreferrer nofollow">vision AI agents</a> powering industrial AI and smart spaces applications.</p>
+
+
+
+<p>The <a href="https://nvidianews.nvidia.com/news/nvidia-launches-cosmos-3-the-open-frontier-foundation-model-for-physical-ai" target="_blank" rel="noopener noreferrer nofollow">NVIDIA Cosmos Coalition</a> extends this work by bringing together world model builders, AI developers and physical AI leaders to contribute models, research and evaluation methods. NVIDIA recently <a href="https://nvidianews.nvidia.com/news/japans-robotics-and-manufacturing-leaders-build-on-nvidia-cosmos-to-advance-physical-ai-frontier" target="_blank" rel="noopener noreferrer nofollow">expanded the coalition to Japan</a>, where robotics and manufacturing leaders intend to join and develop open world models for factories, logistics, agriculture, construction, healthcare and transportation.</p>
+
+
+
+<p>Together, these implementations and collaborations are establishing open world models as an adaptable foundation for physical AI across robots, autonomous vehicles and vision AI systems.</p>
+
+
+
+<h2><strong><strong>Get Plugged In</strong></strong></h2>
+
+
+
+<p>Learn more about world models, OpenUSD and physical AI development by exploring these resources:</p>
+
+
+
+<ul>
+<li>
+<p><strong>Explore</strong> the open <a href="https://huggingface.co/collections/nvidia/cosmos3" target="_blank" rel="noopener noreferrer nofollow">Cosmos 3 model collection</a> and datasets on <a href="https://huggingface.co/nvidia" target="_blank" rel="noopener noreferrer nofollow">Hugging Face</a> and <a href="https://github.com/nvidia-cosmos" target="_blank" rel="noopener noreferrer nofollow">GitHub</a>.</p>
+</li>
+
+
+
+<li>
+<p><strong>Read</strong> the <a href="https://research.nvidia.com/labs/cosmos-lab/cosmos3/technical-report.pdf" target="_blank" rel="noopener noreferrer nofollow">Cosmos 3 technical report</a> for full architecture details and evaluations.</p>
+</li>
+
+
+
+<li>
+<p><strong>Read</strong> the <a href="https://developer.nvidia.com/blog/" target="_blank" rel="noopener noreferrer nofollow">Cosmos 3 technical blog</a>.</p>
+</li>
+
+
+
+<li>
+<p><strong>Tune in</strong> to the <a href="https://www.addevent.com/calendar/ss55fmjpm04t" target="_blank" rel="noopener noreferrer nofollow">Cosmos Labs livestreams</a>.</p>
+</li>
+
+
+
+<li>
+<p><strong>Learn</strong> about the <a href="https://nvidianews.nvidia.com/news/nvidia-launches-cosmos-3-the-open-frontier-foundation-model-for-physical-ai" target="_blank" rel="noopener noreferrer nofollow">NVIDIA Cosmos Coalition</a>.</p>
+</li>
+</ul>
+		</div></div></div>
+  <div class="footer">
+    本文由 AI热点监控系统自动抓取 · 内容版权归原作者/网站所有<br>
+    快照仅用于学习交流，如需转载请访问原文
+  </div>
+</div>
+</body>
+</html>
