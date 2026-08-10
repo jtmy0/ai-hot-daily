@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="referrer" content="no-referrer">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'unsafe-inline'; img-src data:; connect-src 'none'; frame-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'; frame-ancestors 'none'">
+<title>Windows 11's built-in Weather app wastes more than 1 GB of RAM - AI热点快照</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','PingFang SC','Microsoft YaHei',sans-serif;background:#f8f9fa;color:#1a1a2e;line-height:1.8;min-height:100vh}
+.top-bar{background:#fff;border-bottom:1px solid #e5e7eb;padding:10px 20px;display:flex;align-items:center;gap:12px;position:sticky;top:0;z-index:10}
+.top-bar .logo{font-size:14px;font-weight:700;color:#0d9488}
+.top-bar .sep{color:#d1d5db}
+.top-bar .source{font-size:13px;color:#6b7280}
+.top-bar .back{margin-left:auto;font-size:13px;color:#0d9488;text-decoration:none}
+.top-bar .back:hover{text-decoration:underline}
+.container{max-width:760px;margin:0 auto;padding:40px 24px 80px}
+.article-title{font-size:1.8rem;font-weight:700;line-height:1.35;margin-bottom:16px;color:#1a1a2e}
+.article-meta{display:flex;flex-wrap:wrap;gap:16px;padding-bottom:20px;margin-bottom:28px;border-bottom:1px solid #e5e7eb;font-size:14px;color:#6b7280}
+.article-meta a{color:#0d9488;text-decoration:none}
+.article-meta a:hover{text-decoration:underline}
+.article-body{font-size:16.5px;line-height:1.85;color:#1f2937}
+.article-body p{margin-bottom:1.2em;text-align:justify}
+.article-body h1,.article-body h2,.article-body h3{font-size:1.25em;font-weight:700;margin:1.6em 0 0.6em;color:#1a1a2e}
+.article-body a{color:#0d9488}
+.article-body pre,.article-body code{background:#f1f5f9;border-radius:4px;font-size:0.9em}
+.article-body pre{padding:16px;overflow-x:auto;margin:1em 0}
+.article-body code{padding:2px 6px}
+.article-body blockquote{border-left:3px solid #0d9488;padding-left:16px;color:#4b5563;margin:1em 0}
+.article-body ul,.article-body ol{padding-left:1.6em;margin-bottom:1em}
+.article-body li{margin-bottom:0.4em}
+.article-body figure{margin:1.2em 0}
+.article-body figcaption{font-size:13px;color:#9ca3af;text-align:center;margin-top:6px}
+.footer{margin-top:48px;padding-top:20px;border-top:1px solid #e5e7eb;font-size:13px;color:#9ca3af;text-align:center}
+</style>
+</head>
+<body>
+<div class="top-bar">
+  <a class="back" href="../" style="font-size:13px;color:#6b7280;text-decoration:none">← 日报首页</a>
+  <span class="sep">|</span>
+  <span class="logo">AI热点快照</span>
+  <span class="sep">|</span>
+  <span class="source">Notebookcheck</span>
+  <a class="back" href="https://www.notebookcheck.net/Windows-11-s-built-in-Weather-app-wastes-more-than-1-GB-of-RAM.1364205.0.html" target="_blank" rel="noopener noreferrer">查看原文 ↗</a>
+</div>
+<div class="container">
+  <h1 class="article-title">Windows 11's built-in Weather app wastes more than 1 GB of RAM</h1>
+  <div class="article-meta">
+    <span>作者: Andrew Sozinov</span>
+    <span>来源: Notebookcheck</span>
+    <span>快照日期: 2026-08-10</span>
+  </div>
+  <div class="article-body"><div><div><div>
+		<figure><span><p>ⓘ Microsoft</p></span><figcaption>The Windows 11 logo. Microsoft has recently been working to improve the operating system's performance.</figcaption></figure><div><p>A new report shows Windows 11's built-in Weather app can consume more than 1 GB of RAM. By comparison, Apple's native Weather app on macOS uses roughly five times less memory under similar conditions.</p></div>
+	</div><div>
+	<p>Microsoft has been working to make Windows 11 more efficient on PCs with limited RAM, but one of its own built-in applications appears to be working against that goal. According to tests published by Windows Latest, the operating system's Weather app can consume more than 1 GB of memory despite performing a relatively simple task.  </p>
+<p>Windows Latest reports that the app exceeded 1.2 GB of RAM while displaying a weather forecast, with no intensive interaction from the user. Wccftech observed similar behavior, noting that memory usage typically starts at around 1 GB, drops to roughly 500–600 MB when idle, and can climb to 1.5–1.6 GB during basic actions such as zooming or navigating the interface. On a PC equipped with 8 GB of RAM, that means the application alone may occupy nearly 20% of the system's memory.</p></div><div>
+	<p>By comparison, Apple's native Weather app on macOS reportedly uses less than 250 MB of RAM under similar conditions, giving Microsoft's implementation a memory footprint roughly five times larger.</p></div><div>
+	<p>According to Windows Latest, the high memory consumption is due to the fact that Weather is not a fully native Windows application. Instead, it is essentially an MSN Weather web app built on Microsoft's WebView2 framework. Task Manager shows multiple Chromium-based subprocesses running simultaneously, which contributes to the unusually high RAM usage.</p>
+<p>The issue is unlikely to affect high-end PCs with 32 GB or more of RAM, but it could have a noticeable impact on entry-level systems. On computers with 8 GB or even 16 GB of memory, launching the Weather app may increase memory pressure enough for Windows to rely more heavily on the page file, potentially making the system feel less responsive.</p>
+<p>The application also includes advertising within its interface. According to Windows Latest, sponsored content is embedded directly into the forecast feed, appearing alongside weather cards in a similar visual style. While Microsoft licenses weather data from multiple providers — including Foreca, the European Centre for Medium-Range Weather Forecasts (ECMWF), and other regional meteorological services — the presence of ads in a built-in Windows application has attracted criticism.</p>
+<p>The findings also appear to contradict Microsoft's recent efforts to <span>improve Windows 11's efficiency</span>. The company has been updating several built-in applications and has repeatedly said it wants the operating system to perform better on <span>lower-end hardware</span>. Microsoft executive Rudy Huyn has also stated that the company intends to develop more fully native Windows applications in the future, although it remains unclear whether MSN-branded applications such as Weather will eventually be rebuilt using WinUI.</p></div>
+	
+	
+	<div><div><span></span></div><p><span>Andrew Sozinow</span> - Tech Writer <span> - 71 articles published on Notebookcheck</span> since 2024</p><p>I’ve been fascinated by computers, electronics and modern technology since childhood. I started writing IT-news at high school and have been doing it continuously for more than 10 years. During this time, I have worked for many media outlets, and now I am a news editor at 3DNews. Sometimes I also write smartphone reviews. In July 2024, I decided to try my hand at writing news on Notebookcheck. When I'm not working, I like to play videogames, do puzzles, and travel.</p></div></div><div><p>Andrew Sozinov, 2026-08- 9 (Update: 2026-08- 9)</p></div></div></div>
+  <div class="footer">
+    本文由 AI热点监控系统自动抓取 · 内容版权归原作者/网站所有<br>
+    快照仅用于学习交流，如需转载请访问原文
+  </div>
+</div>
+</body>
+</html>
