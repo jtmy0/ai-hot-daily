@@ -1,0 +1,946 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="referrer" content="no-referrer">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'unsafe-inline'; img-src data:; connect-src 'none'; frame-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'; frame-ancestors 'none'">
+<title>Docker Sandboxes | Sandboxes for Coding Agents | Docker - AI热点快照</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','PingFang SC','Microsoft YaHei',sans-serif;background:#f8f9fa;color:#1a1a2e;line-height:1.8;min-height:100vh}
+.top-bar{background:#fff;border-bottom:1px solid #e5e7eb;padding:10px 20px;display:flex;align-items:center;gap:12px;position:sticky;top:0;z-index:10}
+.top-bar .logo{font-size:14px;font-weight:700;color:#0d9488}
+.top-bar .sep{color:#d1d5db}
+.top-bar .source{font-size:13px;color:#6b7280}
+.top-bar .back{margin-left:auto;font-size:13px;color:#0d9488;text-decoration:none}
+.top-bar .back:hover{text-decoration:underline}
+.container{max-width:760px;margin:0 auto;padding:40px 24px 80px}
+.article-title{font-size:1.8rem;font-weight:700;line-height:1.35;margin-bottom:16px;color:#1a1a2e}
+.article-meta{display:flex;flex-wrap:wrap;gap:16px;padding-bottom:20px;margin-bottom:28px;border-bottom:1px solid #e5e7eb;font-size:14px;color:#6b7280}
+.article-meta a{color:#0d9488;text-decoration:none}
+.article-meta a:hover{text-decoration:underline}
+.article-body{font-size:16.5px;line-height:1.85;color:#1f2937}
+.article-body p{margin-bottom:1.2em;text-align:justify}
+.article-body h1,.article-body h2,.article-body h3{font-size:1.25em;font-weight:700;margin:1.6em 0 0.6em;color:#1a1a2e}
+.article-body a{color:#0d9488}
+.article-body pre,.article-body code{background:#f1f5f9;border-radius:4px;font-size:0.9em}
+.article-body pre{padding:16px;overflow-x:auto;margin:1em 0}
+.article-body code{padding:2px 6px}
+.article-body blockquote{border-left:3px solid #0d9488;padding-left:16px;color:#4b5563;margin:1em 0}
+.article-body ul,.article-body ol{padding-left:1.6em;margin-bottom:1em}
+.article-body li{margin-bottom:0.4em}
+.article-body figure{margin:1.2em 0}
+.article-body figcaption{font-size:13px;color:#9ca3af;text-align:center;margin-top:6px}
+.footer{margin-top:48px;padding-top:20px;border-top:1px solid #e5e7eb;font-size:13px;color:#9ca3af;text-align:center}
+</style>
+</head>
+<body>
+<div class="top-bar">
+  <a class="back" href="../" style="font-size:13px;color:#6b7280;text-decoration:none">← 日报首页</a>
+  <span class="sep">|</span>
+  <span class="logo">AI热点快照</span>
+  <span class="sep">|</span>
+  <span class="source">Docker</span>
+  <a class="back" href="https://www.docker.com/products/docker-sandboxes/" target="_blank" rel="noopener noreferrer">查看原文 ↗</a>
+</div>
+<div class="container">
+  <h1 class="article-title">Docker Sandboxes | Sandboxes for Coding Agents | Docker</h1>
+  <div class="article-meta">
+    
+    <span>来源: Docker</span>
+    <span>快照日期: 2026-08-10</span>
+  </div>
+  <div class="article-body"><div><div>
+	
+		<div>
+ <div>
+        
+
+
+
+<div>
+            <p>
+            Docker Sandboxes
+        </p>
+            </div>
+
+
+
+
+
+    <h2>
+        Run AI agents safely in local sandboxes.
+    </h2>
+
+
+
+
+    <p>
+        Disposable, isolated sandboxes for AI agents like <strong>Claude Code, Gemini CLI, Copilot CLI, Codex, OpenCode,</strong> and <strong>Kiro</strong> that need safe, unattended execution.
+    </p>
+
+
+    </div>
+
+
+
+<div>
+            <div>
+            <p><span>macOS</span></p><p><span>$</span>                <code>brew trust docker/tap &amp;&amp; brew install docker/tap/sbx</code>
+            </p>
+            
+        </div>
+            <div>
+            <p><span>Windows</span></p><p><span>&gt;</span>                winget install Docker.sbx
+            </p>
+            
+        </div>
+    </div>
+
+
+                                
+    <div>
+            
+
+
+
+<p>
+        </p>
+
+
+        </div>
+
+
+
+ <div>
+        
+
+
+
+<div>
+            <p>
+            See it in action
+        </p>
+            </div>
+
+
+
+
+
+    <h2>
+        Sandboxes in action.
+    </h2>
+
+
+
+
+    <p>
+        Watch an agent install packages, run Docker, modify configs, and execute unattended. Then dispose of the sandbox in one command.
+    </p>
+
+
+    </div>
+
+
+<div>
+      <div>
+        
+        <p><span>sbx-demo</span>
+        
+      </p></div>
+      <div>
+        <p>Click “Run Demo” to start</p>
+      </div>
+    </div>
+
+
+
+                                
+    <div>
+        <p></p><div>
+        
+
+
+
+<div>
+            <p>
+            Get started
+        </p>
+            </div>
+
+
+
+
+
+    <h2>
+        Get started in seconds.
+    </h2>
+
+
+
+
+
+
+    </div>
+
+
+
+
+<div>
+            <div>
+            <p><span>macOS</span></p><p><span>$</span>                <code>brew trust docker/tap &amp;&amp; brew install docker/tap/sbx</code>
+            </p>
+            
+        </div>
+            <div>
+            <p><span>Windows</span></p><p><span>&gt;</span>                winget install Docker.sbx
+            </p>
+            
+        </div>
+    </div>
+
+
+
+
+    
+
+
+    </div>
+
+
+
+                                
+    <div>
+        
+        
+
+ <div>
+        
+
+
+
+<div>
+            <p>
+            Why sandboxes
+        </p>
+            </div>
+
+
+
+
+
+    <h2>
+        Give agents the autonomy they need to get work done, safely.
+    </h2>
+
+
+
+
+    <p>
+        Agents do their best work when they have freedom. Sandboxes let them run fast without running wild, so speed and safety stop being a tradeoff.
+    </p>
+
+
+    </div>
+
+
+
+
+<div>
+	
+
+                                
+    <div>
+        
+
+
+    <div>
+            
+
+
+
+<p>
+        </p>
+
+
+        </div>
+
+
+
+
+    <div>
+            
+
+
+
+<p>
+        </p>
+
+
+        </div>
+
+
+    </div>
+
+
+
+                                
+    <div>
+        
+
+
+    <div>
+            
+
+
+
+<p>
+        </p>
+
+
+        </div>
+
+
+
+
+    <div>
+            
+
+
+
+<p>
+        </p>
+
+
+        </div>
+
+
+    </div>
+
+
+
+                                
+    <div>
+        
+
+
+    <div>
+            
+
+
+
+<p>
+        </p>
+
+
+        </div>
+
+
+
+
+    <div>
+            
+
+
+
+<p>
+        </p>
+
+
+        </div>
+
+
+    </div>
+
+
+</div>
+
+
+    </div>
+
+
+
+                                
+    
+
+
+
+
+
+<div>
+        
+        
+
+ <div>
+        
+
+
+
+<div>
+            <p>
+            Capabilities
+        </p>
+            </div>
+
+
+
+
+
+
+
+
+
+    <h2>
+        YOLO mode, safely.
+    </h2>
+
+
+
+
+    <p>
+        Each agent runs inside a dedicated microVM with your dev environment and only your project workspace mounted in. Agents can install packages, modify configs, and spin up their own Docker containers. Your host stays untouched. No manual review, no permission prompts, no supervision required.
+    </p>
+
+
+    </div>
+
+
+
+  
+<div>
+        
+
+
+<div>
+    
+	
+	
+    	
+			
+	
+    	<div>
+					
+
+    <h4>
+        Customizable Safe Execution
+    </h4>
+					
+
+			<p>Network and filesystem controls you define.</p>
+		</div>
+
+				
+			
+		<p>Enforceable org-wide with Docker AI Governance.</p>
+	
+</div>
+
+
+
+
+
+<div>
+					
+
+    <h4>
+        MicroVM Isolation
+    </h4>
+					
+
+			<div><p>Hard security boundary from the host.</p></div>
+		</div>
+
+
+
+
+
+<div>
+					
+
+    <h4>
+        Fast to Spin Up, Easy to Tear Down
+    </h4>
+					
+
+			<div><p>Disposable by default. Faster than VMs.</p></div>
+		</div>
+
+
+
+
+
+<div>
+					
+
+    <h4>
+        Agents Can Use Docker Too
+    </h4>
+					
+
+			<p>Agents can spin up containers within Sandboxes.</p>
+		</div>
+
+
+
+
+
+<div>
+					
+
+    <h4>
+        Real Dev Environment
+    </h4>
+					
+
+			<p>Install packages, run services, work unattended.</p>
+		</div>
+
+
+
+
+
+<div>
+					
+
+    <h4>
+        One Sandbox for All Your Coding Agents
+    </h4>
+					
+
+			<p>Claude Code, Gemini CLI, Copilot CLI, Codex, Kiro, OpenCode.</p>
+		</div>
+
+
+
+    </div>
+
+    </div>
+
+
+                                
+    <div>
+            
+
+<p><span>Default</span>
+      <span>–dangerously-skip-permissions</span>
+      <span>Use permissive modes with confidence. In fact, that’s the default.</span>
+    </p>
+
+
+        </div>
+
+
+
+                                
+    <div>
+        
+        
+
+ <div>
+    
+    <p>
+        
+
+
+
+
+
+
+
+
+
+
+
+
+    </p><h2>
+        Works with leading coding agents
+    </h2>
+
+
+
+
+
+
+    <p></p>
+</div>
+
+
+
+<div>
+    
+
+
+             
+    
+
+
+
+             
+    
+
+
+
+             
+    
+
+
+
+             
+    
+
+
+
+             
+    
+
+
+
+             
+    
+
+
+
+            <p>
+                    </p> 
+    
+
+</div>
+
+
+
+
+
+
+<div>
+    <p></p><div>
+            
+
+
+<div>
+        <h4>Every team is about to have their own team of AI agents doing real work for them. The question is whether it can happen safely. NanoClaw was built on the principle that you don’t trust agents with security, you build walls around them. Docker has been ahead of the curve on exactly this. Docker Sandboxes is what that looks like at the infrastructure level, making it possible for organizations to get the full value from agents without compromising on security.</h4>
+                    <div>
+                                <p>Gavriel Cohen</p>
+                <p>Creator of NanoClaw, NanoClaw</p>
+            </div>
+            </div>
+
+
+
+<div>
+        <h4>Docker Sandboxes let agents have the autonomy to do long-running tasks without compromising safety. We’re excited to integrate Sandboxes into Warp so that developers can run agents freely with a consistent environment, regardless of whether agents are running locally or in the cloud.</h4>
+                    <div>
+                                <p>Ben Navetta</p>
+                <p>Engineering Lead, Warp</p>
+            </div>
+            </div>
+
+        </div>
+</div>
+
+    </div>
+
+
+
+                                
+    <div>
+        <p></p><div>
+            
+
+ <div>
+    
+    <p>
+        
+
+
+
+
+
+
+
+
+    </p><h2>
+        Give agents freedom. Keep what matters safe.
+    </h2>
+
+
+
+
+
+
+    <p></p>
+</div>
+
+
+
+
+<div>
+            <div>
+            <p><span>macOS</span></p><p><span>$</span>                <code>brew trust docker/tap &amp;&amp; brew install docker/tap/sbx</code>
+            </p>
+            
+        </div>
+            <div>
+            <p><span>Windows</span></p><p><span>&gt;</span>                winget install Docker.sbx
+            </p>
+            
+        </div>
+    </div>
+
+
+
+
+    
+
+
+        </div>
+    </div>
+
+
+
+
+<div>
+        
+
+ <div>
+        
+
+
+
+<div>
+            <p>
+            FAQ
+        </p>
+            </div>
+
+
+
+
+
+    <h2>
+        Common questions.
+    </h2>
+
+
+
+
+
+
+    </div>
+
+
+
+
+<div>
+    <h3>
+        What is a sandbox for AI coding agents?
+        <span>    
+</span>
+        <span>    
+</span>
+    </h3>
+    <div>
+    <p>A sandbox is a microVM isolated environment that protects your filesystem and network from agents running inside it.</p>
+    </div>
+</div>
+
+
+
+
+<div>
+    <h3>
+        Which coding agents are supported?
+        <span>    
+</span>
+        <span>    
+</span>
+    </h3>
+    <div>
+    <p>Out of the box we support Claude Code, Gemini CLI, Copilot CLI, Codex, OpenCode, Kiro. You can also create your own</p>
+    </div>
+</div>
+
+
+
+
+<div>
+    <h3>
+        What does “YOLO mode” mean, and is it safe?
+        <span>    
+</span>
+        <span>    
+</span>
+    </h3>
+    <div>
+    <p>YOLO mode (<code>--dangerously-skip-permissions</code>) gives agents autonomy with no approval prompts. Essential for speed, but risky without guardrails. Sandboxes make it safe by isolating each agent inside a dedicated microVM.</p>
+    </div>
+</div>
+
+
+
+
+<div>
+    <h3>
+        How is a sandbox different from a VM?
+        <span>    
+</span>
+        <span>    
+</span>
+    </h3>
+    <div>
+    <p>Sandboxes run fully isolated in microVMs, giving more isolation without paying the full cost of running a VM. This lets them do things that need more permissions safely, like running additional Docker containers.</p>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+<div>
+    <h3>
+        Do I need Docker Desktop to use sandboxes?
+        <span>    
+</span>
+        <span>    
+</span>
+    </h3>
+    <div>
+    <p>No.</p>
+    </div>
+</div>
+
+
+
+
+
+
+<div>
+    <h3>
+        What if I need additional admin controls?
+        <span>    
+</span>
+        <span>    
+</span>
+    </h3>
+    <div>
+    <p>Installing Sandboxes covers core functionality. For centralized controls across a team such as network policies, filesystem rules, MCP governance:<a href="https://www.docker.com/products/ai-governance/" target="_blank" rel="noopener noreferrer nofollow"> Docker AI Governance</a>.</p>
+    </div>
+</div>
+
+    </div>
+
+
+
+<div>
+        
+
+
+    <div>
+        
+
+
+
+
+
+
+
+
+
+
+
+
+    <h3>
+        Need More Control Over Your Sandboxes?
+    </h3>
+
+
+
+
+    <div><p>
+        With Docker Sandboxes, your developers get isolated environments to run agents freely and safely. When your team needs to go further with network access restrictions, filesystem policies, and centralized admin controls, we can help you configure the right setup.</p><p><a href="https://www.docker.com/products/ai-governance/" target="_blank" rel="noopener noreferrer nofollow">Docker AI Governance</a> adds network access policies, filesystem controls, and org-wide MCP governance: defined once, enforced everywhere.</p><p>Talk to us about:
+    </p></div>
+
+
+
+<ul>
+<li>Network access policies for sandbox environments</li>
+
+
+
+<li>Filesystem access controls and restrictions</li>
+
+
+
+<li>Admin-level configuration for your team</li>
+</ul>
+
+
+    </div>
+
+
+
+
+    <div>
+            
+
+   
+<div>
+    
+    <p>
+        
+
+
+
+
+
+
+
+
+
+
+
+
+    </p><h2>
+        Talk to an expert
+    </h2>
+
+
+
+
+
+
+    <p></p>
+</div>
+
+
+
+<div>     
+	
+		<p>
+		
+		
+
+</p><h3>Thank you for your interest. The Docker Team will be in touch</h3>
+
+
+
+		<p></p>
+	</div>
+
+        </div>
+
+
+    </div></div>
+	
+</div></div></div>
+  <div class="footer">
+    本文由 AI热点监控系统自动抓取 · 内容版权归原作者/网站所有<br>
+    快照仅用于学习交流，如需转载请访问原文
+  </div>
+</div>
+</body>
+</html>
