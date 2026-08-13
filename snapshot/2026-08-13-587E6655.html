@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="referrer" content="no-referrer">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'unsafe-inline'; img-src data:; connect-src 'none'; frame-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'; frame-ancestors 'none'">
+<title>Your contributors are AI-first now. Is your project? - AI热点快照</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','PingFang SC','Microsoft YaHei',sans-serif;background:#f8f9fa;color:#1a1a2e;line-height:1.8;min-height:100vh}
+.top-bar{background:#fff;border-bottom:1px solid #e5e7eb;padding:10px 20px;display:flex;align-items:center;gap:12px;position:sticky;top:0;z-index:10}
+.top-bar .logo{font-size:14px;font-weight:700;color:#0d9488}
+.top-bar .sep{color:#d1d5db}
+.top-bar .source{font-size:13px;color:#6b7280}
+.top-bar .back{margin-left:auto;font-size:13px;color:#0d9488;text-decoration:none}
+.top-bar .back:hover{text-decoration:underline}
+.container{max-width:760px;margin:0 auto;padding:40px 24px 80px}
+.article-title{font-size:1.8rem;font-weight:700;line-height:1.35;margin-bottom:16px;color:#1a1a2e}
+.article-meta{display:flex;flex-wrap:wrap;gap:16px;padding-bottom:20px;margin-bottom:28px;border-bottom:1px solid #e5e7eb;font-size:14px;color:#6b7280}
+.article-meta a{color:#0d9488;text-decoration:none}
+.article-meta a:hover{text-decoration:underline}
+.article-body{font-size:16.5px;line-height:1.85;color:#1f2937}
+.article-body p{margin-bottom:1.2em;text-align:justify}
+.article-body h1,.article-body h2,.article-body h3{font-size:1.25em;font-weight:700;margin:1.6em 0 0.6em;color:#1a1a2e}
+.article-body a{color:#0d9488}
+.article-body pre,.article-body code{background:#f1f5f9;border-radius:4px;font-size:0.9em}
+.article-body pre{padding:16px;overflow-x:auto;margin:1em 0}
+.article-body code{padding:2px 6px}
+.article-body blockquote{border-left:3px solid #0d9488;padding-left:16px;color:#4b5563;margin:1em 0}
+.article-body ul,.article-body ol{padding-left:1.6em;margin-bottom:1em}
+.article-body li{margin-bottom:0.4em}
+.article-body figure{margin:1.2em 0}
+.article-body figcaption{font-size:13px;color:#9ca3af;text-align:center;margin-top:6px}
+.footer{margin-top:48px;padding-top:20px;border-top:1px solid #e5e7eb;font-size:13px;color:#9ca3af;text-align:center}
+</style>
+</head>
+<body>
+<div class="top-bar">
+  <a class="back" href="../" style="font-size:13px;color:#6b7280;text-decoration:none">← 日报首页</a>
+  <span class="sep">|</span>
+  <span class="logo">AI热点快照</span>
+  <span class="sep">|</span>
+  <span class="source">The GitHub Blog</span>
+  <a class="back" href="https://github.blog/open-source/maintainers/your-contributors-are-ai-first-now-is-your-project" target="_blank" rel="noopener noreferrer">查看原文 ↗</a>
+</div>
+<div class="container">
+  <h1 class="article-title">Your contributors are AI-first now. Is your project?</h1>
+  <div class="article-meta">
+    <span>作者: Andrea Griffiths</span>
+    <span>来源: The GitHub Blog</span>
+    <span>快照日期: 2026-08-13</span>
+  </div>
+  <div class="article-body"><p>The same question keeps coming up in maintainer conversations: what do you do when the pull request queue fills with work written by agents?</p>
+
+
+
+<p>It’s something Nicholas Tindle, founding AI engineer at AutoGPT, also deals with every day. <a href="https://www.youtube.com/watch?v=Ro_VMXWbLt8&amp;list=PL0lo9MOBetEFmtstItnKlhJJVmMghxc0P&amp;index=14" target="_blank" rel="noopener noreferrer nofollow">I spoke with him in May</a> for Maintainer Month. At the time of the interview, AutoGPT had over 180,000 stars and around 150 open pull requests. A big chunk of those pull requests were written by agents, including Copilot, OpenClaw, and AutoGPT’s own internal tooling, among others. Most maintainers I talk to have the same reaction: close the door. Turn off pull requests. Don’t tax the team with reviewing slop.</p>
+
+
+
+<p>Nicholas saw an upside:</p>
+
+
+
+<blockquote>
+<p>It’s basically somebody else paying for your compute.</p>
+Nicholas Tindle, founding AI engineer at AutoGPT</blockquote>
+
+
+
+<p>The way he sees it, if a contributor wants to spend their tokens improving your project, let them. Just make it so the only way through the door is the way that works for you.</p>
+
+
+
+<h2>Your docs aren’t the problem. Discovery is.</h2>
+
+
+
+<p>AutoGPT tried the obvious thing first. Better contributor guidelines. Better docs. A whole wiki dedicated to working with the repo.</p>
+
+
+
+<p>None of it moved the needle. It turns out the tools aren’t going to go read your docs unless they’re told to. That’s the part a lot of us get wrong. We treat documentation like the agent will go find it. It won’t. Agents read what’s in front of them, at the level of the directory they’re working in.</p>
+
+
+
+<p>So AutoGPT started putting instructions where agents look. First <code>CLAUDE.md</code> files, because Claude was generating pull requests without enough repository-specific context. The commit trailer made each one easy to spot, because they announced themselves in the commit trailer. Then they hit the next wall: Copilot and Codex ignore Claude files, because they’re not Claude. So they centralized the standard <code>AGENTS.md</code> and pointed Claude files at it.</p>
+
+
+
+<p>Here’s the nuance I found most useful. <code>AGENTS.md</code> is scoped to a directory. A skill can be discovered outside that directory. (If you haven’t shipped one: a skill is an instruction file with a description that tells the agent when to load it. The agent scans descriptions up front and pulls in the full instructions when the task matches.)</p>
+
+
+
+<p>AutoGPT’s <code>AGENTS.md</code> sits beside the code it governs. That placement matters as much as the instructions themselves.</p>
+
+
+
+<blockquote>
+<p>If you’re writing backend tests and you think about doing front-end stuff, a skill may load dynamically. It’s not going to know what directory to go look in for an AGENTS.md file, but the skill can tell it that.</p>
+</blockquote>
+
+
+
+<p>Their front-end engineer got tired of the same class of broken pull request, so they wrote a guide, and shipped it as a skill in the repo. The description contained trigger phrasing: write a Storybook test if your component lives in these folders. Now every harness that touches the repo discovers it automatically. The backend enforces its own version of the rule the same way: hit 80% coverage or don’t open the pull request.</p>
+
+
+
+<h2>Gates that actually work</h2>
+
+
+
+<p>These are the gates you can adapt for your project.</p>
+
+
+
+<p><strong>Enforce the pull request template, loudly.</strong> AutoGPT tells agents that pull requests not matching the template get closed automatically with zero hesitation. They built the tooling to actually do it, then found they didn’t need to run it. At AutoGPT, the rule changed agent behavior before the automation ever ran. The agents followed the template. Human contributors sometimes needed more room, which Nicholas treats as a feature:</p>
+
+
+
+<blockquote>
+<p>If you don’t follow the template, I know you’re probably a person, and I’m going to be kinder.</p>
+</blockquote>
+
+
+
+<p><strong>The test plan trick.</strong> The template requires a test plan, and its wording casually mentions testing the pull request. That phrase triggers a skill called <code>test PR</code>, which installs agent browser (with permission), spins up the app, and executes the change. The agent set out to fill in a checkbox and ended up running the code.</p>
+
+
+
+<p>They almost never get pull requests that don’t work anymore. What they get now is pull requests that work but don’t fit the roadmap, which is a much better problem to have.</p>
+
+
+
+<p><strong>Make CI a wall, not a suggestion.</strong> Codecov coverage thresholds are required checks. The agent opens the pull request, checks back a few minutes later, sees it can’t merge, loads the testing skill, and writes the tests. Nobody had to ask.</p>
+
+
+
+<p><strong>Use the CLA as a human detector.</strong> AutoGPT is dual licensed, but Nicholas argues every project should do this, MIT included. Signing requires a browser and a GitHub OAuth flow on a separate domain. Agents are bad at that today, and for good reason: most maintainers do not want an agent logged into GitHub in a browser with broad account access.</p>
+
+
+
+<blockquote>
+<p>If your CLA is not signed after a week, we close the pull request with a comment that says sign the CLA, reopen when you’re done.</p>
+</blockquote>
+
+
+
+<p>That gate works because it puts a human back in the loop. A CLA is one option. A code-of-conduct checkbox can do the same job.</p>
+
+
+
+<p><strong>Require a commit SHA before resolving a review thread.</strong> Some agents mark every review thread as resolved without touching the code. AutoGPT’s fix is a <code>pr-address</code> skill in the repo that declares the only valid sequence: fix, commit, push, reply, then resolve. The reply has to link the fixing commit, with the full SHA pulled from <code>git rev-parse HEAD</code> after committing, so the agent can’t recycle an old one. The skill even names the anti-patterns: “Acknowledged” is not a fix, and neither is citing a commit that doesn’t touch the flagged line.</p>
+
+
+
+<h2>The gate they turned off</h2>
+
+
+
+<p>When a check fails, AutoGPT had an agent read the run and comment on what broke. Their first version wired Claude Code into GitHub Actions and authenticated it inside the workflow, which meant one more broad credential living in CI. Running Copilot in the workflow gets the same result without that. Nicholas is a fan:</p>
+
+
+
+<blockquote>
+<p>It’s unbelievable. I’m so happy I never had to bother with YAML ever again. I’m never writing a workflow for an action ever.</p>
+</blockquote>
+
+
+
+<p>Then they turned the commenting off anyway. Their CI fails a lot, and a bot narrating every failure all day is not much better than the failure itself. The lesson is the restraint: keep what lowers the maintainer burden, shut off what becomes noise.</p>
+
+
+
+<h2>Four gotchas worth writing down</h2>
+
+
+
+<p><strong>A bad AGENTS.md file is worse than no AGENTS.md.</strong> AutoGPT littered them everywhere at first and ended up polluting context, pulling the agent’s attention toward files that didn’t matter. If behavior gets worse, go read what you wrote.</p>
+
+
+
+<p><strong>The GraphQL API will rate limit you.</strong> When every tool on your team hits the CLI as an individual user, you hit the ceiling fast. Create a GitHub App and authenticate the CLI through it.</p>
+
+
+
+<p><strong>The heavy review tooling costs real money.</strong> Their pull request test rig clones the branch, spawns eight agents with different jobs, runs the whole stack, and uploads screenshots. It’s great. It’s also expensive enough that they now run it only on very small or very large pull requests.</p>
+
+
+
+<p><strong>Go audit your authorized apps.</strong> AutoGPT is part of the Secure <a href="https://github.com/open-source/github-fund" target="_blank" rel="noopener noreferrer nofollow">Open Source Fund</a>, and this was one of Nicholas’s takeaways from that work. Every tool they trialed and dropped left an authorization behind.</p>
+
+
+
+<blockquote>
+<p>If you stop using a GitHub app, remove it from the authorized apps. Do a little audit right now after this stream and go see what you have. You’ll be surprised.</p>
+</blockquote>
+
+
+
+<p>Logging in with GitHub is so automatic at this point that most of us have never gone back to look. I opened my settings during the stream. He was right.</p>
+
+
+
+<h2>Not everything is a gate</h2>
+
+
+
+<p>Two takeaways from Nicholas had almost nothing to do with tooling.</p>
+
+
+
+<p>First: you don’t have to accept every pull request. Merging someone else’s LLM output is asymmetric. You do the upkeep, forever. Closing the pull request and building the fix yourself is a legitimate choice.</p>
+
+
+
+<p>You can <a href="https://github.blog/changelog/2026-02-13-new-repository-settings-for-configuring-pull-request-access/" target="_blank" rel="noopener noreferrer nofollow">disable pull requests entirely</a>. You can <a href="https://github.blog/changelog/2026-06-29-restrict-issue-creation-to-collaborators-only/" target="_blank" rel="noopener noreferrer nofollow">restrict issue creation to collaborators</a>. Nicholas tied those controls back to the thing he kept coming back to in the interview: maintainers need knobs. Sometimes the right answer is fewer drive-by pull requests. Sometimes it’s issues only. Sometimes it’s “talk to us first.”</p>
+
+
+
+<p>SQLite doesn’t take external code contributions. They take bug reports. That’s a valid open source boundary. Your project can have one too.</p>
+
+
+
+<p>Second: when you close a pull request you’re going to rebuild yourself, add the contributor as a co-author if it makes sense. AutoGPT has around 800 contributors, so one more costs them nothing. For most people, the thing that matters is that their problem got fixed and somebody noticed they showed up.</p>
+
+
+
+<h2>What I’m taking back</h2>
+
+
+
+<p>Open source has always evolved by making collaboration explicit. Licenses made permissions explicit. Issues made work visible. Pull requests made review a shared practice. Instructions in the repo look like another step in that direction, though I’d hold that loosely. Nobody’s landed on the right shape yet. AutoGPT is on its third version, and it got there by shipping bad versions first and watching what agents did with them.</p>
+
+
+
+<p>You still decide what belongs. You still set the bar. The difference is that more of that judgment can live next to the code, where your contributors and their agents already are.</p>
+
+
+
+<p>Go look at the <a href="https://github.com/Significant-Gravitas/AutoGPT" target="_blank" rel="noopener noreferrer nofollow">AutoGPT repo</a> and read how they structured their agent files.</p>
+
+
+
+<p>Then go join <a href="https://maintainers.github.com/" target="_blank" rel="noopener noreferrer nofollow">maintainers.github.com</a>. I’d tell you that anyway because I work here, so take it from Nicholas instead:</p>
+
+
+
+<blockquote>
+<p>You’ve got to go there. You’ve got to sign up. It gets you all the connections you want at GitHub. That’s where I learned about all this stuff, and where I share it.</p>
+</blockquote>
+
+
+
+<p>It’s also where Tiny Wins gets prioritized, the weekly drip of small maintainer-requested improvements. Some of those asks have already shown up in the controls GitHub highlighted during <a href="https://github.blog/open-source/maintainers/welcome-to-maintainer-month-celebrating-the-people-behind-the-code/" target="_blank" rel="noopener noreferrer nofollow">Maintainer Month</a>. It’s also where our product managers and engineers read feedback before anything ships. If you want a say in what the platform does for maintainers next, that’s the room. Your contributors are already AI-first. Put the rules next to the code before the next pull request lands.</p>
+
+	<div>
+	<h2>
+		Written by	</h2>
+	
+			
+	<div>
+					<div>
+				
+					
+					
+				
+			</div>
+				
+					<p>Andrea is a Senior Developer Advocate at GitHub with over a decade of experience in developer tools. She combines technical depth with a mission to make advanced technologies more accessible. After transitioning from Army service and construction management to software development, she brings a unique perspective to bridging complex engineering concepts with practical implementation. She lives in Florida with her Welsh partner, two sons, and two dogs, where she continues to drive innovation and support open source through GitHub's global initiatives. Find her online @acolombiadev.</p>
+			</div>
+
+	</div>
+
+	
+	<h2>
+		Related posts	</h2>
+	
+
+
+<div>
+			<div>
+				<h2>We do newsletters, too</h2><p>Discover tips, technical guides, and best practices in our biweekly newsletter just for devs.</p>			</div>
+			<div>
+				<p>Your email address</p>
+			</div>
+		</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
+  <div class="footer">
+    本文由 AI热点监控系统自动抓取 · 内容版权归原作者/网站所有<br>
+    快照仅用于学习交流，如需转载请访问原文
+  </div>
+</div>
+</body>
+</html>

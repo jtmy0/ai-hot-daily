@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="referrer" content="no-referrer">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'unsafe-inline'; img-src data:; connect-src 'none'; frame-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'; frame-ancestors 'none'">
+<title>Empty shelves or lost keys? Recall is the bottleneck for parametric factuality - AI热点快照</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','PingFang SC','Microsoft YaHei',sans-serif;background:#f8f9fa;color:#1a1a2e;line-height:1.8;min-height:100vh}
+.top-bar{background:#fff;border-bottom:1px solid #e5e7eb;padding:10px 20px;display:flex;align-items:center;gap:12px;position:sticky;top:0;z-index:10}
+.top-bar .logo{font-size:14px;font-weight:700;color:#0d9488}
+.top-bar .sep{color:#d1d5db}
+.top-bar .source{font-size:13px;color:#6b7280}
+.top-bar .back{margin-left:auto;font-size:13px;color:#0d9488;text-decoration:none}
+.top-bar .back:hover{text-decoration:underline}
+.container{max-width:760px;margin:0 auto;padding:40px 24px 80px}
+.article-title{font-size:1.8rem;font-weight:700;line-height:1.35;margin-bottom:16px;color:#1a1a2e}
+.article-meta{display:flex;flex-wrap:wrap;gap:16px;padding-bottom:20px;margin-bottom:28px;border-bottom:1px solid #e5e7eb;font-size:14px;color:#6b7280}
+.article-meta a{color:#0d9488;text-decoration:none}
+.article-meta a:hover{text-decoration:underline}
+.article-body{font-size:16.5px;line-height:1.85;color:#1f2937}
+.article-body p{margin-bottom:1.2em;text-align:justify}
+.article-body h1,.article-body h2,.article-body h3{font-size:1.25em;font-weight:700;margin:1.6em 0 0.6em;color:#1a1a2e}
+.article-body a{color:#0d9488}
+.article-body pre,.article-body code{background:#f1f5f9;border-radius:4px;font-size:0.9em}
+.article-body pre{padding:16px;overflow-x:auto;margin:1em 0}
+.article-body code{padding:2px 6px}
+.article-body blockquote{border-left:3px solid #0d9488;padding-left:16px;color:#4b5563;margin:1em 0}
+.article-body ul,.article-body ol{padding-left:1.6em;margin-bottom:1em}
+.article-body li{margin-bottom:0.4em}
+.article-body figure{margin:1.2em 0}
+.article-body figcaption{font-size:13px;color:#9ca3af;text-align:center;margin-top:6px}
+.footer{margin-top:48px;padding-top:20px;border-top:1px solid #e5e7eb;font-size:13px;color:#9ca3af;text-align:center}
+</style>
+</head>
+<body>
+<div class="top-bar">
+  <a class="back" href="../" style="font-size:13px;color:#6b7280;text-decoration:none">← 日报首页</a>
+  <span class="sep">|</span>
+  <span class="logo">AI热点快照</span>
+  <span class="sep">|</span>
+  <span class="source">AIHOT 论文研究</span>
+  <a class="back" href="https://research.google/blog/empty-shelves-or-lost-keys-recall-is-the-bottleneck-for-parametric-factuality" target="_blank" rel="noopener noreferrer">查看原文 ↗</a>
+</div>
+<div class="container">
+  <h1 class="article-title">Empty shelves or lost keys? Recall is the bottleneck for parametric factuality</h1>
+  <div class="article-meta">
+    
+    <span>来源: AIHOT 论文研究</span>
+    <span>快照日期: 2026-08-13</span>
+  </div>
+  <div class="article-body"><div><div>
+                    
+                    
+    
+
+
+<div>
+  
+
+
+
+
+  <p>Factuality is essential for making Large Language Models (LLMs) reliable. When a model answers a factual question incorrectly, is it because the fact was never encoded, or because the fact is encoded but not accessible? Standard accuracy metrics collapse these cases together, even though they suggest very different limitations and very different interventions. Encoding failures call for scaling model size or expanding data coverage, while recall failures might also point to post-training and inference-time methods that help LLMs better utilize what they already encode.</p><p>In “<a href="https://arxiv.org/abs/2602.14080" target="_blank" rel="noopener noreferrer nofollow">Empty Shelves or Lost Keys? Recall Is the Bottleneck for Parametric Factuality</a>”, we introduce <i>knowledge profiling</i>, a behavioral framework that measures both <i>encoding</i> and <i>recall</i>, and use it to examine the underlying bottlenecks of factuality in frontier LLMs (such as <a href="https://blog.google/products-and-platforms/products/gemini/gemini-3/" target="_blank" rel="noopener noreferrer nofollow">Gemini3</a> and <a href="https://openai.com/index/introducing-gpt-5/" target="_blank" rel="noopener noreferrer nofollow">GPT-5</a>). We then show that many factual errors in frontier LLMs are better understood as <i>lost keys (recall failures)</i>, not <i>empty shelves (encoding failures)</i>.</p><p>By analogy, we use <a href="https://en.wikipedia.org/wiki/Encoding_(memory)" target="_blank" rel="noopener noreferrer nofollow">encoding</a> to denote parametric representation of facts, <a href="https://en.wikipedia.org/wiki/Recall_(memory)" target="_blank" rel="noopener noreferrer nofollow">recall</a> to denote retrieving encoded facts without external cues, and <a href="https://en.wikipedia.org/wiki/Recognition_memory" target="_blank" rel="noopener noreferrer nofollow">recognition</a> to denote identifying the correct fact when it is presented among alternatives. To support this analysis, we introduce <a href="https://huggingface.co/datasets/google/WikiProfile" target="_blank" rel="noopener noreferrer nofollow">WikiProfile</a>, a benchmark of 2,150 Wikipedia-derived facts, each paired with ten questions that probe encoding, recall, and recognition.</p>
+  
+</div>
+
+                    
+                    
+    
+
+
+<div>
+  
+
+
+
+
+  <h2>The core idea: Knowledge profiling</h2><p>Knowledge profiling shifts the unit of analysis from individual questions to facts. Instead of asking whether a model answered a specific question correctly, we ask a broader question: what is the state of the fact? We classify each fact into one of five knowledge profiles: (1) encoding failure, (2) recall failure, (3) direct recall, (4) recall with thinking, and (5) inference without encoding. These profiles provide a more informative diagnosis than question-level accuracy alone.</p><p>The classification is based on whether the fact is encoded and how accessible it is: Cannot be recalled, can be directly recalled, or can be recalled only with <i>thinking</i> (eliciting intermediate computations before the final answer, including <a href="https://research.google/blog/language-models-perform-reasoning-via-chain-of-thought/" target="_blank" rel="noopener noreferrer nofollow">chain-of-thought</a> prompting and <a href="https://blog.google/innovation-and-ai/models-and-research/google-deepmind/gemini-model-thinking-updates-march-2025/#gemini-2-5-thinking" target="_blank" rel="noopener noreferrer nofollow">thinking-optimized LLMs</a>).</p>
+  
+</div>
+
+                    
+                    
+    
+
+
+
+
+                    
+                    
+    
+
+
+<div>
+  
+
+
+
+
+  <p>We operationalize this with three behavioral notions:</p><ul><li><i>Encoding:</i> A model <i>encodes</i> a fact if it can correctly reproduce it in a pre-training-like context. In our setup, we measure this using proposition completion and contextual questioning, which place the model in contexts similar to those in which the fact would naturally appear during pre-training (without revealing the answer), thereby <a href="https://en.wikipedia.org/wiki/Priming_(psychology)" target="_blank" rel="noopener noreferrer nofollow">priming</a> the model to expose whether the fact is encoded.</li><li><i>Knowledge:</i> A model <i>knows</i> a fact if it can correctly answer semantically equivalent questions about it across different phrasings, including both direct and <a href="https://arxiv.org/abs/2309.12288" target="_blank" rel="noopener noreferrer nofollow">reverse</a> questions (e.g., if *A is B*, a direct question asks "What is B?", while a reverse question asks "What is A?").</li><li><i>Recall:</i> A model recalls a fact if it <i>knows</i> an encoded fact. If it recalls the fact without thinking, we refer to this as direct recall. If it knows a fact that is not encoded, we refer to this as inference without encoding. This occurs only when thinking is enabled and the model relies on other encoded facts and performs multi-hop reasoning or educated guesses.</li></ul>
+  
+</div>
+
+                    
+                    
+    
+
+
+
+
+                    
+                    
+    
+
+
+<div>
+  
+
+
+
+
+  <h2>Introducing WikiProfile</h2><p>To operationalize knowledge profiling, we constructed <a href="https://huggingface.co/datasets/google/WikiProfile" target="_blank" rel="noopener noreferrer nofollow"><i>WikiProfile</i></a>, a benchmark designed to measure factuality on naturally occurring facts. WikiProfile is constructed using a fully automated pipeline powered by a prompted LLM, Gemini-2.5-Pro with thinking. Prompts were developed through manual optimization on a small held-out subset. We extract candidate facts from Wikipedia pages by identifying facts: a proposition involving an ordered pair of entities (subject and object), where the subject appears first in the document. Each fact is paired with 10 tasks: two for encoding, four for knowledge evaluation, and four multiple-choice variants for recognition.</p><p>We generate direct and reverse questions through a three-step process of generation, refinement, and filtering, ensuring that each question is unambiguous, specific, minimal, and has a unique answer. All questions undergo filtering grounded in a search engine. We discard cases where multiple answers are returned or clarification is needed. After this automated filtering and a final manual validation step, the benchmark contains 2,150 facts.</p>
+  
+</div>
+
+                    
+                    
+    
+
+
+
+
+                    
+                    
+    
+
+
+<div>
+  
+
+
+
+
+  <h3>How we evaluate LLMs</h3><p>We evaluate 13 LLMs. Each model is evaluated both with and without thinking. For each model, fact, and task, we sample eight responses. Responses are graded automatically by prompted LLM autoraters (more details in <a href="https://arxiv.org/abs/2602.14080" target="_blank" rel="noopener noreferrer nofollow">the paper</a>), producing approximately 4.5 million responses.</p>
+  
+</div>
+
+                    
+                    
+    
+
+
+<div>
+  
+
+
+
+
+  <h2>Main result: Recall, not encoding, is the bottleneck</h2><p>Across the frontier LLMs (Gemini-2.5-Pro, Gemini-3-Pro and Flash, GPT-5), factual encoding is close to saturation, but recall is not. For Gemini-3-Pro and GPT-5, 95–98% of facts are encoded, yet these models still fail to directly recall 26–34% of facts. Even with thinking, they still fail on 11–12% of facts<b><i>.</i></b> This means that in frontier models, factual errors increasingly come not from absent knowledge, but from knowledge that is stored and not reliably accessible. In other words, the bottleneck is shifting from knowledge acquisition to knowledge utilization.</p><p>Scaling reinforces this picture. In the Gemma 3 family, larger models show far fewer encoding failures, but recall failures remain substantial and become a larger share of the remaining errors. Scaling improves what the model stores more than it improves what the model can access.</p>
+  
+</div>
+
+                    
+                    
+    
+
+
+
+
+                    
+                    
+    
+
+
+<div>
+  
+
+
+
+
+  <h2>Why does recall fail?</h2><p>Our results suggest that recall is tightly coupled to the conditions under which a fact was learned. When the query diverges from the training-time context, phrasing, or ordering in which the fact was encountered, recall becomes harder. We highlight two cases where this happens systematically.</p><h3>Rare facts are encoded, but hard to recall</h3><p><a href="https://arxiv.org/abs/2211.08411" target="_blank" rel="noopener noreferrer nofollow">Prior work</a> has shown that LLMs struggle with long-tail (rare) facts, often framing this as a problem of model capacity. Our results suggest a complementary picture. When we compare low-popularity and high-popularity facts, we find that rare facts are encoded at rates close to popular facts. The gap in encoding is relatively modest; however, the gap in recall is larger. This reframes the long-tail problem: Many rare facts are not absent from the model's parameters. They are present, but difficult to access. The bottleneck has shifted from knowledge acquisition to utilization.</p>
+  
+</div>
+
+                    
+                    
+    
+
+
+
+
+                    
+                    
+    
+
+
+<div>
+  
+
+
+
+
+  <h3>Reverse questions are verifiable, but hard to recall</h3><p>We also revisit the <i>reversal curse</i>: when LLMs know "A is B" but can't answer "What is B?". At first glance, this could suggest that LLMs lack bidirectional knowledge. But our results suggest a refinement of this view. In open-ended generation (i.e., recall), reverse questions are consistently harder than direct questions. In multiple-choice verification (i.e., recognition), however, reverse questions are no harder than direct ones, and are often easier. This dissociation matters. If a model can recognize the correct answer when it is presented among distractors, but cannot generate it in a reverse query, then the issue is not simply that the bidirectional knowledge is missing. Rather, the fact appears to be encoded, and even recognizable, but difficult to recall when the query direction departs from how the fact was encountered during training. The reversal curse is a recall problem.</p>
+  
+</div>
+
+                    
+                    
+    
+
+
+
+
+                    
+                    
+    
+
+
+<div>
+  
+
+
+
+
+  <h2>Thinking as a recovery mechanism</h2><p>We now turn to the question of what enables the recovery of otherwise inaccessible knowledge. To this end, we examine the potential of thinking to fill this role. Thinking improves recall most strongly exactly where direct recall is weakest. The gains are especially pronounced for rare facts and reverse questions, narrowing both the popularity gap and the directionality gap.</p>
+  
+</div>
+
+                    
+                    
+    
+
+
+
+
+                    
+                    
+    
+
+
+<div>
+        
+  
+
+
+<p>More specifically, in thinking-optimized models, thinking recovers roughly 40–65% of encoded-but-not-directly-known facts. By contrast, it helps much less on facts that are not encoded. This pattern suggests that thinking primarily acts as a recall-facilitation mechanism: it helps the model access facts it already encoded, rather than mainly deriving answers through complex multi-step reasoning. That said, thinking is not free. It carries a computational cost, and it remains unclear how to determine exactly when a model should invoke it.</p>
+
+    </div>
+
+                    
+                    
+    
+
+
+
+
+                    
+                    
+    
+
+
+<div>
+  
+
+
+
+
+  <h2>Takeaway</h2><p>Knowledge profiling enables us to precisely diagnose factual behavior in LLMs. Applying this methodology to Wikipedia facts, our results suggest a shift in the way we should think about factual errors in frontier LLMs. If encoding is already near saturation, then further gains in factuality may come less from scaling (of model size or data). By showing that thinking can recover a substantial fraction of encoded-but-not-directly-known facts, the next improvements in factuality may come not only from better knowledge acquisition, but from better utilization of knowledge already encoded in the model.</p>
+  
+</div>
+
+                    
+                </div></div></div>
+  <div class="footer">
+    本文由 AI热点监控系统自动抓取 · 内容版权归原作者/网站所有<br>
+    快照仅用于学习交流，如需转载请访问原文
+  </div>
+</div>
+</body>
+</html>
