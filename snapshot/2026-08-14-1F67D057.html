@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="referrer" content="no-referrer">
 <meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'unsafe-inline'; img-src data:; connect-src 'none'; frame-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'; frame-ancestors 'none'">
-<title>OpenAI 桌面端 ChatGPT 上线语音交互功能，可语音操控电脑执行多步骤任务 - IT之家 - AI热点快照</title>
+<title>Boris Cherny (@bcherny) on X - AI热点快照</title>
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
 body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','PingFang SC','Microsoft YaHei',sans-serif;background:#f8f9fa;color:#1a1a2e;line-height:1.8;min-height:100vh}
@@ -41,20 +41,33 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','PingFang SC','Micr
   <span class="sep">|</span>
   <span class="logo">AI热点快照</span>
   <span class="sep">|</span>
-  <span class="source">AIHOT AI产品</span>
-  <a class="back" href="https://www.ithome.com/0/987/452.htm" target="_blank" rel="noopener noreferrer">查看原文 ↗</a>
+  <span class="source">X (formerly Twitter)</span>
+  <a class="back" href="https://x.com/bcherny/status/2088014489438621990" target="_blank" rel="noopener noreferrer">查看原文 ↗</a>
 </div>
 <div class="container">
-  <h1 class="article-title">OpenAI 桌面端 ChatGPT 上线语音交互功能，可语音操控电脑执行多步骤任务 - IT之家</h1>
+  <h1 class="article-title">Boris Cherny (@bcherny) on X</h1>
   <div class="article-meta">
-    <span>作者: 作者：远洋</span>
-    <span>来源: AIHOT AI产品</span>
-    <span>快照日期: 2026-08-10</span>
+    
+    <span>来源: X (formerly Twitter)</span>
+    <span>快照日期: 2026-08-14</span>
   </div>
-  <div class="article-body"><div><div>
-            <p>感谢IT之家网友 <a href="https://m.ithome.com/html/app/open.html?url=ithome%3A%2F%2Fuserpage%3Fid%3D2029428" target="_blank" rel="noopener noreferrer nofollow">华南吴彦祖</a> 的线索投递！</p>
-            <p><a href="https://www.ithome.com/" target="_blank" rel="noopener noreferrer nofollow">IT之家</a> 8 月 9 日消息，OpenAI 当地时间周四宣布，已更新 ChatGPT 桌面应用，新增对 ChatGPT Voice 的支持。用户现在可以直接通过语音与 ChatGPT 对话，控制 AI 智能体，并让其在电脑上执行各种任务。</p><p></p><p>这项新功能基于 OpenAI 全新的语音模型系列 ChatGPT-Live。OpenAI 于本月早些时候推出了该系列模型。</p><p>OpenAI 表示，ChatGPT Voice 同时支持 ChatGPT Work 和 Codex，还可以调用计算机操作能力，帮助用户访问网站和应用。在 macOS 上，借助 Appshots，用户还可以允许 ChatGPT 访问屏幕上的内容，包括替代文本（alt-text）。</p><p>ChatGPT Voice 的手机版在上线之初主要侧重于提供更加流畅的语音对话体验，并改善了用户打断 AI 时的处理效果，但当时并不能直接在手机上执行操作。</p><p>此次桌面版更新则拥有更强的执行能力。用户可以通过语音向 ChatGPT 下达包含多个步骤的复杂指令，并在 ChatGPT 需要用户提供信息或进行确认时及时作出回应。</p><p>在一段演示视频中，OpenAI 展示了一名开发者通过一句指令让 ChatGPT 创建新的代码线程、提交 Pull Request，并找出一个 Bug 的根本原因。</p><p>OpenAI 还表示，用户可以通过 iOS 应用的远程访问功能，在 Codex 中使用 ChatGPT Voice。</p><p>IT之家注意到，Anthropic 也更新了 Claude 的语音模式。该功能可以调用 Anthropic 的 Opus、Sonnet 和 Haiku 模型，在 Gmail、Calendar、Slack、Notion 和 Canva 等应用中完成各种任务。</p>
-        </div></div></div>
+  <div class="article-body"><div><div><p><span>A weird experiment I've been trying the last few weeks is having Claude take over day-to-day maintenance of our apps. Seeing early signs of life that this might be possible.
+
+The setup is straightforward: we have a Slack channel called proj-claude-maintains-apps. In it, Claude Tag runs a bunch of daily routines across iOS, Android, Desktop, web, CLI, and Agent SDK:
+
+- Crash fuzzer: open the app in a simulator and tap around to find ways to crash it, then root cause and fix the crashes
+- Dup unifier: scans the codebase for similar-yet-slightly-divergent abstractions, and puts up PRs to unify them
+- Dead-code remover: removes statically unreachable code, and adds logging to suspected dead code to check if it's really dead and if so, remove it the next day
+- Abstraction police: fixes leaky abstractions
+- a bunch more..
+
+Results have been surprisingly positive. Over the last few weeks, these routines have opened 388 PRs across our repos, 180 of which we merged after Claude Code Review + human review. We're now thinking about how to streamline this to make merging these kinds of mechanical changes easier.
+
+Claude generally gets these PRs right on the first shot, and if it doesn't, we ask Claude to tune its routines so it's better the next day. Sometimes it takes a few days of tuning. 
+
+To try a similar workflow, ask Claude Code or Tag, or create some routines directly at </span><a href="https://claude.ai/code/routines" target="_blank" rel="noopener noreferrer nofollow">claude.ai/code/routines</a><span>. A few of the actual prompts I used below.
+
+Has anyone experimented with similar workflows?</span></p></div></div></div>
   <div class="footer">
     本文由 AI热点监控系统自动抓取 · 内容版权归原作者/网站所有<br>
     快照仅用于学习交流，如需转载请访问原文
