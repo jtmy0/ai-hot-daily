@@ -91,7 +91,7 @@ body { background: var(--bg-outer); font-family: var(--font-body); min-height: 1
       <a class="back-link" href="./">← 归档首页</a>
       <h1>AI 热点日报</h1>
       <div class="subtitle">
-        <span class="date">2026年8月15日，星期六 · 道法术器解读</span>
+        <span class="date">2026年8月15日，星期六· 含新增 · 道法术器解读</span>
         <div class="controls">
           <button id="expandAll">展开全部</button>
           <button id="collapseAll">收起全部</button>
@@ -99,222 +99,234 @@ body { background: var(--bg-outer); font-family: var(--font-body); min-height: 1
       </div>
     </div>
     <div class="entries" id="entries">
-      <div class="entry" data-cat="ai" style="animation-delay: 0.1s;">
-        <div class="entry-head">
-          <div class="bullet" style="background: var(--tab-1);"></div>
-          <div class="info">
-            <h3>同态加密落地私有AI</h3>
-            <div class="meta">Hacker News · 🔥 64 · 11小时前</div>
-          </div>
-          <div class="expand-icon">▼</div>
-        </div>
-        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：隐私计算与AI的融合是数据要素市场化后的必然方向，<strong>加密状态下的计算能力</strong>将成为AI基础设施的底层门槛。
-<strong>法</strong>：技术商业化需遵循“场景倒逼”原则，优先在合规成本高的行业（医疗、金融）验证价值，再横向扩展。
-<strong>术</strong>：1. 聚焦单点场景（如加密推理API）做性能优化，而非通用平台；2. 与云厂商合作提供混合部署方案，降低用户迁移成本；3. 建立加密AI的基准测试集，量化性能损耗。
-<strong>器</strong>：Google的HEIR编译器、OpenFHE库、TensorFlow Encrypted框架。</p>
-<a class="source-link" href="https://blog.google/security/how-google-is-making-private-ai-practical-with-homomorphic-encryption/" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
-      </div>
-      <div class="entry" data-cat="dev" style="animation-delay: 0.18s;">
-        <div class="entry-head">
-          <div class="bullet" style="background: var(--tab-2);"></div>
-          <div class="info">
-            <h3>Qwen3.8开源生态卡位</h3>
-            <div class="meta">X：通义千问 / Qwen (@Alibaba_Qwen) · 🔥 100 · 12小时前</div>
-          </div>
-          <div class="expand-icon">▼</div>
-        </div>
-        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：开源模型正从“参数竞赛”转向“工具链与生态黏性”竞争，<strong>小参数高效模型</strong>将主导端侧与私有化部署市场。
-<strong>法</strong>：通过开源低门槛版本吸引开发者，形成事实标准，再通过云服务和企业支持变现，是AI公司的标准路径。
-<strong>术</strong>：1. 优先适配主流推理框架（vLLM、Ollama）并发布量化版本；2. 针对手机、PC等端侧场景提供蒸馏版；3. 建立模型微调市场，鼓励行业垂直模型衍生。
-<strong>器</strong>：ModelScope社区、Hugging Face Transformers、llama.cpp。</p>
-<a class="source-link" href="https://x.com/Alibaba_Qwen/status/2088280182356611304" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
-      </div>
-      <div class="entry" data-cat="sec" style="animation-delay: 0.26s;">
+      <div class="entry" data-cat="sec" style="animation-delay: 0.1s;">
         <div class="entry-head">
           <div class="bullet" style="background: var(--tab-3);"></div>
           <div class="info">
-            <h3>GLM-5.3编码能力引安全争议</h3>
-            <div class="meta">Hacker News · 🔥 100 · 22小时前</div>
+            <h3><span class="badge-icon"> 🆕</span> 开源模型性能逼近闭源</h3>
+            <div class="meta">Hacker News · 🔥 100 · 21小时前</div>
           </div>
           <div class="expand-icon">▼</div>
         </div>
-        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：前沿模型能力跃升必然伴随安全边界重构，<strong>自主编码能力</strong>正从工具辅助走向任务闭环，安全评估必须前置。
-<strong>法</strong>：能力越强的AI，越需要“红队测试-能力分级-使用审计”的三层治理框架，而非事后封堵。
-<strong>术</strong>：1. 对模型输出代码进行静态漏洞扫描与行为沙箱验证；2. 在API层设置敏感操作（如提权、网络攻击）的拦截规则；3. 发布能力白皮书，明确边界与责任主体。
-<strong>器</strong>：Semgrep、CodeQL、容器沙箱（gVisor）、模型卡（Model Card）。</p>
-<a class="source-link" href="https://z.ai/blog/glm-5.3" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
+        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：开源大模型与闭源模型的性能差距正在快速缩小，<strong>模型能力将趋于商品化</strong>，长期竞争转向推理效率、生态整合与垂直场景适配。
+<strong>法</strong>：采用<strong>性能-成本-可控性三维评估框架</strong>，不盲目追求参数规模，以实际任务基准测试结果作为选型依据。
+<strong>术</strong>：在内部搭建模型评测流水线，将Qwen 3.8 27B与现有闭源API在典型业务场景中做A/B对比；关注其量化版本在边缘设备的部署可行性；预留模型切换的抽象接口，避免供应商锁定。
+<strong>器</strong>：Qwen 3.8 27B、Ollama、vLLM、Hugging Face、MLPerf推理基准。</p>
+<a class="source-link" href="https://huggingface.co/Qwen/Qwen3.8-27B-FP8" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
+      </div>
+      <div class="entry" data-cat="ai" style="animation-delay: 0.18s;">
+        <div class="entry-head">
+          <div class="bullet" style="background: var(--tab-1);"></div>
+          <div class="info">
+            <h3><span class="badge-icon"> 🔄</span> 同态加密落地隐私AI</h3>
+            <div class="meta">Hacker News · 🔥 68 · 20小时前</div>
+          </div>
+          <div class="expand-icon">▼</div>
+        </div>
+        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：数据隐私保护从合规要求演变为技术核心竞争力，<strong>同态加密让数据可用不可见</strong>，将重塑AI服务的数据处理范式，长期看是隐私计算基础设施的关键拼图。
+<strong>法</strong>：采用<strong>隐私-性能-成本三角平衡策略</strong>，根据数据敏感度和计算场景选择不同加密级别，而非全量使用全同态加密。
+<strong>术</strong>：优先在金融、医疗等强监管场景试点同态加密推理；评估Google的加密推理库与现有机器学习框架的兼容性；建立加密数据集的性能基准，量化延迟和精度损失；关注混合加密方案，将同态加密与安全多方计算结合。
+<strong>器</strong>：Google Fully Homomorphic Encryption库、TFHE、HElib、Microsoft SEAL、OpenFHE。</p>
+<a class="source-link" href="https://blog.google/security/how-google-is-making-private-ai-practical-with-homomorphic-encryption/" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
+      </div>
+      <div class="entry" data-cat="ai" style="animation-delay: 0.26s;">
+        <div class="entry-head">
+          <div class="bullet" style="background: var(--tab-1);"></div>
+          <div class="info">
+            <h3><span class="badge-icon"> 🆕</span> Agent可观测性成刚需</h3>
+            <div class="meta">36kr · 🔥 58 · 11小时前</div>
+          </div>
+          <div class="expand-icon">▼</div>
+        </div>
+        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：Agent系统从原型走向生产，<strong>黑箱问题成为规模化部署的核心障碍</strong>，可观测性与可解释性将决定Agent技术的信任边界和落地速度。
+<strong>法</strong>：采用<strong>全链路追踪+状态可视化+干预回滚</strong>的工程化方法论，将Agent决策过程视为分布式系统进行监控治理。
+<strong>术</strong>：在Agent工具调用链路上埋点，记录每一步的输入输出与置信度；构建决策树可视化面板，支持回溯和重放；设置异常行为告警规则，当Agent偏离预设策略时自动暂停并人工介入；建立测试集，对Agent的规划能力进行回归测试。
+<strong>器</strong>：DeepSeek Harness、LangSmith、Langfuse、Arize Phoenix、Weights &amp; Biases Prompts。</p>
+<a class="source-link" href="https://www.36kr.com/p/3939428221205635" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
       </div>
       <div class="entry" data-cat="ai" style="animation-delay: 0.33999999999999997s;">
         <div class="entry-head">
           <div class="bullet" style="background: var(--tab-1);"></div>
           <div class="info">
-            <h3>手算AI揭示本质</h3>
-            <div class="meta">Hacker News · 🔥 60 · 11小时前</div>
+            <h3><span class="badge-icon"> 🔄</span> Gemini 3.7 Flash分层开放</h3>
+            <div class="meta">X：Gemini (@GeminiApp) · 🔥 100 · 18小时前</div>
           </div>
           <div class="expand-icon">▼</div>
         </div>
-        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：AI 技术再复杂，底层仍是数学运算与数据结构的组合，理解基础原理是应对技术迭代的<strong>长期不变能力</strong>。
-<strong>法</strong>：通过手工推演核心算法，建立直觉化理解，可迁移至任何新模型或框架的学习中，避免被黑盒工具绑架。
-<strong>术</strong>：选择一个小型神经网络（如 2 层感知机），用电子表格或纸笔完成一次前向传播和反向传播计算；对比代码输出与手算结果，定位理解偏差；每周重复一次，覆盖不同层结构。
-<strong>器</strong>：Jupyter Notebook、NumPy、在线矩阵计算器。</p>
-<a class="source-link" href="https://www.byhand.ai/" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
+        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：模型发布从统一版本转向<strong>分层订阅制</strong>，本质是算力成本与用户价值匹配的精细化运营，长期趋势是AI能力按需分级供给。
+<strong>法</strong>：产品分层策略可复用——用轻量版吸引增量用户，用旗舰版锁定高价值客户，形成<strong>金字塔式用户结构</strong>。
+<strong>术</strong>：优先在Pro/Ultra账号中测试新模型的长上下文与多模态能力；对比Flash与标准版在延迟、成本上的差异，按业务场景选择调用层级；关注API定价调整，预判成本变化。
+<strong>器</strong>：Google AI Studio、Vertex AI、Gemini API。</p>
+<a class="source-link" href="https://x.com/GeminiApp/status/2088326407730692538" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
       </div>
-      <div class="entry" data-cat="ai" style="animation-delay: 0.42000000000000004s;">
+      <div class="entry" data-cat="dev" style="animation-delay: 0.42000000000000004s;">
         <div class="entry-head">
-          <div class="bullet" style="background: var(--tab-1);"></div>
+          <div class="bullet" style="background: var(--tab-2);"></div>
           <div class="info">
-            <h3>Claude会话价值最大化</h3>
-            <div class="meta">Hacker News · 🔥 57 · 11小时前</div>
+            <h3><span class="badge-icon"> 🔄</span> Qwen3.8开源生态卡位</h3>
+            <div class="meta">X：通义千问 / Qwen (@Alibaba_Qwen) · 🔥 100 · 21小时前</div>
           </div>
           <div class="expand-icon">▼</div>
         </div>
-        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：AI 编程助手的价值取决于<strong>上下文管理质量</strong>，而非模型本身能力，这是人机协作效率的长期杠杆。
-<strong>法</strong>：将复杂任务拆解为可验证的小步骤，每步明确输入输出，形成结构化会话流，适用于任何对话式 AI 工具。
-<strong>术</strong>：会话开始前用 5 分钟写下目标、约束和验收标准；每完成一个子任务，主动总结关键决策并清理无关上下文；使用 Claude 的 Projects 功能保存常用指令模板，减少重复描述。
-<strong>器</strong>：Claude Code、Claude Projects、Git 分支管理。</p>
-<a class="source-link" href="https://claude.com/blog/maximizing-the-value-of-your-claude-code-sessions" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
+        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：开源模型持续迭代，<strong>开源与闭源差距缩小</strong>是长期趋势，竞争焦点转向生态与工具链完善度。
+<strong>法</strong>：通过开源建立事实标准，吸引开发者贡献与二次开发，<strong>以生态反哺商业</strong>，是技术公司的经典路径。
+<strong>术</strong>：评估Qwen3.8在代码生成、数学推理等场景的基准表现；对比同尺寸Llama、Mistral模型，确定替换或集成方案；关注其与RAG、Agent框架的兼容性，规划迁移路径。
+<strong>器</strong>：Hugging Face、ModelScope、Ollama、vLLM。</p>
+<a class="source-link" href="https://x.com/Alibaba_Qwen/status/2088280182356611304" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
       </div>
       <div class="entry" data-cat="dev" style="animation-delay: 0.5s;">
         <div class="entry-head">
           <div class="bullet" style="background: var(--tab-2);"></div>
           <div class="info">
-            <h3>GLM-5.3开源领跑编程</h3>
-            <div class="meta">公众号：智谱（GLM） · 🔥 98 · 22小时前</div>
+            <h3><span class="badge-icon"> 🆕</span> YAML微调降低门槛</h3>
+            <div class="meta">GitHub Trending · 🔥 54 · 20小时前</div>
           </div>
           <div class="expand-icon">▼</div>
         </div>
-        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：开源模型在垂直领域（如编程）的<strong>能力追赶速度</strong>已超过通用基准提升，安全能力成为新竞争维度。
-<strong>法</strong>：评估模型时，应聚焦特定任务场景的实测表现，而非仅看综合榜单，此策略适用于所有技术选型。
-<strong>术</strong>：针对编程场景，用内部代码库构建 20 个真实任务测试集，对比 GLM-5.3 与闭源模型的通过率；关注其网络安全能力，在隔离环境中测试漏洞检测与修复建议的准确性；跟踪后续微调版本，评估迭代速度。
-<strong>器</strong>：GLM-5.3 API、Hugging Face、SWE-bench 基准。</p>
-<a class="source-link" href="https://mp.weixin.qq.com/s?__biz=MzkyMzI3NzQ0Mg%3D%3D&amp;mid=2247494084&amp;idx=1&amp;sn=a2e5cd9a534a4825feb3633ea1b6d492" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
+        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：大模型微调正从<strong>工程密集型转向配置驱动</strong>，降低硬件门槛是普及关键，长期趋势是AI定制化平民化。
+<strong>法</strong>：将复杂流程封装为声明式配置，<strong>用简单接口替代复杂操作</strong>，是技术工具扩散的通用方法论。
+<strong>术</strong>：用YAML定义数据集、模型架构与训练参数，启动单卡微调；在4GB显存设备上验证8B模型的层流训练效果；对比全参微调与LoRA、QLoRA的精度与资源消耗，选择最优方案。
+<strong>器</strong>：Soup、Hugging Face Transformers、PyTorch、bitsandbytes。</p>
+<a class="source-link" href="https://github.com/MakazhanAlpamys/Soup" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
       </div>
       <div class="entry" data-cat="ai" style="animation-delay: 0.58s;">
         <div class="entry-head">
           <div class="bullet" style="background: var(--tab-1);"></div>
           <div class="info">
-            <h3>长上下文成标配</h3>
-            <div class="meta">X：硅基流动 SiliconFlow (@SiliconFlowAI) · 🔥 98 · 22小时前</div>
+            <h3><span class="badge-icon"> 🔄</span> 开源大模型进入稀疏激活时代</h3>
+            <div class="meta">X：硅基流动 SiliconFlow (@SiliconFlowAI) · 🔥 100 · 昨天</div>
           </div>
           <div class="expand-icon">▼</div>
         </div>
-        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：大模型竞争已从参数规模转向<strong>上下文长度与推理效率</strong>，1M上下文意味着模型能处理整本书级信息，长期将重塑知识工作流程。
-<strong>法</strong>：基础设施平台（如硅基流动）通过快速接入最新模型抢占开发者心智，形成<strong>模型托管+API调用</strong>的生态粘性，这是AI分发渠道的核心策略。
-<strong>术</strong>：优先在长文档分析、代码库理解、多轮复杂对话场景做压力测试；对比V4 Pro与Claude/GPT的<strong>长文本召回精度</strong>；利用1M窗口做全量知识库注入，减少RAG链路。
-<strong>器</strong>：硅基流动平台、DeepSeek V4 Pro API、LangChain长文本评估框架。</p>
-<a class="source-link" href="https://x.com/SiliconFlowAI/status/2088127458558271885" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
+        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：大模型竞争正从参数规模转向<strong>稀疏激活效率</strong>，2.4T总参数仅激活95B，标志着推理成本成为核心战场。开源生态持续挤压闭源模型的商业空间，长期趋势是<strong>算力效率决定模型生命力</strong>。
+<strong>法</strong>：采用MoE架构实现性能与成本解耦，通过开源快速获取开发者反馈和生态适配，形成事实标准。适用于所有高算力消耗的技术产品。
+<strong>术</strong>：立即在硅基流动平台部署测试，对比同等激活参数稠密模型的推理延迟与吞吐；针对稀疏激活特性优化路由策略；评估长尾任务下的专家负载均衡。
+<strong>器</strong>：硅基流动平台、Qwen3.8-2.4T-A95B模型、vLLM推理框架。</p>
+<a class="source-link" href="https://x.com/SiliconFlowAI/status/2087903227224412222" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
       </div>
       <div class="entry" data-cat="ai" style="animation-delay: 0.66s;">
         <div class="entry-head">
           <div class="bullet" style="background: var(--tab-1);"></div>
           <div class="info">
-            <h3>Flash模型分层渗透</h3>
-            <div class="meta">X：Gemini (@GeminiApp) · 🔥 100 · 9小时前</div>
+            <h3><span class="badge-icon"> 🆕</span> 编程智能体模型竞争白热化</h3>
+            <div class="meta">Google DeepMind：Blog（RSS） · 🔥 97 · 昨天</div>
           </div>
           <div class="expand-icon">▼</div>
         </div>
-        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：模型厂商正通过<strong>速度与成本分层</strong>覆盖不同用户群体，Flash系列主打低延迟高吞吐，与Pro/Ultra形成互补，这是AI产品标准化的必经路径。
-<strong>法</strong>：面向存量用户分级推送新能力，<strong>用免费升级激活付费粘性</strong>，同时收集反馈优化模型，是SaaS产品的经典增长飞轮。
-<strong>术</strong>：在实时交互场景（客服、编程辅助）优先切换Flash；对比Flash与Pro在<strong>延迟和token成本</strong>上的差异；利用Gemini API的多模态能力做图像+文本混合任务。
-<strong>器</strong>：Google AI Studio、Gemini 3.7 Flash API、Vertex AI。</p>
-<a class="source-link" href="https://x.com/GeminiApp/status/2088326407730692538" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
+        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：AI编程正从代码补全转向<strong>自主智能体执行复杂任务</strong>，工作流自动化是长期确定方向。模型能力竞争聚焦于工具调用、长上下文理解和多步规划，<strong>编程场景成为大模型能力试金石</strong>。
+<strong>法</strong>：针对垂直场景深度优化而非通用能力堆砌，通过强化学习与真实开发环境反馈闭环迭代。适用于所有专业领域AI产品。
+<strong>术</strong>：在CI/CD流水线中集成Gemini 3.7 Flash，测试多文件重构和测试生成能力；对比Claude Sonnet的智能体任务成功率；建立基于代码评审通过率的评估基准。
+<strong>器</strong>：Gemini 3.7 Flash、GitHub Copilot、LangChain智能体框架。</p>
+<a class="source-link" href="https://deepmind.google/blog/introducing-gemini-3-7-flash" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
       </div>
-      <div class="entry" data-cat="ai" style="animation-delay: 0.74s;">
+      <div class="entry" data-cat="sec" style="animation-delay: 0.74s;">
         <div class="entry-head">
-          <div class="bullet" style="background: var(--tab-1);"></div>
+          <div class="bullet" style="background: var(--tab-3);"></div>
           <div class="info">
-            <h3>开源大模型再突破</h3>
-            <div class="meta">X：硅基流动 SiliconFlow (@SiliconFlowAI) · 🔥 100 · 昨天</div>
+            <h3><span class="badge-icon"> 🆕</span> 浏览器广告拦截生态最后防线</h3>
+            <div class="meta">Hacker News · 🔥 99 · 17小时前</div>
           </div>
           <div class="expand-icon">▼</div>
         </div>
-        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：<strong>开源模型与闭源差距持续缩小</strong>，Qwen3.8的2.4T参数+A95B激活量证明MoE架构是兼顾性能与成本的主流方向，开源生态将加速AI民主化。
-<strong>法</strong>：开源模型的价值在于<strong>可控性与定制化</strong>，企业可基于其做领域微调，避免供应商锁定，这是技术选型中的风险对冲策略。
-<strong>术</strong>：评估A95B激活参数在<strong>推理成本</strong>上比同规模Dense模型的优势；在私有化部署场景测试其代码生成与数学推理能力；关注社区微调版本在垂直行业的落地案例。
-<strong>器</strong>：硅基流动平台、HuggingFace模型库、vLLM推理框架。</p>
-<a class="source-link" href="https://x.com/SiliconFlowAI/status/2087903227224412222" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
+        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：浏览器市场Chromium垄断格局下，<strong>用户隐私控制权与平台商业利益的冲突不可调和</strong>。Manifest V3限制扩展能力是长期趋势，Firefox成为唯一独立选择，<strong>浏览器引擎多样性是互联网健康的基础</strong>。
+<strong>法</strong>：通过差异化定位（隐私保护）维持小众市场份额，依赖忠诚用户社群形成护城河。适用于所有对抗巨头生态的独立产品。
+<strong>术</strong>：Firefox用户应保持uBlock Origin更新，避免迁移至Chromium系浏览器；企业可评估Firefox ESR版本作为内部默认浏览器；开发者需关注WebExtensions兼容性差异。
+<strong>器</strong>：Firefox浏览器、uBlock Origin扩展、Manifest V3规范文档。</p>
+<a class="source-link" href="https://www.pcworld.com/article/3212428/firefox-is-now-the-last-major-browser-that-still-supports-ublock-origin.html" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
       </div>
-      <div class="entry" data-cat="ai" style="animation-delay: 0.82s;">
+      <div class="entry" data-cat="sec" style="animation-delay: 0.82s;">
         <div class="entry-head">
-          <div class="bullet" style="background: var(--tab-1);"></div>
+          <div class="bullet" style="background: var(--tab-3);"></div>
           <div class="info">
-            <h3>AI代理工作台开源化</h3>
-            <div class="meta">GitHub Trending · 🔥 61 · 11小时前</div>
+            <h3><span class="badge-icon"> 🔄</span> GLM-5.3：编码能力涌现网络攻防</h3>
+            <div class="meta">Hacker News · 🔥 96 · 昨天</div>
           </div>
           <div class="expand-icon">▼</div>
         </div>
-        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：AI代理正从单点工具走向<strong>工作流编排平台</strong>，统一入口管理多代理是长期趋势，本质是降低工具切换成本、沉淀自动化流程。
-<strong>法</strong>：<strong>平台化集成</strong>策略——通过开放API聚合异构代理，以统一界面和上下文管理形成粘性，适用于所有生产力工具赛道。
-<strong>术</strong>：优先接入主流代理（Claude Code、Codex），设计可插拔工具适配层；提供模板化工作流，降低用户上手门槛；建立代理运行日志与权限隔离机制。
-<strong>器</strong>：holaOS、Claude Code、Codex、Docker、GitHub Actions。</p>
-<a class="source-link" href="https://github.com/holaboss-ai/holaOS" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
+        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：大模型能力演进正从语言理解转向<strong>自主执行复杂任务</strong>，编码能力成为衡量智能水平的关键标尺，安全边界随之成为核心挑战。
+<strong>法</strong>：评估前沿模型需采用<strong>能力分层验证法</strong>，将基准测试与对抗性测试结合，避免单一指标误导判断。
+<strong>术</strong>：在代码生成评测中，加入<strong>安全漏洞注入测试</strong>和<strong>越狱攻击模拟</strong>；建立模型能力与风险的双维度评分卡；跟踪模型在真实攻防场景中的表现数据。
+<strong>器</strong>：GLM-5.3、SWE-bench、CyberSecEval、MITRE ATT&amp;CK框架。</p>
+<a class="source-link" href="https://z.ai/blog/glm-5.3" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
       </div>
       <div class="entry" data-cat="ai" style="animation-delay: 0.9s;">
         <div class="entry-head">
           <div class="bullet" style="background: var(--tab-1);"></div>
           <div class="info">
-            <h3>本地3D生成桌面化</h3>
-            <div class="meta">GitHub Trending · 🔥 58 · 11小时前</div>
+            <h3><span class="badge-icon"> 🔄</span> AI by Hand：手工理解模型原理</h3>
+            <div class="meta">Hacker News · 🔥 63 · 20小时前</div>
           </div>
           <div class="expand-icon">▼</div>
         </div>
-        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：3D内容生成正从云端依赖转向<strong>本地化隐私计算</strong>，边缘设备算力提升使实时生成成为可能，长期将重塑创意工具链。
-<strong>法</strong>：<strong>离线优先</strong>的产品策略——将核心推理部署在端侧，兼顾数据安全与响应速度，适用于设计、游戏、制造等数据敏感场景。
-<strong>术</strong>：优化模型轻量化（量化、蒸馏），支持多输入模态（图像/文本）；提供一键导出常见3D格式（OBJ/FBX）；内置GPU加速与显存自适应机制。
-<strong>器</strong>：lightningpixel、PyTorch、ONNX Runtime、Blender、NVIDIA CUDA。</p>
-<a class="source-link" href="https://github.com/sponsors/lightningpixel" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
+        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：<strong>深度学习本质是数学运算的组合</strong>，手工计算能揭示模型内部机制，这种理解是黑盒测试无法替代的。
+<strong>法</strong>：采用<strong>降维拆解法</strong>，将复杂模型简化为可手算的微型案例，是掌握任何技术原理的通用路径。
+<strong>术</strong>：从单层感知机开始，逐步推导反向传播的梯度计算；用电子表格实现一个小型Transformer的前向传播；将手算结果与PyTorch输出对比验证。
+<strong>器</strong>：Jupyter Notebook、NumPy、PyTorch、在线矩阵计算器。</p>
+<a class="source-link" href="https://www.byhand.ai/" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
       </div>
-      <div class="entry" data-cat="dev" style="animation-delay: 0.98s;">
+      <div class="entry" data-cat="ai" style="animation-delay: 0.98s;">
         <div class="entry-head">
-          <div class="bullet" style="background: var(--tab-2);"></div>
+          <div class="bullet" style="background: var(--tab-1);"></div>
           <div class="info">
-            <h3>本地模型训练统一入口</h3>
-            <div class="meta">GitHub Trending · 🔥 57 · 11小时前</div>
+            <h3><span class="badge-icon"> 🔄</span> Claude Code会话价值最大化策略</h3>
+            <div class="meta">Hacker News · 🔥 60 · 20小时前</div>
           </div>
           <div class="expand-icon">▼</div>
         </div>
-        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：大模型应用正从API调用转向<strong>本地微调与私有化部署</strong>，统一管理训练与推理的UI层成为基础设施，长期看模型定制化是刚需。
-<strong>法</strong>：<strong>一体化工作台</strong>方法论——将数据准备、训练、评估、部署集成到单一界面，降低技术门槛，适用于MLOps工具链。
-<strong>术</strong>：支持主流开源模型（Qwen、Kimi、MiniMax）的加载与微调；提供可视化损失曲线与超参调节面板；内置量化与导出功能，适配消费级显卡。
-<strong>器</strong>：unsloth UI、Qwen3.8、Kimi K3、MiniMax-H3、Hugging Face Transformers。</p>
-<a class="source-link" href="https://github.com/sponsors/unslothai" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
+        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：<strong>AI编程工具的生产力取决于上下文管理质量</strong>，会话设计直接影响输出质量，而非工具本身的能力上限。
+<strong>法</strong>：采用<strong>结构化会话管理法</strong>，将复杂任务拆解为多个有明确目标的子会话，每个会话聚焦单一职责。
+<strong>术</strong>：在会话开始时明确<strong>任务边界和验收标准</strong>；使用文件引用和代码片段减少上下文噪音；定期清理历史会话，建立可复用的提示词模板库。
+<strong>器</strong>：Claude Code、Git、Notion、Prompt模板管理工具。</p>
+<a class="source-link" href="https://claude.com/blog/maximizing-the-value-of-your-claude-code-sessions" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
       </div>
       <div class="entry" data-cat="ai" style="animation-delay: 1.06s;">
         <div class="entry-head">
           <div class="bullet" style="background: var(--tab-1);"></div>
           <div class="info">
-            <h3>OpenAI and Anth</h3>
-            <div class="meta">Ars Technica：AI（RSS） · 🔥 99 · 13小时前</div>
+            <h3><span class="badge-icon"> 🆕</span> AI书淹没亚马逊，作者收入承压</h3>
+            <div class="meta">The Decoder：AI News（RSS） · 🔥 100 · 1小时前</div>
           </div>
           <div class="expand-icon">▼</div>
         </div>
-        <div class="detail-wrap"><div class="detail-inner"><a class="source-link" href="https://arstechnica.com/ai/2026/08/openai-and-anthropic-in-price-war-as-chinese-ai-rivals-gain-ground" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
+        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：内容生产边际成本趋零后，平台流量分配机制成为价值枢纽，<strong>低质供给过剩必然稀释头部创作者议价权</strong>，这是数字平台经济中供需失衡的长期规律。
+<strong>法</strong>：平台治理需从“数量激励”转向“质量信号筛选”，创作者则需构建<strong>差异化品牌与私域流量池</strong>，以对抗算法推荐下的同质化竞争。
+<strong>术</strong>：1. 作者可强化“人机协作”流程，用AI辅助调研与初稿，但保留核心叙事与风格印记；2. 在亚马逊外同步运营独立站或邮件列表，沉淀忠实读者；3. 利用AI检测工具反向标注原创性，主动向平台申诉。
+<strong>器</strong>：Amazon KDP、GPT-4、原创性检测工具（如Copyleaks）、Substack。</p>
+<a class="source-link" href="https://the-decoder.com/ai-generated-books-are-flooding-amazon-and-tanking-sales-for-human-authors" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
       </div>
       <div class="entry" data-cat="ai" style="animation-delay: 1.1400000000000001s;">
         <div class="entry-head">
           <div class="bullet" style="background: var(--tab-1);"></div>
           <div class="info">
-            <h3>ChatGPT一夜提速14倍，</h3>
-            <div class="meta">36kr · 🔥 59 · 19小时前</div>
+            <h3><span class="badge-icon"> 🔄</span> 中美AI价格战，生态位重构</h3>
+            <div class="meta">Ars Technica：AI（RSS） · 🔥 99 · 22小时前</div>
           </div>
           <div class="expand-icon">▼</div>
         </div>
-        <div class="detail-wrap"><div class="detail-inner"><a class="source-link" href="https://www.36kr.com/p/3939055569517703" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
+        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：大模型竞争正从技术参数比拼转向<strong>单位经济模型与生态绑定能力</strong>，价格战本质是数据飞轮和用户习惯的争夺，长期利润将来自上层应用而非基础API。
+<strong>法</strong>：面对低价冲击，防御策略是<strong>垂直场景深度定制</strong>，进攻策略是<strong>开源降本+闭源增值</strong>双轨并行，以差异化服务锁定高价值客户。
+<strong>术</strong>：1. 企业评估多模型切换成本，避免单一供应商锁定；2. 关注中国厂商在中文语境与合规成本上的优势，试点混合部署；3. 开发者优先使用价格弹性大的API做原型，再根据性能/成本比固化方案。
+<strong>器</strong>：OpenAI API、Anthropic Claude、DeepSeek、Qwen、LiteLLM（统一网关）。</p>
+<a class="source-link" href="https://arstechnica.com/ai/2026/08/openai-and-anthropic-in-price-war-as-chinese-ai-rivals-gain-ground" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
       </div>
       <div class="entry" data-cat="ai" style="animation-delay: 1.2200000000000002s;">
         <div class="entry-head">
           <div class="bullet" style="background: var(--tab-1);"></div>
           <div class="info">
-            <h3>小红书技术开源 dots3-note P…</h3>
-            <div class="meta">公众号：小红书技术（dots.llm） · 🔥 99 · 16小时前</div>
+            <h3><span class="badge-icon"> 🆕</span> Claude水印曝光，AI内容溯源落地</h3>
+            <div class="meta">36kr · 🔥 54 · 9小时前</div>
           </div>
           <div class="expand-icon">▼</div>
         </div>
-        <div class="detail-wrap"><div class="detail-inner"><a class="source-link" href="https://mp.weixin.qq.com/s?__biz=Mzg4OTc2MzczNg%3D%3D&amp;mid=2247496140&amp;idx=1&amp;sn=5239a5fbb115c58d2ae0056bb32789ff" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
+        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：AI内容可信度危机催生<strong>可验证的溯源机制</strong>，水印技术将成AI生成内容的“数字指纹”，这是监管与商业信任构建的必然基础设施。
+<strong>法</strong>：内容平台与工具方需协同制定<strong>检测-标注-追溯</strong>标准，将水印从防御性技术升级为内容生态的信用层，类似HTTP之于互联网。
+<strong>术</strong>：1. 内容生产者应主动接入官方检测工具，规避误判风险；2. 企业部署内容审核流程时，将水印检测设为前置环节；3. 关注水印对生成质量的影响，在隐蔽性与鲁棒性间做平衡测试。
+<strong>器</strong>：Claude官方水印工具、SynthID、GPT-4o（已有类似机制）、内容管理平台（如Contentful）。</p>
+<a class="source-link" href="https://www.36kr.com/p/3940141009091976" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
       </div>
     </div>
     <div class="footer">
-      <span>Generated by AI Hot Monitor v2 · DeepSeek · 11:01:36</span>
+      <span>Generated by AI Hot Monitor v2 · DeepSeek · 20:01:23</span>
       <span class="badge">💡 点击条目展开深度解读</span>
     </div>
   </div>
