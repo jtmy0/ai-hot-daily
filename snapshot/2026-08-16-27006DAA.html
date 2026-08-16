@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="referrer" content="no-referrer">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'unsafe-inline'; img-src data:; connect-src 'none'; frame-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'; frame-ancestors 'none'">
+<title>Guiding ships with Moire patterns - AI热点快照</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','PingFang SC','Microsoft YaHei',sans-serif;background:#f8f9fa;color:#1a1a2e;line-height:1.8;min-height:100vh}
+.top-bar{background:#fff;border-bottom:1px solid #e5e7eb;padding:10px 20px;display:flex;align-items:center;gap:12px;position:sticky;top:0;z-index:10}
+.top-bar .logo{font-size:14px;font-weight:700;color:#0d9488}
+.top-bar .sep{color:#d1d5db}
+.top-bar .source{font-size:13px;color:#6b7280}
+.top-bar .back{margin-left:auto;font-size:13px;color:#0d9488;text-decoration:none}
+.top-bar .back:hover{text-decoration:underline}
+.container{max-width:760px;margin:0 auto;padding:40px 24px 80px}
+.article-title{font-size:1.8rem;font-weight:700;line-height:1.35;margin-bottom:16px;color:#1a1a2e}
+.article-meta{display:flex;flex-wrap:wrap;gap:16px;padding-bottom:20px;margin-bottom:28px;border-bottom:1px solid #e5e7eb;font-size:14px;color:#6b7280}
+.article-meta a{color:#0d9488;text-decoration:none}
+.article-meta a:hover{text-decoration:underline}
+.article-body{font-size:16.5px;line-height:1.85;color:#1f2937}
+.article-body p{margin-bottom:1.2em;text-align:justify}
+.article-body h1,.article-body h2,.article-body h3{font-size:1.25em;font-weight:700;margin:1.6em 0 0.6em;color:#1a1a2e}
+.article-body a{color:#0d9488}
+.article-body pre,.article-body code{background:#f1f5f9;border-radius:4px;font-size:0.9em}
+.article-body pre{padding:16px;overflow-x:auto;margin:1em 0}
+.article-body code{padding:2px 6px}
+.article-body blockquote{border-left:3px solid #0d9488;padding-left:16px;color:#4b5563;margin:1em 0}
+.article-body ul,.article-body ol{padding-left:1.6em;margin-bottom:1em}
+.article-body li{margin-bottom:0.4em}
+.article-body figure{margin:1.2em 0}
+.article-body figcaption{font-size:13px;color:#9ca3af;text-align:center;margin-top:6px}
+.footer{margin-top:48px;padding-top:20px;border-top:1px solid #e5e7eb;font-size:13px;color:#9ca3af;text-align:center}
+</style>
+</head>
+<body>
+<div class="top-bar">
+  <a class="back" href="../" style="font-size:13px;color:#6b7280;text-decoration:none">← 日报首页</a>
+  <span class="sep">|</span>
+  <span class="logo">AI热点快照</span>
+  <span class="sep">|</span>
+  <span class="source">Tinkerings</span>
+  <a class="back" href="https://tinkerings.org/2018/03/28/guiding-ships-with-moire-patterns/" target="_blank" rel="noopener noreferrer">查看原文 ↗</a>
+</div>
+<div class="container">
+  <h1 class="article-title">Guiding ships with Moire patterns</h1>
+  <div class="article-meta">
+    <span>作者: Posted on</span>
+    <span>来源: Tinkerings</span>
+    <span>快照日期: 2026-08-16</span>
+  </div>
+  <div class="article-body"><div><div>
+						<p>I was inspired by Tom Scott’s excellent video and links here <a href="https://www.youtube.com/watch?v=d99_h30swtM" target="_blank" rel="noopener noreferrer nofollow">https://www.youtube.com/watch?v=d99_h30swtM  </a></p>
+<p>where he talks about a particular type of “Inogon” light used to guide ships through channels or harbours.</p>
+<p>The patent is here: <a href="https://patents.google.com/patent/US4629325" target="_blank" rel="noopener noreferrer nofollow">https://patents.google.com/patent/US4629325</a> and the military report on the effectiveness is here: <a href="http://www.dtic.mil/dtic/tr/fulltext/u2/a168108.pdf" target="_blank" rel="noopener noreferrer nofollow">http://www.dtic.mil/dtic/tr/fulltext/u2/a168108.pdf</a></p>
+<p>(Hint; They don’t seem to like it much).</p>
+<p>I decided to build my own to play around with the effect. After a few minutes sketching in inkscape and a few more lasercutting,  I had this:</p>
+<p></p>
+<p>I followed the claims in the patent fairly closely. They advocate between 1.5 to 1.8 ratio of pitch spacing to the width of the dark bands, and I used 1.65 (this yields a mask with a ‘duty cycle’ of around 40%), and to use only a single excess band on the first mask relative to the second.</p>
+<p>Here’s what it looks like when illuminated from the back, and dead-on to the beam:</p>
+<p></p>
+<p>(There’s some minor circular effects because the separation of the two grids is significant compared to how close I’m standing. If this was on a riverbank and I was 100m away, that’d disappear)</p>
+<p>Here’s what it looks like from various angles:</p>
+<p></p>
+<p>Am I happy with it? <em>You betcha</em>. It does exactly what it says on the tin. It’s a intuitive and nifty way to guide a vehicle, requires very little ‘calibration’, and can cope with a dozen or more people using it at the same time without any problems.</p>
+<p>Do I think it’s the clear best solution to the problem? Sadly no.</p>
+<p>Typically a harbour doesn’t have one razor-thin path of traversable water. Instead there’s a clear pathway that you shouldn’t stray too far away from. The Moire system will give steering advice even if you’re in a safe area, but slightly off the main ‘beam’.</p>
+<p>I remember a few years ago in Newcastle seeing a much simpler and elegant system using 3 lights like below. (Excuse the mess, I grabbed whatever I could find nearby so I could compare the two approaches at around the same scale).</p>
+<p></p>
+<p>If the top lamp is between the lower two, then you’re on a safe course. If it’s above one, then you’re on the edge of the safe area, and if it’s outside both, then you’re off the path and need to steer back straight away.</p>
+<p></p>
+<p>In a real situation when you’re manoeuvring a ship there are other factors to think of, such as cross-currents, weather, or other ships to avoid. Having to stick to a narrow platonically perfect course has a non-zero cost in terms of extra fuel used, demanding increased concentration, higher risk of accidents as everyone is trying to use the same line, etc.</p>
+<p>If I were a pilot I think I’d much prefer a system like the 3 lamp, that lets me know when I’m <em><strong>actually in danger</strong></em>, rather than a system letting me know I’ve deviated from a line someone drew on a map.</p>
+<p>However,  it’s a super cool bit of design and maths, and I do think the system is useful when the object you want to mark is actually narrow. In the youtube video it was marking a submarine cable, so people didn’t drop anchor and foul on it. That seems like the perfect use for the Moire pattern.</p>
+<p>Files are here for anyone that’s interested in making their own:</p>
+<p><a href="https://www.thingiverse.com/thing:2842603" target="_blank" rel="noopener noreferrer nofollow">https://www.thingiverse.com/thing:2842603</a></p>
+
+
+											</div></div></div>
+  <div class="footer">
+    本文由 AI热点监控系统自动抓取 · 内容版权归原作者/网站所有<br>
+    快照仅用于学习交流，如需转载请访问原文
+  </div>
+</div>
+</body>
+</html>
