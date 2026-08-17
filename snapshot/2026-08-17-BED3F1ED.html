@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="referrer" content="no-referrer">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'unsafe-inline'; img-src data:; connect-src 'none'; frame-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'; frame-ancestors 'none'">
+<title>Two Providers, a Stubborn Plateau and a Very Long Tail: Email in the Tranco Top-1M - AI热点快照</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','PingFang SC','Microsoft YaHei',sans-serif;background:#f8f9fa;color:#1a1a2e;line-height:1.8;min-height:100vh}
+.top-bar{background:#fff;border-bottom:1px solid #e5e7eb;padding:10px 20px;display:flex;align-items:center;gap:12px;position:sticky;top:0;z-index:10}
+.top-bar .logo{font-size:14px;font-weight:700;color:#0d9488}
+.top-bar .sep{color:#d1d5db}
+.top-bar .source{font-size:13px;color:#6b7280}
+.top-bar .back{margin-left:auto;font-size:13px;color:#0d9488;text-decoration:none}
+.top-bar .back:hover{text-decoration:underline}
+.container{max-width:760px;margin:0 auto;padding:40px 24px 80px}
+.article-title{font-size:1.8rem;font-weight:700;line-height:1.35;margin-bottom:16px;color:#1a1a2e}
+.article-meta{display:flex;flex-wrap:wrap;gap:16px;padding-bottom:20px;margin-bottom:28px;border-bottom:1px solid #e5e7eb;font-size:14px;color:#6b7280}
+.article-meta a{color:#0d9488;text-decoration:none}
+.article-meta a:hover{text-decoration:underline}
+.article-body{font-size:16.5px;line-height:1.85;color:#1f2937}
+.article-body p{margin-bottom:1.2em;text-align:justify}
+.article-body h1,.article-body h2,.article-body h3{font-size:1.25em;font-weight:700;margin:1.6em 0 0.6em;color:#1a1a2e}
+.article-body a{color:#0d9488}
+.article-body pre,.article-body code{background:#f1f5f9;border-radius:4px;font-size:0.9em}
+.article-body pre{padding:16px;overflow-x:auto;margin:1em 0}
+.article-body code{padding:2px 6px}
+.article-body blockquote{border-left:3px solid #0d9488;padding-left:16px;color:#4b5563;margin:1em 0}
+.article-body ul,.article-body ol{padding-left:1.6em;margin-bottom:1em}
+.article-body li{margin-bottom:0.4em}
+.article-body figure{margin:1.2em 0}
+.article-body figcaption{font-size:13px;color:#9ca3af;text-align:center;margin-top:6px}
+.footer{margin-top:48px;padding-top:20px;border-top:1px solid #e5e7eb;font-size:13px;color:#9ca3af;text-align:center}
+</style>
+</head>
+<body>
+<div class="top-bar">
+  <a class="back" href="../" style="font-size:13px;color:#6b7280;text-decoration:none">← 日报首页</a>
+  <span class="sep">|</span>
+  <span class="logo">AI热点快照</span>
+  <span class="sep">|</span>
+  <span class="source">RIPE Labs</span>
+  <a class="back" href="https://labs.ripe.net/author/artem-berezin/two-providers-a-stubborn-plateau-and-a-very-long-tail-email-in-the-tranco-top-1m/" target="_blank" rel="noopener noreferrer">查看原文 ↗</a>
+</div>
+<div class="container">
+  <h1 class="article-title">Two Providers, a Stubborn Plateau and a Very Long Tail: Email in the Tranco Top-1M</h1>
+  <div class="article-meta">
+    
+    <span>来源: RIPE Labs</span>
+    <span>快照日期: 2026-08-17</span>
+  </div>
+  <div class="article-body"><div>
+  <p>Ten years of DNS measurements reveal three trends across the Internet's most popular domains: email continues to consolidate around two providers, DMARC enforcement has hit a plateau, and a surprisingly large long tail of infrastructure defies easy classification.</p>
+  <hr />
+  
+    
+      
+        <p>Almost everything about how a domain handles email is sitting in public DNS, waiting to be counted. The MX record says where the mailbox lives. The SPF record says who may send on the domain's behalf. The DMARC record says what should happen when a message fails authentication. Put those three together for a million domains, every day, and you get something like a weather station for email infrastructure.</p><p>That is what I run. The pipeline takes the daily forward-DNS snapshots that the OpenINTEL project (University of Twente, SURFnet and SIDN Labs) publishes for the Tranco top-1M, and classifies each domain's MX hostname and SPF includes against open dictionaries of mailbox providers, sending platforms and SaaS applications. A typical day yields about 659,000 domains with MX records and 618,000 with SPF. OpenINTEL's archives make it possible to compute the same figures back to 2016, which turns a snapshot into a time series - and the time series is where things get interesting.</p><p>Three findings from the current data seem worth the community's attention.</p>
+      
+    
+  
+    
+      
+        <h2>The great migration off port 25</h2><p>In 2016, 44.6% of MX-publishing domains in the top million ran their own mail server. In the 18 July 2026 snapshot that figure is 22.4% - and it is still falling, down another half a percentage point in the last thirty days alone, which again seems worth the community's attention.</p>
+      
+    
+  
+    
+      <figure>
+        
+          
+          
+        
+        
+      </figure>
+    
+  
+    
+      
+        <p>The domains didn't disappear; they moved. Google Workspace now receives mail for 21.8% of MX-publishing domains and Microsoft 365 for 16.8%. Together that is 38.6% of the measured Internet's inbound mail behind two companies. Nobody else comes close: the next named provider, Proofpoint, sits at 1.9%.</p>
+      
+    
+  
+    
+      <figure>
+        
+          
+          
+        
+        
+      </figure>
+    
+  
+    
+      
+        <p>It is easy to read this as a market-share story, but for this community it is really a resilience story. The RIPE community has spent years discussing DNS and CDN centralisation; email is following the same path, just more quietly. When more than a third of popular domains depend on two providers to receive mail, an outage, a filtering change or a policy decision at either one propagates through the whole ecosystem at once. And unlike a CDN, email has no graceful fallback - a rejected message is simply gone.</p>
+      
+    
+  
+    
+      
+        <p>There is a second-order effect too. The fewer independent operators there are, the more the remaining ones inherit the deliverability problems of a world tuned for the big two. Anyone who has tried to stand up a fresh Postfix box in 2026 and get its mail accepted at scale knows exactly what I mean.</p>
+      
+    
+  
+    
+      
+        <h2>DMARC: adopted everywhere, enforced nowhere in particular</h2><p>458,467 domains in the current snapshot publish a DMARC record. On paper that is a success story a decade in the making. In practice, only 46.9% of those domains enforce anything - meaning p=quarantine or p=reject at pct=100. The majority publish a policy that asks receivers to do nothing.</p>
+      
+    
+  
+    
+      <figure>
+        
+          
+          
+        
+        
+      </figure>
+    
+  
+    
+      
+        <p>What surprised me more than the level is the direction. The enforced share is not creeping upward; over the last thirty days it fell by 0.44 percentage points. The bulk-sender requirements that Google and Yahoo introduced in 2024 clearly drove publication - you can see the step in the adoption curve - but they set the bar at "have a DMARC record", and a very large part of the Internet stopped precisely there.</p>
+      
+    
+  
+    
+      
+        <p>The records themselves tell the story better than any aggregate. The single most common DMARC record in the dataset, published verbatim by 58,064 domains, is:</p>
+      
+    
+  
+    
+      
+        <pre><code>v=DMARC1; p=none;</code></pre>
+      
+    
+  
+    
+      
+        <p>Another 32,682 domains publish the same string minus the trailing semicolon, and thousands more publish minor byte-level variants of it. These are copy-pasted starter policies - created to satisfy a checklist, then never revisited. A p=none record with no rua= destination does not even collect the reports that would justify its own existence. It protects nobody; it just makes the adoption statistics look good.</p>
+      
+    
+  
+    
+      
+        <h2>The long tail nobody can name</h2><p>Dictionary-based classification has a ceiling, and I want to be honest about where it is. Matching MX hostnames against ~310 provider patterns and SPF includes against dictionaries of ESPs, forwarders and gateways currently attributes about 81.5% of SPF includes and the large majority of MX records. What is left over is remarkable in its size: 36,455 unique MX hostnames that match no known provider, and tens of thousands of SPF include targets that appear on exactly one domain each.</p>
+      
+    
+  
+    
+      
+        <p>Some of what surfaces in that tail is entertaining - 503 domains in the top million publish <code>localhost</code> as their MX, and 130 publish a literal <code>~</code> - but most of it is the unglamorous middle of the Internet: regional hosters, self-built Exim boxes, corporate gateways with vanity hostnames. This is precisely the population that deliverability research sees worst, because it is invisible to any measurement that only knows the big platforms. I publish the unmatched hosts openly with each daily run, partly as an invitation: if you recognise a hostname pattern, corrections land in the next day's snapshot.</p>
+      
+    
+  
+    
+      
+        <h2>About the data, and what it can't see</h2><p>The source is the daily OpenINTEL Tranco snapshot; pre-2022 history uses OpenINTEL's legacy Alexa top-1M source, which has a somewhat different composition. For each domain the primary MX (lowest preference) determines the mailbox provider; the apex SPF record determines senders; the <code>_dmarc</code> TXT record is parsed for policy, subdomain policy and pct. Aggregates, the full time series and the daily change-feed are published on the <a href="https://check.live-direct-marketing.online/email-stats/" target="_blank" rel="noopener noreferrer nofollow">project's stats page</a>; raw OpenINTEL data is deleted after each run per their data agreement.</p>
+      
+    
+  
+    
+      
+        <p>The blind spots are worth stating plainly. Flattened SPF records - include chains replaced by raw IP ranges to duck the 10-lookup limit - hide the sending platform entirely. MX targets that are CNAMEs to a known provider are not unrolled, which pushes a small share of domains into "unknown". White-label deployments of Mimecast or Proofpoint are indistinguishable from self-hosting when the customer uses its own hostnames. And Tranco itself leans towards US and EU domains, so the picture is a picture of the popular Internet, not the whole one.</p>
+      
+    
+  
+    
+      
+        <h2>Where this goes</h2><p>Ten years of these records tell one consistent story with three chapters: consolidation that shows no sign of slowing, an authentication standard that got adopted as a formality rather than a protection, and a long tail that resists being counted at all. Each chapter has a question attached. At what concentration does inbound mail become a systemic dependency worth the community's explicit attention? What would actually move DMARC from published to enforced, given that the 2024 mandates demonstrably did not? And how much of the Internet's mail infrastructure are we all failing to see because our dictionaries don't know its name?</p>
+      
+    
+  
+    
+      
+        <p>I don't have firm answers. I do have the same measurement running again tomorrow at 23:00, and the day after that - which, over enough days, is how these questions tend to get answered.</p>
+      
+    
+  
+    
+      <div>
+    
+      
+    
+    <p><i>The underlying DNS data comes from the OpenINTEL measurement platform of the University of Twente, SURFnet and SIDN Labs (van Rijswijk-Deij et al., IEEE JSAC 2016). Spotted a misclassified MX host or a missing provider pattern? Corrections are welcome and appear in the next daily snapshot.</i></p>
+  </div>
+    
+  
+</div></div>
+  <div class="footer">
+    本文由 AI热点监控系统自动抓取 · 内容版权归原作者/网站所有<br>
+    快照仅用于学习交流，如需转载请访问原文
+  </div>
+</div>
+</body>
+</html>
