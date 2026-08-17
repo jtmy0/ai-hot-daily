@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="referrer" content="no-referrer">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'unsafe-inline'; img-src data:; connect-src 'none'; frame-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'; frame-ancestors 'none'">
+<title>Protobuf finally has LSP support. You’re welcome. - AI热点快照</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','PingFang SC','Microsoft YaHei',sans-serif;background:#f8f9fa;color:#1a1a2e;line-height:1.8;min-height:100vh}
+.top-bar{background:#fff;border-bottom:1px solid #e5e7eb;padding:10px 20px;display:flex;align-items:center;gap:12px;position:sticky;top:0;z-index:10}
+.top-bar .logo{font-size:14px;font-weight:700;color:#0d9488}
+.top-bar .sep{color:#d1d5db}
+.top-bar .source{font-size:13px;color:#6b7280}
+.top-bar .back{margin-left:auto;font-size:13px;color:#0d9488;text-decoration:none}
+.top-bar .back:hover{text-decoration:underline}
+.container{max-width:760px;margin:0 auto;padding:40px 24px 80px}
+.article-title{font-size:1.8rem;font-weight:700;line-height:1.35;margin-bottom:16px;color:#1a1a2e}
+.article-meta{display:flex;flex-wrap:wrap;gap:16px;padding-bottom:20px;margin-bottom:28px;border-bottom:1px solid #e5e7eb;font-size:14px;color:#6b7280}
+.article-meta a{color:#0d9488;text-decoration:none}
+.article-meta a:hover{text-decoration:underline}
+.article-body{font-size:16.5px;line-height:1.85;color:#1f2937}
+.article-body p{margin-bottom:1.2em;text-align:justify}
+.article-body h1,.article-body h2,.article-body h3{font-size:1.25em;font-weight:700;margin:1.6em 0 0.6em;color:#1a1a2e}
+.article-body a{color:#0d9488}
+.article-body pre,.article-body code{background:#f1f5f9;border-radius:4px;font-size:0.9em}
+.article-body pre{padding:16px;overflow-x:auto;margin:1em 0}
+.article-body code{padding:2px 6px}
+.article-body blockquote{border-left:3px solid #0d9488;padding-left:16px;color:#4b5563;margin:1em 0}
+.article-body ul,.article-body ol{padding-left:1.6em;margin-bottom:1em}
+.article-body li{margin-bottom:0.4em}
+.article-body figure{margin:1.2em 0}
+.article-body figcaption{font-size:13px;color:#9ca3af;text-align:center;margin-top:6px}
+.footer{margin-top:48px;padding-top:20px;border-top:1px solid #e5e7eb;font-size:13px;color:#9ca3af;text-align:center}
+</style>
+</head>
+<body>
+<div class="top-bar">
+  <a class="back" href="../" style="font-size:13px;color:#6b7280;text-decoration:none">← 日报首页</a>
+  <span class="sep">|</span>
+  <span class="logo">AI热点快照</span>
+  <span class="sep">|</span>
+  <span class="source">Buf</span>
+  <a class="back" href="https://buf.build/blog/protobuf-lsp" target="_blank" rel="noopener noreferrer">查看原文 ↗</a>
+</div>
+<div class="container">
+  <h1 class="article-title">Protobuf finally has LSP support. You’re welcome.</h1>
+  <div class="article-meta">
+    <span>作者: Buf</span>
+    <span>来源: Buf</span>
+    <span>快照日期: 2026-08-17</span>
+  </div>
+  <div class="article-body"><div><p>Buf is proud to announce the first fully-featured, production-grade LSP server for Protobuf.</p>
+<p>The <a href="https://microsoft.github.io/language-server-protocol/" target="_blank" rel="noopener noreferrer nofollow">Language Server Protocol</a> is the standard API for integrating language support into your favorite IDE or text editor, such as VSCode, IntelliJ, or Neovim. An LSP server provides the smarts that power go to definition, code completion, finding references, and semantics-aware syntax highlighting.</p>
+<p>Before today, Protobuf lacked the same LSP support other major programming languages enjoy. We don’t want to overstate our own work, but <strong>this is a game-changer for Protobuf development</strong>: Protobuf now has modern IDE support for the first time, all powered by the <a href="https://buf.build/product/cli" target="_blank" rel="noopener noreferrer nofollow">Buf CLI</a>.</p>
+<p>At Buf, we believe that Protobuf is the best schema language, thanks to its established ecosystem of libraries and tools. Protobuf shouldn’t just be the smart choice; it should be the easiest choice too. This is why we’re releasing the Buf LSP server, as part of our family of tools that complete the Protobuf ecosystem, including <a href="https://github.com/bufbuild/protobuf-es" target="_blank" rel="noopener noreferrer nofollow">Protobuf-ES</a> (used in Chromium!), <a href="https://protovalidate.com/" target="_blank" rel="noopener noreferrer nofollow">Protovalidate</a>, <a href="https://connectrpc.com/" target="_blank" rel="noopener noreferrer nofollow">ConnectRPC</a>, and the <a href="https://buf.build/product/bsr" target="_blank" rel="noopener noreferrer nofollow">Buf Schema Registry</a>. No matter your project or use-case, developing with Protobuf should be the easy, <em>obvious</em> choice.</p>
+<p>Here’s how you can try it out!</p>
+<h2>Installing the Buf LSP</h2>
+<p><a href="https://code.visualstudio.com/" target="_blank" rel="noopener noreferrer nofollow">VSCode</a> is one of the most popular graphical editors available, and it has stellar LSP support (LSP originated with VSCode). To use the Buf LSP, just install the <a href="https://marketplace.visualstudio.com/items?itemName=bufbuild.vscode-buf" target="_blank" rel="noopener noreferrer nofollow">Buf extension</a>. This will automatically use your installed version of the <a href="https://buf.build/product/cli" target="_blank" rel="noopener noreferrer nofollow">Buf CLI</a> (which bundles the LSP server), or install one if you need it.</p>
+<p><a href="https://neovim.io/" target="_blank" rel="noopener noreferrer nofollow">Neovim</a> is Buf engineers’ favorite editor, and the Buf LSP works great with it, too. All you need to do is install the Buf CLI, and configure Neovim to use it as an LSP server.</p>
+<ol>
+<li>Make sure you’ve installed the <code>nvim-lspconfig</code> repository, which provides default LSP config options. Follow the instructions <a href="https://github.com/neovim/nvim-lspconfig?tab=readme-ov-file#install" target="_blank" rel="noopener noreferrer nofollow">here</a>.</li>
+<li>Add <code>lspconfig.buf_ls.setup {}</code> to your <code>.nvimrc</code> .</li>
+</ol>
+<p>Alternatively, you can add the following somewhere in <code>init.lua</code> (or another config file, if you like):</p>
+<figure><pre><code><span><span>vim.</span><span>lsp</span><span>.</span><span>config</span><span>(</span><span>'buf-lsp'</span><span>, {</span></span>
+<span><span>    cmd </span><span>=</span><span> { </span><span>'buf'</span><span>, </span><span>'lsp'</span><span>, </span><span>'serve' </span><span>},</span></span>
+<span><span>    filetypes </span><span>=</span><span> { </span><span>'proto' </span><span>},</span></span>
+<span><span>    root_markers </span><span>=</span><span> { </span><span>'buf.yaml'</span><span>, </span><span>'.git' </span><span>},</span></span>
+<span><span>})</span></span></code></pre></figure>
+<p>Then, you can enable it with <code>vim.lsp.enable('buf-lsp')</code> in your <code>.nvimrc</code> .</p>
+<p>Learn more about LSP and Neovim <a href="https://neovim.io/doc/user/lsp.html" target="_blank" rel="noopener noreferrer nofollow">here</a>.</p>
+<p>If you’re using another editor, first find out how LSP integration works, and just make sure the <code>buf lsp serve</code> command gets run to spawn the server.</p>
+<h2>Leveraging our toolchain</h2>
+<p>Buf already maintains a Protobuf compiler frontend (the part that parses files and calls plugins, like <code>protoc</code>), which we call <a href="https://github.com/bufbuild/protocompile" target="_blank" rel="noopener noreferrer nofollow"><code>protocompile</code></a>. Our implementation isn’t just fully-compliant, but it is much faster and more flexible than <code>protoc</code>. Our compiler is so good that even Google is using it alongside <code>protoc</code> in some parts of its massive codebase.</p>
+<p>To build the Buf LSP, we’ve taken <code>protocompile</code> to the next level. We’ve developed a brand-new, <a href="https://rustc-dev-guide.rust-lang.org/query.html" target="_blank" rel="noopener noreferrer nofollow">query-driven</a> frontend which enables incremental compilation and much better diagnostics. For example, unlike <code>protoc</code>, we correctly diagnose a duplicate <code>repeated</code> modifier:</p>
+<figure><pre><code><span><span>error: encountered more than one type modifier</span></span>
+<span><span>  --&gt; testdata/parser/type/repeated.proto:23:14</span></span>
+<span><span>   |</span></span>
+<span><span>23 |     repeated repeated M x4 = 4;</span></span>
+<span><span>   |     -------- ^^^^^^^^ help: consider removing this</span></span>
+<span><span>   |     |</span></span>
+<span><span>   |     first one is here</span></span></code></pre></figure>
+<p>We designed a new AST and intermediate representation for precisely diagnosing these errors, instead of using <code>FileDescriptorProto</code>. Its flexibility makes it easy for us to implement new language features as they are added to Protobuf, such as upcoming features in Editions 2024. It is also memory-efficient, so it can handle workspaces that include very large Buf modules.</p>
+<h2>Our commitment</h2>
+<p>Our work on the Buf LSP is not done. We are always improving our diagnostics, and we’re planning to add more features to the LSP server, too:</p>
+<ul>
+<li>Adding <code>import</code>s as an automatic fix.</li>
+<li>Tighter integration with <code>buf.yaml</code> (such as automatically importing modules).</li>
+<li>Code completion and reference lookup for custom options.</li>
+<li>Automatic suggestion of field/enum numbers.</li>
+<li>Dedicated Protovalidate support, including syntax highlighting for CEL snippets.</li>
+</ul>
+<p>At Buf, we will always push the boundary of what <em>you</em> can accomplish with Protobuf, enabling schema-driven development for all!</p>
+<p>If you want help enforcing standards on your organization’s data, <a href="https://buf.build/contact" target="_blank" rel="noopener noreferrer nofollow">contact us</a> to see if Buf can help. If building excellent developer tooling excites you, check out our <a href="https://buf.build/careers" target="_blank" rel="noopener noreferrer nofollow">careers page</a>!</p></div></div>
+  <div class="footer">
+    本文由 AI热点监控系统自动抓取 · 内容版权归原作者/网站所有<br>
+    快照仅用于学习交流，如需转载请访问原文
+  </div>
+</div>
+</body>
+</html>
