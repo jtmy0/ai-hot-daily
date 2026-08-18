@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="referrer" content="no-referrer">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; script-src 'unsafe-inline'; img-src data:; connect-src 'none'; base-uri 'none'; form-action 'none'; frame-ancestors 'none'">
+<title>AI 热点日报 — 2026年8月18日</title>
+<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg-outer: #2d2d2d; --bg-page: #f8f6f1; --text-primary: #1a1a1a;
+  --text-secondary: #555; --text-muted: #999;
+  --tab-1: #98d4bb; --tab-2: #c7b8ea; --tab-3: #f4b8c5; --tab-4: #a8d8ea; --tab-5: #ffe6a7; --tab-6: #d4c5b9;
+  --font-display: 'Bodoni Moda', serif; --font-body: 'DM Sans', sans-serif; --border: #e0dcd4;
+  --expand-bg: #f0ede8;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html, body { height: 100%; overflow-x: hidden; }
+body { background: var(--bg-outer); font-family: var(--font-body); min-height: 100vh; display: flex; justify-content: center; align-items: flex-start; padding: clamp(1rem, 3vw, 3rem); }
+.notebook { position: relative; background: var(--bg-page); width: min(92vw, 920px); border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1), 0 20px 60px rgba(0,0,0,0.3); padding: clamp(2rem, 5vw, 4rem); padding-right: clamp(2.5rem, 6vw, 5rem); animation: pageIn 0.6s ease-out; }
+.notebook::before { content: ''; position: absolute; left: clamp(14px, 2vw, 24px); top: 0; bottom: 0; width: 2px; background: repeating-linear-gradient(to bottom, transparent 0px, transparent 30px, var(--border) 30px, var(--border) 32px); }
+.hole { position: absolute; left: clamp(8px, 1.5vw, 16px); width: clamp(10px, 1.5vw, 16px); height: clamp(10px, 1.5vw, 16px); border-radius: 50%; background: var(--bg-outer); border: 1.5px solid #bbb; }
+.hole:nth-child(1) { top: 12%; } .hole:nth-child(2) { top: 50%; } .hole:nth-child(3) { top: 88%; }
+
+.tabs { position: absolute; right: 0; top: 10%; display: flex; flex-direction: column; gap: 4px; z-index: 10; }
+.tab { padding: clamp(0.3rem, 0.8vw, 0.6rem) clamp(0.5rem, 1vw, 0.8rem); border-radius: 6px 0 0 6px; font-size: clamp(0.5rem, 1vh, 0.7rem); font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: rgba(0,0,0,0.6); writing-mode: vertical-rl; text-orientation: mixed; min-height: clamp(40px, 6vh, 60px); display: flex; align-items: center; justify-content: center; cursor: pointer; transition: transform 0.2s; border: none; background: none; font-family: inherit; }
+.tab:hover { transform: translateX(-4px); }
+.tab.active { transform: translateX(-6px); box-shadow: -2px 0 8px rgba(0,0,0,0.1); }
+.tab[data-cat="all"] { background: var(--text-primary); color: #fff; }
+.tab[data-cat="ai"] { background: var(--tab-1); }
+.tab[data-cat="dev"] { background: var(--tab-2); }
+.tab[data-cat="sec"] { background: var(--tab-3); }
+.tab[data-cat="biz"] { background: var(--tab-4); }
+.tab[data-cat="auto"] { background: var(--tab-5); }
+.tab[data-cat="other"] { background: var(--tab-6); }
+
+.header { margin-bottom: clamp(0.8rem, 2vw, 1.5rem); padding-bottom: clamp(0.6rem, 1.2vw, 1rem); border-bottom: 2px solid var(--text-primary); }
+.header h1 { font-family: var(--font-display); font-size: clamp(1.5rem, 4vw, 2.8rem); font-weight: 700; letter-spacing: -0.02em; color: var(--text-primary); }
+.header .subtitle { display: flex; justify-content: space-between; align-items: center; margin-top: 0.4rem; flex-wrap: wrap; gap: 0.5rem; }
+.header .date { font-family: var(--font-display); font-style: italic; font-size: clamp(0.7rem, 1.1vw, 0.95rem); color: var(--text-secondary); }
+.header .controls { display: flex; gap: 0.5rem; }
+.header .controls button { font-family: var(--font-body); font-size: clamp(0.55rem, 0.85vw, 0.72rem); padding: 0.25rem 0.6rem; border: 1px solid var(--border); border-radius: 4px; background: #fff; color: var(--text-secondary); cursor: pointer; transition: all 0.2s; }
+.header .controls button:hover { background: var(--text-primary); color: #fff; border-color: var(--text-primary); }
+.back-link { display: inline-flex; align-items: center; gap: 0.3em; font-size: clamp(0.6rem, 0.9vw, 0.75rem); color: var(--text-muted); text-decoration: none; margin-bottom: clamp(0.4rem, 0.8vw, 0.6rem); transition: color 0.2s; }
+.back-link:hover { color: var(--text-primary); }
+
+.entries { padding-left: clamp(0.5rem, 2vw, 1.5rem); }
+.entry { border-bottom: 1px solid var(--border); animation: fadeIn 0.4s ease-out backwards; transition: opacity 0.3s; }
+.entry.hidden { display: none; }
+.entry .entry-head { display: flex; gap: clamp(0.6rem, 1.5vw, 1.2rem); padding: clamp(0.6rem, 1.2vw, 1rem) 0; cursor: pointer; user-select: none; transition: padding-left 0.2s; }
+.entry .entry-head:hover { padding-left: 4px; }
+.entry .bullet { flex-shrink: 0; width: clamp(6px, 0.8vw, 8px); height: clamp(6px, 0.8vw, 8px); border-radius: 50%; margin-top: 0.55em; transition: transform 0.2s; }
+.entry.expanded .bullet { transform: scale(1.5); }
+.entry .info { flex: 1; min-width: 0; }
+.entry .info h3 { font-family: var(--font-body); font-size: clamp(0.8rem, 1.3vw, 1.05rem); font-weight: 500; line-height: 1.45; color: var(--text-primary); margin-bottom: 0.25rem; }
+.entry .info .meta { font-size: clamp(0.6rem, 0.9vw, 0.75rem); color: var(--text-muted); font-style: italic; }
+.entry .info .badge-icon { font-size: 0.85em; margin-right: 0.1em; }
+.entry .expand-icon { flex-shrink: 0; width: 20px; height: 20px; display: flex; align-items: center; justify-content: center; color: var(--text-muted); font-size: 12px; transition: transform 0.3s ease; margin-top: 0.3em; }
+.entry.expanded .expand-icon { transform: rotate(180deg); }
+
+.entry .detail-wrap { max-height: 0; overflow: hidden; transition: max-height 0.5s cubic-bezier(0.16, 1, 0.3, 1); }
+.entry.expanded .detail-wrap { max-height: 500px; }
+.entry .detail-inner { padding: clamp(0.5rem, 1vw, 0.8rem) 0 clamp(0.5rem, 1vw, 0.8rem) clamp(1.8rem, 3.5vw, 2.8rem); background: var(--expand-bg); border-radius: 6px; margin-bottom: clamp(0.4rem, 0.8vw, 0.6rem); border-left: 3px solid var(--border); }
+.entry .detail-inner p { font-size: clamp(0.72rem, 1.1vw, 0.9rem); line-height: 1.7; color: var(--text-secondary); }
+.entry .detail-inner p strong { color: var(--text-primary); font-weight: 600; }
+.entry .detail-inner .source-link { display: inline-flex; align-items: center; gap: 0.3em; margin-top: clamp(0.4rem, 0.7vw, 0.6rem); font-size: clamp(0.6rem, 0.9vw, 0.75rem); color: var(--text-muted); text-decoration: none; padding: 0.2rem 0.5rem; border: 1px solid var(--border); border-radius: 4px; transition: all 0.2s; }
+.entry .detail-inner .source-link:hover { color: var(--text-primary); border-color: var(--text-primary); background: rgba(0,0,0,0.03); }
+
+.footer { margin-top: clamp(0.8rem, 1.5vw, 1.5rem); padding-top: clamp(0.5rem, 1vw, 1rem); border-top: 1px solid var(--border); font-size: clamp(0.55rem, 0.85vw, 0.7rem); color: var(--text-muted); font-family: var(--font-display); font-style: italic; text-align: center; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem; }
+.footer .badge { display: inline-flex; align-items: center; gap: 0.3em; padding: 0.15rem 0.5rem; border: 1px solid var(--border); border-radius: 999px; font-style: normal; font-size: clamp(0.5rem, 0.75vw, 0.6rem); }
+
+@keyframes pageIn { from { opacity: 0; transform: scale(0.97); } to { opacity: 1; transform: scale(1); } }
+@keyframes fadeIn { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
+@media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.1s !important; } }
+</style>
+</head>
+<body>
+  <div class="notebook">
+    <div class="hole"></div><div class="hole"></div><div class="hole"></div>
+    <div class="tabs" id="tabs">
+      <button class="tab active" data-cat="all" title="全部">ALL</button>
+      <button class="tab" data-cat="ai" title="AI/大模型">AI</button>
+      <button class="tab" data-cat="dev" title="开发工具">DEV</button>
+      <button class="tab" data-cat="sec" title="安全">SEC</button>
+      <button class="tab" data-cat="biz" title="商业">BIZ</button>
+      <button class="tab" data-cat="auto" title="自动化">AUTO</button>
+      <button class="tab" data-cat="other" title="其他">OTHER</button>
+    </div>
+    <div class="header">
+      <a class="back-link" href="./">← 归档首页</a>
+      <h1>AI 热点日报</h1>
+      <div class="subtitle">
+        <span class="date">2026年8月18日，星期二 · 道法术器解读</span>
+        <div class="controls">
+          <button id="expandAll">展开全部</button>
+          <button id="collapseAll">收起全部</button>
+        </div>
+      </div>
+    </div>
+    <div class="entries" id="entries">
+      <div class="entry" data-cat="ai" style="animation-delay: 0.1s;">
+        <div class="entry-head">
+          <div class="bullet" style="background: var(--tab-1);"></div>
+          <div class="info">
+            <h3>Cursor推代码托管，垂直整合加速</h3>
+            <div class="meta">Hacker News 热门（buzzing.cc 中文翻译） · 🔥 100 · 5小时前</div>
+          </div>
+          <div class="expand-icon">▼</div>
+        </div>
+        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：AI编程工具正从单点功能向<strong>全链路开发平台</strong>演进，代码托管是开发者工作流的核心锚点，掌握入口即掌握生态。
+<strong>法</strong>：垂直整合策略——围绕核心用户高频场景，向上游或下游延伸服务，构建数据闭环和迁移壁垒，而非单纯功能叠加。
+<strong>术</strong>：评估现有代码库迁移成本，关注其对GitHub Actions、PR流程的兼容性；在测试项目中并行使用，对比CI/CD效率与协作体验；警惕单一供应商锁定，保留双平台同步机制。
+<strong>器</strong>：Cursor Origin、GitHub、GitLab、Git CLI。</p>
+<a class="source-link" href="https://cursor.com/changelog/origin-code-hosting" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
+      </div>
+      <div class="entry" data-cat="ai" style="animation-delay: 0.18s;">
+        <div class="entry-head">
+          <div class="bullet" style="background: var(--tab-1);"></div>
+          <div class="info">
+            <h3>AI一键生成视频，内容生产平民化</h3>
+            <div class="meta">GitHub Trending · 🔥 100 · 11小时前</div>
+          </div>
+          <div class="expand-icon">▼</div>
+        </div>
+        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：内容生产的边际成本正趋近于零，<strong>创意和选题</strong>取代制作技术成为核心稀缺资源，短视频供给将指数级膨胀。
+<strong>法</strong>：自动化流水线思维——将复杂任务拆解为可编排的模块（脚本、配音、剪辑），用AI替换每个环节的人力，实现规模化产出。
+<strong>术</strong>：明确目标受众与内容定位，输入高精度关键词或主题；批量生成测试素材，建立质量筛选标准（如完播率、互动率）；结合热点日历规划内容矩阵，用数据反馈优化提示词模板。
+<strong>器</strong>：MoneyPrinterTurbo、ChatGPT、剪映、OBS、短视频平台创作者后台。</p>
+<a class="source-link" href="https://github.com/harry0703/MoneyPrinterTurbo" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
+      </div>
+      <div class="entry" data-cat="ai" style="animation-delay: 0.26s;">
+        <div class="entry-head">
+          <div class="bullet" style="background: var(--tab-1);"></div>
+          <div class="info">
+            <h3>开源AI渗透测试，安全左移成趋势</h3>
+            <div class="meta">GitHub Trending · 🔥 75 · 11小时前</div>
+          </div>
+          <div class="expand-icon">▼</div>
+        </div>
+        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：安全测试正从上线前的独立环节，<strong>左移至开发全流程</strong>，AI将安全能力嵌入代码生成与CI/CD，实现漏洞的即时发现与修复。
+<strong>法</strong>：自动化安全内建——将安全规则和攻击模式编码化，通过工具在开发阶段持续扫描，降低修复成本，而非依赖事后人工审计。
+<strong>术</strong>：在CI管道中集成该工具，对每次提交自动运行扫描；优先测试认证、授权、注入等OWASP Top 10风险点；将扫描结果与缺陷跟踪系统关联，设定严重级别阈值阻断发布；定期更新工具规则库以应对新型攻击。
+<strong>器</strong>：strix、OWASP ZAP、Burp Suite、GitLab CI、Jira。</p>
+<a class="source-link" href="https://github.com/usestrix/strix" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
+      </div>
+      <div class="entry" data-cat="ai" style="animation-delay: 0.33999999999999997s;">
+        <div class="entry-head">
+          <div class="bullet" style="background: var(--tab-1);"></div>
+          <div class="info">
+            <h3>GPT-5.6降价50%</h3>
+            <div class="meta">Hacker News · 🔥 64 · 6小时前</div>
+          </div>
+          <div class="expand-icon">▼</div>
+        </div>
+        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：大模型定价权正从技术领先转向规模效应，<strong>降价是算力成本下降与竞争白热化的必然结果</strong>，长期趋势是推理成本趋近于零，API调用成为基础设施。
+<strong>法</strong>：通过降价抢占市场份额，以量补价，建立开发者生态锁定用户，适用于所有标准化数字产品。
+<strong>术</strong>：评估现有应用对GPT-5.6的依赖度，在降价窗口期迁移高调用量场景；对比竞品（如Claude、Gemini）的性价比，重新设计定价策略；监控API成本占比，优化prompt长度与缓存命中率。
+<strong>器</strong>：OpenAI API、LangSmith、Cloudflare Workers。</p>
+<a class="source-link" href="https://openrouter.ai/openai/gpt-5.6-sol" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
+      </div>
+      <div class="entry" data-cat="sec" style="animation-delay: 0.42000000000000004s;">
+        <div class="entry-head">
+          <div class="bullet" style="background: var(--tab-3);"></div>
+          <div class="info">
+            <h3>DuckDB v2.0预览</h3>
+            <div class="meta">Hacker News · 🔥 94 · 13小时前</div>
+          </div>
+          <div class="expand-icon">▼</div>
+        </div>
+        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：数据分析正从集中式数仓转向嵌入式、单机高性能引擎，<strong>DuckDB的演进代表OLAP走向轻量化和开发者友好</strong>，长期趋势是数据工具嵌入应用进程。
+<strong>法</strong>：以极简部署和低运维成本替代传统数仓，适用于中小规模分析场景，核心是降低使用门槛。
+<strong>术</strong>：将现有ETL中的小规模聚合查询迁移至DuckDB，减少对远程数仓的依赖；利用v2.0新特性（如扩展的窗口函数）重写复杂SQL；在CI/CD中集成DuckDB做数据测试，加速迭代。
+<strong>器</strong>：DuckDB v2.0、Parquet、dbt-core。</p>
+<a class="source-link" href="https://duckdb.org/2026/08/17/duckdb-20-highlights" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
+      </div>
+      <div class="entry" data-cat="ai" style="animation-delay: 0.5s;">
+        <div class="entry-head">
+          <div class="bullet" style="background: var(--tab-1);"></div>
+          <div class="info">
+            <h3>AI自动修复致Jira失陷</h3>
+            <div class="meta">Hacker News · 🔥 75 · 13小时前</div>
+          </div>
+          <div class="expand-icon">▼</div>
+        </div>
+        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：AI生成代码的自动修复功能引入<strong>新型供应链攻击面</strong>，安全漏洞从代码缺陷扩展到AI行为不可预测性，长期趋势是AI安全治理必须前置。
+<strong>法</strong>：对AI生成代码执行与人工代码同等的安全审查，<strong>建立AI操作的可审计、可回滚机制</strong>，适用于所有引入AI开发工具的组织。
+<strong>术</strong>：禁用Copilot Autofix对生产环境代码的自动合并权限；对AI建议的补丁强制运行SAST和依赖扫描；为Jira等内部系统配置独立的访问令牌和最小权限策略。
+<strong>器</strong>：GitHub Copilot、Snyk、Jira、Vault。</p>
+<a class="source-link" href="https://www.wiz.io/blog/red-agent-snowflake-copilot-cicd-bug" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
+      </div>
+      <div class="entry" data-cat="ai" style="animation-delay: 0.58s;">
+        <div class="entry-head">
+          <div class="bullet" style="background: var(--tab-1);"></div>
+          <div class="info">
+            <h3>虚假智库误导AI</h3>
+            <div class="meta">Hacker News · 🔥 61 · 6小时前</div>
+          </div>
+          <div class="expand-icon">▼</div>
+        </div>
+        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：AI系统对信息源的信任机制存在结构性漏洞，<strong>对抗性信息污染将成为长期安全挑战</strong>。
+<strong>法</strong>：任何依赖外部文本训练或检索的系统，都需要建立来源可信度评估与交叉验证机制，而非默认权威机构内容为真。
+<strong>术</strong>：对高影响决策场景，强制要求多源独立验证；对公开网页内容增加域名、作者、历史记录等元数据权重；定期用已知虚假样本测试模型防御能力。
+<strong>器</strong>：OpenAI、Anthropic等模型API的内容审核接口，以及FactCheck.org等事实核查平台。</p>
+<a class="source-link" href="https://responsiblestatecraft.org/israel-influence-chatgpt/" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
+      </div>
+      <div class="entry" data-cat="ai" style="animation-delay: 0.66s;">
+        <div class="entry-head">
+          <div class="bullet" style="background: var(--tab-1);"></div>
+          <div class="info">
+            <h3>AI记忆持久化方案</h3>
+            <div class="meta">GitHub Trending · 🔥 59 · 11小时前</div>
+          </div>
+          <div class="expand-icon">▼</div>
+        </div>
+        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：<strong>上下文窗口的扩展无法替代结构化长期记忆</strong>，跨会话状态管理是AI代理从工具走向协作伙伴的关键瓶颈。
+<strong>法</strong>：将记忆分为工作记忆、情景记忆和语义记忆三层，采用显式存储与检索增强生成（RAG）结合，而非依赖模型隐式参数。
+<strong>术</strong>：为CLI工具设计持久化存储接口，记录关键决策与用户偏好；实现会话间状态压缩与摘要；提供清晰的记忆导出/导入格式以支持工具切换。
+<strong>器</strong>：ai-memory库、SQLite/Redis存储、LangChain记忆模块、向量数据库如Chroma。</p>
+<a class="source-link" href="https://github.com/akitaonrails/ai-memory" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
+      </div>
+      <div class="entry" data-cat="ai" style="animation-delay: 0.74s;">
+        <div class="entry-head">
+          <div class="bullet" style="background: var(--tab-1);"></div>
+          <div class="info">
+            <h3>英伟达建AI工厂</h3>
+            <div class="meta">X：Jensen Huang (@JensenHuang) · 🔥 99 · 14小时前</div>
+          </div>
+          <div class="expand-icon">▼</div>
+        </div>
+        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：<strong>AI算力需求正从数据中心向专用能源基础设施延伸</strong>，算力与能源的耦合将成为新基建的核心逻辑。
+<strong>法</strong>：垂直整合模式（芯片+系统+能源）可降低供应链风险并提升交付确定性，适用于重资产、高能耗的科技基础设施项目。
+<strong>术</strong>：关注合作中能源采购协议与电网接入方案；评估工厂选址对当地电力价格和碳排放政策的影响；跟踪OpenAI对算力需求的长期承诺是否锁定。
+<strong>器</strong>：NVIDIA DGX/HGX系统、SB Energy的太阳能与储能设施、OpenAI的模型训练平台。</p>
+<a class="source-link" href="https://x.com/JensenHuang/status/2089331487342829862" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
+      </div>
+      <div class="entry" data-cat="auto" style="animation-delay: 0.82s;">
+        <div class="entry-head">
+          <div class="bullet" style="background: var(--tab-5);"></div>
+          <div class="info">
+            <h3>宇树科技宣布股票将于 2026 年 8 …</h3>
+            <div class="meta">IT之家（RSS） · 🔥 99 · 15小时前</div>
+          </div>
+          <div class="expand-icon">▼</div>
+        </div>
+        <div class="detail-wrap"><div class="detail-inner"><a class="source-link" href="https://www.ithome.com/0/990/812.htm" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
+      </div>
+      <div class="entry" data-cat="ai" style="animation-delay: 0.9s;">
+        <div class="entry-head">
+          <div class="bullet" style="background: var(--tab-1);"></div>
+          <div class="info">
+            <h3>AI;DR (AI; Didn</h3>
+            <div class="meta">Hacker News · 🔥 100 · 7小时前</div>
+          </div>
+          <div class="expand-icon">▼</div>
+        </div>
+        <div class="detail-wrap"><div class="detail-inner"><a class="source-link" href="https://www.rickmanelius.com/p/aidr-ai-didnt-read" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
+      </div>
+      <div class="entry" data-cat="ai" style="animation-delay: 0.98s;">
+        <div class="entry-head">
+          <div class="bullet" style="background: var(--tab-1);"></div>
+          <div class="info">
+            <h3>404 Media 通过在一本珍本图书中…</h3>
+            <div class="meta">Hacker News 热门（buzzing.cc 中文翻译） · 🔥 100 · 8小时前</div>
+          </div>
+          <div class="expand-icon">▼</div>
+        </div>
+        <div class="detail-wrap"><div class="detail-inner"><a class="source-link" href="https://www.404media.co/we-tracked-a-shipment-of-rare-books-it-ended-at-an-amazon-ai-training-facility" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
+      </div>
+      <div class="entry" data-cat="ai" style="animation-delay: 1.06s;">
+        <div class="entry-head">
+          <div class="bullet" style="background: var(--tab-1);"></div>
+          <div class="info">
+            <h3>双向钢人论证法</h3>
+            <div class="meta">公众号：数字生命卡兹克 · 🔥 100 · 3小时前</div>
+          </div>
+          <div class="expand-icon">▼</div>
+        </div>
+        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：AI输出的质量上限取决于提问的思维框架，而非模型参数。<strong>对抗性思辨是逼近本质的永恒路径</strong>，从苏格拉底诘问到图灵测试均如此。
+<strong>法</strong>：通过强制正反两方极端立场（钢人）的反复交锋，消除认知偏差，挖掘单一视角下被忽略的假设与漏洞。此策略适用于任何决策分析、产品评审或战略推演场景。
+<strong>术</strong>：1. 明确问题后，要求AI分别扮演最坚定的支持者与最激烈的反对者，各自给出最强论据。2. 让双方针对对方论点进行第二轮反驳，并补充新证据。3. 最后要求AI综合双方核心冲突点，提炼出超越两派的第三层洞察。
+<strong>器</strong>：Claude、GPT-4等支持长上下文与多轮对话的大模型，配合结构化Prompt模板。</p>
+<a class="source-link" href="https://mp.weixin.qq.com/s?__biz=MzIyMzA5NjEyMA%3D%3D&amp;mid=2647685329&amp;idx=1&amp;sn=9471278dc489641c097b228912965ed4" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
+      </div>
+      <div class="entry" data-cat="ai" style="animation-delay: 1.1400000000000001s;">
+        <div class="entry-head">
+          <div class="bullet" style="background: var(--tab-1);"></div>
+          <div class="info">
+            <h3>零信任AI智能体构建</h3>
+            <div class="meta">Google Developers Blog（RSS） · 🔥 100 · 4小时前</div>
+          </div>
+          <div class="expand-icon">▼</div>
+        </div>
+        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：AI智能体的自主性越强，其权限失控的风险越大。<strong>安全边界必须前置设计，而非事后补救</strong>，这是从网络安全领域迁移到AI领域的铁律。
+<strong>法</strong>：将零信任架构（默认不信任、持续验证、最小权限）应用于智能体开发，把每个工具调用视为一次独立的身份认证与授权事件。此方法论可复用于任何涉及外部API或敏感数据的自动化流程。
+<strong>术</strong>：1. 为智能体配置独立的服务账号，禁止使用个人高权限凭证。2. 对每个工具调用实施上下文感知的权限校验（如时间、数据范围、操作类型）。3. 启用全量审计日志，对异常行为设置实时阻断与告警。
+<strong>器</strong>：Google Agent Development Kit (ADK)、OAuth 2.0/OIDC协议、云IAM策略引擎、可观测性平台（如Cloud Logging）。</p>
+<a class="source-link" href="https://developers.googleblog.com/build-zero-trust-ai-agents-with-googles-agent-development-kit" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
+      </div>
+      <div class="entry" data-cat="ai" style="animation-delay: 1.2200000000000002s;">
+        <div class="entry-head">
+          <div class="bullet" style="background: var(--tab-1);"></div>
+          <div class="info">
+            <h3>侵入式AI禁用指南</h3>
+            <div class="meta">Hacker News 热门（buzzing.cc 中文翻译） · 🔥 99 · 9小时前</div>
+          </div>
+          <div class="expand-icon">▼</div>
+        </div>
+        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：AI功能从云端下沉至操作系统与浏览器是必然趋势，但<strong>用户对数据主权与自主控制权的需求同样长期存在</strong>。技术普及与用户抗拒将长期并行。
+<strong>法</strong>：面对平台强制集成的AI功能，采用分层防御策略：先识别功能入口，再通过系统设置、组策略、扩展插件等层级逐一关闭或替换。此方法适用于任何预装软件或默认开启的服务。
+<strong>术</strong>：1. 在Windows设置中关闭“Copilot”及“建议操作”，通过组策略禁用Edge侧边栏AI。2. 在Chrome/Firefox中禁用或替换内置AI助手，安装uBlock Origin等拦截器屏蔽相关请求。3. 检查各应用设置中的“AI功能”或“个性化体验”选项，统一关闭数据收集开关。
+<strong>器</strong>：Windows组策略编辑器、浏览器扩展（uBlock Origin、Ghostery）、系统级防火墙（如Little Snitch）、隐私清理工具（O&amp;O ShutUp10）。</p>
+<a class="source-link" href="https://www.librarian.net/notoai" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
+      </div>
+    </div>
+    <div class="footer">
+      <span>Generated by AI Hot Monitor v2 · DeepSeek · 11:01:28</span>
+      <span class="badge">💡 点击条目展开深度解读</span>
+    </div>
+  </div>
+<script>
+document.querySelectorAll('.entry .entry-head').forEach(h => h.addEventListener('click', () => h.closest('.entry').classList.toggle('expanded')));
+document.getElementById('expandAll').addEventListener('click', () => document.querySelectorAll('.entry:not(.hidden)').forEach(e => e.classList.add('expanded')));
+document.getElementById('collapseAll').addEventListener('click', () => document.querySelectorAll('.entry').forEach(e => e.classList.remove('expanded')));
+document.querySelectorAll('.tab').forEach(tab => tab.addEventListener('click', () => {
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  tab.classList.add('active');
+  const cat = tab.dataset.cat;
+  document.querySelectorAll('.entry').forEach(e => {
+    if (cat === 'all' || e.dataset.cat === cat) { e.classList.remove('hidden'); } else { e.classList.add('hidden'); e.classList.remove('expanded'); }
+  });
+}));
+document.addEventListener('keydown', e => { if (e.key === 'Escape') document.querySelectorAll('.entry').forEach(el => el.classList.remove('expanded')); });
+</script>
+</body>
+</html>
