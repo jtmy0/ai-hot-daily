@@ -60,7 +60,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','PingFang SC','Micr
 											<p><span>Mark Raasveldt and Hannes Mühleisen</span></p><p><span>2026-08-17</span>
 													
 														<span>|</span>
-														<span>15 min</span>
+														<span>16 min</span>
 													
 												</p>
 											
@@ -369,9 +369,11 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','PingFang SC','Micr
       </h2>
     
 
-<p>DuckDB v2.0 bumps the default <span>storage format version</span> to v2.0.0 (<a href="https://github.com/duckdb/duckdb/pull/22875" target="_blank" rel="noopener noreferrer nofollow">#22875</a>). The headline change is buffer-managed ART indexes (<a href="https://github.com/duckdb/duckdb/pull/21458" target="_blank" rel="noopener noreferrer nofollow">#21458</a>, <a href="https://github.com/duckdb/duckdb/pull/23605" target="_blank" rel="noopener noreferrer nofollow">#23605</a>): indexes are no longer pinned in memory, which means large indexed tables open instantly and their indexes are paged in on demand.</p>
+<p>DuckDB v2.0 bumps the default <span>storage format version</span> to v2.0.0 (<a href="https://github.com/duckdb/duckdb/pull/22875" target="_blank" rel="noopener noreferrer nofollow">#22875</a>).</p>
 
-<p>Column metadata is now loaded lazily (<a href="https://github.com/duckdb/duckdb/pull/22333" target="_blank" rel="noopener noreferrer nofollow">#22333</a>), so wide tables open faster too. The <code>DICT_FSST</code> string compression method is enabled by default (<a href="https://github.com/duckdb/duckdb/pull/23733" target="_blank" rel="noopener noreferrer nofollow">#23733</a>), deletes are stored compactly (<a href="https://github.com/duckdb/duckdb/pull/24336" target="_blank" rel="noopener noreferrer nofollow">#24336</a>), and the storage layer performs much stronger corruption validation on read. In short: databases with big indexes and wide tables open faster and use far less memory.</p>
+<p>Column metadata is now loaded lazily (<a href="https://github.com/duckdb/duckdb/pull/22333" target="_blank" rel="noopener noreferrer nofollow">#22333</a>), so wide tables open faster too. The <code>DICT_FSST</code> string compression method is enabled by default (<a href="https://github.com/duckdb/duckdb/pull/23733" target="_blank" rel="noopener noreferrer nofollow">#23733</a>), deletes are stored compactly (<a href="https://github.com/duckdb/duckdb/pull/24336" target="_blank" rel="noopener noreferrer nofollow">#24336</a>), and the storage layer performs much stronger corruption validation on read. In short: databases with big indexes and wide tables open faster and use far less memory. The new storage format also allows checkpoint vacuuming to compact tables with ART indexes by incrementally remapping entries whose row IDs change, avoiding a full index rebuild (<a href="https://github.com/duckdb/duckdb/pull/23653" target="_blank" rel="noopener noreferrer nofollow">#23653</a>).</p>
+
+<p>Later this year, ART indexes will be buffer-managed (<a href="https://github.com/duckdb/duckdb/pull/21458" target="_blank" rel="noopener noreferrer nofollow">#21458</a>, <a href="https://github.com/duckdb/duckdb/pull/23605" target="_blank" rel="noopener noreferrer nofollow">#23605</a>). This will allow ART index buffers to be evicted under memory pressure, and remove the restriction on the ART index fitting completely within memory.</p>
       <h2>
         
         <span>8. A Brand New SQL Parser</span>
@@ -437,7 +439,11 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','PingFang SC','Micr
 
 <p>So what does building an extension against the stable C API look like? Here is a complete extension: a single file that registers a vectorized scalar function, compiled once against <code>duckdb_extension.h</code>.</p>
 
-<div><pre><code><span>#include</span> <span>"duckdb_extension.h"</span><span>
+
+  
+See the C code registering function <code>add_numbers</code>. 
+
+  <div><pre><code><span>#include</span> <span>"duckdb_extension.h"</span><span>
 </span>
 <span>DUCKDB_EXTENSION_EXTERN</span>
 
@@ -468,6 +474,9 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','PingFang SC','Micr
     <span>return</span> <span>true</span><span>;</span>
 <span>}</span>
 </code></pre></div>
+
+
+<p>You can use it as follows:</p>
 
 <div><pre><code><span>LOAD</span><span> add_numbers</span><span>;</span>
 <span>SELECT</span> <span>add_numbers</span><span>(</span><span>40</span><span>,</span> <span>2</span><span>);</span>
@@ -525,6 +534,52 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','PingFang SC','Micr
 			
 			
 			
+			
+				
+					
+					
+					
+					
+
+						
+						
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div>
+	<p>
+	</p>
+
+	<div>
+		<h3>Reconciling JSON in DuckDB, One Patch at a Time</h3>
+
+		
+
+		
+			
+			<div>
+				
+					<p></p><p><span>Mustafa Khan</span></p>
+			</div>
+		
+	</div>
+</div>
+
+
+					
+					
+				
 			
 				
 			
@@ -622,52 +677,6 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','PingFang SC','Micr
 					
 				
 			
-				
-					
-					
-					
-					
-
-						
-						
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<div>
-	<p>
-	</p>
-
-	<div>
-		<h3>Announcing DuckDB 1.5.5</h3>
-
-		
-
-		
-			
-			<div>
-				
-					
-				
-				<p><span>The DuckDB team</span></p>
-			</div>
-		
-	</div>
-</div>
-
-
-					
-					
 				
 			
 				

@@ -91,7 +91,7 @@ body { background: var(--bg-outer); font-family: var(--font-body); min-height: 1
       <a class="back-link" href="./">← 归档首页</a>
       <h1>AI 热点日报</h1>
       <div class="subtitle">
-        <span class="date">2026年8月18日，星期二 · 道法术器解读</span>
+        <span class="date">2026年8月18日，星期二· 含新增 · 道法术器解读</span>
         <div class="controls">
           <button id="expandAll">展开全部</button>
           <button id="collapseAll">收起全部</button>
@@ -103,218 +103,230 @@ body { background: var(--bg-outer); font-family: var(--font-body); min-height: 1
         <div class="entry-head">
           <div class="bullet" style="background: var(--tab-1);"></div>
           <div class="info">
-            <h3>Cursor推代码托管，垂直整合加速</h3>
-            <div class="meta">Hacker News 热门（buzzing.cc 中文翻译） · 🔥 100 · 5小时前</div>
+            <h3><span class="badge-icon"> 🆕</span> AI教育安全护栏成竞争焦点</h3>
+            <div class="meta">OpenAI：官网动态（RSS · 排除企业/客户案例） · 🔥 100 · 1小时前</div>
           </div>
           <div class="expand-icon">▼</div>
         </div>
-        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：AI编程工具正从单点功能向<strong>全链路开发平台</strong>演进，代码托管是开发者工作流的核心锚点，掌握入口即掌握生态。
-<strong>法</strong>：垂直整合策略——围绕核心用户高频场景，向上游或下游延伸服务，构建数据闭环和迁移壁垒，而非单纯功能叠加。
-<strong>术</strong>：评估现有代码库迁移成本，关注其对GitHub Actions、PR流程的兼容性；在测试项目中并行使用，对比CI/CD效率与协作体验；警惕单一供应商锁定，保留双平台同步机制。
-<strong>器</strong>：Cursor Origin、GitHub、GitLab、Git CLI。</p>
-<a class="source-link" href="https://cursor.com/changelog/origin-code-hosting" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
+        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：AI产品从通用能力竞争转向<strong>垂直场景信任竞争</strong>，青少年市场本质是争夺下一代用户心智与家长信任，安全合规成为长期准入壁垒。
+<strong>法</strong>：面向敏感人群的产品需采用<strong>安全前置设计</strong>，将内容过滤、隐私保护、教育价值内嵌于产品架构，而非事后补救。
+<strong>术</strong>：1. 建立分龄内容分级与实时干预机制，覆盖学习场景的正面引导；2. 提供家长监控面板，透明化使用记录；3. 与学校课程体系对接，强化教育实用性而非娱乐性。
+<strong>器</strong>：OpenAI 的 moderation API、家长控制面板、教育内容审核系统。</p>
+<a class="source-link" href="https://openai.com/index/chatgpt-for-teens" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
       </div>
-      <div class="entry" data-cat="ai" style="animation-delay: 0.18s;">
+      <div class="entry" data-cat="sec" style="animation-delay: 0.18s;">
         <div class="entry-head">
-          <div class="bullet" style="background: var(--tab-1);"></div>
+          <div class="bullet" style="background: var(--tab-3);"></div>
           <div class="info">
-            <h3>AI一键生成视频，内容生产平民化</h3>
-            <div class="meta">GitHub Trending · 🔥 100 · 11小时前</div>
+            <h3><span class="badge-icon"> 🔄</span> 嵌入式分析引擎重塑数据栈</h3>
+            <div class="meta">Hacker News · 🔥 85 · 22小时前</div>
           </div>
           <div class="expand-icon">▼</div>
         </div>
-        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：内容生产的边际成本正趋近于零，<strong>创意和选题</strong>取代制作技术成为核心稀缺资源，短视频供给将指数级膨胀。
-<strong>法</strong>：自动化流水线思维——将复杂任务拆解为可编排的模块（脚本、配音、剪辑），用AI替换每个环节的人力，实现规模化产出。
-<strong>术</strong>：明确目标受众与内容定位，输入高精度关键词或主题；批量生成测试素材，建立质量筛选标准（如完播率、互动率）；结合热点日历规划内容矩阵，用数据反馈优化提示词模板。
-<strong>器</strong>：MoneyPrinterTurbo、ChatGPT、剪映、OBS、短视频平台创作者后台。</p>
-<a class="source-link" href="https://github.com/harry0703/MoneyPrinterTurbo" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
+        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：数据基础设施正从集中式数仓向<strong>嵌入式、单文件化</strong>演进，DuckDB 代表分析能力下沉到应用进程的长期趋势，降低数据移动成本。
+<strong>法</strong>：<strong>以嵌入式架构替代客户端-服务器模式</strong>，适用于需要本地快速分析、边缘计算或轻量部署的场景，减少运维复杂度。
+<strong>术</strong>：1. 将 DuckDB 作为应用内分析引擎，直接查询 Parquet/CSV 文件，省去ETL；2. 利用其多线程向量化执行优化小规模聚合查询；3. 评估从 SQLite 迁移的兼容性，利用新版本窗口函数与扩展生态。
+<strong>器</strong>：DuckDB v2.0、Parquet 格式、Python/R 客户端库。</p>
+<a class="source-link" href="https://duckdb.org/2026/08/17/duckdb-20-highlights" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
       </div>
       <div class="entry" data-cat="ai" style="animation-delay: 0.26s;">
         <div class="entry-head">
           <div class="bullet" style="background: var(--tab-1);"></div>
           <div class="info">
-            <h3>开源AI渗透测试，安全左移成趋势</h3>
-            <div class="meta">GitHub Trending · 🔥 75 · 11小时前</div>
+            <h3><span class="badge-icon"> 🔄</span> 大模型降价加速推理成本重构</h3>
+            <div class="meta">Hacker News · 🔥 77 · 15小时前</div>
           </div>
           <div class="expand-icon">▼</div>
         </div>
-        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：安全测试正从上线前的独立环节，<strong>左移至开发全流程</strong>，AI将安全能力嵌入代码生成与CI/CD，实现漏洞的即时发现与修复。
-<strong>法</strong>：自动化安全内建——将安全规则和攻击模式编码化，通过工具在开发阶段持续扫描，降低修复成本，而非依赖事后人工审计。
-<strong>术</strong>：在CI管道中集成该工具，对每次提交自动运行扫描；优先测试认证、授权、注入等OWASP Top 10风险点；将扫描结果与缺陷跟踪系统关联，设定严重级别阈值阻断发布；定期更新工具规则库以应对新型攻击。
-<strong>器</strong>：strix、OWASP ZAP、Burp Suite、GitLab CI、Jira。</p>
-<a class="source-link" href="https://github.com/usestrix/strix" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
+        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：大模型定价权正从<strong>稀缺性转向规模效应</strong>，推理成本随硬件优化与算法进步持续下降，降价是抢占市场份额的必然手段，长期将推动AI应用普及。
+<strong>法</strong>：<strong>以价换量</strong>策略适用于技术同质化阶段，通过降低边际成本吸引开发者，构建应用生态反哺模型迭代。
+<strong>术</strong>：1. 重新评估现有应用的成本模型，将节省的API费用投入功能扩展或用户体验优化；2. 对比新旧版本在长上下文任务中的性能差异，选择性迁移；3. 关注官方批量处理或缓存接口，进一步压缩单位成本。
+<strong>器</strong>：GPT-5.6 Sol API、成本监控仪表盘、批量推理接口。</p>
+<a class="source-link" href="https://openrouter.ai/openai/gpt-5.6-sol" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
       </div>
       <div class="entry" data-cat="ai" style="animation-delay: 0.33999999999999997s;">
         <div class="entry-head">
           <div class="bullet" style="background: var(--tab-1);"></div>
           <div class="info">
-            <h3>GPT-5.6降价50%</h3>
-            <div class="meta">Hacker News · 🔥 64 · 6小时前</div>
+            <h3><span class="badge-icon"> 🔄</span> AI修复工具反成攻击链</h3>
+            <div class="meta">Hacker News · 🔥 71 · 22小时前</div>
           </div>
           <div class="expand-icon">▼</div>
         </div>
-        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：大模型定价权正从技术领先转向规模效应，<strong>降价是算力成本下降与竞争白热化的必然结果</strong>，长期趋势是推理成本趋近于零，API调用成为基础设施。
-<strong>法</strong>：通过降价抢占市场份额，以量补价，建立开发者生态锁定用户，适用于所有标准化数字产品。
-<strong>术</strong>：评估现有应用对GPT-5.6的依赖度，在降价窗口期迁移高调用量场景；对比竞品（如Claude、Gemini）的性价比，重新设计定价策略；监控API成本占比，优化prompt长度与缓存命中率。
-<strong>器</strong>：OpenAI API、LangSmith、Cloudflare Workers。</p>
-<a class="source-link" href="https://openrouter.ai/openai/gpt-5.6-sol" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
+        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：AI辅助开发工具正从效率工具演变为攻击面，<strong>安全漏洞的自动修复机制可能被恶意利用</strong>，长期趋势是AI安全必须内嵌于开发全流程而非事后补丁。
+<strong>法</strong>：任何自动化修复工具都应遵循最小权限原则，并引入人工审核环节，<strong>将AI输出视为不可信输入</strong>，适用于所有代码生成与自动运维场景。
+<strong>术</strong>：对Copilot Autofix等工具生成的补丁执行强制代码审查；在CI/CD管道中增加针对AI生成代码的独立安全扫描；对Jira等敏感系统实施基于风险的访问控制，限制自动化工具的权限范围。
+<strong>器</strong>：GitHub Copilot Autofix、Jira、SAST工具（如Semgrep）、权限管理平台（如Okta）。</p>
+<a class="source-link" href="https://www.wiz.io/blog/red-agent-snowflake-copilot-cicd-bug" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
       </div>
-      <div class="entry" data-cat="sec" style="animation-delay: 0.42000000000000004s;">
+      <div class="entry" data-cat="ai" style="animation-delay: 0.42000000000000004s;">
         <div class="entry-head">
-          <div class="bullet" style="background: var(--tab-3);"></div>
+          <div class="bullet" style="background: var(--tab-1);"></div>
           <div class="info">
-            <h3>DuckDB v2.0预览</h3>
-            <div class="meta">Hacker News · 🔥 94 · 13小时前</div>
+            <h3><span class="badge-icon"> 🆕</span> 视觉模型能力跃迁</h3>
+            <div class="meta">Hacker News · 🔥 68 · 24小时前</div>
           </div>
           <div class="expand-icon">▼</div>
         </div>
-        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：数据分析正从集中式数仓转向嵌入式、单机高性能引擎，<strong>DuckDB的演进代表OLAP走向轻量化和开发者友好</strong>，长期趋势是数据工具嵌入应用进程。
-<strong>法</strong>：以极简部署和低运维成本替代传统数仓，适用于中小规模分析场景，核心是降低使用门槛。
-<strong>术</strong>：将现有ETL中的小规模聚合查询迁移至DuckDB，减少对远程数仓的依赖；利用v2.0新特性（如扩展的窗口函数）重写复杂SQL；在CI/CD中集成DuckDB做数据测试，加速迭代。
-<strong>器</strong>：DuckDB v2.0、Parquet、dbt-core。</p>
-<a class="source-link" href="https://duckdb.org/2026/08/17/duckdb-20-highlights" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
+        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：多模态大模型的视觉理解正从简单识别走向<strong>复杂场景推理与空间关系建模</strong>，这是通往通用人工智能的关键路径，长期将重塑所有依赖视觉输入的行业。
+<strong>法</strong>：评估视觉模型不能只看基准分数，<strong>需构建任务导向的验证集</strong>，覆盖真实业务中的模糊、遮挡、光照变化等边缘情况，此策略适用于任何AI能力选型。
+<strong>术</strong>：在核心业务场景中设计5-10个高难度视觉任务进行对比测试；关注模型对图像中文本、逻辑关系的理解能力，而非仅物体检测；预留API接口以便快速切换或集成新模型。
+<strong>器</strong>：GPT-5.6 Sol、OpenAI API、视觉测试框架（如Roboflow）、标注平台（如Labelbox）。</p>
+<a class="source-link" href="https://blog.roboflow.com/openai-gpt-5-6/" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
       </div>
       <div class="entry" data-cat="ai" style="animation-delay: 0.5s;">
         <div class="entry-head">
           <div class="bullet" style="background: var(--tab-1);"></div>
           <div class="info">
-            <h3>AI自动修复致Jira失陷</h3>
-            <div class="meta">Hacker News · 🔥 75 · 13小时前</div>
+            <h3><span class="badge-icon"> 🆕</span> 破产数据成AI养料</h3>
+            <div class="meta">Hacker News · 🔥 56 · 2小时前</div>
           </div>
           <div class="expand-icon">▼</div>
         </div>
-        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：AI生成代码的自动修复功能引入<strong>新型供应链攻击面</strong>，安全漏洞从代码缺陷扩展到AI行为不可预测性，长期趋势是AI安全治理必须前置。
-<strong>法</strong>：对AI生成代码执行与人工代码同等的安全审查，<strong>建立AI操作的可审计、可回滚机制</strong>，适用于所有引入AI开发工具的组织。
-<strong>术</strong>：禁用Copilot Autofix对生产环境代码的自动合并权限；对AI建议的补丁强制运行SAST和依赖扫描；为Jira等内部系统配置独立的访问令牌和最小权限策略。
-<strong>器</strong>：GitHub Copilot、Snyk、Jira、Vault。</p>
-<a class="source-link" href="https://www.wiz.io/blog/red-agent-snowflake-copilot-cicd-bug" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
+        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：数据资产价值已超越企业实体本身，<strong>破产清算中的非核心数据正成为AI训练的新矿藏</strong>，长期趋势是数据定价与交易将独立于企业生命周期。
+<strong>法</strong>：企业应建立数据资产清单并定期评估其外部价值，<strong>将数据视为可独立变现的战略资源</strong>，适用于所有数据密集型行业。
+<strong>术</strong>：在并购或破产场景中，优先剥离并拍卖高价值数据集；构建数据脱敏与合规审查流程，确保交易合法；探索与AI公司合作的数据授权模式，而非一次性出售。
+<strong>器</strong>：数据拍卖平台、数据脱敏工具（如Privitar）、数据资产管理系统（如Collibra）。</p>
+<a class="source-link" href="https://www.theregister.com/ai-and-ml/2026/08/18/google-buys-crashed-airline-spirits-data-at-auction-because-ai/5288962" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
       </div>
       <div class="entry" data-cat="ai" style="animation-delay: 0.58s;">
         <div class="entry-head">
           <div class="bullet" style="background: var(--tab-1);"></div>
           <div class="info">
-            <h3>虚假智库误导AI</h3>
-            <div class="meta">Hacker News · 🔥 61 · 6小时前</div>
+            <h3><span class="badge-icon"> 🔄</span> AI一键生成短视频</h3>
+            <div class="meta">GitHub Trending · 🔥 100 · 20小时前</div>
           </div>
           <div class="expand-icon">▼</div>
         </div>
-        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：AI系统对信息源的信任机制存在结构性漏洞，<strong>对抗性信息污染将成为长期安全挑战</strong>。
-<strong>法</strong>：任何依赖外部文本训练或检索的系统，都需要建立来源可信度评估与交叉验证机制，而非默认权威机构内容为真。
-<strong>术</strong>：对高影响决策场景，强制要求多源独立验证；对公开网页内容增加域名、作者、历史记录等元数据权重；定期用已知虚假样本测试模型防御能力。
-<strong>器</strong>：OpenAI、Anthropic等模型API的内容审核接口，以及FactCheck.org等事实核查平台。</p>
-<a class="source-link" href="https://responsiblestatecraft.org/israel-influence-chatgpt/" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
+        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：内容生产正从人力驱动转向<strong>算力驱动</strong>，视频制作的边际成本趋近于零，长期趋势是创意与分发成为核心壁垒，而非制作本身。
+<strong>法</strong>：将复杂流程封装为标准化流水线，用模板化降低使用门槛，适用于所有内容创作工具的普及路径。
+<strong>术</strong>：先选定垂直领域（如产品介绍、知识科普），配置好脚本模板和素材库；再通过API批量生成测试内容，监测完播率与转化数据；最后迭代优化关键词与画面匹配逻辑。
+<strong>器</strong>：MoneyPrinterTurbo、FFmpeg、OpenAI视频生成API、Pexels素材库。</p>
+<a class="source-link" href="https://github.com/harry0703/MoneyPrinterTurbo" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
       </div>
       <div class="entry" data-cat="ai" style="animation-delay: 0.66s;">
         <div class="entry-head">
           <div class="bullet" style="background: var(--tab-1);"></div>
           <div class="info">
-            <h3>AI记忆持久化方案</h3>
-            <div class="meta">GitHub Trending · 🔥 59 · 11小时前</div>
+            <h3><span class="badge-icon"> 🔄</span> Cursor推代码托管服务</h3>
+            <div class="meta">Hacker News 热门（buzzing.cc 中文翻译） · 🔥 99 · 14小时前</div>
           </div>
           <div class="expand-icon">▼</div>
         </div>
-        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：<strong>上下文窗口的扩展无法替代结构化长期记忆</strong>，跨会话状态管理是AI代理从工具走向协作伙伴的关键瓶颈。
-<strong>法</strong>：将记忆分为工作记忆、情景记忆和语义记忆三层，采用显式存储与检索增强生成（RAG）结合，而非依赖模型隐式参数。
-<strong>术</strong>：为CLI工具设计持久化存储接口，记录关键决策与用户偏好；实现会话间状态压缩与摘要；提供清晰的记忆导出/导入格式以支持工具切换。
-<strong>器</strong>：ai-memory库、SQLite/Redis存储、LangChain记忆模块、向量数据库如Chroma。</p>
-<a class="source-link" href="https://github.com/akitaonrails/ai-memory" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
+        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：AI编程工具正从编辑器向<strong>开发者全链路平台</strong>延伸，代码托管是争夺开发者工作流入口的关键节点，长期趋势是工具链一体化整合。
+<strong>法</strong>：以高频工具为切入点，向低频但高粘性的基础设施扩展，形成生态锁定，适用于所有垂直软件向平台化演进的策略。
+<strong>术</strong>：评估现有项目的迁移成本，优先在非核心仓库测试Origin的兼容性与CI/CD集成；关注其与Cursor编辑器的深度联动特性；对比GitHub Actions生态，制定双平台并行方案。
+<strong>器</strong>：Cursor、Origin、GitHub、GitLab CI、Git CLI。</p>
+<a class="source-link" href="https://cursor.com/changelog/origin-code-hosting" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
       </div>
       <div class="entry" data-cat="ai" style="animation-delay: 0.74s;">
         <div class="entry-head">
           <div class="bullet" style="background: var(--tab-1);"></div>
           <div class="info">
-            <h3>英伟达建AI工厂</h3>
-            <div class="meta">X：Jensen Huang (@JensenHuang) · 🔥 99 · 14小时前</div>
+            <h3><span class="badge-icon"> 🆕</span> AI Agent开源书籍发布</h3>
+            <div class="meta">GitHub Trending · 🔥 73 · 20小时前</div>
           </div>
           <div class="expand-icon">▼</div>
         </div>
-        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：<strong>AI算力需求正从数据中心向专用能源基础设施延伸</strong>，算力与能源的耦合将成为新基建的核心逻辑。
-<strong>法</strong>：垂直整合模式（芯片+系统+能源）可降低供应链风险并提升交付确定性，适用于重资产、高能耗的科技基础设施项目。
-<strong>术</strong>：关注合作中能源采购协议与电网接入方案；评估工厂选址对当地电力价格和碳排放政策的影响；跟踪OpenAI对算力需求的长期承诺是否锁定。
-<strong>器</strong>：NVIDIA DGX/HGX系统、SB Energy的太阳能与储能设施、OpenAI的模型训练平台。</p>
-<a class="source-link" href="https://x.com/JensenHuang/status/2089331487342829862" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
+        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：AI Agent正从概念验证走向<strong>工程化落地</strong>，系统性知识沉淀成为行业从爆发期进入成熟期的标志，长期趋势是标准化方法论取代碎片化实践。
+<strong>法</strong>：开源权威内容建立技术话语权，通过配套代码降低学习曲线，适用于所有技术社区构建影响力的通用模式。
+<strong>术</strong>：通读全书目录，优先精读与当前项目相关的章节（如规划、工具调用）；运行配套代码复现核心示例；将书中设计模式应用到实际Agent开发中，并记录偏差与改进点。
+<strong>器</strong>：ai-agent-book仓库、PDF编译版、Python、LangChain、AutoGen。</p>
+<a class="source-link" href="https://github.com/bojieli/ai-agent-book" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
       </div>
-      <div class="entry" data-cat="auto" style="animation-delay: 0.82s;">
+      <div class="entry" data-cat="ai" style="animation-delay: 0.82s;">
         <div class="entry-head">
-          <div class="bullet" style="background: var(--tab-5);"></div>
+          <div class="bullet" style="background: var(--tab-1);"></div>
           <div class="info">
-            <h3>宇树科技宣布股票将于 2026 年 8 …</h3>
-            <div class="meta">IT之家（RSS） · 🔥 99 · 15小时前</div>
+            <h3><span class="badge-icon"> 🆕</span> AI记忆统一化是智能体竞争核心</h3>
+            <div class="meta">GitHub Trending · 🔥 60 · 20小时前</div>
           </div>
           <div class="expand-icon">▼</div>
         </div>
-        <div class="detail-wrap"><div class="detail-inner"><a class="source-link" href="https://www.ithome.com/0/990/812.htm" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
+        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：AI智能体从单次对话走向长期任务执行，<strong>记忆与知识管理成为基础设施</strong>，统一上下文是长期趋势。
+<strong>法</strong>：将分散的短期记忆、长期知识和技能调用整合为单一系统，可复用至任何需要持续学习的AI产品。
+<strong>术</strong>：优先设计记忆分层架构，区分工作记忆与长期存储；用向量数据库统一RAG检索与技能触发逻辑；建立记忆更新与遗忘机制，避免数据膨胀。
+<strong>器</strong>：OpenViking、向量数据库（如Milvus）、LangChain记忆模块。</p>
+<a class="source-link" href="https://github.com/volcengine/OpenViking" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
       </div>
       <div class="entry" data-cat="ai" style="animation-delay: 0.9s;">
         <div class="entry-head">
           <div class="bullet" style="background: var(--tab-1);"></div>
           <div class="info">
-            <h3>AI;DR (AI; Didn</h3>
-            <div class="meta">Hacker News · 🔥 100 · 7小时前</div>
+            <h3><span class="badge-icon"> 🔄</span> AI时代虚假信息源头需溯源验证</h3>
+            <div class="meta">Hacker News · 🔥 84 · 15小时前</div>
           </div>
           <div class="expand-icon">▼</div>
         </div>
-        <div class="detail-wrap"><div class="detail-inner"><a class="source-link" href="https://www.rickmanelius.com/p/aidr-ai-didnt-read" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
+        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：AI聊天机器人成为信息入口后，<strong>针对其训练数据的定向污染成为新型舆论战手段</strong>，信息真实性验证将长期依赖多源交叉。
+<strong>法</strong>：任何组织或个人在利用AI获取信息时，需建立独立于AI输出的信源核验流程，不盲信生成内容。
+<strong>术</strong>：对AI引用来源进行反向追踪，检查原始域名与机构背景；对高影响决策，强制要求人工复核关键事实；部署内容来源标注工具，识别伪造智库或机构。
+<strong>器</strong>：FactCheck.org、反向域名查询工具、浏览器扩展（如NewsGuard）。</p>
+<a class="source-link" href="https://responsiblestatecraft.org/israel-influence-chatgpt/" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
       </div>
-      <div class="entry" data-cat="ai" style="animation-delay: 0.98s;">
+      <div class="entry" data-cat="sec" style="animation-delay: 0.98s;">
         <div class="entry-head">
-          <div class="bullet" style="background: var(--tab-1);"></div>
+          <div class="bullet" style="background: var(--tab-3);"></div>
           <div class="info">
-            <h3>404 Media 通过在一本珍本图书中…</h3>
-            <div class="meta">Hacker News 热门（buzzing.cc 中文翻译） · 🔥 100 · 8小时前</div>
+            <h3><span class="badge-icon"> 🆕</span> 开源硬件与软件协同延长设备寿命</h3>
+            <div class="meta">Hacker News · 🔥 62 · 14小时前</div>
           </div>
           <div class="expand-icon">▼</div>
         </div>
-        <div class="detail-wrap"><div class="detail-inner"><a class="source-link" href="https://www.404media.co/we-tracked-a-shipment-of-rare-books-it-ended-at-an-amazon-ai-training-facility" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
+        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：消费电子可持续性需求上升，<strong>模块化硬件与开源操作系统结合是打破计划性淘汰的长期路径</strong>。
+<strong>法</strong>：通过开放驱动与硬件接口，让第三方系统适配主流设备，可复用至任何追求长生命周期产品的设计。
+<strong>术</strong>：优先选择支持驱动逆向工程或开源驱动的硬件平台；社区驱动开发时，聚焦核心功能（如摄像头）的兼容性突破；建立用户反馈闭环，迭代适配方案。
+<strong>器</strong>：PostmarketOS、Fairphone 6、Linux内核驱动开发工具。</p>
+<a class="source-link" href="https://catcrafts.net/posts/fairphone-6-postmarketos-working-main-camera" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
       </div>
       <div class="entry" data-cat="ai" style="animation-delay: 1.06s;">
         <div class="entry-head">
           <div class="bullet" style="background: var(--tab-1);"></div>
           <div class="info">
-            <h3>双向钢人论证法</h3>
-            <div class="meta">公众号：数字生命卡兹克 · 🔥 100 · 3小时前</div>
+            <h3><span class="badge-icon"> 🔄</span> 珍本图书成AI训练燃料</h3>
+            <div class="meta">Hacker News 热门（buzzing.cc 中文翻译） · 🔥 100 · 17小时前</div>
           </div>
           <div class="expand-icon">▼</div>
         </div>
-        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：AI输出的质量上限取决于提问的思维框架，而非模型参数。<strong>对抗性思辨是逼近本质的永恒路径</strong>，从苏格拉底诘问到图灵测试均如此。
-<strong>法</strong>：通过强制正反两方极端立场（钢人）的反复交锋，消除认知偏差，挖掘单一视角下被忽略的假设与漏洞。此策略适用于任何决策分析、产品评审或战略推演场景。
-<strong>术</strong>：1. 明确问题后，要求AI分别扮演最坚定的支持者与最激烈的反对者，各自给出最强论据。2. 让双方针对对方论点进行第二轮反驳，并补充新证据。3. 最后要求AI综合双方核心冲突点，提炼出超越两派的第三层洞察。
-<strong>器</strong>：Claude、GPT-4等支持长上下文与多轮对话的大模型，配合结构化Prompt模板。</p>
-<a class="source-link" href="https://mp.weixin.qq.com/s?__biz=MzIyMzA5NjEyMA%3D%3D&amp;mid=2647685329&amp;idx=1&amp;sn=9471278dc489641c097b228912965ed4" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
+        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：高质量数据稀缺性成为AI竞争的核心瓶颈，物理世界稀缺内容正被系统性转化为数字资产，<strong>数据获取的边界从公开网络扩展到实体世界</strong>。
+<strong>法</strong>：构建数据护城河需从源头锁定稀缺资源，通过批量采购、扫描、数字化形成独占性数据集，再以合法合规方式用于模型训练。
+<strong>术</strong>：关注稀有纸质文献、绝版书籍、专业档案等未被数字化的内容源；建立与图书馆、拍卖行、私人藏家的合作渠道；评估数据版权风险，确保训练数据合法性。
+<strong>器</strong>：亚马逊批量采购渠道、专业扫描设备（如Kirtas APT BookScan）、OCR识别工具（ABBYY FineReader）、数据清洗平台。</p>
+<a class="source-link" href="https://www.404media.co/we-tracked-a-shipment-of-rare-books-it-ended-at-an-amazon-ai-training-facility" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
       </div>
       <div class="entry" data-cat="ai" style="animation-delay: 1.1400000000000001s;">
         <div class="entry-head">
           <div class="bullet" style="background: var(--tab-1);"></div>
           <div class="info">
-            <h3>零信任AI智能体构建</h3>
-            <div class="meta">Google Developers Blog（RSS） · 🔥 100 · 4小时前</div>
+            <h3><span class="badge-icon"> 🔄</span> 黄仁勋联手建AI工厂</h3>
+            <div class="meta">X：Jensen Huang (@JensenHuang) · 🔥 99 · 23小时前</div>
           </div>
           <div class="expand-icon">▼</div>
         </div>
-        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：AI智能体的自主性越强，其权限失控的风险越大。<strong>安全边界必须前置设计，而非事后补救</strong>，这是从网络安全领域迁移到AI领域的铁律。
-<strong>法</strong>：将零信任架构（默认不信任、持续验证、最小权限）应用于智能体开发，把每个工具调用视为一次独立的身份认证与授权事件。此方法论可复用于任何涉及外部API或敏感数据的自动化流程。
-<strong>术</strong>：1. 为智能体配置独立的服务账号，禁止使用个人高权限凭证。2. 对每个工具调用实施上下文感知的权限校验（如时间、数据范围、操作类型）。3. 启用全量审计日志，对异常行为设置实时阻断与告警。
-<strong>器</strong>：Google Agent Development Kit (ADK)、OAuth 2.0/OIDC协议、云IAM策略引擎、可观测性平台（如Cloud Logging）。</p>
-<a class="source-link" href="https://developers.googleblog.com/build-zero-trust-ai-agents-with-googles-agent-development-kit" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
+        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：AI算力需求正从云服务模式转向专用基础设施投资，<strong>能源与算力的深度绑定成为AI产业扩张的硬约束</strong>，垂直整合是应对算力饥渴的必然路径。
+<strong>法</strong>：通过战略合作锁定关键资源（能源、土地、芯片），构建从电力到算力再到模型的一体化交付能力，降低对公共电网和云厂商的依赖。
+<strong>术</strong>：关注AI工厂选址的能源禀赋（可再生能源、核能）；评估与能源公司、芯片厂商的联合投资模式；测算单位算力的全生命周期成本，包括电力、散热、运维。
+<strong>器</strong>：NVIDIA DGX/HGX系统、SB Energy可再生能源解决方案、液冷散热技术、数据中心管理平台（如NVIDIA DCGM）。</p>
+<a class="source-link" href="https://x.com/JensenHuang/status/2089331487342829862" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
       </div>
-      <div class="entry" data-cat="ai" style="animation-delay: 1.2200000000000002s;">
+      <div class="entry" data-cat="auto" style="animation-delay: 1.2200000000000002s;">
         <div class="entry-head">
-          <div class="bullet" style="background: var(--tab-1);"></div>
+          <div class="bullet" style="background: var(--tab-5);"></div>
           <div class="info">
-            <h3>侵入式AI禁用指南</h3>
-            <div class="meta">Hacker News 热门（buzzing.cc 中文翻译） · 🔥 99 · 9小时前</div>
+            <h3><span class="badge-icon"> 🔄</span> 人形机器人第一股上市</h3>
+            <div class="meta">IT之家（RSS） · 🔥 99 · 24小时前</div>
           </div>
           <div class="expand-icon">▼</div>
         </div>
-        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：AI功能从云端下沉至操作系统与浏览器是必然趋势，但<strong>用户对数据主权与自主控制权的需求同样长期存在</strong>。技术普及与用户抗拒将长期并行。
-<strong>法</strong>：面对平台强制集成的AI功能，采用分层防御策略：先识别功能入口，再通过系统设置、组策略、扩展插件等层级逐一关闭或替换。此方法适用于任何预装软件或默认开启的服务。
-<strong>术</strong>：1. 在Windows设置中关闭“Copilot”及“建议操作”，通过组策略禁用Edge侧边栏AI。2. 在Chrome/Firefox中禁用或替换内置AI助手，安装uBlock Origin等拦截器屏蔽相关请求。3. 检查各应用设置中的“AI功能”或“个性化体验”选项，统一关闭数据收集开关。
-<strong>器</strong>：Windows组策略编辑器、浏览器扩展（uBlock Origin、Ghostery）、系统级防火墙（如Little Snitch）、隐私清理工具（O&amp;O ShutUp10）。</p>
-<a class="source-link" href="https://www.librarian.net/notoai" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
+        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：人形机器人正从实验室走向产业化，<strong>资本市场对具身智能的定价标志着技术成熟度跨越了关键拐点</strong>，量产能力成为下一阶段竞争焦点。
+<strong>法</strong>：硬科技企业上市融资后应聚焦核心零部件自研与供应链垂直整合，通过规模化生产降低成本，同时以场景化应用（工业、物流、服务）验证商业闭环。
+<strong>术</strong>：关注宇树科技发行定价与募资用途，重点投向电机、减速器、传感器等核心部件；跟踪其与汽车、3C制造等行业的订单落地情况；对比特斯拉Optimus、Figure等竞品的量产进度。
+<strong>器</strong>：宇树科技H1/G1人形机器人、科创板上市通道、谐波减速器（绿的谐波）、无框力矩电机（步科股份）。</p>
+<a class="source-link" href="https://www.ithome.com/0/990/812.htm" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
       </div>
     </div>
     <div class="footer">
-      <span>Generated by AI Hot Monitor v2 · DeepSeek · 11:01:28</span>
+      <span>Generated by AI Hot Monitor v2 · DeepSeek · 20:01:42</span>
       <span class="badge">💡 点击条目展开深度解读</span>
     </div>
   </div>
