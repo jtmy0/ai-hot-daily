@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="referrer" content="no-referrer">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; script-src 'unsafe-inline'; img-src data:; connect-src 'none'; base-uri 'none'; form-action 'none'; frame-ancestors 'none'">
+<title>AI 热点日报 — 2026年8月19日</title>
+<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg-outer: #2d2d2d; --bg-page: #f8f6f1; --text-primary: #1a1a1a;
+  --text-secondary: #555; --text-muted: #999;
+  --tab-1: #98d4bb; --tab-2: #c7b8ea; --tab-3: #f4b8c5; --tab-4: #a8d8ea; --tab-5: #ffe6a7; --tab-6: #d4c5b9;
+  --font-display: 'Bodoni Moda', serif; --font-body: 'DM Sans', sans-serif; --border: #e0dcd4;
+  --expand-bg: #f0ede8;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html, body { height: 100%; overflow-x: hidden; }
+body { background: var(--bg-outer); font-family: var(--font-body); min-height: 100vh; display: flex; justify-content: center; align-items: flex-start; padding: clamp(1rem, 3vw, 3rem); }
+.notebook { position: relative; background: var(--bg-page); width: min(92vw, 920px); border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1), 0 20px 60px rgba(0,0,0,0.3); padding: clamp(2rem, 5vw, 4rem); padding-right: clamp(2.5rem, 6vw, 5rem); animation: pageIn 0.6s ease-out; }
+.notebook::before { content: ''; position: absolute; left: clamp(14px, 2vw, 24px); top: 0; bottom: 0; width: 2px; background: repeating-linear-gradient(to bottom, transparent 0px, transparent 30px, var(--border) 30px, var(--border) 32px); }
+.hole { position: absolute; left: clamp(8px, 1.5vw, 16px); width: clamp(10px, 1.5vw, 16px); height: clamp(10px, 1.5vw, 16px); border-radius: 50%; background: var(--bg-outer); border: 1.5px solid #bbb; }
+.hole:nth-child(1) { top: 12%; } .hole:nth-child(2) { top: 50%; } .hole:nth-child(3) { top: 88%; }
+
+.tabs { position: absolute; right: 0; top: 10%; display: flex; flex-direction: column; gap: 4px; z-index: 10; }
+.tab { padding: clamp(0.3rem, 0.8vw, 0.6rem) clamp(0.5rem, 1vw, 0.8rem); border-radius: 6px 0 0 6px; font-size: clamp(0.5rem, 1vh, 0.7rem); font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: rgba(0,0,0,0.6); writing-mode: vertical-rl; text-orientation: mixed; min-height: clamp(40px, 6vh, 60px); display: flex; align-items: center; justify-content: center; cursor: pointer; transition: transform 0.2s; border: none; background: none; font-family: inherit; }
+.tab:hover { transform: translateX(-4px); }
+.tab.active { transform: translateX(-6px); box-shadow: -2px 0 8px rgba(0,0,0,0.1); }
+.tab[data-cat="all"] { background: var(--text-primary); color: #fff; }
+.tab[data-cat="ai"] { background: var(--tab-1); }
+.tab[data-cat="dev"] { background: var(--tab-2); }
+.tab[data-cat="sec"] { background: var(--tab-3); }
+.tab[data-cat="biz"] { background: var(--tab-4); }
+.tab[data-cat="auto"] { background: var(--tab-5); }
+.tab[data-cat="other"] { background: var(--tab-6); }
+
+.header { margin-bottom: clamp(0.8rem, 2vw, 1.5rem); padding-bottom: clamp(0.6rem, 1.2vw, 1rem); border-bottom: 2px solid var(--text-primary); }
+.header h1 { font-family: var(--font-display); font-size: clamp(1.5rem, 4vw, 2.8rem); font-weight: 700; letter-spacing: -0.02em; color: var(--text-primary); }
+.header .subtitle { display: flex; justify-content: space-between; align-items: center; margin-top: 0.4rem; flex-wrap: wrap; gap: 0.5rem; }
+.header .date { font-family: var(--font-display); font-style: italic; font-size: clamp(0.7rem, 1.1vw, 0.95rem); color: var(--text-secondary); }
+.header .controls { display: flex; gap: 0.5rem; }
+.header .controls button { font-family: var(--font-body); font-size: clamp(0.55rem, 0.85vw, 0.72rem); padding: 0.25rem 0.6rem; border: 1px solid var(--border); border-radius: 4px; background: #fff; color: var(--text-secondary); cursor: pointer; transition: all 0.2s; }
+.header .controls button:hover { background: var(--text-primary); color: #fff; border-color: var(--text-primary); }
+.back-link { display: inline-flex; align-items: center; gap: 0.3em; font-size: clamp(0.6rem, 0.9vw, 0.75rem); color: var(--text-muted); text-decoration: none; margin-bottom: clamp(0.4rem, 0.8vw, 0.6rem); transition: color 0.2s; }
+.back-link:hover { color: var(--text-primary); }
+
+.entries { padding-left: clamp(0.5rem, 2vw, 1.5rem); }
+.entry { border-bottom: 1px solid var(--border); animation: fadeIn 0.4s ease-out backwards; transition: opacity 0.3s; }
+.entry.hidden { display: none; }
+.entry .entry-head { display: flex; gap: clamp(0.6rem, 1.5vw, 1.2rem); padding: clamp(0.6rem, 1.2vw, 1rem) 0; cursor: pointer; user-select: none; transition: padding-left 0.2s; }
+.entry .entry-head:hover { padding-left: 4px; }
+.entry .bullet { flex-shrink: 0; width: clamp(6px, 0.8vw, 8px); height: clamp(6px, 0.8vw, 8px); border-radius: 50%; margin-top: 0.55em; transition: transform 0.2s; }
+.entry.expanded .bullet { transform: scale(1.5); }
+.entry .info { flex: 1; min-width: 0; }
+.entry .info h3 { font-family: var(--font-body); font-size: clamp(0.8rem, 1.3vw, 1.05rem); font-weight: 500; line-height: 1.45; color: var(--text-primary); margin-bottom: 0.25rem; }
+.entry .info .meta { font-size: clamp(0.6rem, 0.9vw, 0.75rem); color: var(--text-muted); font-style: italic; }
+.entry .info .badge-icon { font-size: 0.85em; margin-right: 0.1em; }
+.entry .expand-icon { flex-shrink: 0; width: 20px; height: 20px; display: flex; align-items: center; justify-content: center; color: var(--text-muted); font-size: 12px; transition: transform 0.3s ease; margin-top: 0.3em; }
+.entry.expanded .expand-icon { transform: rotate(180deg); }
+
+.entry .detail-wrap { max-height: 0; overflow: hidden; transition: max-height 0.5s cubic-bezier(0.16, 1, 0.3, 1); }
+.entry.expanded .detail-wrap { max-height: 500px; }
+.entry .detail-inner { padding: clamp(0.5rem, 1vw, 0.8rem) 0 clamp(0.5rem, 1vw, 0.8rem) clamp(1.8rem, 3.5vw, 2.8rem); background: var(--expand-bg); border-radius: 6px; margin-bottom: clamp(0.4rem, 0.8vw, 0.6rem); border-left: 3px solid var(--border); }
+.entry .detail-inner p { font-size: clamp(0.72rem, 1.1vw, 0.9rem); line-height: 1.7; color: var(--text-secondary); }
+.entry .detail-inner p strong { color: var(--text-primary); font-weight: 600; }
+.entry .detail-inner .source-link { display: inline-flex; align-items: center; gap: 0.3em; margin-top: clamp(0.4rem, 0.7vw, 0.6rem); font-size: clamp(0.6rem, 0.9vw, 0.75rem); color: var(--text-muted); text-decoration: none; padding: 0.2rem 0.5rem; border: 1px solid var(--border); border-radius: 4px; transition: all 0.2s; }
+.entry .detail-inner .source-link:hover { color: var(--text-primary); border-color: var(--text-primary); background: rgba(0,0,0,0.03); }
+
+.footer { margin-top: clamp(0.8rem, 1.5vw, 1.5rem); padding-top: clamp(0.5rem, 1vw, 1rem); border-top: 1px solid var(--border); font-size: clamp(0.55rem, 0.85vw, 0.7rem); color: var(--text-muted); font-family: var(--font-display); font-style: italic; text-align: center; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem; }
+.footer .badge { display: inline-flex; align-items: center; gap: 0.3em; padding: 0.15rem 0.5rem; border: 1px solid var(--border); border-radius: 999px; font-style: normal; font-size: clamp(0.5rem, 0.75vw, 0.6rem); }
+
+@keyframes pageIn { from { opacity: 0; transform: scale(0.97); } to { opacity: 1; transform: scale(1); } }
+@keyframes fadeIn { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
+@media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.1s !important; } }
+</style>
+</head>
+<body>
+  <div class="notebook">
+    <div class="hole"></div><div class="hole"></div><div class="hole"></div>
+    <div class="tabs" id="tabs">
+      <button class="tab active" data-cat="all" title="全部">ALL</button>
+      <button class="tab" data-cat="ai" title="AI/大模型">AI</button>
+      <button class="tab" data-cat="dev" title="开发工具">DEV</button>
+      <button class="tab" data-cat="sec" title="安全">SEC</button>
+      <button class="tab" data-cat="biz" title="商业">BIZ</button>
+      <button class="tab" data-cat="auto" title="自动化">AUTO</button>
+      <button class="tab" data-cat="other" title="其他">OTHER</button>
+    </div>
+    <div class="header">
+      <a class="back-link" href="./">← 归档首页</a>
+      <h1>AI 热点日报</h1>
+      <div class="subtitle">
+        <span class="date">2026年8月19日，星期三 · 道法术器解读</span>
+        <div class="controls">
+          <button id="expandAll">展开全部</button>
+          <button id="collapseAll">收起全部</button>
+        </div>
+      </div>
+    </div>
+    <div class="entries" id="entries">
+      <div class="entry" data-cat="ai" style="animation-delay: 0.1s;">
+        <div class="entry-head">
+          <div class="bullet" style="background: var(--tab-1);"></div>
+          <div class="info">
+            <h3>GLM-5.3 API即日上线，擅长复杂…</h3>
+            <div class="meta">公众号：智谱（GLM） · 🔥 100 · 2小时前</div>
+          </div>
+          <div class="expand-icon">▼</div>
+        </div>
+        <div class="detail-wrap"><div class="detail-inner"><a class="source-link" href="https://mp.weixin.qq.com/s?__biz=MzkyMzI3NzQ0Mg%3D%3D&amp;mid=2247494105&amp;idx=1&amp;sn=8d7409e0fb846a3c7803c142b5d1a8e7" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
+      </div>
+      <div class="entry" data-cat="ai" style="animation-delay: 0.18s;">
+        <div class="entry-head">
+          <div class="bullet" style="background: var(--tab-1);"></div>
+          <div class="info">
+            <h3>Mojo🔥 语言现已正式开源，采用 A…</h3>
+            <div class="meta">Hacker News 热门（buzzing.cc 中文翻译） · 🔥 99 · 6小时前</div>
+          </div>
+          <div class="expand-icon">▼</div>
+        </div>
+        <div class="detail-wrap"><div class="detail-inner"><a class="source-link" href="https://www.modular.com/blog/mojo-open-source" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
+      </div>
+      <div class="entry" data-cat="ai" style="animation-delay: 0.26s;">
+        <div class="entry-head">
+          <div class="bullet" style="background: var(--tab-1);"></div>
+          <div class="info">
+            <h3>Claude 现在可以在 Gmail 中…</h3>
+            <div class="meta">X：Claude (@claudeai) · 🔥 99 · 7小时前</div>
+          </div>
+          <div class="expand-icon">▼</div>
+        </div>
+        <div class="detail-wrap"><div class="detail-inner"><a class="source-link" href="https://x.com/claudeai/status/2089806039088517356" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
+      </div>
+      <div class="entry" data-cat="sec" style="animation-delay: 0.33999999999999997s;">
+        <div class="entry-head">
+          <div class="bullet" style="background: var(--tab-3);"></div>
+          <div class="info">
+            <h3>铁路网扫描成像的物理极限</h3>
+            <div class="meta">Hacker News · 🔥 71 · 14小时前</div>
+          </div>
+          <div class="expand-icon">▼</div>
+        </div>
+        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：任何移动载体都可成为合成孔径传感器，<strong>分辨率取决于载体轨迹精度而非设备本身</strong>，这是遥感与感知领域的长期趋势。
+<strong>法</strong>：将现有基础设施（铁路、公路、航线）复用为测量平台，用算法补偿运动误差，可大幅降低高分辨率成像成本。
+<strong>术</strong>：需同步采集列车振动数据与GPS/惯性导航信息，建立轨迹误差模型；利用多趟列车重复扫描同一区域进行相干叠加，提升信噪比；先选取直线段、低速货运线路做验证，避开隧道和复杂道岔。
+<strong>器</strong>：合成孔径雷达（SAR）算法、惯性测量单元（IMU）、开源SAR处理库（如ISCE、GMTSAR）、铁路运营调度数据接口。</p>
+<a class="source-link" href="https://philo.gay/linecam/" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
+      </div>
+      <div class="entry" data-cat="other" style="animation-delay: 0.42000000000000004s;">
+        <div class="entry-head">
+          <div class="bullet" style="background: var(--tab-6);"></div>
+          <div class="info">
+            <h3>火箭回收重塑航天经济性</h3>
+            <div class="meta">zhihu · 🔥 100 · 3小时前</div>
+          </div>
+          <div class="expand-icon">▼</div>
+        </div>
+        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：航天竞争的核心正从运载能力转向<strong>可重复使用带来的成本指数级下降</strong>，这是进入太空的长期经济规律。
+<strong>法</strong>：通过垂直回收验证全流程闭环，积累工程数据，形成快速迭代的复用体系，适用于所有高价值硬件装备。
+<strong>术</strong>：重点跟踪发动机深度维护周期与翻新成本占比；关注着陆缓冲机构、栅格舵等关键部件的寿命数据；对比猎鹰9号的复用次数与报价曲线，评估国内商业发射市场的价格弹性。
+<strong>器</strong>：朱雀三号（蓝箭航天）、猎鹰9号（SpaceX）、着陆腿与栅格舵技术、可回收火箭仿真平台（如ROCKET Lab的终端模拟器）。</p>
+<a class="source-link" href="https://www.zhihu.com/question/2073315140213150893" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
+      </div>
+      <div class="entry" data-cat="ai" style="animation-delay: 0.5s;">
+        <div class="entry-head">
+          <div class="bullet" style="background: var(--tab-1);"></div>
+          <div class="info">
+            <h3>AI短视频工厂的流水线化</h3>
+            <div class="meta">GitHub Trending · 🔥 100 · 11小时前</div>
+          </div>
+          <div class="expand-icon">▼</div>
+        </div>
+        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：内容生产的边际成本正趋近于零，<strong>批量生成与个性化分发成为内容行业的新基础设施</strong>，这是AI替代重复劳动的必然方向。
+<strong>法</strong>：将选题、脚本、配音、剪辑拆解为独立模块，用大模型驱动每个环节，再通过工作流引擎串联，形成可复制的自动化生产线。
+<strong>术</strong>：先定义目标平台（抖音/TikTok）的时长、画幅和字幕规范；配置关键词到脚本的提示词模板，固定视频风格与背景音乐库；接入素材API（如Pexels、Pixabay）实现自动配图；设置人工审核节点，过滤低质或违规内容。
+<strong>器</strong>：MoneyPrinterTurbo、FFmpeg、OpenAI API或本地大模型（如Llama 3）、Pexels API、Streamlit（用于界面部署）。</p>
+<a class="source-link" href="https://github.com/harry0703/MoneyPrinterTurbo" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
+      </div>
+      <div class="entry" data-cat="ai" style="animation-delay: 0.58s;">
+        <div class="entry-head">
+          <div class="bullet" style="background: var(--tab-1);"></div>
+          <div class="info">
+            <h3>网络安全技能图谱标准化</h3>
+            <div class="meta">GitHub Trending · 🔥 66 · 11小时前</div>
+          </div>
+          <div class="expand-icon">▼</div>
+        </div>
+        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：AI代理的落地瓶颈正从模型能力转向<strong>领域知识的结构化</strong>，将安全专家经验编码为机器可读的技能图谱是长期趋势。
+<strong>法</strong>：任何垂直领域AI化都需先完成知识资产化——将分散的专家经验映射到权威框架，形成可验证、可迭代的基准。
+<strong>术</strong>：1. 参照MITRE ATT&amp;CK等框架梳理核心技能树，标注依赖关系；2. 为每项技能设计可自动评估的测试用例；3. 建立技能图谱与模型微调数据的映射管道。
+<strong>器</strong>：MITRE ATT&amp;CK、NIST CSF、GitHub Actions、向量数据库。</p>
+<a class="source-link" href="https://github.com/sponsors/mukul975" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
+      </div>
+      <div class="entry" data-cat="ai" style="animation-delay: 0.66s;">
+        <div class="entry-head">
+          <div class="bullet" style="background: var(--tab-1);"></div>
+          <div class="info">
+            <h3>AI代理长期记忆方案</h3>
+            <div class="meta">GitHub Trending · 🔥 64 · 11小时前</div>
+          </div>
+          <div class="expand-icon">▼</div>
+        </div>
+        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：AI代理从单次任务走向持续协作，<strong>长期记忆</strong>成为决定其价值上限的基础设施，跨会话上下文保持是必然方向。
+<strong>法</strong>：解决记忆问题需区分工作记忆与长期记忆，采用分层存储策略，并设计显式的写入、检索、遗忘机制，而非简单拼接对话历史。
+<strong>术</strong>：1. 定义记忆的schema，区分事实、偏好、任务状态；2. 用向量库存储语义记忆，用关系库存储结构化事实；3. 实现基于时间衰减和重要性的记忆压缩与清理策略。
+<strong>器</strong>：LangChain、ChromaDB、Redis、MemGPT框架。</p>
+<a class="source-link" href="https://github.com/akitaonrails/ai-memory" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
+      </div>
+      <div class="entry" data-cat="ai" style="animation-delay: 0.74s;">
+        <div class="entry-head">
+          <div class="bullet" style="background: var(--tab-1);"></div>
+          <div class="info">
+            <h3>AI诈骗技术滥用实证</h3>
+            <div class="meta">36kr · 🔥 65 · 19小时前</div>
+          </div>
+          <div class="expand-icon">▼</div>
+        </div>
+        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：生成式AI的<strong>双刃剑效应</strong>在诈骗领域加速显现，技术能力提升与安全治理滞后之间的剪刀差将持续扩大。
+<strong>法</strong>：对抗AI滥用需采用<strong>对称技术策略</strong>——用AI检测AI，同时建立跨平台、跨机构的威胁情报共享机制，形成防御合力。
+<strong>术</strong>：1. 部署深度伪造检测模型，重点识别语音克隆和视频换脸特征；2. 建立诈骗话术语料库，训练意图识别分类器；3. 对高风险转账场景增加多因素生物验证和延迟到账机制。
+<strong>器</strong>：Deepfake检测API、反欺诈风控系统、声纹识别工具、威胁情报平台。</p>
+<a class="source-link" href="https://www.36kr.com/p/3944715533171845" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
+      </div>
+      <div class="entry" data-cat="ai" style="animation-delay: 0.82s;">
+        <div class="entry-head">
+          <div class="bullet" style="background: var(--tab-1);"></div>
+          <div class="info">
+            <h3>青少年AI安全与教育双轨并行</h3>
+            <div class="meta">OpenAI：官网动态（RSS · 排除企业/客户案例） · 🔥 98 · 16小时前</div>
+          </div>
+          <div class="expand-icon">▼</div>
+        </div>
+        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：AI产品从通用工具向垂直人群渗透，<strong>青少年市场是教育价值与安全合规的平衡点</strong>，长期趋势是产品需按年龄分层设计。
+<strong>法</strong>：针对敏感人群，采用<strong>安全优先于功能</strong>的策略，通过限制性功能与教育引导双轨并行，建立信任壁垒。
+<strong>术</strong>：1. 设计年龄自适应内容过滤与对话边界；2. 嵌入学习目标追踪与家长报告机制；3. 用情景化提示词引导批判性思维而非直接答案。
+<strong>器</strong>：OpenAI 的 moderation API、自定义系统提示词模板、家长控制面板。</p>
+<a class="source-link" href="https://openai.com/index/chatgpt-for-teens" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
+      </div>
+      <div class="entry" data-cat="ai" style="animation-delay: 0.9s;">
+        <div class="entry-head">
+          <div class="bullet" style="background: var(--tab-1);"></div>
+          <div class="info">
+            <h3>多向量编码器开启检索新范式</h3>
+            <div class="meta">Hugging Face：Blog（RSS） · 🔥 97 · 昨天</div>
+          </div>
+          <div class="expand-icon">▼</div>
+        </div>
+        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：信息检索正从单向量稠密匹配转向<strong>多向量细粒度交互</strong>，长期趋势是模型需同时兼顾精度与计算效率。
+<strong>法</strong>：采用<strong>分层表示学习</strong>策略，将文档拆分为多粒度向量以捕捉局部语义，适用于任何需要高精度匹配的场景。
+<strong>术</strong>：1. 用 MultiVectorEncoder 替换单向量编码器，评估延迟与召回率；2. 结合 ColBERT 的后期交互机制，优化 top-k 重排序；3. 对长文档按段落或句子级切分后编码。
+<strong>器</strong>：Sentence Transformers v6.0、ColBERT 模型库、FAISS 或 Milvus 向量数据库。</p>
+<a class="source-link" href="https://huggingface.co/blog/multi-vector-encoder" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
+      </div>
+      <div class="entry" data-cat="ai" style="animation-delay: 0.98s;">
+        <div class="entry-head">
+          <div class="bullet" style="background: var(--tab-1);"></div>
+          <div class="info">
+            <h3>记忆剂量需按模型能力校准</h3>
+            <div class="meta">Hugging Face：Blog（RSS） · 🔥 99 · 9小时前</div>
+          </div>
+          <div class="expand-icon">▼</div>
+        </div>
+        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：智能体性能与记忆量呈<strong>倒U型关系</strong>，过度记忆反而干扰推理，长期趋势是记忆管理需动态适配模型容量。
+<strong>法</strong>：采用<strong>能力-剂量匹配</strong>原则，根据模型参数量与任务复杂度设定记忆上限，避免一刀切配置。
+<strong>术</strong>：1. 对八款模型做记忆量梯度测试，绘制性能曲线；2. 按任务类型（短时推理 vs 长程规划）动态调整记忆窗口；3. 引入遗忘机制或摘要压缩，淘汰低价值记忆。
+<strong>器</strong>：LangChain 记忆模块、MemGPT 框架、八款评测模型的基准测试脚本。</p>
+<a class="source-link" href="https://huggingface.co/blog/ibm-research/altk-evolve-hmm" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
+      </div>
+      <div class="entry" data-cat="other" style="animation-delay: 1.06s;">
+        <div class="entry-head">
+          <div class="bullet" style="background: var(--tab-6);"></div>
+          <div class="info">
+            <h3>制造业人才与AI造富并行</h3>
+            <div class="meta">36kr · 🔥 66 · 3小时前</div>
+          </div>
+          <div class="expand-icon">▼</div>
+        </div>
+        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：制造业升级与AI产业造富同时加速，<strong>人才供给与资本分配的结构性错位</strong>成为长期矛盾。
+<strong>法</strong>：企业跨界办学与股权激励并行，本质是用<strong>长期人力资本投资</strong>对冲短期技术迭代风险。
+<strong>术</strong>：关注格力技校课程设置与宇树科技上市后人才流动；评估寒武纪股权激励对AI芯片人才市场的锚定效应。
+<strong>器</strong>：格力技校、寒武纪股权激励计划、宇树科技IPO。</p>
+<a class="source-link" href="https://www.36kr.com/p/3945701165202817" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
+      </div>
+      <div class="entry" data-cat="ai" style="animation-delay: 1.1400000000000001s;">
+        <div class="entry-head">
+          <div class="bullet" style="background: var(--tab-1);"></div>
+          <div class="info">
+            <h3>AI代码治理成新利润点</h3>
+            <div class="meta">36kr · 🔥 100 · 22小时前</div>
+          </div>
+          <div class="expand-icon">▼</div>
+        </div>
+        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：AI生成代码量爆发后，<strong>代码质量与安全治理</strong>成为比生成本身更稀缺的环节，价值向产业链下游转移。
+<strong>法</strong>：当供给过剩时，<strong>清洗、审计、合规</strong>等配套服务溢价能力远超生产端，适用于所有技术泡沫周期。
+<strong>术</strong>：布局代码审查、漏洞扫描、许可证合规工具；关注传统静态分析厂商的AI转型估值；建立代码溯源与质量评分标准。
+<strong>器</strong>：SonarQube、Snyk、GitHub Copilot审计插件。</p>
+<a class="source-link" href="https://www.36kr.com/p/3944514235455111" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
+      </div>
+      <div class="entry" data-cat="ai" style="animation-delay: 1.2200000000000002s;">
+        <div class="entry-head">
+          <div class="bullet" style="background: var(--tab-1);"></div>
+          <div class="info">
+            <h3>算力基建绑定能源巨头</h3>
+            <div class="meta">X：Jensen Huang (@JensenHuang) · 🔥 99 · 昨天</div>
+          </div>
+          <div class="expand-icon">▼</div>
+        </div>
+        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：AI算力需求正从芯片瓶颈转向<strong>电力与基础设施瓶颈</strong>，能源成为AI扩张的硬约束。
+<strong>法</strong>：科技巨头与能源企业深度绑定，<strong>垂直整合基础设施</strong>是应对算力指数增长的核心策略。
+<strong>术</strong>：跟踪SB Energy的太阳能+储能项目进度；评估OpenAI对绿电的长期采购协议；关注类似能源-算力合资模式在北美以外的复制可能。
+<strong>器</strong>：SB Energy、OpenAI、NVIDIA DGX SuperPOD。</p>
+<a class="source-link" href="https://x.com/JensenHuang/status/2089331487342829862" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
+      </div>
+    </div>
+    <div class="footer">
+      <span>Generated by AI Hot Monitor v2 · DeepSeek · 11:01:45</span>
+      <span class="badge">💡 点击条目展开深度解读</span>
+    </div>
+  </div>
+<script>
+document.querySelectorAll('.entry .entry-head').forEach(h => h.addEventListener('click', () => h.closest('.entry').classList.toggle('expanded')));
+document.getElementById('expandAll').addEventListener('click', () => document.querySelectorAll('.entry:not(.hidden)').forEach(e => e.classList.add('expanded')));
+document.getElementById('collapseAll').addEventListener('click', () => document.querySelectorAll('.entry').forEach(e => e.classList.remove('expanded')));
+document.querySelectorAll('.tab').forEach(tab => tab.addEventListener('click', () => {
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  tab.classList.add('active');
+  const cat = tab.dataset.cat;
+  document.querySelectorAll('.entry').forEach(e => {
+    if (cat === 'all' || e.dataset.cat === cat) { e.classList.remove('hidden'); } else { e.classList.add('hidden'); e.classList.remove('expanded'); }
+  });
+}));
+document.addEventListener('keydown', e => { if (e.key === 'Escape') document.querySelectorAll('.entry').forEach(el => el.classList.remove('expanded')); });
+</script>
+</body>
+</html>
