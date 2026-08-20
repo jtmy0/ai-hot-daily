@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="referrer" content="no-referrer">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'unsafe-inline'; img-src data:; connect-src 'none'; frame-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'; frame-ancestors 'none'">
+<title>Extensible Software in the age of LLMs | Jeremy Morrell - AI热点快照</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','PingFang SC','Microsoft YaHei',sans-serif;background:#f8f9fa;color:#1a1a2e;line-height:1.8;min-height:100vh}
+.top-bar{background:#fff;border-bottom:1px solid #e5e7eb;padding:10px 20px;display:flex;align-items:center;gap:12px;position:sticky;top:0;z-index:10}
+.top-bar .logo{font-size:14px;font-weight:700;color:#0d9488}
+.top-bar .sep{color:#d1d5db}
+.top-bar .source{font-size:13px;color:#6b7280}
+.top-bar .back{margin-left:auto;font-size:13px;color:#0d9488;text-decoration:none}
+.top-bar .back:hover{text-decoration:underline}
+.container{max-width:760px;margin:0 auto;padding:40px 24px 80px}
+.article-title{font-size:1.8rem;font-weight:700;line-height:1.35;margin-bottom:16px;color:#1a1a2e}
+.article-meta{display:flex;flex-wrap:wrap;gap:16px;padding-bottom:20px;margin-bottom:28px;border-bottom:1px solid #e5e7eb;font-size:14px;color:#6b7280}
+.article-meta a{color:#0d9488;text-decoration:none}
+.article-meta a:hover{text-decoration:underline}
+.article-body{font-size:16.5px;line-height:1.85;color:#1f2937}
+.article-body p{margin-bottom:1.2em;text-align:justify}
+.article-body h1,.article-body h2,.article-body h3{font-size:1.25em;font-weight:700;margin:1.6em 0 0.6em;color:#1a1a2e}
+.article-body a{color:#0d9488}
+.article-body pre,.article-body code{background:#f1f5f9;border-radius:4px;font-size:0.9em}
+.article-body pre{padding:16px;overflow-x:auto;margin:1em 0}
+.article-body code{padding:2px 6px}
+.article-body blockquote{border-left:3px solid #0d9488;padding-left:16px;color:#4b5563;margin:1em 0}
+.article-body ul,.article-body ol{padding-left:1.6em;margin-bottom:1em}
+.article-body li{margin-bottom:0.4em}
+.article-body figure{margin:1.2em 0}
+.article-body figcaption{font-size:13px;color:#9ca3af;text-align:center;margin-top:6px}
+.footer{margin-top:48px;padding-top:20px;border-top:1px solid #e5e7eb;font-size:13px;color:#9ca3af;text-align:center}
+</style>
+</head>
+<body>
+<div class="top-bar">
+  <a class="back" href="../" style="font-size:13px;color:#6b7280;text-decoration:none">← 日报首页</a>
+  <span class="sep">|</span>
+  <span class="logo">AI热点快照</span>
+  <span class="sep">|</span>
+  <span class="source">Jeremy Morrell</span>
+  <a class="back" href="https://jeremymorrell.dev/blog/extensible-software-in-the-age-of-llms/" target="_blank" rel="noopener noreferrer">查看原文 ↗</a>
+</div>
+<div class="container">
+  <h1 class="article-title">Extensible Software in the age of LLMs | Jeremy Morrell</h1>
+  <div class="article-meta">
+    <span>作者: Jeremy Morrell</span>
+    <span>来源: Jeremy Morrell</span>
+    <span>快照日期: 2026-08-20</span>
+  </div>
+  <div class="article-body"><div><p>Most of the web software we interact with today is static. The developers have a limited amount of time and attention, and focus on building the features that serve the largest group of users. The top of the demand curve is well-served by existing software, but there is a long-tail of unmet needs that’s different for every user.</p>
+<figure><a href="https://x.com/tophtucker/status/1280992756278714373" target="_blank" rel="noopener noreferrer nofollow"></a><figcaption>User needs in mapping software</figcaption></figure>
+<p><a href="https://newsletter.getprimitive.ai/p/when-to-design-for-emergence" target="_blank" rel="noopener noreferrer nofollow">Even if the developers were incredibly motivated to shove in every feature, user interfaces can only become so complex before they become unusable.</a> Every additional feature added complicates the product for every other user. If the market for that feature is small, it can actively make the product worse for every user who doesn’t need it.</p>
+<p>With this context the rise of LLM-assisted coding has been genuinely empowering for anyone who needed something that fell into this long tail.</p>
+<h2>Software has gotten all… squishy<span>#</span></h2>
+<p>It’s become readily apparent that LLMs are really quite excellent at building <a href="https://www.ajwaxman.com/writing/software-for-one" target="_blank" rel="noopener noreferrer nofollow">Software for One</a>. Personal apps that side-step all of the complexity and accountability of enterprise software and are custom fit for a single person’s workflow.</p>
+<p><a href="https://koomen.dev/" target="_blank" rel="noopener noreferrer nofollow">Pete Koomen</a> at Y Combinator thinks there is an opportunity for what they are calling <a href="https://x.com/ycombinator/status/2079963726435021232" target="_blank" rel="noopener noreferrer nofollow">Small Software</a>. I think they are onto something.</p>
+<figure><div><p><a href="https://x.com/ycombinator" target="_blank" rel="noopener noreferrer nofollow"></a></p><a href="https://x.com/ycombinator/status/2079963726435021232" title="View on X" target="_blank" rel="noopener noreferrer nofollow"></a></div><blockquote>Agents make it easy to build personal tools for yourself or your team. But deploying, securing, and sharing that software is still far more complicated than creating it.
+
+A cloud built for small software could remove that complexity and make bespoke tools as easy to share with a colleague as a Google Doc.</blockquote><figcaption><a href="https://x.com/ycombinator/status/2079963726435021232" target="_blank" rel="noopener noreferrer nofollow">July 22, 2026</a></figcaption></figure>
+<p><a href="https://pi.dev/" target="_blank" rel="noopener noreferrer nofollow">Pi</a> is a good example of what I’m starting to think of as <strong>LLM-native software</strong>: a battle-tested core, but almost endlessly extensible just by asking, where users are able to share their customizations with others. <strong>In the past year your users have suddenly acquired the ability to speak code into existence.</strong> Most existing software can’t leverage this. Pi leans into it.</p>
+<p></p>
+<p>I suspect we’re going to start seeing more software following this self-extension pattern. However most of our existing examples of pluggable software are local software: AI agents, developer IDEs, mods for video games, Blender add-ons, CAD extensions. These tend to be professional tools with a high barrier to entry.</p>
+<p><strong>The web is the most successful software distribution system in the world.</strong> It shouldn’t be left behind.</p>
+<p>My hypothesis is that <strong>there is a new opportunity for Extensible Software on the web</strong>. LLMs radically lower the cost of authoring extensions, and modern sandbox primitives lower the deployment cost and provide good security boundaries. We can build our app as a solid, accountable core, and allow users to safely extend it in many directions by having LLMs fill in the missing pieces. <strong>We can give our users super powers.</strong></p>
+<p>Disclosure: I currently work at Cloudflare, where high levels of exposure to <a href="https://x.com/kentonvarda" target="_blank" rel="noopener noreferrer nofollow">Kenton Varda</a>’s writing have shaped much of my thinking here. Near the end, I’ll make the case that <a href="https://developers.cloudflare.com/dynamic-workers/" target="_blank" rel="noopener noreferrer nofollow">Dynamic Workers</a> are a particularly good fit for this model, but I’ll cover several alternatives first.</p>
+<h2>What would this look like?<span>#</span></h2>
+<p>A lot of web systems today rely on webhooks to allow the user to react to changes in the app. This ~kind of works, but it sets a really high bar for extension: building and operating a completely separate service plus dealing with whatever delivery issues arise.</p>
+<p>I want to be able to hook into record updates and slide in my own logic. “When I attach this tag to a record, run my function”. “Do this action for me on a daily cron”.</p>
+<p>Actually, I don’t want to have to think about that at all. I want to tell my read-it-later app:</p>
+<ul>
+<li>Please send every article I fave longer than 4000 words to my <code>&lt;ereader of choice&gt;</code></li>
+<li>Look for new papers published on arxiv in <code>&lt;my specialty&gt;</code> each week, add your own summary of how it relates to my work at the top, and tag it with <code>&lt;tag&gt;</code></li>
+<li>The default algorithm completely garbles <code>&lt;site I read frequently&gt;</code>. Pull a few examples and make a custom parser for it.</li>
+</ul>
+<p>And then a robot will extrude the silly bits of code, hook them into some extensions points, and make that happen. I should also be able to share what I’ve made with anyone else who might also want the same feature.<sup><span>1</span></sup></p>
+<p>Here are some more areas where I’d love to see an LLM-native extension approach.</p>
+<h4>AI Agents<span>#</span></h4>
+<p>Okay, this is the obvious one. <a href="https://pi.dev/" target="_blank" rel="noopener noreferrer nofollow">pi</a>, <a href="https://www.deepseek.com/harness/en/" target="_blank" rel="noopener noreferrer nofollow">deepseek</a>, and <a href="https://x.com/thdxr/status/2087945880863191162" target="_blank" rel="noopener noreferrer nofollow">opencode</a>, are all experimenting in this space.</p>
+<p>Rather than adding every new idea to its core, Pi provides stable hooks for tools, commands, events, and UI, so it can turn a request into a small TypeScript extension and reload it in place. Those extensions can then be bundled into packages that can be shared, letting the ecosystem absorb the long tail of ideas without bloating the harness itself.</p>
+<figure><figcaption>Deepseek showed off the extensibility of its harness by demoing a user adding a whale friend and a snake game to the UI just by prompting</figcaption></figure>
+<p>However the audience of these, at least as they exist now, is fairly small. You have to be comfortable running custom software on your local machine. In corporate environments <strong>the organization</strong> has to be comfortable with you running software that no one has ever, or will ever, look at. Unless you sandbox Pi yourself, Pi extensions run with the same permissions as Pi itself.</p>
+<p>Software engineers will find a way, but accountants, doctors, lawyers, and thousands of other professions deserve better tools too. They need agents that can be safely and easily tailored to their domain and their own workflows.</p>
+<p>If we’re going to get more people using agents, that doesn’t mean making them software developers. It means making the software fit their needs.</p>
+<h4>Internal Corporate Platform<span>#</span></h4>
+<p>All companies end up with tons of data. Employees need to view it, query it, investigate it, correlate it with this other data in this other system, find customers experiencing <code>&lt;problem x&gt;</code>, find customers about to churn, and a million more things.</p>
+<p>A lot of companies are experimenting with allowing AI-enthusiast employees to vibe code their own tooling, maybe deploy it to a PaaS. This is directionally correct, but creates a bunch of downstream problems. Once you have hundreds or thousands of these apps, how do you maintain them? How do they get access to the data that they need? How do they get access to <strong>only the data that they need</strong>? How can we audit what this software is doing? If we’re relying on access tokens, what are their scopes? Who rotates them? How do we make sure that we’re not logging out customer information to a third-party? How do we make sure we’re not violating GDPR?</p>
+<p>Or a million other compliance and security things that real businesses need to worry themselves about.</p>
+<p>What if we gave them a place to deploy code where there are no auth tokens that can leak? Where data access is handled by an internal platform team that can ensure all of the compliance boxes are checked? Give them the space to build their own automations or custom views, but safely.<sup><span>2</span></sup></p>
+<p>Spoiler: This is basically <a href="https://github.com/cloudflare/cloudflare-os" target="_blank" rel="noopener noreferrer nofollow">Cloudflare OS</a>.</p>
+<h4>Support Platform<span>#</span></h4>
+<p></p>
+<p>I’ve spent a lot of my career handling tricky support tickets. Inevitably I end up digging through dashboards, searching logs, pulling data from a million different places. Let me create extensions that surface data for the user that opened the ticket from my particular system into the support interface. Give me hooks so I can kick off agents to do the first round of investigation for me, before I even look at it. If there are common tasks that I need to do like “reset specific quota X” let me add a button to my view that can do that.</p>
+<p>Then also let me share these with my team so we can all help each other.</p>
+<h4>Observability Platform<span>#</span></h4>
+<figure><figcaption>Every Observability Tool</figcaption></figure>
+<p>A lot of Observability tooling has converged towards the same feature set: a way to search your logs with the little bar graph on top. A trace waterfall view for viewing individual traces. Customizable metrics dashboards. Maybe a service map. A few are experimenting <a href="https://embrace.io/" target="_blank" rel="noopener noreferrer nofollow">with new visualizations</a>, especially with <a href="https://www.honeycomb.io/blog/agent-timeline-flight-recorder-for-your-ai-agents" target="_blank" rel="noopener noreferrer nofollow">the rise of agents</a>.</p>
+<p>The venerable trace waterfall diagram is very useful for systems that are shaped as request / response, where you mainly care about latency and success rate. A lot of us are finding ourselves with systems that are a bit more… stateful… or dynamic. Modern apps are running non-deterministic agents or durable workflow engines where a single action might take hours or days. Trace spans are a great source-of-truth to build upon, but let me experiment with my own visualizations (or install someone else’s).<sup><span>3</span></sup></p>
+<p>Beyond pretty things I can look at, let me inject my own logic:</p>
+<ul>
+<li>arbitrary transforms for data on ingestion</li>
+<li>have alarms kick off my own scripts: deterministic code or my own agent</li>
+<li>give me options to run my own code at times of highest risk: deploys or feature flag rollouts</li>
+<li>if I have a special <code>MyResourceID</code> in my logs, let me turn that into a link that goes straight to that resource on another platform</li>
+</ul>
+<figure><div><p><a href="https://x.com/bentlegen" target="_blank" rel="noopener noreferrer nofollow"></a></p><a href="https://x.com/bentlegen/status/2087948548155297894" title="View on X" target="_blank" rel="noopener noreferrer nofollow"></a></div><blockquote>All software should probably look like this</blockquote><div><div><div><p><a href="https://x.com/thdxr" target="_blank" rel="noopener noreferrer nofollow"></a></p><a href="https://x.com/thdxr/status/2087945880863191162" title="View quoted post on X" target="_blank" rel="noopener noreferrer nofollow"></a></div><blockquote>an architectural change we made in opencode2 is nearly everything is an internal plugin
+
+there's 68 of them that cover our built in agents, integrations, config loading, etc
+
+this means you can disable any behavior and we also properly dogfood our plugin apis</blockquote></div><a href="https://x.com/thdxr/status/2087945880863191162" target="_blank" rel="noopener noreferrer nofollow"></a></div><figcaption><a href="https://x.com/bentlegen/status/2087948548155297894" target="_blank" rel="noopener noreferrer nofollow">August 13, 2026</a></figcaption></figure>
+<h2>Extensible software on the web is… harder<span>#</span></h2>
+<p>I just made all of that sound easy. It’s nothing of the sort.</p>
+<p>I’m a big fan of Obsidian, both as a tool I use every day and as a piece of software.</p>
+<p>It seems like a basic markdown editor, but with a few clicks you can extend it to do just about anything: <a href="https://publish.obsidian.md/kanban/Obsidian+Kanban+Plugin" target="_blank" rel="noopener noreferrer nofollow">track your tasks in a kanban board</a> or <a href="https://github.com/blacksmithgu/obsidian-dataview" target="_blank" rel="noopener noreferrer nofollow">turn your notes into a database</a>. Want to shove all your notes into a vector database for semantic search? <a href="https://motherduck.com/blog/obsidian-rag-duckdb-motherduck/" target="_blank" rel="noopener noreferrer nofollow">Go for it</a>! And if you want to go further, the underlying web UI primitives are easily hackable.</p>
+<p>However that power comes with a cost: Obsidian’s extension model requires you to trust every plugin you install. <a href="https://cyber.netsecops.io/articles/obsidian-plugin-abused-in-campaign-to-deploy-phantom-pulse-rat/" target="_blank" rel="noopener noreferrer nofollow">A plugin can basically do anything</a>. Obsidian fights this security challenge with <a href="https://obsidian.md/blog/future-of-plugins/" target="_blank" rel="noopener noreferrer nofollow">automated and manual review</a> and by verifying plugin authors.</p>
+<p>For a notes app this is likely the right tradeoff. It works because the stakes are low and the community is relatively small. But this model falls apart the moment you want the same level of extensibility in software holding other people’s data: customer records, financial transactions, private messages. Extensibility and web services have always been a challenge.</p>
+<p>Executing arbitrary code is rife with security and abuse challenges. An incomplete list:</p>
+<ul>
+<li>Errors or infinite loops in the user’s code should never take down your service</li>
+<li>With access to keys, customer extensions can forward them to a third party</li>
+<li>Likewise if you expose sensitive data, make sure it can’t be exfiltrated</li>
+<li>Make sure this system can’t be abused to do a Denial of Service attack</li>
+<li>Make sure the user can’t accidentally Denial of Service you</li>
+<li>Protect against <a href="https://meltdownattack.com/" target="_blank" rel="noopener noreferrer nofollow">Spectre</a> attacks</li>
+<li>If people can use free compute to mine crypto on your dime, they will</li>
+<li>and many more…</li>
+</ul>
+<h2>But surely someone has done this?<span>#</span></h2>
+<p>Before we write this off as infeasible, there is a clear example where this kind of extensibility on the web has worked at immense scale: Salesforce.</p>
+<p></p>
+<p>Yes, that Salesforce. <a href="https://www.eweek.com/enterprise-apps/salesforce-com-issues-summer-07-release-apex-code/" target="_blank" rel="noopener noreferrer nofollow">And they’ve been doing it since 2007</a>. (As a point of reference, AWS S3 and EC2 were launched <a href="https://en.wikipedia.org/wiki/Timeline_of_Amazon_Web_Services" target="_blank" rel="noopener noreferrer nofollow">in 2006</a>.)</p>
+<figure><figcaption>You'll be forgiven if you get lost trying to understand what Salesforce does</figcaption></figure>
+<p>Ask most technologists what Salesforce is and you’ll either get a blank stare or maybe something to the effect of “Aren’t they a CRM?”. However it’s more accurate to describe Salesforce as a massive multi-tenant programmable platform. In the nascent cloud era this cut against the grain: no containers, and forcing people into writing this weird, custom <a href="https://developer.salesforce.com/docs/atlas.en-us.apexcode.meta/apexcode/apex_intro_what_is_apex.htm" target="_blank" rel="noopener noreferrer nofollow">Java-like language, Apex</a>.</p>
+<p>However with the rise of serverless, the platform starts to look a lot more familiar. Consider some examples:</p>
+<p>If I need to expose a custom endpoint, I can do so with a few lines of code. The platform handles routing, authentication, tenant isolation, execution. There is no webserver to deploy. Squint and <a href="https://developers.cloudflare.com/workers/examples/return-json/" target="_blank" rel="noopener noreferrer nofollow">you can see it as a precursor to modern serverless</a>.</p>
+<pre><code><span><span>@RestResource</span><span>(urlMapping</span><span>=</span><span>'/customer-health'</span><span>)</span></span>
+<span><span>global</span><span> with sharing </span><span>class</span><span> CustomerHealthApi</span><span> {</span></span>
+<span><span>    @HttpGet</span></span>
+<span><span>    global</span><span> static</span><span> Account</span><span> getCustomer</span><span>() {</span></span>
+<span><span>        String</span><span> accountId</span><span> =</span></span>
+<span><span>            RestContext.request.params.</span><span>get</span><span>(</span><span>'accountId'</span><span>);</span></span>
+<span></span>
+<span><span>        return</span><span> [</span></span>
+<span><span>            SELECT</span><span> Id</span><span>, </span><span>Name</span><span>, </span><span>Health_Score__c</span><span>, </span><span>Renewal_Date__c</span></span>
+<span><span>            FROM</span><span> Account</span></span>
+<span><span>            WHERE</span><span> Id</span><span> =</span><span> :</span><span>accountId</span></span>
+<span><span>            WITH</span><span> USER_MODE</span></span>
+<span><span>            LIMIT</span><span> 1</span></span>
+<span><span>        ];</span></span>
+<span><span>    }</span></span>
+<span><span>}</span></span></code></pre>
+<p>Or what about running custom logic <a href="https://developers.cloudflare.com/workers/examples/cron-trigger/" target="_blank" rel="noopener noreferrer nofollow">on a schedule</a>?:</p>
+<pre><code><span><span>public</span><span> class</span><span> RenewalScanner</span><span> implements</span><span> Schedulable</span><span> {</span></span>
+<span><span>    public</span><span> void</span><span> execute</span><span>(</span><span>SchedulableContext</span><span> context</span><span>) {</span></span>
+<span><span>        List</span><span>&lt;</span><span>Account</span><span>&gt; </span><span>accounts</span><span> =</span><span> [</span></span>
+<span><span>            SELECT</span><span> Id</span><span>, </span><span>Needs_Attention__c</span></span>
+<span><span>            FROM</span><span> Account</span></span>
+<span><span>            WHERE</span><span> Renewal_Date__c</span><span> =</span><span> NEXT_N_DAYS:30</span></span>
+<span><span>            WITH</span><span> USER_MODE</span></span>
+<span><span>        ];</span></span>
+<span></span>
+<span><span>        for</span><span> (</span><span>Account</span><span> account</span><span> :</span><span> accounts) {</span></span>
+<span><span>            account.Needs_Attention__c </span><span>=</span><span> true</span><span>;</span></span>
+<span><span>        }</span></span>
+<span></span>
+<span><span>        update</span><span> as user accounts;</span></span>
+<span><span>    }</span></span>
+<span><span>}</span></span>
+<span></span>
+<span><span>// Schedule it to run daily at 2 a.m.:</span></span>
+<span><span>System</span><span>.</span><span>schedule</span><span>(</span></span>
+<span><span>  'Check upcoming renewals'</span><span>,</span></span>
+<span><span>  '0 0 2 * * ?'</span><span>,</span></span>
+<span><span>  new</span><span> RenewalScanner</span><span>()</span></span>
+<span><span>);</span></span></code></pre>
+<p>There are also higher-level primitives so you can point-and-click your way into a custom application, but at its heart Salesforce is safely
+running your custom logic directly in response to app events, within transactions, and allowing you to encode the particulars of your business
+into their app.</p>
+<p>Two decades ago Salesforce didn’t have a ton of options for a way to cheaply run sandboxed code on behalf of their users, so they built
+out a compiler, type system, runtime, standard library, debugger, integrated SQL into the language, lots of fancy database tricks and heaps more,
+and then built out a whole educational ecosystem. The problems it solved for businesses were valuable enough to justify hiring humans who
+specialized in their particular development platform.</p>
+<p>We can be inspired by what they’ve done without copying it exactly. We have a lot more options in 2026, so let’s look at what the technical
+requirements are for building something like this, and then what technologies might fit.</p>
+<div><h2>New writing, occasionally.</h2><p>Get my posts in your inbox. No fixed schedule, no noise.</p></div>
+<h2>A new primitive<span>#</span></h2>
+<p>We need a primitive to build this extensibility around. In order to make it work, it needs to have a couple of properties.</p>
+<h4>Cheap Economical to run<span>#</span></h4>
+<p>If you are going to have thousands or millions of users running snippets of custom code, the idea of spinning up a
+custom-container-per-user is a non-starter. It needs to cost ~$0 when it’s not being executed, and each execution
+ideally needs to be tiny-fractions-of-a-penny cheap.</p>
+<p>Add to that cost to build or compile, store the built artifacts, collect logs, and more. Especially with RAM prices in 2026, how much memory overhead is required to serve a request will largely determine how many users you can pack onto a single machine.</p>
+<h4>Fast cold starts<span>#</span></h4>
+<p>We all want our web services to be fast, so if we’re running user code as part of the critical path of responding
+to a request, we can’t wait a minute plus for a container to spin up. Ideally a cold start is measured in single-digit milliseconds.</p>
+<p>If you are only offering extensions that respond to events or run on a schedule you can likely afford higher
+startup times.</p>
+<h4>Control over limits<span>#</span></h4>
+<p>Users of platforms do all sorts of weird, edge-case things. One of my favorite stories from an
+engineer at Heroku was that someone had published a very popular getting-started guide that had the user
+deploy the following Python app:</p>
+<pre><code><span><span>while</span><span> True</span><span>:</span></span>
+<span><span>   print</span><span>(</span><span>"hello world!"</span><span>)</span><span>;</span></span></code></pre>
+<p>From the system’s perspective you have a brand-new app suddenly come into existence and immediately start
+spewing millions of lines of logs per second that will never stop, and the user expects something
+reasonable to happen when they run the <code>tail</code> command.</p>
+<p>To protect your system you need to be able to enforce limits on basically everything: CPU, memory, number
+and size of network requests, response size, log volume and rate, and much more.</p>
+<h4>Solid isolation boundary<span>#</span></h4>
+<p>I mean this in both the fault isolation and security isolation senses. No matter what the user does: crashes, runs an infinite loop, allocates memory as fast as possible, it should have no effect on any other user.</p>
+<p>And actively malicious code must not be able to escape or inspect other tenants. This includes speculative execution attacks like <a href="https://en.wikipedia.org/wiki/Spectre_(security_vulnerability)" target="_blank" rel="noopener noreferrer nofollow">Spectre</a>.</p>
+<h4>Allow the code to take actions (safely)<span>#</span></h4>
+<p>Custom code that can’t affect anything is useless, so we need some controlled way for user code to
+interact with the rest of the world. In the simplest case you can model things as a pure function. The user’s code
+receives some data as input and can respond with an answer. If there is no I/O allowed, and a constrained
+output, this is quite safe, if limiting.</p>
+<pre><code><span><span>export</span><span> default</span><span> function</span><span> shouldWeOrderPizzaTonight</span><span>(</span><span>data</span><span>:</span><span> Input</span><span>)</span><span>:</span><span> boolean</span><span> {</span></span>
+<span><span>  // consider the options very carefully</span></span>
+<span><span>  const</span><span> haveFoodAtHome</span><span> =</span><span> data.fridge.hasIngredients;</span></span>
+<span><span>  const</span><span> haveEnergy</span><span> =</span><span> data.body.checkCapacity;</span></span>
+<span><span>  const</span><span> haveTime</span><span> =</span><span> !</span><span>data.schedule.isTight;</span></span>
+<span><span>  </span></span>
+<span><span>  // return haveFoodAtHome &amp;&amp; haveEnergy &amp;&amp; haveTime;</span></span>
+<span><span>  // we don't believe in data-driven decision making in this household</span></span>
+<span><span>  return</span><span> true</span><span>;</span></span>
+<span><span>}</span></span></code></pre>
+<p>If you need to expose more to the user, then things get a little more tricky. When we want our own code to
+call an API, we typically add some sort of API key that we can attach to our requests:</p>
+<pre><code><span><span>const</span><span> response</span><span> =</span><span> await</span><span> fetch</span><span>(api, {</span></span>
+<span><span>  headers: {</span></span>
+<span><span>    Authorization: </span><span>`Bearer ${</span><span>env</span><span>.</span><span>API_KEY</span><span>}`</span><span>,</span></span>
+<span><span>  },</span></span>
+<span><span>});</span></span></code></pre>
+<p>But this kind of flexibility is dangerous! Malicious code can immediately leak that data by <code>POST</code>ing it to a
+third-party. Even exposing raw <code>fetch</code> means that the user can now use your infrastructure to DoS someone if they want.</p>
+<p>The most common solution for this today is adopting a proxy. The user is given an opaque token that is meaningful only
+to the proxy. The proxy validates the request, and then replaces the opaque token with the real credential, before
+forwarding the request to the destination. The proxy can also
+enforce an allowlist of possible destinations and rate-limits on requests. This is strictly better than raw <code>fetch</code>,
+but still has some problems.</p>
+<pre><code><span><span>const</span><span> response</span><span> =</span><span> await</span><span> fetch</span><span>(apiViaProxy, {</span></span>
+<span><span>  headers: {</span></span>
+<span><span>    Authorization: </span><span>`Bearer REPLACE_THIS_WITH_MY_API_KEY_IN_PROXY`</span><span>,</span></span>
+<span><span>  },</span></span>
+<span><span>});</span></span></code></pre>
+<p>You may want to restrict what the code can do to only a subset of what the API allows, which requires very
+fine-grained authentication that most APIs do not offer. <a href="https://www.youtube.com/watch?v=87DyyMV0kCY" target="_blank" rel="noopener noreferrer nofollow">There can be pretty dire consequences if that API
+provides too much power, or is exploitable in ways you cannot foresee.</a></p>
+<p>Even if the service provides fine-grained permissions, like the ability to read your email, that may
+still be far more access than you want to give the code. If you want to give the code only access to one specific
+email, there’s generally no token you can generate that allows only this.</p>
+<p>You can try to enforce that in a proxy, but now you are tasked with filtering out all requests that don’t match
+some narrow set of criteria, and keeping that up-to-date as the backing API evolves. Our proxy code quickly
+becomes very complicated. It’s difficult to anticipate everything a user might do here. Testing this logic
+and making sure it’s bulletproof is challenging.</p>
+<pre><code><span><span>async</span><span> function</span><span> proxyFetch</span><span>(</span><span>url</span><span>:</span><span> URL</span><span>, </span><span>headers</span><span>:</span><span> Headers</span><span>) {</span></span>
+<span><span>  const</span><span> opaqueToken</span><span> =</span><span> headers</span></span>
+<span><span>    .</span><span>get</span><span>(</span><span>"Authorization"</span><span>)</span></span>
+<span><span>    ?.</span><span>replace</span><span>(</span><span>/</span><span>^</span><span>Bearer</span><span>\s</span><span>+</span><span>/</span><span>i</span><span>, </span><span>""</span><span>);</span></span>
+<span></span>
+<span><span>  const</span><span> grant</span><span> =</span><span> await</span><span> parseToken</span><span>(opaqueToken);</span></span>
+<span></span>
+<span><span>  if</span><span> (</span><span>!</span><span>grant </span><span>||</span><span> grant.action </span><span>!==</span><span> "read-email"</span><span>) {</span></span>
+<span><span>    throw</span><span> new</span><span> Error</span><span>(</span><span>"Forbidden"</span><span>);</span></span>
+<span><span>  }</span></span>
+<span></span>
+<span><span>  const</span><span> allowedPath</span><span> =</span><span> </span></span>
+<span><span>    `/email/v1/users/messages/${</span><span>encodeURIComponent</span><span>(</span><span>grant</span><span>.</span><span>messageId</span><span>)</span><span>}`</span><span>;</span></span>
+<span></span>
+<span><span>  if</span><span> (</span></span>
+<span><span>    url.origin </span><span>!==</span><span> "https://email.service.com"</span><span> ||</span></span>
+<span><span>    url.pathname </span><span>!==</span><span> allowedPath</span></span>
+<span><span>  ) {</span></span>
+<span><span>    throw</span><span> new</span><span> Error</span><span>(</span><span>"Forbidden"</span><span>);</span></span>
+<span><span>  }</span></span>
+<span></span>
+<span><span>  const</span><span> newHeaders</span><span> =</span><span> new</span><span> Headers</span><span>();</span></span>
+<span></span>
+<span><span>  // Forward only explicitly permitted headers.</span></span>
+<span><span>  for</span><span> (</span><span>const</span><span> name</span><span> of</span><span> [</span><span>"accept"</span><span>, </span><span>"if-none-match"</span><span>]) {</span></span>
+<span><span>    const</span><span> value</span><span> =</span><span> headers.</span><span>get</span><span>(name);</span></span>
+<span></span>
+<span><span>    if</span><span> (value </span><span>!==</span><span> null</span><span>) {</span></span>
+<span><span>      newHeaders.</span><span>set</span><span>(name, value);</span></span>
+<span><span>    }</span></span>
+<span><span>  }</span></span>
+<span></span>
+<span><span>  // Replace the opaque token with the real credential.</span></span>
+<span><span>  newHeaders.</span><span>set</span><span>(</span><span>"Authorization"</span><span>, </span><span>`Bearer ${</span><span>EMAIL_API_KEY</span><span>}`</span><span>);</span></span>
+<span></span>
+<span><span>  return</span><span> fetch</span><span>(url, { headers: newHeaders });</span></span>
+<span><span>}</span></span></code></pre>
+<p>And this is the filtering logic for just one operation on just one endpoint. In general, starting with a lot of power
+and then trying to restrict it precisely is a hard problem.</p>
+<p>A better way is to hand the untrusted code a <a href="https://en.wikipedia.org/wiki/Object-capability_model" target="_blank" rel="noopener noreferrer nofollow">narrow <strong>capability</strong></a>.
+At a high level you can think of a capability as a reference to a specific function, such as one for fetching one approved-in-advance email:</p>
+<pre><code><span><span>// Trusted host code</span></span>
+<span><span>const</span><span> getApprovedEmail</span><span> =</span><span> () </span><span>=&gt;</span><span> fetchEmailById</span><span>(</span><span>123</span><span>, auth);</span></span>
+<span></span>
+<span><span>// Untrusted extension code</span></span>
+<span><span>export</span><span> default</span><span> async</span><span> function</span><span> doSomethingWithAnEmail</span><span>(</span></span>
+<span><span>  { </span><span>getApprovedEmail</span><span> }</span><span>:</span><span> Capabilities</span><span>,</span></span>
+<span><span>) {</span></span>
+<span><span>  const</span><span> email</span><span> =</span><span> await</span><span> getApprovedEmail</span><span>();</span></span>
+<span><span>  // do something with the email</span></span>
+<span><span>}</span></span></code></pre>
+<p>If we remove ambient I/O, <strong>the code can only take actions via the references it has been passed</strong>.
+This pattern is <strong>much</strong> easier to reason about. We don’t have to muck around with complicated
+proxy logic. The API credential is never exposed to the untrusted code at all. And without some other
+outbound capability, there’s no way to leak data.<sup><span>4</span></sup></p>
+<p>As a bonus, generating logic from a TypeScript definition of capabilities is much easier and token-efficient
+for an LLM than handing it a pile of OpenAPI JSON definitions.</p>
+<p>If you are familiar with <a href="https://ifttt.com/" target="_blank" rel="noopener noreferrer nofollow">IFTTT</a>, it doesn’t give you a Twitter API key, it gives you
+<a href="https://ifttt.com/twitter/actions/post_new_tweet" target="_blank" rel="noopener noreferrer nofollow"><code>twitter.post_new_tweet()</code></a>. You don’t get a full email
+client, you get <a href="https://ifttt.com/email/actions/send_me_email" target="_blank" rel="noopener noreferrer nofollow"><code>email.send_me_email</code></a>.</p>
+<p>This is the shape we generally want for safe extensible software.</p>
+<h2>What technology fits?<span>#</span></h2>
+<p>The more agent-brained among you have noticed by now that these are the same properties that you are looking
+for from an agent execution platform. That’s not a coincidence! This is essentially the same problem: how
+can you run logic on behalf of a user that you cannot trust.</p>
+<p>The solution space has a number of options:</p>
+<h4>Interpreter<span>#</span></h4>
+<p>Building their own language worked for Salesforce twenty years ago, and <a href="https://docs.langchain.com/oss/python/deepagents/interpreters" target="_blank" rel="noopener noreferrer nofollow">this pattern still
+works today</a>.</p>
+<p>You can use an off-the-shelf embeddable interpreter like <a href="https://www.lua.org/" target="_blank" rel="noopener noreferrer nofollow">Lua</a> or
+<a href="https://bellard.org/quickjs/" target="_blank" rel="noopener noreferrer nofollow">QuickJS</a> or <a href="https://x.com/huntlovell/status/2071985800909410797" target="_blank" rel="noopener noreferrer nofollow">roll your own</a>.</p>
+<h4>V8 Isolates<span>#</span></h4>
+<p>If you take the interpreter approach to it’s logical conclusion, you’ll eventually end up wanting
+to move to bytecode, and adding a JIT, and…</p>
+<p>Jumping straight to V8 saves you the time. Google has dumped enormous amounts of money and developer time into hardening the V8 JavaScript
+engine. Cloudflare uses <a href="https://developers.cloudflare.com/workers/reference/how-workers-works/" target="_blank" rel="noopener noreferrer nofollow">v8 isolates</a>
+as its isolation boundary for Workers, but it’s not the only option in this space.</p>
+<ul>
+<li>Cloudflare has <a href="https://developers.cloudflare.com/dynamic-workers/" target="_blank" rel="noopener noreferrer nofollow">Dynamic Workers</a></li>
+<li>celld has (implemented some parts of) <a href="https://celld.dev/docs/cloudflare-compat/#dynamic-worker-loading-code-mode" target="_blank" rel="noopener noreferrer nofollow">Dynamic Workers</a></li>
+<li>Node has <a href="https://www.npmjs.com/package/isolated-vm" target="_blank" rel="noopener noreferrer nofollow"><code>isolated-vm</code></a></li>
+<li>Rivet has <a href="https://github.com/rivet-dev/secure-exec" target="_blank" rel="noopener noreferrer nofollow"><code>secure-exec</code></a></li>
+</ul>
+<h4>MicroVMs<span>#</span></h4>
+<p>Full VMs emulate a lot of virtual
+hardware: USB, graphics, disks, etc, which is what allows you to run full desktop environments in them, but
+that comes at a cost. Millions of lines of code and complexity that needs to boot up and takes up resources.</p>
+<p>MicroVMs strip that back to the bone, running very constrained operating systems, but the payoff is that they can start
+in under a second and have a very small memory overhead with strong isolation boundary.</p>
+<p>MicroVMs have more overhead than the other options, but have some distinct benefits:</p>
+<ul>
+<li>POSIX</li>
+<li>potential to utilize a lot of CPU and RAM</li>
+<li>full OS capable of running binaries</li>
+</ul>
+<p>If you mainly want to allow the user to run some bit of logic, call some API endpoints,
+run a workflow, then the overhead of this approach might make it overkill. However even
+if you go with something like V8 isolates or WASM as your isolation primitive,
+microVMs could still be quite useful for authoring, compiling / bundling, and
+testing user extensions.</p>
+<p>This is a <strong>very</strong> hot space with a lot of options:</p>
+<ul>
+<li><a href="https://github.com/firecracker-microvm/firecracker" target="_blank" rel="noopener noreferrer nofollow">Firecracker</a></li>
+<li><a href="https://github.com/libkrun/libkrun" target="_blank" rel="noopener noreferrer nofollow"><code>libkrun</code></a></li>
+<li><a href="https://aws.amazon.com/lambda/lambda-microvms/" target="_blank" rel="noopener noreferrer nofollow">AWS Lambda MicroVMs</a></li>
+<li><a href="https://deno.com/deploy/sandbox" target="_blank" rel="noopener noreferrer nofollow"><code>@deno/sandbox</code></a>.</li>
+<li><a href="https://smolmachines.com/" target="_blank" rel="noopener noreferrer nofollow">smolvm</a></li>
+<li><a href="https://www.tensorlake.ai/" target="_blank" rel="noopener noreferrer nofollow">Tensorlake</a></li>
+<li><a href="https://www.daytona.io/" target="_blank" rel="noopener noreferrer nofollow">Daytona</a></li>
+<li>Probably a million more…</li>
+</ul>
+<h4>WASM + WASI<span>#</span></h4>
+<p>WebAssembly starts out with a blank slate. The code can run, allocate memory, but there are no built-in
+modules for making an HTTP request, or reading an environment variable. This makes it an attractive
+candidate from a security perspective!</p>
+<p><a href="https://wasi.dev/" target="_blank" rel="noopener noreferrer nofollow">WASI</a> defines a standard interface where the host can define the capabilities that
+get passed to the untrusted WASM code.</p>
+<p>By integrating at this lower level, you can get a lot of potential performance and allow users to write in
+any language that can compile to WebAssembly, but the tool chain grows significantly in complexity.</p>
+<p>You can also run WebAssembly within a V8 isolate or <a href="https://opensource.microsoft.com/blog/2025/03/26/hyperlight-wasm-fast-secure-and-os-free/" target="_blank" rel="noopener noreferrer nofollow">microVM</a>. None of these options are mutually exclusive.</p>
+<hr />
+<p>If the isolation primitive does not provide its own capability model, it’s still a useful way of thinking
+through how you expose functionality. A proxy can work in some cases, but you should also consider using
+an Object Capability protocol like <a href="https://github.com/cloudflare/capnweb" target="_blank" rel="noopener noreferrer nofollow">Cap’n Web</a> with any of these
+primitives.</p>
+<p>However there’s one solution here that I want to highlight in particular…</p>
+<figure><div><p><a href="https://bsky.app/profile/jeremymorrell.dev" target="_blank" rel="noopener noreferrer nofollow"></a></p><a href="https://bsky.app/profile/jeremymorrell.dev/post/3mjhz7et4cc2b" title="View on Bluesky" target="_blank" rel="noopener noreferrer nofollow"></a></div><blockquote>Cloudflare Workers is a platform for building platforms
+
+This hurts my head a bit but I think it's a good way of thinking about our primitives</blockquote><figcaption><a href="https://bsky.app/profile/jeremymorrell.dev/post/3mjhz7et4cc2b" target="_blank" rel="noopener noreferrer nofollow">April 14, 2026</a></figcaption></figure>
+<h2>Cloudflare’s Dynamic Workers<span>#</span></h2>
+<p>Cloudflare’s <a href="https://developers.cloudflare.com/dynamic-workers/" target="_blank" rel="noopener noreferrer nofollow">Dynamic Workers</a> were built with exactly this kind
+of use in mind. The marketing for them has (understandably) been focused on <a href="https://blog.cloudflare.com/code-mode/" target="_blank" rel="noopener noreferrer nofollow">code mode</a> and agent use-cases, but IMO it’s much broader than that.</p>
+<p>Beyond meeting the criteria I proposed above, they are the closest thing to a production-ready out-of-the-box framework for building extensible web apps that I’ve been able to find in 2026. (But I bet there will be more soon)</p>
+<p>There are a handful of things that they provide that you’ll need to build out yourself with other solutions:</p>
+<h4>Observability<span>#</span></h4>
+<p>(My day job and personal soapbox)</p>
+<p>Both you and your users need visibility into what their code is doing. Cloudflare Workers <a href="https://blog.cloudflare.com/workers-tracing-now-in-open-beta/" target="_blank" rel="noopener noreferrer nofollow">have OpenTelemetry
+tracing built into the runtime itself</a> and have
+<a href="https://developers.cloudflare.com/workers/observability/logs/tail-workers/" target="_blank" rel="noopener noreferrer nofollow">first-class primitives</a> that allow
+you a lot of control over emitted telemetry.</p>
+<h4>Multi-tenant data storage<span>#</span></h4>
+<p>While not every extension system needs users to be able to store their own data, this gives users a lot more flexibility.</p>
+<p>Give them their very own SQLite database with <a href="https://blog.cloudflare.com/durable-object-facets-dynamic-workers/" target="_blank" rel="noopener noreferrer nofollow">Durable Object facets</a>. <a href="https://developers.cloudflare.com/cloudflare-for-platforms/workers-for-platforms/" target="_blank" rel="noopener noreferrer nofollow">Or give them their own R2 bucket</a>.</p>
+<h4>Durable Execution<span>#</span></h4>
+<p>The rise of <a href="https://temporal.io/" target="_blank" rel="noopener noreferrer nofollow">Temporal</a> et al has shown that a lot of problems benefit from Durable Execution. <a href="https://blog.cloudflare.com/dynamic-workflows/" target="_blank" rel="noopener noreferrer nofollow">Dynamic Workflows</a> lets users to take actions over minutes or days, with appropriate retries and backoff.</p>
+<h4>Source Control<span>#</span></h4>
+<p>Users probably need to version and iterate on their extensions, and you can’t expect that everyone uses GitHub. <a href="https://www.cloudflare.com/products/artifacts/" target="_blank" rel="noopener noreferrer nofollow">Build source control into your product</a>.</p>
+<h4>Hosted LLMs<span>#</span></h4>
+<p>Users can use LLMs to help draft their extensions, but you can also expose LLMs through <a href="https://www.cloudflare.com/products/workers-ai/" target="_blank" rel="noopener noreferrer nofollow">Workers AI</a> so users can use them in their extensions (with appropriate token budgets and rate limits).</p>
+<pre><code><span><span>export</span><span> async</span><span> function</span><span> analyzeArticle</span><span>(</span><span>env</span><span>:</span><span> Env</span><span>, </span><span>article</span><span>:</span><span> Article</span><span>) {</span></span>
+<span><span>  return</span><span> result </span><span>=</span><span> await</span><span> env.</span><span>AI</span><span>.</span><span>run</span><span>(</span></span>
+<span><span>    messages: [</span></span>
+<span><span>      {</span></span>
+<span><span>        role: </span><span>"system"</span><span>,</span></span>
+<span><span>        content: </span><span>"Decide whether the supplied article talks about cute kittens."</span><span>,</span></span>
+<span><span>      },</span></span>
+<span><span>      {</span></span>
+<span><span>        role: </span><span>"user"</span><span>,</span></span>
+<span><span>        content: article.text,</span></span>
+<span><span>      },</span></span>
+<span><span>    ],</span></span>
+<span><span>  )</span></span>
+<span><span>}</span></span></code></pre>
+<h4>Self-hosting JavaScript Tooling<span>#</span></h4>
+<p>A lot of JavaScript tooling is itself written in JavaScript, which means that building and testing extension code might not need a separate container or VM.</p>
+<pre><code><span><span>import</span><span> { transform } </span><span>from</span><span> 'sucrase'</span><span>;</span></span>
+<span></span>
+<span><span>export</span><span> function</span><span> transpileUserCode</span><span>(</span><span>source</span><span>:</span><span> string</span><span>)</span><span>:</span><span> TranspileResult</span><span> {</span></span>
+<span><span>  try</span><span> {</span></span>
+<span><span>    const</span><span> result</span><span> =</span><span> transform</span><span>(source, {</span></span>
+<span><span>      transforms: [</span><span>'typescript'</span><span>],</span></span>
+<span><span>      disableESTransforms: </span><span>true</span></span>
+<span><span>    });</span></span>
+<span><span>    return</span><span> { type: </span><span>'success'</span><span>, code: result.code };</span></span>
+<span><span>  } </span><span>catch</span><span> (err) {</span></span>
+<span><span>    return</span><span> { type: </span><span>'failure'</span><span>, error: </span><span>String</span><span>(err) } };</span></span>
+<span><span>  }</span></span>
+<span><span>}</span></span></code></pre>
+<h2>Demo Time<span>#</span></h2>
+<p>As I was writing this post I thought “What if I turned my static blog into the world’s
+smallest vibe-coding platform?”<sup><span>5</span></sup></p>
+<p>I wanted to include a guide to working with Dynamic Workers and some cool demos, but
+this blog post is already way too long. I split that out into a guide to <span>Working
+with Dynamic Workers</span> but still wanted to embed
+the final demos here.</p>
+<p>The demo’s harness is based around the idea of a customizable scraper. Given a URL,
+it will fetch the contents (unless they block Cloudflare), and pass those contents
+and a few utilities to the user’s code. See the guide for a full explanation.</p>
+<p>All of the examples run on Cloudflare Workers, and the source is editable. Modify
+any of them to run your own script, or if you want to write your own choose
+“Write your own” and there’s an LLM prompt to get you started.</p>
+<p>Each example runs through the same harness, but exercises a different combination
+of libraries and capabilities. Choose one, pick a suggested URL, or your own, and hit <strong>Run</strong>.</p>
+<figure></figure>
+<h2>Here be dragons<span>#</span></h2>
+<p>One last thought.</p>
+<p>I’ve worked at platforms for almost a decade. I don’t mean to make “turn your app into a platform” sound easy.
+Platforms are hard: hard to design, hard to run, hard to debug.</p>
+<p>Exposing APIs to customers means a lot of upfront thought, and long-term support (though maybe LLMs
+can make this a lot easier?).</p>
+<p>But they are also really fun, both as a user and a creator. You can be truly surprised by the
+creativity of your users as they do things that you never considered or would have even thought
+possible.</p>
+<p>Platforms are hard, but it’s worth it.</p>
+<h2>Appendix<span>#</span></h2>
+<p>Some things that were influential in drafting this blog post:</p>
+<figure><div><p><a href="https://x.com/threepointone" target="_blank" rel="noopener noreferrer nofollow"></a></p><a href="https://x.com/ycombinator/status/2079963726435021232" title="View on X" target="_blank" rel="noopener noreferrer nofollow"></a></div><blockquote>getting really tired of the "dammit  @KentonVarda was right 6 months ago" feeling</blockquote><figcaption><a href="https://x.com/ycombinator/status/2079963726435021232" target="_blank" rel="noopener noreferrer nofollow">Feb 4, 2026</a></figcaption></figure>
+<ul>
+<li><a href="https://x.com/KentonVarda" target="_blank" rel="noopener noreferrer nofollow">Kenton Varda</a>’s many writings and talks
+<ul>
+<li><a href="https://www.youtube.com/watch?v=xUj4HQt_leg" target="_blank" rel="noopener noreferrer nofollow">Let’s put AI in lots of little boxes</a></li>
+<li><a href="https://www.infoq.com/presentations/cloudflare-v8/" target="_blank" rel="noopener noreferrer nofollow">Fine-Grained Sandboxing with V8 Isolates</a></li>
+<li><a href="https://sandstorm.io/about" target="_blank" rel="noopener noreferrer nofollow">sandstorm.io</a></li>
+</ul>
+</li>
+<li><a href="https://os.cloudflare.app/" target="_blank" rel="noopener noreferrer nofollow">Cloudflare OS</a></li>
+<li><a href="https://www.inkandswitch.com/" target="_blank" rel="noopener noreferrer nofollow">Ink and Switch</a>’s <a href="https://www.inkandswitch.com/essay/malleable-software/" target="_blank" rel="noopener noreferrer nofollow">Malleable Software</a></li>
+<li><a href="https://andymatuschak.org/" target="_blank" rel="noopener noreferrer nofollow">Andy Matuschak</a>’s <a href="https://andymatuschak.org/tat/" target="_blank" rel="noopener noreferrer nofollow">Apps and programming: two accidental tyrannies</a></li>
+</ul>
+<h2>Footnotes<span>#</span></h2>
+<ol>
+<li><span>1.</span>
+<p>I suspect that even in a fully LLM-accelerated world <a href="https://www.nngroup.com/articles/participation-inequality/" target="_blank" rel="noopener noreferrer nofollow">participation equality</a> is still going to be A Thing. A small percentage will author most of the extensions in any given ecosystem, no matter how easy we make it. <span>↩</span></p>
+</li>
+<li><span>2.</span>
+<p>If you squint, vibe coding platforms are kind of a generic version of this, except instead of providing custom functionality for your organization, they provide generic data storage and hosting. I expect they will start to add this kind of customized hosted access as they start selling to Enterprise. <span>↩</span></p>
+</li>
+<li><span>3.</span>
+<p>This completely glosses over a need to sandbox UI on the client side where custom code can access potentially sensitive data. <a href="https://github.com/endojs/endo/tree/master/packages/ses" target="_blank" rel="noopener noreferrer nofollow">That topic deserves its own post.</a>. Or point your robot at <a href="https://github.com/cloudflare/cloudflare-os" target="_blank" rel="noopener noreferrer nofollow"><code>cloudflare-os</code></a> and ask it how it’s done there. <span>↩</span></p>
+</li>
+<li><span>4.</span>
+<p>If you’re familiar with Workers, you might be thinking “this looks a lot like bindings…”.
+Yes! Bindings and Service Workers work on an <a href="https://developers.cloudflare.com/workers/runtime-apis/rpc/" target="_blank" rel="noopener noreferrer nofollow">Object Capability RPC system</a>. You can think of exposing capabilities to users as generating bindings for your particular service. <span>↩</span></p>
+</li>
+<li><span>5.</span>
+<p>You’ll have to bring your own vibes though. I decided “expose free LLM usage to the internet” was probably not in my best financial interest. <span>↩</span></p>
+</li>
+</ol>
+</div></div>
+  <div class="footer">
+    本文由 AI热点监控系统自动抓取 · 内容版权归原作者/网站所有<br>
+    快照仅用于学习交流，如需转载请访问原文
+  </div>
+</div>
+</body>
+</html>
