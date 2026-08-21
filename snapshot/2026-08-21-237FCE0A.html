@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="referrer" content="no-referrer">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'unsafe-inline'; img-src data:; connect-src 'none'; frame-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'; frame-ancestors 'none'">
+<title>Vision | DeepSeek API Docs - AI热点快照</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','PingFang SC','Microsoft YaHei',sans-serif;background:#f8f9fa;color:#1a1a2e;line-height:1.8;min-height:100vh}
+.top-bar{background:#fff;border-bottom:1px solid #e5e7eb;padding:10px 20px;display:flex;align-items:center;gap:12px;position:sticky;top:0;z-index:10}
+.top-bar .logo{font-size:14px;font-weight:700;color:#0d9488}
+.top-bar .sep{color:#d1d5db}
+.top-bar .source{font-size:13px;color:#6b7280}
+.top-bar .back{margin-left:auto;font-size:13px;color:#0d9488;text-decoration:none}
+.top-bar .back:hover{text-decoration:underline}
+.container{max-width:760px;margin:0 auto;padding:40px 24px 80px}
+.article-title{font-size:1.8rem;font-weight:700;line-height:1.35;margin-bottom:16px;color:#1a1a2e}
+.article-meta{display:flex;flex-wrap:wrap;gap:16px;padding-bottom:20px;margin-bottom:28px;border-bottom:1px solid #e5e7eb;font-size:14px;color:#6b7280}
+.article-meta a{color:#0d9488;text-decoration:none}
+.article-meta a:hover{text-decoration:underline}
+.article-body{font-size:16.5px;line-height:1.85;color:#1f2937}
+.article-body p{margin-bottom:1.2em;text-align:justify}
+.article-body h1,.article-body h2,.article-body h3{font-size:1.25em;font-weight:700;margin:1.6em 0 0.6em;color:#1a1a2e}
+.article-body a{color:#0d9488}
+.article-body pre,.article-body code{background:#f1f5f9;border-radius:4px;font-size:0.9em}
+.article-body pre{padding:16px;overflow-x:auto;margin:1em 0}
+.article-body code{padding:2px 6px}
+.article-body blockquote{border-left:3px solid #0d9488;padding-left:16px;color:#4b5563;margin:1em 0}
+.article-body ul,.article-body ol{padding-left:1.6em;margin-bottom:1em}
+.article-body li{margin-bottom:0.4em}
+.article-body figure{margin:1.2em 0}
+.article-body figcaption{font-size:13px;color:#9ca3af;text-align:center;margin-top:6px}
+.footer{margin-top:48px;padding-top:20px;border-top:1px solid #e5e7eb;font-size:13px;color:#9ca3af;text-align:center}
+</style>
+</head>
+<body>
+<div class="top-bar">
+  <a class="back" href="../" style="font-size:13px;color:#6b7280;text-decoration:none">← 日报首页</a>
+  <span class="sep">|</span>
+  <span class="logo">AI热点快照</span>
+  <span class="sep">|</span>
+  <span class="source">Hacker News</span>
+  <a class="back" href="https://api-docs.deepseek.com/guides/vision/" target="_blank" rel="noopener noreferrer">查看原文 ↗</a>
+</div>
+<div class="container">
+  <h1 class="article-title">Vision | DeepSeek API Docs</h1>
+  <div class="article-meta">
+    
+    <span>来源: Hacker News</span>
+    <span>快照日期: 2026-08-21</span>
+  </div>
+  <div class="article-body"><div><div>
+<p>The <code>deepseek-v4-flash-vision-exp</code> model accepts images alongside text, so you can ask the model to describe pictures, read text from screenshots, analyze charts, and more.</p>
+<p>Supported image formats: <strong>JPEG, PNG, GIF, and WebP</strong>. The format is detected from the actual file content, not from the file name or the declared MIME type.</p>
+<hr />
+<h2>Sending Images<span>​</span></h2>
+<p>There are three ways to provide an image to the model. All of them use the standard OpenAI-compatible Chat Completions format, where <code>content</code> is an array of blocks instead of a plain string. The same three methods are also available in the <span>Responses API</span>, where images are carried in <code>input_image</code> content parts.</p>
+<p>The <code>base_url</code> for the examples below is <code>https://api.deepseek.com</code>.</p>
+<h3>1. Base64-encoded image (inline)<span>​</span></h3>
+<p>Encode the image and embed it directly in the request as a <code>data:</code> URL. This is the simplest option for local files. The encoded data counts toward the <strong>48 MiB</strong> request body limit (see <span>Limits</span>).</p>
+<div><pre><code><span><span>import</span><span> base64</span><br /></span><span><span></span><span>from</span><span> openai </span><span>import</span><span> OpenAI</span><br /></span><span><span></span><br /></span><span><span>client </span><span>=</span><span> OpenAI</span><span>(</span><span>api_key</span><span>=</span><span>"&lt;DeepSeek API Key&gt;"</span><span>,</span><span> base_url</span><span>=</span><span>"https://api.deepseek.com"</span><span>)</span><span></span><br /></span><span><span></span><br /></span><span><span></span><span>with</span><span> </span><span>open</span><span>(</span><span>"image.jpg"</span><span>,</span><span> </span><span>"rb"</span><span>)</span><span> </span><span>as</span><span> f</span><span>:</span><span></span><br /></span><span><span>    b64 </span><span>=</span><span> base64</span><span>.</span><span>b64encode</span><span>(</span><span>f</span><span>.</span><span>read</span><span>(</span><span>)</span><span>)</span><span>.</span><span>decode</span><span>(</span><span>"utf-8"</span><span>)</span><span></span><br /></span><span><span></span><br /></span><span><span>response </span><span>=</span><span> client</span><span>.</span><span>chat</span><span>.</span><span>completions</span><span>.</span><span>create</span><span>(</span><span></span><br /></span><span><span>    model</span><span>=</span><span>"deepseek-v4-flash-vision-exp"</span><span>,</span><span></span><br /></span><span><span>    messages</span><span>=</span><span>[</span><span></span><br /></span><span><span>        </span><span>{</span><span></span><br /></span><span><span>            </span><span>"role"</span><span>:</span><span> </span><span>"user"</span><span>,</span><span></span><br /></span><span><span>            </span><span>"content"</span><span>:</span><span> </span><span>[</span><span></span><br /></span><span><span>                </span><span>{</span><span>"type"</span><span>:</span><span> </span><span>"text"</span><span>,</span><span> </span><span>"text"</span><span>:</span><span> </span><span>"What is in this image?"</span><span>}</span><span>,</span><span></span><br /></span><span><span>                </span><span>{</span><span></span><br /></span><span><span>                    </span><span>"type"</span><span>:</span><span> </span><span>"image_url"</span><span>,</span><span></span><br /></span><span><span>                    </span><span>"image_url"</span><span>:</span><span> </span><span>{</span><span>"url"</span><span>:</span><span> </span><span>f"data:image/jpeg;base64,</span><span>{</span><span>b64</span><span>}</span><span>"</span><span>}</span><span>,</span><span></span><br /></span><span><span>                </span><span>}</span><span>,</span><span></span><br /></span><span><span>            </span><span>]</span><span>,</span><span></span><br /></span><span><span>        </span><span>}</span><span></span><br /></span><span><span>    </span><span>]</span><span>,</span><span></span><br /></span><span><span></span><span>)</span><span></span><br /></span><span><span></span><span>print</span><span>(</span><span>response</span><span>.</span><span>choices</span><span>[</span><span>0</span><span>]</span><span>.</span><span>message</span><span>.</span><span>content</span><span>)</span><br /></span></code></pre></div>
+<div><pre><code><span><span>curl https://api.deepseek.com/chat/completions \</span><br /></span><span><span>  -H "Content-Type: application/json" \</span><br /></span><span><span>  -H "Authorization: Bearer &lt;DeepSeek API Key&gt;" \</span><br /></span><span><span>  -d '{</span><br /></span><span><span>    "model": "deepseek-v4-flash-vision-exp",</span><br /></span><span><span>    "messages": [</span><br /></span><span><span>      {</span><br /></span><span><span>        "role": "user",</span><br /></span><span><span>        "content": [</span><br /></span><span><span>          {"type": "text", "text": "What is in this image?"},</span><br /></span><span><span>          {"type": "image_url", "image_url": {"url": "data:image/jpeg;base64,&lt;BASE64_DATA&gt;"}}</span><br /></span><span><span>        ]</span><br /></span><span><span>      }</span><br /></span><span><span>    ]</span><br /></span><span><span>  }'</span><br /></span></code></pre></div>
+<h3>2. External image URL<span>​</span></h3>
+<p>Pass a publicly accessible <code>http(s)</code> link and the model downloads the image for you. The URL must be at most <strong>8192 characters</strong>, the image file may be at most <strong>32 MiB</strong>, and the download must complete within <strong>60 seconds</strong>. If your link is longer, use a base64 data URL or the Files API instead.</p>
+<div><pre><code><span><span>response </span><span>=</span><span> client</span><span>.</span><span>chat</span><span>.</span><span>completions</span><span>.</span><span>create</span><span>(</span><span></span><br /></span><span><span>    model</span><span>=</span><span>"deepseek-v4-flash-vision-exp"</span><span>,</span><span></span><br /></span><span><span>    messages</span><span>=</span><span>[</span><span></span><br /></span><span><span>        </span><span>{</span><span></span><br /></span><span><span>            </span><span>"role"</span><span>:</span><span> </span><span>"user"</span><span>,</span><span></span><br /></span><span><span>            </span><span>"content"</span><span>:</span><span> </span><span>[</span><span></span><br /></span><span><span>                </span><span>{</span><span>"type"</span><span>:</span><span> </span><span>"text"</span><span>,</span><span> </span><span>"text"</span><span>:</span><span> </span><span>"Describe this image."</span><span>}</span><span>,</span><span></span><br /></span><span><span>                </span><span>{</span><span></span><br /></span><span><span>                    </span><span>"type"</span><span>:</span><span> </span><span>"image_url"</span><span>,</span><span></span><br /></span><span><span>                    </span><span>"image_url"</span><span>:</span><span> </span><span>{</span><span>"url"</span><span>:</span><span> </span><span>"https://example.com/image.jpg"</span><span>}</span><span>,</span><span></span><br /></span><span><span>                </span><span>}</span><span>,</span><span></span><br /></span><span><span>            </span><span>]</span><span>,</span><span></span><br /></span><span><span>        </span><span>}</span><span></span><br /></span><span><span>    </span><span>]</span><span>,</span><span></span><br /></span><span><span></span><span>)</span><span></span><br /></span><span><span></span><span>print</span><span>(</span><span>response</span><span>.</span><span>choices</span><span>[</span><span>0</span><span>]</span><span>.</span><span>message</span><span>.</span><span>content</span><span>)</span><br /></span></code></pre></div>
+<h3>3. Reference a file uploaded via the Files API<span>​</span></h3>
+<p>Upload an image once with the <span>Files API</span>, then reference its <code>file_id</code> in your requests. This is the best option when you reuse the same image across multiple requests, or when the image pushes the request body over the 48 MiB inline limit. Unlike inline images, images referenced via Files API <code>file_id</code> may be up to 64 MiB and are not subject to the 32 MiB per-image check.</p>
+<p>Use a <code>file</code> content block with the returned <code>file_id</code> (which has the form <code>file-api-...</code>):</p>
+<div><pre><code><span><span>response </span><span>=</span><span> client</span><span>.</span><span>chat</span><span>.</span><span>completions</span><span>.</span><span>create</span><span>(</span><span></span><br /></span><span><span>    model</span><span>=</span><span>"deepseek-v4-flash-vision-exp"</span><span>,</span><span></span><br /></span><span><span>    messages</span><span>=</span><span>[</span><span></span><br /></span><span><span>        </span><span>{</span><span></span><br /></span><span><span>            </span><span>"role"</span><span>:</span><span> </span><span>"user"</span><span>,</span><span></span><br /></span><span><span>            </span><span>"content"</span><span>:</span><span> </span><span>[</span><span></span><br /></span><span><span>                </span><span>{</span><span>"type"</span><span>:</span><span> </span><span>"text"</span><span>,</span><span> </span><span>"text"</span><span>:</span><span> </span><span>"What is in this image?"</span><span>}</span><span>,</span><span></span><br /></span><span><span>                </span><span>{</span><span>"type"</span><span>:</span><span> </span><span>"file"</span><span>,</span><span> </span><span>"file_id"</span><span>:</span><span> </span><span>"file-api-xxxxxxxxxxxxxxxx"</span><span>}</span><span>,</span><span></span><br /></span><span><span>            </span><span>]</span><span>,</span><span></span><br /></span><span><span>        </span><span>}</span><span></span><br /></span><span><span>    </span><span>]</span><span>,</span><span></span><br /></span><span><span></span><span>)</span><span></span><br /></span><span><span></span><span>print</span><span>(</span><span>response</span><span>.</span><span>choices</span><span>[</span><span>0</span><span>]</span><span>.</span><span>message</span><span>.</span><span>content</span><span>)</span><br /></span></code></pre></div>
+<p>Alternatively, a <code>file</code> block can carry the image inline as base64 via <code>file_data</code> instead of <code>file_id</code> (the two are mutually exclusive):</p>
+<div><pre><code><span><span>{</span><br /></span><span><span>  "type": "file",</span><br /></span><span><span>  "file_data": "data:image/jpeg;base64,&lt;BASE64_DATA&gt;",</span><br /></span><span><span>  "filename": "image.jpg"</span><br /></span><span><span>}</span><br /></span></code></pre></div>
+<hr />
+<h2>Detail Level<span>​</span></h2>
+<p>For <code>image_url</code> inputs you can optionally set a <code>detail</code> field to control how the image is processed:</p>
+<table><thead><tr><th>Value</th><th>Behavior</th></tr></thead><tbody><tr><td><code>low</code></td><td>The image is downscaled to 512×512 before inference. Faster and cheaper when fine visual detail is not important.</td></tr><tr><td><code>high</code></td><td>Keeps the original image. (Provided for compatibility; equivalent to <code>original</code>.)</td></tr><tr><td><code>original</code></td><td>Keeps the original image.</td></tr><tr><td><code>auto</code></td><td>Automatic selection. Currently equivalent to <code>original</code>.</td></tr></tbody></table>
+<div><pre><code><span><span>{</span><br /></span><span><span>  "type": "image_url",</span><br /></span><span><span>  "image_url": {"url": "https://example.com/image.jpg", "detail": "low"}</span><br /></span><span><span>}</span><br /></span></code></pre></div>
+<hr />
+<h2>When to Use the Files API<span>​</span></h2>
+<p>Inline images (base64 or <code>file_data</code>) count toward the request body size limit of <strong>48 MiB</strong>. Consider the <span>Files API</span> when:</p>
+<ul>
+<li>A single request would exceed the body size limit.</li>
+<li>The image is larger than 32 MiB, which is only possible through the Files API.</li>
+<li>You reference the same image in multiple requests and want to avoid re-uploading it each time.</li>
+</ul>
+<hr />
+<h2>Token Usage<span>​</span></h2>
+<p>Images are converted into tokens based on their dimensions, and these tokens are billed together with your text tokens.</p>
+<p>Before inference, every image is automatically resized:</p>
+<ul>
+<li>Images with a total pixel count below roughly 384×384 are scaled up while preserving their aspect ratio.</li>
+<li>Larger images are scaled down while preserving their aspect ratio, so that the total pixel count after resizing is roughly that of an <strong>800×800</strong> image.</li>
+</ul>
+<p>As a result, there is an upper bound of <strong>384</strong> tokens per image: for example, a 2000×2000 image and a 5000×5000 image consume the same number of tokens after resizing. When a request contains multiple images, each image is counted independently under the same rule — there is no separate calculation for multi-image requests.</p>
+<p>To estimate the token cost of an image of a specific size, use the image token calculator on the <span>Token &amp; Token Usage</span> page.</p>
+<hr />
+<h2>Limits<span>​</span></h2>
+<table><thead><tr><th>Limit</th><th>Value</th></tr></thead><tbody><tr><td>Supported formats</td><td>JPEG, PNG, GIF, WebP</td></tr><tr><td>External URL length</td><td>8192 characters</td></tr><tr><td>Request body size</td><td>48 MiB</td></tr><tr><td>Max single image size (base64 / external URL)</td><td>32 MiB</td></tr><tr><td>Max single image size (Files API <code>file_id</code>)</td><td>64 MiB</td></tr><tr><td>Max images per request</td><td>600</td></tr><tr><td>Max total image size per request</td><td>64 MiB without <code>file_id</code> images; up to 200 MiB including <code>file_id</code> images</td></tr><tr><td>Max image dimension</td><td>8192 px per side; drops to 4096 px per side when a request contains 15 or more images</td></tr></tbody></table>
+<p>For storage and upload quotas of files uploaded via the Files API, see <span>Files API: Limits</span>.</p>
+<hr />
+<h2>Restrictions<span>​</span></h2>
+<ul>
+<li>Images are supported in <code>user</code> messages only: images in <code>system</code> or <code>assistant</code> messages return a <code>400</code> error.</li>
+<li>Only vision models (<code>deepseek-v4-flash-vision-exp</code>) accept images; other models return a <code>400</code> error ("This model does not support image").</li>
+<li>User text containing the reserved image placeholder token is rejected with a <code>400</code> error.</li>
+</ul>
+<hr />
+<h2>Using Images with the Anthropic API<span>​</span></h2>
+<p>In addition to the OpenAI-compatible endpoint above, you can send images through the Anthropic-compatible <code>/messages</code> endpoint (<code>base_url</code> = <code>https://api.deepseek.com/anthropic</code>). For general setup, see <span>Anthropic API</span>.</p>
+<p>The difference is the shape of the image content block. Instead of <code>image_url</code>, Anthropic uses an <code>image</code> block with a <code>source</code> object whose <code>type</code> is one of <code>base64</code>, <code>url</code>, or <code>file</code>:</p>
+<div><pre><code><span><span>import</span><span> anthropic</span><br /></span><span><span></span><br /></span><span><span>client </span><span>=</span><span> anthropic</span><span>.</span><span>Anthropic</span><span>(</span><span>)</span><span>  </span><span># ANTHROPIC_BASE_URL=https://api.deepseek.com/anthropic</span><span></span><br /></span><span><span></span><br /></span><span><span>message </span><span>=</span><span> client</span><span>.</span><span>messages</span><span>.</span><span>create</span><span>(</span><span></span><br /></span><span><span>    model</span><span>=</span><span>"deepseek-v4-flash-vision-exp"</span><span>,</span><span></span><br /></span><span><span>    max_tokens</span><span>=</span><span>1024</span><span>,</span><span></span><br /></span><span><span>    messages</span><span>=</span><span>[</span><span></span><br /></span><span><span>        </span><span>{</span><span></span><br /></span><span><span>            </span><span>"role"</span><span>:</span><span> </span><span>"user"</span><span>,</span><span></span><br /></span><span><span>            </span><span>"content"</span><span>:</span><span> </span><span>[</span><span></span><br /></span><span><span>                </span><span>{</span><span>"type"</span><span>:</span><span> </span><span>"text"</span><span>,</span><span> </span><span>"text"</span><span>:</span><span> </span><span>"What is in this image?"</span><span>}</span><span>,</span><span></span><br /></span><span><span>                </span><span>{</span><span></span><br /></span><span><span>                    </span><span>"type"</span><span>:</span><span> </span><span>"image"</span><span>,</span><span></span><br /></span><span><span>                    </span><span>"source"</span><span>:</span><span> </span><span>{</span><span></span><br /></span><span><span>                        </span><span>"type"</span><span>:</span><span> </span><span>"base64"</span><span>,</span><span></span><br /></span><span><span>                        </span><span>"media_type"</span><span>:</span><span> </span><span>"image/jpeg"</span><span>,</span><span></span><br /></span><span><span>                        </span><span>"data"</span><span>:</span><span> </span><span>"&lt;BASE64_DATA&gt;"</span><span>,</span><span></span><br /></span><span><span>                    </span><span>}</span><span>,</span><span></span><br /></span><span><span>                </span><span>}</span><span>,</span><span></span><br /></span><span><span>            </span><span>]</span><span>,</span><span></span><br /></span><span><span>        </span><span>}</span><span></span><br /></span><span><span>    </span><span>]</span><span>,</span><span></span><br /></span><span><span></span><span>)</span><span></span><br /></span><span><span></span><span>print</span><span>(</span><span>message</span><span>.</span><span>content</span><span>)</span><br /></span></code></pre></div>
+<p>The three <code>source</code> variants mirror the OpenAI methods above:</p>
+<table><thead><tr><th><code>source.type</code></th><th>Equivalent OpenAI method</th><th>Notes</th></tr></thead><tbody><tr><td><code>base64</code></td><td>Base64-encoded image</td><td>Requires a <code>media_type</code> field (<code>image/jpeg</code>, <code>image/png</code>, <code>image/gif</code>, or <code>image/webp</code>).</td></tr><tr><td><code>url</code></td><td>External image URL</td><td>Max 8192 characters.</td></tr><tr><td><code>file</code></td><td>Files API <code>file_id</code></td><td>Requires the header <code>anthropic-beta: files-api-2025-04-14</code>.</td></tr></tbody></table>
+<hr />
+<h2>Using Images with the Responses API<span>​</span></h2>
+<p>The <code>deepseek-v4-flash-vision-exp</code> model also accepts images through the OpenAI-compatible <span>Responses API</span>. The same three input methods (base64 data URL, external <code>http(s)</code> URL, Files API <code>file_id</code>) and the same <span>limits</span> apply; only the content part shape differs — images are carried in <code>input_image</code> parts, either in <code>user</code> / <code>developer</code> messages or in the output of <code>function_call_output</code> / <code>custom_tool_call_output</code> items:</p>
+<div><pre><code><span><span>response </span><span>=</span><span> client</span><span>.</span><span>responses</span><span>.</span><span>create</span><span>(</span><span></span><br /></span><span><span>    model</span><span>=</span><span>"deepseek-v4-flash-vision-exp"</span><span>,</span><span></span><br /></span><span><span>    </span><span>input</span><span>=</span><span>[</span><span></span><br /></span><span><span>        </span><span>{</span><span></span><br /></span><span><span>            </span><span>"role"</span><span>:</span><span> </span><span>"user"</span><span>,</span><span></span><br /></span><span><span>            </span><span>"content"</span><span>:</span><span> </span><span>[</span><span></span><br /></span><span><span>                </span><span>{</span><span>"type"</span><span>:</span><span> </span><span>"input_text"</span><span>,</span><span> </span><span>"text"</span><span>:</span><span> </span><span>"What is in this image?"</span><span>}</span><span>,</span><span></span><br /></span><span><span>                </span><span>{</span><span>"type"</span><span>:</span><span> </span><span>"input_image"</span><span>,</span><span> </span><span>"image_url"</span><span>:</span><span> </span><span>"https://example.com/image.jpg"</span><span>,</span><span> </span><span>"detail"</span><span>:</span><span> </span><span>"low"</span><span>}</span><span>,</span><span></span><br /></span><span><span>            </span><span>]</span><span>,</span><span></span><br /></span><span><span>        </span><span>}</span><span></span><br /></span><span><span>    </span><span>]</span><span>,</span><span></span><br /></span><span><span></span><span>)</span><span></span><br /></span><span><span></span><span>print</span><span>(</span><span>response</span><span>.</span><span>output_text</span><span>)</span><br /></span></code></pre></div>
+<p>The <code>input_image</code> part supports a <code>detail</code> field with the same semantics as above (<code>low</code> / <code>high</code> / <code>original</code> / <code>auto</code>). <code>detail</code> is ignored when the image is provided via <code>file_id</code>, and <code>image_url</code> and <code>file_id</code> are mutually exclusive.</p>
+<p>For field semantics, restrictions (images in <code>system</code> / <code>assistant</code> messages are rejected with a <code>400</code> error), and tool-output images, see the <span>Responses API guide</span>.</p></div></div></div>
+  <div class="footer">
+    本文由 AI热点监控系统自动抓取 · 内容版权归原作者/网站所有<br>
+    快照仅用于学习交流，如需转载请访问原文
+  </div>
+</div>
+</body>
+</html>

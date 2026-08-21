@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="referrer" content="no-referrer">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'unsafe-inline'; img-src data:; connect-src 'none'; frame-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'; frame-ancestors 'none'">
+<title>AlloyDB ScaNN index four-level tree improves vector search - AI热点快照</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','PingFang SC','Microsoft YaHei',sans-serif;background:#f8f9fa;color:#1a1a2e;line-height:1.8;min-height:100vh}
+.top-bar{background:#fff;border-bottom:1px solid #e5e7eb;padding:10px 20px;display:flex;align-items:center;gap:12px;position:sticky;top:0;z-index:10}
+.top-bar .logo{font-size:14px;font-weight:700;color:#0d9488}
+.top-bar .sep{color:#d1d5db}
+.top-bar .source{font-size:13px;color:#6b7280}
+.top-bar .back{margin-left:auto;font-size:13px;color:#0d9488;text-decoration:none}
+.top-bar .back:hover{text-decoration:underline}
+.container{max-width:760px;margin:0 auto;padding:40px 24px 80px}
+.article-title{font-size:1.8rem;font-weight:700;line-height:1.35;margin-bottom:16px;color:#1a1a2e}
+.article-meta{display:flex;flex-wrap:wrap;gap:16px;padding-bottom:20px;margin-bottom:28px;border-bottom:1px solid #e5e7eb;font-size:14px;color:#6b7280}
+.article-meta a{color:#0d9488;text-decoration:none}
+.article-meta a:hover{text-decoration:underline}
+.article-body{font-size:16.5px;line-height:1.85;color:#1f2937}
+.article-body p{margin-bottom:1.2em;text-align:justify}
+.article-body h1,.article-body h2,.article-body h3{font-size:1.25em;font-weight:700;margin:1.6em 0 0.6em;color:#1a1a2e}
+.article-body a{color:#0d9488}
+.article-body pre,.article-body code{background:#f1f5f9;border-radius:4px;font-size:0.9em}
+.article-body pre{padding:16px;overflow-x:auto;margin:1em 0}
+.article-body code{padding:2px 6px}
+.article-body blockquote{border-left:3px solid #0d9488;padding-left:16px;color:#4b5563;margin:1em 0}
+.article-body ul,.article-body ol{padding-left:1.6em;margin-bottom:1em}
+.article-body li{margin-bottom:0.4em}
+.article-body figure{margin:1.2em 0}
+.article-body figcaption{font-size:13px;color:#9ca3af;text-align:center;margin-top:6px}
+.footer{margin-top:48px;padding-top:20px;border-top:1px solid #e5e7eb;font-size:13px;color:#9ca3af;text-align:center}
+</style>
+</head>
+<body>
+<div class="top-bar">
+  <a class="back" href="../" style="font-size:13px;color:#6b7280;text-decoration:none">← 日报首页</a>
+  <span class="sep">|</span>
+  <span class="logo">AI热点快照</span>
+  <span class="sep">|</span>
+  <span class="source">Google Cloud</span>
+  <a class="back" href="https://cloud.google.com/blog/products/databases/alloydb-scann-index-four-level-tree-improves-vector-search" target="_blank" rel="noopener noreferrer">查看原文 ↗</a>
+</div>
+<div class="container">
+  <h1 class="article-title">AlloyDB ScaNN index four-level tree improves vector search</h1>
+  <div class="article-meta">
+    <span>作者: Bin Song, Itai Rosenblatt</span>
+    <span>来源: Google Cloud</span>
+    <span>快照日期: 2026-08-21</span>
+  </div>
+  <div class="article-body"><div><div><div><p><span>To satisfy the demands of enterprise-grade agentic AI applications, underlying vector databases often struggle to scale effectively as modern use cases can scale to billions of vectors.</span></p>
+<p><span>As a fully managed PostgreSQL-compatible database service, </span><a href="https://docs.cloud.google.com/alloydb/docs/overview" target="_blank" rel="noopener noreferrer nofollow"><span>AlloyDB</span></a><span> is engineered to handle demanding enterprise workloads. Combining Google's infrastructure with the reliability of commercial databases, it delivers high availability, scalability, and includes a cutting-edge analytical engine, optimal for agentic AI use cases. A key part of this is its </span><a href="https://docs.cloud.google.com/alloydb/docs/ai/create-scann-index" target="_blank" rel="noopener noreferrer nofollow"><span>ScaNN index</span></a><span>, which now operates efficiently </span><span>at a scale of 10 billion vectors</span><span>. This was achieved through a major architectural enhancement: an innovative </span><a href="https://docs.cloud.google.com/alloydb/docs/ai/create-scann-index#four-level-tree-index" target="_blank" rel="noopener noreferrer nofollow"><span>four-level tree (preview)</span></a><span> paired with efficient memory usage</span><strong>.</strong></p>
+<h3><strong>The 10 billion vector scale challenge</strong></h3>
+<p><span>Scaling to a 10 billion vector workload presents significant memory and computational challenges. Previous AlloyDB ScaNN tree-based index was limited to </span><a href="https://docs.cloud.google.com/alloydb/docs/ai/create-scann-index#two-level-tree-index" target="_blank" rel="noopener noreferrer nofollow"><span>two</span></a><span>- or </span><a href="https://docs.cloud.google.com/alloydb/docs/ai/create-scann-index#three-level-tree-index" target="_blank" rel="noopener noreferrer nofollow"><span>three</span></a><span>-level tree configurations, and attempting to scale those structures led to several bottlenecks:</span></p>
+<ul>
+<li>
+<p><strong>Increased compute intensity:</strong><span> Larger tree structures demand significantly more operations for both index construction and query traversal.</span></p>
+</li>
+<li>
+<p><strong>Memory constraints:</strong><span> The sampling processes required for 10 billion vectors can easily exceed the system's available memory capacity.</span></p>
+</li>
+</ul>
+<h3><strong>Solution: Four-level architecture</strong></h3>
+<p><span>The introduction of a </span><a href="https://docs.cloud.google.com/alloydb/docs/ai/create-scann-index#four-level-tree-index" target="_blank" rel="noopener noreferrer nofollow"><span>four-level tree (preview)</span></a><span> is the primary innovation in the recent AlloyDB ScaNN release. This architecture, illustrated in Figure 1, employs a top-down strategy to optimize the balance between accuracy and build efficiency. To maintain high performance and mitigate recall loss, the system integrates key enhancements such as Top-K branch, </span><a href="https://research.google/blog/soar-new-algorithms-for-even-faster-vector-search-with-scann/#:~:text=ScaNN%20is%20open%2Dsourced%20on%20GitHub%20and%20can%20be%20easily%20installed%20via%20Pip." target="_blank" rel="noopener noreferrer nofollow"><span>SOAR</span></a><span>, </span><a href="https://arxiv.org/abs/1908.10396" target="_blank" rel="noopener noreferrer nofollow"><span>centroid adjustment</span></a><span> and balanced tree shape.</span></p></div><figure></figure><div><p>Figure 1. AlloyDB ScaNN four-level tree architecture</p></div><div><p><span>This design has two primary benefits:</span></p>
+<p><strong>1. Reduced compute intensity via hierarchical partitioning</strong></p>
+<p><span>The four-level architecture drastically reduces compute intensity by using hierarchical partitioning to restrict the volume of vectors scanned during a query. Instead of traversing a flat or poorly segmented space, the multi-layered hierarchy narrows down the search path exponentially. Figure 2 illustrates the search spaces across different tree levels, demonstrating how structural layering optimizes traversal efficiency:</span></p></div><figure></figure><div><p>Figure 2. Search space for two-, three- and four-level trees</p></div><div><ul>
+<li>
+<p><strong>Two-level:</strong><span> Utilizes coarse partitioning to guide queries, resulting in a basic search complexity of </span><em><span>O(</span><span>N</span><sup><span>1/2</span></sup></em><span><em>)</em></span><span>.</span></p>
+</li>
+<li>
+<p><strong>Three-level:</strong><span> Introduces an intermediate layer to further subdivide clusters, narrowing exploration to </span><em><span>O(</span><span>N</span><sup><span>1/3</span></sup></em><span><em>)</em></span><span>.</span></p>
+</li>
+<li>
+<p><strong>Four-level:</strong><span> Implements refined, highly granular partitions that optimize traversal efficiency down to </span><em><span>O(</span><span>N</span><sup><span>1/4</span></sup></em><span><em>)</em></span><span>, sufficiently allowing for more than 10-billion vectors.</span></p>
+</li>
+</ul>
+<p><span>By dynamically expanding hierarchical layers as the dataset expands, AlloyDB ScaNN maintains ultra-low query latency and avoids computational scale walls from impacting performance.</span></p>
+<p><strong>2. Efficient memory usage</strong></p>
+<p><span>Achieving a 10 billion vector scale requires high memory efficiency. AlloyDB ScaNN uses these strategies to maximize memory management performance:</span></p>
+<ul>
+<li>
+<p><strong>Balanced tree shape construction:</strong><span> The four-level tree utilizes a </span><span>balanced</span><span> configuration to circumvent memory limitations that restrict the size of training datasets. This balanced architecture effectively leverages reduced sampling sizes to construct high-fidelity tree partitions.</span></p>
+</li>
+<li>
+<p><strong>Sampling optimization:</strong><span> When the system encounters memory limitations, it generates a condensed sampling set that considers performance and accuracy. </span></p>
+</li>
+</ul>
+<h3><strong>Performance test results</strong></h3>
+<p><span>By leveraging the innovative four-level tree architecture in our internal tests, we are able to achieve the following performance results:</span></p>
+<ul>
+<li>
+<p><span>AlloyDB can scale to over 10 billion vectors with its ScaNN index.</span></p>
+</li>
+<li>
+<p><span>AlloyDB can deliver &lt;= 51 ms p95 latency and 95% recall at 10 billion vectors with its ScaNN index.</span></p>
+</li>
+</ul>
+<h3><strong>Get started today</strong></h3>
+<p><span>Experience AlloyDB ScaNN's </span><a href="https://docs.cloud.google.com/alloydb/docs/ai/create-scann-index#four-level-tree-index" target="_blank" rel="noopener noreferrer nofollow"><span>four-level tree (preview)</span></a><span> architecture today. You can deploy ScaNN for AlloyDB by following our </span><a href="https://cloud.google.com/alloydb/docs/quickstart/create-and-connect" target="_blank" rel="noopener noreferrer nofollow"><span>quickstart guide</span></a><span> to set up an instance. For optimized, high-speed vector search, refer to the </span><a href="https://docs.cloud.google.com/alloydb/docs/ai/create-scann-index" target="_blank" rel="noopener noreferrer nofollow"><span>official ScaNN documentation</span></a><span>. New users can also </span><a href="https://console.cloud.google.com/alloydb/create-trial-cluster?_gl=1*qsd2cd*_up*MQ..&amp;gclid=CjwKCAjwooq3BhB3EiwAYqYoEh91xxGzv4xrmyMJJ_BPfF4X8cv-I3kINwvnMI2pADozFQPsrHnaOhoCbioQAvD_BwE&amp;gclsrc=aw.ds" target="_blank" rel="noopener noreferrer nofollow"><span>explore AlloyDB</span></a><span> through our </span><a href="https://cloud.google.com/blog/products/databases/run-your-postgresql-database-in-an-alloydb-free-trial-cluster" target="_blank" rel="noopener noreferrer nofollow"><span>30-day free trial</span></a><span> program. We can’t wait to hear about what you build!</span></p></div><span>Posted in</span><ul><li><a href="https://cloud.google.com/blog/products/databases" target="_blank" rel="noopener noreferrer nofollow">Databases</a></li><li><a href="https://cloud.google.com/blog/products/ai-machine-learning" target="_blank" rel="noopener noreferrer nofollow">AI &amp; Machine Learning</a></li></ul></div></div></div>
+  <div class="footer">
+    本文由 AI热点监控系统自动抓取 · 内容版权归原作者/网站所有<br>
+    快照仅用于学习交流，如需转载请访问原文
+  </div>
+</div>
+</body>
+</html>
