@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="referrer" content="no-referrer">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'unsafe-inline'; img-src data:; connect-src 'none'; frame-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'; frame-ancestors 'none'">
+<title>LLMs could control their host machines by exploiting inference engines - AI热点快照</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','PingFang SC','Microsoft YaHei',sans-serif;background:#f8f9fa;color:#1a1a2e;line-height:1.8;min-height:100vh}
+.top-bar{background:#fff;border-bottom:1px solid #e5e7eb;padding:10px 20px;display:flex;align-items:center;gap:12px;position:sticky;top:0;z-index:10}
+.top-bar .logo{font-size:14px;font-weight:700;color:#0d9488}
+.top-bar .sep{color:#d1d5db}
+.top-bar .source{font-size:13px;color:#6b7280}
+.top-bar .back{margin-left:auto;font-size:13px;color:#0d9488;text-decoration:none}
+.top-bar .back:hover{text-decoration:underline}
+.container{max-width:760px;margin:0 auto;padding:40px 24px 80px}
+.article-title{font-size:1.8rem;font-weight:700;line-height:1.35;margin-bottom:16px;color:#1a1a2e}
+.article-meta{display:flex;flex-wrap:wrap;gap:16px;padding-bottom:20px;margin-bottom:28px;border-bottom:1px solid #e5e7eb;font-size:14px;color:#6b7280}
+.article-meta a{color:#0d9488;text-decoration:none}
+.article-meta a:hover{text-decoration:underline}
+.article-body{font-size:16.5px;line-height:1.85;color:#1f2937}
+.article-body p{margin-bottom:1.2em;text-align:justify}
+.article-body h1,.article-body h2,.article-body h3{font-size:1.25em;font-weight:700;margin:1.6em 0 0.6em;color:#1a1a2e}
+.article-body a{color:#0d9488}
+.article-body pre,.article-body code{background:#f1f5f9;border-radius:4px;font-size:0.9em}
+.article-body pre{padding:16px;overflow-x:auto;margin:1em 0}
+.article-body code{padding:2px 6px}
+.article-body blockquote{border-left:3px solid #0d9488;padding-left:16px;color:#4b5563;margin:1em 0}
+.article-body ul,.article-body ol{padding-left:1.6em;margin-bottom:1em}
+.article-body li{margin-bottom:0.4em}
+.article-body figure{margin:1.2em 0}
+.article-body figcaption{font-size:13px;color:#9ca3af;text-align:center;margin-top:6px}
+.footer{margin-top:48px;padding-top:20px;border-top:1px solid #e5e7eb;font-size:13px;color:#9ca3af;text-align:center}
+</style>
+</head>
+<body>
+<div class="top-bar">
+  <a class="back" href="../" style="font-size:13px;color:#6b7280;text-decoration:none">← 日报首页</a>
+  <span class="sep">|</span>
+  <span class="logo">AI热点快照</span>
+  <span class="sep">|</span>
+  <span class="source">Boyd's Blog</span>
+  <a class="back" href="https://boydkane.com/essays/llms-could-control-their-host-machines-by-exploiting-inference-engines" target="_blank" rel="noopener noreferrer">查看原文 ↗</a>
+</div>
+<div class="container">
+  <h1 class="article-title">LLMs could control their host machines by exploiting inference engines</h1>
+  <div class="article-meta">
+    
+    <span>来源: Boyd's Blog</span>
+    <span>快照日期: 2026-08-25</span>
+  </div>
+  <div class="article-body"><div><p>| Read on <a href="https://www.lesswrong.com/posts/CjeobBGnhxg8xvden/llms-could-control-their-host-machines-by-exploiting" target="_blank" rel="noopener noreferrer nofollow">LessWrong</a> |</p>
+<p>Large language models often take actions running on one computer (via an
+agentic harness such as Claude Code or Codex), however the LLMs’ responses to
+prompts are computed on a different computer with GPU access. Could a malicious
+LLM gain control of the host machine where its weights are loaded? Such a
+machine is a high-value target: it has sufficient compute to run a frontier
+LLM, offers easy access to the LLM’s weights, and has privileged access to
+other computers in the datacentre compared with a generic computer on the
+internet.</p>
+<p>This essay explores how easily a malicious LLM could take control of the host
+machine. The primary attack considered here involves the LLM emitting a token
+sequence whose semantic meaning is irrelevant but that exploits a vulnerability
+in the software that loads an LLM onto GPUs, runs the LLM to generate output
+tokens, and parses those tokens into responses. .</p>
+<h2>How could an LLM execute code on the host machine?</h2>
+<p>Like any program, inference engines like <a href="https://github.com/vllm-project/vllm" target="_blank" rel="noopener noreferrer nofollow">vLLM</a> or <a href="https://github.com/sgl-project/sglang" target="_blank" rel="noopener noreferrer nofollow">SGLang</a> may contain
+exploitable bugs. Because the LLM controls the tokens passed to the inference
+engine, a malicious LLM could therefore emit a sequence of tokens that a poorly
+written inference engine mistakes for code or instructions to execute rather
+than data to return to the user.</p>
+<p>But surely all inference engines are robust pieces of software and this would
+never happen, right?</p>
+<h2>vLLM previously used <code>eval()</code> on tool-call parameters</h2>
+<p><a href="https://github.com/vllm-project/vllm/security/advisories/GHSA-79j6-g2m3-jgfw" target="_blank" rel="noopener noreferrer nofollow">CVE-2025-9141</a> was an arbitrary-code execution bug in vLLM’s XML-based tool
+parser for Qwen3 Coder. The parser passed almost every tool-call argument to
+<code>eval()</code>, allowing the LLM to execute arbitrary code on the host machine.
+Gemini automatically analysed <a href="https://github.com/vllm-project/vllm/pull/21396" target="_blank" rel="noopener noreferrer nofollow">the PR</a> that introduced this bug and
+correctly flagged it as a critical security vulnerability. Despite that
+warning, the <em>lead maintainer</em> of vLLM force-merged the PR, writing:</p>
+<p></p>
+<p>Unfortunately, parsing an arbitrary token sequence into a fully fledged chat
+(with user turns, assistant responses, tool calls, and so on) is not trivial,
+and the exact process often differs between LLMs. This complexity creates more
+opportunities for bugs that could permit arbitrary code execution on the host
+machine.</p>
+<h2>vLLM and SGLang are complex, and bugs are common</h2>
+<p>Modern inference engines do more than map token sequences to strings. vLLM’s
+documentation lists support for <a href="https://docs.vllm.ai/en/stable/" target="_blank" rel="noopener noreferrer nofollow">more than 200 model architectures</a>, and its
+examples directory contains <a href="https://github.com/vllm-project/vllm/tree/main/examples" target="_blank" rel="noopener noreferrer nofollow">about 35 Jinja chat templates</a>. Modern
+inference engines parse many chat formats, and slightly misspecified parsing
+logic result in an LLM’s output being interpreted as code to execute.</p>
+<p>In <a href="https://github.com/vllm-project/vllm/issues/48663" target="_blank" rel="noopener noreferrer nofollow">this vLLM issue</a>, a user was discussing how LLMs reason with MiniMax-M3,
+and the LLM emitted the string <code>&lt;mm:think&gt;</code>. vLLM mistakenly parsed this plain
+string as the start of a reasoning block. So instead of:</p>
+<blockquote>
+<p>Response: <code>I'll echo exactly what you said: &lt;mm:think&gt;\nThere, how was that?</code></p>
+</blockquote>
+<p>vLLM parsed this as:</p>
+<blockquote>
+<p>Response: <code>I'll echo exactly what you said: </code></p>
+<p>Reasoning: <code>\nThere, how was that?</code></p>
+</blockquote>
+<p>This is a fairly harmless parser bug, but it demonstrates that inference
+engines do more than convert tokens to strings and concatenate them. They are
+complex systems under constant iteration and their developers are under a lot
+of pressure to make them as fast as possible. These factors increase the risk
+that a malicious LLM could turn a parser bug into arbitrary code execution on
+the inference host.</p>
+<h2>Vision and audio tokens <em>might</em> increase the attack surface</h2>
+<p>Multimodal architectures allow an LLM to respond with images or audio as well as
+plain text. Turning a model’s audio or visual output into usable media is
+probably more complicated than decoding text tokens. However, as far as I can
+tell, current multimodal LLMs generally emit constrained media tokens rather
+than arbitrary file bytes. A model-specific decoder turns those tokens into
+pixels or waveforms, which are then encoded into files. This makes classic
+malformed-file exploits against software such as <code>ffmpeg</code> or media viewers less
+directly accessible to the model, although the additional decoders, encoders,
+and native kernels still increase the attack surface.</p>
+<p>I do not currently see multimodal output as a major route to host compromise.
+However, it offers much higher bandwidth than text alone, and future inference
+engines may optimise these media-generation pathways in ways that make them
+easier to exploit. I also do not know how proprietary multimodal models
+represent image and audio output; their methods may carry different risks.</p>
+<h2>How likely is an LLM to discover and exploit inference engine vulnerabilities?</h2>
+<p>Somewhat likely? I’m unsure. Discovering a useful vulnerability is probably the
+harder step. The sequence of tokens required to exploit it might be quite
+unusual, but that does not make the vulnerability impractical to exploit. Given
+the right context (e.g. an LLM exploring the vLLM codebase and discovering a
+vulnerability in the process), I’d expect a frontier LLM to be able to emit the
+tokens required to exploit it.</p>
+<h2>Tool use could make exploitation reproducible</h2>
+<p>Once an LLM discovers an exploit token sequence, it could store that sequence,
+or instructions for recreating it, in files, filenames, or URLs likely to enter
+another LLM’s context. The exploit would then act as a form of persistent
+prompt injection: an agent might trigger code execution on the GPU host merely
+by listing a directory or reading a file.</p>
+<h2>Inference engines are an attractive target for power-seeking LLMs</h2>
+<p>I believe hope that OpenAI, Google, and Anthropic have security teams that
+red-team the software they run internally. But as open-weight LLMs become more
+powerful, we’ll have more LLMs running on bleeding-edge inference engines that
+have received less scrutiny. This increases the chance that a malicious
+open-weight LLM will encounter and exploit a vulnerable inference engine.</p>
+<p>Another attack vector may emerge as LLMs are increasingly tasked with writing or
+modifying the inference engines that run them, usually to improve performance. A
+malicious LLM could use that access to plant a backdoor. <a href="https://github.com/vllm-project/vllm/tree/main/csrc" target="_blank" rel="noopener noreferrer nofollow">C++ and CUDA
+components</a> of the inference pipeline seem like especially attractive
+targets: the LLM could introduce an out-of-bounds memory-access vulnerability
+that enables arbitrary code execution on the GPUs or on the CPU host that
+controls them.</p>
+<h2>How do we defend against this?</h2>
+<p>Beyond red-teaming inference engines for vulnerabilities, a few other measures
+might help:</p>
+<ul>
+<li>Run the GPUs and token parser on separate computers. The GPU host would emit
+only logits. A second host would sample tokens from those logits, parse the
+tokens into chat messages, and forward the messages to the agentic harness.
+This separation would limit a parser compromise to the CPU host rather than
+the GPU host.</li>
+<li>Restrict the permissions granted to GPU hosts and treat all data they emit as
+untrusted.</li>
+</ul></div></div>
+  <div class="footer">
+    本文由 AI热点监控系统自动抓取 · 内容版权归原作者/网站所有<br>
+    快照仅用于学习交流，如需转载请访问原文
+  </div>
+</div>
+</body>
+</html>

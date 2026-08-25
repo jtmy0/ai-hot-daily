@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="referrer" content="no-referrer">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'unsafe-inline'; img-src data:; connect-src 'none'; frame-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'; frame-ancestors 'none'">
+<title>MetaRoCE: A New RDMA Transport Built for AI-Scale Ethernet - AI热点快照</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','PingFang SC','Microsoft YaHei',sans-serif;background:#f8f9fa;color:#1a1a2e;line-height:1.8;min-height:100vh}
+.top-bar{background:#fff;border-bottom:1px solid #e5e7eb;padding:10px 20px;display:flex;align-items:center;gap:12px;position:sticky;top:0;z-index:10}
+.top-bar .logo{font-size:14px;font-weight:700;color:#0d9488}
+.top-bar .sep{color:#d1d5db}
+.top-bar .source{font-size:13px;color:#6b7280}
+.top-bar .back{margin-left:auto;font-size:13px;color:#0d9488;text-decoration:none}
+.top-bar .back:hover{text-decoration:underline}
+.container{max-width:760px;margin:0 auto;padding:40px 24px 80px}
+.article-title{font-size:1.8rem;font-weight:700;line-height:1.35;margin-bottom:16px;color:#1a1a2e}
+.article-meta{display:flex;flex-wrap:wrap;gap:16px;padding-bottom:20px;margin-bottom:28px;border-bottom:1px solid #e5e7eb;font-size:14px;color:#6b7280}
+.article-meta a{color:#0d9488;text-decoration:none}
+.article-meta a:hover{text-decoration:underline}
+.article-body{font-size:16.5px;line-height:1.85;color:#1f2937}
+.article-body p{margin-bottom:1.2em;text-align:justify}
+.article-body h1,.article-body h2,.article-body h3{font-size:1.25em;font-weight:700;margin:1.6em 0 0.6em;color:#1a1a2e}
+.article-body a{color:#0d9488}
+.article-body pre,.article-body code{background:#f1f5f9;border-radius:4px;font-size:0.9em}
+.article-body pre{padding:16px;overflow-x:auto;margin:1em 0}
+.article-body code{padding:2px 6px}
+.article-body blockquote{border-left:3px solid #0d9488;padding-left:16px;color:#4b5563;margin:1em 0}
+.article-body ul,.article-body ol{padding-left:1.6em;margin-bottom:1em}
+.article-body li{margin-bottom:0.4em}
+.article-body figure{margin:1.2em 0}
+.article-body figcaption{font-size:13px;color:#9ca3af;text-align:center;margin-top:6px}
+.footer{margin-top:48px;padding-top:20px;border-top:1px solid #e5e7eb;font-size:13px;color:#9ca3af;text-align:center}
+</style>
+</head>
+<body>
+<div class="top-bar">
+  <a class="back" href="../" style="font-size:13px;color:#6b7280;text-decoration:none">← 日报首页</a>
+  <span class="sep">|</span>
+  <span class="logo">AI热点快照</span>
+  <span class="sep">|</span>
+  <span class="source">Engineering at Meta</span>
+  <a class="back" href="https://engineering.fb.com/2026/08/24/networking-traffic/metaroce-rdma-transport-ai-ethernet" target="_blank" rel="noopener noreferrer">查看原文 ↗</a>
+</div>
+<div class="container">
+  <h1 class="article-title">MetaRoCE: A New RDMA Transport Built for AI-Scale Ethernet</h1>
+  <div class="article-meta">
+    <span>作者: By Arvind Srinivasan, Neil Spring, Omar Baldonado, Rajiv Krishnamurthy</span>
+    <span>来源: Engineering at Meta</span>
+    <span>快照日期: 2026-08-25</span>
+  </div>
+  <div class="article-body"><div><div>
+
+		<ul>
+<li><span>Training and serving frontier AI models depends on fast, reliable networks that move data between GPUs without wasting compute cycles. </span></li>
+<li><span>To meet this challenge at scale, Meta designed MetaRoCE – a clean-sheet RDMA transport protocol purpose-built for AI workloads on commodity Ethernet. </span></li>
+<li><span>We’re releasing the MetaRoCE specification, a reference software implementation and a compliance test suite through the Open Compute Project (OCP) to enable the broader industry to adopt, implement, and build on it.</span></li>
+</ul>
+<p><span>At Meta, we’ve been a strong driver behind the industry’s growing consensus that Ethernet should be the fabric of choice for AI infrastructure. We’ve already shown</span> <a href="https://engineering.fb.com/2024/08/05/data-center-engineering/roce-network-distributed-ai-training-at-scale/" target="_blank" rel="noopener noreferrer nofollow"><span>that RoCE can power distributed AI training at scale</span></a><span>.</span><span> Now, we’re building on that work with MetaRoCE, protocol designed from the ground up for Ethernet at million-GPU scale.</span></p>
+<p><span>We’ve</span> <a href="https://engineering.fb.com/2025/09/29/data-infrastructure/metas-infrastructure-evolution-and-the-advent-of-ai/" target="_blank" rel="noopener noreferrer nofollow"><span>scaled up clusters of hundreds of thousands of GPUs</span></a><span>, spread over multiple data centers and regions. Whether these clusters are training the next frontier model or serving inference at global scale, the network is in the critical path.</span></p>
+<p><span> Collective operations like all-reduce and all-to-all synchronize thousands of accelerators during training, and the slowest transfer sets the pace for the entire job. In inference, low-latency communication between distributed model shards directly impacts response times for hundreds of millions of users. Even small amounts of network friction directly strand significant compute capacity.</span></p>
+<p><span>Standard RoCE expects the network to deliver every frame in order, leveraging PFC and discouraging the packet spraying that provides performance in multiplane and large scale networks.  MetaRoCE is built to provide high throughput, low tail latency, and operational simplicity as the network grows in the number of accelerators and the distances between them.</span></p>
+<h2><span>How MetaRoCE Works</span></h2>
+<p><span>MetaRoCE’s core insight is simple: </span><b>The fabric sees packets, but the NIC sees intent.</b><span> Traditional architectures centralize intelligence in the fabric, relying on switches to enforce losslessness and maintain order.  </span></p>
+<p><span>By moving intelligence to the endpoint MetaRoCE decomposes the network into many fine-grained logical paths, each with its own real-time telemetry – per-path RTT, ECN state, and utilization. This visibility unlocks capabilities that are difficult to achieve with traditional RDMA.</span></p>
+<p></p>
+<h3><span>Native Out-of-Order Delivery</span></h3>
+<p><span>MetaRoce sprays packets across many paths, so they arrive out of order by design. The transport treats out-of-order arrival as the normal case. Every packet carries its own destination, so data is written straight to its final memory location as it lands, with no reorder buffer and no head-of-line blocking. </span></p>
+<p><span>Writes carry their destination in every packet. Sends carry the match to a posted receive buffer, so a Send lands correctly even when the messages ahead of it have not arrived, and without a round trip to learn where the data goes. Collective libraries can use two-sided messaging where it suits them rather than reducing everything to Write.</span></p>
+<p></p>
+<h3><span>Native Multipathing</span></h3>
+<p><span>MetaRoCE gives each connection first class paths and sprays across them packet by packet. Each path carries a distinct UDP source port as its ECMP entropy, which the NIC can change at any time to move traffic off a bad route. On multiplane fabrics, plane selection falls entirely to the NIC, and the fabric is used only as well as the NIC sprays. Because each path keeps its own window and round trip estimate, the transport can tell congestion from failure and rebalance explicitly, so a hot or broken link slows one path instead of stalling the connection.</span></p>
+<h3><span>Loss Tolerance by Design</span></h3>
+<p><span>MetaRoCE treats the Ethernet fabric as lossy and does not ask it to be otherwise – no PFC, no pause frames. Because each path carries its own ordered sequence, a gap in its 256-bit selective acknowledgment bitvector is evidence of loss rather than of reordering. In other protocols a SACK mostly avoids resending data that already arrived; here it triggers retransmission of exactly the missing packet, on the path that lost it, the moment the gap appears.</span></p>
+<h3><span>Congestion Control From Both Sides</span></h3>
+<p><span>MetaRoCE combines a conventional ECN-based, sender-driven AIMD congestion control with receiver-driven fair-share rate hints. Windows are kept per path as well as per connection, so a congestion mark trims the path that saw it and steers the next packets toward paths that are clear. In every acknowledgment, the receiver returns the share of its inbound bandwidth it has allocated to that sender, so senders approach the right speed directly rather than searching for it. Incast resolves in one or two round trips, with better fairness and lower tail latency.</span></p>
+<p></p>
+<h3><span>Topology Independence</span></h3>
+<p><span>MetaRoCE asks the fabric for two things every switch already has, ECN marking and ECMP. It does not require packet trimming, in-network telemetry, credit-based flow control, or switch-side spraying, and it does not break when a fabric offers them. The same transport runs over fat-tree, multiplane, deep-buffer, and shallow-buffer fabrics, and over vendor clouds whose configuration you don’t control. Nothing proprietary is involved, so the fabric stays free to optimize for cost and cabling.</span></p>
+<h3><span>Unified Connections at Scale</span></h3>
+<p><span>A queue pair (QP) carries both an ordered stream of messages and bandwidth. Traditional RDMA gets more of either by opening more QPs (dozens per node pair), each with a congestion window blind to the rest and its own state on the NIC. </span></p>
+<p><span>MetaRoCE separates the two. A single connection carries many independent ordered streams above, one per communicator or collective, and many paths below, under one congestion controller. The connection state stops growing with the parallelism of the workload.</span></p>
+<p><span>The application layer remains mostly untouched – existing RDMA Verbs APIs and software stacks work without modification. Enhanced features like multiplane support are supported through extension APIs.</span></p>
+<h2><span>Meta-RoCE in Practice</span></h2>
+<p><span>To accelerate hardware validation, we worked with AMD to implement MetaRoCE on their Pensando programmable NICs.  </span></p>
+<p><span>On a 64-node AMD GPU cluster running RCCL collectives, we directly compared MetaRoCE against RoCEv2 across all-reduce and all-to-all operations. The results were consistent with the design goals:</span></p>
+<p></p>
+<p><span>MetaRoCE consistently delivers </span><b>higher throughput and lower flow completion times</b><span> than RoCEv2.</span></p>
+<p><span>Under packet loss conditions that would degrade RoCEv2, MetaRoCE maintains ~86% throughput at 1% packet loss and continues delivering useful bandwidth even at extreme 10% loss rates – converging gracefully rather than collapsing.</span></p>
+<p><span>Multiplane validation across 4-plane and 8-plane topologies with up to 4,000 concurrent connections confirmed that throughput scales linearly with plane count.</span></p>
+<p><span>During simulated plane failures, the protocol demonstrates graceful autonomous recovery – traffic redistributes without application involvement or operator intervention.</span></p>
+<p><span>These results support MetaRoce’s core design choice. By designing for loss from day one and pushing intelligence to the edge, you get a transport that performs better in ideal conditions </span><i><span>and</span></i><span> degrades gracefully when things go wrong.</span></p>
+<h2><span>Open By Design</span></h2>
+<p><span>AI infrastructure benefits from shared standards that accelerate innovation across the ecosystem. MetaRoCE extends the same open, multi-vendor philosophy that the Open Compute Project (OCP’s)</span><a href="https://engineering.fb.com/2025/10/13/data-infrastructure/ocp-summit-2025-the-open-future-of-networking-hardware-for-ai/" target="_blank" rel="noopener noreferrer nofollow"> <span>Ethernet Scalable Unified Network (ESUN)</span></a> <span>initiative established for the fabric into the transport layer. </span></p>
+<p><span>That’s why we’re opening MetaRoCE:</span></p>
+<p><b>Open specification via OCP:</b><span> The full protocol spec is being contributed to OCP, available for any vendor to implement and build interoperable hardware.</span></p>
+<p><b>Multiple NIC implementations:</b><span> MetaRoCE is designed to run across diverse NIC architectures – programmable and fixed-function alike. We’ve proven it on AMD Pensando hardware, with additional implementations underway from other vendors.</span></p>
+<p><b>Production compliance suite:</b><span> We have developed a compliance suite that gives hardware vendors the tools to prove their implementations match the protocol spec. </span></p>
+<p><b>Software reference implementation:</b><span> Our libsoftmetaroce library provides a complete, functional transport stack that runs on commodity Linux over standard UDP sockets without specialized hardware. It serves as the authoritative behavioral model for silicon development and the foundation of our unified compliance framework.</span></p>
+<h2><span>The Road Ahead</span></h2>
+<p><span>With MetaRoCE, we’ve made strong progress on scale-out networking – high-performance, resilient transport within the data center on commodity Ethernet. But AI infrastructure spans multiple distance and latency regimes, and each brings distinct challenges we’re actively working on:</span></p>
+<p><b>Scale-up</b><span>: Within a rack, accelerators trade small messages where every nanosecond matters. MetaRoCE removes two main sources of latency, the reorder buffer and PFC. We are now optimizing the fast signaling path for short memory operations issued directly from one processing element to another.</span></p>
+<p><b>Scale-across</b><span>: Scale-across enables a single job to span buildings thousands of kilometers apart. Round trips stretch into milliseconds, and small differences between paths add up. Treating paths as first class entities is what lets MetaRoCE adapt, preferring the uncongested ones and seeking fairness at every level. The work ahead is in fairly sharing contended long-haul links.</span></p>
+<p><span><strong>Storage/Kv-cache use cases</strong>: Distributed storage invites incast,where a single read fans out to many servers and they all reply at once. Receiver-driven rate hints let whichever side is receiving(a storage server taking writes or a client taking reads) moderate the inbound rate, whether the request went to ten servers or a thousand. The new dimension is keeping that rate accurate with networks of varying speed and requests of varying size.</span></p>
+<h2><span>Help Us Build the Future of Ethernet for AI Infrastructure</span></h2>
+<p><span>In October, we’ll release the MetaRoCE specification, a DPDK-optimized software reference implementation, and our production compliance framework at the </span><a href="https://www.opencompute.org/summit/global-summit?ref=engineeringatmeta" target="_blank" rel="noopener noreferrer nofollow"><span>2026 OCP Global Summit</span></a><span>. </span></p>
+<p><span>We’re building this in the open because the challenges ahead benefit from broad industry collaboration. If you’re building NICs, switches, or AI infrastructure, we invite you to join us.</span></p>
+
+		
+	</div></div></div>
+  <div class="footer">
+    本文由 AI热点监控系统自动抓取 · 内容版权归原作者/网站所有<br>
+    快照仅用于学习交流，如需转载请访问原文
+  </div>
+</div>
+</body>
+</html>
