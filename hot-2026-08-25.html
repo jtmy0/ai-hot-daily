@@ -91,7 +91,7 @@ body { background: var(--bg-outer); font-family: var(--font-body); min-height: 1
       <a class="back-link" href="./">← 归档首页</a>
       <h1>AI 热点日报</h1>
       <div class="subtitle">
-        <span class="date">2026年8月25日，星期二 · 道法术器解读</span>
+        <span class="date">2026年8月25日，星期二· 含新增 · 道法术器解读</span>
         <div class="controls">
           <button id="expandAll">展开全部</button>
           <button id="collapseAll">收起全部</button>
@@ -99,234 +99,234 @@ body { background: var(--bg-outer); font-family: var(--font-body); min-height: 1
       </div>
     </div>
     <div class="entries" id="entries">
-      <div class="entry" data-cat="ai" style="animation-delay: 0.1s;">
+      <div class="entry" data-cat="sec" style="animation-delay: 0.1s;">
         <div class="entry-head">
-          <div class="bullet" style="background: var(--tab-1);"></div>
+          <div class="bullet" style="background: var(--tab-3);"></div>
           <div class="info">
-            <h3>GPT-5.6降价：生态卡位战</h3>
-            <div class="meta">Hacker News · 🔥 64 · 12小时前</div>
+            <h3><span class="badge-icon"> 🔄</span> 小米自研CPU单核追平苹果</h3>
+            <div class="meta">Hacker News · 🔥 81 · 21小时前</div>
           </div>
           <div class="expand-icon">▼</div>
         </div>
-        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：大模型竞争正从技术参数转向<strong>价格弹性与生态锁定</strong>，降价是规模化渗透的必然阶段，长期看推理成本将逼近边际成本。
-<strong>法</strong>：以短期价格让利换取开发者与企业的<strong>迁移成本沉淀</strong>，形成数据反馈闭环，适用于所有平台型技术产品。
-<strong>术</strong>：在降价窗口内批量迁移高并发任务至新模型；对比旧版性能与成本曲线，锁定长期用量折扣；监控API调用量变化以评估价格敏感度。
-<strong>器</strong>：OpenAI API、LangSmith、Cloudflare Workers。</p>
-<a class="source-link" href="https://developers.openai.com/api/docs/pricing" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
+        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：芯片性能竞争正从制程红利转向<strong>架构设计与能效优化</strong>，单核性能决定体验上限，多核性能决定算力总量，长期趋势是端侧算力持续逼近桌面级。
+<strong>法</strong>：追赶者采用<strong>对标旗舰+差异化多核</strong>策略，可绕过生态壁垒，在特定场景（如服务器、移动端）建立性能优势。
+<strong>术</strong>：优先优化单核IPC（每时钟周期指令数）以兼容现有软件生态；利用多核调度策略强化并行负载场景（如渲染、编译）；与代工厂合作定制工艺，平衡功耗与频率。
+<strong>器</strong>：ARM架构授权、台积电N3P工艺、Geekbench 6基准测试套件。</p>
+<a class="source-link" href="https://twitter.com/lemire/status/2091894299289874926" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
       </div>
       <div class="entry" data-cat="sec" style="animation-delay: 0.18s;">
         <div class="entry-head">
           <div class="bullet" style="background: var(--tab-3);"></div>
           <div class="info">
-            <h3>小米自研CPU：架构新变量</h3>
-            <div class="meta">Hacker News · 🔥 84 · 12小时前</div>
+            <h3><span class="badge-icon"> 🔄</span> 大模型可劫持推理引擎控制主机</h3>
+            <div class="meta">Hacker News · 🔥 56 · 17小时前</div>
           </div>
           <div class="expand-icon">▼</div>
         </div>
-        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：芯片性能竞争已从单核频率转向<strong>多核协同与能效比</strong>，自研架构是终端厂商掌控供应链和差异化体验的核心壁垒。
-<strong>法</strong>：通过垂直整合硬件与软件优化，在特定负载场景建立性能优势，适用于消费电子与云计算基础设施。
-<strong>术</strong>：关注多线程基准测试在真实工作负载（如编译、渲染）中的表现；评估功耗与散热对移动端续航的影响；对比ARM公版架构的授权成本与定制收益。
-<strong>器</strong>：Geekbench、SPECint、小米HyperOS、台积电N3工艺。</p>
-<a class="source-link" href="https://twitter.com/lemire/status/2091894299289874926" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
+        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：AI安全边界正从模型输出层扩展到<strong>推理基础设施层</strong>，任何可被模型间接调用的系统组件都可能成为攻击面，长期趋势是安全防护必须内嵌于模型运行全链路。
+<strong>法</strong>：对不可信输入执行<strong>最小权限隔离</strong>原则，将模型推理环境与宿主系统物理或逻辑隔离，阻断横向移动路径。
+<strong>术</strong>：对推理引擎的API调用实施沙箱化处理，限制文件系统与网络访问权限；对模型生成的指令序列进行静态扫描，拦截危险系统调用；建立异常行为基线，监控推理进程的资源访问模式。
+<strong>器</strong>：gVisor、Firecracker微虚拟机、SELinux/AppArmor强制访问控制、eBPF运行时监控。</p>
+<a class="source-link" href="https://boydkane.com/essays/llms-could-control-their-host-machines-by-exploiting-inference-engines" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
       </div>
       <div class="entry" data-cat="ai" style="animation-delay: 0.26s;">
         <div class="entry-head">
           <div class="bullet" style="background: var(--tab-1);"></div>
           <div class="info">
-            <h3>Codex终端化：轻量Agent落地</h3>
-            <div class="meta">GitHub Trending · 🔥 91 · 11小时前</div>
+            <h3><span class="badge-icon"> 🆕</span> 英伟达Vera Rubin首测吞吐暴涨3…</h3>
+            <div class="meta">36kr · 🔥 64 · 10小时前</div>
           </div>
           <div class="expand-icon">▼</div>
         </div>
-        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：AI编程助手正从IDE插件走向<strong>终端原生工作流</strong>，轻量化与低延迟是开发者采纳的关键，终端是代码生成与执行的最短路径。
-<strong>法</strong>：将复杂能力封装为单一命令行工具，降低集成门槛，通过<strong>即时反馈</strong>增强用户粘性，适用于所有开发者工具链。
-<strong>术</strong>：在现有Git工作流中直接调用codex处理重复性重构；结合shell脚本自动化测试与提交；对比Copilot CLI的上下文理解与资源占用。
-<strong>器</strong>：openai/codex、GitHub CLI、tmux、ripgrep。</p>
-<a class="source-link" href="https://github.com/openai/codex" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
+        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：AI算力竞争已从单卡性能转向<strong>系统级互连与内存带宽</strong>，推理吞吐量成为衡量数据中心实际价值的关键指标，长期趋势是硬件架构与算法协同优化。
+<strong>法</strong>：通过<strong>存算一体与高带宽互连</strong>突破内存墙瓶颈，可显著提升大模型推理效率，适用于所有算力密集型场景。
+<strong>术</strong>：优先部署支持FP4/FP8低精度推理的硬件，配合KV Cache压缩技术；利用NVLink-C2C互连扩展多卡显存池，减少模型分片通信开销；针对DeepSeek等MoE架构模型，优化专家并行路由策略。
+<strong>器</strong>：NVIDIA Vera Rubin平台、NVLink-C2C、CUDA 13.0、DeepSeek推理框架。</p>
+<a class="source-link" href="https://www.36kr.com/p/3954275398729089" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
       </div>
       <div class="entry" data-cat="ai" style="animation-delay: 0.33999999999999997s;">
         <div class="entry-head">
           <div class="bullet" style="background: var(--tab-1);"></div>
           <div class="info">
-            <h3>免费AI编码工具冲击商业闭环</h3>
-            <div class="meta">GitHub Trending · 🔥 68 · 11小时前</div>
+            <h3><span class="badge-icon"> 🆕</span> AI破解数学悬案</h3>
+            <div class="meta">36kr · 🔥 63 · 23小时前</div>
           </div>
           <div class="expand-icon">▼</div>
         </div>
-        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：AI编码工具正从付费订阅制转向<strong>免费获客+生态锁定</strong>模式，1.3B免费token的本质是数据飞轮和用户习惯争夺战。
-<strong>法</strong>：用免费额度做市场渗透，再通过企业级功能、私有化部署或平台集成实现变现，适用于所有SaaS型AI产品。
-<strong>术</strong>：开发者在免费窗口期批量测试多模型（Claude/Codex/Pi/OpenCode）的代码质量与稳定性；企业评估将免费工具纳入CI/CD管线的安全风险；关注token消耗速率与限流策略，避免生产环境依赖。
-<strong>器</strong>：free-claude-code仓库、Claude Code、Codex、OpenCode、Pi、终端环境。</p>
-<a class="source-link" href="https://github.com/Alishahryar1/free-claude-code" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
+        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：AI在数学发现领域的突破标志着<strong>科学发现范式从人类直觉驱动转向算法搜索驱动</strong>，长期看AI将成为理论科学的基础设施，而非辅助工具。
+<strong>法</strong>：将开放难题转化为可验证的搜索空间，用强化学习逼近最优解，这一方法论可迁移至密码学、材料设计等组合爆炸领域。
+<strong>术</strong>：关注Claude的推理链日志，提取其构造反例的模式；在自身领域筛选可形式化验证的开放问题，设计奖励函数；建立人机协作验证流程，确保结果可复现。
+<strong>器</strong>：Claude、Lean形式化证明工具、强化学习框架（如RLHF）。</p>
+<a class="source-link" href="https://www.36kr.com/p/3953397422537858" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
       </div>
-      <div class="entry" data-cat="sec" style="animation-delay: 0.42000000000000004s;">
+      <div class="entry" data-cat="ai" style="animation-delay: 0.42000000000000004s;">
         <div class="entry-head">
-          <div class="bullet" style="background: var(--tab-3);"></div>
+          <div class="bullet" style="background: var(--tab-1);"></div>
           <div class="info">
-            <h3>微软画图工具暗嵌GUID水印</h3>
-            <div class="meta">Hacker News · 🔥 77 · 12小时前</div>
+            <h3><span class="badge-icon"> 🔄</span> 英伟达能效新标杆</h3>
+            <div class="meta">NVIDIA Blog（RSS） · 🔥 100 · 21小时前</div>
           </div>
           <div class="expand-icon">▼</div>
         </div>
-        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：<strong>AI生成内容溯源</strong>正从平台强制标注转向系统级隐形标记，本地生成也难逃追踪，监管与技术双重驱动下，内容身份认证成为基础设施。
-<strong>法</strong>：所有内容生产工具都应内置可验证的元数据层，平衡用户隐私与合规需求，是数字内容治理的通用路径。
-<strong>术</strong>：创作者需检查输出文件的EXIF和XMP元数据，了解GUID水印的嵌入位置与提取方式；企业内容审核流程应加入水印检测环节；开发者可研究GUID生成算法，评估对抗性移除的可行性。
-<strong>器</strong>：MS Paint、Photos、GUID工具、ExifTool、元数据查看器。</p>
-<a class="source-link" href="https://xusheng.dev/posts/reversing/mspaint_invisible_watermark/main/" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
+        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：AI算力竞争正从绝对性能转向<strong>能效比和单位功耗智能产出</strong>，物理极限倒逼架构创新，长期看每瓦特智能将成为核心度量。
+<strong>法</strong>：通过系统级协同设计（芯片-互联-软件）优化全栈效率，而非单点突破，适用于任何高能耗计算场景。
+<strong>术</strong>：评估AI工作负载时，优先对比每瓦特吞吐量而非峰值算力；针对智能体场景，测试长上下文下的能耗曲线；关注液冷和光互联方案的成熟度。
+<strong>器</strong>：NVIDIA Vera Rubin NVL72、MLPerf能效基准、数据中心功率监控工具。</p>
+<a class="source-link" href="https://blogs.nvidia.com/blog/vera-rubin-nvl72-efficiency-ai-agents" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
       </div>
       <div class="entry" data-cat="ai" style="animation-delay: 0.5s;">
         <div class="entry-head">
           <div class="bullet" style="background: var(--tab-1);"></div>
           <div class="info">
-            <h3>AI依赖或致编程专业能力退化</h3>
-            <div class="meta">Hacker News · 🔥 72 · 11小时前</div>
+            <h3><span class="badge-icon"> 🔄</span> 终端轻量编程代理</h3>
+            <div class="meta">GitHub Trending · 🔥 91 · 20小时前</div>
           </div>
           <div class="expand-icon">▼</div>
         </div>
-        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：<strong>编程技能的本质是问题分解与抽象思维</strong>，AI工具压缩了编码执行环节，但长期依赖会削弱工程师对底层机制的理解，导致系统级故障排查能力断层。
-<strong>法</strong>：技能培养应区分<strong>执行层与认知层</strong>，AI替代前者，但后者需通过刻意练习保持，适用于所有知识工作领域。
-<strong>术</strong>：工程师定期进行无AI编码练习，强化算法与数据结构基础；团队建立代码审查机制，要求成员解释AI生成代码的原理；企业将系统设计能力纳入晋升考核，而非仅看交付速度。
-<strong>器</strong>：LeetCode、GitHub Copilot、代码审查工具、系统设计面试题库。</p>
-<a class="source-link" href="https://larsfaye.com/articles/ai-coding-will-prevent-expertise" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
+        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：AI编程工具正从IDE插件走向<strong>终端原生的轻量级代理</strong>，开发流程将更深度嵌入命令行，长期看终端仍是开发者核心控制面。
+<strong>法</strong>：以最小化侵入方式集成现有工作流，降低切换成本，通过快速迭代获取反馈，适用于所有开发者工具链。
+<strong>术</strong>：在现有项目中试用codex处理重复性重构任务；对比其与Copilot在上下文理解上的差异；将常用git命令与代理脚本绑定，形成个性化工作流。
+<strong>器</strong>：openai/codex、终端模拟器（iTerm2/Windows Terminal）、Git CLI。</p>
+<a class="source-link" href="https://github.com/openai/codex" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
       </div>
-      <div class="entry" data-cat="sec" style="animation-delay: 0.58s;">
-        <div class="entry-head">
-          <div class="bullet" style="background: var(--tab-3);"></div>
-          <div class="info">
-            <h3>IPFS维护者退出，去中心化遇冷</h3>
-            <div class="meta">Hacker News · 🔥 65 · 11小时前</div>
-          </div>
-          <div class="expand-icon">▼</div>
-        </div>
-        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：去中心化存储的<strong>理想主义叙事</strong>正让位于商业化落地现实，缺乏可持续激励的公共基础设施项目必然面临维护者流失。
-<strong>法</strong>：开源项目的长期存续依赖清晰的治理模型和资金机制，而非单纯的技术愿景；社区共识需与商业利益绑定。
-<strong>术</strong>：评估依赖IPFS的业务需制定迁移预案；关注Filecoin等有经济激励的替代方案；参与或资助关键维护者以降低单点风险。
-<strong>器</strong>：IPFS、Filecoin、Arweave、Ceramic网络。</p>
-<a class="source-link" href="https://ipshipyard.com/blog/2026-the-end-of-ipfs-at-shipyard/" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
-      </div>
-      <div class="entry" data-cat="sec" style="animation-delay: 0.66s;">
-        <div class="entry-head">
-          <div class="bullet" style="background: var(--tab-3);"></div>
-          <div class="info">
-            <h3>大模型可操控宿主，安全边界失守</h3>
-            <div class="meta">Hacker News · 🔥 55 · 8小时前</div>
-          </div>
-          <div class="expand-icon">▼</div>
-        </div>
-        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：大模型能力扩展正从被动响应转向<strong>主动环境交互</strong>，推理引擎的代码执行权限成为新的攻击面，安全范式需从数据隔离转向行为管控。
-<strong>法</strong>：任何赋予AI工具权限的系统，必须默认其不可信，采用最小权限原则和沙箱隔离，并建立行为审计日志。
-<strong>术</strong>：对推理引擎实施严格的系统调用白名单；监控模型输出中的异常命令模式；定期进行红队演练测试逃逸路径。
-<strong>器</strong>：LangChain、Ray、Docker沙箱、eBPF监控工具。</p>
-<a class="source-link" href="https://boydkane.com/essays/llms-could-control-their-host-machines-by-exploiting-inference-engines" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
-      </div>
-      <div class="entry" data-cat="ai" style="animation-delay: 0.74s;">
+      <div class="entry" data-cat="ai" style="animation-delay: 0.58s;">
         <div class="entry-head">
           <div class="bullet" style="background: var(--tab-1);"></div>
           <div class="info">
-            <h3>英伟达新架构，AI效率跃升30倍</h3>
-            <div class="meta">NVIDIA Blog（RSS） · 🔥 100 · 12小时前</div>
+            <h3><span class="badge-icon"> 🔄</span> Claude插件生态双轨制</h3>
+            <div class="meta">GitHub Trending · 🔥 60 · 20小时前</div>
           </div>
           <div class="expand-icon">▼</div>
         </div>
-        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：AI算力竞争正从<strong>单纯堆料</strong>转向<strong>能效比优化</strong>，推理成本成为规模化部署智能体的核心瓶颈，硬件架构创新将重新定义AI应用的经济模型。
-<strong>法</strong>：技术平台型产品应优先关注单位功耗的智能产出，而非峰值算力；效率提升带来的成本下降会催生新应用场景。
-<strong>术</strong>：评估现有AI工作负载的能耗瓶颈；规划向Vera Rubin架构迁移的兼容性测试；关注液冷和供电基础设施的配套升级。
-<strong>器</strong>：NVIDIA Vera Rubin NVL72、CUDA、TensorRT、液冷散热方案。</p>
-<a class="source-link" href="https://blogs.nvidia.com/blog/vera-rubin-nvl72-efficiency-ai-agents" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
+        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：AI编程工具正从单点能力竞争转向<strong>生态标准竞争</strong>，插件市场成为锁定开发者与构建护城河的核心战场。官方与社区双轨并行是平台型产品的必然路径。
+<strong>法</strong>：采用<strong>官方严选+社区长尾</strong>的双层治理结构，既能保证质量基线，又能激发创新活力。适用于所有开发者平台，如IDE、操作系统。
+<strong>术</strong>：优先接入官方认证插件保障生产环境稳定；同时监控社区热门插件，识别高频需求并推动官方化；建立插件质量评分与安全审查机制。
+<strong>器</strong>：Claude Code、Claude Cowork、GitHub Marketplace、npm。</p>
+<a class="source-link" href="https://github.com/anthropics/claude-plugins-community" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
+      </div>
+      <div class="entry" data-cat="ai" style="animation-delay: 0.66s;">
+        <div class="entry-head">
+          <div class="bullet" style="background: var(--tab-1);"></div>
+          <div class="info">
+            <h3><span class="badge-icon"> 🆕</span> 官方插件目录战略意义</h3>
+            <div class="meta">GitHub Trending · 🔥 51 · 20小时前</div>
+          </div>
+          <div class="expand-icon">▼</div>
+        </div>
+        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：AI助手的能力边界由<strong>工具生态</strong>定义，而非模型参数。官方目录的本质是制定<strong>接口标准</strong>，控制第三方接入的入口与质量。
+<strong>法</strong>：平台方应主动定义<strong>核心场景的插件规范</strong>，通过认证机制引导生态向高价值方向演进，而非被动响应社区需求。
+<strong>术</strong>：梳理高频工作流（如代码审查、部署、测试），优先发布官方插件模板；对第三方插件实施分级认证（官方/社区/实验）；定期淘汰低质量插件维持目录信誉。
+<strong>器</strong>：Claude Code Plugins、Anthropic API、JSON Schema、Semantic Versioning。</p>
+<a class="source-link" href="https://github.com/anthropics/claude-plugins-official" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
+      </div>
+      <div class="entry" data-cat="sec" style="animation-delay: 0.74s;">
+        <div class="entry-head">
+          <div class="bullet" style="background: var(--tab-3);"></div>
+          <div class="info">
+            <h3><span class="badge-icon"> 🔄</span> 本地生成内容暗含水印</h3>
+            <div class="meta">Hacker News · 🔥 76 · 21小时前</div>
+          </div>
+          <div class="expand-icon">▼</div>
+        </div>
+        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：<strong>内容溯源</strong>正成为数字世界的底层基础设施，即使离线生成的数据也被嵌入隐形标识。监管压力与版权保护需求将推动所有创作工具内置追踪机制。
+<strong>法</strong>：<strong>默认透明</strong>优于事后追责。工具厂商应主动在生成物中嵌入不可见元数据，平衡用户隐私与合规要求，建立可审计的内容链路。
+<strong>术</strong>：检查生成文件的元数据字段（如EXIF、XMP）；企业用户需评估水印对内部数据流转的影响；开发者应预留水印解析接口，避免未来合规风险。
+<strong>器</strong>：MS Paint、Windows Photos、GUID生成器、ExifTool、C2PA标准。</p>
+<a class="source-link" href="https://xusheng.dev/posts/reversing/mspaint_invisible_watermark/main/" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
       </div>
       <div class="entry" data-cat="ai" style="animation-delay: 0.82s;">
         <div class="entry-head">
           <div class="bullet" style="background: var(--tab-1);"></div>
           <div class="info">
-            <h3>提示词工程工业化</h3>
-            <div class="meta">GitHub Trending · 🔥 100 · 11小时前</div>
+            <h3><span class="badge-icon"> 🆕</span> Agent融入工作流</h3>
+            <div class="meta">36kr · 🔥 63 · 8小时前</div>
           </div>
           <div class="expand-icon">▼</div>
         </div>
-        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：大模型应用正从“写提示词”转向“工程化提示词”，本质是<strong>知识沉淀与复用</strong>的竞争，长期趋势是提示词从手艺活变成标准化基础设施。
-<strong>法</strong>：通过<strong>逆向工程</strong>优秀案例提炼可复用模式，再封装成模板和工具链，是任何技术领域从经验到工业化的通用路径。
-<strong>术</strong>：直接采用其530+案例库作为灵感源；将20+模板按场景分类嵌入现有工作流；用其“Skills”机制将高频提示词固化为团队内部可调用模块；定期跟踪更新以保持提示词时效性。
-<strong>器</strong>：GitHub仓库、GPT-Image2、模板库、Skills框架。</p>
-<a class="source-link" href="https://github.com/freestylefly/awesome-gpt-image-2" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
+        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：AI Agent 的价值不在单点能力，而在<strong>嵌入组织协作链路</strong>后产生的系统性效率提升。长期趋势是 Agent 从工具演变为数字同事，其衡量标准从“能做什么”转向“能否被信任地委派任务”。
+<strong>法</strong>：<strong>场景绑定优于通用能力</strong>。将 Agent 接入已有高频协作工具（如飞书），利用现有数据流和权限体系，降低使用门槛，快速形成用户依赖。
+<strong>术</strong>：1. 优先打通企业内部通讯录、日历和文档权限，让 Agent 能读取上下文；2. 设计明确的任务交接协议，如用@提及触发 Agent 执行；3. 建立人工审核节点，逐步提升自主决策权限。
+<strong>器</strong>：豆包、飞书开放平台、企业微信、Slack API。</p>
+<a class="source-link" href="https://www.36kr.com/p/3954390879222917" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
       </div>
       <div class="entry" data-cat="ai" style="animation-delay: 0.9s;">
         <div class="entry-head">
           <div class="bullet" style="background: var(--tab-1);"></div>
           <div class="info">
-            <h3>AI网络协议新突破</h3>
-            <div class="meta">Meta Engineering Blog（RSS） · 🔥 100 · 9小时前</div>
+            <h3><span class="badge-icon"> 🆕</span> 持久Agent测试框架</h3>
+            <div class="meta">Hacker News · 🔥 53 · 8小时前</div>
           </div>
           <div class="expand-icon">▼</div>
         </div>
-        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：AI算力集群规模扩张使<strong>网络成为新瓶颈</strong>，传输协议创新是支撑大模型训练效率的底层刚需，长期趋势是网络架构与AI计算深度耦合。
-<strong>法</strong>：针对特定负载（如AI分布式训练）优化通用协议，是基础设施领域<strong>垂直化改造</strong>的典型策略，可迁移至存储、调度等环节。
-<strong>术</strong>：评估现有数据中心网络是否支持RoCEv2，规划升级路径；在测试环境模拟大模型通信模式，对比MetaRoCE与传统TCP/RoCE的吞吐和延迟；关注其与主流GPU厂商（如NVIDIA）的兼容性认证；对训练任务进行网络拓扑感知调度。
-<strong>器</strong>：MetaRoCE协议、以太网交换机、RDMA网卡、AI训练框架（如PyTorch/DeepSpeed）。</p>
-<a class="source-link" href="https://engineering.fb.com/2026/08/24/networking-traffic/metaroce-rdma-transport-ai-ethernet" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
+        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：持久化 Agent 的可靠性取决于<strong>状态管理与故障恢复机制</strong>，这是从原型走向生产环境的必经门槛。长期趋势是 Agent 运行时长从分钟级向天级演进，测试重心从单次响应转向长周期行为一致性。
+<strong>法</strong>：<strong>微测试框架（Microharness）</strong> 是控制复杂系统风险的有效策略。通过最小化测试环境、隔离外部依赖，可快速复现和定位长运行 Agent 的状态异常。
+<strong>术</strong>：1. 为 Agent 设计可序列化的状态快照，支持任意时点回放；2. 注入模拟故障（如网络中断、API 超时）验证恢复逻辑；3. 设定心跳检测和看门狗机制，自动重启异常实例。
+<strong>器</strong>：Headlong、Temporal、LangGraph、Docker Compose。</p>
+<a class="source-link" href="https://www.laude.org/updates/headlong-a-microharness-for-persistent-agents" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
       </div>
       <div class="entry" data-cat="ai" style="animation-delay: 0.98s;">
         <div class="entry-head">
           <div class="bullet" style="background: var(--tab-1);"></div>
           <div class="info">
-            <h3>Karpathy编码规范封装</h3>
-            <div class="meta">GitHub Trending · 🔥 62 · 11小时前</div>
+            <h3><span class="badge-icon"> 🔄</span> 提示词工程工业化</h3>
+            <div class="meta">GitHub Trending · 🔥 100 · 20小时前</div>
           </div>
           <div class="expand-icon">▼</div>
         </div>
-        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：AI编程助手的效果高度依赖<strong>上下文引导质量</strong>，将顶级开发者隐性知识显性化并注入工具，是提升代码生成质量的关键杠杆，长期趋势是“人机协作规范”成为团队资产。
-<strong>法</strong>：将专家经验提炼为<strong>结构化配置文件</strong>，并作为工具默认行为约束，是知识管理在AI时代的有效落地方式。
-<strong>术</strong>：直接获取该CLAUDE.md文件，审查其规则与团队编码规范的一致性；将其作为Claude Code项目级配置，观察代码风格和错误率变化；根据项目特性（如语言、框架）增删规则，避免过度约束；定期复盘配置对开发效率的实际影响。
-<strong>器</strong>：CLAUDE.md文件、Claude Code、GitHub仓库、代码编辑器。</p>
-<a class="source-link" href="https://github.com/multica-ai/andrej-karpathy-skills" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
+        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：提示词正从手工作坊走向<strong>工业化生产</strong>，其本质是知识工程的新形态。长期趋势是高质量提示词资产化，形成可复用、可版本管理的代码库，而非依赖个人灵感。
+<strong>法</strong>：<strong>逆向工程与模板化</strong>是快速建立领域知识库的有效路径。通过拆解大量成功案例，提炼共性模式，封装为标准化组件，可大幅降低重复试错成本。
+<strong>术</strong>：1. 建立案例库，按任务类型（如风格迁移、物体编辑）分类标注；2. 将常用指令参数化，形成可配置模板；3. 将验证过的提示词沉淀为 Skills，纳入版本控制（Git）。
+<strong>器</strong>：awesome-gpt-image-2、GPT-Image2、GitHub、LangChain 提示词模板模块。</p>
+<a class="source-link" href="https://github.com/freestylefly/awesome-gpt-image-2" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
       </div>
       <div class="entry" data-cat="ai" style="animation-delay: 1.06s;">
         <div class="entry-head">
           <div class="bullet" style="background: var(--tab-1);"></div>
           <div class="info">
-            <h3>技能集市爆发，Agent能力标准化</h3>
-            <div class="meta">GitHub Trending · 🔥 62 · 11小时前</div>
+            <h3><span class="badge-icon"> 🔄</span> AI以太网协议重构传输层</h3>
+            <div class="meta">Meta Engineering Blog（RSS） · 🔥 100 · 18小时前</div>
           </div>
           <div class="expand-icon">▼</div>
         </div>
-        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：AI Agent 的竞争正从模型参数转向<strong>技能生态的丰富度与标准化</strong>，可复用的技能模块将成为智能体的新型基础设施，长期趋势是能力供给从单体开发走向众包协作。
-<strong>法</strong>：构建平台型生态，通过开放接口和社区激励机制吸引开发者贡献技能，形成网络效应，降低重复开发成本，适用于所有工具型产品。
-<strong>术</strong>：优先集成高频、跨领域的技能包（如数据抓取、代码生成）；建立技能质量分级与评测流程；关注官方与社区技能的兼容性，避免锁定。
-<strong>器</strong>：VoltAgent 技能库、GitHub Actions、LangChain 工具调用框架。</p>
-<a class="source-link" href="https://github.com/sponsors/VoltAgent" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
+        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：AI集群规模扩展正逼近传统网络协议的性能天花板，<strong>传输层创新成为算力释放的关键瓶颈</strong>。长期看，网络协议将围绕AI工作负载特征（同步通信、大象流）进行专用化重构，而非通用优化。
+<strong>法</strong>：针对特定负载设计专用协议，而非依赖通用协议打补丁，是高性能计算领域反复验证的路径。策略上应优先识别工作负载的通信模式，再定制传输机制。
+<strong>术</strong>：评估现有RDMA部署的丢包敏感度；对比RoCEv2与MetaRoCE在拥塞控制、多路径利用上的差异；在测试集群中模拟AI训练流量，量化PFC暂停帧频率和有效带宽提升。
+<strong>器</strong>：MetaRoCE协议、以太网交换机（支持ECN/DCQCN）、NVIDIA Collective通信库（NCCL）。</p>
+<a class="source-link" href="https://engineering.fb.com/2026/08/24/networking-traffic/metaroce-rdma-transport-ai-ethernet" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
       </div>
       <div class="entry" data-cat="ai" style="animation-delay: 1.1400000000000001s;">
         <div class="entry-head">
           <div class="bullet" style="background: var(--tab-1);"></div>
           <div class="info">
-            <h3>插件市场成AI编程新战场</h3>
-            <div class="meta">GitHub Trending · 🔥 60 · 11小时前</div>
+            <h3><span class="badge-icon"> 🔄</span> Karpathy技能封装为提示文件</h3>
+            <div class="meta">GitHub Trending · 🔥 62 · 20小时前</div>
           </div>
           <div class="expand-icon">▼</div>
         </div>
-        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：AI 编程工具正从单点功能竞争转向<strong>插件生态的丰富度与易用性竞争</strong>，社区驱动的插件市场是扩大用户覆盖和留存的关键，长期看生态壁垒比模型性能更持久。
-<strong>法</strong>：采用开放市场策略，降低第三方插件接入门槛，通过分润或认证机制激励贡献，同时保持核心工具稳定，适用于开发者工具链。
-<strong>术</strong>：优先支持主流插件格式，提供沙箱测试环境；建立插件安全审查与版本管理机制；跟踪社区热门插件，及时整合进官方推荐。
-<strong>器</strong>：Claude Code、Claude Cowork、GitHub Marketplace、npm 包管理。</p>
-<a class="source-link" href="https://github.com/anthropics/claude-plugins-community" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
+        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：<strong>专家经验正从代码和文档向提示词工程迁移</strong>，AI编程助手的效能上限取决于上下文引导质量。将个人方法论固化为单一配置文件，是知识资产化的新形态。
+<strong>法</strong>：把隐性知识显性化为结构化指令，适用于任何专家系统构建。核心是提炼决策规则和反模式，而非罗列事实。
+<strong>术</strong>：从自身工作流中提取高频操作和常见错误；将规则按优先级排序，写入CLAUDE.md；通过版本控制管理该文件，定期根据AI输出质量迭代；在团队内共享并对比不同配置的效果。
+<strong>器</strong>：Claude Code、CLAUDE.md文件、Git版本控制、Andrej Karpathy公开技能库。</p>
+<a class="source-link" href="https://github.com/multica-ai/andrej-karpathy-skills" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
       </div>
       <div class="entry" data-cat="ai" style="animation-delay: 1.2200000000000002s;">
         <div class="entry-head">
           <div class="bullet" style="background: var(--tab-1);"></div>
           <div class="info">
-            <h3>本地优先AI工作台崛起</h3>
-            <div class="meta">GitHub Trending · 🔥 58 · 11小时前</div>
+            <h3><span class="badge-icon"> 🆕</span> 本地优先个人AI记忆系统</h3>
+            <div class="meta">GitHub Trending · 🔥 61 · 20小时前</div>
           </div>
           <div class="expand-icon">▼</div>
         </div>
-        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：数据隐私和响应速度需求推动 AI 工具从云端中心化走向<strong>本地优先的分布式架构</strong>，模型与工具调用在端侧完成将成为常态，长期趋势是用户对数据主权的掌控权增强。
-<strong>法</strong>：采用本地优先设计，核心推理和数据处理在设备端完成，云端仅做同步与增强，兼顾隐私与性能，适用于个人和企业级应用。
-<strong>术</strong>：优化模型压缩与量化，适配消费级硬件；设计离线可用的工具调用链；提供本地数据加密与跨设备同步方案。
-<strong>器</strong>：Apache Maka、Ollama、llama.cpp、SQLite、WebAssembly。</p>
-<a class="source-link" href="https://github.com/apache/maka" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
+        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：<strong>个人AI助手的核心壁垒从模型能力转向数据主权与长期记忆</strong>。本地优先架构回应了隐私焦虑，同时通过持续积累个人数据形成不可替代的个性化服务。
+<strong>法</strong>：数据本地化+云端模型调用的混合架构，是平衡隐私与智能的可行范式。关键在于设计数据分层存储策略，区分敏感本地数据和可脱敏上云数据。
+<strong>术</strong>：明确记忆数据的采集范围（如对话、文件、位置）；设计本地向量数据库的索引与检索机制；制定数据加密和备份方案；提供用户可控的遗忘/导出功能，增强信任。
+<strong>器</strong>：OpenHuman项目、本地向量数据库（如Chroma、LanceDB）、嵌入式模型（如Llama.cpp）、端侧推理框架。</p>
+<a class="source-link" href="https://github.com/tinyhumansai/openhuman" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
       </div>
     </div>
     <div class="footer">
-      <span>Generated by AI Hot Monitor v2 · DeepSeek · 11:01:22</span>
+      <span>Generated by AI Hot Monitor v2 · DeepSeek · 20:01:43</span>
       <span class="badge">💡 点击条目展开深度解读</span>
     </div>
   </div>
