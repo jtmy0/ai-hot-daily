@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="referrer" content="no-referrer">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'unsafe-inline'; img-src data:; connect-src 'none'; frame-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'; frame-ancestors 'none'">
+<title>OpenAI「掀桌」：自研推理芯片「墨西哥辣椒」跑赢英伟达-36氪 - AI热点快照</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','PingFang SC','Microsoft YaHei',sans-serif;background:#f8f9fa;color:#1a1a2e;line-height:1.8;min-height:100vh}
+.top-bar{background:#fff;border-bottom:1px solid #e5e7eb;padding:10px 20px;display:flex;align-items:center;gap:12px;position:sticky;top:0;z-index:10}
+.top-bar .logo{font-size:14px;font-weight:700;color:#0d9488}
+.top-bar .sep{color:#d1d5db}
+.top-bar .source{font-size:13px;color:#6b7280}
+.top-bar .back{margin-left:auto;font-size:13px;color:#0d9488;text-decoration:none}
+.top-bar .back:hover{text-decoration:underline}
+.container{max-width:760px;margin:0 auto;padding:40px 24px 80px}
+.article-title{font-size:1.8rem;font-weight:700;line-height:1.35;margin-bottom:16px;color:#1a1a2e}
+.article-meta{display:flex;flex-wrap:wrap;gap:16px;padding-bottom:20px;margin-bottom:28px;border-bottom:1px solid #e5e7eb;font-size:14px;color:#6b7280}
+.article-meta a{color:#0d9488;text-decoration:none}
+.article-meta a:hover{text-decoration:underline}
+.article-body{font-size:16.5px;line-height:1.85;color:#1f2937}
+.article-body p{margin-bottom:1.2em;text-align:justify}
+.article-body h1,.article-body h2,.article-body h3{font-size:1.25em;font-weight:700;margin:1.6em 0 0.6em;color:#1a1a2e}
+.article-body a{color:#0d9488}
+.article-body pre,.article-body code{background:#f1f5f9;border-radius:4px;font-size:0.9em}
+.article-body pre{padding:16px;overflow-x:auto;margin:1em 0}
+.article-body code{padding:2px 6px}
+.article-body blockquote{border-left:3px solid #0d9488;padding-left:16px;color:#4b5563;margin:1em 0}
+.article-body ul,.article-body ol{padding-left:1.6em;margin-bottom:1em}
+.article-body li{margin-bottom:0.4em}
+.article-body figure{margin:1.2em 0}
+.article-body figcaption{font-size:13px;color:#9ca3af;text-align:center;margin-top:6px}
+.footer{margin-top:48px;padding-top:20px;border-top:1px solid #e5e7eb;font-size:13px;color:#9ca3af;text-align:center}
+</style>
+</head>
+<body>
+<div class="top-bar">
+  <a class="back" href="../" style="font-size:13px;color:#6b7280;text-decoration:none">← 日报首页</a>
+  <span class="sep">|</span>
+  <span class="logo">AI热点快照</span>
+  <span class="sep">|</span>
+  <span class="source">36kr</span>
+  <a class="back" href="https://www.36kr.com/p/3955555203447945" target="_blank" rel="noopener noreferrer">查看原文 ↗</a>
+</div>
+<div class="container">
+  <h1 class="article-title">OpenAI「掀桌」：自研推理芯片「墨西哥辣椒」跑赢英伟达-36氪</h1>
+  <div class="article-meta">
+    <span>作者: 机器之心</span>
+    <span>来源: 36kr</span>
+    <span>快照日期: 2026-08-26</span>
+  </div>
+  <div class="article-body"><div><div>
+ 
+ 
+  <p>一觉醒来，关于 OpenAI 的消息真是满天飞。</p>
+  <p>先是 X 用户 Leo@synthwavedd 独家声称：<strong>OpenAI 已完成一次新的预训练，代号「Bel」，参数规模据称超过 10 万亿，或是 Doug 的继任者，可能成为 Astra /GPT-6 的基础模型……</strong></p>
+  <p></p>
+  <p>一圈搜索下来发现，并没有准确的消息。但确凿无疑的是，OpenAI 的首款自研推理芯片出成绩了。</p>
+  <p>就在刚刚，<strong>OpenAI 公布了首款自研推理芯片 Jalapeño 的最新测试结果：</strong>取得了重大突破，<strong>这款芯片专为大语言模型推理设计，通过全新的架构设计，它能够同时提升吞吐量，并降低延迟，在保持高能效的同时，实现两者兼得。并在多个模型测试中超过 NVIDIA GB200、GB300 系统的效率表现。</strong></p>
+  <p></p>
+  <p>随即，OpenAI CEO Sam Altman 也在 X 上表示：「我们制造了一款芯片，它的速度很快。」</p>
+  <p></p>
+  <p>需要注意的是，作为 OpenAI 首款自研推理芯片，<strong>Jalapeño 并不是用于训练下一代 GPT 模型的芯片，而是针对模型上线后的运行阶段进行优化。</strong></p>
+  <p>简单来说：训练阶段是让模型学会能力，而推理阶段是让模型快速回答用户请求。Jalapeño 则主要解决的是第二个问题。</p>
+  <p>OpenAI 表示，传统硬件系统往往需要在两个指标之间做取舍：</p>
+  <ul>
+   <li>更高吞吐量（throughput）：单位时间处理更多请求；</li>
+   <li>更低延迟（latency）：让用户更快得到响应。</li>
+  </ul>
+  <p>例如，大规模批处理可以提升整体效率，但可能增加单次请求等待时间；而追求极低延迟，又可能牺牲资源利用率。Jalapeño 的目标，是在一个架构中同时优化两者。</p>
+  <p>而在具体性能方面，OpenAI 表示，在多个大模型推理测试中，<strong>Jalapeño 要优于 NVIDIA GB200 和 GB300 系统。</strong>其中测试模型包括：<strong>OpenAI GPT-OSS 120B； DeepSeek R1 670B； Moonshot AI Kimi K2.5 1T。</strong></p>
+  <p></p>
+  <p>尤其引人注意的是<strong>DeepSeek R1 和 Kimi K2.5</strong>的出现，这似乎是在说明：Jalapeño 并不是只针对 OpenAI 自家模型优化，而是能够适配不同的大模型工作负载。</p>
+  <p>有意思的，Jalapeño 可被翻译为「墨西哥辣椒」，而在此消息一经发布后，也是立即引起了各路网友的调侃与热议。</p>
+  <p>「你打算用辣椒的名字来命名你的芯片吗？迫不及待想体验了。」</p>
+  <p></p>
+  <p>而对于 OpenAI 来说，Jalapeño 的推出，表明 OpenAI 正在尝试打通「模型 — 软件 — 芯片 — 数据中心」的一整条链路。</p>
+  <p>另外值得一提的是，此次 OpenAI 的 Jalapeño 芯片，在硬件上是与 Cerebras 进行的合作。</p>
+  <p>Tibo 发文称：「这一能力得益于我们与 Cerebras 建立的深度合作，以及他们独特的硬件架构。未来，这种合作还将进一步推动「超快速」体验的边界。</p>
+  <p>我非常期待双方继续合作，在 Cerebras 平台上不断突破极限，探索如何以最快速度运行我们能力最强的模型，并将这种体验带给对性能要求最高的客户。」</p>
+  <p></p>
+  <p>其实，OpenAI 并不是第一家走向自研芯片的 AI 公司。此前很多 AI 大厂也早已纷纷下场造芯。比如 Google 推出了 TPU； Amazon 开发 Trainium、Inferentia； Microsoft 推进 Maia； Meta 也布局自研 AI 加速器……</p>
+  <p>背后的逻辑非常类似：通用 GPU 足够灵活，但并非针对所有 AI 工作负载优化。对于每天运行海量 AI 请求的公司来说，如果能够针对自身模型、软件系统和服务方式设计芯片，就有机会进一步降低成本……</p>
+  <p>下面我们来具体看一看 Jalapeño 的能力。</p>
+  <h2><strong>更快，更省电</strong></h2>
+  <p>Jalapeño 的核心优势，是在相同功耗下完成更多 AI 工作，同时更快返回响应。现有系统通常需要在吞吐量和延迟之间取舍，而 Jalapeño 试图用同一套架构同时实现更高吞吐量和更低延迟。</p>
+  <p>OpenAI 强调，这种优势不仅出现在自家模型上，也覆盖外部开发的模型，证明 Jalapeño 是一套更通用的推理架构。</p>
+  <p>在 GPT-OSS 120B、DeepSeek R1 670B 和 Kimi K2.5 1T 三个公开模型上，Jalapeño 在峰值吞吐量下实现了 1.5～1.9 倍的每瓦 AI 工作量，端到端延迟降低至对比系统的 1/1.7～1/3.6；对于高度交互式的工作负载，性能优势达到 2.1～4.1 倍。</p>
+  <p></p>
+  <p>在 GPT-OSS 120B、DeepSeek R1 670B 和 Kimi K2.5 1T 上，Jalapeño 的峰值每瓦吞吐量分别达到现有最佳系统的 1.9 倍、1.7 倍和 1.5 倍。</p>
+  <p>其中，在规模最大的 Kimi K2.5 上，Jalapeño 的峰值每瓦性能约提升 1.5 倍，端到端延迟降低约 3.4 倍。</p>
+  <p></p>
+  <p>在 Kimi K2.5 1T 上，随着单用户解码速度提高，Jalapeño 相比 GB300 的每瓦吞吐量优势从峰值的 1.5 倍扩大至最高 56.1 倍。</p>
+  <p>OpenAI 没有只比较单颗芯片的峰值性能，而是更关注一个指标：在满足用户和交互式 Agent 延迟要求的情况下，每单位电力能够完成多少有用的 AI 工作。</p>
+  <p>原因也和 Agent 有关。Agent 往往需要连续完成多个步骤，一次请求中看似不大的延迟，会在整个任务执行过程中不断累积。</p>
+  <p>这也是 Jalapeño 在低延迟区间表现最明显的地方。以 DeepSeek R1 为例，在对比系统此前最佳 TBT 对应的条件下，Jalapeño 每千瓦吞吐量达到 12,258 mixed TPS/kW，对比 GB300 的 118，相差约 104.3 倍。</p>
+  <p></p>
+  <p>在 DeepSeek R1 670B 上，Jalapeño 峰值每瓦吞吐量约为 GB300 的 1.7 倍；在相同解码速度下，优势最高扩大至 104.3 倍。</p>
+  <p>OpenAI 使用 SemiAnalysis 的公开基准 InferenceX 进行测试，并与目前领先的商用系统比较。从高吞吐量服务到高度交互、低延迟场景，Jalapeño 在三个公开模型上都实现了更好的每瓦性能和延迟组合，位于 Pareto frontier（帕累托前沿）。</p>
+  <p></p>
+  <p>在 DeepSeek R1 670B 的不同运行点上，Jalapeño 在每瓦吞吐量与交互速度、端到端延迟之间形成更优组合，处于 Pareto frontier（帕累托前沿）。</p>
+  <p>Jalapeño 的额定功耗为 700W，不过在此次测试的工作负载中，实际持续功耗始终保持在 550W 或以下。</p>
+  <h2><strong>为 Agent 而生</strong></h2>
+  <p>Jalapeño 从一开始就是围绕现在及未来大语言模型，尤其是交互式 Agent 设计的。</p>
+  <p>LLM 推理的不同阶段有不同瓶颈：Prefill 更依赖计算能力，Decode 更受内存带宽限制，核心和芯片之间的数据移动也会增加延迟。</p>
+  <p>因此，OpenAI 将芯片、内存、网络、软件和机架级系统协同设计。包括 KV Cache 在内的模型状态可以被明确放置并尽可能留在本地，让 Jalapeño 同时适应 Prefill 和 Decode，并随两者工作量的变化进行调整。</p>
+  <p><strong>OpenAI 认为，这正是 Agent 工作负载的关键特征。</strong></p>
+  <p>有意思的是，<strong>AI 不只是 Jalapeño 要服务的对象，也直接参与了这颗芯片的开发。</strong></p>
+  <p>借助不同阶段的模型，OpenAI 团队从最初设计到 Tape-out（流片设计定稿）只用了 9 个月。模型被用于探索不同实现、缩短设计、测量和验证周期，还参与优化芯片的算术电路。</p>
+  <p>Jalapeño 同样被设计成一个对人类和模型都清晰、可预测的编程目标。使用 GPT-Astra 驱动的 Codex，团队只用了 2 个月，就让三款原本不在 Jalapeño 初始生产计划中的开放权重模型实现了高性能运行。</p>
+  <p>在部分 GPT-OSS Attention 和 MoE 模块中，Codex 生成的实现甚至比原有人类专家手写版本快 1.5～1.8 倍。</p>
+  <h2><strong>年底部署，二代三代已经在路上</strong></h2>
+  <p><strong>OpenAI 计划在 2026 年底前开始将 Jalapeño 部署到自己的计算基础设施中。</strong>目前团队仍在进行生产验证、完善软件、为大规模运行做准备，并继续在更多模型上验证性能。</p>
+  <p>后续的产品也已经启动，Gen 2 已经进入深度开发阶段，Gen 3 也已经开始成形。</p>
+  <p>OpenAI 将 Jalapeño 带来的效率变化总结成了三个档位：Ultra-fast 模式，可以达到过去只有 Fast 模式才有的效率；Fast 模式，可以达到过去只有 Batch 模式才有的效率；Batch 模式本身则进一步提高效率。</p>
+  <p>不过，自研芯片并不意味着 OpenAI 准备摆脱 NVIDIA。</p>
+  <p>OpenAI 明确表示，满足不断增长的 AI 需求，需要来自所有可用来源的更多算力，公司仍将继续大规模部署 NVIDIA 和其他合作伙伴的加速器，同时覆盖训练和推理工作负载。</p>
+  <p>你怎么看？欢迎评论区留言、交流！</p>
+  <p><strong>参考链接：</strong></p>
+  <p>https://x.com/OpenAI/status/2092300846675505602</p>
+  <p>https://x.com/sama/status/2092339694210040187</p>
+  <p>https://openai.com/index/jalapeno-first-results/</p>
+  <p>https://techcrunch.com/2026/08/25/openais-jalapeno-chip-is-built-for-fast-inference-at-scale-benchmarks-show/</p>
+  <p>本文来自微信公众号<a href="https://mp.weixin.qq.com/s?__biz=MzA3MzI4MjgzMw==&amp;mid=2651052368&amp;idx=1&amp;sn=97ac5a94f75501171712dc4410db948e&amp;chksm=852d90f3c7eee77651c24512dda5a90dc2980bdf6dc5742b8b5bfe32e2835fddaf2d12e9c9ea&amp;scene=0&amp;xtrack=1#rd" target="_blank" rel="noopener noreferrer nofollow">“机器之心”（ID：almosthuman2014）</a>，作者：关注AI的机器之心，编辑：山辉、Youli，36氪经授权发布。</p>
+ 
+</div></div></div>
+  <div class="footer">
+    本文由 AI热点监控系统自动抓取 · 内容版权归原作者/网站所有<br>
+    快照仅用于学习交流，如需转载请访问原文
+  </div>
+</div>
+</body>
+</html>
