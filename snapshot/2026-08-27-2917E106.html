@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="referrer" content="no-referrer">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'unsafe-inline'; img-src data:; connect-src 'none'; frame-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'; frame-ancestors 'none'">
+<title>加州理工用AI攻克量子化学60年难题，1块显卡做完7800块的活-36氪 - AI热点快照</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','PingFang SC','Microsoft YaHei',sans-serif;background:#f8f9fa;color:#1a1a2e;line-height:1.8;min-height:100vh}
+.top-bar{background:#fff;border-bottom:1px solid #e5e7eb;padding:10px 20px;display:flex;align-items:center;gap:12px;position:sticky;top:0;z-index:10}
+.top-bar .logo{font-size:14px;font-weight:700;color:#0d9488}
+.top-bar .sep{color:#d1d5db}
+.top-bar .source{font-size:13px;color:#6b7280}
+.top-bar .back{margin-left:auto;font-size:13px;color:#0d9488;text-decoration:none}
+.top-bar .back:hover{text-decoration:underline}
+.container{max-width:760px;margin:0 auto;padding:40px 24px 80px}
+.article-title{font-size:1.8rem;font-weight:700;line-height:1.35;margin-bottom:16px;color:#1a1a2e}
+.article-meta{display:flex;flex-wrap:wrap;gap:16px;padding-bottom:20px;margin-bottom:28px;border-bottom:1px solid #e5e7eb;font-size:14px;color:#6b7280}
+.article-meta a{color:#0d9488;text-decoration:none}
+.article-meta a:hover{text-decoration:underline}
+.article-body{font-size:16.5px;line-height:1.85;color:#1f2937}
+.article-body p{margin-bottom:1.2em;text-align:justify}
+.article-body h1,.article-body h2,.article-body h3{font-size:1.25em;font-weight:700;margin:1.6em 0 0.6em;color:#1a1a2e}
+.article-body a{color:#0d9488}
+.article-body pre,.article-body code{background:#f1f5f9;border-radius:4px;font-size:0.9em}
+.article-body pre{padding:16px;overflow-x:auto;margin:1em 0}
+.article-body code{padding:2px 6px}
+.article-body blockquote{border-left:3px solid #0d9488;padding-left:16px;color:#4b5563;margin:1em 0}
+.article-body ul,.article-body ol{padding-left:1.6em;margin-bottom:1em}
+.article-body li{margin-bottom:0.4em}
+.article-body figure{margin:1.2em 0}
+.article-body figcaption{font-size:13px;color:#9ca3af;text-align:center;margin-top:6px}
+.footer{margin-top:48px;padding-top:20px;border-top:1px solid #e5e7eb;font-size:13px;color:#9ca3af;text-align:center}
+</style>
+</head>
+<body>
+<div class="top-bar">
+  <a class="back" href="../" style="font-size:13px;color:#6b7280;text-decoration:none">← 日报首页</a>
+  <span class="sep">|</span>
+  <span class="logo">AI热点快照</span>
+  <span class="sep">|</span>
+  <span class="source">36kr</span>
+  <a class="back" href="https://www.36kr.com/p/3956267360337025" target="_blank" rel="noopener noreferrer">查看原文 ↗</a>
+</div>
+<div class="container">
+  <h1 class="article-title">加州理工用AI攻克量子化学60年难题，1块显卡做完7800块的活-36氪</h1>
+  <div class="article-meta">
+    <span>作者: 新智元</span>
+    <span>来源: 36kr</span>
+    <span>快照日期: 2026-08-27</span>
+  </div>
+  <div class="article-body"><div><div>
+ 
+ 
+  <p>100 个电子的量子行为，用暴力方法计算一次所需的时间超过宇宙的年龄。</p>
+  <p>一颗药物分子动辄上千个电子，一块电池材料更多。模拟它们，是药物、电池、芯片研发的底层需求。</p>
+  <p>加州理工学院 Anima Anandkumar 团队 8 月 24 日发了一篇论文，用一个 AI 模型把这类计算的复杂度从立方级压到了近线性级。</p>
+  <p></p>
+  <p>https://x.com/AnimaAnandkumar/status/2092031815448248594</p>
+  <p>效果相当震撼：在单块 GPU 上完成了一个含 82500 个电子的金属缺陷模拟，2019 年同类计算用了约 7800 块 GPU。</p>
+  <h2><strong>困了 60 年的瓶颈</strong></h2>
+  <p>量子化学领域最常用的计算方法叫密度泛函理论（DFT），诺贝尔奖级的理论，药物筛选、催化剂设计、电池材料研发都离不开它。</p>
+  <p>问题在于太慢：体系每大一点，计算量就呈立方增长——电子数翻 10 倍，计算量涨 1000 倍。</p>
+  <p>60 年来，物理学家一直在找让它提速的办法，但没有实质突破。</p>
+  <p>AI 尝试过两种思路。</p>
+  <p>一种思路是让模型直接预测最终结果，一步到位。</p>
+  <p>训练分布内效果不错，但外推能力很差：分子一旦大于训练集中见过的，误差就失控。</p>
+  <p>论文实测，从小分子外推到药物级分子时，直接预测模型的误差从不到 1% 飙到约 10%，最高达 41%。</p>
+  <p>另一种思路沿用物理学家的老路，让 AI 学一个逆向映射。</p>
+  <p>这条路数学上不稳定，论文的对照实验中，所有计算都在迭代几步后发散，全军覆没。</p>
+  <p></p>
+  <h2><strong>像思维链一样迭代而不是一步猜答案</strong></h2>
+  <p>这篇论文换了一个方向。</p>
+  <p>DFT 的计算流程是一个反复迭代的过程：每轮给定一组输入条件，算出电子密度，再用密度更新输入条件，循环往复直到结果稳定。</p>
+  <p>传统方法卡在每轮迭代中都要做一次计算量巨大的求解，这一步是立方级的。</p>
+  <p>Anandkumar 团队的做法是：用 AI 替掉这一步。</p>
+  <p>训练一个傅里叶神经算子（FNO），让它学会「给定输入条件，输出对应的电子密度」这个正向映射，计算复杂度从 O(N³) 降到 O(N log N)。</p>
+  <p>然后把模型嵌回原来的迭代循环，其他步骤照旧。</p>
+  <p></p>
+  <p>https://x.com/AnimaAnandkumar/status/2090125110309204371</p>
+  <p>可以这样理解：直接预测模型相当于让 LLM 对一道难题一步给出最终答案，简单题没问题，难题容易错。</p>
+  <p>Kohn-Sham FNO 相当于让模型做推理时的思维链，分步推演，每一步都能自我校验，错了后续迭代会把它拉回来。</p>
+  <p>这种设计还自带一个直接预测模型没有的优势：安全阀。</p>
+  <p>如果模型被推到了能力范围之外，迭代会发散，研究者立刻知道结果不可信。</p>
+  <p>论文中镁位错实验的第一次尝试就验证了这一点：用通用预训练模型直接算，所有计算立即发散——发散本身就是警报。</p>
+  <p>直接预测模型给出一个答案，你无从判断它是对是错。</p>
+  <p>训练数据只用了 8504 个结构，一个模型同时处理分子和固体材料，覆盖元素周期表前五行。</p>
+  <p>这得益于团队设计的一种域不变 FNO 变体：不同大小的体系共享同一套学到的滤波器，小分子和大块晶体用同一个模型。</p>
+  <p>外推到训练集没见过的药物级大分子时，Kohn-Sham FNO 的密度误差为 2.23%，直接预测模型为 9.97%。</p>
+  <p>分子越大差距越明显：到 45 个重原子时，直接预测误差飙到 41%，Kohn-Sham FNO 只有 4%。</p>
+  <h2><strong>1 块 GPU，8 万个电子</strong></h2>
+  <p>团队拿镁的位错结构做了大规模验证。</p>
+  <p>2019 年，一项获得 ACM 戈登贝尔奖提名的研究对 6164 个镁原子做了全量 DFT 计算，动用了 Summit 超算上约 7800 块 NVIDIA V100 GPU。</p>
+  <p>而最新的 Kohn-Sham FNO 在单块 NVIDIA B300 GPU 上完成了 8250 个原子、82500 个价电子的计算，全部收敛。</p>
+  <p>实测缩放指数为 1.03（接近完美线性），传统方法为 3.37（立方级）。</p>
+  <p>1 块 B300 与 7800 块 V100 不是硬件对等比较，但缩放指数不受硬件影响：一个近线性，一个立方，体系越大差距越不可逆。</p>
+  <p>论文发布同一天，Anandkumar 宣布创办 AI 物理模拟公司 Accelerated Understanding，路透社随后做了报道。</p>
+  <p></p>
+  <p>https://www.reuters.com/business/ai-founders-who-walked-away-bezos-backed-prometheus-model-universe-2026-08-25/</p>
+  <p>据她在 X 上介绍，公司训练的 AI 模型在 4D 空间中模拟物理现象，推理上下文长度超过 5 万亿。</p>
+  <p></p>
+  <p>https://x.com/AnimaAnandkumar/status/2092236528898675014</p>
+  <p>目前 Kohn-Sham FNO 只学了计算流程中的一个环节，完整的能量计算还需要一步后处理。</p>
+  <p>但路径已经清楚：AI 替代的不是物理，是物理计算中最烧钱的那一步重复运算。</p>
+  <p>团队下一步计划补上剩余环节，届时后处理也可以省掉。未来可期。</p>
+  <p></p>
+  <p>团队创始人合照</p>
+  <p>参考资料：https://tensorlab.cms.caltech.edu/users/anima/ks_fno.html </p>
+  <p>本文来自微信公众号<a href="https://mp.weixin.qq.com/s/emD8D1soInqO2O758NFNIQ" target="_blank" rel="noopener noreferrer nofollow">“新智元”</a>，作者：ASI启示录；编辑：马可，36氪经授权发布。</p>
+ 
+</div></div></div>
+  <div class="footer">
+    本文由 AI热点监控系统自动抓取 · 内容版权归原作者/网站所有<br>
+    快照仅用于学习交流，如需转载请访问原文
+  </div>
+</div>
+</body>
+</html>
