@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="referrer" content="no-referrer">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'unsafe-inline'; img-src data:; connect-src 'none'; frame-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'; frame-ancestors 'none'">
+<title>Nvidia’s AI advantage is moving beyond the GPU - AI热点快照</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','PingFang SC','Microsoft YaHei',sans-serif;background:#f8f9fa;color:#1a1a2e;line-height:1.8;min-height:100vh}
+.top-bar{background:#fff;border-bottom:1px solid #e5e7eb;padding:10px 20px;display:flex;align-items:center;gap:12px;position:sticky;top:0;z-index:10}
+.top-bar .logo{font-size:14px;font-weight:700;color:#0d9488}
+.top-bar .sep{color:#d1d5db}
+.top-bar .source{font-size:13px;color:#6b7280}
+.top-bar .back{margin-left:auto;font-size:13px;color:#0d9488;text-decoration:none}
+.top-bar .back:hover{text-decoration:underline}
+.container{max-width:760px;margin:0 auto;padding:40px 24px 80px}
+.article-title{font-size:1.8rem;font-weight:700;line-height:1.35;margin-bottom:16px;color:#1a1a2e}
+.article-meta{display:flex;flex-wrap:wrap;gap:16px;padding-bottom:20px;margin-bottom:28px;border-bottom:1px solid #e5e7eb;font-size:14px;color:#6b7280}
+.article-meta a{color:#0d9488;text-decoration:none}
+.article-meta a:hover{text-decoration:underline}
+.article-body{font-size:16.5px;line-height:1.85;color:#1f2937}
+.article-body p{margin-bottom:1.2em;text-align:justify}
+.article-body h1,.article-body h2,.article-body h3{font-size:1.25em;font-weight:700;margin:1.6em 0 0.6em;color:#1a1a2e}
+.article-body a{color:#0d9488}
+.article-body pre,.article-body code{background:#f1f5f9;border-radius:4px;font-size:0.9em}
+.article-body pre{padding:16px;overflow-x:auto;margin:1em 0}
+.article-body code{padding:2px 6px}
+.article-body blockquote{border-left:3px solid #0d9488;padding-left:16px;color:#4b5563;margin:1em 0}
+.article-body ul,.article-body ol{padding-left:1.6em;margin-bottom:1em}
+.article-body li{margin-bottom:0.4em}
+.article-body figure{margin:1.2em 0}
+.article-body figcaption{font-size:13px;color:#9ca3af;text-align:center;margin-top:6px}
+.footer{margin-top:48px;padding-top:20px;border-top:1px solid #e5e7eb;font-size:13px;color:#9ca3af;text-align:center}
+</style>
+</head>
+<body>
+<div class="top-bar">
+  <a class="back" href="../" style="font-size:13px;color:#6b7280;text-decoration:none">← 日报首页</a>
+  <span class="sep">|</span>
+  <span class="logo">AI热点快照</span>
+  <span class="sep">|</span>
+  <span class="source">TechCrunch</span>
+  <a class="back" href="https://techcrunch.com/2026/08/29/nvidias-ai-advantage-is-moving-beyond-the-gpu/" target="_blank" rel="noopener noreferrer">查看原文 ↗</a>
+</div>
+<div class="container">
+  <h1 class="article-title">Nvidia’s AI advantage is moving beyond the GPU</h1>
+  <div class="article-meta">
+    <span>作者: Russell Brandom</span>
+    <span>来源: TechCrunch</span>
+    <span>快照日期: 2026-08-30</span>
+  </div>
+  <div class="article-body"><div><div>
+<p>Before this week, the dominant story about Nvidia went something like this: For the first few years of the AI boom, Nvidia was the only source for state-of-the-art GPUs, which became immensely profitable as the industry scaled out. In the last few years, hyperscalers like Amazon and Google have started building their own chips, and Nvidia is no longer the only game in town, leading many investors to wonder how durable its advantage really is.</p>
+
+<p>It’s a compelling story, and mostly true. After growing its market cap 10x between the start of 2023 and mid-2025, Nvidia shares have been on a more modest trajectory for the past year, driven by concerns about GPU competition.</p>
+
+
+
+
+
+
+
+<p>A new narrative has taken shape since the company’s earnings on Wednesday and investors are starting to realize that Nvidia’s advantage goes far beyond GPUs. As AI’s compute grows into the gigawatt scale, orchestration has become an increasingly complex task. Not surprisingly, Nvidia has built much of the state-of-the-art hardware needed to handle it, giving the company a huge advantage in the systems that surround the GPU even as it sees increased competition on the GPUs themselves. </p>
+
+<p>For all the talk of <a href="https://www.cnbc.com/2026/08/11/ai-computing-power-becomes-a-tradable-asset-class-as-cme-starts-futures.html" target="_blank" rel="noopener noreferrer nofollow">compute as a commodity</a>, it’s still incredibly difficult to operate a megascale data center at peak efficiency — and as deployments get bigger and faster, that challenge is only growing.</p>
+
+<h2>Rack by Rack</h2>
+
+<p>You can see some of this just by looking at the details of what Nvidia is actually selling. The company is currently rolling out its Vera Rubin architecture, which pairs the Rubin GPU with a collection of other units, including the Vera CPU, the Groq 3 LPX inference accelerator and similar racks for storage and networking.</p>
+
+<p>Over the past week, I’ve been talking to folks at Nvidia about what those systems actually do, and the results have been surprising. Like the Rubin GPU itself, they’re extremely specialized systems, but instead of churning through tokens, they’re making sure everything outside the GPU works as efficiently as possible. If the GPU is the engine, these are the rest of the car.</p>
+
+<p>The Vera CPU in particular is focused on the problem of orchestrating data. “Vera is important because there’s only so much memory that you can put in a single server or any sort of compute platform,” Jason Hardy, Nvidia’s VP of storage technology, told me. </p>
+
+
+<p>As data centers have scaled up computing power, memory capacity has scaled up too, which is why<a href="https://techcrunch.com/2026/06/28/why-wall-street-thinks-us-memory-maker-micron-is-the-next-nvidia/" target="_blank" rel="noopener noreferrer nofollow"> companies like Micron</a> have gotten rich in the second wave of the infrastructure boom. But getting that data to the GPU at the right time isn’t straightforward — and as companies look to drive tokens-per-watt lower and lower, they’re realizing how important that kind of traffic direction is.</p>
+
+<p>“We saw upwards of 3x improvement in these operations, where the Vera CPU is allowing for acceleration,” Hardy said. “So now we can use our flash to its fullest potential, because we can get all that performance out of it without bottlenecking.”</p>
+
+<p>You can see versions of the same problem outside of Nvidia. When OpenAI developed its Jalapeño chip, a major focus was avoiding these challenges entirely by minimizing the amount of data that needs to be moved around.</p>
+
+
+
+
+
+
+
+<p>“We designed Jalapeño to minimize data movement and communication delays,” the company said in a blog post<a href="https://openai.com/index/jalapeno-first-results/" target="_blank" rel="noopener noreferrer nofollow"> earlier this month</a>. “Its large domain allows the entire workload to remain within one connected system, minimizing data movement and helping the complete request stay fast and efficient from beginning to end.”</p>
+
+<p>It’s a different approach, avoiding data movement entirely by conducting a workload within one integrated chip. But the overall logic is the same, increasing efficiency with smarter traffic control instead of just more processor cycles. That in turn opens up a whole new layer of infrastructure for companies to compete over.</p>
+
+<p>This new focus on data orchestration isn’t automatically a win for Nvidia. The company will have to compete with rival chipmakers and hyperscalers just as it has with GPUs. But the competition has moved to a new layer, where building a rival GPU matters less than being able to make the entire system work efficiently. </p>
+
+<p>And at least in the early stages, Nvidia looks to have a commanding lead.</p>
+</div><p><em>When you purchase through links in our articles, <a href="https://techcrunch.com/techcrunch-affiliate-monetization-standards/" target="_blank" rel="noopener noreferrer nofollow">we may earn a small commission</a>. This doesn’t affect our editorial independence.</em></p><div>
+	
+	
+	
+	
+
+	
+<div>
+	<p>
+		Russell Brandom has been covering the tech industry since 2012, with a focus on platform policy and emerging technologies. He previously worked at The Verge and Rest of World, and has written for Wired, The Awl and MIT’s Technology Review.
+ He can be reached at russell.brandom@techcrunch.com or on Signal at 412-401-5489.	</p>
+</div>
+
+
+	
+	<p>
+		<a href="https://techcrunch.com/author/russell-brandom/" target="_blank" rel="noopener noreferrer nofollow">View Bio </a>
+	</p>
+	
+</div></div></div>
+  <div class="footer">
+    本文由 AI热点监控系统自动抓取 · 内容版权归原作者/网站所有<br>
+    快照仅用于学习交流，如需转载请访问原文
+  </div>
+</div>
+</body>
+</html>
