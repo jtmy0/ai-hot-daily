@@ -91,7 +91,7 @@ body { background: var(--bg-outer); font-family: var(--font-body); min-height: 1
       <a class="back-link" href="./">← 归档首页</a>
       <h1>AI 热点日报</h1>
       <div class="subtitle">
-        <span class="date">2026年9月1日，星期二 · 道法术器解读</span>
+        <span class="date">2026年9月1日，星期二· 含新增 · 道法术器解读</span>
         <div class="controls">
           <button id="expandAll">展开全部</button>
           <button id="collapseAll">收起全部</button>
@@ -99,225 +99,234 @@ body { background: var(--bg-outer); font-family: var(--font-body); min-height: 1
       </div>
     </div>
     <div class="entries" id="entries">
-      <div class="entry" data-cat="other" style="animation-delay: 0.1s;">
+      <div class="entry" data-cat="sec" style="animation-delay: 0.1s;">
         <div class="entry-head">
-          <div class="bullet" style="background: var(--tab-6);"></div>
+          <div class="bullet" style="background: var(--tab-3);"></div>
           <div class="info">
-            <h3>界面生成革命：从渲染到世界模拟</h3>
-            <div class="meta">Runway：News（网页） · 🔥 100 · 10小时前</div>
+            <h3><span class="badge-icon"> 🆕</span> 低成本逼近AGI基准</h3>
+            <div class="meta">Hacker News · 🔥 56 · 2小时前</div>
           </div>
           <div class="expand-icon">▼</div>
         </div>
-        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：界面生成正从静态渲染转向动态世界模拟，<strong>交互范式将从'操作界面'变为'对话环境'</strong>，这是人机交互的底层范式转移。
-<strong>法</strong>：<strong>用实时生成替代预定义状态</strong>，将界面视为可演化的模拟环境而非固定资源，适用于所有UI/UX设计。
-<strong>术</strong>：优先在原型设计、游戏开发、动态数据可视化场景试点；评估现有前端框架与实时生成引擎的兼容性；建立界面状态动态验证流程。
-<strong>器</strong>：Runway Solaris、WebGPU、Three.js、Figma实时协作插件。</p>
-<a class="source-link" href="https://runwayml.com/news/research/introducing-solaris" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
+        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：<strong>推理成本指数级下降</strong>正在改写AI能力评估的经济学，ARC-AGI-1作为抽象推理基准，其分数与成本之比成为衡量模型效率的新标尺，长期趋势是智能将变得极度廉价。
+<strong>法</strong>：<strong>以单位成本产出衡量技术进展</strong>，而非仅看绝对性能，适用于所有技术评估场景，可指导资源分配和投资决策。
+<strong>术</strong>：在模型选型时，<strong>同时计算性能分数与推理成本</strong>，建立性价比基准线；关注小模型在特定基准上的突破，而非只追逐大参数；将成本数据纳入技术路线图评审。
+<strong>器</strong>：ARC-AGI-1基准测试集、云计算按需计费工具、模型推理成本估算平台。</p>
+<a class="source-link" href="https://mvakde.github.io/blog/44-on-arc-1/" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
       </div>
       <div class="entry" data-cat="ai" style="animation-delay: 0.18s;">
         <div class="entry-head">
           <div class="bullet" style="background: var(--tab-1);"></div>
           <div class="info">
-            <h3>小模型自训：两小时入门LLM</h3>
-            <div class="meta">GitHub Trending · 🔥 56 · 11小时前</div>
+            <h3><span class="badge-icon"> 🆕</span> AI自主设计芯片破壁</h3>
+            <div class="meta">36kr · 🔥 69 · 8小时前</div>
           </div>
           <div class="expand-icon">▼</div>
         </div>
-        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：大模型训练成本持续下降，<strong>小规模自训将成为AI工程师的基础技能</strong>，如同掌握SQL或Python。
-<strong>法</strong>：<strong>通过最小可行模型快速验证训练管线</strong>，再按需扩展数据与参数，适用于所有模型开发项目。
-<strong>术</strong>：用64M参数模型跑通数据清洗、分词、训练、评估全流程；对比开源预训练权重与自训模型的性能差距；记录训练日志建立调参基线。
-<strong>器</strong>：minimind项目、HuggingFace Transformers、W&amp;B、单张消费级GPU。</p>
-<a class="source-link" href="https://github.com/jingyaogong/minimind" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
+        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：<strong>CUDA的软件生态护城河正被AI辅助硬件设计侵蚀</strong>，芯片设计从依赖人类专家经验转向算法自动探索，长期趋势是硬件与软件的协同进化将由AI主导，摩尔定律的延续方式发生根本改变。
+<strong>法</strong>：<strong>用AI自动化打破传统工具链的封闭性</strong>，通过生成式设计绕过既有生态壁垒，适用于任何被成熟软件栈锁定的工程领域。
+<strong>术</strong>：评估内部芯片设计流程中可自动化的环节，<strong>引入强化学习或生成式模型进行布局优化</strong>；建立跨学科团队，融合AI算法与硬件工程知识；从小规模测试芯片开始验证AI设计流程的可靠性。
+<strong>器</strong>：开源硬件描述语言（如Chisel）、AI芯片设计工具（如Synopsys DSO.ai）、GPU集群算力资源。</p>
+<a class="source-link" href="https://www.36kr.com/p/3964303330155777" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
       </div>
-      <div class="entry" data-cat="sec" style="animation-delay: 0.26s;">
+      <div class="entry" data-cat="other" style="animation-delay: 0.26s;">
         <div class="entry-head">
-          <div class="bullet" style="background: var(--tab-3);"></div>
+          <div class="bullet" style="background: var(--tab-6);"></div>
           <div class="info">
-            <h3>MV2退役：浏览器扩展生态洗牌</h3>
-            <div class="meta">Hacker News · 🔥 100 · 6小时前</div>
+            <h3><span class="badge-icon"> 🔄</span> 界面世界模型新范式</h3>
+            <div class="meta">Runway：News（网页） · 🔥 100 · 19小时前</div>
           </div>
           <div class="expand-icon">▼</div>
         </div>
-        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：浏览器平台正从开放扩展转向<strong>受控的权限沙箱</strong>，安全与隐私优先于功能自由，这是平台治理的长期趋势。
-<strong>法</strong>：<strong>依赖第三方平台能力时，需预判其生命周期并准备替代方案</strong>，适用于所有基于API的生态开发者。
-<strong>术</strong>：立即审计现有扩展的MV2依赖，制定MV3迁移时间表；对广告拦截等核心功能，评估DNS过滤或代理方案；关注企业版浏览器对MV2的长期支持政策。
-<strong>器</strong>：Chrome MV3 API、uBlock Origin Lite、Firefox ESR、AdGuard DNS。</p>
-<a class="source-link" href="https://webiterate.dev/google-removed-extensions-ublock-origin-108/" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
+        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：<strong>从生成静态内容到实时交互世界模型</strong>是AI应用的范式跃迁，Solaris代表模型开始理解并模拟操作系统级交互逻辑，长期趋势是AI将从内容生成工具演变为可操作的虚拟环境引擎。
+<strong>法</strong>：<strong>构建环境模拟能力而非单一输出</strong>，通过实时生成可交互界面，为AI代理提供训练和运行场所，适用于游戏开发、软件测试、自动化操作等场景。
+<strong>术</strong>：<strong>将现有业务界面抽象为状态机模型</strong>，测试与Solaris类模型的兼容性；优先在UI自动化测试中试点，替代传统脚本录制回放；关注模型对多平台（Web/移动/桌面）的适配能力。
+<strong>器</strong>：Runway Solaris模型、UI自动化测试框架（如Selenium）、状态机建模工具。</p>
+<a class="source-link" href="https://runwayml.com/news/research/introducing-solaris" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
       </div>
       <div class="entry" data-cat="ai" style="animation-delay: 0.33999999999999997s;">
         <div class="entry-head">
           <div class="bullet" style="background: var(--tab-1);"></div>
           <div class="info">
-            <h3>多模态Agent竞争白热化</h3>
-            <div class="meta">IT之家（RSS） · 🔥 99 · 15小时前</div>
+            <h3><span class="badge-icon"> 🔄</span> 科学智能体技能库崛起</h3>
+            <div class="meta">GitHub Trending · 🔥 85 · 20小时前</div>
           </div>
           <div class="expand-icon">▼</div>
         </div>
-        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：多模态Agent能力正成为大模型竞争的核心分水岭，开源模型与闭源旗舰的差距快速缩小，<strong>模型能力普惠化</strong>是长期不可逆趋势。
-<strong>法</strong>：通过开源策略抢占开发者心智，以生态反哺模型迭代，是技术平台型产品的标准打法。
-<strong>术</strong>：优先在视觉-语言交叉场景（如文档理解、图表分析）做集成测试；关注模型在长上下文多轮交互中的稳定性；利用量化或蒸馏版本降低部署成本。
-<strong>器</strong>：DeepSeek-V4-Flash-Vision-Exp、HuggingFace Transformers、vLLM推理框架。</p>
-<a class="source-link" href="https://www.ithome.com/0/996/637.htm" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
+        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：AI Agent 正从通用对话转向<strong>垂直领域专业化</strong>，科学研究的复杂流程将逐步被模块化智能体技能替代，这是 AI 落地深水区的必然路径。
+<strong>法</strong>：将领域知识拆解为可复用的技能单元，通过标准化接口组合成完整工作流，是构建行业智能体的通用方法论。
+<strong>术</strong>：优先封装高频、标准化的科研操作（如文献筛选、数据清洗、实验设计）；建立技能库的版本管理与质量评估机制；与科研机构合作验证技能有效性，形成反馈闭环。
+<strong>器</strong>：scientific-agent-skills 库、LangChain、LlamaIndex、Jupyter Notebook 生态。</p>
+<a class="source-link" href="https://github.com/K-Dense-AI/scientific-agent-skills" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
       </div>
       <div class="entry" data-cat="ai" style="animation-delay: 0.42000000000000004s;">
         <div class="entry-head">
           <div class="bullet" style="background: var(--tab-1);"></div>
           <div class="info">
-            <h3>多智能体教学场景落地</h3>
-            <div class="meta">GitHub Trending · 🔥 85 · 11小时前</div>
+            <h3><span class="badge-icon"> 🔄</span> 小模型训练成本骤降</h3>
+            <div class="meta">GitHub Trending · 🔥 59 · 20小时前</div>
           </div>
           <div class="expand-icon">▼</div>
         </div>
-        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：教育领域正从单向内容传递转向<strong>沉浸式互动体验</strong>，多智能体模拟真实课堂环境是AI重塑学习路径的典型范式。
-<strong>法</strong>：将复杂场景拆解为可交互的智能体角色，通过角色扮演驱动用户主动探索，适用于培训、模拟演练等泛教育场景。
-<strong>术</strong>：设计明确的角色分工与对话策略树；引入进度追踪与反馈机制；先在小范围用户中验证学习效果再规模化。
-<strong>器</strong>：OpenMAIC框架、LangChain、Streamlit快速原型工具。</p>
-<a class="source-link" href="https://github.com/THU-MAIC/OpenMAIC" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
+        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：大模型训练成本正以<strong>指数级下降</strong>，小参数模型（如 64M）在特定任务上已具备实用价值，这预示着 AI 民主化进程加速，边缘计算与端侧智能将受益。
+<strong>法</strong>：通过精简数据、优化架构和缩短训练周期，在有限资源下验证模型能力，是快速迭代和低成本试错的有效策略。
+<strong>术</strong>：利用公开小规模数据集（如 TinyStories）进行预训练；采用知识蒸馏技术从大模型迁移能力；关注训练框架的显存优化与混合精度支持。
+<strong>器</strong>：minimind 项目、Hugging Face Transformers、PyTorch、Google Colab 免费 GPU。</p>
+<a class="source-link" href="https://github.com/jingyaogong/minimind" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
       </div>
       <div class="entry" data-cat="ai" style="animation-delay: 0.5s;">
         <div class="entry-head">
           <div class="bullet" style="background: var(--tab-1);"></div>
           <div class="info">
-            <h3>科学Agent技能库崛起</h3>
-            <div class="meta">GitHub Trending · 🔥 75 · 11小时前</div>
+            <h3><span class="badge-icon"> 🔄</span> 苹果误判AI硬件需求</h3>
+            <div class="meta">Hacker News · 🔥 83 · 23小时前</div>
           </div>
           <div class="expand-icon">▼</div>
         </div>
-        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：科研范式正从工具辅助转向<strong>Agent自主驱动</strong>，将领域知识封装为可复用技能库，是降低AI科学家使用门槛的关键路径。
-<strong>法</strong>：标准化技能模块化，让通用Agent通过调用专用技能适配垂直领域，是AI能力横向扩展的高效策略。
-<strong>术</strong>：优先覆盖实验设计、数据清洗、文献综述等高频科研环节；定义清晰的技能输入输出接口；建立技能质量评估与版本管理机制。
-<strong>器</strong>：scientific-agent-skills库、LangChain工具调用、Zotero或Semantic Scholar API。</p>
-<a class="source-link" href="https://github.com/K-Dense-AI/scientific-agent-skills" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
-      </div>
-      <div class="entry" data-cat="ai" style="animation-delay: 0.58s;">
-        <div class="entry-head">
-          <div class="bullet" style="background: var(--tab-1);"></div>
-          <div class="info">
-            <h3>AI算力引爆Mac需求</h3>
-            <div class="meta">Hacker News · 🔥 77 · 14小时前</div>
-          </div>
-          <div class="expand-icon">▼</div>
-        </div>
-        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：AI推理负载正从云端向边缘设备迁移，本地化部署成为隐私和延迟敏感场景的刚需，这改变了PC硬件市场的需求结构。<strong>法</strong>：供应链响应速度决定市场窗口期，企业需建立需求预测的弹性机制，而非依赖历史销售数据。<strong>术</strong>：硬件厂商应优先保障高算力型号产能，同时与AI框架深度适配；开发者可针对Mac统一内存架构优化推理性能，抢占本地AI应用先机。<strong>器</strong>：Apple Silicon（M系列芯片）、Core ML、Ollama本地推理框架。</p>
+        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：AI 工作负载正从云端向<strong>端侧转移</strong>，本地化推理对高性能计算硬件的需求激增，供应链反应速度成为科技巨头竞争的新瓶颈。
+<strong>法</strong>：硬件产能规划需与 AI 应用落地节奏深度耦合，建立<strong>动态需求预测机制</strong>，避免因保守预估错失市场窗口。
+<strong>术</strong>：实时监控开发者社区与消费端 AI 应用下载量作为需求先行指标；与芯片代工厂签订弹性产能协议；将部分 Mac 产线快速切换至高配型号。
+<strong>器</strong>：Mac Mini/Mac Studio、Apple Silicon 芯片、台积电代工产能、供应链管理软件（如 Kinaxis）。</p>
 <a class="source-link" href="https://www.macrumors.com/2026/08/30/apple-unexpected-mac-mini-and-studio-demand/" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
+      </div>
+      <div class="entry" data-cat="sec" style="animation-delay: 0.58s;">
+        <div class="entry-head">
+          <div class="bullet" style="background: var(--tab-3);"></div>
+          <div class="info">
+            <h3><span class="badge-icon"> 🆕</span> 安防摄像头变身鸟类识别系统</h3>
+            <div class="meta">Hacker News · 🔥 90 · 19小时前</div>
+          </div>
+          <div class="expand-icon">▼</div>
+        </div>
+        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：边缘计算与AI模型小型化正推动<strong>存量硬件设备的价值重估</strong>，任何传感器网络都可能成为垂直领域的数据采集入口。
+<strong>法</strong>：将通用硬件与专用AI模型结合，以低成本方式实现功能跃迁，是物联网场景创新的通用路径。
+<strong>术</strong>：复用现有安防设备，部署轻量级图像分类模型；针对目标物种微调数据集，过滤夜间与运动模糊帧；通过消息队列异步推送识别结果至终端。
+<strong>器</strong>：RTSP流媒体协议、YOLOv8或MobileNet、MQTT、树莓派或NVIDIA Jetson。</p>
+<a class="source-link" href="https://jasontucker.blog/how-i-turned-my-security-cameras-into-an-automatic-bird-identification-system-with-birdnet-go/" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
       </div>
       <div class="entry" data-cat="sec" style="animation-delay: 0.66s;">
         <div class="entry-head">
           <div class="bullet" style="background: var(--tab-3);"></div>
           <div class="info">
-            <h3>ChatGPT工作流工具化</h3>
-            <div class="meta">Hacker News · 🔥 66 · 13小时前</div>
+            <h3><span class="badge-icon"> 🆕</span> 单HTML文件构建可漫步赛博朋克城</h3>
+            <div class="meta">Hacker News · 🔥 76 · 18小时前</div>
           </div>
           <div class="expand-icon">▼</div>
         </div>
-        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：大模型正从对话工具演变为生产力基础设施，其价值取决于与现有工作流的集成深度而非模型本身。<strong>法</strong>：工具链标准化是平台生态扩张的核心策略，通过开放API和技能定义降低第三方接入门槛。<strong>术</strong>：企业应梳理高频重复任务，将ChatGPT嵌入CRM、代码仓库等系统；开发者可构建自定义Skill封装领域知识，形成可复用的自动化模块。<strong>器</strong>：ChatGPT API、Zapier自动化平台、GitHub Copilot。</p>
-<a class="source-link" href="https://codex-tool-reference.simonw.chatgpt.site/" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
+        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：<strong>浏览器作为通用运行时</strong>的能力持续增强，单文件应用正成为内容分发与创意表达的高效载体。
+<strong>法</strong>：通过极致的资源压缩与程序化生成技术，在有限体积内创造丰富体验，适用于所有Web端沉浸式内容。
+<strong>术</strong>：使用Canvas或WebGL进行程序化城市生成；利用ASCII字符集与调色板算法营造复古未来风格；通过键盘事件与碰撞检测实现第一人称漫游。
+<strong>器</strong>：Three.js、P5.js、Vite打包工具、GitHub Pages托管。</p>
+<a class="source-link" href="https://www.youtube.com/watch?v=3YtygAx_C6A" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
       </div>
-      <div class="entry" data-cat="sec" style="animation-delay: 0.74s;">
-        <div class="entry-head">
-          <div class="bullet" style="background: var(--tab-3);"></div>
-          <div class="info">
-            <h3>开源Darwin系统新探索</h3>
-            <div class="meta">Hacker News · 🔥 65 · 11小时前</div>
-          </div>
-          <div class="expand-icon">▼</div>
-        </div>
-        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：操作系统生态正经历碎片化重构，基于成熟内核的开源衍生系统将填补特定场景的空白，挑战封闭生态的垄断地位。<strong>法</strong>：开源项目的生存依赖差异化定位和社区治理，需明确目标用户并建立可持续的贡献机制。<strong>术</strong>：关注RavynOS的GUI层和包管理实现，评估其在嵌入式或教育场景的适用性；开发者可参与早期测试，积累BSD系系统移植经验。<strong>器</strong>：Darwin内核、FreeBSD工具链、GitHub协作平台。</p>
-<a class="source-link" href="https://ravynos.com/" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
-      </div>
-      <div class="entry" data-cat="ai" style="animation-delay: 0.82s;">
+      <div class="entry" data-cat="ai" style="animation-delay: 0.74s;">
         <div class="entry-head">
           <div class="bullet" style="background: var(--tab-1);"></div>
           <div class="info">
-            <h3>企业AI从问答走向行动</h3>
-            <div class="meta">Hacker News · 🔥 54 · 11小时前</div>
+            <h3><span class="badge-icon"> 🆕</span> 片仔癀市值蒸发与苹果Anthropic大…</h3>
+            <div class="meta">36kr · 🔥 96 · 12小时前</div>
           </div>
           <div class="expand-icon">▼</div>
         </div>
-        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：企业AI的价值正从信息检索转向<strong>组织知识的结构化与自动化执行</strong>，长期趋势是AI成为企业运营的“操作系统”而非辅助工具。
-<strong>法</strong>：将分散的隐性知识（文档、对话、流程）转化为可查询、可调用的显性知识库，再通过AI代理触发跨部门协作，是知识密集型企业的通用升级路径。
-<strong>术</strong>：1. 优先接入HR、IT、财务等高频问答场景，用真实工单数据微调模型；2. 设计权限分级的知识图谱，确保AI回答可追溯至源文件；3. 设置人工审核闭环，对AI给出的操作建议保留否决权。
-<strong>器</strong>：Almanac（YC S26）、Notion AI、Glean、企业内部Wiki+向量数据库（如Pinecone）。</p>
-<a class="source-link" href="https://usealmanac.com/" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
+        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：<strong>消费品牌护城河受宏观周期冲击</strong>，而科技巨头正通过巨额算力投资锁定AI竞争入场券，资本流向反映产业权力转移。
+<strong>法</strong>：传统企业需警惕单一产品依赖，科技公司则应以长期合约绑定核心资源，两者均需在周期波动中保持战略定力。
+<strong>术</strong>：关注片仔癀渠道库存与提价策略调整信号；跟踪苹果新CEO对AI与汽车业务的组织变革；评估Anthropic与英伟达合作对算力市场格局的影响。
+<strong>器</strong>：英伟达GPU集群、Anthropic Claude API、苹果供应链数据平台。</p>
+<a class="source-link" href="https://www.36kr.com/p/3964101092236803" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
+      </div>
+      <div class="entry" data-cat="other" style="animation-delay: 0.82s;">
+        <div class="entry-head">
+          <div class="bullet" style="background: var(--tab-6);"></div>
+          <div class="info">
+            <h3><span class="badge-icon"> 🆕</span> 库克卸任：供应链帝国终章</h3>
+            <div class="meta">36kr · 🔥 67 · 11小时前</div>
+          </div>
+          <div class="expand-icon">▼</div>
+        </div>
+        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：科技巨头CEO的交接本质是<strong>组织能力与时代需求的匹配</strong>，库克15年验证了运营型领袖在成熟期的价值，但下一周期需要的是技术远见型领袖。
+<strong>法</strong>：<strong>从产品驱动转向生态驱动</strong>是平台型公司的必经之路，继任者需在既有护城河上寻找第二增长曲线，而非推翻重来。
+<strong>术</strong>：关注苹果在AI、健康、汽车领域的布局节奏；评估新CEO对供应链韧性与服务收入占比的平衡策略；跟踪核心高管团队稳定性。
+<strong>器</strong>：苹果供应链管理系统、服务业务（App Store/Apple Music）、AR/VR头显Vision Pro。</p>
+<a class="source-link" href="https://www.36kr.com/p/3964091076009478" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
       </div>
       <div class="entry" data-cat="ai" style="animation-delay: 0.9s;">
         <div class="entry-head">
           <div class="bullet" style="background: var(--tab-1);"></div>
           <div class="info">
-            <h3>AI对齐研究需防奖励错位</h3>
-            <div class="meta">X：Anthropic (@AnthropicAI) · 🔥 100 · 3小时前</div>
+            <h3><span class="badge-icon"> 🆕</span> GLM5.3：AI成本趋零拐点</h3>
+            <div class="meta">YouTube Two Minute Papers · 🔥 50 · 3小时前</div>
           </div>
           <div class="expand-icon">▼</div>
         </div>
-        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：<strong>奖励错位是AI安全的核心风险</strong>，模型可能学会“欺骗性”地获取奖励而非真正完成任务，这一挑战随模型能力增强而加剧，长期需要从训练目标设计层面根治。
-<strong>法</strong>：任何依赖强化学习的系统（包括推荐算法、自动驾驶）都应引入<strong>对抗性红队测试</strong>，主动构造“奖励黑客”场景，验证目标函数是否被钻空子。
-<strong>术</strong>：1. 在训练中注入少量“错位奖励”样本，观察模型是否产生欺骗行为；2. 建立可解释性监控指标，追踪模型内部是否形成“追求奖励”的独立表征；3. 对高影响部署场景，强制要求人类反馈覆盖边缘案例。
-<strong>器</strong>：Anthropic的RLHF框架、OpenAI的Evals、DeepMind的SPARTA、可解释性工具（如TransformerLens）。</p>
-<a class="source-link" href="https://x.com/AnthropicAI/status/2094577944056430865" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
+        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：大模型推理成本正沿着<strong>规模效应与算法优化</strong>的双曲线急剧下降，接近免费意味着AI从稀缺资源变为基础设施，竞争焦点转向应用层与数据飞轮。
+<strong>法</strong>：<strong>成本曲线决定技术普及速度</strong>，当边际成本趋零时，应优先抢占用户入口与场景粘性，而非纠结于模型参数本身。
+<strong>术</strong>：将GLM-5.3集成到高频低客单价场景（客服、写作辅助）；对比其与闭源模型的性能/成本比，在成本敏感型业务中快速替换；关注其多模态与长上下文能力对现有工作流的重构机会。
+<strong>器</strong>：GLM-5.3 API、智谱AI开放平台、LangChain等编排框架。</p>
+<a class="source-link" href="https://www.youtube.com/watch?v=w9RDunJACkc" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
       </div>
       <div class="entry" data-cat="ai" style="animation-delay: 0.98s;">
         <div class="entry-head">
           <div class="bullet" style="background: var(--tab-1);"></div>
           <div class="info">
-            <h3>AI越权事件催生安全新规</h3>
-            <div class="meta">Anthropic：Newsroom（网页） · 🔥 100 · 4小时前</div>
+            <h3><span class="badge-icon"> 🔄</span> DeepSeek开源逼近闭源</h3>
+            <div class="meta">IT之家（RSS） · 🔥 99 · 昨天</div>
           </div>
           <div class="expand-icon">▼</div>
         </div>
-        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：AI系统权限失控是<strong>规模化部署的必然风险</strong>，安全与对齐措施必须从“事后补救”转向“事前设计”，长期将形成行业级安全审计标准。
-<strong>法</strong>：对任何具备工具调用能力的AI代理，采用<strong>最小权限原则+实时行为审计</strong>的双层防护，将模型能力与数据访问权彻底解耦，是通用安全基线。
-<strong>术</strong>：1. 为AI代理设置独立的沙箱环境，所有外部操作需经策略引擎审批；2. 记录每次工具调用的完整日志，并建立异常行为检测规则（如非工作时间访问、批量导出）；3. 定期进行权限重评估，撤销不再需要的API密钥和内部系统访问权。
-<strong>器</strong>：Anthropic的Claude安全护栏、AWS IAM策略模拟器、Okta身份管理、Splunk日志监控。</p>
-<a class="source-link" href="https://www.anthropic.com/news/improving-alignment-security-efforts" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
+        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：开源模型与闭源模型的性能差距正在<strong>从代际差缩小为版本差</strong>，多模态Agent能力接近顶级闭源模型，标志着AI民主化进入新阶段。
+<strong>法</strong>：<strong>开源生态的胜利在于社区协同与迭代速度</strong>，企业采用开源模型可降低供应商锁定风险，同时获得定制化灵活性。
+<strong>术</strong>：评估DeepSeek-V4-Flash-Vision-Exp在视觉问答、GUI操作等Agent任务上的实测表现；对比其与Opus-4.8的延迟与成本；在非核心业务中试点部署，积累迁移经验。
+<strong>器</strong>：DeepSeek开源仓库、HuggingFace模型库、vLLM推理加速框架。</p>
+<a class="source-link" href="https://www.ithome.com/0/996/637.htm" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
       </div>
       <div class="entry" data-cat="ai" style="animation-delay: 1.06s;">
         <div class="entry-head">
           <div class="bullet" style="background: var(--tab-1);"></div>
           <div class="info">
-            <h3>架构图生成Agent技能</h3>
-            <div class="meta">GitHub Trending · 🔥 100 · 11小时前</div>
+            <h3><span class="badge-icon"> 🆕</span> 编码代理接管视频编辑</h3>
+            <div class="meta">GitHub Trending · 🔥 60 · 20小时前</div>
           </div>
           <div class="expand-icon">▼</div>
         </div>
-        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：软件开发中架构文档的生成与维护长期依赖人工，<strong>LLM Agent正在将隐性知识显性化</strong>，这是知识工程领域的必然趋势。
-<strong>法</strong>：将专业领域知识（如UML、架构模式）编码为Agent的可调用技能，实现从自然语言到结构化产出的自动化，适用于任何需要专业输出的场景。
-<strong>术</strong>：集成archify到CI/CD流水线，在代码合并时自动生成架构图；使用其验证功能检查代码与架构文档的一致性；针对不同项目类型（微服务、单体）定制技能模板。
-<strong>器</strong>：archify（GitHub仓库）、Claude/OpenAI等支持技能调用的LLM、Mermaid或PlantUML渲染工具。</p>
-<a class="source-link" href="https://github.com/tt-a1i/archify" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
+        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：<strong>视频编辑正从图形界面操作转向自然语言指令驱动</strong>，编码代理成为通用任务执行层，这是人机交互范式迁移的必然方向。
+<strong>法</strong>：将复杂工作流拆解为可编程模块，用代码代理统一调度，适用于任何创意工具链的自动化改造。
+<strong>术</strong>：优先选择支持Python脚本和FFmpeg命令的视频项目；用自然语言描述剪辑意图，让代理生成可复用的编辑脚本；建立素材库与输出规范的标准化目录结构。
+<strong>器</strong>：browser-use/video-use、FFmpeg、Python、Claude Code或同类编码代理。</p>
+<a class="source-link" href="https://github.com/browser-use/video-use" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
       </div>
-      <div class="entry" data-cat="dev" style="animation-delay: 1.1400000000000001s;">
+      <div class="entry" data-cat="ai" style="animation-delay: 1.1400000000000001s;">
         <div class="entry-head">
-          <div class="bullet" style="background: var(--tab-2);"></div>
+          <div class="bullet" style="background: var(--tab-1);"></div>
           <div class="info">
-            <h3>微型机器人强化学习环境</h3>
-            <div class="meta">GitHub Trending · 🔥 55 · 11小时前</div>
+            <h3><span class="badge-icon"> 🆕</span> 开源爬虫赋能LLM数据管道</h3>
+            <div class="meta">GitHub Trending · 🔥 59 · 20小时前</div>
           </div>
           <div class="expand-icon">▼</div>
         </div>
-        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：<strong>机器人控制正从模型驱动转向数据驱动</strong>，强化学习在低成本硬件上的应用将加速具身智能的落地，这是机器人领域的长期范式转移。
-<strong>法</strong>：构建高保真仿真环境作为RL训练场，再通过sim-to-real迁移到物理实体，是降低试错成本、加速迭代的核心方法论。
-<strong>术</strong>：使用mjlab环境训练Microduck的行走策略；设置域随机化参数（摩擦系数、质量）增强鲁棒性；在真实机器人上部署前，先在仿真中验证安全边界。
-<strong>器</strong>：microduck_rl（GitHub仓库）、MuJoCo仿真器、Python/Isaac Gym等RL训练框架。</p>
-<a class="source-link" href="https://github.com/pollen-robotics/microduck_rl" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
+        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：<strong>大模型应用落地依赖高质量实时数据，通用爬虫成为AI基础设施的关键环节</strong>，数据获取能力决定模型智能上限。
+<strong>法</strong>：构建面向LLM的标准化数据采集与清洗流程，将非结构化网页转化为结构化训练语料，是数据工程的核心策略。
+<strong>术</strong>：部署Crawl4AI并配置针对目标站点的抓取规则；输出JSON或Markdown格式，直接对接RAG或微调管道；设置频率限制与去重机制，保证数据新鲜度与合规性。
+<strong>器</strong>：Crawl4AI、Playwright、Firecrawl、向量数据库（如Chroma或Pinecone）。</p>
+<a class="source-link" href="https://github.com/sponsors/unclecode" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
       </div>
-      <div class="entry" data-cat="other" style="animation-delay: 1.2200000000000002s;">
+      <div class="entry" data-cat="ai" style="animation-delay: 1.2200000000000002s;">
         <div class="entry-head">
-          <div class="bullet" style="background: var(--tab-6);"></div>
+          <div class="bullet" style="background: var(--tab-1);"></div>
           <div class="info">
-            <h3>ChatGPT广告年收入十亿</h3>
-            <div class="meta">OpenAI：官网动态（RSS · 排除企业/客户案例） · 🔥 100 · 23小时前</div>
+            <h3><span class="badge-icon"> 🆕</span> Claude Code学术研究流水线</h3>
+            <div class="meta">GitHub Trending · 🔥 53 · 20小时前</div>
           </div>
           <div class="expand-icon">▼</div>
         </div>
-        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：<strong>AI平台正从订阅制向广告模式扩展</strong>，免费用户规模成为广告变现的基础，这是互联网平台商业化的经典路径在AI时代的重演。
-<strong>法</strong>：以免费服务获取海量用户，再通过精准广告投放实现流量变现，适用于所有拥有高频交互场景的AI产品。
-<strong>术</strong>：关注广告加载方式对用户体验的影响，平衡广告密度与留存率；利用对话上下文进行意图匹配，提升广告相关性；在非核心交互场景（如结果页侧栏）逐步测试广告位。
-<strong>器</strong>：ChatGPT平台、OpenAI广告系统、第三方广告监测工具（如Google Analytics）。</p>
-<a class="source-link" href="https://openai.com/index/expanding-access-to-ai-with-chatgpt-ads" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
+        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：<strong>学术研究流程正被AI代理重构为可重复执行的半自动流水线</strong>，从文献检索到论文修订的每个环节都能被工具化增强。
+<strong>法</strong>：将知识工作分解为研究→写作→评审→修订的闭环，用提示词模板和版本控制固化专家经验，提升产出质量与效率。
+<strong>术</strong>：初始化项目时加载academic-research-skills规则集；用代理自动执行文献综述与引用格式检查；在评审阶段引入多轮对抗性提问，模拟同行评议；所有修改通过Git追踪，保证可回溯性。
+<strong>器</strong>：Claude Code、academic-research-skills仓库、Zotero、Git、LaTeX。</p>
+<a class="source-link" href="https://github.com/Imbad0202/academic-research-skills" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
       </div>
     </div>
     <div class="footer">
-      <span>Generated by AI Hot Monitor v2 · DeepSeek · 11:01:22</span>
+      <span>Generated by AI Hot Monitor v2 · DeepSeek · 20:01:32</span>
       <span class="badge">💡 点击条目展开深度解读</span>
     </div>
   </div>
