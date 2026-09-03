@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="referrer" content="no-referrer">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'unsafe-inline'; img-src data:; connect-src 'none'; frame-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'; frame-ancestors 'none'">
+<title>Run cloud agents on machines you manage - AI热点快照</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','PingFang SC','Microsoft YaHei',sans-serif;background:#f8f9fa;color:#1a1a2e;line-height:1.8;min-height:100vh}
+.top-bar{background:#fff;border-bottom:1px solid #e5e7eb;padding:10px 20px;display:flex;align-items:center;gap:12px;position:sticky;top:0;z-index:10}
+.top-bar .logo{font-size:14px;font-weight:700;color:#0d9488}
+.top-bar .sep{color:#d1d5db}
+.top-bar .source{font-size:13px;color:#6b7280}
+.top-bar .back{margin-left:auto;font-size:13px;color:#0d9488;text-decoration:none}
+.top-bar .back:hover{text-decoration:underline}
+.container{max-width:760px;margin:0 auto;padding:40px 24px 80px}
+.article-title{font-size:1.8rem;font-weight:700;line-height:1.35;margin-bottom:16px;color:#1a1a2e}
+.article-meta{display:flex;flex-wrap:wrap;gap:16px;padding-bottom:20px;margin-bottom:28px;border-bottom:1px solid #e5e7eb;font-size:14px;color:#6b7280}
+.article-meta a{color:#0d9488;text-decoration:none}
+.article-meta a:hover{text-decoration:underline}
+.article-body{font-size:16.5px;line-height:1.85;color:#1f2937}
+.article-body p{margin-bottom:1.2em;text-align:justify}
+.article-body h1,.article-body h2,.article-body h3{font-size:1.25em;font-weight:700;margin:1.6em 0 0.6em;color:#1a1a2e}
+.article-body a{color:#0d9488}
+.article-body pre,.article-body code{background:#f1f5f9;border-radius:4px;font-size:0.9em}
+.article-body pre{padding:16px;overflow-x:auto;margin:1em 0}
+.article-body code{padding:2px 6px}
+.article-body blockquote{border-left:3px solid #0d9488;padding-left:16px;color:#4b5563;margin:1em 0}
+.article-body ul,.article-body ol{padding-left:1.6em;margin-bottom:1em}
+.article-body li{margin-bottom:0.4em}
+.article-body figure{margin:1.2em 0}
+.article-body figcaption{font-size:13px;color:#9ca3af;text-align:center;margin-top:6px}
+.footer{margin-top:48px;padding-top:20px;border-top:1px solid #e5e7eb;font-size:13px;color:#9ca3af;text-align:center}
+</style>
+</head>
+<body>
+<div class="top-bar">
+  <a class="back" href="../" style="font-size:13px;color:#6b7280;text-decoration:none">← 日报首页</a>
+  <span class="sep">|</span>
+  <span class="logo">AI热点快照</span>
+  <span class="sep">|</span>
+  <span class="source">Cursor</span>
+  <a class="back" href="https://cursor.com/blog/self-hosted-machines" target="_blank" rel="noopener noreferrer">查看原文 ↗</a>
+</div>
+<div class="container">
+  <h1 class="article-title">Run cloud agents on machines you manage</h1>
+  <div class="article-meta">
+    <span>作者: Jack Pertschuk</span>
+    <span>来源: Cursor</span>
+    <span>快照日期: 2026-09-03</span>
+  </div>
+  <div class="article-body"><div><div><p>Cursor cloud agents can execute on dynamically scheduled pools of machines inside your network. You manage the underlying infrastructure, while agents are still started and managed from Cursor.</p>
+<p>This gives teams more control over where agents execute and what infrastructure they use. Agents can work next to internal services and source control, run on custom hardware, or use operating systems and build pipelines that are difficult to package as a Cloud Agent build.</p>
+<p>Cloud agents now create more than 60% of the pull requests we merge internally and are taking on a growing share of software work at many of the largest enterprises we work with. As their role expands, the machines they run on matter more too. These new capabilities make it practical for teams to provide and manage that infrastructure at scale.</p>
+<div><blockquote><p>With Lambda MicroVMs as the compute layer for Cursor Cloud Agents, developers can run AI-powered coding agents in their own AWS account. Each machine launches near-instantly from a snapshot, suspends when idle, and resumes with full state. Your coding agents benefit from Lambda's fast startup, strong isolation, and zero fleet management, while Cursor orchestrates the work.</p></blockquote><div><p>Ayush Kulkarni</p><div><p>Senior Product Manager</p><p>, </p><p>AWS Lambda</p></div></div></div>
+<h2><span></span>Control where agents execute</h2>
+<p>Cursor-hosted environments remain the default for cloud agents. Each session runs on a dedicated VM inside the Cursor cloud, with its dependencies installed and its own network controls. Per-agent isolation, secret redaction, egress controls, and signed commits meet the security requirements of most teams.</p>
+<p>Teams generally use Self-Hosted Machines when:</p>
+<ul>
+<li>Agent tool execution needs to happen inside their network, with direct access to source control, internal services, and code repositories.</li>
+<li>Agents require custom hardware, such as GPUs or Macs for iOS development, or infrastructure such as Kubernetes, sandboxes, or managed VMs.</li>
+<li>Their operating system or build pipeline is difficult to package as a <a href="https://cursor.com/docs/cloud-agent/builds" target="_blank" rel="noopener noreferrer nofollow">Cloud Agent build</a>.</li>
+</ul>
+<p>With Self-Hosted Machines, only the execution environment moves while the agent loop, inference, and planning remain in the Cursor cloud. Tool outputs flow back to Cursor for inference and may contain code, and agent transcripts may be processed and stored by Cursor. Teams can continue to access cloud agents from the desktop app, <a href="https://cursor.com/" target="_blank" rel="noopener noreferrer nofollow">cursor.com</a>, mobile, Slack, GitHub, and Linear.</p>
+<figure><p></p></figure>
+<h2><span></span>Workers connect your infrastructure to the Cursor agent loop</h2>
+<p>With Self-Hosted Machines, tool execution moves from a Cursor-hosted VM to a machine in your environment. That machine holds the working copy of the repository, edits files, and runs commands. A worker connects it to the rest of the agent system.</p>
+<p>To register a machine, run a worker by installing the Cursor CLI and running <code>agent worker start</code>. This opens a long-lived outbound HTTPS connection to the Cursor cloud. When a session begins, Cursor's agent harness handles inference and planning, then sends tool calls to a dedicated worker for execution. The worker returns the results for the next round of inference. Cursor never initiates a connection into your network.</p>
+<figure><p></p></figure>
+<figure><p></p></figure>
+<p>Workers can be configured in two ways.</p>
+<ol>
+<li><strong>My Machines.</strong> This configuration connects a single laptop or VM to your account and is best suited to personal workflows.</li>
+<li><strong>Pools.</strong> A pool is a named queue of workers that can serve a team or enterprise. Capacity increases as requests arrive and decreases after workers disconnect, letting your existing cloud infrastructure scale with developer demand.</li>
+</ol>
+<div><blockquote><p>Developers should have the flexibility to run coding agents on the platform that best supports their workflow, and companies should not have to compromise on control of where agents run and what they can access. The future of development will be built on powerful agents, running in secure, isolated environments.</p></blockquote><div><p>Meagan Gamache</p><div><p>Director of Product Management, Developer Platforms</p><p>, </p><p>Cloudflare</p></div></div></div>
+<h2><span></span>Cloud agents adapt to your infrastructure</h2>
+<p>Worker pools can now scale in response to queued requests and serve work from any repository. We have also added support for several sandbox providers and computer use on Linux alongside Mac.</p>
+<h3><span></span>Pools scale with demand and serve any repository</h3>
+<p>Demand for cloud agents often arrives in bursts and Self-Hosted Machines pools adjust to those bursts automatically. This happens through a controller which watches the request queue and uses a spawn script supplied by the team to start machines as needed.</p>
+<p>If a pool has an available worker, that worker claims the request. Otherwise, the request waits until more capacity becomes available, so teams do not have to decide how many machines to leave running.</p>
+<p>Teams can set an idle timeout for each worker connection. Once it expires, the machine can reset and re-enter the pool. Teams can also preserve its workspace in case the agent receives a follow-up.</p>
+<div><blockquote><p>Self-Hosted Machines put teams in control of where Cursor agents run, and Vercel Sandbox makes it effortless. Every task gets an isolated sandbox on demand, no fleet to manage, and nothing sitting idle.</p></blockquote><div><p>Allen Zhou</p><div><p>Member of Technical Staff</p><p>, </p><p>Vercel</p></div></div></div>
+<p>Leaving a machine running while its agent is idle can be expensive. But if the machine is released, the agent may need several minutes to reconstruct its workspace when a follow-up arrives. With hibernation, teams can snapshot and stop an idle machine instead. If a follow-up arrives within the reconnect window, the snapshot is restored and a worker starts with the same ID. Otherwise, the request can move to a new machine.</p>
+<p>Pools are not tied to individual repositories. A request only needs to identify the pool, and any available worker can claim it. This lets one pool serve many repositories.</p>
+<h3><span></span>Workers run across supported sandbox providers</h3>
+<p>Self-Hosted Machines does not require building a custom sandbox layer from scratch. We partner with <a href="https://docs.aws.amazon.com/lambda/latest/dg/microvms-integrations-cursor-self-hosted-machines.html" target="_blank" rel="noopener noreferrer nofollow">AWS Lambda</a>, <a href="https://developers.cloudflare.com/sandbox/tutorials/cursor-cloud-agents/" target="_blank" rel="noopener noreferrer nofollow">Cloudflare</a>, <a href="https://coder.com/docs/ai-coder/agent-relay/cursor" target="_blank" rel="noopener noreferrer nofollow">Coder</a>, <a href="https://daytona.io/docs/en/guides/cursor/cursor-self-hosted-machines" target="_blank" rel="noopener noreferrer nofollow">Daytona</a>, <a href="https://docs.e2b.dev/agents/cursor" target="_blank" rel="noopener noreferrer nofollow">E2B</a>, <a href="https://modal.com/docs/cursor" target="_blank" rel="noopener noreferrer nofollow">Modal</a>, <a href="https://namespace.so/docs/integrations/cursor" target="_blank" rel="noopener noreferrer nofollow">Namespace</a>, and <a href="https://vercel.com/kb/guide/cursor-vercel-sandbox" target="_blank" rel="noopener noreferrer nofollow">Vercel</a>, allowing workers to be started and orchestrated wherever a team's sandboxes already run.</p>
+<div><blockquote><p>Cursor Self-Hosted Machines on Modal gives each Cloud Agent session a Modal Sandbox, so you can hand it a machine tailor-made for its task.</p></blockquote><div><p>Adam Azzam</p><div><p>Member of Product Staff</p><p>, </p><p>Modal</p></div></div></div>
+<h3><span></span>Agents control browsers on Linux and Mac</h3>
+<p>Linux workers now support computer use alongside Macs. With the required <a href="https://cursor.com/docs/cloud-agent/self-hosted/computer-use" target="_blank" rel="noopener noreferrer nofollow">computer use</a> dependencies installed, including Chrome or Chromium, an agent can click, take screenshots, and control the browser. You can watch its desktop or take control directly from Cursor.</p>
+<div><blockquote><p>You can't build iOS or macOS apps without a Mac. Namespace Devboxes spin up a real Mac for each Cursor Cloud Agent, which can now perform that work on Apple silicon.</p></blockquote><div><p>Hugo Santos</p><div><p>CEO</p><p>, </p><p>Namespace</p></div></div></div>
+<h2><span></span>Bring cloud agents into your environment</h2>
+<p>Teams have spent years shaping their infrastructure around how they build software. Self-Hosted Machines lets cloud agents fit more naturally into it, and we're excited to see how far teams take them.</p>
+<p>To connect a machine or configure a pool, <a href="https://cursor.com/docs/cloud-agent/self-hosted" target="_blank" rel="noopener noreferrer nofollow">get started in the docs</a>.</p></div></div></div>
+  <div class="footer">
+    本文由 AI热点监控系统自动抓取 · 内容版权归原作者/网站所有<br>
+    快照仅用于学习交流，如需转载请访问原文
+  </div>
+</div>
+</body>
+</html>

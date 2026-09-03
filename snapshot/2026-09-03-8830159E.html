@@ -1,0 +1,1040 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="referrer" content="no-referrer">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'unsafe-inline'; img-src data:; connect-src 'none'; frame-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'; frame-ancestors 'none'">
+<title>Introducing Gemini 3.8 Flash and 3.8 Flash Cyber - AI热点快照</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','PingFang SC','Microsoft YaHei',sans-serif;background:#f8f9fa;color:#1a1a2e;line-height:1.8;min-height:100vh}
+.top-bar{background:#fff;border-bottom:1px solid #e5e7eb;padding:10px 20px;display:flex;align-items:center;gap:12px;position:sticky;top:0;z-index:10}
+.top-bar .logo{font-size:14px;font-weight:700;color:#0d9488}
+.top-bar .sep{color:#d1d5db}
+.top-bar .source{font-size:13px;color:#6b7280}
+.top-bar .back{margin-left:auto;font-size:13px;color:#0d9488;text-decoration:none}
+.top-bar .back:hover{text-decoration:underline}
+.container{max-width:760px;margin:0 auto;padding:40px 24px 80px}
+.article-title{font-size:1.8rem;font-weight:700;line-height:1.35;margin-bottom:16px;color:#1a1a2e}
+.article-meta{display:flex;flex-wrap:wrap;gap:16px;padding-bottom:20px;margin-bottom:28px;border-bottom:1px solid #e5e7eb;font-size:14px;color:#6b7280}
+.article-meta a{color:#0d9488;text-decoration:none}
+.article-meta a:hover{text-decoration:underline}
+.article-body{font-size:16.5px;line-height:1.85;color:#1f2937}
+.article-body p{margin-bottom:1.2em;text-align:justify}
+.article-body h1,.article-body h2,.article-body h3{font-size:1.25em;font-weight:700;margin:1.6em 0 0.6em;color:#1a1a2e}
+.article-body a{color:#0d9488}
+.article-body pre,.article-body code{background:#f1f5f9;border-radius:4px;font-size:0.9em}
+.article-body pre{padding:16px;overflow-x:auto;margin:1em 0}
+.article-body code{padding:2px 6px}
+.article-body blockquote{border-left:3px solid #0d9488;padding-left:16px;color:#4b5563;margin:1em 0}
+.article-body ul,.article-body ol{padding-left:1.6em;margin-bottom:1em}
+.article-body li{margin-bottom:0.4em}
+.article-body figure{margin:1.2em 0}
+.article-body figcaption{font-size:13px;color:#9ca3af;text-align:center;margin-top:6px}
+.footer{margin-top:48px;padding-top:20px;border-top:1px solid #e5e7eb;font-size:13px;color:#9ca3af;text-align:center}
+</style>
+</head>
+<body>
+<div class="top-bar">
+  <a class="back" href="../" style="font-size:13px;color:#6b7280;text-decoration:none">← 日报首页</a>
+  <span class="sep">|</span>
+  <span class="logo">AI热点快照</span>
+  <span class="sep">|</span>
+  <span class="source">Google</span>
+  <a class="back" href="https://blog.google/innovation-and-ai/models-and-research/gemini-models/3-8-flash-and-3-8-flash-cyber/" target="_blank" rel="noopener noreferrer">查看原文 ↗</a>
+</div>
+<div class="container">
+  <h1 class="article-title">Introducing Gemini 3.8 Flash and 3.8 Flash Cyber</h1>
+  <div class="article-meta">
+    <span>作者: Tulsee Doshi</span>
+    <span>来源: Google</span>
+    <span>快照日期: 2026-09-03</span>
+  </div>
+  <div class="article-body"><div>
+
+    
+
+
+
+
+
+
+
+
+
+<div>
+    
+    <div>
+          
+
+          <div>
+            <div>
+                
+                  <p>Sep 02, 2026</p>
+                
+                
+                  <p><span>|</span></p>
+                
+              </div>
+
+
+            
+            
+              <p>
+                Our newest Gemini models deliver next-generation intelligence for agentic workflows and cybersecurity.
+              </p>
+            
+          </div>
+
+          <hr />
+
+          
+          <div>
+        
+            <p>Raluca Ada Popa</p>
+            
+              
+                <p>Gemini Security Lead, Google DeepMind</p>
+              
+            
+        
+      </div>
+          <hr />
+        </div>
+
+    
+    <div>
+        <p>
+        </p>
+      </div>
+  </div>
+
+    
+    
+    <div>
+
+          
+          
+
+
+  
+    
+
+
+  
+    <div><p>Building on the momentum of <a href="https://blog.google/innovation-and-ai/models-and-research/gemini-models/introducing-gemini-3-7-flash/" target="_blank" rel="noopener noreferrer nofollow">3.7 Flash</a> from three weeks ago and marking our third Flash release in only six weeks, today we’re introducing Gemini 3.8, our best reasoning &amp; coding model yet, at the same speed and low cost of 3.7. Gemini 3.8 introduces 2 variants:</p><ul><li><b>Gemini 3.8 Flash:</b> our most intelligent workhorse model, delivering significant improvements from 3.7 Flash across software engineering, agentic tasks, and critical, multi-step reasoning in specialized domains. It is available at the same introductory price 
+
+<span><sup>1</sup></span>
+ as 3.7 Flash at $0.75 per million input tokens and $3.75 per million output tokens.</li><li><b>Gemini 3.8 Flash Cyber:</b> our most capable cybersecurity model with frontier-level performance in vulnerability detection and automated patching, available to trusted defenders through our new <a href="https://deepmind.google/fairwind-program/" target="_blank" rel="noopener noreferrer nofollow">Fairwind Program</a>.</li></ul><p>While tailored for different deployment environments, both of today's releases are powered by the same foundational intelligence, and further accelerated by long-running agentic loops designed to recursively evaluate and refine the underlying models. The significant coding and reasoning gains across this shared core were driven by a number of innovations, including rigorous training in the highly demanding domain of cybersecurity.</p><h2>Gemini 3.8 Flash: built for long-horizon coding and autonomous agents</h2><p>Gemini 3.8 Flash delivers substantial gains from 3.7 Flash, often approaching the performance of higher-cost frontier models.</p></div>
+  
+
+
+  
+
+  
+    
+
+
+
+
+
+  
+  
+  
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+    
+
+    
+      <p>
+      </p>
+    
+  
+
+
+  
+
+  
+    
+
+
+  
+    <p><b>On DeepSWE v1.1 (Long-Horizon Software Engineering</b>) 3.8 Flash outperforms most larger frontier models in autonomously solving complex engineering problems end to end, only at a fraction of the cost.</p>
+  
+
+
+  
+
+  
+    
+
+
+
+
+
+  
+  
+  
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+    
+
+    
+      <p>
+      </p>
+    
+  
+
+
+  
+
+  
+    
+
+
+  
+    <p>Additionally, 3.8 Flash exhibits the dependability required for critical enterprise autonomy, across specialized knowledge domains<b>.</b> In quantitative and professional fields that require advanced analysis and reporting, 3.8 Flash outperforms 3.7 Flash and other frontier models in benchmarks like <a href="https://www.vals.ai/benchmarks/fabv2" target="_blank" rel="noopener noreferrer nofollow">Vals Finance Agent V2</a> and <a href="https://www.vals.ai/benchmarks/hlab" target="_blank" rel="noopener noreferrer nofollow">Harvey's Legal Agent Benchmark</a>. 3.8 Flash also achieves a 54.9% on HLE-Verified, demonstrating its ability to handle multi-step reasoning across STEM, humanities, and professional fields.</p>
+  
+
+
+  
+
+  
+    
+
+
+
+
+
+
+
+
+
+
+
+
+  
+    
+      
+        
+
+
+
+  <div>
+    
+
+
+
+
+  
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+    <p>
+    </p>
+  
+
+
+  </div>
+
+  
+
+
+      
+        
+
+
+
+  <div>
+    
+
+
+
+
+  
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+    <p>
+    </p>
+  
+
+
+  </div>
+
+  
+
+
+      
+        
+
+
+
+  <div>
+    
+
+
+
+
+  
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+    <p>
+    </p>
+  
+
+
+  </div>
+
+  
+
+
+      
+    
+
+    
+  
+
+  
+
+  
+    
+
+
+  
+    <div><p>These performance gains stem from a core design choice: 3.8 Flash works harder. On complex tasks, it exhibits greater diligence — executing extra reasoning steps, and calling tools iteratively. At times, the model might use more tokens to maximize performance, especially at higher effort levels.</p><p>For applications where compute efficiency is the primary constraint, developers can utilize lower effort levels to minimize token overhead or continue to rely on Gemini 3.7 Flash, which remains fully supported for efficiency-first workloads.</p></div>
+  
+
+
+  
+
+  
+    
+
+
+
+
+
+
+
+
+
+
+
+
+  
+    
+      
+        
+
+
+
+  
+
+  
+    
+  
+
+
+      
+        
+
+
+
+  
+
+  
+    
+  
+
+
+      
+        
+
+
+
+  
+
+  
+    
+  
+
+
+      
+        
+
+
+
+  
+
+  
+    
+  
+
+
+      
+    
+
+    
+  
+
+  
+
+  
+    
+
+
+  
+    <div><h2>Gemini 3.8 Flash Cyber: expert cyber performance</h2><p>Gemini 3.8 Flash Cyber, available to a set of trusted defenders via the <a href="https://blog.google/innovation-and-ai/technology/safety-security/fairwind-program" target="_blank" rel="noopener noreferrer nofollow">Fairwind Program</a>, provides a decisive advantage in today’s complex cybersecurity landscape, with the Flash speed and cost that enables quick iteration.</p><h3>Autonomous vulnerability discovery</h3><p>On the standard industry benchmark for finding vulnerabilities, CyberGym, Gemini 3.8 Flash Cyber demonstrates frontier-level performance in autonomous vulnerability discovery. It surpasses both 3.5 Flash Cyber as well as significantly larger frontier models.</p></div>
+  
+
+
+  
+
+  
+    
+
+
+
+
+
+  
+  
+  
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+    
+
+    
+      <p>
+      </p>
+    
+  
+
+
+  
+
+  
+    
+
+
+  
+    <p>To better capture real-world defensive needs which are not limited to just C/C++ codebases like in CyberGym, we also evaluated Gemini 3.8 Flash Cyber against a comprehensive internal benchmark in which the model has to discover a wide range of vulnerabilities across complex codebases spanning 20 programming languages. Here, the model showcases an impressive leap over our previous models and reaches a success rate exceeding 70%.</p>
+  
+
+
+  
+
+  
+    
+
+
+
+
+
+  
+  
+  
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+    
+
+    
+      <p>
+      </p>
+    
+  
+
+
+  
+
+  
+    
+
+
+  
+    <div><h3>Automated patching</h3><p>With Gemini 3.8 Flash Cyber, we focused specifically on equipping defenders with expert capabilities that give them an advantage over attackers. This is why we have invested in vulnerability fixing from the start, and prioritized it over offensive capabilities like exploitation.</p><p><a href="https://cwe-bench.com/#leaderboard" target="_blank" rel="noopener noreferrer nofollow">CWE-Bench</a>, run by Collinear, is a challenging external benchmark for patching capabilities. On this benchmark, Gemini 3.8 Flash Cyber is on the Pareto frontier: with a pass@1 of 47.2% compared to a leading frontier model at 47.8%, yet offered at a significantly lower cost.</p></div>
+  
+
+
+  
+
+  
+    
+
+
+
+
+
+  
+  
+  
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+    
+
+    
+      <p>
+      </p>
+    
+  
+
+
+  
+
+  
+    
+
+
+  
+    <div><h3>Real-world impact: securing Google’s code</h3><p>We’re already using Gemini 3.8 Flash Cyber to secure code across Google. For example:</p><ul><li>The Chrome Security team found that 3.8 Flash Cyber produced 2.6 times more correct patches to vulnerabilities in Chrome than the best commercial models that are much larger.</li><li>Wiz found that Gemini 3.8 Flash Cyber achieves +7.5-9.7% higher recall on their internal penetration testing benchmark for a 2.3-5.2x lower cost compared to other leading frontier models.</li><li>Google’s Cloud Vulnerability Research team leveraged the 3.8 Flash Cyber model to find a critical foundational vulnerability in less than 2 hours, a vulnerability for which research and discovery usually takes months.</li></ul></div>
+  
+
+
+  
+
+  
+    
+
+
+  
+    <p></p><h2>What our Fairwind Program partners are saying</h2><p></p>
+  
+
+
+  
+
+  
+    
+
+
+
+
+
+
+
+
+
+
+
+
+  
+    
+      
+        
+
+
+
+  <div>
+    
+
+
+
+
+  
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+    <p>
+    </p>
+  
+
+
+  </div>
+
+  
+
+
+      
+        
+
+
+
+  <div>
+    
+
+
+
+
+  
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+    <p>
+    </p>
+  
+
+
+  </div>
+
+  
+
+
+      
+        
+
+
+
+  <div>
+    
+
+
+
+
+  
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+    <p>
+    </p>
+  
+
+
+  </div>
+
+  
+
+
+      
+        
+
+
+
+  <div>
+    
+
+
+
+
+  
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+    <p>
+    </p>
+  
+
+
+  </div>
+
+  
+
+
+      
+    
+
+    
+  
+
+  
+
+  
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+    
+
+    
+  
+
+
+  
+
+  
+    
+
+
+  
+    <div><h2>Built with safety in mind</h2><p>3.8 Flash ships with safeguards against misuse in the domains of Chemical, Biological, Radiological, and Nuclear (CBRN) and cyber offense, while enabling beneficial use cases, as per our <a href="https://deepmind.google/blog/strengthening-our-frontier-safety-framework/" target="_blank" rel="noopener noreferrer nofollow">Frontier Safety Framework</a>. 3.8 Flash Cyber ships with a more permissive set of mitigations for cybersecurity, and as such, is only available to trusted defenders who require a more comprehensive set of cyber capabilities.</p><p>Gemini 3.8 models have also made a significant leap in prompt injection robustness as measured by Gray Swan, protecting Gemini model users from prompt-injection related malicious attacks.</p></div>
+  
+
+
+  
+
+  
+    
+
+
+
+
+
+  
+  
+  
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+    
+
+    
+      <p>
+      </p>
+    
+  
+
+
+  
+
+  
+    
+
+
+  
+    <div><h2>Gemini 3.8 Flash and Cyber: get started today</h2><ul><li><b>Developers</b>: Build with 3.8 Flash and explore agent-first workflows in <a href="https://antigravity.google/" target="_blank" rel="noopener noreferrer nofollow">Google Antigravity</a> or start building today in the Gemini API via <a href="https://aistudio.google.com/prompts/new_chat?model=gemini-3.8-flash" target="_blank" rel="noopener noreferrer nofollow">Google AI Studio</a> and <a href="https://developer.android.com/studio" target="_blank" rel="noopener noreferrer nofollow">Android Studio</a>, or generate UIs in <a href="http://stitch.withgoogle.com/" target="_blank" rel="noopener noreferrer nofollow">Stitch</a>. Get started with our <a href="https://ai.google.dev/gemini-api/docs/latest-model" target="_blank" rel="noopener noreferrer nofollow">developer docs</a>.</li><li><b>Enterprises</b>: Access 3.8 Flash in <a href="https://console.cloud.google.com/agent-platform/studio/multimodal?mode=prompt&amp;model=gemini-3.8-flash" target="_blank" rel="noopener noreferrer nofollow">Gemini Enterprise.</a></li><li><b>Consumers</b>: 3.8 Flash is available to Google AI Pro and Ultra subscribers across the <a href="http://gemini.google.com/" target="_blank" rel="noopener noreferrer nofollow">Gemini app</a>, <a href="http://google.com/ai" target="_blank" rel="noopener noreferrer nofollow">AI Mode</a> in Google Search and Gemini in <a href="http://sheets.new/" target="_blank" rel="noopener noreferrer nofollow">Google Sheets</a>.</li><li><b>Cyber:</b> Through our new <a href="https://blog.google/innovation-and-ai/technology/safety-security/fairwind-program" target="_blank" rel="noopener noreferrer nofollow">Fairwind Program</a>, we’re providing trusted government authorities, as well as critical infrastructure operators and software maintainers with prioritized access to Gemini 3.8 Flash Cyber. <a href="https://deepmind.google/fairwind-program/" target="_blank" rel="noopener noreferrer nofollow">Apply for access</a>.</li></ul></div>
+  
+
+
+  
+
+
+          
+          
+
+          
+            
+
+
+
+
+          
+        </div>
+  </div></div>
+  <div class="footer">
+    本文由 AI热点监控系统自动抓取 · 内容版权归原作者/网站所有<br>
+    快照仅用于学习交流，如需转载请访问原文
+  </div>
+</div>
+</body>
+</html>
