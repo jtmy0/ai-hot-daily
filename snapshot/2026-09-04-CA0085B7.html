@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="referrer" content="no-referrer">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'unsafe-inline'; img-src data:; connect-src 'none'; frame-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'; frame-ancestors 'none'">
+<title>Benchmarks disagree on GPT-6 Astra, but its human-beating efficiency on ARC-AGI-3 pulls Chollet’s AGI forecast forward - AI热点快照</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','PingFang SC','Microsoft YaHei',sans-serif;background:#f8f9fa;color:#1a1a2e;line-height:1.8;min-height:100vh}
+.top-bar{background:#fff;border-bottom:1px solid #e5e7eb;padding:10px 20px;display:flex;align-items:center;gap:12px;position:sticky;top:0;z-index:10}
+.top-bar .logo{font-size:14px;font-weight:700;color:#0d9488}
+.top-bar .sep{color:#d1d5db}
+.top-bar .source{font-size:13px;color:#6b7280}
+.top-bar .back{margin-left:auto;font-size:13px;color:#0d9488;text-decoration:none}
+.top-bar .back:hover{text-decoration:underline}
+.container{max-width:760px;margin:0 auto;padding:40px 24px 80px}
+.article-title{font-size:1.8rem;font-weight:700;line-height:1.35;margin-bottom:16px;color:#1a1a2e}
+.article-meta{display:flex;flex-wrap:wrap;gap:16px;padding-bottom:20px;margin-bottom:28px;border-bottom:1px solid #e5e7eb;font-size:14px;color:#6b7280}
+.article-meta a{color:#0d9488;text-decoration:none}
+.article-meta a:hover{text-decoration:underline}
+.article-body{font-size:16.5px;line-height:1.85;color:#1f2937}
+.article-body p{margin-bottom:1.2em;text-align:justify}
+.article-body h1,.article-body h2,.article-body h3{font-size:1.25em;font-weight:700;margin:1.6em 0 0.6em;color:#1a1a2e}
+.article-body a{color:#0d9488}
+.article-body pre,.article-body code{background:#f1f5f9;border-radius:4px;font-size:0.9em}
+.article-body pre{padding:16px;overflow-x:auto;margin:1em 0}
+.article-body code{padding:2px 6px}
+.article-body blockquote{border-left:3px solid #0d9488;padding-left:16px;color:#4b5563;margin:1em 0}
+.article-body ul,.article-body ol{padding-left:1.6em;margin-bottom:1em}
+.article-body li{margin-bottom:0.4em}
+.article-body figure{margin:1.2em 0}
+.article-body figcaption{font-size:13px;color:#9ca3af;text-align:center;margin-top:6px}
+.footer{margin-top:48px;padding-top:20px;border-top:1px solid #e5e7eb;font-size:13px;color:#9ca3af;text-align:center}
+</style>
+</head>
+<body>
+<div class="top-bar">
+  <a class="back" href="../" style="font-size:13px;color:#6b7280;text-decoration:none">← 日报首页</a>
+  <span class="sep">|</span>
+  <span class="logo">AI热点快照</span>
+  <span class="sep">|</span>
+  <span class="source">The Decoder</span>
+  <a class="back" href="https://the-decoder.com/benchmarks-disagree-on-gpt-6-astra-but-its-human-beating-efficiency-on-arc-agi-3-pulls-chollets-agi-forecast-forward" target="_blank" rel="noopener noreferrer">查看原文 ↗</a>
+</div>
+<div class="container">
+  <h1 class="article-title">Benchmarks disagree on GPT-6 Astra, but its human-beating efficiency on ARC-AGI-3 pulls Chollet’s AGI forecast forward</h1>
+  <div class="article-meta">
+    <span>作者: Maximilian Schreiner</span>
+    <span>来源: The Decoder</span>
+    <span>快照日期: 2026-09-04</span>
+  </div>
+  <div class="article-body"><div><div>
+<p>Astra is clearly more expensive than its own predecessor. OpenAI charges two and a half times as much per unit of processed text, which makes a task cost roughly 75 percent more than it did with Sol. Compared with Anthropic, the picture flips. On coding tasks, Astra hits the same score as Claude Fable 5 according to Artificial Analysis, but costs less than half as much per task. The reason is how sparing the model is. It needs only a third of the compute steps Sol uses and a fifth of what Opus 5 uses.</p>
+<table>
+<thead>
+<tr>
+<th>Benchmark</th>
+<th>Astra</th>
+<th>Sol</th>
+<th>Fable 5.1</th>
+<th>Opus 5</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Epoch ECI, overall score</td>
+<td>169</td>
+<td>162</td>
+<td>163</td>
+<td>162</td>
+</tr>
+<tr>
+<td>AA Intelligence Index</td>
+<td>61</td>
+<td>61</td>
+<td>66</td>
+<td>63</td>
+</tr>
+<tr>
+<td>ARC-AGI-3, unfamiliar game worlds</td>
+<td>62.7%</td>
+<td>7.8%</td>
+<td>no data</td>
+<td>30.2%</td>
+</tr>
+<tr>
+<td>ARC-AGI-2, abstract visual puzzles</td>
+<td>95.0%</td>
+<td>92.5%</td>
+<td>90.0%</td>
+<td>90.4%</td>
+</tr>
+<tr>
+<td>ARC-AGI-1, older version</td>
+<td>98.5%*</td>
+<td>97.5%</td>
+<td>97.5%</td>
+<td>97.5%</td>
+</tr>
+<tr>
+<td>FrontierMath Erdős, open math</td>
+<td>3%</td>
+<td>0%</td>
+<td>0%</td>
+<td>no data</td>
+</tr>
+</tbody>
+</table>
+<p><em>*GPT-6 Astra at xhigh reasoning effort; at max it hits 97.5 percent. ARC-AGI-1 is now considered largely saturated.</em></p>
+<p>On the Coding Agent Index, it reaches 67 points at roughly a third of Sol's token usage, while Fable 5.1 leads with 70. The hallucination rate on AA-Omniscience drops from 92 to 51 percent. At the same time, the model loses about 80 Elo points on GDPval-AA v2 and slips on banking support, SciCode, and long-context reasoning tasks.</p>
+<p>Epoch AI reports that on the new <a href="https://epoch.ai/latest/announcing-frontiermath-erdos" target="_blank" rel="noopener noreferrer nofollow">FrontierMath Erdős</a>, GPT-6 Astra was the only model to solve two of 68 open Erdős problems with Lean-verified proofs, on a budget of $300 per attempt. Three more solutions came out of non-standardized extra runs that burned through more than $220,000 in compute, but Epoch says those don't count toward the score.</p>
+<p>A closer look at Epoch's individual numbers shows that GPT-6 Astra and rival Fable 5.1 have so far been measured on different ground. Astra leads on math, knowledge, and puzzles. Fable 5.1 holds the top marks on nearly every coding test. But Epoch has recorded only a single coding score for Astra so far, and that one comes from a run at a medium reasoning level.</p>
+<h2>ARC-AGI-3 shows a big jump</h2>
+<p>The clearest jump comes on <a href="https://arcprize.org/blog/astra" target="_blank" rel="noopener noreferrer nofollow">ARC-AGI-3</a>. The test drops an <a href="https://the-decoder.com/arc-agi-3-offers-2m-to-any-ai-that-matches-untrained-humans-yet-every-frontier-model-scores-below-1/" target="_blank" rel="noopener noreferrer nofollow">AI into unfamiliar game worlds</a> whose rules and goals nobody explains to it. The model has to figure out what to do by trial and error. GPT-6 Astra reaches 62.7 percent at a test cost of roughly $26,000. Its predecessor GPT-5.6 Sol managed 7.78 percent, and rival Claude Opus 5 got 30.16 percent. Fable 5 and Fable 5.1 aren't on the benchmark yet.</p>
+<p>The 99.9 percent OpenAI reported came under different conditions. In that setup Astra got to use the harness OpenAI built, which keeps reasoning chains between individual requests and automatically summarizes long runs. By ARC Prize's measurements, those runs went about 3.66 times faster and used 49 percent fewer tokens than runs on the in-house harness, compared across 167 game-reasoning pairs that both setups solved.</p>
+<p>The use of these harnesses, and the performance jump that comes with them, was already a sticking point between ARC Prize and OpenAI <a href="https://the-decoder.com/openai-claims-gpt-5-6-sol-beats-opus-5-on-arc-agi-3-with-its-latest-api-and-two-additional-settings/" target="_blank" rel="noopener noreferrer nofollow">with GPT-5.6 Sol</a>. ARC Prize notes that only the lower figure of 62.7 percent, run on the internal ARC harness, allowed a fair comparison between vendors, though it plans to publish the numbers from vendor harnesses in the future as well.</p>
+<h2>Here, more thinking lowers the bill</h2>
+<p>The relationship between thinking effort and cost is unusual. Normally a higher reasoning level makes a test run more expensive. With Astra it's the opposite. On the standard ARC scaffold, costs drop from $49,791 with no reasoning to $26,098 at maximum reasoning, while the score climbs from 35.2 to 62.7 percent. According to ARC Prize, the reason is that Astra solves the games in fewer moves, which means fewer model calls and fewer tokens. One oddity stands out: the "low" level scores 17.5 percent, worse than running with no reasoning at all. ARC Prize doesn't comment on the outlier, but GPT-6 Astra in other benchmarks showed that it can solve longer-horizon tasks without reasoning due to its new architecture which presumably <a href="https://the-decoder.com/openai-calls-astra-its-most-dangerous-model-yet-watching-what-it-does-is-only-getting-harder/" target="_blank" rel="noopener noreferrer nofollow">loops processing internally before generating the first token</a>.</p>
+<p>For comparison, the human testers got $115 per 90-minute session plus $5 per game solved, so at about nine attempts that works out to roughly $12.78 per game. But that mostly pays for time and willingness to take part. Count only the metabolic energy of the brain as electricity instead, and ARC Prize arrives at 0.067 cents per game.</p>
+<p>More interesting than the raw score is the efficiency. Before the launch, ARC Prize had about 500 testers play with no pre-screening and recorded, for each level, the median number of moves among those who solved it. On the run with the OpenAI scaffold, Astra cleared 96 percent of levels in fewer moves than that median, on average with a little over half. Unlike the usual cost measures, this figure doesn't track compute consumed. It tracks how much experience with an environment the model needed before it mastered it.</p>
+<p>This is exactly where the organizers had expected humans to hold a lasting edge. That still holds for brute-force approaches, but with top models ARC Prize sees an almost binary pattern. Once the model has figured out the mechanics, its execution lands in the human efficiency range.</p>
+<h2>Astra invents its own notation</h2>
+<p>To get there, Astra keeps its own notes and works out a self-invented, algebra-like shorthand in which it records objects, coordinates, rules, and open plans, for example <code>extend8 to3; retract10 to2</code> as an ordered sequence of moves or <code>Turn 5: P=(24,20), empty, facing west</code> as a state note. ARC Prize saw similar behavior from other models, but singles out Astra for its precision and information density. On the standard harness, that's an important skill, because everything the model doesn't save into its own visible notes is lost.</p>
+<p>ARC co-founder François Chollet describes it <a href="https://x.com/fchollet/status/2095598451115614371" target="_blank" rel="noopener noreferrer nofollow">on X</a> as "highly efficient, on-the-fly symbolic world modeling for each game and level." The model goes so far as "developing its own shorthand DSL to represent in-game situations," which at its core is "essentially a game-specific algebraic notation." What matters most to Chollet is where this behavior comes from: "Astra exhibits symbolic modeling behaviors we had previously only seen with sophisticated harnesses, so harness capabilities are increasingly shifting into the model itself."</p>
+<blockquote>
+<p>Astra creates a dense, compact symbolic world model to complete ARC-AGI-3 environments.</p>
+<p>For example, in environment s5i5, Astra:</p>
+<p>- Recorded the current level, hub orientation, and mechanism lengths: “L8: hub q2 (8↓). Lengths: 14=1…”</p>
+<p>- It mapped operations to exact controls:… <a href="https://t.co/tMHP002mkB" target="_blank" rel="noopener noreferrer nofollow">pic.twitter.com/tMHP002mkB</a></p>
+<p>— ARC Prize (@arcprize) <a href="https://x.com/arcprize/status/2095597607423004685?ref_src=twsrc%5Etfw" target="_blank" rel="noopener noreferrer nofollow">September 3, 2026</a></p></blockquote>
+
+<p>A third test environment demonstrates what Astra is capable of with external tools. <a href="https://github.com/alexisfox7/PRO-LONG" target="_blank" rel="noopener noreferrer nofollow">PRO-LONG</a> is an agent framework developed by a third party that the ARC Prize team deployed early on as a red-teaming partner for ARC-AGI-3—that is, to systematically explore the limits of the benchmark. Unlike in the standard setup, the model is provided with a sandbox in which it can execute its own code.</p>
+<p>Astra took advantage of this and wrote small program libraries for each game: parsers for the game board, state models, search algorithms, and planners. In a maze game featuring guards, a pathfinder, a combat rules module, a model of patrol movements, and a script that continuously compared its own predictions against observations were developed one after another. ARC Prize did not observe any attempts to escape from the sandbox. These runs are not comparable to the human test conditions, since the test subjects had neither a code interpreter nor a notepad. What is being measured here is the combined performance of the model and the self-built tools.</p>
+<h2>Chollet: No Proof of AGI, but Faster Than Expected</h2>
+<p>ARC Prize explicitly does not interpret the results as evidence of general artificial intelligence. “All we know about the system so far are its benchmark scores,” writes Chollet. When ARC-AGI-3 was launched, they emphasized one point in every presentation: “Solving it is not proof of AGI. It is not intended as a finish line.” While the benchmark does test the correct qualitative properties expected of an AGI system—namely, exploration under uncertainty, adaptation without guidance, and causal world modeling from sparse data—it does so “on a small scale.” The games ran on time scales that were orders of magnitude shorter than real-world tasks and consequently required less data, less modeling complexity, and less on-the-fly learning.</p>
+<p>When ARC-AGI-3 was released about six months ago, Chollet had responded to a question about saturation by saying “about a year,” depending on how focused the approach to the benchmark was. Astra, therefore, arrived “about twice as fast” as expected. “I believe the pace of progress will surprise many people, and what the new models are capable of will challenge the perception of AI that people have formed based on earlier generations of models.” When asked by a user whether his earlier AGI forecast for 2030 still held, Chollet replied succinctly: “Sooner, because progress is happening faster than I expected.”</p>
+<p>The result is another benchmark. According to Chollet, ARC-AGI-4 has been in development since the release of ARC-AGI-3 and is scheduled for release in the first quarter of 2027. Benchmarking is an ongoing process that evolves alongside the models and always targets the remaining gap between AI and human intelligence. The organization considers ARC-AGI-3 itself to be quite limited: deterministic mechanics, closed-ended goals, and no representation of the open real world. The next generation is intended to explore, among other things, recursive self-improvement and open innovation.</p></div></div></div>
+  <div class="footer">
+    本文由 AI热点监控系统自动抓取 · 内容版权归原作者/网站所有<br>
+    快照仅用于学习交流，如需转载请访问原文
+  </div>
+</div>
+</body>
+</html>
