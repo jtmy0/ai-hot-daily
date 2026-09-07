@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="referrer" content="no-referrer">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'unsafe-inline'; img-src data:; connect-src 'none'; frame-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'; frame-ancestors 'none'">
+<title>谷歌让AI互怼几天，小模型竟复现3道博士级难题-36氪 - AI热点快照</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','PingFang SC','Microsoft YaHei',sans-serif;background:#f8f9fa;color:#1a1a2e;line-height:1.8;min-height:100vh}
+.top-bar{background:#fff;border-bottom:1px solid #e5e7eb;padding:10px 20px;display:flex;align-items:center;gap:12px;position:sticky;top:0;z-index:10}
+.top-bar .logo{font-size:14px;font-weight:700;color:#0d9488}
+.top-bar .sep{color:#d1d5db}
+.top-bar .source{font-size:13px;color:#6b7280}
+.top-bar .back{margin-left:auto;font-size:13px;color:#0d9488;text-decoration:none}
+.top-bar .back:hover{text-decoration:underline}
+.container{max-width:760px;margin:0 auto;padding:40px 24px 80px}
+.article-title{font-size:1.8rem;font-weight:700;line-height:1.35;margin-bottom:16px;color:#1a1a2e}
+.article-meta{display:flex;flex-wrap:wrap;gap:16px;padding-bottom:20px;margin-bottom:28px;border-bottom:1px solid #e5e7eb;font-size:14px;color:#6b7280}
+.article-meta a{color:#0d9488;text-decoration:none}
+.article-meta a:hover{text-decoration:underline}
+.article-body{font-size:16.5px;line-height:1.85;color:#1f2937}
+.article-body p{margin-bottom:1.2em;text-align:justify}
+.article-body h1,.article-body h2,.article-body h3{font-size:1.25em;font-weight:700;margin:1.6em 0 0.6em;color:#1a1a2e}
+.article-body a{color:#0d9488}
+.article-body pre,.article-body code{background:#f1f5f9;border-radius:4px;font-size:0.9em}
+.article-body pre{padding:16px;overflow-x:auto;margin:1em 0}
+.article-body code{padding:2px 6px}
+.article-body blockquote{border-left:3px solid #0d9488;padding-left:16px;color:#4b5563;margin:1em 0}
+.article-body ul,.article-body ol{padding-left:1.6em;margin-bottom:1em}
+.article-body li{margin-bottom:0.4em}
+.article-body figure{margin:1.2em 0}
+.article-body figcaption{font-size:13px;color:#9ca3af;text-align:center;margin-top:6px}
+.footer{margin-top:48px;padding-top:20px;border-top:1px solid #e5e7eb;font-size:13px;color:#9ca3af;text-align:center}
+</style>
+</head>
+<body>
+<div class="top-bar">
+  <a class="back" href="../" style="font-size:13px;color:#6b7280;text-decoration:none">← 日报首页</a>
+  <span class="sep">|</span>
+  <span class="logo">AI热点快照</span>
+  <span class="sep">|</span>
+  <span class="source">36kr</span>
+  <a class="back" href="https://www.36kr.com/p/3972479883866377" target="_blank" rel="noopener noreferrer">查看原文 ↗</a>
+</div>
+<div class="container">
+  <h1 class="article-title">谷歌让AI互怼几天，小模型竟复现3道博士级难题-36氪</h1>
+  <div class="article-meta">
+    <span>作者: 新智元</span>
+    <span>来源: 36kr</span>
+    <span>快照日期: 2026-09-07</span>
+  </div>
+  <div class="article-body"><div><div>
+ 
+ 
+  <p>如果不看名字，你肯定会以为这又是一个强大到不能公开发行的顶级模型，甩出的一份「开挂」战绩：</p>
+  <blockquote>
+   <p>做科研：一口气解开7道顶尖数学和计算机难题，交出的40页长篇证明连最严苛的机器审核都挑不出错；</p>
+   <p>干工程：从零手写了一个极度逼真的CPU模拟器，不仅成功启动系统，运行误差0.71%；</p>
+   <p>写代码：顺手把Eigen和ParlayHash两个主流开源库的核心代码给优化了，改动直接被上游维护者合并。</p>
+  </blockquote>
+  <p>这是谷歌Antigravity团队8月27日刚亮出的一张成绩单。</p>
+  <p></p>
+  <p>在Teamwork技术长文中，谷歌Antigravity团队集中公布数学、系统与开源三类成果。</p>
+  <p>让人意外的是，这次扛大梁的不是什么算力吞金兽，而是主打「快和便宜」的小模型：Gemini 3.7 Flash。</p>
+  <p></p>
+  <p>谷歌官方甚至定调：这是Flash级模型第一次做出博士级的数学研究成果。</p>
+  <p>便宜模型凭什么能够越级打怪？</p>
+  <p>秘密不在参数里，而在一套名为Teamwork的多智能体编排框架。</p>
+  <p>谷歌真正想向行业传递的信号是：不是Flash突然变聪明了，而是干活的组织方式变了。</p>
+  <h2><strong>Pro主导探索</strong></h2>
+  <h2><strong>Flash成功复现</strong></h2>
+  <p>谁是这张成绩单的主角，谷歌的技术长文给出了非常严谨的界定：</p>
+  <p>7项数学与理论计算机科学结果，最初全部由Gemini 3.1 Pro在Teamwork的长证明模式下拿下。</p>
+  <p>但惊艳之处在于，其中3项硬核成果，被Gemini 3.7 Flash给完整复现了。</p>
+  <p>这3项绝不是用来凑数的边缘问题：ℓp子空间近似的coreset构造、最大内积嵌入的维度下界、以及把领先常数直接压低约5.93倍的Hadamard量化。</p>
+  <p>每一项，都是正儿八经的学术界开放难题。</p>
+  <p></p>
+  <p>剩下的4项则由3.1 Pro独挑大梁，包括稀疏凸优化的条件数下界、前缀矩阵分解的近似最优下界、Knuth's Cycles难题，以及在断网条件下独立重现的Erdős单位距离问题。</p>
+  <p>不仅如此，那个刷新谷歌内部记录的TCSBench评测71%最高分，也是3.7 Flash与3.1 Pro强强联手跑出来的，直接超越了上一代3.6 Flash搭3.1 Pro拿下的67.7%纪录。</p>
+  <p>其中，真正值得我们注意的信号是：</p>
+  <blockquote>
+   <p>只要把编排框架搭对，像Flash这样主打轻量的小模型，完全能把旗舰模型做出来的研究重新跑通一遍。</p>
+  </blockquote>
+  <p>这足以刷新我们对「小模型能干什么」的认知边界。</p>
+  <h2><strong>Teamwork把「找茬」做成硬核制度</strong></h2>
+  <p>Teamwork是Antigravity团队开发的多智能体编排框架。</p>
+  <p>你只需敲一个/teamwork-preview，Gemini就会读完提示词自己挑模式，当场摇人组建一个「AI专家团」，一跑就是几小时甚至几天。</p>
+  <p>前文提到的数学成果，全出自其中的长证明（Long Proof）模式。</p>
+  <p>它的设计思路极其反直觉：不靠堆砌参数，而是靠让一群Flash聚在一起互相「挑刺、抬杠、挑软肋」。</p>
+  <p>那这帮AI到底是怎么开会的？拆解下来总共有四步：</p>
+  <p>第一步：疯狂内卷的「竞争策略搜索」。</p>
+  <p>系统会同时孵化一堆候选方案，并给每个方案指派一个专职的「抬杠专员」，唯一KPI就是把这个方案驳倒。</p>
+  <p>有意思的是，被喷到体无完肤的方案绝不直接扔进回收站，而是带着满身反对意见留在流程里。</p>
+  <p>毕竟，在一条走不通的「歪路」里，往往藏着能救命的灵感。</p>
+  <p>第二步：按图索骥，「精准拆解」。</p>
+  <p>一旦选定靠谱的策略，系统就会把它拆成一堆带依赖关系的子问题，画成严密的拓扑图。能并行的独立推进，有先后顺序的就乖乖排队。</p>
+  <p>第三步：疯狂内卷的「内部锦标赛」。</p>
+  <p>每个子问题内部再开一局淘汰赛，节点一边读候选方案，一边看毒舌批评，合力揉搓出一个升级版。</p>
+  <p>如果综合失败，就带着累积的反对意见重跑，直到把漏洞补死。</p>
+  <p>第四步：吃一堑长一智的「跨轮学习」。</p>
+  <p>失败的草稿原封不动留给下一轮，验证器踩过的每个大坑统统沉淀进「陷阱登记簿」。</p>
+  <p>走过的死路、证出的结论，全部实时同步到共享知识库里，供全员随时调用。</p>
+  <p></p>
+  <p>Long Proof模式的锦标赛网络：候选策略各配一名falsifier，被否路线带着反对意见留在流程中。</p>
+  <p>这一套流程跑下来，与其说它是个冷冰冰的超级大脑，不如说它复刻了一个极其残酷、谁也别想浑水摸鱼的学术组会。</p>
+  <p>在这里，谁的方案都得先被狂撕几轮，撕不烂的硬骨头才能顺利通关。</p>
+  <p>这就直接治好了传统多智能体最容易犯的群体癔症：</p>
+  <p>以往一个AI一不小心带偏了节奏，其他AI就会盲目当「应声虫」，最后在错误的地基上越盖越高。</p>
+  <p>Teamwork的杀手锏，不过是把「互相找茬」，实打实地变成了一套谁也无法逃避的硬核制度。</p>
+  <h2><strong>Knuth难题的真相</strong></h2>
+  <p>关于这7项成果，最引人注目、也最容易被误读的，莫过于高德纳（Donald Knuth）提出的Knuth's Cycles难题。</p>
+  <p>事实上，这道题在今年春天就已经被AI接力解完了。</p>
+  <p></p>
+  <p>Donald Knuth，2023年斯坦福圣诞讲座。</p>
+  <p>今年2月底，Claude Opus 4.6仅用了一小时左右，就闪电般给出了奇数情形的构造，逼得高德纳在论文开头连写两个「Shock!」。</p>
+  <p></p>
+  <p>紧接着，gpt-5.3-codex与GPT-5.4 Pro等模型接力登场，把最难啃的偶数情形也给补全了。</p>
+  <p>到了4月中旬，高德纳在论文修订版中明确盖章：偶数情形已经毫无悬念。</p>
+  <p>那谷歌这次做了什么？</p>
+  <p>简单来说，谷歌为偶数情形找到了两个更优雅、更简单的新构造，并顺手砸出了两份长达40多页和70多页的首批长篇证明。</p>
+  <p>其中那份40多页的硬核证明，更是通过了Lean形式化验证，连机器都完全挑不出毛病。</p>
+  <p>这当然是相当扎实的学术贡献，但它的真正意义在于「给出了更漂亮的证明」，而不是真正意义上的从零破局。</p>
+  <p>这反而显示出Teamwork真正强大的地方：</p>
+  <p>它没有去补齐某一个单体模型的「孤岛智商」，而是通过制度化的博弈与编排，彻底治好了多智能体一盘散沙、互相附和的协作短板，释放出「群体智慧」。</p>
+  <h2><strong>从定理到Shell</strong></h2>
+  <h2><strong>这回真是Flash干的</strong></h2>
+  <p>同一套找茬机制，谷歌换个模式，直接拿去啃了硬核工程。</p>
+  <p>这一次技术长文明确写着「使用Gemini 3.7 Flash」。Teamwork从零构建了一个周期级、乱序执行的RISC-V CPU模拟器。</p>
+  <p>乱序执行是现代高性能CPU的标配，也是模拟器最容易写崩的地方。</p>
+  <p>Teamwork分两步走：先保证微架构功能正确，自己写乱序流水线和重排序缓冲，成功把xv6操作系统启动到Shell；再逐周期对齐时序。</p>
+  <p></p>
+  <p>Teamwork构建的RISC-V模拟器启动xv6内核并进入Shell的过程。</p>
+  <p>最难的一关，谷歌称之为「静默执行鸿沟」。</p>
+  <p>模拟器的微架构状态可能在几百个周期里悄悄跑偏，等架构层面报错时早已找不到根源。</p>
+  <p>Teamwork的解法是把参考模拟器Spike沙箱化隔离，防止智能体作弊抄袭，然后全程锁步协同仿真，每一步都对账。</p>
+  <p>最终，这套模拟器跑通了100多个RISC-V标准基准，在未见过的测试负载上，与BOOM硬件的平均周期误差仅为0.71%。</p>
+  <p></p>
+  <p>谷歌披露：Teamwork模拟器与BOOM硬件的周期对齐对比，未见测试负载上平均误差0.71%。</p>
+  <p>不过这里需要说清楚的，这是软件层面的模拟器，绝不是RTL芯片设计，更谈不上流片造芯。</p>
+  <h2><strong>真刀真枪开源实战</strong></h2>
+  <h2><strong>AI科研下半场拼的是落地与验收</strong></h2>
+  <p>相比于数学和模拟器，最后一类成果看着最不起眼，证据却最硬核。</p>
+  <p>Eigen是C++世界里应用极广的高性能线性代数库。</p>
+  <p>Teamwork在其中揪出了一处单行或单列矩阵向量乘的次优实现，并直接手搓了一条SIMD快速路径。</p>
+  <p>而在并发哈希表ParlayHash中，Teamwork则引入了Swiss Table的优化思路，让64线程的初始插入吞吐直接翻倍，单线程整体吞吐提升1.5倍，同时每个元素还少用了25%的内存。</p>
+  <p>这两处改动绝不是闭门造车的自嗨跑分，而是老老实实走完了严苛的开源代码评审，被外部人类维护者正式合并到上游分支里的真代码。</p>
+  <p>比跑分更值得留意的，是一篇数学论文末尾的一句作者声明：证明先由谷歌内部的Gemini智能体系统做出，再由作者核验、编辑。</p>
+  <p>智能体负责在无尽的草稿纸上疯狂探索，人类则负责签字和最终验收。这才是眼下AI科研最真实的分工。</p>
+  <p>谷歌自己说得很清楚：这些问题原本要顶尖专家啃上几个月，Teamwork压缩的是试错周期，方向盘和最后签字权，还在人手里。</p>
+  <p>AI科研的下半场，比的已经不是谁的模型参数更大，是谁的AI团队组得更好。</p>
+  <p>模型越便宜、越像随用随取的日用品，人类的验收和把关就越值钱。</p>
+  <p>以前，人是解题的人。现在，人是出题和验收的人。</p>
+  <p>高德纳给Claude找到的构造手写了证明，后来得知有人用Lean验证了它，他说「这真是件好事」，因为自己「最近越来越容易出错」。</p>
+  <p>连88岁图灵奖得主的证明都要过验证器这一关，AI写的证明更不能例外。</p>
+  <p>解题的活，机器会越干越多。验收这一关，一定要有人守着。</p>
+  <p><strong>参考资料：</strong></p>
+  <p>https://antigravity.google/blog/teamwork-when-ai-becomes-a-research-partner</p>
+  <p>https://www-cs-faculty.stanford.edu/~knuth/papers/claude-cycles.pdf</p>
+  <p>本文来自微信公众号<a href="https://mp.weixin.qq.com/s?__biz=MzI3MTA0MTk1MA==&amp;mid=2652723377&amp;idx=2&amp;sn=58fb4dbd0753589cf4e5b8d290062326&amp;chksm=f099ce2f45371fe953facf5078b4c01c369e0a9db4837e2c35011345f574cc682043ccdd5655&amp;mpshare=1&amp;scene=24&amp;srcid=0907oJftDgaM4qlI7EF8wpQT&amp;sharer_shareinfo=7a2a09eef7095d17de7455ad158edda3&amp;sharer_shareinfo_first=7a2a09eef7095d17de7455ad158edda3#rd" target="_blank" rel="noopener noreferrer nofollow">“新智元”</a>，作者：ASI启示录，编辑：元宇，36氪经授权发布。</p>
+ 
+</div></div></div>
+  <div class="footer">
+    本文由 AI热点监控系统自动抓取 · 内容版权归原作者/网站所有<br>
+    快照仅用于学习交流，如需转载请访问原文
+  </div>
+</div>
+</body>
+</html>
