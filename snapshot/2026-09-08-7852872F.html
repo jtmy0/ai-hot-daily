@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="referrer" content="no-referrer">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'unsafe-inline'; img-src data:; connect-src 'none'; frame-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'; frame-ancestors 'none'">
+<title>DeepSeek一口气扩招150人，0个AI研究岗-36氪 - AI热点快照</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','PingFang SC','Microsoft YaHei',sans-serif;background:#f8f9fa;color:#1a1a2e;line-height:1.8;min-height:100vh}
+.top-bar{background:#fff;border-bottom:1px solid #e5e7eb;padding:10px 20px;display:flex;align-items:center;gap:12px;position:sticky;top:0;z-index:10}
+.top-bar .logo{font-size:14px;font-weight:700;color:#0d9488}
+.top-bar .sep{color:#d1d5db}
+.top-bar .source{font-size:13px;color:#6b7280}
+.top-bar .back{margin-left:auto;font-size:13px;color:#0d9488;text-decoration:none}
+.top-bar .back:hover{text-decoration:underline}
+.container{max-width:760px;margin:0 auto;padding:40px 24px 80px}
+.article-title{font-size:1.8rem;font-weight:700;line-height:1.35;margin-bottom:16px;color:#1a1a2e}
+.article-meta{display:flex;flex-wrap:wrap;gap:16px;padding-bottom:20px;margin-bottom:28px;border-bottom:1px solid #e5e7eb;font-size:14px;color:#6b7280}
+.article-meta a{color:#0d9488;text-decoration:none}
+.article-meta a:hover{text-decoration:underline}
+.article-body{font-size:16.5px;line-height:1.85;color:#1f2937}
+.article-body p{margin-bottom:1.2em;text-align:justify}
+.article-body h1,.article-body h2,.article-body h3{font-size:1.25em;font-weight:700;margin:1.6em 0 0.6em;color:#1a1a2e}
+.article-body a{color:#0d9488}
+.article-body pre,.article-body code{background:#f1f5f9;border-radius:4px;font-size:0.9em}
+.article-body pre{padding:16px;overflow-x:auto;margin:1em 0}
+.article-body code{padding:2px 6px}
+.article-body blockquote{border-left:3px solid #0d9488;padding-left:16px;color:#4b5563;margin:1em 0}
+.article-body ul,.article-body ol{padding-left:1.6em;margin-bottom:1em}
+.article-body li{margin-bottom:0.4em}
+.article-body figure{margin:1.2em 0}
+.article-body figcaption{font-size:13px;color:#9ca3af;text-align:center;margin-top:6px}
+.footer{margin-top:48px;padding-top:20px;border-top:1px solid #e5e7eb;font-size:13px;color:#9ca3af;text-align:center}
+</style>
+</head>
+<body>
+<div class="top-bar">
+  <a class="back" href="../" style="font-size:13px;color:#6b7280;text-decoration:none">← 日报首页</a>
+  <span class="sep">|</span>
+  <span class="logo">AI热点快照</span>
+  <span class="sep">|</span>
+  <span class="source">36kr</span>
+  <a class="back" href="https://www.36kr.com/p/3974040294388232" target="_blank" rel="noopener noreferrer">查看原文 ↗</a>
+</div>
+<div class="container">
+  <h1 class="article-title">DeepSeek一口气扩招150人，0个AI研究岗-36氪</h1>
+  <div class="article-meta">
+    <span>作者: 量子位</span>
+    <span>来源: 36kr</span>
+    <span>快照日期: 2026-09-08</span>
+  </div>
+  <div class="article-body"><div><div>
+ 
+ 
+  <p><strong>DeepSeek，一口气扩招150人！</strong></p>
+  <p>啥玩意他们总共也就才300-500人规模，这是要搞大动作啊。</p>
+  <p></p>
+  <p>而且这150个HC并非AI研究方向，全部集中到两个岗位：<strong>服务端开发工程师、Agent弹性计算研发工程师</strong>，重点面向2到10年经验的资深后端开发。</p>
+  <p>负责人崔添翼解释到，规模大了产生复杂度，复杂度又反过来要求扩大规模。</p>
+  <p></p>
+  <p>这是……团队人数的Scaling Law？</p>
+  <h2><strong>DeepSeek弹性计算从论文走向大规模工程化</strong></h2>
+  <p>这次的Agent弹性计算研发工程师又分两个方向，平台开发和底层系统。</p>
+  <p>这个平台指为Agent量身定制的<strong>弹性计算平台DSec</strong>（DeepSeek Elastic Compute），在不久前发布的DeepSeek-V4技术报告中首次公开披露。</p>
+  <p>根据论文描述，DSec由三个Rust组件构成：API网关Apiserver、每台宿主机上的Edge代理、以及集群监控器Watcher，三者通过自研RPC协议互联，运行在DeepSeek自研的3FS分布式文件系统之上。</p>
+  <p>招聘信息则透露了下一步的工程扩张的计划。</p>
+  <blockquote>
+   <p>为了增加可靠性和效率，<strong>DSec需要修改整个系统栈</strong>：从操作系统到虚拟机，再到各级网络和存储，一直上到应用层调度和管控面服务。</p>
+   <p>这个项目很多事前人没有做过，没有现成的答案可抄。</p>
+  </blockquote>
+  <p></p>
+  <p><strong>平台开发和维护方向</strong>，有点像产品和开发的结合，要参与理解需求，也要亲自把系统设计、开发和维护好。</p>
+  <p></p>
+  <p><strong>底层调优和攻坚</strong>更硬核，能把“某些操作系统组件的性能压榨到SOTA，或者干脆直接压到硬件极限”是加分项。</p>
+  <p></p>
+  <p>最后这句“你的工作直接决定了Agent模型训练的多样性和效率”也不是空话。</p>
+  <p>因为DeepSeek会做到SOTA，然后开源，那就影响的不只是未来DeepSeek Agent基础设施，而是整个行业的。</p>
+  <p></p>
+  <h2><strong>Agent贯穿研发全链路</strong></h2>
+  <p>服务端开发工程师这边，六个方向覆盖了从模型研究到面向用户服务的完整链路：</p>
+  <p><strong>大模型研究平台方向、Agent框架组件方向、研发效率基建方向、DeepSeek API方向、线上服务方向、数据工程方向。</strong></p>
+  <p>DeepSeek对这个团队使命的描述是：离大模型研究前沿足够近，做出来的东西马上有来自研究一线的反馈。平台的可靠与好用，直接决定了大模型研究的效率和提升智能上限的速度。</p>
+  <p></p>
+  <p><strong>大模型研究平台方向</strong>的核心任务是将研究流程抽象为平台能力，需要“深入研究员一线工作场景”，主动识别问题而非被动承接需求。最终目标是“缩短研究想法从提出、验证到迭代的周期”</p>
+  <p></p>
+  <p><strong>Agent框架组件方向</strong>负责建设统一的Agent接入与运行框架。</p>
+  <p></p>
+  <p><strong>研发效率基建方向</strong>的职责覆盖统一的CI/CD体系、可观测与告警体系、大规模数据跨集群流转与治理、运维自动化等，并明确提出要“探索Agent在自动诊断与RCA中的应用”。</p>
+  <p></p>
+  <p>面向外部用户的两个方向直接服务于DeepSeek的产品。</p>
+  <p><strong>DeepSeek API方向</strong>需要应对“超大规模API服务挑战”，将前沿模型的科研成果通过稳定、高效的API输送给全球开发者与海量用户，并与内部推理框架共同演进。</p>
+  <p></p>
+  <p><strong>线上服务方向</strong>则需要支撑“数千万日活用户”规模的大模型应用的架构设计与持续迭代。</p>
+  <p></p>
+  <p>最后，<strong>数据工程方向</strong>服务于从模型训练到线上服务的所有环节，技术栈涉及Spark、Flink、Kafka、ClickHouse、Iceberg等，要求候选人能独立完成从埋点日志到业务指标的全链路数据建模。</p>
+  <p></p>
+  <p>把这几个方向的职责连起来看，它们指向一条完整的链路：模型在沙箱环境中执行任务，平台记录操作过程和结果，形成训练与评测数据，数据再用于改进模型。</p>
+  <h2><strong>DeepSeek想找什么样的人？</strong></h2>
+  <p>所有与研究相关的岗位都强调同一件事：<strong>工程师要“深入研究员一线工作场景”，主动识别问题、推动解决方案从定义到落地，而非仅承接和交付需求</strong>。</p>
+  <p>招聘信息专门用了一整段来刻画理想人选，DeepSeek期望招进来的工程师，本身已经在日常工作中深度使用Agent进行开发。</p>
+  <p>其中一条要求是“熟练使用AI Agent工具进行软件开发，在AI辅助下能够在<strong>没有直接经验的领域</strong>写出有质量保证的代码”。</p>
+  <p>又要求“当Agent提供有问题的方案时，你能够敏锐地发现并及时介入”。</p>
+  <p></p>
+  <p>在这个Agent时代，对特定语言、工具的使用经验，甚至做过某一类项目的重要性在下降。</p>
+  <p>研发正在从“我知道怎么做”，转向“我知道该追问什么、哪里可能错、怎样证明它是对的”。</p>
+  <p><strong>参考链接：</strong></p>
+  <p>[1]https://x.com/tianyi/status/2096975270578139273?s=20</p>
+  <p>[2]https://app.mokahr.com/social-recruitment/</p>
+  <p>本文来自微信公众号<a href="https://mp.weixin.qq.com/s?__biz=MzIzNjc1NzUzMw==&amp;mid=2247919747&amp;idx=1&amp;sn=088a0c384fe74a6ff9edf6d23f778edd&amp;chksm=e9664fa8f64e36d6f5c159dadfc8e72dd1b66ae2d137567822c7cbdbc734b21d7b94b726b031&amp;mpshare=1&amp;scene=24&amp;srcid=0908LUAtgDxbf7oLOwSOFge0&amp;sharer_shareinfo=79fbdcf49957c724b064c91231c8a1f0&amp;sharer_shareinfo_first=79fbdcf49957c724b064c91231c8a1f0#rd" target="_blank" rel="noopener noreferrer nofollow">“量子位”</a>，作者：梦晨，36氪经授权发布。</p>
+ 
+</div></div></div>
+  <div class="footer">
+    本文由 AI热点监控系统自动抓取 · 内容版权归原作者/网站所有<br>
+    快照仅用于学习交流，如需转载请访问原文
+  </div>
+</div>
+</body>
+</html>
