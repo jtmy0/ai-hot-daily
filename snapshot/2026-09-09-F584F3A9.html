@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="referrer" content="no-referrer">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'unsafe-inline'; img-src data:; connect-src 'none'; frame-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'; frame-ancestors 'none'">
+<title>copperhead. Cursor for circuit boards. - AI热点快照</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','PingFang SC','Microsoft YaHei',sans-serif;background:#f8f9fa;color:#1a1a2e;line-height:1.8;min-height:100vh}
+.top-bar{background:#fff;border-bottom:1px solid #e5e7eb;padding:10px 20px;display:flex;align-items:center;gap:12px;position:sticky;top:0;z-index:10}
+.top-bar .logo{font-size:14px;font-weight:700;color:#0d9488}
+.top-bar .sep{color:#d1d5db}
+.top-bar .source{font-size:13px;color:#6b7280}
+.top-bar .back{margin-left:auto;font-size:13px;color:#0d9488;text-decoration:none}
+.top-bar .back:hover{text-decoration:underline}
+.container{max-width:760px;margin:0 auto;padding:40px 24px 80px}
+.article-title{font-size:1.8rem;font-weight:700;line-height:1.35;margin-bottom:16px;color:#1a1a2e}
+.article-meta{display:flex;flex-wrap:wrap;gap:16px;padding-bottom:20px;margin-bottom:28px;border-bottom:1px solid #e5e7eb;font-size:14px;color:#6b7280}
+.article-meta a{color:#0d9488;text-decoration:none}
+.article-meta a:hover{text-decoration:underline}
+.article-body{font-size:16.5px;line-height:1.85;color:#1f2937}
+.article-body p{margin-bottom:1.2em;text-align:justify}
+.article-body h1,.article-body h2,.article-body h3{font-size:1.25em;font-weight:700;margin:1.6em 0 0.6em;color:#1a1a2e}
+.article-body a{color:#0d9488}
+.article-body pre,.article-body code{background:#f1f5f9;border-radius:4px;font-size:0.9em}
+.article-body pre{padding:16px;overflow-x:auto;margin:1em 0}
+.article-body code{padding:2px 6px}
+.article-body blockquote{border-left:3px solid #0d9488;padding-left:16px;color:#4b5563;margin:1em 0}
+.article-body ul,.article-body ol{padding-left:1.6em;margin-bottom:1em}
+.article-body li{margin-bottom:0.4em}
+.article-body figure{margin:1.2em 0}
+.article-body figcaption{font-size:13px;color:#9ca3af;text-align:center;margin-top:6px}
+.footer{margin-top:48px;padding-top:20px;border-top:1px solid #e5e7eb;font-size:13px;color:#9ca3af;text-align:center}
+</style>
+</head>
+<body>
+<div class="top-bar">
+  <a class="back" href="../" style="font-size:13px;color:#6b7280;text-decoration:none">← 日报首页</a>
+  <span class="sep">|</span>
+  <span class="logo">AI热点快照</span>
+  <span class="sep">|</span>
+  <span class="source">copperhead</span>
+  <a class="back" href="https://copperhead.sh/" target="_blank" rel="noopener noreferrer">查看原文 ↗</a>
+</div>
+<div class="container">
+  <h1 class="article-title">copperhead. Cursor for circuit boards.</h1>
+  <div class="article-meta">
+    
+    <span>来源: copperhead</span>
+    <span>快照日期: 2026-09-09</span>
+  </div>
+  <div class="article-body"><div><div><div><p><span>Proven on copper</span></p></div><div><figure><p></p><figcaption><h2>Proven on real copper.</h2><p>Open Telegraph: pocket-size ESP32-S3 Morse key, built end to end with this workflow. Every decision, every check, every file is public.</p><p><a href="https://chouhan.ai/building-with-claude" target="_blank" rel="noopener noreferrer nofollow">Read the build story</a><a href="https://github.com/animesh-chouhan/open-telegraph" target="_blank" rel="noopener noreferrer nofollow">Browse the repo</a></p></figcaption></figure></div><div><p><span>How it works</span></p></div><div><h2>Eight stages, start to finish.</h2><p>You write the brief. copperhead runs the stages in order, each one its own agent run. A stage has to leave its artifact on disk before the next starts. If a gate fails, the run stops there.</p><div><div><p><span>in</span></p><p><code>brief.md</code></p><p>what you want, written in your own words</p></div><ol><li><span>01</span><h3>spec</h3><p><code>docs/SPEC.md</code></p><p><span>gate</span>a budgets section, actually filled in</p></li><li><span>02</span><h3>architecture</h3><p><code>docs/SUBSYSTEMS.md</code></p><p><span>gate</span>real reasoning under every subsystem</p></li><li><span>03</span><h3>parts</h3><p><code>docs/BOM.md</code></p><p><span>gate</span>part numbers chosen against datasheets</p></li><li><span>04</span><h3>schematic</h3><p><code>design.kicad_sch</code></p><p><span>gate</span>symbols placed, docs agree, ERC clean</p></li><li><span>05</span><h3>layout</h3><p><code>design.kicad_pcb</code></p><p><span>gate</span>footprints on the board, DRC clean</p></li><li><span>06</span><h3>outputs</h3><p><code>gerbers / drill / STEP</code></p><p><span>gate</span>gerbers actually on disk</p></li><li><span>07</span><h3>firmware</h3><p><code>firmware/ / pins.h</code></p><p><span>gate</span>sources on disk, pins from the pinout</p></li><li><span>08</span><h3>dev plan</h3><p><code>docs/DEVPLAN.md</code></p><p><span>gate</span>a written bring-up and test plan</p></li></ol><div><p><span>out</span></p><p>a design package</p><p>gerbers, firmware, docs. One commit per stage.</p></div></div><ul><li><span></span><span>Every hop is a gate: <b>no real work on disk, no commit</b>.</span></li><li><span></span><span>Copper border: <b>verified by KiCad itself, ERC and DRC clean</b>.</span></li></ul><span>Read the long version, one stage at a time</span></div><div><p><span>Pricing</span></p></div><div><h2>Pay to not run it yourself.</h2><p>copperhead is open core. The CLI is free and always will be, and it does the real work on its own. You pay to host it, to work as a team or to give an auditor what they ask for.</p><ul><li><h2>CLI</h2><p><span>Free</span></p><p>Apache-2.0, forever</p><p>Design on your own, on your own machine.</p><span>Get started</span><p>Includes:</p><ul><li><span>The full agent: do, create, init, check, watch</span></li><li><span>Bring your own Claude or GPT-5 key</span></li><li><span>Runs on your KiCad files, in your own git repo</span></li><li><span>Plain markdown, JSON and KiCad output. No lock-in.</span></li><li><span>Runs locally, never metered</span></li><li><span>Community support</span></li></ul></li><li><span>Most popular</span><h2>Cloud</h2><p><span>$49</span><span>per user / month</span></p><p>Free for open hardware repos</p><p>Hosted runs on private repos, with a web viewer.</p><a href="https://cal.com/animeshchouhan/demo-copperhead" target="_blank" rel="noopener noreferrer nofollow">Let's talk</a><p>Everything in CLI, plus:</p><ul><li><span>Hosted runs, no local setup, from anywhere</span></li><li><span>Private repositories</span></li><li><span>Web viewer: chat, live schematic and board render, ERC/DRC status</span></li><li><span>Run history and shareable check reports</span></li><li><span>One-click gerber, DXF/STEP, render and BOM export</span></li><li><span>BYO key, or managed inference with 200 credits a seat</span></li></ul></li><li><h2>Team</h2><p><span>$49</span><span>per user / month</span></p><p>+ $199 / mo platform</p><p>Cloud, with governance and CI for a whole team.</p><a href="https://cal.com/animeshchouhan/demo-copperhead" target="_blank" rel="noopener noreferrer nofollow">Let's talk</a><p>Everything in Cloud, plus:</p><ul><li><span>CI bot: run check as a required PR status check</span></li><li><span>Shared, versioned constraint libraries across the org</span></li><li><span>SSO / SAML, role management, central billing</span></li><li><span>Managed credits pooled across the team</span></li><li><span>Shared run history</span></li></ul></li><li><h2>Enterprise</h2><p><span>Custom</span><span>annual</span></p><p>Self-hosted, built for procurement, one price a year.</p><span>Talk to sales</span><p>Everything in Team, plus:</p><ul><li><span>Self-hosted or VPC, so design data never leaves your network</span></li><li><span>Altium support beyond KiCad</span></li><li><span>RBAC, security review, dedicated support and an SLA</span></li><li><span>An audit trail your compliance team can hand over</span></li><li><span>Flat annual license, no per-run metering</span></li></ul></li></ul></div><div><p><span>FAQ</span></p></div><div><h2>Questions, before you ask them.</h2><div>What is copperhead?<p>An open source AI agent that designs, documents and verifies printed circuit boards. You describe a change or hand it a product brief, and it edits your real KiCad files, updates every document that references them, and runs KiCad's own checks until they pass. <span>Longer introduction here</span>.</p>What problem does it actually solve?<p>Drift. A hardware design spreads one decision across a schematic, a bill of materials, a power budget and several documents, and nothing breaks when they fall out of sync. The inconsistency is found at bring-up, and a respin costs 5,000 to 50,000 dollars and six to eight weeks. <span>The full argument is here</span>.</p>What do I need installed?<p>Node 20 or newer, <a href="https://www.kicad.org/" target="_blank" rel="noopener noreferrer nofollow">KiCad</a> with <code>kicad-cli</code> on your path and a model API key of your own. Then <code>npm i -g copperhead</code>.</p>Does it work on a design that already exists?<p>That is the main case. Point it at a KiCad repository, run <code>copperhead init</code> and start asking for changes. It can also run the full pipeline from a written brief with <code>copperhead create</code>, but iterating on real designs is what it is best at.</p>What will it refuse to do?<p>It refuses to run on a dirty git tree, refuses to edit any design file before a validated change proposal exists and refuses changes that break a budget or constraint you have documented, citing the line it would violate. It also never invents a part number it cannot justify from a datasheet.</p>Will it rewrite my whole schematic?<p>No. Edits are surgical changes to the KiCad s-expression source, so your diffs stay small and reviewable and untouched parts of the file stay byte-identical. A tool that regenerates the file to move one net has made its own work impossible to review.</p></div><p><span>9 more questions</span></p></div><div><p><span>Start building</span></p></div><div><h2>Never ship a board your docs no longer describe.</h2><p>copperhead is open source and free to use. Install once, describe the board you want in a short <code>brief.md</code> and run <code>create</code>.</p><div><pre><code><span>npm i -g copperhead
+</span><span>export ANTHROPIC_API_KEY=&lt;api-key&gt;
+</span><span>copperhead create --brief brief.md
+</span></code></pre></div><div><figure><figcaption>brief.md</figcaption><pre><code><span><span># Pocket Bluetooth speaker</span></span>
+<span></span>
+<span><span>A palm-size Bluetooth speaker that plays for a day on one charge.</span></span>
+<span></span>
+<span><span>-</span><span> ESP32, Bluetooth audio (A2DP sink)</span></span>
+<span><span>-</span><span> 3 W class-D amp into a 4 Ω driver</span></span>
+<span><span>-</span><span> Li-Po cell, USB-C charging</span></span>
+<span><span>-</span><span> Standby current budget: 100 µA</span></span></code></pre></figure></div></div></div></div></div>
+  <div class="footer">
+    本文由 AI热点监控系统自动抓取 · 内容版权归原作者/网站所有<br>
+    快照仅用于学习交流，如需转载请访问原文
+  </div>
+</div>
+</body>
+</html>

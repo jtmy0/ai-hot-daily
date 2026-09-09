@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="referrer" content="no-referrer">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'unsafe-inline'; img-src data:; connect-src 'none'; frame-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'; frame-ancestors 'none'">
+<title>On the Navier–Stokes Millennium Prize Problem - AI热点快照</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','PingFang SC','Microsoft YaHei',sans-serif;background:#f8f9fa;color:#1a1a2e;line-height:1.8;min-height:100vh}
+.top-bar{background:#fff;border-bottom:1px solid #e5e7eb;padding:10px 20px;display:flex;align-items:center;gap:12px;position:sticky;top:0;z-index:10}
+.top-bar .logo{font-size:14px;font-weight:700;color:#0d9488}
+.top-bar .sep{color:#d1d5db}
+.top-bar .source{font-size:13px;color:#6b7280}
+.top-bar .back{margin-left:auto;font-size:13px;color:#0d9488;text-decoration:none}
+.top-bar .back:hover{text-decoration:underline}
+.container{max-width:760px;margin:0 auto;padding:40px 24px 80px}
+.article-title{font-size:1.8rem;font-weight:700;line-height:1.35;margin-bottom:16px;color:#1a1a2e}
+.article-meta{display:flex;flex-wrap:wrap;gap:16px;padding-bottom:20px;margin-bottom:28px;border-bottom:1px solid #e5e7eb;font-size:14px;color:#6b7280}
+.article-meta a{color:#0d9488;text-decoration:none}
+.article-meta a:hover{text-decoration:underline}
+.article-body{font-size:16.5px;line-height:1.85;color:#1f2937}
+.article-body p{margin-bottom:1.2em;text-align:justify}
+.article-body h1,.article-body h2,.article-body h3{font-size:1.25em;font-weight:700;margin:1.6em 0 0.6em;color:#1a1a2e}
+.article-body a{color:#0d9488}
+.article-body pre,.article-body code{background:#f1f5f9;border-radius:4px;font-size:0.9em}
+.article-body pre{padding:16px;overflow-x:auto;margin:1em 0}
+.article-body code{padding:2px 6px}
+.article-body blockquote{border-left:3px solid #0d9488;padding-left:16px;color:#4b5563;margin:1em 0}
+.article-body ul,.article-body ol{padding-left:1.6em;margin-bottom:1em}
+.article-body li{margin-bottom:0.4em}
+.article-body figure{margin:1.2em 0}
+.article-body figcaption{font-size:13px;color:#9ca3af;text-align:center;margin-top:6px}
+.footer{margin-top:48px;padding-top:20px;border-top:1px solid #e5e7eb;font-size:13px;color:#9ca3af;text-align:center}
+</style>
+</head>
+<body>
+<div class="top-bar">
+  <a class="back" href="../" style="font-size:13px;color:#6b7280;text-decoration:none">← 日报首页</a>
+  <span class="sep">|</span>
+  <span class="logo">AI热点快照</span>
+  <span class="sep">|</span>
+  <span class="source">Simon Willison’s Weblog</span>
+  <a class="back" href="https://simonwillison.net/2026/Sep/8/on-navier-stokes" target="_blank" rel="noopener noreferrer">查看原文 ↗</a>
+</div>
+<div class="container">
+  <h1 class="article-title">On the Navier–Stokes Millennium Prize Problem</h1>
+  <div class="article-meta">
+    <span>作者: Simon Willison</span>
+    <span>来源: Simon Willison’s Weblog</span>
+    <span>快照日期: 2026-09-09</span>
+  </div>
+  <div class="article-body"><div><div>
+<p><strong><a href="https://openai.com/index/navier-stokes-solution/" target="_blank" rel="noopener noreferrer nofollow">On the Navier–Stokes Millennium Prize Problem</a></strong> (<a href="https://news.ycombinator.com/item?id=49613262" title="Hacker News" target="_blank" rel="noopener noreferrer nofollow">via</a>) Impressive result from OpenAI, who used an unreleased model to produce a resolution to <a href="https://en.wikipedia.org/wiki/Navier%E2%80%93Stokes_existence_and_smoothness" target="_blank" rel="noopener noreferrer nofollow">the Navier–Stokes existence and smoothness problem</a>, one of the seven <a href="https://en.wikipedia.org/wiki/Millennium_Prize_Problems" target="_blank" rel="noopener noreferrer nofollow">Millennium Prize Problems</a> that have been subject to a $1,000,000 prize since May 24th, 2000.</p>
+<p>The discovery is somewhat overshadowed by accusations of skulduggery from Tristan Buckmaster, an NYU mathematics professor who was collaborating on related problems with Levent Alpöge, an accomplished mathematician who currently works for Anthropic.</p>
+<p>Tristan's complaint accompanied <a href="https://mastodon.social/@tristanbuckmaster/117233413705701198" target="_blank" rel="noopener noreferrer nofollow">a hastily published version</a> of their own results. <a href="https://cims.nyu.edu/~tristanb/statement.pdf" target="_blank" rel="noopener noreferrer nofollow">Here's the PDF describing what happened</a>. The <em>very</em> short version is that Tristan and Levent worked on the problem for almost a year, making extensive use of Claude and Codex (mainly GPT-5.6 Sol), then had a breakthrough on August 15th. The mathematical rumour mill kicked into gear and Tristan and Levent heard that OpenAI had heard that Anthropic had resolved "a major open problem", so they reached out and learned that OpenAI had a team working on a related problem, with a similar approach. Quoting Tristan:</p>
+<blockquote>
+<p>I asked when the first prompt had been sent by them. This question was not answered directly by OpenAI for some time. Eventually it was agreed that it had been sent in the past few days, after information about our work had reached OpenAI.</p>
+<p>I asked whether the model had been trained on, or had access to, our sessions in Codex, into which we had been putting all our drafts for the whole of this project. I was told the model did not look up user data. I asked again, about training, and I did not get an answer.</p>
+</blockquote>
+<p>It gets more complicated from there. The OpenAI team offered to wait for Tristan to publish, or to have him author a paper about their result, but were clear that Levent would <em>not</em> be invited as a co-author due to OpenAI's competitive relationship with his employer.</p>
+<p>Here's how OpenAI described their work:</p>
+<blockquote>
+<p>On Tuesday, September 1, we heard rumors that two Millennium Prize problems had been resolved. Inspired by these rumors and by the step change in performance of our internal model, we launched an effort to evaluate it on all open Millennium Prize problems and a few other high-impact problems. [...]</p>
+<p>The agents arrived at their resolution on Saturday, September 5, about 88 hours after the first agents were launched. Lean formalization and verification took an additional 17 hours via GPT‑6 Astra.</p>
+<p>Across all attempted problems, the agents sent 4.9 million messages and used about 300 billion output tokens. In the process of resolving the Navier–Stokes problem, the agents sent 2.7 million messages and used approximately 130 billion output tokens.</p>
+</blockquote>
+<p>(We don't know the cost structure of the internal model they used, but 300 billion output tokens at public API prices for GPT-6 Astra would cost <a href="https://www.llm-prices.com/#ot=300000000000&amp;sel=gpt-6-astra" target="_blank" rel="noopener noreferrer nofollow">$15,000,000</a>.)</p>
+<p>Here's where they provide their perspective on Tristan and Levent's work (emphasis mine):</p>
+<blockquote>
+<p>Our effort began on September 1st after hearing a rumor which we later realized was related to Levent Alpöge, an Anthropic employee, and Tristan Buckmaster, a math professor at NYU. After the completion of our full project and Lean verification (on September 6th), believing from the rumor they also had a solution of Navier–Stokes, we reached out to them to offer a concurrent release of our result and to recognize their priority in a joint announcement. [...]</p>
+<p>We (the researchers and the agents) did not see any of their work through any means until they released it publicly — in particular, no specific user data was accessed in order to solve this problem. <strong>While unlikely, we cannot rule out that de-identified data derived from their usage of our products helped <a href="https://openai.com/policies/how-your-data-is-used-to-improve-model-performance/" target="_blank" rel="noopener noreferrer nofollow">improve our models</a></strong>. However, our proofs differ significantly and even the precise results proved are different in the Euler case (forced vs unforced).</p>
+</blockquote>
+<p>My interpretation of what happened here is that OpenAI heard that some Millennium Prize problems had been solved using LLMs and saw this as an opportunity to demonstrate the power of their latest model, without thinking too hard about the optics of scooping a team who had been using OpenAI's own models to work on this problem for the best part of a year.</p>
+<p>This situation appears to mirror what's happening in the world of computer security right now. Anil Madhavapeddy recently pointed out that <a href="https://anil.recoil.org/notes/rumour-is-the-exploit" target="_blank" rel="noopener noreferrer nofollow">Just a rumour of a bug is enough to find a security exploit these days</a>, because if someone knows that some software has an unpatched vulnerability, they can set their agents the task of finding it. Is the same now true of mathematics? Just knowing that there is an unpublished solution to a problem might trigger millions of dollars in LLM spending to get there first.</p>
+<p>This also highlights one of my ongoing frustrations about how all of this works. When an AI lab says that my data is "used to improve model performance", <em>what does that actually mean</em>?</p>
+<p>My two favourite hypothetical questions regarding this used to be:</p>
+<ul>
+<li>If I'm running Codex and one of my API keys accidentally gets consumed in the context, what are the chances that someone else might ask for an API key in the future and get mine back? (I asked someone at OpenAI once and they called this the "regurgitation" problem and assured me that they take great pains to prevent that... but wouldn't describe how.)</li>
+<li>If I brainstorm with ChatGPT about potential new directions for my company, what's the chance that information might be exposed to a competitor in six months' time who asks "what might company X plan to do next"?</li>
+</ul>
+<p>My new preferred hypothetical for this is:</p>
+<ul>
+<li>If I use ChatGPT to help me partially solve a Millennium Prize problem, what are the chances that my work will influence training such that a later model helps someone <em>else</em> solve it first?</li>
+</ul>
+</div></div></div>
+  <div class="footer">
+    本文由 AI热点监控系统自动抓取 · 内容版权归原作者/网站所有<br>
+    快照仅用于学习交流，如需转载请访问原文
+  </div>
+</div>
+</body>
+</html>
