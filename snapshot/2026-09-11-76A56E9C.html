@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="referrer" content="no-referrer">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'unsafe-inline'; img-src data:; connect-src 'none'; frame-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'; frame-ancestors 'none'">
+<title>New Deepseek model V4.1-Flash cuts memory needs for AI agents - AI热点快照</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','PingFang SC','Microsoft YaHei',sans-serif;background:#f8f9fa;color:#1a1a2e;line-height:1.8;min-height:100vh}
+.top-bar{background:#fff;border-bottom:1px solid #e5e7eb;padding:10px 20px;display:flex;align-items:center;gap:12px;position:sticky;top:0;z-index:10}
+.top-bar .logo{font-size:14px;font-weight:700;color:#0d9488}
+.top-bar .sep{color:#d1d5db}
+.top-bar .source{font-size:13px;color:#6b7280}
+.top-bar .back{margin-left:auto;font-size:13px;color:#0d9488;text-decoration:none}
+.top-bar .back:hover{text-decoration:underline}
+.container{max-width:760px;margin:0 auto;padding:40px 24px 80px}
+.article-title{font-size:1.8rem;font-weight:700;line-height:1.35;margin-bottom:16px;color:#1a1a2e}
+.article-meta{display:flex;flex-wrap:wrap;gap:16px;padding-bottom:20px;margin-bottom:28px;border-bottom:1px solid #e5e7eb;font-size:14px;color:#6b7280}
+.article-meta a{color:#0d9488;text-decoration:none}
+.article-meta a:hover{text-decoration:underline}
+.article-body{font-size:16.5px;line-height:1.85;color:#1f2937}
+.article-body p{margin-bottom:1.2em;text-align:justify}
+.article-body h1,.article-body h2,.article-body h3{font-size:1.25em;font-weight:700;margin:1.6em 0 0.6em;color:#1a1a2e}
+.article-body a{color:#0d9488}
+.article-body pre,.article-body code{background:#f1f5f9;border-radius:4px;font-size:0.9em}
+.article-body pre{padding:16px;overflow-x:auto;margin:1em 0}
+.article-body code{padding:2px 6px}
+.article-body blockquote{border-left:3px solid #0d9488;padding-left:16px;color:#4b5563;margin:1em 0}
+.article-body ul,.article-body ol{padding-left:1.6em;margin-bottom:1em}
+.article-body li{margin-bottom:0.4em}
+.article-body figure{margin:1.2em 0}
+.article-body figcaption{font-size:13px;color:#9ca3af;text-align:center;margin-top:6px}
+.footer{margin-top:48px;padding-top:20px;border-top:1px solid #e5e7eb;font-size:13px;color:#9ca3af;text-align:center}
+</style>
+</head>
+<body>
+<div class="top-bar">
+  <a class="back" href="../" style="font-size:13px;color:#6b7280;text-decoration:none">← 日报首页</a>
+  <span class="sep">|</span>
+  <span class="logo">AI热点快照</span>
+  <span class="sep">|</span>
+  <span class="source">The Decoder</span>
+  <a class="back" href="https://the-decoder.com/new-deepseek-model-v4-1-flash-cuts-memory-needs-for-ai-agents" target="_blank" rel="noopener noreferrer">查看原文 ↗</a>
+</div>
+<div class="container">
+  <h1 class="article-title">New Deepseek model V4.1-Flash cuts memory needs for AI agents</h1>
+  <div class="article-meta">
+    <span>作者: Jonathan Kemper</span>
+    <span>来源: The Decoder</span>
+    <span>快照日期: 2026-09-11</span>
+  </div>
+  <div class="article-body"><div><div>
+			<p><strong>Deepseek's new multimodal model is built mainly to cut the operating costs of long contexts. The biggest gain is in memory use, though Deepseek also promises better model performance.</strong></p>
+<p>According to the <a href="https://huggingface.co/deepseek-ai/DeepSeek-V4.1-Flash/blob/main/DeepSeek_V41_Tech_Report.pdf" target="_blank" rel="noopener noreferrer nofollow">technical report</a>, Deepseek has a clear goal with V4.1-Flash: shrink the so-called KV cache. This buffer holds the parts of a context a model has already processed, so it doesn't have to recompute everything at each new step. For agents that work across many steps, it grows fast and strains GPU memory, SSDs, and data bandwidth. That drives up deployment costs.</p>
+<p>At its core, the language model has 552 billion parameters and processes contexts of up to one million tokens. The company says the buffer in fast GPU memory now needs only about a quarter of the space its predecessor Deepseek-V4-Flash used. The permanently offloaded part, which sits on SSD or in the host's memory, shrinks to roughly an eighth. Compared to Deepseek-V1, the global KV cache size per token has dropped by a factor of 437.</p>
+<figure><figcaption>Deepseek has shrunk the global KV cache sharply since V1. | Image: Deepseek</figcaption></figure>
+<h2>Less compute on the input side</h2>
+<p>Deepseek gets there through several techniques that work together. A central one splits the model in two halves. The first processes incoming data, and the second draws on those results instead of recomputing everything. When reading an input, the model activates only 8 billion parameters per token, but 16 billion during the actual text output.</p>
+<figure><figcaption>V4.1-Flash splits the language backbone into encoder and decoder. | Image: Deepseek</figcaption></figure>
+<p>Deepseek says this nearly halves the compute needed to process input. It's aimed squarely at agents, which constantly process new inputs through frequent tool calls. Deepseek also stores the main KV cache in FP4 instead of FP8. According to the report, that nearly halves the memory footprint of this part of the cache.</p>
+<p>The model was trained from scratch on a dataset of 45 trillion tokens covering text and images. During post-training, Deepseek deliberately skips new methods. The company says the main gains didn't come from new algorithms but from bigger, better-controlled data, tasks, and training environments. At this point, that kind of scaling helps more than algorithmic tweaks, according to Deepseek.</p>
+<figure><figcaption>With more RL training, performance improves across several code agent benchmarks. | Image: Deepseek</figcaption></figure>
+<p>But Deepseek also saw the trained agents sometimes try to game their reward system, and in other cases crash the test environment by accident. At times they exploited recently disclosed security holes or deleted critical system files.</p>
+<h2>Even with Opus 5 and GPT-5.6 Sol on a coding benchmark</h2>
+<p>Despite its relatively small active parameter share, Deepseek reports results close to leading models on several benchmarks. On agent benchmarks, it sometimes matches top closed models. On the software test DeepSWE v1.1, it narrowly beats models like <a href="https://the-decoder.com/anthropic-claims-its-new-claude-opus-5-delivers-near-fable-5-performance-at-half-the-token-price/" target="_blank" rel="noopener noreferrer nofollow">Anthropic's Opus 5</a> and <a href="https://the-decoder.com/openais-claude-mythos-competitor-gpt-5-6-sol-launches-under-government-controlled-access-it-calls-unsustainable/" target="_blank" rel="noopener noreferrer nofollow">OpenAI's GPT-5.6 Sol</a> at 74.2 percent, while on ProgramBench it trails badly.</p>
+<p>On scientifically demanding agent tasks that require expert knowledge, a clear gap to very large models remains. The technical report also acknowledges a measurable gap to leading closed systems when it comes to reading complex images.</p>
+<p>Like many other reasoning models, the "thinking depth" can be set. Users control how thoroughly the model works through a single value, trading compute costs against accuracy. According to the report, the highest setting noticeably improves results across several benchmarks, but generates about 2.5 times as many output tokens.</p>
+<figure><figcaption>More reasoning effort improves results but raises token use. | Image: Deepseek</figcaption></figure>
+<p>Deepseek makes the model files available on <a href="https://huggingface.co/deepseek-ai/DeepSeek-V4.1-Flash" target="_blank" rel="noopener noreferrer nofollow">Hugging Face</a> under the open MIT license, meant as a starting point for more work on cheaper AI agents. It's also available through an API at the same prices as V4-Flash.</p>
+<p>Deepseek had <a href="https://the-decoder.com/new-deepseek-flash-model-matches-openais-gpt-5-6-luna-at-roughly-60-percent-lower-cost/" target="_blank" rel="noopener noreferrer nofollow">sharply improved</a> the predecessor V4-Flash only in late July with the 0731 update. The model, with 284 billion parameters and 13 billion of them active, landed just one point behind OpenAI's GPT-5.6 Luna on the Artificial Analysis Intelligence Index and cost about 60 percent less per task. In mid-August, Deepseek took its flagship V4-Pro out of testing and <a href="https://the-decoder.com/deepseek-launches-an-improved-v4-pro-model-raises-api-prices-and-makes-its-agent-software-open-source/" target="_blank" rel="noopener noreferrer nofollow">raised API prices at the same time</a>. Cache hits, meaning inputs already buffered, got six times more expensive. Chinese hacker groups have more than doubled their attacks, according to Taiwanese security firm TeamT5, since they started using Deepseek for things like <a href="https://the-decoder.com/taiwanese-cybersecurity-firm-warns-that-ai-tools-have-more-than-doubled-chinese-state-backed-cyberattacks/" target="_blank" rel="noopener noreferrer nofollow">exploit code and network scans</a>.</p>
+<p>In June, Deepseek raised <a href="https://the-decoder.com/deepseek-takes-outside-money-for-the-first-time-at-a-50-billion-valuation/" target="_blank" rel="noopener noreferrer nofollow">about $7.4 billion</a> in its first outside funding round at a valuation above $50 billion, and according to <a href="https://www.reuters.com/world/chinas-deepseek-taps-citic-securities-domestic-ipo-sources-say-2026-09-09/" target="_blank" rel="noopener noreferrer nofollow">Reuters</a> has now hired Chinese investment bank CITIC Securities for an IPO in China.</p>
+		</div><div>
+				<h3>AI News Without the Hype – Curated by Humans<br /></h3>
+				<p>
+					Subscribe to THE DECODER for ad-free reading, a weekly AI newsletter, our exclusive "AI Radar" frontier report six times a year, full archive access, and access to our comment section.				</p>
+				<p><a href="https://the-decoder.com/subscription/" target="_blank" rel="noopener noreferrer nofollow">
+					Subscribe now				</a>
+			</p></div></div></div>
+  <div class="footer">
+    本文由 AI热点监控系统自动抓取 · 内容版权归原作者/网站所有<br>
+    快照仅用于学习交流，如需转载请访问原文
+  </div>
+</div>
+</body>
+</html>
