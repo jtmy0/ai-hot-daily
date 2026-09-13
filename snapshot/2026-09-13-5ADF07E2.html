@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="referrer" content="no-referrer">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'unsafe-inline'; img-src data:; connect-src 'none'; frame-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'; frame-ancestors 'none'">
+<title>DeepSeek-V4.1-Flash: more efficient prefill for coding agents - AI热点快照</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','PingFang SC','Microsoft YaHei',sans-serif;background:#f8f9fa;color:#1a1a2e;line-height:1.8;min-height:100vh}
+.top-bar{background:#fff;border-bottom:1px solid #e5e7eb;padding:10px 20px;display:flex;align-items:center;gap:12px;position:sticky;top:0;z-index:10}
+.top-bar .logo{font-size:14px;font-weight:700;color:#0d9488}
+.top-bar .sep{color:#d1d5db}
+.top-bar .source{font-size:13px;color:#6b7280}
+.top-bar .back{margin-left:auto;font-size:13px;color:#0d9488;text-decoration:none}
+.top-bar .back:hover{text-decoration:underline}
+.container{max-width:760px;margin:0 auto;padding:40px 24px 80px}
+.article-title{font-size:1.8rem;font-weight:700;line-height:1.35;margin-bottom:16px;color:#1a1a2e}
+.article-meta{display:flex;flex-wrap:wrap;gap:16px;padding-bottom:20px;margin-bottom:28px;border-bottom:1px solid #e5e7eb;font-size:14px;color:#6b7280}
+.article-meta a{color:#0d9488;text-decoration:none}
+.article-meta a:hover{text-decoration:underline}
+.article-body{font-size:16.5px;line-height:1.85;color:#1f2937}
+.article-body p{margin-bottom:1.2em;text-align:justify}
+.article-body h1,.article-body h2,.article-body h3{font-size:1.25em;font-weight:700;margin:1.6em 0 0.6em;color:#1a1a2e}
+.article-body a{color:#0d9488}
+.article-body pre,.article-body code{background:#f1f5f9;border-radius:4px;font-size:0.9em}
+.article-body pre{padding:16px;overflow-x:auto;margin:1em 0}
+.article-body code{padding:2px 6px}
+.article-body blockquote{border-left:3px solid #0d9488;padding-left:16px;color:#4b5563;margin:1em 0}
+.article-body ul,.article-body ol{padding-left:1.6em;margin-bottom:1em}
+.article-body li{margin-bottom:0.4em}
+.article-body figure{margin:1.2em 0}
+.article-body figcaption{font-size:13px;color:#9ca3af;text-align:center;margin-top:6px}
+.footer{margin-top:48px;padding-top:20px;border-top:1px solid #e5e7eb;font-size:13px;color:#9ca3af;text-align:center}
+</style>
+</head>
+<body>
+<div class="top-bar">
+  <a class="back" href="../" style="font-size:13px;color:#6b7280;text-decoration:none">← 日报首页</a>
+  <span class="sep">|</span>
+  <span class="logo">AI热点快照</span>
+  <span class="sep">|</span>
+  <span class="source">Baseten</span>
+  <a class="back" href="https://www.baseten.co/blog/deepseek-v41-flash-more-efficient-prefill-for-coding-agents" target="_blank" rel="noopener noreferrer">查看原文 ↗</a>
+</div>
+<div class="container">
+  <h1 class="article-title">DeepSeek-V4.1-Flash: more efficient prefill for coding agents</h1>
+  <div class="article-meta">
+    <span>作者: Albert Lee, Kenzie Amack, Marylise Tauzia</span>
+    <span>来源: Baseten</span>
+    <span>快照日期: 2026-09-13</span>
+  </div>
+  <div class="article-body"><div><div><p>This week, DeepSeek <a href="https://huggingface.co/deepseek-ai/DeepSeek-V4.1-Flash" target="_blank" rel="noopener noreferrer nofollow">released the open weights for DeepSeek-V4.1-Flash on HuggingFace</a>, and the model is already <a href="https://www.baseten.co/library/deepseek-v41-flash/" target="_blank" rel="noopener noreferrer nofollow">available on Baseten Model APIs</a> (with <a href="https://www.baseten.co/products/training/" target="_blank" rel="noopener noreferrer nofollow">Loops</a> support coming soon). Key specifications include:</p><ul><li><p>552B total parameters</p></li><li><p>8B active parameters for prefill, 16B for decode</p></li><li><p>1M token context window</p></li><li><p>Multimodal input (text + image), text output</p></li></ul><p>Originally popularized by Google's Gemini series, the "flash" designation describes lighter, less expensive models designed to perform similarly to larger ones. V4.1-Flash marks DeepSeek's third open-weight flash release this year, joining recent offerings from Z.ai and Alibaba as model labs deliver higher intelligence at lower price points for coding agent workloads.</p><h2>Comparing DeepSeek models: old versus new </h2><p>DeepSeek V4.1-Flash demonstrates improvements over V4-Flash and V4-Pro models in both text and multimodal capabilities.</p><p>On coding and agentic benchmarks, V4.1-Flash beats V4-Pro with roughly a third of the total parameters. The biggest jumps are on long-horizon agentic tasks, which improve by double digits, while single-shot command-line tasks improve more modestly. The gains are real, but a 54.8 on Automation-Bench means it fails roughly half of complex workflows. Keep a human in the loop for agent pipelines.</p><p><em>Taken from </em><a href="https://huggingface.co/deepseek-ai/DeepSeek-V4.1-Flash" target="_blank" rel="noopener noreferrer nofollow"><em>HuggingFace DeepSeek-ai/DeepSeek-V4.1-Flash model card</em><br /></a><em>*Top score is 100 for all noted benchmarks.</em></p><p>V4.1-Flash is DeepSeek's first non-experimental model with native image input, which was previously limited to V4-Flash-Vision-Exp. Visual reasoning improves in this generation too, particularly on chart interpretation and logical reasoning over images, which are useful if you're feeding it screenshots, dashboards, or UI mockups. However, the ZeroBench score still falls short of 50, and at that level, you'll still want a human reviewing image-based reasoning for anything consequential.</p><p><em>Taken from </em><a href="https://huggingface.co/deepseek-ai/DeepSeek-V4-Flash-Vision-Exp" target="_blank" rel="noopener noreferrer nofollow"><em>HuggingFace DeepSeek-ai/DeepSeek-V4-Flash-Vision-Exp model card</em><br /></a><em>*Top score is 100 for all noted benchmarks.</em></p><p>DeepSeek has retired the V4-Flash models on its platform and now routes their traffic to V4.1-Flash. V4-Pro traffic will also be rerouted beginning September 14. If you're running any DeepSeek V4 model, upgrade to V4.1-Flash. It's also worth a look if you're using a large general-purpose model from another lab and want stronger, more efficient coding and agentic performance.</p><h2>Asymmetric activation parameters for more efficient compute usage</h2><p>DeepSeek-V4.1-Flash is the only model of its scale to use a Causal Encoder-Decoder (CED) architecture.</p><p>Two key steps in model computation are:</p><ul><li><p>Prefill: Reading the input</p></li><li><p>Decode: Generating the output</p></li></ul><p>Other MoE models activate the same number of parameters for both the prefill and decode steps. CED splits V4.1-Flash's 40 layers into a 20-layer causal encoder and a 20-layer decoder, and the decoder's KV cache is projected directly from the encoder's output. That means prefill only needs to run the encoder, activating 8B parameters per token, while decode runs the full model at 16B. </p><p>The idea is that generating output is harder than reading input, so computation is prioritized for decode over prefill. For comparison, V4-Flash activates 13B for both prefill and decode, so V4.1-Flash trades a heavier decode (16B) for a much lighter prefill (8B).</p><div><p>✕</p><p><span><span>CED reduces prefill computation by stopping at the encoder and reusing a projected KV cache during decoding.</span></span></p></div><p>This setup boosts cost efficiency for coding agents, where agentic loops generate far more prefill tokens than decode tokens. Additionally, because the decoder's key-value states are projected from the encoder output rather than computed independently in every layer, CED contributes to a much smaller KV cache, which cuts caching costs.</p><h2>More savings through KV cache improvements</h2><p>According to DeepSeek, V4.1-Flash's global KV cache requires just a quarter of the memory of V4-Flash's. The CED architecture contributes by projecting the decoder's KV cache from the encoder's output rather than computing it independently. It also works with two other techniques to further reduce KV cache.</p><ul><li><p>Compressed Sparse Attention 2: Share key-value entries across attention layers</p></li><li><p>FP4 KV caching: Store key-value entries at lower precision.</p></li></ul><div><p>✕</p><p><span><span>DeepSeek-V4.1-Flash’s global KV cache requires less memory per token.</span></span></p></div><p><em>Taken from </em><a href="https://www.deepseek.com/en/news/deepseek-v4-1-flash/" target="_blank" rel="noopener noreferrer nofollow"><em>Introducing DeepSeek-V4.1-Flash: smarter, faster, more efficient.</em></a></p><p>Less memory per token means more context fits in the cache, raising the hit rate. When a prompt's prefix is already cached, the model skips recomputing attention over those tokens, cutting time-to-first-token and raising throughput per GPU. Coding agents benefit most, since agentic loops resend largely the same context on every step. Capturing that reuse in production depends on how requests are routed across GPUs, which is where the serving stack comes in.</p><h2>Production inference for DeepSeek-V4.1-Flash</h2><p>The Baseten Inference Stack handles that routing with NVIDIA Dynamo and KV cache-aware routing, which steer each request to the replica already holding its prefix instead of whichever replica is free.</p><div><p>✕</p><p><span><span>“KV-aware routing sends requests to replicas that already have relevant context cached, saving time by avoiding redundant prefill computation.”</span></span></p></div><p><em>Taken from </em><a href="https://www.baseten.co/blog/how-baseten-achieved-2x-faster-inference-with-nvidia-dynamo/#how-baseten-uses-nvidia-dynamo" target="_blank" rel="noopener noreferrer nofollow"><em>2x faster inference with KV cache-aware routing</em></a></p><p>All of this runs behind <a href="https://app.baseten.co/model-apis/deepseek-ai/DeepSeek-V4.1-Flash" target="_blank" rel="noopener noreferrer nofollow">Baseten Model APIs</a>, where DeepSeek-V4.1-Flash is available now. Try it in our <a href="https://www.baseten.co/library/deepseek-v41-flash/" target="_blank" rel="noopener noreferrer nofollow">Model Library</a> or <a href="https://www.baseten.co/talk-to-us/?model=deepseek-v41-flash" target="_blank" rel="noopener noreferrer nofollow">reach out to us</a> about a dedicated deployment if your team needs reserve capacity.</p></div></div></div>
+  <div class="footer">
+    本文由 AI热点监控系统自动抓取 · 内容版权归原作者/网站所有<br>
+    快照仅用于学习交流，如需转载请访问原文
+  </div>
+</div>
+</body>
+</html>
