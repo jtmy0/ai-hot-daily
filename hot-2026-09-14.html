@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="referrer" content="no-referrer">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; script-src 'unsafe-inline'; img-src data:; connect-src 'none'; base-uri 'none'; form-action 'none'; frame-ancestors 'none'">
+<title>AI 热点日报 — 2026年9月14日</title>
+<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg-outer: #2d2d2d; --bg-page: #f8f6f1; --text-primary: #1a1a1a;
+  --text-secondary: #555; --text-muted: #999;
+  --tab-1: #98d4bb; --tab-2: #c7b8ea; --tab-3: #f4b8c5; --tab-4: #a8d8ea; --tab-5: #ffe6a7; --tab-6: #d4c5b9;
+  --font-display: 'Bodoni Moda', serif; --font-body: 'DM Sans', sans-serif; --border: #e0dcd4;
+  --expand-bg: #f0ede8;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html, body { height: 100%; overflow-x: hidden; }
+body { background: var(--bg-outer); font-family: var(--font-body); min-height: 100vh; display: flex; justify-content: center; align-items: flex-start; padding: clamp(1rem, 3vw, 3rem); }
+.notebook { position: relative; background: var(--bg-page); width: min(92vw, 920px); border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1), 0 20px 60px rgba(0,0,0,0.3); padding: clamp(2rem, 5vw, 4rem); padding-right: clamp(2.5rem, 6vw, 5rem); animation: pageIn 0.6s ease-out; }
+.notebook::before { content: ''; position: absolute; left: clamp(14px, 2vw, 24px); top: 0; bottom: 0; width: 2px; background: repeating-linear-gradient(to bottom, transparent 0px, transparent 30px, var(--border) 30px, var(--border) 32px); }
+.hole { position: absolute; left: clamp(8px, 1.5vw, 16px); width: clamp(10px, 1.5vw, 16px); height: clamp(10px, 1.5vw, 16px); border-radius: 50%; background: var(--bg-outer); border: 1.5px solid #bbb; }
+.hole:nth-child(1) { top: 12%; } .hole:nth-child(2) { top: 50%; } .hole:nth-child(3) { top: 88%; }
+
+.tabs { position: absolute; right: 0; top: 10%; display: flex; flex-direction: column; gap: 4px; z-index: 10; }
+.tab { padding: clamp(0.3rem, 0.8vw, 0.6rem) clamp(0.5rem, 1vw, 0.8rem); border-radius: 6px 0 0 6px; font-size: clamp(0.5rem, 1vh, 0.7rem); font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: rgba(0,0,0,0.6); writing-mode: vertical-rl; text-orientation: mixed; min-height: clamp(40px, 6vh, 60px); display: flex; align-items: center; justify-content: center; cursor: pointer; transition: transform 0.2s; border: none; background: none; font-family: inherit; }
+.tab:hover { transform: translateX(-4px); }
+.tab.active { transform: translateX(-6px); box-shadow: -2px 0 8px rgba(0,0,0,0.1); }
+.tab[data-cat="all"] { background: var(--text-primary); color: #fff; }
+.tab[data-cat="ai"] { background: var(--tab-1); }
+.tab[data-cat="dev"] { background: var(--tab-2); }
+.tab[data-cat="sec"] { background: var(--tab-3); }
+.tab[data-cat="biz"] { background: var(--tab-4); }
+.tab[data-cat="auto"] { background: var(--tab-5); }
+.tab[data-cat="other"] { background: var(--tab-6); }
+
+.header { margin-bottom: clamp(0.8rem, 2vw, 1.5rem); padding-bottom: clamp(0.6rem, 1.2vw, 1rem); border-bottom: 2px solid var(--text-primary); }
+.header h1 { font-family: var(--font-display); font-size: clamp(1.5rem, 4vw, 2.8rem); font-weight: 700; letter-spacing: -0.02em; color: var(--text-primary); }
+.header .subtitle { display: flex; justify-content: space-between; align-items: center; margin-top: 0.4rem; flex-wrap: wrap; gap: 0.5rem; }
+.header .date { font-family: var(--font-display); font-style: italic; font-size: clamp(0.7rem, 1.1vw, 0.95rem); color: var(--text-secondary); }
+.header .controls { display: flex; gap: 0.5rem; }
+.header .controls button { font-family: var(--font-body); font-size: clamp(0.55rem, 0.85vw, 0.72rem); padding: 0.25rem 0.6rem; border: 1px solid var(--border); border-radius: 4px; background: #fff; color: var(--text-secondary); cursor: pointer; transition: all 0.2s; }
+.header .controls button:hover { background: var(--text-primary); color: #fff; border-color: var(--text-primary); }
+.back-link { display: inline-flex; align-items: center; gap: 0.3em; font-size: clamp(0.6rem, 0.9vw, 0.75rem); color: var(--text-muted); text-decoration: none; margin-bottom: clamp(0.4rem, 0.8vw, 0.6rem); transition: color 0.2s; }
+.back-link:hover { color: var(--text-primary); }
+
+.entries { padding-left: clamp(0.5rem, 2vw, 1.5rem); }
+.entry { border-bottom: 1px solid var(--border); animation: fadeIn 0.4s ease-out backwards; transition: opacity 0.3s; }
+.entry.hidden { display: none; }
+.entry .entry-head { display: flex; gap: clamp(0.6rem, 1.5vw, 1.2rem); padding: clamp(0.6rem, 1.2vw, 1rem) 0; cursor: pointer; user-select: none; transition: padding-left 0.2s; }
+.entry .entry-head:hover { padding-left: 4px; }
+.entry .bullet { flex-shrink: 0; width: clamp(6px, 0.8vw, 8px); height: clamp(6px, 0.8vw, 8px); border-radius: 50%; margin-top: 0.55em; transition: transform 0.2s; }
+.entry.expanded .bullet { transform: scale(1.5); }
+.entry .info { flex: 1; min-width: 0; }
+.entry .info h3 { font-family: var(--font-body); font-size: clamp(0.8rem, 1.3vw, 1.05rem); font-weight: 500; line-height: 1.45; color: var(--text-primary); margin-bottom: 0.25rem; }
+.entry .info .meta { font-size: clamp(0.6rem, 0.9vw, 0.75rem); color: var(--text-muted); font-style: italic; }
+.entry .info .badge-icon { font-size: 0.85em; margin-right: 0.1em; }
+.entry .expand-icon { flex-shrink: 0; width: 20px; height: 20px; display: flex; align-items: center; justify-content: center; color: var(--text-muted); font-size: 12px; transition: transform 0.3s ease; margin-top: 0.3em; }
+.entry.expanded .expand-icon { transform: rotate(180deg); }
+
+.entry .detail-wrap { max-height: 0; overflow: hidden; transition: max-height 0.5s cubic-bezier(0.16, 1, 0.3, 1); }
+.entry.expanded .detail-wrap { max-height: 500px; }
+.entry .detail-inner { padding: clamp(0.5rem, 1vw, 0.8rem) 0 clamp(0.5rem, 1vw, 0.8rem) clamp(1.8rem, 3.5vw, 2.8rem); background: var(--expand-bg); border-radius: 6px; margin-bottom: clamp(0.4rem, 0.8vw, 0.6rem); border-left: 3px solid var(--border); }
+.entry .detail-inner p { font-size: clamp(0.72rem, 1.1vw, 0.9rem); line-height: 1.7; color: var(--text-secondary); }
+.entry .detail-inner p strong { color: var(--text-primary); font-weight: 600; }
+.entry .detail-inner .source-link { display: inline-flex; align-items: center; gap: 0.3em; margin-top: clamp(0.4rem, 0.7vw, 0.6rem); font-size: clamp(0.6rem, 0.9vw, 0.75rem); color: var(--text-muted); text-decoration: none; padding: 0.2rem 0.5rem; border: 1px solid var(--border); border-radius: 4px; transition: all 0.2s; }
+.entry .detail-inner .source-link:hover { color: var(--text-primary); border-color: var(--text-primary); background: rgba(0,0,0,0.03); }
+
+.footer { margin-top: clamp(0.8rem, 1.5vw, 1.5rem); padding-top: clamp(0.5rem, 1vw, 1rem); border-top: 1px solid var(--border); font-size: clamp(0.55rem, 0.85vw, 0.7rem); color: var(--text-muted); font-family: var(--font-display); font-style: italic; text-align: center; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem; }
+.footer .badge { display: inline-flex; align-items: center; gap: 0.3em; padding: 0.15rem 0.5rem; border: 1px solid var(--border); border-radius: 999px; font-style: normal; font-size: clamp(0.5rem, 0.75vw, 0.6rem); }
+
+@keyframes pageIn { from { opacity: 0; transform: scale(0.97); } to { opacity: 1; transform: scale(1); } }
+@keyframes fadeIn { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
+@media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.1s !important; } }
+</style>
+</head>
+<body>
+  <div class="notebook">
+    <div class="hole"></div><div class="hole"></div><div class="hole"></div>
+    <div class="tabs" id="tabs">
+      <button class="tab active" data-cat="all" title="全部">ALL</button>
+      <button class="tab" data-cat="ai" title="AI/大模型">AI</button>
+      <button class="tab" data-cat="dev" title="开发工具">DEV</button>
+      <button class="tab" data-cat="sec" title="安全">SEC</button>
+      <button class="tab" data-cat="biz" title="商业">BIZ</button>
+      <button class="tab" data-cat="auto" title="自动化">AUTO</button>
+      <button class="tab" data-cat="other" title="其他">OTHER</button>
+    </div>
+    <div class="header">
+      <a class="back-link" href="./">← 归档首页</a>
+      <h1>AI 热点日报</h1>
+      <div class="subtitle">
+        <span class="date">2026年9月14日，星期一 · 道法术器解读</span>
+        <div class="controls">
+          <button id="expandAll">展开全部</button>
+          <button id="collapseAll">收起全部</button>
+        </div>
+      </div>
+    </div>
+    <div class="entries" id="entries">
+      <div class="entry" data-cat="sec" style="animation-delay: 0.1s;">
+        <div class="entry-head">
+          <div class="bullet" style="background: var(--tab-3);"></div>
+          <div class="info">
+            <h3>AI破解370年古密码</h3>
+            <div class="meta">Hacker News · 🔥 92 · 6小时前</div>
+          </div>
+          <div class="expand-icon">▼</div>
+        </div>
+        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：AI正从生成内容转向解决人类数百年未解的结构性难题，密码学、蛋白质折叠、材料发现等领域将批量出现AI主导的突破。<strong>法</strong>：将领域问题转化为模式搜索任务，用算力替代人力穷举，适用于任何存在大量历史数据但缺乏有效分析手段的领域。<strong>术</strong>：1.收集该密码的完整密文和历史破译尝试记录；2.用Fable 5.1或同类推理模型做频率分析和模式匹配；3.对比传统密码学方法验证结果可靠性。<strong>器</strong>：Fable 5.1、古典密码学数据库、Hacker News讨论区。</p>
+<a class="source-link" href="https://www.vals.ai/blogs/fable-solves-cyphral-distich" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
+      </div>
+      <div class="entry" data-cat="dev" style="animation-delay: 0.18s;">
+        <div class="entry-head">
+          <div class="bullet" style="background: var(--tab-2);"></div>
+          <div class="info">
+            <h3>纯C跑前沿MoE模型</h3>
+            <div class="meta">GitHub Trending · 🔥 100 · 11小时前</div>
+          </div>
+          <div class="expand-icon">▼</div>
+        </div>
+        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：大模型推理正从云端集中式向本地分布式迁移，硬件门槛持续下降，<strong>算力民主化</strong>是不可逆趋势。<strong>法</strong>：用磁盘流式加载替代内存全量加载，以时间换空间，适用于所有内存受限但存储充足的推理场景。<strong>术</strong>：1.克隆colibri仓库并编译纯C代码；2.准备足够大的SSD存储MoE专家权重；3.在消费级硬件上测试推理延迟和吞吐量。<strong>器</strong>：colibri、MoE架构模型、SSD存储、纯C编译器。</p>
+<a class="source-link" href="https://github.com/JustVugg/colibri" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
+      </div>
+      <div class="entry" data-cat="ai" style="animation-delay: 0.26s;">
+        <div class="entry-head">
+          <div class="bullet" style="background: var(--tab-1);"></div>
+          <div class="info">
+            <h3>自主AI渗透测试代理</h3>
+            <div class="meta">GitHub Trending · 🔥 84 · 11小时前</div>
+          </div>
+          <div class="expand-icon">▼</div>
+        </div>
+        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：安全攻防正从人工驱动转向<strong>AI代理自主执行</strong>，攻击面和防御面同时被AI放大，安全行业的人力结构将根本性改变。<strong>法</strong>：将复杂任务拆解为侦察、扫描、利用、报告四个阶段，由多代理协作完成，适用于任何需要多步骤决策的自动化场景。<strong>术</strong>：1.部署pentagi并配置目标网络范围；2.设置代理权限边界和操作审计日志；3.用已知漏洞环境做红队演练验证效果。<strong>器</strong>：pentagi、Kali Linux、漏洞扫描工具链、Docker隔离环境。</p>
+<a class="source-link" href="https://github.com/vxcontrol/pentagi" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
+      </div>
+      <div class="entry" data-cat="ai" style="animation-delay: 0.33999999999999997s;">
+        <div class="entry-head">
+          <div class="bullet" style="background: var(--tab-1);"></div>
+          <div class="info">
+            <h3>音乐生成进入符号规划时代</h3>
+            <div class="meta">GitHub Trending · 🔥 78 · 11小时前</div>
+          </div>
+          <div class="expand-icon">▼</div>
+        </div>
+        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：AI生成正从单一模态的&quot;模仿输出&quot;转向带符号规划与智能体协作的&quot;结构化创作&quot;，音乐这类强时序、强结构的领域成为新前沿。<strong>法</strong>：把复杂创作拆成&quot;符号规划层+生成层+智能体调度层&quot;三段式架构，可迁移到视频、代码、游戏关卡等任何需要长程一致性的生成任务。<strong>术</strong>：1. 先构建符号化中间表示（如乐谱、结构图），再交给生成模型渲染音频；2. 用零样本翻唱验证模型的音色解耦与迁移能力；3. 引入智能体做多轨编排与迭代修正。<strong>器</strong>：YuE2、GitHub Trending、符号音乐表示工具、零样本音色迁移模型。</p>
+<a class="source-link" href="https://github.com/multimodal-art-projection/YuE" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
+      </div>
+      <div class="entry" data-cat="ai" style="animation-delay: 0.42000000000000004s;">
+        <div class="entry-head">
+          <div class="bullet" style="background: var(--tab-1);"></div>
+          <div class="info">
+            <h3>开源模型知识体系化沉淀</h3>
+            <div class="meta">Hacker News · 🔥 52 · 3小时前</div>
+          </div>
+          <div class="expand-icon">▼</div>
+        </div>
+        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：开源AI竞争已从&quot;单点模型发布&quot;进入&quot;知识体系与生态话语权&quot;阶段，阅读清单本质是社区在争夺技术叙事的定义权。<strong>法</strong>：用策展式内容聚合降低新进入者的学习成本，从而吸附开发者、形成事实标准，这套打法适用于任何快速迭代的技术领域。<strong>术</strong>：1. 按&quot;基础模型—训练方法—评测—应用&quot;分层整理必读论文与仓库；2. 标注每篇的时效性与适用场景，避免过时信息误导；3. 保持清单可PR、可版本化，让社区共同维护。<strong>器</strong>：Hacker News、GitHub、arXiv、Hugging Face、开源模型仓库。</p>
+<a class="source-link" href="https://www.interconnects.ai/p/open-source-ai-reading-list" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
+      </div>
+      <div class="entry" data-cat="ai" style="animation-delay: 0.5s;">
+        <div class="entry-head">
+          <div class="bullet" style="background: var(--tab-1);"></div>
+          <div class="info">
+            <h3>AI非普通技术的范式之争</h3>
+            <div class="meta">Hacker News · 🔥 51 · 2小时前</div>
+          </div>
+          <div class="expand-icon">▼</div>
+        </div>
+        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：AI是否属于&quot;普通技术&quot;的争论，实质是判断其扩散速度、通用性与社会嵌入深度是否突破历史技术范式，这决定监管、投资与组织变革的底层假设。<strong>法</strong>：面对颠覆性技术，先用&quot;通用目的技术&quot;框架评估其渗透率与互补创新需求，再决定是渐进适配还是重构流程。<strong>术</strong>：1. 对比电力、互联网的扩散曲线，判断AI所处阶段；2. 识别自身业务中被AI重构的环节而非仅做工具叠加；3. 建立小步快跑的试点机制，用数据验证而非口号决策。<strong>器</strong>：Hacker News、通用目的技术分析框架、行业渗透率数据、试点评估工具。</p>
+<a class="source-link" href="https://12gramsofcarbon.com/p/ai-is-not-a-normal-technology" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
+      </div>
+      <div class="entry" data-cat="ai" style="animation-delay: 0.58s;">
+        <div class="entry-head">
+          <div class="bullet" style="background: var(--tab-1);"></div>
+          <div class="info">
+            <h3>AI生物武器警告引专家分裂</h3>
+            <div class="meta">Hacker News · 🔥 51 · 3小时前</div>
+          </div>
+          <div class="expand-icon">▼</div>
+        </div>
+        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：AI安全议题正从学术讨论升级为公共政策博弈，生物武器这类极端风险一旦被主流叙事接纳，将直接推动前沿模型的准入管制与算力审查，技术自由度让位于生存优先级。<strong>法</strong>：面对潜在灾难性风险，先建立行业自律与第三方评估机制，再争取监管框架的参与权，避免被动接受外部强加的规则。<strong>术</strong>：跟踪该报告的评估方法与数据来源，判断风险等级是否被高估；在内部红队测试中纳入生物序列筛选场景；提前准备合规话术与安全白皮书。<strong>器</strong>：生物安全筛查工具、AI红队测试平台、政策智库报告。</p>
+<a class="source-link" href="https://www.science.org/content/article/chilling-warning-or-overreaction-ai-bioweapons-report-divides-experts" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
+      </div>
+      <div class="entry" data-cat="ai" style="animation-delay: 0.66s;">
+        <div class="entry-head">
+          <div class="bullet" style="background: var(--tab-1);"></div>
+          <div class="info">
+            <h3>Dario提全球AI限速三步计划</h3>
+            <div class="meta">36kr · 🔥 52 · 3小时前</div>
+          </div>
+          <div class="expand-icon">▼</div>
+        </div>
+        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：头部AI实验室开始主动寻求国际协调机制，本质是<strong>竞争格局固化后的防御策略</strong>，通过设定门槛将后来者挡在算力与数据壁垒之外，安全叙事成为新的护城河。<strong>法</strong>：在技术领先期主动参与规则制定，把自身标准转化为行业标准，用合规成本压制追赶者，适用于所有赢家通吃的技术赛道。<strong>术</strong>：梳理三步计划的具体阈值与时间表；评估自身模型是否在受限范围内；在开源与闭源策略间做出取舍；关注各国监管落地节奏。<strong>器</strong>：国际AI治理框架、算力出口管制清单、模型评估基准。</p>
+<a class="source-link" href="https://www.36kr.com/p/3981056866597638" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
+      </div>
+      <div class="entry" data-cat="ai" style="animation-delay: 0.74s;">
+        <div class="entry-head">
+          <div class="bullet" style="background: var(--tab-1);"></div>
+          <div class="info">
+            <h3>OpenAI发布GPT-6 Astra</h3>
+            <div class="meta">X：OpenAI Developers (@OpenAIDevs) · 🔥 100 · 昨天</div>
+          </div>
+          <div class="expand-icon">▼</div>
+        </div>
+        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：模型迭代速度已超过多数企业的集成能力，<strong>版本号竞赛让位于生态落地竞赛</strong>，社区构建案例的展示说明OpenAI正从卖API转向卖可复用的解决方案模板。<strong>法</strong>：平台型产品在技术领先时，应通过展示下游成功案例来降低采用门槛，把开发者转化为生态共建者，形成迁移成本。<strong>术</strong>：第一时间申请Astra的API访问权限；选取一个内部高频场景做对照测试；参考社区案例调整提示词与工作流；评估从现有模型迁移的投入产出比。<strong>器</strong>：GPT-6 Astra API、OpenAI社区案例库、LangChain等编排框架。</p>
+<a class="source-link" href="https://x.com/OpenAIDevs/status/2098827327832822014" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
+      </div>
+      <div class="entry" data-cat="ai" style="animation-delay: 0.82s;">
+        <div class="entry-head">
+          <div class="bullet" style="background: var(--tab-1);"></div>
+          <div class="info">
+            <h3>系统提示词被逆向提取</h3>
+            <div class="meta">GitHub Trending · 🔥 91 · 11小时前</div>
+          </div>
+          <div class="expand-icon">▼</div>
+        </div>
+        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：大模型的系统提示词正从厂商私有资产变成公开可复现的逆向对象，提示词工程的护城河在快速消失，真正的壁垒转向模型权重、数据闭环与产品集成。<strong>法</strong>：把不可见的黑盒行为转化为可审计的公开样本，用社区众包方式持续追踪厂商迭代，适用于任何依赖闭源接口的产品分析。<strong>术</strong>：1. 建立提示词版本库，按模型与日期归档，对比迭代差异；2. 用提取结果反推厂商的安全边界与拒答策略；3. 将公开提示词作为自研 Agent 的基线模板，减少试错成本。<strong>器</strong>：GitHub 仓库、Claude 系列模型、提示词对比工具。</p>
+<a class="source-link" href="https://github.com/sponsors/asgeirtj" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
+      </div>
+      <div class="entry" data-cat="ai" style="animation-delay: 0.9s;">
+        <div class="entry-head">
+          <div class="bullet" style="background: var(--tab-1);"></div>
+          <div class="info">
+            <h3>攻击技能库接入Claude</h3>
+            <div class="meta">GitHub Trending · 🔥 79 · 11小时前</div>
+          </div>
+          <div class="expand-icon">▼</div>
+        </div>
+        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：安全攻防能力正在被封装成可被 AI 调用的技能模块，攻击面自动化与防御自动化的军备竞赛同步加速，技能库成为新的分发单元。<strong>法</strong>：把领域专家的隐性经验结构化为标准化技能包，挂载到通用 Agent 上，实现能力复用与快速组合，适用于渗透测试、合规审计等专业场景。<strong>术</strong>：1. 按 MITRE ATT&amp;CK 等框架对技能分类打标；2. 在隔离沙箱中验证每个技能的可执行性与误报率；3. 建立授权与审计日志，避免技能被滥用。<strong>器</strong>：Claude Skills 系统、GitHub 仓库、渗透测试靶场环境。</p>
+<a class="source-link" href="https://github.com/SnailSploit/Claude-Red" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
+      </div>
+      <div class="entry" data-cat="ai" style="animation-delay: 0.98s;">
+        <div class="entry-head">
+          <div class="bullet" style="background: var(--tab-1);"></div>
+          <div class="info">
+            <h3>自托管AI销售CRM开源</h3>
+            <div class="meta">GitHub Trending · 🔥 75 · 11小时前</div>
+          </div>
+          <div class="expand-icon">▼</div>
+        </div>
+        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：SaaS 的标准化红利见顶，数据主权与定制化需求推动自托管开源方案回潮，AI Agent 成为 CRM 这类成熟品类的差异化入口。<strong>法</strong>：以开源核心获取信任与流量，用托管服务、行业模板和集成支持变现，适用于所有被巨头垄断的通用软件赛道。<strong>术</strong>：1. 用 Docker 一键部署，打通 WhatsApp 等本地化渠道；2. 将 AI Agent 绑定到线索评分、跟进提醒等高价值环节；3. 提供数据导出与私有化迁移路径，降低客户锁定顾虑。<strong>器</strong>：WAHA、Docker、自托管服务器、开源 CRM 框架。</p>
+<a class="source-link" href="https://github.com/melgarafael/DeskcommCRM" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
+      </div>
+      <div class="entry" data-cat="ai" style="animation-delay: 1.06s;">
+        <div class="entry-head">
+          <div class="bullet" style="background: var(--tab-1);"></div>
+          <div class="info">
+            <h3>开源智能体接管视频生产</h3>
+            <div class="meta">GitHub Trending · 🔥 72 · 11小时前</div>
+          </div>
+          <div class="expand-icon">▼</div>
+        </div>
+        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：视频生产正从人工流水线转向智能体编排，开源方案把原本封闭的专业制作能力拆解为可组合模块，长期看内容生产的边际成本将持续趋近于算力成本。<strong>法</strong>：把复杂生产流程拆成标准化管线与工具调用，用智能体做调度层，这套思路可迁移到设计、代码、营销等任何多步骤创意场景。<strong>术</strong>：1. 先梳理现有生产环节，识别可被工具替代的重复节点；2. 用开源管线搭建最小闭环，验证单条内容产出质量；3. 逐步替换闭源付费工具，测算成本与质量平衡点。<strong>器</strong>：calesthio 开源视频系统、12 条生产管线、100+ 内置工具。</p>
+<a class="source-link" href="https://github.com/sponsors/calesthio" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
+      </div>
+      <div class="entry" data-cat="ai" style="animation-delay: 1.1400000000000001s;">
+        <div class="entry-head">
+          <div class="bullet" style="background: var(--tab-1);"></div>
+          <div class="info">
+            <h3>并行研究智能体成新范式</h3>
+            <div class="meta">GitHub Trending · 🔥 67 · 11小时前</div>
+          </div>
+          <div class="expand-icon">▼</div>
+        </div>
+        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：研究型任务正从单线程问答转向多智能体并行探索，模型可替换意味着智能体框架的价值开始独立于底层模型，<strong>编排层</strong>成为新的竞争焦点。<strong>法</strong>：用并行智能体分头探索不同假设再汇总，这套<strong>分治加聚合</strong>策略适用于任何信息密集、路径不确定的调研任务。<strong>术</strong>：1. 把研究问题拆成互不重叠的子问题，分配给独立智能体；2. 设定统一输出格式便于后续聚合；3. 用交叉验证筛掉矛盾结论，保留高置信度结果。<strong>器</strong>：alphaXiv/OpenResearch、任意可接入的模型 API。</p>
+<a class="source-link" href="https://github.com/alphaXiv/OpenResearch" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
+      </div>
+      <div class="entry" data-cat="ai" style="animation-delay: 1.2200000000000002s;">
+        <div class="entry-head">
+          <div class="bullet" style="background: var(--tab-1);"></div>
+          <div class="info">
+            <h3>智能体技能注册表走向标准化</h3>
+            <div class="meta">GitHub Trending · 🔥 65 · 11小时前</div>
+          </div>
+          <div class="expand-icon">▼</div>
+        </div>
+        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：AI 编码智能体正从单体能力竞争转向<strong>技能生态</strong>竞争，安全校验过的技能注册表意味着智能体能力开始像软件包一样被分发、复用和审计。<strong>法</strong>：把可复用能力封装成经过验证的标准单元，通过注册表集中管理，这套<strong>模块化加可信分发</strong>策略适用于任何需要规模化复用的工具生态。<strong>术</strong>：1. 将团队常用编码能力抽象为独立技能单元；2. 接入注册表前做安全与兼容性校验；3. 建立版本管理，避免技能更新破坏现有工作流。<strong>器</strong>：tech-leads-club/agent-skills、Antigravity 等编码智能体平台。</p>
+<a class="source-link" href="https://github.com/tech-leads-club/agent-skills" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
+      </div>
+    </div>
+    <div class="footer">
+      <span>Generated by AI Hot Monitor v2 · DeepSeek · 11:01:32</span>
+      <span class="badge">💡 点击条目展开深度解读</span>
+    </div>
+  </div>
+<script>
+document.querySelectorAll('.entry .entry-head').forEach(h => h.addEventListener('click', () => h.closest('.entry').classList.toggle('expanded')));
+document.getElementById('expandAll').addEventListener('click', () => document.querySelectorAll('.entry:not(.hidden)').forEach(e => e.classList.add('expanded')));
+document.getElementById('collapseAll').addEventListener('click', () => document.querySelectorAll('.entry').forEach(e => e.classList.remove('expanded')));
+document.querySelectorAll('.tab').forEach(tab => tab.addEventListener('click', () => {
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  tab.classList.add('active');
+  const cat = tab.dataset.cat;
+  document.querySelectorAll('.entry').forEach(e => {
+    if (cat === 'all' || e.dataset.cat === cat) { e.classList.remove('hidden'); } else { e.classList.add('hidden'); e.classList.remove('expanded'); }
+  });
+}));
+document.addEventListener('keydown', e => { if (e.key === 'Escape') document.querySelectorAll('.entry').forEach(el => el.classList.remove('expanded')); });
+</script>
+</body>
+</html>
