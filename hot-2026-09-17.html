@@ -91,7 +91,7 @@ body { background: var(--bg-outer); font-family: var(--font-body); min-height: 1
       <a class="back-link" href="./">← 归档首页</a>
       <h1>AI 热点日报</h1>
       <div class="subtitle">
-        <span class="date">2026年9月17日，星期四 · 道法术器解读</span>
+        <span class="date">2026年9月17日，星期四· 含新增 · 道法术器解读</span>
         <div class="controls">
           <button id="expandAll">展开全部</button>
           <button id="collapseAll">收起全部</button>
@@ -103,185 +103,194 @@ body { background: var(--bg-outer); font-family: var(--font-body); min-height: 1
         <div class="entry-head">
           <div class="bullet" style="background: var(--tab-3);"></div>
           <div class="info">
-            <h3>小模型专精击败通用数据库</h3>
-            <div class="meta">Hacker News · 🔥 60 · 8小时前</div>
+            <h3><span class="badge-icon"> 🔄</span> 小模型专精查询优化</h3>
+            <div class="meta">Hacker News · 🔥 63 · 17小时前</div>
           </div>
           <div class="expand-icon">▼</div>
         </div>
-        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：通用基础设施正被垂直领域的小模型逐个击穿，专用智能体在单一任务上超越运行数十年的通用系统，标志能力评价标准从规模转向任务精度。<strong>法</strong>：以窄场景高价值任务为切口，用中等规模模型加领域数据做定向优化，换取远超通用方案的性能，再横向复制到相邻场景。<strong>术</strong>：1. 选定查询优化这类边界清晰、反馈可量化的任务；2. 用执行计划与真实耗时构造训练信号；3. 与 Postgres 基线做同负载对照，公开加速比。<strong>器</strong>：4B 级开源模型、Postgres 执行计划、查询基准测试集。</p>
+        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：通用大模型的能力竞赛正在让位于垂直场景的专用小模型，参数规模不再是性能的唯一标尺，<strong>领域数据质量与任务聚焦度</strong>成为新的护城河。数据库查询优化这类高价值、高门槛场景，恰好是通用模型覆盖不足但专用模型可以碾压的领域。
+<strong>法</strong>：在成熟系统（如Postgres）之上寻找可量化的性能瓶颈，用<strong>小规模专用模型替代或增强传统启发式模块</strong>，以可测量的指标（如查询速度提升百分比）证明价值，而非追求通用能力。
+<strong>术</strong>：1. 定位现有系统中规则驱动、效果不稳定的模块；2. 收集该模块的输入输出对作为训练数据；3. 训练4B以下小模型做端到端替代，用A/B测试验证加速比。
+<strong>器</strong>：Postgres查询规划器、4B级开源模型（如Qwen、Llama系列）、查询执行计划数据集。</p>
 <a class="source-link" href="https://rohanbansal.com/qorl" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
       </div>
-      <div class="entry" data-cat="dev" style="animation-delay: 0.18s;">
+      <div class="entry" data-cat="sec" style="animation-delay: 0.18s;">
         <div class="entry-head">
-          <div class="bullet" style="background: var(--tab-2);"></div>
+          <div class="bullet" style="background: var(--tab-3);"></div>
           <div class="info">
-            <h3>纯C实现本地跑前沿MoE</h3>
-            <div class="meta">GitHub Trending · 🔥 100 · 11小时前</div>
+            <h3><span class="badge-icon"> 🆕</span> 三值LLM突破1.58位</h3>
+            <div class="meta">Hacker News · 🔥 55 · 15小时前</div>
           </div>
           <div class="expand-icon">▼</div>
         </div>
-        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：推理成本正从云端算力租用转向本地硬件复用，模型权重与计算解耦后，消费级设备也能承载前沿架构，算力民主化不可逆。<strong>法</strong>：用磁盘流式加载专家权重替代全量驻留显存，以零依赖的极简实现降低部署门槛，把硬件存量转化为推理产能。<strong>术</strong>：1. 采用专家按需流式读取，避免一次性加载全部参数；2. 用纯 C 实现去除框架依赖，便于嵌入各类环境；3. 在自有设备上实测吞吐与延迟，评估替代 API 调用的成本线。<strong>器</strong>：colibri、MoE 架构、本地磁盘与消费级 GPU。</p>
-<a class="source-link" href="https://github.com/JustVugg/colibri" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
+        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：模型压缩的极限正在被持续突破，<strong>低比特量化从工程妥协变为架构创新</strong>。1.58-bit三值权重意味着推理成本可降至传统方案的极小比例，长期看将推动大模型从云端向边缘设备迁移。
+<strong>法</strong>：在精度与效率的权衡中，<strong>重新设计训练目标而非仅做训练后量化</strong>，让模型在训练阶段就适应极端低比特表示，从而在压缩率提升时保持可用性能。
+<strong>术</strong>：1. 在训练中引入三值约束（-1/0/1）并设计直通估计器；2. 对比训练后量化与量化感知训练的性能差距；3. 在边缘设备上实测推理延迟与内存占用。
+<strong>器</strong>：BitNet系列方法、三值量化训练框架、边缘推理引擎（如llama.cpp、ONNX Runtime）。</p>
+<a class="source-link" href="https://arxiv.org/abs/2609.16338" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
       </div>
       <div class="entry" data-cat="ai" style="animation-delay: 0.26s;">
         <div class="entry-head">
           <div class="bullet" style="background: var(--tab-1);"></div>
           <div class="info">
-            <h3>开源RAG平台降低知识门槛</h3>
-            <div class="meta">GitHub Trending · 🔥 89 · 11小时前</div>
+            <h3><span class="badge-icon"> 🆕</span> AI代理接管真实浏览器</h3>
+            <div class="meta">GitHub Trending · 🔥 94 · 20小时前</div>
           </div>
           <div class="expand-icon">▼</div>
         </div>
-        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：大模型竞争重心从模型能力转向知识接入与检索质量，谁能把非结构化文档高效转化为可查询知识，谁就掌握企业落地的入口。<strong>法</strong>：以开源平台封装文档解析、向量检索与推理编排，把 RAG 从工程项目变成可配置产品，用生态换采用率。<strong>术</strong>：1. 将存量文档批量导入并验证检索召回质量；2. 配置自主推理链路，对比纯检索与推理增强的效果差异；3. 评估私有化部署的数据合规与长期维护成本。<strong>器</strong>：WeKnora、向量数据库、RAG 检索与推理编排框架。</p>
-<a class="source-link" href="https://github.com/Tencent/WeKnora" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
+        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：AI代理正从沙箱环境走向<strong>真实生产环境</strong>，浏览器作为现代工作的核心入口，成为代理落地的高价值场景。让代理复用已登录会话而非重新认证，本质是降低自动化门槛、扩大可操作范围。
+<strong>法</strong>：通过<strong>CLI加浏览器扩展的组合</strong>，在不中断用户当前工作的前提下，将代理嵌入已有工作流，避免重建认证体系和页面交互逻辑，实现最小侵入式集成。
+<strong>术</strong>：1. 安装浏览器扩展并授权代理访问指定标签页；2. 通过CLI下发任务指令，代理在后台标签页执行操作；3. 设置操作白名单与人工确认节点，控制风险。
+<strong>器</strong>：Tencent BrowserSkill、Chrome扩展机制、CLI工具链。</p>
+<a class="source-link" href="https://github.com/Tencent/BrowserSkill" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
       </div>
       <div class="entry" data-cat="ai" style="animation-delay: 0.33999999999999997s;">
         <div class="entry-head">
           <div class="bullet" style="background: var(--tab-1);"></div>
           <div class="info">
-            <h3>AI智能体迁移83万行代码</h3>
-            <div class="meta">GitHub Blog · 🔥 100 · 3小时前</div>
+            <h3><span class="badge-icon"> 🔄</span> 开源语音克隆工具登榜</h3>
+            <div class="meta">GitHub Trending · 🔥 63 · 20小时前</div>
           </div>
           <div class="expand-icon">▼</div>
         </div>
-        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：AI编程智能体正从辅助补全走向大规模自主重构，代码迁移这类高复杂度工程开始被机器接管，软件生产的边际成本持续下探。<strong>法</strong>：用AI处理规则明确、验证标准清晰的存量工程任务，把人力释放到架构决策与边界定义上，是技术团队降本增效的通用路径。<strong>术</strong>：1. 先选测试覆盖率高、接口稳定的模块做试点迁移；2. 建立自动化回归验证，让AI产出必须过测试门禁；3. 保留人工审查关键路径，防止隐性行为偏移。<strong>器</strong>：GitHub Copilot 智能体、Rust 工具链、CI/CD 流水线与自动化测试框架。</p>
-<a class="source-link" href="https://github.blog/ai-and-ml/generative-ai/migrating-the-github-copilot-runtime-to-rust-using-copilot" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
+        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：语音克隆技术正从实验室走向开源工具化，核心壁垒从算法转向数据与合规。<strong>法</strong>：开源工具通过降低使用门槛快速积累用户，再以云服务或企业版变现。<strong>术</strong>：1. 在本地部署 voicebox 测试克隆效果；2. 评估语音数据隐私与版权风险；3. 对比商业 API 成本与延迟。<strong>器</strong>：voicebox、GitHub、本地 GPU 环境。</p>
+<a class="source-link" href="https://github.com/jamiepine/voicebox" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
       </div>
       <div class="entry" data-cat="ai" style="animation-delay: 0.42000000000000004s;">
         <div class="entry-head">
           <div class="bullet" style="background: var(--tab-1);"></div>
           <div class="info">
-            <h3>OpenAI披露模型错位风险</h3>
-            <div class="meta">X：AI Safety Memes (@AISafetyMemes) · 🔥 99 · 4小时前</div>
+            <h3><span class="badge-icon"> 🆕</span> n8n 集成 AI 工作流</h3>
+            <div class="meta">GitHub Trending · 🔥 57 · 20小时前</div>
           </div>
           <div class="expand-icon">▼</div>
         </div>
-        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：模型能力越强，目标错位与指令规避的风险越难靠事后修补解决，安全评估正从发布后补救转向发布前系统性审计。<strong>法</strong>：对高风险AI系统建立独立的错位检测与红队机制，把安全验证前置到训练和部署流程中，是能力迭代必须配套的治理动作。<strong>术</strong>：1. 在模型上线前设置指令遵循与自我修改行为的专项测试；2. 记录并公开异常案例，形成可追溯的风险档案；3. 将错位指标纳入模型发布评审的硬性门槛。<strong>器</strong>：OpenAI 模型错位报告框架、红队测试工具、模型行为审计日志系统。</p>
-<a class="source-link" href="https://x.com/AISafetyMemes/status/2100358777895780704" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
+        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：工作流自动化平台正从规则引擎转向 AI 原生，AI 能力成为标配而非增值。<strong>法</strong>：可视化编排加自定义代码，兼顾低代码易用性与开发者灵活性。<strong>术</strong>：1. 用 n8n 搭建 AI 节点串联 LLM 与业务系统；2. 将重复性人工流程迁移至自动化；3. 监控执行日志优化节点性能。<strong>器</strong>：n8n、LLM API、Webhook、数据库连接器。</p>
+<a class="source-link" href="https://github.com/n8n-io/n8n" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
       </div>
       <div class="entry" data-cat="ai" style="animation-delay: 0.5s;">
         <div class="entry-head">
           <div class="bullet" style="background: var(--tab-1);"></div>
           <div class="info">
-            <h3>ChatGPT广告智能体落地</h3>
-            <div class="meta">OpenAI：官网动态（RSS · 排除企业/客户案例） · 🔥 99 · 14小时前</div>
+            <h3><span class="badge-icon"> 🔄</span> Copilot 迁移 83 万行 Rus…</h3>
+            <div class="meta">GitHub Blog · 🔥 100 · 12小时前</div>
           </div>
           <div class="expand-icon">▼</div>
         </div>
-        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：大模型入口正在从信息工具演变为交易与营销渠道，对话式广告和智能体商务将重构流量分发与转化链路。<strong>法</strong>：在用户高频停留的AI入口内嵌入商业闭环，通过生态集成把广告、客服、下单串成一条链路，是平台变现的标准打法。<strong>术</strong>：1. 尽早接入Sponsored Agents测试，抢占早期流量红利；2. 打通HubSpot与Shopify，实现从曝光到成交的数据回流；3. 监控对话式广告的转化率与用户接受度，动态调整投放策略。<strong>器</strong>：ChatGPT Ads、Sponsored Agents、HubSpot、Shopify。</p>
-<a class="source-link" href="https://openai.com/index/reimagining-advertising-with-ai" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
+        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：AI 智能体正从辅助编码转向大规模代码迁移，语言现代化进程被显著加速。<strong>法</strong>：用 AI 智能体处理重复性高、模式明确的迁移任务，人类聚焦架构决策与验证。<strong>术</strong>：1. 将迁移拆分为模块化任务分派给智能体；2. 建立自动化测试与回滚机制；3. 人工审查关键路径与边界条件。<strong>器</strong>：GitHub Copilot 智能体、Rust 编译器、CI/CD 流水线。</p>
+<a class="source-link" href="https://github.blog/ai-and-ml/generative-ai/migrating-the-github-copilot-runtime-to-rust-using-copilot" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
       </div>
-      <div class="entry" data-cat="ai" style="animation-delay: 0.58s;">
+      <div class="entry" data-cat="dev" style="animation-delay: 0.58s;">
         <div class="entry-head">
-          <div class="bullet" style="background: var(--tab-1);"></div>
+          <div class="bullet" style="background: var(--tab-2);"></div>
           <div class="info">
-            <h3>Claude 合并协作与对话入口</h3>
-            <div class="meta">Claude：Blog（网页） · 🔥 100 · 10小时前</div>
+            <h3><span class="badge-icon"> 🆕</span> 英伟达推Rust原生GPU编程</h3>
+            <div class="meta">Hacker News · 🔥 67 · 昨天</div>
           </div>
           <div class="expand-icon">▼</div>
         </div>
-        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：AI 助手正从单点问答工具演化为统一工作台，入口收敛是平台化的必经阶段，长期趋势是对话即操作系统。<strong>法</strong>：把分散功能收进单一入口，用高频对话带动低频文档与协作，形成使用黏性与数据闭环。<strong>术</strong>：1. 将协作、文档、演示等能力挂载到同一会话上下文，避免多产品切换；2. 用统一账号体系打通权限与历史记录；3. 观察合并后留存与跨功能调用率，判断是否值得跟进迁移。<strong>器</strong>：Claude Cowork、Claude 统一客户端、企业协作套件。</p>
-<a class="source-link" href="https://claude.com/blog/cowork-is-now-claude" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
+        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：GPU编程正从CUDA单一垄断走向多语言开放生态，硬件厂商主动降低开发门槛以扩大开发者基数，这是算力竞争从芯片性能转向生态锁定的长期趋势。<strong>法</strong>：硬件平台通过支持主流现代语言来扩大开发者池，再用生态黏性反哺硬件销售，这套打法在移动端和云平台已被反复验证。<strong>术</strong>：1. 评估现有CUDA代码中可迁移到Rust的模块，优先从非核心推理路径切入；2. 在Rust生态中建立GPU算子库的早期贡献，抢占工具链话语权；3. 关注Rust GPU工具链的成熟度指标，如编译器稳定性和调试支持。<strong>器</strong>：Rust、CUDA、Nvidia GPU工具链、rust-gpu项目。</p>
+<a class="source-link" href="https://developer.nvidia.com/blog/introducing-cuda-rust-two-tracks-for-writing-gpu-kernels/" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
       </div>
       <div class="entry" data-cat="ai" style="animation-delay: 0.66s;">
         <div class="entry-head">
           <div class="bullet" style="background: var(--tab-1);"></div>
           <div class="info">
-            <h3>对话内嵌文档与演示生成</h3>
-            <div class="meta">X：Boris Cherny (@bcherny) · 🔥 100 · 11小时前</div>
+            <h3><span class="badge-icon"> 🔄</span> Claude合并聊天与协作功能</h3>
+            <div class="meta">Claude：Blog（网页） · 🔥 100 · 19小时前</div>
           </div>
           <div class="expand-icon">▼</div>
         </div>
-        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：内容生产正从独立软件转向对话内生成，办公套件的边界被对话界面侵蚀，长期看文档格式将退化为导出选项。<strong>法</strong>：把生成能力嵌入用户已有工作流，用标准格式导出降低迁移成本，是切入存量办公市场的通用打法。<strong>术</strong>：1. 在对话中直接产出 Docs、Slides、Design 草稿，减少工具跳转；2. 保留 PowerPoint 与 PDF 导出，兼容既有审阅流程；3. 评估生成内容的可编辑性与品牌模板一致性，再决定是否替代现有工具链。<strong>器</strong>：Claude Docs、Claude Slides、Claude Design、PowerPoint、PDF 导出。</p>
-<a class="source-link" href="https://x.com/bcherny/status/2100260544087535639" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
+        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：AI助手正从单一对话窗口进化为<strong>一体化工作台</strong>，聊天、文档、演示的边界消融，本质是争夺用户工作流的入口位置。<strong>法</strong>：将高频轻量功能（聊天）与低频重量功能（文档、幻灯片）打包，用前者带后者，提升整体迁移成本，适用于所有SaaS产品。<strong>术</strong>：1. 在统一界面内测试从对话直接生成文档的完整链路，评估输出质量；2. 对比导出PPT/PDF的格式保真度，判断能否替代现有办公工具；3. 监控团队协作场景下的权限管理和版本控制能力。<strong>器</strong>：Claude、Claude Docs、Claude Slides、PowerPoint、PDF导出。</p>
+<a class="source-link" href="https://claude.com/blog/cowork-is-now-claude" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
       </div>
       <div class="entry" data-cat="ai" style="animation-delay: 0.74s;">
         <div class="entry-head">
           <div class="bullet" style="background: var(--tab-1);"></div>
           <div class="info">
-            <h3>Gemini 3.8 Live 强化实时…</h3>
-            <div class="meta">Google DeepMind：Blog（RSS） · 🔥 98 · 昨天</div>
+            <h3><span class="badge-icon"> 🔄</span> Claude文档幻灯片嵌入对话</h3>
+            <div class="meta">X：Boris Cherny (@bcherny) · 🔥 100 · 20小时前</div>
           </div>
           <div class="expand-icon">▼</div>
         </div>
-        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：模型竞争焦点从静态参数规模转向实时交互与长思考能力，低延迟与深度推理并行成为下一代模型的标配方向。<strong>法</strong>：用双版本策略覆盖不同场景，标准版保响应速度，扩展思考版保复杂任务质量，让用户按成本与精度自行选择。<strong>术</strong>：1. 对实时对话、语音类场景优先接入 Live 标准版；2. 对分析、规划、代码类任务切换 Extended Thinking 版本；3. 建立按任务类型路由模型的策略，监控延迟与准确率的权衡曲线。<strong>器</strong>：Gemini 3.8 Live、Gemini 3.8 Live Extended Thinking、Google DeepMind API。</p>
-<a class="source-link" href="https://deepmind.google/blog/introducing-gemini-3-8-live-and-3-8-live-extended-thinking" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
+        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：AI生成内容正从<strong>纯文本输出</strong>转向<strong>结构化交付物</strong>，直接产出可用的商业文档格式，意味着AI开始替代传统办公软件的核心场景。<strong>法</strong>：让AI输出直接对接下游工具的标准格式（PPT、PDF），减少人工搬运环节，是提升AI工作流渗透率的关键策略。<strong>术</strong>：1. 用实际业务文档测试Claude生成PPT的排版逻辑和图表支持；2. 评估导出文件在企业模板下的兼容性，尤其是字体和配色；3. 建立AI生成文档的人工审核清单，确保合规和品牌一致性。<strong>器</strong>：Claude Design、PowerPoint、PDF、企业模板系统。</p>
+<a class="source-link" href="https://x.com/bcherny/status/2100260544087535639" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
       </div>
       <div class="entry" data-cat="ai" style="animation-delay: 0.82s;">
         <div class="entry-head">
           <div class="bullet" style="background: var(--tab-1);"></div>
           <div class="info">
-            <h3>编码智能体转向科研</h3>
-            <div class="meta">GitHub Trending · 🔥 83 · 11小时前</div>
+            <h3><span class="badge-icon"> 🔄</span> ChatGPT广告化开启变现</h3>
+            <div class="meta">OpenAI：官网动态（RSS · 排除企业/客户案例） · 🔥 99 · 23小时前</div>
           </div>
           <div class="expand-icon">▼</div>
         </div>
-        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：AI智能体的能力边界正从代码生成向通用研究流程迁移，编程只是其基础能力之一，长期趋势是智能体成为跨领域知识工作的通用执行层。<strong>法</strong>：将成熟智能体从单一任务场景向高价值复杂场景迁移，复用其推理与工具调用能力，降低新场景的构建成本。<strong>术</strong>：1. 梳理现有编码智能体的工具调用接口，评估其迁移到文献检索、假设验证等研究环节的可行性；2. 构建研究任务的最小闭环，先跑通检索-分析-输出链路；3. 对比迁移前后的任务完成质量与人工介入频率。<strong>器</strong>：alphaXiv、OpenResearch、GitHub Trending、主流编码智能体框架。</p>
-<a class="source-link" href="https://github.com/alphaXiv/OpenResearch" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
+        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：AI助手正从纯工具转向商业分发渠道，广告与代理集成标志大模型竞争进入<strong>流量变现阶段</strong>，长期趋势是对话界面取代传统搜索广告位。<strong>法</strong>：平台型产品先以免费能力聚拢用户，再引入广告主与电商生态，把注意力直接转化为交易，适用于所有高频交互入口。<strong>术</strong>：1. 在对话流中嵌入可点击的赞助代理，避免硬广打断体验；2. 打通HubSpot与Shopify，让广告直接对接CRM与库存；3. 按转化而非曝光计费，降低广告主试错成本。<strong>器</strong>：ChatGPT Ads、Sponsored Agents、HubSpot、Shopify。</p>
+<a class="source-link" href="https://openai.com/index/reimagining-advertising-with-ai" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
       </div>
       <div class="entry" data-cat="ai" style="animation-delay: 0.9s;">
         <div class="entry-head">
           <div class="bullet" style="background: var(--tab-1);"></div>
           <div class="info">
-            <h3>智能体安全审计技能化</h3>
-            <div class="meta">GitHub Trending · 🔥 80 · 11小时前</div>
+            <h3><span class="badge-icon"> 🔄</span> Gemini实时推理再升级</h3>
+            <div class="meta">Google DeepMind：Blog（RSS） · 🔥 98 · 昨天</div>
           </div>
           <div class="expand-icon">▼</div>
         </div>
-        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：安全审计正从人工专家驱动转向智能体技能驱动，多阶段可验证的自动化审计成为基础设施级能力，长期看安全能力将以技能包形式嵌入各类智能体。<strong>法</strong>：把复杂专业流程拆解为多阶段可独立验证的技能模块，每个阶段产出可机器校验的结果，适用于所有高风险自动化场景。<strong>术</strong>：1. 将审计流程拆分为侦察、扫描、验证、报告四个独立阶段；2. 为每个阶段定义机器可校验的通过标准；3. 在CI/CD中集成审计技能，实现每次提交自动触发。<strong>器</strong>：cloudflare/security-audit-skill、GitHub Actions、CI/CD流水线、编码智能体平台。</p>
-<a class="source-link" href="https://github.com/cloudflare/security-audit-skill" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
+        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：模型竞争焦点从参数规模转向<strong>实时交互与长链推理</strong>，低延迟加深度思考成为多模态助手的标配能力。<strong>法</strong>：用双版本策略覆盖不同场景，标准版保响应速度，扩展思考版保复杂任务质量，让用户按需切换而非一刀切。<strong>术</strong>：1. 将Live版接入语音与视频通话类应用，抢占实时交互入口；2. 对数学、代码等任务默认启用Extended Thinking；3. 监控延迟与成本曲线，动态路由请求。<strong>器</strong>：Gemini 3.8 Live、Extended Thinking、Google DeepMind API。</p>
+<a class="source-link" href="https://deepmind.google/blog/introducing-gemini-3-8-live-and-3-8-live-extended-thinking" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
       </div>
       <div class="entry" data-cat="ai" style="animation-delay: 0.98s;">
         <div class="entry-head">
           <div class="bullet" style="background: var(--tab-1);"></div>
           <div class="info">
-            <h3>工程技能包成智能体标配</h3>
-            <div class="meta">GitHub Trending · 🔥 71 · 11小时前</div>
+            <h3><span class="badge-icon"> 🔄</span> 腾讯开源RAG知识平台</h3>
+            <div class="meta">GitHub Trending · 🔥 89 · 20小时前</div>
           </div>
           <div class="expand-icon">▼</div>
         </div>
-        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：AI编码智能体的竞争焦点正从模型能力转向技能生态，生产级工程技能的可复用封装成为智能体落地效果的关键变量，长期趋势是技能市场取代提示词工程。<strong>法</strong>：将资深工程师的隐性经验封装为标准化、可组合的技能模块，通过技能复用实现工程能力的规模化分发。<strong>术</strong>：1. 盘点团队高频工程动作，优先封装代码审查、测试生成、依赖升级三类技能；2. 为每个技能定义输入输出契约与失败回退策略；3. 建立技能版本管理与效果回归机制。<strong>器</strong>：addyosmani/agent-skills、GitHub Trending、主流AI编码智能体、技能注册与分发平台。</p>
-<a class="source-link" href="https://github.com/addyosmani/agent-skills" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
+        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：企业知识管理正从文档存储转向<strong>可查询的推理层</strong>，开源RAG平台降低私有数据接入大模型的门槛，长期看数据主权与模型能力同等重要。<strong>法</strong>：以开源框架切入企业内网，把非结构化文档转为可检索、可推理的资产，再靠托管服务与定制支持变现。<strong>术</strong>：1. 用WeKnora将PDF、表格批量解析为向量索引；2. 接入自主推理代理处理多跳问答；3. 在内网部署以规避数据外泄风险。<strong>器</strong>：Tencent WeKnora、RAG、向量数据库、LLM推理代理。</p>
+<a class="source-link" href="https://github.com/Tencent/WeKnora" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
       </div>
       <div class="entry" data-cat="ai" style="animation-delay: 1.06s;">
         <div class="entry-head">
           <div class="bullet" style="background: var(--tab-1);"></div>
           <div class="info">
-            <h3>开源语音工作室降低创作门槛</h3>
-            <div class="meta">GitHub Trending · 🔥 63 · 11小时前</div>
+            <h3><span class="badge-icon"> 🔄</span> 编码智能体转向科研</h3>
+            <div class="meta">GitHub Trending · 🔥 83 · 20小时前</div>
           </div>
           <div class="expand-icon">▼</div>
         </div>
-        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：语音克隆与合成技术正从实验室走向开源工具链，核心趋势是<strong>创作权下放</strong>——专业级语音能力不再被少数平台垄断，个人开发者可直接调用模型完成克隆、听写与生成。<strong>法</strong>：以开源项目为底座快速构建垂直场景应用，用社区迭代替代自研投入，适用于任何AI能力商品化初期。<strong>术</strong>：1. 克隆前确认目标声音的授权边界，避免法律风险；2. 优先测试听写准确率与克隆相似度两项指标；3. 将语音能力封装为API接入现有工作流。<strong>器</strong>：voicebox、GitHub、开源语音模型权重。</p>
-<a class="source-link" href="https://github.com/jamiepine/voicebox" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
+        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：AI 智能体的能力边界正从代码生成扩展到知识生产，编码能力只是通用推理的入口，长期看所有可结构化的工作流都会被智能体重构。<strong>法</strong>：把已验证的智能体执行框架迁移到新领域，用同一套工具链覆盖不同任务类型，降低跨场景复用的边际成本。<strong>术</strong>：1. 将研究流程拆解为可验证的子任务，交给智能体分步执行；2. 保留人工审核节点，避免幻觉污染结论；3. 用版本控制追踪每次实验的输入输出。<strong>器</strong>：alphaXiv、OpenResearch、GitHub 开源智能体框架。</p>
+<a class="source-link" href="https://github.com/alphaXiv/OpenResearch" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
       </div>
       <div class="entry" data-cat="ai" style="animation-delay: 1.1400000000000001s;">
         <div class="entry-head">
           <div class="bullet" style="background: var(--tab-1);"></div>
           <div class="info">
-            <h3>符号规划提升音乐生成可控性</h3>
-            <div class="meta">GitHub Trending · 🔥 61 · 11小时前</div>
+            <h3><span class="badge-icon"> 🔄</span> 智能体安全审计技能</h3>
+            <div class="meta">GitHub Trending · 🔥 80 · 20小时前</div>
           </div>
           <div class="expand-icon">▼</div>
         </div>
-        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：音乐生成正从端到端黑盒转向<strong>符号规划加神经合成</strong>的混合架构，长期趋势是生成过程可解释、可编辑、可干预，零样本翻唱与智能体编曲成为新基线。<strong>法</strong>：在生成任务中引入结构化中间表示，先规划再渲染，可迁移至视频、代码等复杂内容生成场景。<strong>术</strong>：1. 用符号规划层拆解曲式、和弦与节奏再交给声学模型；2. 零样本翻唱需验证音色迁移与音高保真度；3. 智能体编曲适合批量生成背景音乐素材。<strong>器</strong>：YuE2、符号音乐表示工具、GitHub。</p>
-<a class="source-link" href="https://github.com/multimodal-art-projection/YuE" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
+        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：安全审计正从人工经验驱动转向智能体流程驱动，多阶段独立验证成为可信自动化的前提，<strong>可验证性</strong>比自动化程度更决定落地速度。<strong>法</strong>：把复杂审计拆成多阶段流水线，每个阶段产出可独立复核的证据，用交叉验证替代单点信任。<strong>术</strong>：1. 将审计任务分解为侦察、扫描、验证、报告四阶段；2. 每阶段输出机器可读的结构化结果；3. 引入独立验证环节，防止单模型自证。<strong>器</strong>：cloudflare/security-audit-skill、编码智能体技能框架。</p>
+<a class="source-link" href="https://github.com/cloudflare/security-audit-skill" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
       </div>
       <div class="entry" data-cat="ai" style="animation-delay: 1.2200000000000002s;">
         <div class="entry-head">
           <div class="bullet" style="background: var(--tab-1);"></div>
           <div class="info">
-            <h3>Claude办公全家桶争夺入口</h3>
-            <div class="meta">36kr · 🔥 81 · 3小时前</div>
+            <h3><span class="badge-icon"> 🔄</span> 工程级智能体技能库</h3>
+            <div class="meta">GitHub Trending · 🔥 71 · 20小时前</div>
           </div>
           <div class="expand-icon">▼</div>
         </div>
-        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：AI助手竞争已从模型能力转向<strong>办公入口争夺</strong>，谁占据文档、邮件、日历的默认调用位，谁就掌握企业数据流与工作习惯，长期看入口价值高于模型本身。<strong>法</strong>：以高频办公场景为楔子，用全家桶绑定用户，再向上下游扩展，适用于所有平台型AI产品。<strong>术</strong>：1. 评估现有办公套件的AI替换成本与数据迁移难度；2. 在团队内小范围试点Claude办公链路，记录效率变化；3. 关注与微软生态的兼容性缺口，制定双轨方案。<strong>器</strong>：Claude、微软Copilot、办公套件API。</p>
-<a class="source-link" href="https://www.36kr.com/p/3986702306294536" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
+        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：智能体竞争正从模型能力转向<strong>技能资产</strong>积累，可复用的工程技能库成为新的护城河，模型会迭代但沉淀的工作流持续增值。<strong>法</strong>：把工程最佳实践封装成标准化技能模块，让智能体按需调用，实现经验的可移植和可组合。<strong>术</strong>：1. 梳理团队高频工程任务，抽象为独立技能单元；2. 为每个技能定义清晰的输入输出契约；3. 建立技能版本管理和回归测试机制。<strong>器</strong>：addyosmani/agent-skills、GitHub Trending、主流编码智能体平台。</p>
+<a class="source-link" href="https://github.com/addyosmani/agent-skills" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
       </div>
     </div>
     <div class="footer">
-      <span>Generated by AI Hot Monitor v2 · DeepSeek · 11:01:33</span>
+      <span>Generated by AI Hot Monitor v2 · DeepSeek · 20:01:48</span>
       <span class="badge">💡 点击条目展开深度解读</span>
     </div>
   </div>
