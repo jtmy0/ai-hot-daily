@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="referrer" content="no-referrer">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'unsafe-inline'; img-src data:; connect-src 'none'; frame-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'; frame-ancestors 'none'">
+<title>If AI coding is lowering your code quality, you’re not managing quality right - AI热点快照</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','PingFang SC','Microsoft YaHei',sans-serif;background:#f8f9fa;color:#1a1a2e;line-height:1.8;min-height:100vh}
+.top-bar{background:#fff;border-bottom:1px solid #e5e7eb;padding:10px 20px;display:flex;align-items:center;gap:12px;position:sticky;top:0;z-index:10}
+.top-bar .logo{font-size:14px;font-weight:700;color:#0d9488}
+.top-bar .sep{color:#d1d5db}
+.top-bar .source{font-size:13px;color:#6b7280}
+.top-bar .back{margin-left:auto;font-size:13px;color:#0d9488;text-decoration:none}
+.top-bar .back:hover{text-decoration:underline}
+.container{max-width:760px;margin:0 auto;padding:40px 24px 80px}
+.article-title{font-size:1.8rem;font-weight:700;line-height:1.35;margin-bottom:16px;color:#1a1a2e}
+.article-meta{display:flex;flex-wrap:wrap;gap:16px;padding-bottom:20px;margin-bottom:28px;border-bottom:1px solid #e5e7eb;font-size:14px;color:#6b7280}
+.article-meta a{color:#0d9488;text-decoration:none}
+.article-meta a:hover{text-decoration:underline}
+.article-body{font-size:16.5px;line-height:1.85;color:#1f2937}
+.article-body p{margin-bottom:1.2em;text-align:justify}
+.article-body h1,.article-body h2,.article-body h3{font-size:1.25em;font-weight:700;margin:1.6em 0 0.6em;color:#1a1a2e}
+.article-body a{color:#0d9488}
+.article-body pre,.article-body code{background:#f1f5f9;border-radius:4px;font-size:0.9em}
+.article-body pre{padding:16px;overflow-x:auto;margin:1em 0}
+.article-body code{padding:2px 6px}
+.article-body blockquote{border-left:3px solid #0d9488;padding-left:16px;color:#4b5563;margin:1em 0}
+.article-body ul,.article-body ol{padding-left:1.6em;margin-bottom:1em}
+.article-body li{margin-bottom:0.4em}
+.article-body figure{margin:1.2em 0}
+.article-body figcaption{font-size:13px;color:#9ca3af;text-align:center;margin-top:6px}
+.footer{margin-top:48px;padding-top:20px;border-top:1px solid #e5e7eb;font-size:13px;color:#9ca3af;text-align:center}
+</style>
+</head>
+<body>
+<div class="top-bar">
+  <a class="back" href="../" style="font-size:13px;color:#6b7280;text-decoration:none">← 日报首页</a>
+  <span class="sep">|</span>
+  <span class="logo">AI热点快照</span>
+  <span class="sep">|</span>
+  <span class="source">Iouri Khramtsov</span>
+  <a class="back" href="https://www.i-kh.net/p/if-ai-coding-is-lowering-your-code" target="_blank" rel="noopener noreferrer">查看原文 ↗</a>
+</div>
+<div class="container">
+  <h1 class="article-title">If AI coding is lowering your code quality, you’re not managing quality right</h1>
+  <div class="article-meta">
+    <span>作者: Iouri Khramtsov</span>
+    <span>来源: Iouri Khramtsov</span>
+    <span>快照日期: 2026-09-20</span>
+  </div>
+  <div class="article-body"><div><div><div><p>One common take on the coding agents that I see goes something like this: “Sure, AI helps you output more code, but won’t the quality suffer?”</p><p>It certainly will if you just blindly merge the PRs and send them off to prod. But if you take a thoughtful, layered approach to managing quality, I find that it’s possible to not just keep the number of bugs stable but actually reduce it—while still increasing the output by 2-2x.</p><p>Many of these defensive layers are pretty much the same as before Claude/Copilot/Codex/etc. (though they’re made easier now by AI), while others are new. Here’s a defensive setup that I’ve seen successfully used in practice, both on my team and elsewhere.</p><p><span>One of the biggest surprises after </span><a href="https://www.i-kh.net/p/my-spec-first-workflow-for-ai-coding" target="_blank" rel="noopener noreferrer nofollow">I started using spec-driven development</a><span> was the drop in bugs in the freshly written code. Before spec-driven development, when building, e.g., a new feature, the teams I was on often spent up to a third of the total effort on the post-development “polishing,” i.e., discovering and fixing various bugs. Many of these bugs occurred either because we didn’t foresee certain interactions and edge cases, or because the developer was tired that day and didn’t put in enough thought, or because the designer or PM didn’t think through certain scenarios. Some of these bugs were missed and ended up in production.</span></p><p>After I started using spec-driven development, the number of these bugs in my code sharply dropped, and I’ve seen the same drop for some (but not all) of my teammates. As far as I can tell, the main cause of this drop is one specific step in the process: having the AI review the requirements or the tech design and find any gaps, edge cases, unexpected interactions with the existing code, or other similar problems.</p><p>The AI doesn’t get tired and, when prompted right, is a lot less likely to give up hunting for potential issues. If anything, it can sometimes be overzealous, and I have to carefully review its proposed edits to the requirements to make sure that it doesn’t invent any issues that aren’t there.</p><p>Coding agents now make test-driven development (TDD) trivial to the point where there’s no reason not to do it. However, it needs to be done right: you don’t want the agent to blindly write passing tests for any bugs it just added to the code. So the best planning and implementation skills I’ve seen usually follow this pattern:</p><ul><li><p>Instruct the agent to think through the test scenarios and test cases based on the requirements,</p></li><li><p>Write the test cases,</p></li><li><p>Write the implementation,</p></li><li><p>Test the implementation against the test cases and fix any issues that come up,</p></li><li><p>Maybe backfill any remaining coverage gaps—but again, keeping the requirements in mind.</p></li></ul><p>Also, with the agents writing the tests, there’s no excuse not to shoot for near-universal coverage or to wait on backfilling any missing unit tests.</p><p>There’s still no substitute for a human (you, QA, PM, or someone else) actually trying out the feature, going through all the edge cases, and seeing whether everything works as expected or whether you need to make changes.</p><p>These manual tests can take a while, especially if the test scenarios take some effort to set up. This is one of the steps that so far has seen only modest gains in productivity, and it’s the main reason that my output has increased only 2-3x instead of something like 10x. Though now that I think about it, there may be a few opportunities for automation here that I’ve missed.</p><p>End-to-end (E2E) tests are arguably the most important tests in the codebase because they verify that new changes haven’t broken any existing functionality as experienced by the end user. Ideally, they’d run on the PRs, in the test/stage environments, and in production after every deployment. Ideally, they’d also be maintained by the same developers who write regular code, but I understand that some organizations aren’t really set up for that.</p><p>AI does make it easier to write E2E tests, but to do that effectively, it needs access to the tools or MCP servers that let it debug test failures—e.g., a browser tool or MCP access to the logs. However, it’s important to keep in mind that E2E tests aren’t a substitute for manual testing because they’re just a rough, incomplete check that nothing important broke.</p><p><span>I find that coding agents aren’t great at following complex instructions in </span><code>AGENTS.md</code><span> or </span><code>CLAUDE.md</code><span>. But they do pretty well if you add a separate pass to find and fix specific issues. These can be:</span></p><ul><li><p>Security issues,</p></li><li><p>Finding overcomplicated or duplicated code,</p></li><li><p>Compliance with naming, file organization, or formatting rules,</p></li><li><p>A general code review pass to find any issues with the logic,</p></li><li><p>Overly long comments written in AI-ese instead of regular English,</p></li><li><p>Any other specific things that you’d like to find and fix.</p></li></ul><p>If added to the planning or implementation skills, these can be pretty much “free” additions, adding maybe 5-15 min to the implementation time with no additional attention required.</p><p>They can be also added to the PR reviews if you prefer to take a look at the comments before applying any fixes.</p><p>I think I’m becoming convinced that for minor tweaks and simple bug fixes, human reviews can become optional. Provided that other defensive layers are still in place.</p><p>But for complex changes, I find that it’s still necessary to review AI-written code. I still regularly find big-picture mistakes, missed adverse interactions with other features, overcomplicated or suboptimal implementations, and other problems. Not to mention weird word choices like “mint” instead of “generate” or “stamp” instead of “set.”</p><p>AI code reviews have also been a really great addition. On my current team, we run both Claude and Cursor reviews on the PRs, and surprisingly, each of them finds different problems. You can also add other custom reviews from various angles, like security, efficiency, interactions with other repos, and so on, though be aware that AI can be overly nitpicky in its reviews, so it’s important to also have a pass where another agent prunes the proposed AI-generated PR comments that aren’t actually meaningful.</p><p>Once the code is in production, at a minimum, it’s good to have someone periodically scroll through the logs or watch any user recordings in something like Fullstory, or review various dashboards that track error rates, latencies, and other issues.</p><p>Even better would be an error tracking service like Sentry or GCP’s Error Reporting that detects and deduplicates errors.</p><p>The best approach, however, would be to then have Claude/Cursor/whatever auto-diagnose these errors, figure out the root cause, and make PRs with the proposed fix.</p><p>I’m sure I’ve missed other important components of maintaining high quality, but the main idea is that with the right set of defensive layers, the increased output doesn’t have to come at the cost of reliability. If anything, coding agents now make it cheaper to add more and deeper checks than before: more tests, more review passes, faster diagnosis of production issues.</p><p>So if you’re sufficiently focused on quality, I think it’s entirely possible to double the delivery speed while keeping the bugs under control. Or maybe even reducing them.</p></div></div></div></div>
+  <div class="footer">
+    本文由 AI热点监控系统自动抓取 · 内容版权归原作者/网站所有<br>
+    快照仅用于学习交流，如需转载请访问原文
+  </div>
+</div>
+</body>
+</html>
