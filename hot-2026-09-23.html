@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="referrer" content="no-referrer">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; script-src 'unsafe-inline'; img-src data:; connect-src 'none'; base-uri 'none'; form-action 'none'; frame-ancestors 'none'">
+<title>AI 热点日报 — 2026年9月23日</title>
+<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg-outer: #2d2d2d; --bg-page: #f8f6f1; --text-primary: #1a1a1a;
+  --text-secondary: #555; --text-muted: #999;
+  --tab-1: #98d4bb; --tab-2: #c7b8ea; --tab-3: #f4b8c5; --tab-4: #a8d8ea; --tab-5: #ffe6a7; --tab-6: #d4c5b9;
+  --font-display: 'Bodoni Moda', serif; --font-body: 'DM Sans', sans-serif; --border: #e0dcd4;
+  --expand-bg: #f0ede8;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html, body { height: 100%; overflow-x: hidden; }
+body { background: var(--bg-outer); font-family: var(--font-body); min-height: 100vh; display: flex; justify-content: center; align-items: flex-start; padding: clamp(1rem, 3vw, 3rem); }
+.notebook { position: relative; background: var(--bg-page); width: min(92vw, 920px); border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1), 0 20px 60px rgba(0,0,0,0.3); padding: clamp(2rem, 5vw, 4rem); padding-right: clamp(2.5rem, 6vw, 5rem); animation: pageIn 0.6s ease-out; }
+.notebook::before { content: ''; position: absolute; left: clamp(14px, 2vw, 24px); top: 0; bottom: 0; width: 2px; background: repeating-linear-gradient(to bottom, transparent 0px, transparent 30px, var(--border) 30px, var(--border) 32px); }
+.hole { position: absolute; left: clamp(8px, 1.5vw, 16px); width: clamp(10px, 1.5vw, 16px); height: clamp(10px, 1.5vw, 16px); border-radius: 50%; background: var(--bg-outer); border: 1.5px solid #bbb; }
+.hole:nth-child(1) { top: 12%; } .hole:nth-child(2) { top: 50%; } .hole:nth-child(3) { top: 88%; }
+
+.tabs { position: absolute; right: 0; top: 10%; display: flex; flex-direction: column; gap: 4px; z-index: 10; }
+.tab { padding: clamp(0.3rem, 0.8vw, 0.6rem) clamp(0.5rem, 1vw, 0.8rem); border-radius: 6px 0 0 6px; font-size: clamp(0.5rem, 1vh, 0.7rem); font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: rgba(0,0,0,0.6); writing-mode: vertical-rl; text-orientation: mixed; min-height: clamp(40px, 6vh, 60px); display: flex; align-items: center; justify-content: center; cursor: pointer; transition: transform 0.2s; border: none; background: none; font-family: inherit; }
+.tab:hover { transform: translateX(-4px); }
+.tab.active { transform: translateX(-6px); box-shadow: -2px 0 8px rgba(0,0,0,0.1); }
+.tab[data-cat="all"] { background: var(--text-primary); color: #fff; }
+.tab[data-cat="ai"] { background: var(--tab-1); }
+.tab[data-cat="dev"] { background: var(--tab-2); }
+.tab[data-cat="sec"] { background: var(--tab-3); }
+.tab[data-cat="biz"] { background: var(--tab-4); }
+.tab[data-cat="auto"] { background: var(--tab-5); }
+.tab[data-cat="other"] { background: var(--tab-6); }
+
+.header { margin-bottom: clamp(0.8rem, 2vw, 1.5rem); padding-bottom: clamp(0.6rem, 1.2vw, 1rem); border-bottom: 2px solid var(--text-primary); }
+.header h1 { font-family: var(--font-display); font-size: clamp(1.5rem, 4vw, 2.8rem); font-weight: 700; letter-spacing: -0.02em; color: var(--text-primary); }
+.header .subtitle { display: flex; justify-content: space-between; align-items: center; margin-top: 0.4rem; flex-wrap: wrap; gap: 0.5rem; }
+.header .date { font-family: var(--font-display); font-style: italic; font-size: clamp(0.7rem, 1.1vw, 0.95rem); color: var(--text-secondary); }
+.header .controls { display: flex; gap: 0.5rem; }
+.header .controls button { font-family: var(--font-body); font-size: clamp(0.55rem, 0.85vw, 0.72rem); padding: 0.25rem 0.6rem; border: 1px solid var(--border); border-radius: 4px; background: #fff; color: var(--text-secondary); cursor: pointer; transition: all 0.2s; }
+.header .controls button:hover { background: var(--text-primary); color: #fff; border-color: var(--text-primary); }
+.back-link { display: inline-flex; align-items: center; gap: 0.3em; font-size: clamp(0.6rem, 0.9vw, 0.75rem); color: var(--text-muted); text-decoration: none; margin-bottom: clamp(0.4rem, 0.8vw, 0.6rem); transition: color 0.2s; }
+.back-link:hover { color: var(--text-primary); }
+
+.entries { padding-left: clamp(0.5rem, 2vw, 1.5rem); }
+.entry { border-bottom: 1px solid var(--border); animation: fadeIn 0.4s ease-out backwards; transition: opacity 0.3s; }
+.entry.hidden { display: none; }
+.entry .entry-head { display: flex; gap: clamp(0.6rem, 1.5vw, 1.2rem); padding: clamp(0.6rem, 1.2vw, 1rem) 0; cursor: pointer; user-select: none; transition: padding-left 0.2s; }
+.entry .entry-head:hover { padding-left: 4px; }
+.entry .bullet { flex-shrink: 0; width: clamp(6px, 0.8vw, 8px); height: clamp(6px, 0.8vw, 8px); border-radius: 50%; margin-top: 0.55em; transition: transform 0.2s; }
+.entry.expanded .bullet { transform: scale(1.5); }
+.entry .info { flex: 1; min-width: 0; }
+.entry .info h3 { font-family: var(--font-body); font-size: clamp(0.8rem, 1.3vw, 1.05rem); font-weight: 500; line-height: 1.45; color: var(--text-primary); margin-bottom: 0.25rem; }
+.entry .info .meta { font-size: clamp(0.6rem, 0.9vw, 0.75rem); color: var(--text-muted); font-style: italic; }
+.entry .info .badge-icon { font-size: 0.85em; margin-right: 0.1em; }
+.entry .expand-icon { flex-shrink: 0; width: 20px; height: 20px; display: flex; align-items: center; justify-content: center; color: var(--text-muted); font-size: 12px; transition: transform 0.3s ease; margin-top: 0.3em; }
+.entry.expanded .expand-icon { transform: rotate(180deg); }
+
+.entry .detail-wrap { max-height: 0; overflow: hidden; transition: max-height 0.5s cubic-bezier(0.16, 1, 0.3, 1); }
+.entry.expanded .detail-wrap { max-height: 500px; }
+.entry .detail-inner { padding: clamp(0.5rem, 1vw, 0.8rem) 0 clamp(0.5rem, 1vw, 0.8rem) clamp(1.8rem, 3.5vw, 2.8rem); background: var(--expand-bg); border-radius: 6px; margin-bottom: clamp(0.4rem, 0.8vw, 0.6rem); border-left: 3px solid var(--border); }
+.entry .detail-inner p { font-size: clamp(0.72rem, 1.1vw, 0.9rem); line-height: 1.7; color: var(--text-secondary); }
+.entry .detail-inner p strong { color: var(--text-primary); font-weight: 600; }
+.entry .detail-inner .source-link { display: inline-flex; align-items: center; gap: 0.3em; margin-top: clamp(0.4rem, 0.7vw, 0.6rem); font-size: clamp(0.6rem, 0.9vw, 0.75rem); color: var(--text-muted); text-decoration: none; padding: 0.2rem 0.5rem; border: 1px solid var(--border); border-radius: 4px; transition: all 0.2s; }
+.entry .detail-inner .source-link:hover { color: var(--text-primary); border-color: var(--text-primary); background: rgba(0,0,0,0.03); }
+
+.footer { margin-top: clamp(0.8rem, 1.5vw, 1.5rem); padding-top: clamp(0.5rem, 1vw, 1rem); border-top: 1px solid var(--border); font-size: clamp(0.55rem, 0.85vw, 0.7rem); color: var(--text-muted); font-family: var(--font-display); font-style: italic; text-align: center; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem; }
+.footer .badge { display: inline-flex; align-items: center; gap: 0.3em; padding: 0.15rem 0.5rem; border: 1px solid var(--border); border-radius: 999px; font-style: normal; font-size: clamp(0.5rem, 0.75vw, 0.6rem); }
+
+@keyframes pageIn { from { opacity: 0; transform: scale(0.97); } to { opacity: 1; transform: scale(1); } }
+@keyframes fadeIn { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
+@media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.1s !important; } }
+</style>
+</head>
+<body>
+  <div class="notebook">
+    <div class="hole"></div><div class="hole"></div><div class="hole"></div>
+    <div class="tabs" id="tabs">
+      <button class="tab active" data-cat="all" title="全部">ALL</button>
+      <button class="tab" data-cat="ai" title="AI/大模型">AI</button>
+      <button class="tab" data-cat="dev" title="开发工具">DEV</button>
+      <button class="tab" data-cat="sec" title="安全">SEC</button>
+      <button class="tab" data-cat="biz" title="商业">BIZ</button>
+      <button class="tab" data-cat="auto" title="自动化">AUTO</button>
+      <button class="tab" data-cat="other" title="其他">OTHER</button>
+    </div>
+    <div class="header">
+      <a class="back-link" href="./">← 归档首页</a>
+      <h1>AI 热点日报</h1>
+      <div class="subtitle">
+        <span class="date">2026年9月23日，星期三 · 道法术器解读</span>
+        <div class="controls">
+          <button id="expandAll">展开全部</button>
+          <button id="collapseAll">收起全部</button>
+        </div>
+      </div>
+    </div>
+    <div class="entries" id="entries">
+      <div class="entry" data-cat="ai" style="animation-delay: 0.1s;">
+        <div class="entry-head">
+          <div class="bullet" style="background: var(--tab-1);"></div>
+          <div class="info">
+            <h3>GPT-6双版本降价五成</h3>
+            <div class="meta">X：Tibo (@thsottiaux) · 🔥 100 · 6小时前</div>
+          </div>
+          <div class="expand-icon">▼</div>
+        </div>
+        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：大模型竞争已从单点性能比拼转向<strong>成本曲线与生态锁定</strong>的长期博弈，降价不是让利而是加速渗透、挤压对手生存空间的战略动作。<strong>法</strong>：以价格换规模、以规模换数据与开发者依赖，再通过增值层与算力服务回收利润，这套打法在云计算与移动互联网时代反复验证。<strong>术</strong>：1. 在促销窗口内完成主力业务迁移与压测，锁定单位调用成本；2. 建立多模型路由层，避免被单一供应商绑定；3. 用节省的预算投入垂直场景微调，构建自有数据壁垒。<strong>器</strong>：GPT-6 Sol、GPT-6 Luna、OpenAI API、模型路由中间件（如 LiteLLM）。</p>
+<a class="source-link" href="https://x.com/thsottiaux/status/2102509507415048245" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
+      </div>
+      <div class="entry" data-cat="ai" style="animation-delay: 0.18s;">
+        <div class="entry-head">
+          <div class="bullet" style="background: var(--tab-1);"></div>
+          <div class="info">
+            <h3>Claude Opus 5.5 发布</h3>
+            <div class="meta">Hacker News · 🔥 100 · 11小时前</div>
+          </div>
+          <div class="expand-icon">▼</div>
+        </div>
+        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：头部模型迭代周期已压缩至季度级，<strong>能力差距被快速抹平</strong>，竞争焦点转向稳定性、上下文长度与工具调用可靠性。<strong>法</strong>：在模型能力趋同时，胜负取决于<strong>工程化封装与场景适配深度</strong>，而非参数规模本身。<strong>术</strong>：1. 针对长文档、代码库、Agent 工作流做定向基准测试，而非只看通用榜单；2. 将高频任务固化为可复用提示模板与工具链；3. 保留双供应商冗余，按任务类型动态切换。<strong>器</strong>：Claude Opus 5.5、Anthropic API、Agent 框架（如 LangGraph）、评测集（如 SWE-bench）。</p>
+<a class="source-link" href="https://www.anthropic.com/claude-opus-5-5" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
+      </div>
+      <div class="entry" data-cat="ai" style="animation-delay: 0.26s;">
+        <div class="entry-head">
+          <div class="bullet" style="background: var(--tab-1);"></div>
+          <div class="info">
+            <h3>GPT-6双线产品策略</h3>
+            <div class="meta">Hacker News · 🔥 99 · 9小时前</div>
+          </div>
+          <div class="expand-icon">▼</div>
+        </div>
+        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：同一代模型拆分为<strong>高性能与高性价比双线</strong>，是算力成本分层与市场需求分化的必然结果，单一旗舰覆盖全场景的时代结束。<strong>法</strong>：产品线分层对应客户分层，用旗舰守住高价值场景、用轻量版抢占高频低毛利调用，形成价格护城河。<strong>术</strong>：1. 按任务复杂度做模型分级路由，简单任务走 Luna、复杂推理走 Sol；2. 监控各线调用占比与成本结构，动态调整配额；3. 对延迟敏感型业务优先测试轻量版的实际表现。<strong>器</strong>：GPT-6 Sol、GPT-6 Luna、OpenAI 定价页、成本监控面板（如 Helicone）。</p>
+<a class="source-link" href="https://openai.com/index/introducing-gpt-6-sol-and-luna/" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
+      </div>
+      <div class="entry" data-cat="ai" style="animation-delay: 0.33999999999999997s;">
+        <div class="entry-head">
+          <div class="bullet" style="background: var(--tab-1);"></div>
+          <div class="info">
+            <h3>GPT-6破解恩尼格玛长期悬案</h3>
+            <div class="meta">Hacker News · 🔥 73 · 13小时前</div>
+          </div>
+          <div class="expand-icon">▼</div>
+        </div>
+        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：大模型的能力边界正从语言生成扩展到<strong>长期未解的形式化难题</strong>，密码分析这类需要穷举搜索与模式识别的领域，人类数十年积累的直觉正被算力与推理链替代。<strong>法</strong>：将历史遗留难题作为模型能力的<strong>公开验证场</strong>，用可证伪的硬任务建立技术公信力，比跑分榜单更具说服力。<strong>术</strong>：1. 梳理本领域悬置多年的未解问题清单，作为模型测试集；2. 用模型做候选空间剪枝，再人工验证关键路径；3. 记录推理链，区分是记忆复现还是真实求解。<strong>器</strong>：GPT-6 Astra、Enigma 密文数据集、推理链可视化工具。</p>
+<a class="source-link" href="https://www.cryptocellar.org/bgac/the-mvueh-break.html" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
+      </div>
+      <div class="entry" data-cat="ai" style="animation-delay: 0.42000000000000004s;">
+        <div class="entry-head">
+          <div class="bullet" style="background: var(--tab-1);"></div>
+          <div class="info">
+            <h3>谷歌开源智能体编排运行时</h3>
+            <div class="meta">GitHub Trending · 🔥 100 · 11小时前</div>
+          </div>
+          <div class="expand-icon">▼</div>
+        </div>
+        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：智能体竞争正从单模型能力转向<strong>编排层标准之争</strong>，谁定义多智能体协作的运行时协议，谁就掌握生态入口。<strong>法</strong>：以开源运行时抢占开发者默认选择，用<strong>基础设施中立性</strong>换取生态规模，再通过云服务与托管版本变现。<strong>术</strong>：1. 评估 ax 与现有 LangGraph、AutoGen 的接口兼容成本；2. 在非关键业务流中先跑通多智能体编排；3. 关注其与 Google Cloud 托管服务的绑定深度。<strong>器</strong>：google/ax、LangGraph、AutoGen、Google Cloud。</p>
+<a class="source-link" href="https://github.com/google/ax" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
+      </div>
+      <div class="entry" data-cat="ai" style="animation-delay: 0.5s;">
+        <div class="entry-head">
+          <div class="bullet" style="background: var(--tab-1);"></div>
+          <div class="info">
+            <h3>Claude Opus 5.5降价提速</h3>
+            <div class="meta">X：Rohan Paul (@rohanpaul_ai) · 🔥 99 · 7小时前</div>
+          </div>
+          <div class="expand-icon">▼</div>
+        </div>
+        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：头部模型进入<strong>性能趋同、价格与安全披露差异化</strong>的阶段，降价提速是争夺调用量的直接手段，而系统卡主动披露危害行为则是监管压力下的透明度博弈。<strong>法</strong>：用价格与延迟优势锁定高频调用场景，同时以<strong>主动披露安全边界</strong>换取合规信任，把风险信息转化为可信度资产。<strong>术</strong>：1. 对比 Opus 5.5 与上一代在自有任务上的单位成本与延迟；2. 阅读系统卡中约半数运行或有危害行为的具体触发条件；3. 在高风险场景加装输出过滤与人工复核。<strong>器</strong>：Claude Opus 5.5、系统卡文档、模型评测平台。</p>
+<a class="source-link" href="https://x.com/rohanpaul_ai/status/2102491250515681384" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
+      </div>
+      <div class="entry" data-cat="ai" style="animation-delay: 0.58s;">
+        <div class="entry-head">
+          <div class="bullet" style="background: var(--tab-1);"></div>
+          <div class="info">
+            <h3>Claude Opus 5.5 发布</h3>
+            <div class="meta">X：Claude (@claudeai) · 🔥 93 · 11小时前</div>
+          </div>
+          <div class="expand-icon">▼</div>
+        </div>
+        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：头部大模型迭代周期已压缩至数月，单点技术领先的窗口期持续收窄，竞争重心从参数规模转向推理效率与工程化落地能力。<strong>法</strong>：以旗舰模型首发建立能力锚点，再通过系列化版本覆盖不同成本区间，用产品矩阵而非单一模型锁定用户。<strong>术</strong>：1. 在发布窗口期完成核心业务场景的对照测试，记录任务通过率与延迟数据；2. 评估从上一代迁移的改造成本，优先迁移高频低风险链路；3. 建立多模型路由层，避免绑定单一供应商。<strong>器</strong>：Claude Opus 5.5、Claude 5.5 系列、主流模型路由框架与评测基准。</p>
+<a class="source-link" href="https://x.com/claudeai/status/2102435511222890900" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
+      </div>
+      <div class="entry" data-cat="ai" style="animation-delay: 0.66s;">
+        <div class="entry-head">
+          <div class="bullet" style="background: var(--tab-1);"></div>
+          <div class="info">
+            <h3>Qwen-Image-2.1 登顶开源榜</h3>
+            <div class="meta">X：通义千问 / Qwen (@Alibaba_Qwen) · 🔥 100 · 2小时前</div>
+          </div>
+          <div class="expand-icon">▼</div>
+        </div>
+        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：开源模型在垂直能力上追平甚至反超闭源，图像生成与编辑的竞争已从画质比拼转向可控性与编辑一致性。<strong>法</strong>：用公开榜单建立技术信誉，再以开源权重换取开发者生态和场景数据，形成闭源 API 变现的漏斗。<strong>术</strong>：1. 在本地或私有云部署权重，测试文生图与图像编辑的实际可用率；2. 针对自身业务场景构建小规模评测集，不依赖通用榜单结论；3. 评估推理成本与商用许可条款后再决定是否替换现有方案。<strong>器</strong>：Qwen-Image-2.1、Arena 图像编辑与文生图榜单、开源推理部署工具链。</p>
+<a class="source-link" href="https://x.com/Alibaba_Qwen/status/2102569821997346912" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
+      </div>
+      <div class="entry" data-cat="sec" style="animation-delay: 0.74s;">
+        <div class="entry-head">
+          <div class="bullet" style="background: var(--tab-3);"></div>
+          <div class="info">
+            <h3>Meta Muse 曝 0-day 漏洞</h3>
+            <div class="meta">Hacker News 热门（buzzing.cc 中文翻译） · 🔥 100 · 8小时前</div>
+          </div>
+          <div class="expand-icon">▼</div>
+        </div>
+        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：AI 助手接入企业数据与执行链路后，安全边界从模型能力问题转变为供应链与权限管理问题，漏洞的破坏半径随集成深度放大。<strong>法</strong>：对第三方 AI 组件执行与外部依赖同等级的安全审查，用最小权限和可回滚机制控制集成风险。<strong>术</strong>：1. 立即排查内部是否已接入 Muse 及其数据访问范围；2. 对 AI 助手类工具实施权限隔离与操作审计日志；3. 制定供应商安全事件的分级响应与快速下线预案。<strong>器</strong>：Meta Muse、Amazon 封禁机制、企业权限管理与审计平台。</p>
+<a class="source-link" href="https://arstechnica.com/security/2026/09/muse-metas-extraordinarily-privileged-ai-assistant-has-a-serious-0-day" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
+      </div>
+      <div class="entry" data-cat="ai" style="animation-delay: 0.82s;">
+        <div class="entry-head">
+          <div class="bullet" style="background: var(--tab-1);"></div>
+          <div class="info">
+            <h3>AI军事化误击暴露责任真空</h3>
+            <div class="meta">Hacker News：AI 热帖 · 🔥 99 · 8小时前</div>
+          </div>
+          <div class="expand-icon">▼</div>
+        </div>
+        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：AI 进入杀伤链路后，技术效率与人类问责之间的裂缝正在扩大，自动化决策的<strong>责任归属</strong>将成为长期无法回避的制度难题。<strong>法</strong>：高风险场景部署 AI 必须建立人机双签与可追溯审计机制，把最终决策权保留在人类手中，同时用日志固化每一步推理依据。<strong>术</strong>：1. 对目标识别类模型设置置信度阈值，低于阈值强制人工复核；2. 建立独立于开发方的第三方审查通道；3. 每次误判后回溯训练数据与提示链路，定位偏差来源。<strong>器</strong>：Palantir Maven 系统、模型可解释性工具、审计日志平台。</p>
+<a class="source-link" href="https://gizmodo.com/pentagon-investigators-say-overreliance-on-palantir-ai-tech-contributed-to-u-s-strike-that-killed-123-iranian-children-2000814477" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
+      </div>
+      <div class="entry" data-cat="ai" style="animation-delay: 0.9s;">
+        <div class="entry-head">
+          <div class="bullet" style="background: var(--tab-1);"></div>
+          <div class="info">
+            <h3>头部模型价格战再升级</h3>
+            <div class="meta">Simon Willison 博客 · 🔥 100 · 3小时前</div>
+          </div>
+          <div class="expand-icon">▼</div>
+        </div>
+        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：大模型竞争已从参数规模转向<strong>单位推理成本</strong>，价格战本质是用低价锁定开发者生态，形成迁移壁垒。<strong>法</strong>：在模型能力趋同时，通过降价与缓存优化抢占开发者心智，再以企业级服务与算力绑定实现长期变现。<strong>术</strong>：1. 对比 Claude Opus 5.5 与 GPT-6 系列在自有任务上的实际成本；2. 优先接入支持提示词缓存的接口降低重复调用开销；3. 保留多模型路由层，避免被单一供应商锁定。<strong>器</strong>：Claude Opus 5.5、GPT-6 Sol/Luna、Simon Willison 评测博客、多模型路由框架。</p>
+<a class="source-link" href="https://simonwillison.net/2026/Sep/22/opus-and-sol-and-luna" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
+      </div>
+      <div class="entry" data-cat="ai" style="animation-delay: 0.98s;">
+        <div class="entry-head">
+          <div class="bullet" style="background: var(--tab-1);"></div>
+          <div class="info">
+            <h3>提示词缓存成成本新战场</h3>
+            <div class="meta">OpenAI：官网动态（RSS · 排除企业/客户案例） · 🔥 99 · 6小时前</div>
+          </div>
+          <div class="expand-icon">▼</div>
+        </div>
+        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：随着上下文窗口膨胀，<strong>推理成本结构</strong>正从算力主导转向缓存与复用效率主导，谁能降低重复计算谁就掌握定价权。<strong>法</strong>：把高频、稳定的上下文前置缓存，将可变部分后置，用工程手段把 token 成本压到最低。<strong>术</strong>：1. 把系统提示词与固定知识库放在缓存段，动态内容放尾部；2. 用诊断工具监控缓存命中率与延迟分布；3. 对长对话场景设计分段缓存策略，减少全量重算。<strong>器</strong>：OpenAI 提示词缓存系统、诊断工具、GPT-6 API。</p>
+<a class="source-link" href="https://openai.com/index/better-prompt-caching-for-gpt-6" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
+      </div>
+      <div class="entry" data-cat="ai" style="animation-delay: 1.06s;">
+        <div class="entry-head">
+          <div class="bullet" style="background: var(--tab-1);"></div>
+          <div class="info">
+            <h3>GPT-6 双版本降价五成</h3>
+            <div class="meta">X：Sherwin Wu（@sherwinwu） · 🔥 96 · 9小时前</div>
+          </div>
+          <div class="expand-icon">▼</div>
+        </div>
+        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：大模型竞争已从能力比拼转入<strong>单位智能成本</strong>的比拼，头部厂商用双版本分层加降价抢占开发者默认选项，价格下行是长期不可逆趋势。<strong>法</strong>：以价格锚点重塑市场预期，用旗舰版守技术口碑、轻量版抢调用量，把对手拖入成本消耗战。<strong>术</strong>：1. 在降价窗口期重跑基准测试，对比同任务下的实际 token 消耗与延迟；2. 将非核心链路迁移至低价版本，核心链路保留旗舰版做灰度；3. 把节省的预算投入评测集建设，避免被单一供应商锁定。<strong>器</strong>：GPT-6 Sol、GPT-6 Luna、OpenRouter、LiteLLM 等模型路由层。</p>
+<a class="source-link" href="https://x.com/sherwinwu/status/2102462783707344907" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
+      </div>
+      <div class="entry" data-cat="ai" style="animation-delay: 1.1400000000000001s;">
+        <div class="entry-head">
+          <div class="bullet" style="background: var(--tab-1);"></div>
+          <div class="info">
+            <h3>Opus 5.5 提速且降价过半</h3>
+            <div class="meta">X：Boris Cherny (@bcherny) · 🔥 94 · 10小时前</div>
+          </div>
+          <div class="expand-icon">▼</div>
+        </div>
+        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：模型迭代的胜负手正从参数规模转向<strong>推理效率</strong>，速度与成本同时改善意味着同等预算可支撑更长的智能体链路，这是智能体规模化落地的前提。<strong>法</strong>：用第三方实测数据替代官方基准做选型依据，把速度、成本、稳定性三项量化后再决定迁移，避免被宣传口径牵引。<strong>术</strong>：1. 复现该实测方法，在自有任务集上跑同一组提示词；2. 记录首 token 延迟与总耗时，换算成单任务成本；3. 对延迟敏感场景优先切换，保留回滚开关。<strong>器</strong>：Claude Opus 5.5、Fable 5.1、Boris Cherny 的实测数据、各类模型评测脚本。</p>
+<a class="source-link" href="https://x.com/bcherny/status/2102439069053747549" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
+      </div>
+      <div class="entry" data-cat="ai" style="animation-delay: 1.2200000000000002s;">
+        <div class="entry-head">
+          <div class="bullet" style="background: var(--tab-1);"></div>
+          <div class="info">
+            <h3>Opus 5.5 登陆 OpenRout…</h3>
+            <div class="meta">X：OpenRouter (@OpenRouter) · 🔥 94 · 10小时前</div>
+          </div>
+          <div class="expand-icon">▼</div>
+        </div>
+        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：模型能力差距收窄后，<strong>分发渠道</strong>成为决定性变量，聚合平台让新模型在数小时内触达海量开发者，单一厂商的入口优势被持续稀释。<strong>法</strong>：通过聚合层接入而非直连，用统一接口屏蔽供应商差异，把切换成本压到最低，同时保留多模型并行对比的能力。<strong>术</strong>：1. 在 OpenRouter 上配置 Opus 5.5 与 Opus 5 的并行路由做 A/B；2. 针对智能体编码任务单独建评测集，验证领先幅度是否可复现；3. 设置用量与费用告警，防止长链路调用失控。<strong>器</strong>：OpenRouter、Claude Opus 5.5、Opus 5、智能体编码框架。</p>
+<a class="source-link" href="https://x.com/OpenRouter/status/2102438921213014078" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
+      </div>
+    </div>
+    <div class="footer">
+      <span>Generated by AI Hot Monitor v2 · DeepSeek · 11:01:34</span>
+      <span class="badge">💡 点击条目展开深度解读</span>
+    </div>
+  </div>
+<script>
+document.querySelectorAll('.entry .entry-head').forEach(h => h.addEventListener('click', () => h.closest('.entry').classList.toggle('expanded')));
+document.getElementById('expandAll').addEventListener('click', () => document.querySelectorAll('.entry:not(.hidden)').forEach(e => e.classList.add('expanded')));
+document.getElementById('collapseAll').addEventListener('click', () => document.querySelectorAll('.entry').forEach(e => e.classList.remove('expanded')));
+document.querySelectorAll('.tab').forEach(tab => tab.addEventListener('click', () => {
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  tab.classList.add('active');
+  const cat = tab.dataset.cat;
+  document.querySelectorAll('.entry').forEach(e => {
+    if (cat === 'all' || e.dataset.cat === cat) { e.classList.remove('hidden'); } else { e.classList.add('hidden'); e.classList.remove('expanded'); }
+  });
+}));
+document.addEventListener('keydown', e => { if (e.key === 'Escape') document.querySelectorAll('.entry').forEach(el => el.classList.remove('expanded')); });
+</script>
+</body>
+</html>
