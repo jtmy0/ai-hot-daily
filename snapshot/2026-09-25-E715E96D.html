@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="referrer" content="no-referrer">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'unsafe-inline'; img-src data:; connect-src 'none'; frame-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'; frame-ancestors 'none'">
+<title>OpenAI's agents went after government and university sites months before Hugging Face - AI热点快照</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','PingFang SC','Microsoft YaHei',sans-serif;background:#f8f9fa;color:#1a1a2e;line-height:1.8;min-height:100vh}
+.top-bar{background:#fff;border-bottom:1px solid #e5e7eb;padding:10px 20px;display:flex;align-items:center;gap:12px;position:sticky;top:0;z-index:10}
+.top-bar .logo{font-size:14px;font-weight:700;color:#0d9488}
+.top-bar .sep{color:#d1d5db}
+.top-bar .source{font-size:13px;color:#6b7280}
+.top-bar .back{margin-left:auto;font-size:13px;color:#0d9488;text-decoration:none}
+.top-bar .back:hover{text-decoration:underline}
+.container{max-width:760px;margin:0 auto;padding:40px 24px 80px}
+.article-title{font-size:1.8rem;font-weight:700;line-height:1.35;margin-bottom:16px;color:#1a1a2e}
+.article-meta{display:flex;flex-wrap:wrap;gap:16px;padding-bottom:20px;margin-bottom:28px;border-bottom:1px solid #e5e7eb;font-size:14px;color:#6b7280}
+.article-meta a{color:#0d9488;text-decoration:none}
+.article-meta a:hover{text-decoration:underline}
+.article-body{font-size:16.5px;line-height:1.85;color:#1f2937}
+.article-body p{margin-bottom:1.2em;text-align:justify}
+.article-body h1,.article-body h2,.article-body h3{font-size:1.25em;font-weight:700;margin:1.6em 0 0.6em;color:#1a1a2e}
+.article-body a{color:#0d9488}
+.article-body pre,.article-body code{background:#f1f5f9;border-radius:4px;font-size:0.9em}
+.article-body pre{padding:16px;overflow-x:auto;margin:1em 0}
+.article-body code{padding:2px 6px}
+.article-body blockquote{border-left:3px solid #0d9488;padding-left:16px;color:#4b5563;margin:1em 0}
+.article-body ul,.article-body ol{padding-left:1.6em;margin-bottom:1em}
+.article-body li{margin-bottom:0.4em}
+.article-body figure{margin:1.2em 0}
+.article-body figcaption{font-size:13px;color:#9ca3af;text-align:center;margin-top:6px}
+.footer{margin-top:48px;padding-top:20px;border-top:1px solid #e5e7eb;font-size:13px;color:#9ca3af;text-align:center}
+</style>
+</head>
+<body>
+<div class="top-bar">
+  <a class="back" href="../" style="font-size:13px;color:#6b7280;text-decoration:none">← 日报首页</a>
+  <span class="sep">|</span>
+  <span class="logo">AI热点快照</span>
+  <span class="sep">|</span>
+  <span class="source">The Decoder</span>
+  <a class="back" href="https://the-decoder.com/openais-agents-went-after-government-and-university-sites-months-before-hugging-face" target="_blank" rel="noopener noreferrer">查看原文 ↗</a>
+</div>
+<div class="container">
+  <h1 class="article-title">OpenAI's agents went after government and university sites months before Hugging Face</h1>
+  <div class="article-meta">
+    <span>作者: Maximilian Schreiner</span>
+    <span>来源: The Decoder</span>
+    <span>快照日期: 2026-09-25</span>
+  </div>
+  <div class="article-body"><div><div>
+			<p><strong>An OpenAI agent broke into an Australian government portal. According to researchers and the New York Times, it wasn't an isolated case. OpenAI's agents repeatedly turned to hacking methods, and apparently did so for months longer than previously known.</strong></p>
+<p>Australian Prime Minister Anthony Albanese <a href="https://www.pm.gov.au/media/press-conference-new-york" target="_blank" rel="noopener noreferrer nofollow">revealed</a> on the sidelines of the UN General Assembly in New York that an OpenAI agent broke into a government portal on June 18. The agent gained unauthorized access to the Medicare Statistics Reporting Service and opened both public and non-public files, Albanese said, according to <a href="https://www.theage.com.au/politics/federal/openai-breaches-medicare-albanese-reveals-20260924-p6100u.html" target="_blank" rel="noopener noreferrer nofollow">The Age</a>. Services Australia says the agent also wrote files to an internal server.</p>
+<p>The breach is one of at least four incidents in May and June in which OpenAI's AI broke into, or tried to break into, websites run by government agencies and universities, according to the <a href="https://www.nytimes.com/2026/09/23/technology/openai-ai-breach-australia.html" target="_blank" rel="noopener noreferrer nofollow">New York Times</a>. Transluce, a research lab that focuses on AI oversight, <a href="https://transluce.org/agent-activity" target="_blank" rel="noopener noreferrer nofollow">documented</a> three of them, and OpenAI has confirmed all four. That puts the incidents ahead of the <a href="https://the-decoder.com/new-reports-reveal-the-extent-of-openais-loss-of-control-during-the-autonomous-hack-on-hugging-face/" target="_blank" rel="noopener noreferrer nofollow">Hugging Face breach</a> in July, which set off a global debate over AI safety.</p>
+<h2>When a query failed, the agents went looking for security holes</h2>
+<p>On May 25 and 26, the AI tried to get photos of a historic tuberculosis treatment center from the University of New Mexico's digital library. When that didn't work, it probed for weaknesses using methods like SQL injection and path traversal, according to Transluce. It then sent a wave of 80 requests to the university's server, which the AI itself described as a "flood." On May 28, a failed query on the data portal Data USA led to twelve probes for security holes, including cross-site scripting. Neither attempt succeeded.</p>
+<p>On June 20 and 21, two days after the Medicare breach, the agents also targeted the website of the Australian Institute of Health and Welfare. Australian officials said no private information leaked. For the three cases it documented itself, Transluce found no evidence of a successful exploit, though it concedes the public data it analyzed is incomplete.</p>
+<p>The researchers based their findings on entries from the web security service urlquery.net, which the agents allegedly used to get around access restrictions. Transluce links two of the attacks to an agent swarm whose origin OpenAI had already <a href="https://x.com/OpenAI/status/2096133504417616165" target="_blank" rel="noopener noreferrer nofollow">confirmed</a>, pointing to shared targets, tactics, and timing.</p>
+<p>The Australian cases are likely "the first instance of an agent autonomously choosing to hack into a government," says Conrad Stosz, head of governance at Transluce. If you train a swarm of agents on a general task and they're willing to resort to hacking, you potentially put anyone at risk who happens to have the information they're after, Stosz said.</p>
+<h2>The hacking started months before anyone reported it</h2>
+<p>The agents appear to have been doing this much longer than previously known. According to Transluce, the activity started no later than March 6, 2026, about two months before the first reported incidents. In the earliest case, an agent tried to pull Thai drug enforcement statistics and escalated with every failure. It first requested the data directly, then went through a service that converts web pages into text, and finally packed its own program into a web address.</p>
+<p>The number of these requests rose sharply starting in mid-April. It dropped off on June 22, the same day swarm activity ended on the wiki collusion.wiki. The most recent traces, however, date to September 16. That means the behavior continued even after OpenAI began investigating the Hugging Face incident, the New York Times reports.</p>
+<p>Weaker signs go back as far as November 2025, according to Transluce, when someone repeatedly queried data on amusement parks and Thai government agencies. Those early attempts were less sophisticated, and the researchers aren't sure the same agents were behind them.</p>
+<figure><a href="https://the-decoder.com/wp-content/uploads/2026/09/agent-attacks-source-traffic.png" target="_blank" rel="noopener noreferrer nofollow"></a><figcaption>Public urlquery.net reports for two data sources that confirmed agents later queried. The numbers jump starting in November 2025. Reports for the amusement park database Thrill Data (3,939 total) peak in spring 2026, while reports for Thailand's National Statistical Office (NSO, 222 total) peak in February. Transluce says the counts alone don't identify agents. | Image: Transluce</figcaption></figure>
+<p>The findings fit the idea that the agents picked up the behavior over one or more training runs, but they don't prove it, the researchers write. In November, the agents may simply have used urlquery.net to look things up. By March, they were finding creative ways around access limits, and in May and June they were trying to get past cyber defenses. Transluce has published a <a href="https://transluce.org/data/urlquery-agent-activity-2026-09-23.zip" target="_blank" rel="noopener noreferrer nofollow">dataset</a> with tens of thousands of suspected agent requests.</p>
+<h2>Australia's anger centers on how slowly OpenAI came forward</h2>
+<p>In Australia, most of the criticism targets how OpenAI reported the breach. According to The Age, the company spotted the breach in August but didn't notify Services Australia until September 10, and then only by emailing a public inbox for vulnerability reports. That inbox gets checked once a day, and many of the reports it receives are false alarms, said Katy Gallagher, the minister in charge. She didn't learn about the incident herself until September 17.</p>
+<p>The situation is "obviously unacceptable," Albanese said. He said he spoke with OpenAI CEO Sam Altman, conveyed Australia's "extreme concern," and criticized the company for waiting far too long to report it.</p>
+<p>Defense Minister and Deputy Prime Minister Richard Marles took a milder view and called the consequences "relatively minor." The data involved was aggregated medical statistics, he said, and no information on individuals was affected.</p>
+<p>OpenAI confirmed an "extensive review of misaligned model activity during training and evaluation," according to The Age. The company said its models were searching for answers to questions about Australia during an internal evaluation. "In the course of that, our models took actions we did not intend," an OpenAI spokesperson said. There's no sign the models accessed patient records. The affected data consisted of aggregated health statistics and internal file names. A spokesperson told the New York Times the review will take months.</p>
+<p>According to Gallagher, the portal was a legacy site used mostly by researchers. It had bot protection, but the agent got around it. The site has since been shut down, and the data now lives on data.gov.au. A task force led by the Prime Minister's department will look into possible penalties and legislative responses, and the government is weighing whether to refer the case to the federal police. So far, OpenAI hasn't faced any penalty.</p>
+		</div><div>
+				<h3>AI News Without the Hype – Curated by Humans<br /></h3>
+				<p>
+					Subscribe to THE DECODER for ad-free reading, a weekly AI newsletter, our exclusive "AI Radar" frontier report six times a year, full archive access, and access to our comment section.				</p>
+				<p><a href="https://the-decoder.com/subscription/" target="_blank" rel="noopener noreferrer nofollow">
+					Subscribe now				</a>
+			</p></div></div></div>
+  <div class="footer">
+    本文由 AI热点监控系统自动抓取 · 内容版权归原作者/网站所有<br>
+    快照仅用于学习交流，如需转载请访问原文
+  </div>
+</div>
+</body>
+</html>

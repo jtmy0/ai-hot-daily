@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="referrer" content="no-referrer">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'unsafe-inline'; img-src data:; connect-src 'none'; frame-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'; frame-ancestors 'none'">
+<title>Introducing Support for Local AI Models in the Antigravity SDK - AI热点快照</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','PingFang SC','Microsoft YaHei',sans-serif;background:#f8f9fa;color:#1a1a2e;line-height:1.8;min-height:100vh}
+.top-bar{background:#fff;border-bottom:1px solid #e5e7eb;padding:10px 20px;display:flex;align-items:center;gap:12px;position:sticky;top:0;z-index:10}
+.top-bar .logo{font-size:14px;font-weight:700;color:#0d9488}
+.top-bar .sep{color:#d1d5db}
+.top-bar .source{font-size:13px;color:#6b7280}
+.top-bar .back{margin-left:auto;font-size:13px;color:#0d9488;text-decoration:none}
+.top-bar .back:hover{text-decoration:underline}
+.container{max-width:760px;margin:0 auto;padding:40px 24px 80px}
+.article-title{font-size:1.8rem;font-weight:700;line-height:1.35;margin-bottom:16px;color:#1a1a2e}
+.article-meta{display:flex;flex-wrap:wrap;gap:16px;padding-bottom:20px;margin-bottom:28px;border-bottom:1px solid #e5e7eb;font-size:14px;color:#6b7280}
+.article-meta a{color:#0d9488;text-decoration:none}
+.article-meta a:hover{text-decoration:underline}
+.article-body{font-size:16.5px;line-height:1.85;color:#1f2937}
+.article-body p{margin-bottom:1.2em;text-align:justify}
+.article-body h1,.article-body h2,.article-body h3{font-size:1.25em;font-weight:700;margin:1.6em 0 0.6em;color:#1a1a2e}
+.article-body a{color:#0d9488}
+.article-body pre,.article-body code{background:#f1f5f9;border-radius:4px;font-size:0.9em}
+.article-body pre{padding:16px;overflow-x:auto;margin:1em 0}
+.article-body code{padding:2px 6px}
+.article-body blockquote{border-left:3px solid #0d9488;padding-left:16px;color:#4b5563;margin:1em 0}
+.article-body ul,.article-body ol{padding-left:1.6em;margin-bottom:1em}
+.article-body li{margin-bottom:0.4em}
+.article-body figure{margin:1.2em 0}
+.article-body figcaption{font-size:13px;color:#9ca3af;text-align:center;margin-top:6px}
+.footer{margin-top:48px;padding-top:20px;border-top:1px solid #e5e7eb;font-size:13px;color:#9ca3af;text-align:center}
+</style>
+</head>
+<body>
+<div class="top-bar">
+  <a class="back" href="../" style="font-size:13px;color:#6b7280;text-decoration:none">← 日报首页</a>
+  <span class="sep">|</span>
+  <span class="logo">AI热点快照</span>
+  <span class="sep">|</span>
+  <span class="source">AIHOT AI产品</span>
+  <a class="back" href="https://developers.googleblog.com/introducing-support-for-local-ai-models-in-the-antigravity-sdk" target="_blank" rel="noopener noreferrer">查看原文 ↗</a>
+</div>
+<div class="container">
+  <h1 class="article-title">Introducing Support for Local AI Models in the Antigravity SDK</h1>
+  <div class="article-meta">
+    <span>作者: Sachin Kotwani, Taylor Mullen</span>
+    <span>来源: AIHOT AI产品</span>
+    <span>快照日期: 2026-09-25</span>
+  </div>
+  <div class="article-body"><div><div>
+
+    
+      
+    
+
+    
+
+    <div>
+        <p>SEPT. 23, 2026</p>
+      </div>
+
+    
+
+    
+    <div>
+          
+
+<div>
+    <p>Today, we’re announcing that the <a href="https://antigravity.google/product/antigravity-sdk/" target="_blank" rel="noopener noreferrer nofollow">Antigravity SDK</a> supports local workflows across a wide range of local models and execution options, featuring initial support for <a href="https://blog.google/innovation-and-ai/technology/developers-tools/gemma-4/" target="_blank" rel="noopener noreferrer nofollow">Gemma 4 26B A4B</a> using <a href="https://developers.google.com/edge" target="_blank" rel="noopener noreferrer nofollow">Google AI Edge</a>’s <a href="https://developers.google.com/edge/litert" target="_blank" rel="noopener noreferrer nofollow">LiteRT</a>.<br /></p><p>The Antigravity SDK enables developers to build with the same agentic capabilities that power <a href="https://antigravity.google/" target="_blank" rel="noopener noreferrer nofollow">Google Antigravity</a>. With this new support you can enable agentic assistance via local models completely offline. We’ve optimized this workflow for LiteRT and Gemma 4 26B, efficiently using the local GPU and RAM in order to further amplify what your local machine is capable of delivering!</p><h2><b>Why run agents locally?</b></h2><p>Local model execution offers several advantages for agentic experiences:</p><ul><li><b>Cost efficiency:</b> Execute local agentic workflows without API costs or rate limits.</li><li><b>Privacy:</b> Keep your code and requests entirely on your local machine, ideal for developers navigating strict data privacy requirements or compliance-restricted corporate environments.</li><li><b>Offline resiliency:</b> Execute your agentic workflows seamlessly, even in environments where a consistent or stable internet connection is unavailable.</li><li><b>Hybrid workflows:</b> Combine token-efficient local processes with cloud-based ones to maximize efficiency while retaining access to larger, more powerful models when needed.</li></ul><p>Here is how you can get started: (<b>We recommended a machine with &gt;24GB VRAM or unified memory).</b></p>
+</div>  <p>
+    </p><h3><b>Create a virtual environment:</b></h3>
+<p></p>  <div>
+    <pre><code>python3 -m venv .venv
+source .venv/bin/activate</code></pre>
+    <p>
+        Python
+    </p>
+    <p><span>Copied</span>
+        
+    </p>
+    
+    
+</div>  <p>
+    </p><h3><b>Install Antigravity SDK and LiteRT-LM, and download Gemma 4 26B A4B:</b></h3>
+<p></p>  <div>
+    <pre><code>pip install google-antigravity litert-lm
+
+litert-lm import \
+  --from-huggingface-repo=litert-community/gemma-4-26B-A4B-it-litert-lm \
+  gemma-4-26B-A4B-it-gpu.litertlm \
+  gemma4-26b</code></pre>
+    <p>
+        Python
+    </p>
+    <p><span>Copied</span>
+        
+    </p>
+    
+    
+</div>  <p><b>In your directory, create a file</b> called <code>agy_sample.py</code>. Paste the following contents into it.</p>  <div>
+    <pre><code>import asyncio
+import os
+from google.antigravity import Agent, LiteRTAgentConfig
+from google.antigravity.hooks import policy
+
+# UPDATE: Point to the locally downloaded model from the previous step (litert-lm import ...)
+MODEL_PATH = os.path.expanduser("~/.litert-lm/models/gemma4-26b/model.litertlm")
+
+async def main():
+   print(f"Using local LiteRT model: {MODEL_PATH}. Please wait for local inference to complete. This could take several minutes.")
+
+   config = LiteRTAgentConfig(model_path=MODEL_PATH).lightweight()
+   async with Agent(config) as agent:
+      response = await agent.chat("What files are in the current directory?")
+      async for token in response:
+         print(token, end="", flush=True)
+
+if __name__ == "__main__":
+   asyncio.run(main())</code></pre>
+    <p>
+        Python
+    </p>
+    <p><span>Copied</span>
+        
+    </p>
+    
+    
+</div>  <div>
+    <h2><b>Hybrid Orchestration: Cloud Architect Meets On-Device Workforce</b></h2><p>In many cases we see that an Architect-Builder pattern is a great way of combining cloud model scale with local model advantages. In the hybrid demo video below, built with the updated Antigravity SDK, a cloud architect (Gemini 3.8 Flash) acts as the planner and conductor, while a local swarm of Gemma 4 26B instances handles the heavy lifting entirely on-device.</p><p>When tasked with auditing and patching three vulnerable modules (auth.py, billing.py, and database.py), the workflow maintains strict data privacy and allows us to make the most of our token utilization:</p><ul><li><b>No code uploaded:</b> Gemini 3.8 Flash plans the strategy and decomposes the work based purely on filenames and task descriptions - spending just 95 cloud tokens without any source code ever leaving the machine.</li><li><b>Autonomous local gauntlet:</b> Local Gemma 4 26B models take over on the local GPU to execute an adversarial audit loop: reproducing security vulnerabilities, authoring candidate fixes, critiquing patches, and validating against regression test suites.</li><li><b>Massive cost and privacy wins:</b> In this recorded run, 97.2% of all tokens (3,322 tokens) run locally and offline without calling a cloud API, delivering fully verified, green patches while keeping proprietary code completely secure on-device.</li></ul><p>Check out the example project <a href="https://goo.gle/47cKYyV" target="_blank" rel="noopener noreferrer nofollow">here</a> to run the built-in 3-file gauntlet or point it at your own Python modules and test suite.</p>
+</div>   
+
+<div>
+    
+        
+
+<p>Sorry, your browser doesn't support playback for this video</p>
+
+
+    
+    
+</div>  <div>
+    <h2><b>Token Free Local Utilities: CLI Resource Monitor</b></h2><p>The Antigravity SDK with Gemma 4 26B A4B excels at <b>building</b> practical system utilities. In this example, the agent built a live-updating resource monitor that runs in the terminal. Given a single prompt, the agent autonomously writes a Python script that uses the <b>psutil</b> and <b>rich</b> libraries to track CPU and memory usage, generates the necessary <b>requirements.txt</b> file, and even tests the resulting code to ensure it works - all running entirely on your local machine and using Gemma 4 26B.</p>
+</div>   
+
+<div>
+    
+        
+
+<p>Sorry, your browser doesn't support playback for this video</p>
+
+
+    
+    
+        
+            <p>A Python based CLI Resource Monitor tool generated on-device with Gemma 4 26B</p>
+        
+    
+</div>  <p><code>## cli_resource_monitor.py</code></p>  <div>
+    <pre><code>import asyncio
+import os
+from google.antigravity import Agent, LiteRTAgentConfig
+from google.antigravity.hooks import policy
+
+# UPDATE: Your prompt
+PROMPT = "Build a command-line interface tool using the psutil and rich libraries that displays a live-updating terminal dashboard. It should show CPU usage, memory consumption, and a sorted table of the top 5 most memory-intensive processes. Save the script as 'monitor.py' and create a 'requirements.txt' file. Test that it works."
+
+# UPDATE: Point to the locally imported LiteRT-LM model path
+MODEL_PATH = os.path.expanduser("~/.litert-lm/models/gemma4-26b/model.litertlm")
+
+# UPDATE: Give AGY-SDK a workspace to write files
+WORKING_DIR = os.path.expanduser("~/agy-test")
+
+os.makedirs(WORKING_DIR, exist_ok=True)
+os.chdir(WORKING_DIR)
+
+async def main():
+  print(f"Using local LiteRT model: {MODEL_PATH}. Please wait for local inference to complete. This could take several minutes.")
+
+  config = LiteRTAgentConfig(
+     model_path=MODEL_PATH,
+     workspaces=[WORKING_DIR],
+     policies=[policy.allow_all()],
+  ).lightweight()
+
+  async with Agent(config) as agent:
+     response = await agent.chat(PROMPT)
+     async for token in response:
+        print(token, end="", flush=True)
+
+if __name__ == "__main__":
+  asyncio.run(main())</code></pre>
+    <p>
+        Python
+    </p>
+    <p><span>Copied</span>
+        
+    </p>
+    
+    
+</div>  <div>
+    <p>The Antigravity SDK also offers seamless, plug-and-play support for any OpenAI-compatible server such as Ollama, LM Studio, or vLLM via <code>LocalOpenAIAgentConfig</code>. This gives you the flexibility to experiment with different local inference backends while keeping your agent orchestration, tools, and workflows completely unchanged.</p><p>Get started with local AI by checking the instructions on the <a href="https://github.com/google-antigravity/antigravity-sdk-python#local-ai-models" target="_blank" rel="noopener noreferrer nofollow">Antigravity Python SDK README</a>, and learn more about how you can run models efficiently on the edge using <a href="https://developers.google.com/edge/litert-lm/overview" target="_blank" rel="noopener noreferrer nofollow">LiteRT</a>. Please share your feedback and feature requests on the Antigravity Python SDK <a href="https://github.com/google-antigravity/antigravity-sdk-python/issues" target="_blank" rel="noopener noreferrer nofollow">GitHub Issue Tracker.</a> We look forward to seeing what you build!</p><p>Acknowledgements: Abhi Patel, Ander Dobo, Ben Miles, Cormac Brick, Ian Ballantyne, Jingxiao Zheng, Jonathan Reay, Kimish Patel, Lu Wang, Marissa Ikonomidis, Matthias Grundmann, Olivier Lacombe, Omar Sanseviero, Rishika Sinha, Rody Davis, Taylor Mullen, Tyler Mullen, Wai Hon Law, Xiaoming Hu, Xu Chen, Yu-hui Chen</p>
+</div> 
+      </div>
+    
+
+    <div>
+        <div>
+          <span>
+            
+          </span>
+          <p><span>Previous</span>
+        </p></div>
+        <div>
+          <p><span>Next</span></p><span>
+            
+          </span>
+        </div>
+      </div>
+
+    
+    
+    
+  </div></div></div>
+  <div class="footer">
+    本文由 AI热点监控系统自动抓取 · 内容版权归原作者/网站所有<br>
+    快照仅用于学习交流，如需转载请访问原文
+  </div>
+</div>
+</body>
+</html>
