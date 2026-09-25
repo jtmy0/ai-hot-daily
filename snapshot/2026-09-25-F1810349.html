@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="referrer" content="no-referrer">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'unsafe-inline'; img-src data:; connect-src 'none'; frame-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'; frame-ancestors 'none'">
+<title>Coding sessions are longer and use more context. Claude Opus 5.5 is built with that in mind. - AI热点快照</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','PingFang SC','Microsoft YaHei',sans-serif;background:#f8f9fa;color:#1a1a2e;line-height:1.8;min-height:100vh}
+.top-bar{background:#fff;border-bottom:1px solid #e5e7eb;padding:10px 20px;display:flex;align-items:center;gap:12px;position:sticky;top:0;z-index:10}
+.top-bar .logo{font-size:14px;font-weight:700;color:#0d9488}
+.top-bar .sep{color:#d1d5db}
+.top-bar .source{font-size:13px;color:#6b7280}
+.top-bar .back{margin-left:auto;font-size:13px;color:#0d9488;text-decoration:none}
+.top-bar .back:hover{text-decoration:underline}
+.container{max-width:760px;margin:0 auto;padding:40px 24px 80px}
+.article-title{font-size:1.8rem;font-weight:700;line-height:1.35;margin-bottom:16px;color:#1a1a2e}
+.article-meta{display:flex;flex-wrap:wrap;gap:16px;padding-bottom:20px;margin-bottom:28px;border-bottom:1px solid #e5e7eb;font-size:14px;color:#6b7280}
+.article-meta a{color:#0d9488;text-decoration:none}
+.article-meta a:hover{text-decoration:underline}
+.article-body{font-size:16.5px;line-height:1.85;color:#1f2937}
+.article-body p{margin-bottom:1.2em;text-align:justify}
+.article-body h1,.article-body h2,.article-body h3{font-size:1.25em;font-weight:700;margin:1.6em 0 0.6em;color:#1a1a2e}
+.article-body a{color:#0d9488}
+.article-body pre,.article-body code{background:#f1f5f9;border-radius:4px;font-size:0.9em}
+.article-body pre{padding:16px;overflow-x:auto;margin:1em 0}
+.article-body code{padding:2px 6px}
+.article-body blockquote{border-left:3px solid #0d9488;padding-left:16px;color:#4b5563;margin:1em 0}
+.article-body ul,.article-body ol{padding-left:1.6em;margin-bottom:1em}
+.article-body li{margin-bottom:0.4em}
+.article-body figure{margin:1.2em 0}
+.article-body figcaption{font-size:13px;color:#9ca3af;text-align:center;margin-top:6px}
+.footer{margin-top:48px;padding-top:20px;border-top:1px solid #e5e7eb;font-size:13px;color:#9ca3af;text-align:center}
+</style>
+</head>
+<body>
+<div class="top-bar">
+  <a class="back" href="../" style="font-size:13px;color:#6b7280;text-decoration:none">← 日报首页</a>
+  <span class="sep">|</span>
+  <span class="logo">AI热点快照</span>
+  <span class="sep">|</span>
+  <span class="source">Claude</span>
+  <a class="back" href="https://claude.com/blog/claude-opus-5-5-built-for-coding-sessions-that-use-more-context" target="_blank" rel="noopener noreferrer">查看原文 ↗</a>
+</div>
+<div class="container">
+  <h1 class="article-title">Coding sessions are longer and use more context. Claude Opus 5.5 is built with that in mind.</h1>
+  <div class="article-meta">
+    <span>作者: Michael Segner</span>
+    <span>来源: Claude</span>
+    <span>快照日期: 2026-09-25</span>
+  </div>
+  <div class="article-body"><div><div><p>We estimate Claude Opus 5.5 <a href="https://www.anthropic.com/claude-opus-5-5" target="_blank" rel="noopener noreferrer nofollow">costs about 40% less</a> to run than Opus 5 for typical workloads billed by token. For developers, exactly <em>how </em>those savings stack up matters. </p><p>If you pay by the token, you will see the greatest cost difference for longer-running, higher context sessions–the exact type of Claude Code sessions that have become more prevalent in the last six months. </p><p>This post will dive into the mechanics of what makes Opus 5.5 cost effective for how developers are coding today (and likely tomorrow).</p><h2><strong>Claude Code trends</strong></h2><p>We've pulled aggregate data on how developers have been using Claude Code from March to September 2026. As model capabilities improve, developers have been deploying agents in increasingly sophisticated ways. The number of prompts per session has been steady, but we found some interesting behaviors:</p><ul><li>Claude works 3.3x longer on each prompt with more than 40% more model calls per prompt. There are 68% fewer interruptions.</li><li>Developers are about twice as likely to have a tool server connected or use a skill and a third less likely to paste text into a prompt.</li><li>Context per request has grown 2.6x. The input to output token ratio moved from 189:1 to 324:1.</li></ul><figure><p></p></figure><p>All of this points to developers aiming a harder working, better informed Claude toward bigger, more open-ended tasks. For these types of sessions, the economic impact of context engineering is compounded. </p><p>Simply put, Claude reads more tokens. You need to make sure <a href="https://claude.com/blog/the-new-rules-of-context-engineering-for-claude-5-generation-models" target="_blank" rel="noopener noreferrer nofollow">all the context you are providing is necessary</a>, and that <a href="https://claude.com/blog/maximizing-the-value-of-your-claude-code-sessions" target="_blank" rel="noopener noreferrer nofollow">as much of that context as possible is reading from cache</a>. </p><h2><strong>What makes Opus 5.5 cost effective for long, context heavy sessions</strong></h2><p>There are three changes that make long-running, context-heavy sessions more cost effective: changes to pricing, model behavior, and the Claude Code harness. Let’s look at each.</p><h3><strong>Cache is cheap</strong></h3><p>For usage billed by the token, we reduced the cost of input and output tokens 20%, and <em>we dropped the price of reading a cached token 60%</em>. The latter reduction is significant because cache reads make up the majority of agentic and coding work costs. </p><p>And as we just discussed, context per request has increased roughly 2.6x in six months, which means savings are trending in the right direction. The same price change for those billed by token saves more on today's Claude Code traffic than it would have six months ago, because more of the bill is now re-read context. </p><p>As of the publication date, a cached token on Opus 5.5 costs a fifth of what it does compared to competing models while outperforming them.</p><figure><p></p></figure><h3><strong>Claude Code is better at using the cache</strong></h3><p>This is less specific to Opus 5.5, and more the result of many of the Claude Code features we’ve added in the last six months. Given the coding session trends we just discussed, you would expect a higher rate of cache misses, but the opposite is true. <strong>Input that misses the cache decreased by more than 50%. </strong></p><p>For example, we made it harder to unintentionally break your cache with smaller papercuts like refreshing a login. We also made it harder to break with larger actions, like adding instructions mid-conversation or loading tools on demand. For newer models like Opus 5.5 and Fable 5.1, you can now change effort levels during your sessions without resetting your cache.</p><p>We also made the cache more useful for longer-running and delegated sessions. Developers on API keys and cloud providers can now set a one-hour cache lifetime (which subscribers already had) and forked subagents start from the parent's cache instead of paying for the same context again. </p><h3><strong>The same task, but with fewer turns</strong></h3><p>Opus 5.5 can need fewer turns than other models to accomplish the same task. Zeta Labs saw fewer turns and tool calls per task than Opus 5, but at nearly half the cost and twice as many of their hardest tasks completed.</p><p>This won't hold for every task. In <a href="https://claude.com/blog/what-a-task-costs-on-opus-5-5" target="_blank" rel="noopener noreferrer nofollow">The cost of a task on Opus 5.5</a>, Addy wrote, "On a well-scoped task, both models finish in about the same number of turns, and the price cut is all you get. The gap should be biggest on open-ended tasks, where a model can spend many turns on the wrong idea. No single number holds for every codebase, so measure it."</p><p>In other words, simple, short, and mechanical tasks will take the same amount of turns while longer, harder tasks have more potential for Opus 5.5 to avoid burning tokens on the wrong approach. A reduced turn is even more cost efficient than a cached token.</p><p>Also worth noting, especially as Claude works longer unattended or uninterrupted, is that Opus 5.5 generates output more than 30% faster than Opus 5. While this doesn’t increase cache hit rate or use less tokens, it means waiting less on long runs.</p><h2><strong>Protect your cached reads</strong></h2><p>As agentic coding has matured, organizations have shifted from asking developers to scale at all costs to asking developers to scale efficiently. Run /usage in Claude Code to see how much of your usage is cached reads. Then protect that number: </p><ul><li>Pick your model at the start of a session rather than switching midway, </li><li>Compact before you step away rather than after, and </li><li>If you're on an API key or cloud provider, set the <a href="https://code.claude.com/docs/en/prompt-caching#choose-the-ttl-yourself" target="_blank" rel="noopener noreferrer nofollow">one-hour cache lifetime</a> for long sessions. </li></ul><p>Point Opus 5.5 at the open-ended, context-heavy work where those habits compound, and see <a href="https://claude.com/blog/what-a-task-costs-on-opus-5-5" target="_blank" rel="noopener noreferrer nofollow">What a task costs on Opus 5.5</a> for the worked numbers.</p></div></div></div>
+  <div class="footer">
+    本文由 AI热点监控系统自动抓取 · 内容版权归原作者/网站所有<br>
+    快照仅用于学习交流，如需转载请访问原文
+  </div>
+</div>
+</body>
+</html>
