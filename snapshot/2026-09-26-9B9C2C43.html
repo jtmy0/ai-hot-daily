@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="referrer" content="no-referrer">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'unsafe-inline'; img-src data:; connect-src 'none'; frame-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'; frame-ancestors 'none'">
+<title>GitHub Copilot app for Beginners: How to build custom workflows with canvases - AI热点快照</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','PingFang SC','Microsoft YaHei',sans-serif;background:#f8f9fa;color:#1a1a2e;line-height:1.8;min-height:100vh}
+.top-bar{background:#fff;border-bottom:1px solid #e5e7eb;padding:10px 20px;display:flex;align-items:center;gap:12px;position:sticky;top:0;z-index:10}
+.top-bar .logo{font-size:14px;font-weight:700;color:#0d9488}
+.top-bar .sep{color:#d1d5db}
+.top-bar .source{font-size:13px;color:#6b7280}
+.top-bar .back{margin-left:auto;font-size:13px;color:#0d9488;text-decoration:none}
+.top-bar .back:hover{text-decoration:underline}
+.container{max-width:760px;margin:0 auto;padding:40px 24px 80px}
+.article-title{font-size:1.8rem;font-weight:700;line-height:1.35;margin-bottom:16px;color:#1a1a2e}
+.article-meta{display:flex;flex-wrap:wrap;gap:16px;padding-bottom:20px;margin-bottom:28px;border-bottom:1px solid #e5e7eb;font-size:14px;color:#6b7280}
+.article-meta a{color:#0d9488;text-decoration:none}
+.article-meta a:hover{text-decoration:underline}
+.article-body{font-size:16.5px;line-height:1.85;color:#1f2937}
+.article-body p{margin-bottom:1.2em;text-align:justify}
+.article-body h1,.article-body h2,.article-body h3{font-size:1.25em;font-weight:700;margin:1.6em 0 0.6em;color:#1a1a2e}
+.article-body a{color:#0d9488}
+.article-body pre,.article-body code{background:#f1f5f9;border-radius:4px;font-size:0.9em}
+.article-body pre{padding:16px;overflow-x:auto;margin:1em 0}
+.article-body code{padding:2px 6px}
+.article-body blockquote{border-left:3px solid #0d9488;padding-left:16px;color:#4b5563;margin:1em 0}
+.article-body ul,.article-body ol{padding-left:1.6em;margin-bottom:1em}
+.article-body li{margin-bottom:0.4em}
+.article-body figure{margin:1.2em 0}
+.article-body figcaption{font-size:13px;color:#9ca3af;text-align:center;margin-top:6px}
+.footer{margin-top:48px;padding-top:20px;border-top:1px solid #e5e7eb;font-size:13px;color:#9ca3af;text-align:center}
+</style>
+</head>
+<body>
+<div class="top-bar">
+  <a class="back" href="../" style="font-size:13px;color:#6b7280;text-decoration:none">← 日报首页</a>
+  <span class="sep">|</span>
+  <span class="logo">AI热点快照</span>
+  <span class="sep">|</span>
+  <span class="source">The GitHub Blog</span>
+  <a class="back" href="https://github.blog/ai-and-ml/github-copilot/github-copilot-app-for-beginners-how-to-build-custom-workflows-with-canvases" target="_blank" rel="noopener noreferrer">查看原文 ↗</a>
+</div>
+<div class="container">
+  <h1 class="article-title">GitHub Copilot app for Beginners: How to build custom workflows with canvases</h1>
+  <div class="article-meta">
+    <span>作者: Kayla Cinnamon</span>
+    <span>来源: The GitHub Blog</span>
+    <span>快照日期: 2026-09-26</span>
+  </div>
+  <div class="article-body"><p>Most tools give you a fixed set of screens and ask you to fit your work into them. But what if you could start with the workflow you want instead and have the interface take shape around it?</p>
+
+
+
+<p>That’s the idea behind <a href="https://docs.github.com/en/copilot/how-tos/github-copilot-app/working-with-canvas-extensions" target="_blank" rel="noopener noreferrer nofollow">canvases in the GitHub Copilot app</a>. A canvas, also called a canvas extension, is a customizable interface that you and the agent share. It can be a kanban board, an issue triage board, a release checklist, a dashboard, a form, or even a spreadsheet: a UI shaped to how you work.</p>
+
+
+
+<p>Because the canvas is bidirectional, the agent can update it as it works, and you can use buttons, cards, filters, and other controls to make changes too. Just like using a live shared whiteboard.</p>
+
+
+
+<p>Let’s create one.</p>
+
+
+
+<h2>Creating a canvas with /create-canvas</h2>
+
+
+
+<p>To create a canvas, you don’t have to do any coding or design by hand. Just open an agent session, enter the <code>/create-canvas</code> <a href="https://docs.github.com/en/copilot/reference/github-copilot-app-reference/built-in-skills" target="_blank" rel="noopener noreferrer nofollow">skill</a>, and describe what you want in plain English.</p>
+
+
+
+<p>Make sure your prompt covers three things:</p>
+
+
+
+<ul>
+<li>The workflow the canvas should support.</li>
+
+
+
+<li>What you should be able to do in the interface.</li>
+
+
+
+<li>What the agent should be able to do.</li>
+</ul>
+
+
+
+<p>For example, you could enter:</p>
+
+
+<div>
+<pre><code>/create-canvas Create a release notes canvas for tracking new feature work completed across GitHub Copilot app sessions. Include controls for reviewing and organizing entries and allow the agent to add and update them.</code></pre>
+</div>
+
+
+<p>Then, the agent will build the interface and open it in the right-side panel without you having to write files or mess with the layout. One description becomes a custom tool that’s ready to use.</p>
+
+
+
+<h2>Shaping the canvas around your workflow</h2>
+
+
+
+<p>Because the interface is generated from your description, your first version is just a starting point, and you can keep refining until you’re happy.</p>
+
+
+
+<p>You could ask the agent to add a column or filter, pull in your open pull requests, or turn the entire canvas into a checklist for your day. The agent will revise the canvas to match. While there isn’t a fixed menu of layouts, if you can describe a workflow, you can likely turn it into a canvas.</p>
+
+
+
+<p>Once created, your canvas is saved as an extension, so you can use it again. You can keep it with the project for your team to share or save it as a personal extension just for you.</p>
+
+
+
+<h2>Instant collaboration, not command and wait</h2>
+
+
+
+<p>The real power of a canvas is that you and the agent can both keep working at the same time.</p>
+
+
+
+<p>When you click a button, update a field, or move a card, the canvas’ shared state changes immediately. The agent sees the same update without a separate send or sync step.</p>
+
+
+
+<p>It works the other way, too. You can ask the agent to use the canvas’ own capabilities—the same actions available to you—to add a release note or move a card, then watch that change appear in the interface. Instead of sending a command and waiting for a response, you’re steering the work together.</p>
+
+
+
+<h2>Take this with you</h2>
+
+
+
+<p>Creating a useful canvas starts with three simple questions:</p>
+
+
+
+<ul>
+<li>What information do I want to see?</li>
+
+
+
+<li>What do I want to change directly?</li>
+
+
+
+<li>What should the agent be able to update or do?</li>
+</ul>
+
+
+
+<p>Not sure where to begin? The community has shared ready-made <a href="https://awesome-copilot.github.com/extensions/" target="_blank" rel="noopener noreferrer nofollow">canvas extensions through Awesome Copilot</a>, including release notes tools, kanban boards, issue triage workflows, and more. Install one that’s close to what you need, then ask the agent to customize it for your workflow in the same way you would refine a canvas you created yourself.</p>
+
+
+
+<p>Start small: open a session, run <code>/create-canvas</code>, and describe a simple board or checklist for something you’re working on now.</p>
+
+
+
+
+
+	<div>
+	<h2>
+		Written by	</h2>
+	
+			
+	<div>
+					<div>
+				
+					
+					
+				
+			</div>
+				
+					<p>Senior AI Developer Tools Advocate</p>
+			</div>
+
+	</div>
+
+	
+	<h2>
+		Related posts	</h2>
+	
+
+
+<div>
+			<div>
+				<h2>We do newsletters, too</h2><p>Discover tips, technical guides, and best practices in our biweekly newsletter just for devs.</p>			</div>
+			<div>
+				<p>Your email address</p>
+			</div>
+		</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
+  <div class="footer">
+    本文由 AI热点监控系统自动抓取 · 内容版权归原作者/网站所有<br>
+    快照仅用于学习交流，如需转载请访问原文
+  </div>
+</div>
+</body>
+</html>
