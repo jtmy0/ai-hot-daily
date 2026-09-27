@@ -88,7 +88,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','PingFang SC','Micr
           <p>Rust
             <span>
               
-                78.7%
+                77.0%
               
             </span></p>
         </div>
@@ -100,7 +100,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','PingFang SC','Micr
           <p>JavaScript
             <span>
               
-                16.3%
+                18.0%
               
             </span></p>
         </div>
@@ -112,7 +112,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','PingFang SC','Micr
           <p>CSS
             <span>
               
-                2.4%
+                2.1%
               
             </span></p>
         </div>
@@ -124,7 +124,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','PingFang SC','Micr
           <p>Makefile
             <span>
               
-                1.1%
+                1.4%
               
             </span></p>
         </div>
@@ -148,7 +148,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','PingFang SC','Micr
           <p>Dockerfile
             <span>
               
-                0.6%
+                0.5%
               
             </span></p>
         </div>
@@ -176,7 +176,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','PingFang SC','Micr
   
   
 
- 3
+ 13
             </span>
             <span>
               
@@ -185,7 +185,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','PingFang SC','Micr
   
   
 
- 1
+ 2
             </span>
             <span>
               
@@ -296,6 +296,8 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','PingFang SC','Micr
 repo) to an Excalidraw whiteboard. Ask for a diagram in the chat panel, or write <code>AGENT: …</code>
 next to the part of a drawing you want changed. The agent looks at the canvas (screenshot +
 scene), edits it live, checks the result, and marks the note <code>DONE</code>.</p>
+<h2>How it works<span>#</span></h2>
+<p></p>
 <h2>Quick start<span>#</span></h2>
 <p>Prerequisite: one of <code>claude</code>, <code>codex</code> or <code>opencode</code> installed and logged in. The Claude and
 Codex bridges also need Node.js ≥ 18 (npm).</p>
@@ -303,7 +305,9 @@ Codex bridges also need Node.js ≥ 18 (npm).</p>
 </span></span><span><span><span>cd</span> ~/my-repo
 </span></span><span><span>drawgent up                  <span># new agent session in this repo + canvas in your browser</span>
 </span></span><span><span>drawgent up --attach         <span># or: pick one of your running sessions and connect the canvas to it</span>
-</span></span></code></pre><h3><code>drawgent setup &lt;agent&gt;</code><span>#</span></h3>
+</span></span></code></pre><h3>Demo<span>#</span></h3>
+<p></p>
+<h3><code>drawgent setup &lt;agent&gt;</code><span>#</span></h3>
 <p>Checks everything once, fails with the exact fix when something is missing, and writes
 <code>~/.config/drawgent/config.toml</code>:</p>
 <ol>
@@ -349,7 +353,23 @@ recorded disappeared.</p>
 <li>starts a new session of your agent over ACP, working in the workspace;</li>
 <li>opens your browser. On a headless box it prints the <code>ssh -L</code> command instead.</li>
 </ul>
-<p>The scene is kept in <code>.drawgent/scene.json</code>, which is git-ignored automatically.</p>
+<p>The live scene and its sync state are kept in <code>.drawgent/scene.json</code>, which is git-ignored
+automatically.</p>
+<h3>Keeping the diagram in the repo: <code>--diagram</code><span>#</span></h3>
+<pre><code><span><span>drawgent up --diagram docs/architecture.excalidraw   <span># remembered for this workspace</span>
+</span></span></code></pre><ul>
+<li><strong>What's written:</strong> a standard <code>.excalidraw</code> file (it opens on excalidraw.com) that follows the
+canvas. It holds only the live drawing (no deleted elements, no laser traces), pretty-printed
+and without per-edit sync fields, so it diffs cleanly and is rewritten only when the drawing
+changes. Commit it like any other source file.</li>
+<li><strong>Changes from git:</strong> if the file changes outside drawgent (<code>git pull</code>, checkout, a hand
+edit), it wins. The canvas updates live, deletions included, and a file already on disk at
+start is applied too. A file that doesn't parse (e.g. merge-conflict markers) is reported in
+the chat panel and ignored until fixed.</li>
+<li><strong>Picking the file:</strong> a <code>drawgent.excalidraw</code> at the workspace root is used automatically, so a
+fresh clone needs no flag.</li>
+<li><strong>Rooms:</strong> <code>--diagram</code> can't be combined with <code>--room</code>, where excalidraw.com holds the drawing.</li>
+</ul>
 <h3><code>drawgent up --attach [id]</code><span>#</span></h3>
 <p>Connects the canvas to a session you already run. Without an id it lists the sessions it
 finds (current directory first) and lets you pick one:</p>
@@ -422,7 +442,35 @@ with your own setup.</p>
 <h2>Build from source<span>#</span></h2>
 <pre><code><span><span>npm ci <span>&amp;&amp;</span> npm run build      <span># editor + renderer pages -&gt; dist/ (embedded into the binary)</span>
 </span></span><span><span>cargo install --path .       <span># or: cargo build --release</span>
-</span></span></code></pre><h2>Agent tools (MCP)<span>#</span></h2>
+</span></span></code></pre><p>Release builds (<code>nix develop -c make …</code> provides the toolchain, or rustup + cargo-zigbuild):</p>
+<table>
+<thead>
+<tr>
+<th>command</th>
+<th>output</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>make musl</code> / <code>make dist</code></td>
+<td>static Linux x86_64 binary / tarball (<code>MUSL_TARGET=aarch64-unknown-linux-musl</code> for ARM)</td>
+</tr>
+<tr>
+<td><code>make darwin</code> / <code>make dist-darwin</code></td>
+<td>macOS universal binary (Intel + Apple Silicon, macOS ≥ 13) / tarball</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><strong>How the macOS build is made:</strong> it's cross-built from Linux with zig and no Apple SDK
+(drawgent links only <code>libSystem</code>, <code>libiconv</code> and <code>libcharset</code>).</li>
+<li><strong>Signing:</strong> the arm64 slice is ad-hoc signed by the linker. It is not notarized, so after
+downloading run <code>xattr -d com.apple.quarantine drawgent</code> once.</li>
+<li><strong>Status:</strong> not yet tested on a real Mac.</li>
+<li><strong>Small machines:</strong> use <code>JOBS=1</code>. One dependency (<code>chromiumoxide_cdp</code>) needs a lot of memory
+to compile.</li>
+</ul>
+<h2>Agent tools (MCP)<span>#</span></h2>
 <p><code>get_scene</code>, <code>get_screenshot</code> (vision; zoom with <code>element_ids</code>), <code>add_elements</code> (Excalidraw
 skeletons; arrows bind by id and are routed edge-to-edge), <code>add_mermaid</code> (auto-layout),
 <code>update_elements</code> (labels follow shapes, bound arrows re-route), <code>delete_elements</code>,
@@ -438,6 +486,7 @@ skeletons; arrows bind by id and are routed edge-to-edge), <code>add_mermaid</co
 </span></span><span><span>node scripts/e2e-browser.mjs <span>[</span>url<span>]</span>  <span># real browser: chat panel + note typed on the canvas</span>
 </span></span><span><span>node scripts/room-e2e.mjs           <span># fresh excalidraw.com room ↔ drawgent, both directions</span>
 </span></span><span><span>node scripts/laser-e2e.mjs          <span># laser zone → chat → agent edits only that zone (needs setup claude)</span>
+</span></span><span><span>node scripts/diagram-e2e.mjs        <span># --diagram file: clean output, git pull / hand edits flow back</span>
 </span></span></code></pre><h2>Layout<span>#</span></h2>
 <p><code>src/</code> (Rust):</p>
 <ul>
@@ -460,7 +509,7 @@ skeletons; arrows bind by id and are routed edge-to-edge), <code>add_mermaid</co
 <li>Claude "attach" is a fork, because Claude Code has no public way to inject into a running
 terminal session.</li>
 <li>Codex live attach is implemented, but was not yet tested against a logged-in Codex.</li>
-<li>One scene per workspace. Images/files are not synced.</li>
+<li>One scene (and one diagram file) per workspace. Images/files are not synced.</li>
 </ul>
 
     
