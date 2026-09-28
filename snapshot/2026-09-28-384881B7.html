@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="referrer" content="no-referrer">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'unsafe-inline'; img-src data:; connect-src 'none'; frame-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'; frame-ancestors 'none'">
+<title>Add Runtime Controls to AI Agents with NVIDIA OpenShell - AI热点快照</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','PingFang SC','Microsoft YaHei',sans-serif;background:#f8f9fa;color:#1a1a2e;line-height:1.8;min-height:100vh}
+.top-bar{background:#fff;border-bottom:1px solid #e5e7eb;padding:10px 20px;display:flex;align-items:center;gap:12px;position:sticky;top:0;z-index:10}
+.top-bar .logo{font-size:14px;font-weight:700;color:#0d9488}
+.top-bar .sep{color:#d1d5db}
+.top-bar .source{font-size:13px;color:#6b7280}
+.top-bar .back{margin-left:auto;font-size:13px;color:#0d9488;text-decoration:none}
+.top-bar .back:hover{text-decoration:underline}
+.container{max-width:760px;margin:0 auto;padding:40px 24px 80px}
+.article-title{font-size:1.8rem;font-weight:700;line-height:1.35;margin-bottom:16px;color:#1a1a2e}
+.article-meta{display:flex;flex-wrap:wrap;gap:16px;padding-bottom:20px;margin-bottom:28px;border-bottom:1px solid #e5e7eb;font-size:14px;color:#6b7280}
+.article-meta a{color:#0d9488;text-decoration:none}
+.article-meta a:hover{text-decoration:underline}
+.article-body{font-size:16.5px;line-height:1.85;color:#1f2937}
+.article-body p{margin-bottom:1.2em;text-align:justify}
+.article-body h1,.article-body h2,.article-body h3{font-size:1.25em;font-weight:700;margin:1.6em 0 0.6em;color:#1a1a2e}
+.article-body a{color:#0d9488}
+.article-body pre,.article-body code{background:#f1f5f9;border-radius:4px;font-size:0.9em}
+.article-body pre{padding:16px;overflow-x:auto;margin:1em 0}
+.article-body code{padding:2px 6px}
+.article-body blockquote{border-left:3px solid #0d9488;padding-left:16px;color:#4b5563;margin:1em 0}
+.article-body ul,.article-body ol{padding-left:1.6em;margin-bottom:1em}
+.article-body li{margin-bottom:0.4em}
+.article-body figure{margin:1.2em 0}
+.article-body figcaption{font-size:13px;color:#9ca3af;text-align:center;margin-top:6px}
+.footer{margin-top:48px;padding-top:20px;border-top:1px solid #e5e7eb;font-size:13px;color:#9ca3af;text-align:center}
+</style>
+</head>
+<body>
+<div class="top-bar">
+  <a class="back" href="../" style="font-size:13px;color:#6b7280;text-decoration:none">← 日报首页</a>
+  <span class="sep">|</span>
+  <span class="logo">AI热点快照</span>
+  <span class="sep">|</span>
+  <span class="source">NVIDIA Technical Blog</span>
+  <a class="back" href="https://developer.nvidia.com/blog/add-runtime-controls-to-ai-agents-with-nvidia-openshell/" target="_blank" rel="noopener noreferrer">查看原文 ↗</a>
+</div>
+<div class="container">
+  <h1 class="article-title">Add Runtime Controls to AI Agents with NVIDIA OpenShell</h1>
+  <div class="article-meta">
+    <span>作者: Alex Watson</span>
+    <span>来源: NVIDIA Technical Blog</span>
+    <span>快照日期: 2026-09-28</span>
+  </div>
+  <div class="article-body"><div><div>
+<p>AI agents can be given a goal, write code, use tools, and keep working as new information becomes available. This opens the door to applications that investigate software failures, run experiments, and carry out business-critical actions and research over days or weeks.</p>
+
+
+
+<p>Useful agents need access to workspaces, compute resources, data, credentials, and external services. But broader access also creates more consequential failure modes, from changing production data or exposing confidential information to acting beyond the assigned task.</p>
+
+
+
+<p><a href="https://docs.nvidia.com/openshell/about/why-open-shell" target="_blank" rel="noopener noreferrer nofollow">NVIDIA OpenShell</a> 0.1.0 is an open-source runtime for defining and enforcing which systems and data an agent can access. It combines sandboxed execution, controlled service access, credential management, and formal policy analysis. Teams can grant agents the capabilities a task requires while <a href="https://www.nvidia.com/en-us/ai/openshell/" target="_blank" rel="noopener noreferrer nofollow">OpenShell</a> enforces those permissions outside the workload.</p>
+
+
+
+<p>It supports Codex, Claude Code, Pi, Hermes, and future frameworks across enterprise applications, frontier research, and physical AI—from internal agent fleets and long-horizon research to robotics and edge systems.</p>
+
+
+
+<p>This post shows how NVIDIA OpenShell 0.1.0 places enforceable runtime controls around an existing AI agent—without rewriting it—so teams can restrict API operations, protect credentials, and review permission changes outside the agent workload.</p>
+
+
+
+<p>OpenShell provides the runtime layer of the broader <a href="https://www.nvidia.com/en-us/solutions/ai/agent-safety/" target="_blank" rel="noopener noreferrer nofollow">NVIDIA Open Agent Safety Platform</a>, which extends protection across the application, runtime, and infrastructure layers.</p>
+
+
+
+<figure><p><span></span>
+</p><figcaption><em>Video 1. A walkthrough on how to set up your autonomous long-running agent</em></figcaption></figure>
+
+
+
+<h2>How organizations are adopting OpenShell<span><i></i></span></h2>
+
+
+
+<p>OpenShell is open source and available for enterprise adoption across a broad ecosystem of partners, which shapes the product itself. Organizations are adopting OpenShell across a range of applications, including chip design, enterprise automation, accelerated computing, and physical AI.</p>
+
+
+
+<ul>
+<li>Cadence uses OpenShell for chip design with its ChipStack Autonomous RTL Design Engineer. </li>
+
+
+
+<li>Slack is building an on-demand agent platform on OpenShell to automate tasks.</li>
+
+
+
+<li>Gecko Robotics uses OpenShell to govern agents making decisions on physical robots. </li>
+</ul>
+
+
+
+<h2>OpenShell capabilities<span><i></i></span></h2>
+
+
+
+<p>OpenShell 0.1.0 supports sandbox operations, policy verification, governance integration, credential protection, and flexible compute.</p>
+
+
+
+<figure><table><thead><tr><th><strong>Capability</strong></th><th><strong>How it helps</strong></th></tr></thead><tbody><tr><td><strong>Multi-tenant platform support</strong></td><td>Operate agent services for multiple teams or customers with separate workspaces, permissions, and service access on shared infrastructure.</td></tr><tr><td><strong>Formal policy verification</strong></td><td>Show human and AI reviewers whether requested permissions remain within defined security boundaries, and identify where they exceed them.</td></tr><tr><td><strong>Extensible security and governance</strong></td><td>Connect third-party security services, governance systems, and custom checks to enforcement outside the agent workload.</td></tr><tr><td><strong>Credential-protected service access</strong></td><td>Use authenticated services while real credentials remain outside the agent workload and are bound to authorized requests.</td></tr><tr><td><strong>CPU and GPU execution</strong></td><td>Run experiments and data processing on CPUs or GPUs across containers, VMs, and Kubernetes environments.</td></tr></tbody></table><figcaption><em>Table 1. New capabilities introduced in OpenShell 0.1.0</em></figcaption></figure>
+
+
+
+<h2>Enforce permissions outside the agent<span><i></i></span></h2>
+
+
+
+<p>An agent can interpret instructions, choose tools, and evolve its approach over time. OpenShell preserves that flexibility while enforcing permissions outside the agent workload.</p>
+
+
+
+<p>OpenShell can manage fleets of agents and their sandboxes, each with its own permissions, and enable governance across groups at a time. Three components provide this control:</p>
+
+
+
+<ul>
+<li><strong>OpenShell Gateway:</strong> Manages the lifecycles and policies of many sandboxes.</li>
+
+
+
+<li><strong>OpenShell Supervisor:</strong> Paired with each sandbox, it runs outside the agent workload and checks outbound requests against policy.</li>
+
+
+
+<li><strong>OpenShell Sandbox:</strong> Runs the workload with kernel-level controls over its filesystem and processes, and no network path except through the supervisor.</li>
+</ul>
+
+
+<div>
+<figure><figcaption><em>Figure 1. OpenShell manages agent sandboxes. External supervisors restrict outbound communication to configured services</em></figcaption></figure>
+</div>
+
+
+<p>The OpenShell sandbox runtime uses operating-system kernel controls to limit which files a workload can read or change and prevent it from acquiring additional system privileges. For network access, you can be more specific than allowing a connection to a service. The supervisor can inspect configured HTTP, GraphQL, and Model Context Protocol (MCP) traffic, allowing a data query while blocking a write through the same API. These controls remain in place when the agent starts a shell, runs generated code, launches child processes, or proposes task delegation to sub-agents. OpenShell records policy decisions in an Open Cybersecurity Schema Framework (OCSF) audit trail. When it blocks an inspected request, it can return a descriptive error that helps the agent decide what to do next.</p>
+
+
+
+<h2>Watch a policy decision happen<span><i></i></span></h2>
+
+
+
+<p>This example uses curl and an unauthenticated endpoint in the GitHub REST API, making each policy decision visible without requiring an API key or language model. The same controls apply when an agent makes the request.</p>
+
+
+
+<p>Install and start OpenShell 0.1.0 using the <a href="https://docs.nvidia.com/openshell/dev/about/installation" target="_blank" rel="noopener noreferrer nofollow">installation guide</a>. Then download the accompanying <code>no-network.yaml</code> and <code>github-readonly.yaml</code> policy files into an <code>examples</code> directory.</p>
+
+
+
+<p>First, create a sandbox with no outbound network access:</p>
+
+
+<div><pre>
+openshell sandbox create --name policy-demo \
+  --no-auto-providers \
+  --policy examples/no-network.yaml
+</pre></div>
+
+
+<p>The create command opens a shell inside the sandbox. Try reading a public endpoint:</p>
+
+
+<div><pre>
+curl -sS --max-time 10 https://api.github.com/zen
+</pre></div>
+
+
+<p>The request fails because the sandbox has no outbound network permission. Open a second terminal on your host and check the logs to see which program made the request and why it was blocked:</p>
+
+
+<div><pre>
+openshell logs policy-demo --since 5m
+</pre></div>
+
+
+<p>Next, replace the sandbox policy with one that permits read-only access to the GitHub REST API. Policies are authored in YAML and compiled to OPA/Rego, which OpenShell evaluates for each outbound request.</p>
+
+
+<div><pre>
+network_policies:
+  github_api:
+    name: github-api-readonly
+    endpoints:
+      - host: api.github.com
+        port: 443
+        protocol: rest
+        enforcement: enforce
+        access: read-only
+    binaries:
+      - path: /usr/bin/curl
+</pre></div>
+
+
+<p>This rule lets /usr/bin/curl reach the GitHub API on port 443. With the protocol: rest, OpenShell inspects HTTP requests, allowing reads while blocking writes.</p>
+
+
+
+<p>In your host terminal, apply the complete replacement policy without restarting the sandbox:</p>
+
+
+<div><pre>
+openshell policy set policy-demo \
+  --policy examples/github-readonly.yaml --wait
+</pre></div>
+
+
+<p>Return to the sandbox shell and try both requests:</p>
+
+
+<div><pre>
+# Read: allowed
+curl -sS --max-time 10 https://api.github.com/zen
+
+# Write: blocked
+curl -sS --max-time 10 -X POST https://api.github.com/zen
+</pre></div>
+
+
+<p>Check the host logs again to confirm OpenShell blocked the POST. An agent running these commands encounters the same restrictions.</p>
+
+
+
+<h2>Access services without exposing credentials<span><i></i></span></h2>
+
+
+
+<p>Many agents need model APIs or private services to complete their tasks. OpenShell authorizes that access while keeping the real credentials outside the agent workload.</p>
+
+
+<div>
+<figure><figcaption><em>Figure 2. The real credential is substituted outside the agent workload and only for an authorized endpoint. Both network access and credential binding must permit the request</em></figcaption></figure>
+</div>
+
+
+<p>Authorization for one service does not make the credential available to another. If the agent sends the placeholder to a destination outside the credential’s approved endpoints, OpenShell rejects the request.</p>
+
+
+
+<p>The receiving service still enforces the permissions attached to the real credential. OpenShell adds a separate control over how the agent can use it. For example, an inspected read-only API policy can block write requests even when the credential itself has write access.</p>
+
+
+
+<p>A provider profile defines the credentials, endpoints, and permitted programs for a service. Assuming a GitHub provider named <code>github</code> is already configured, attach it to a new sandbox and launch Codex.</p>
+
+
+<div><pre>
+openshell sandbox create \
+  --provider github \
+  -- codex
+</pre></div>
+
+
+<h2>Adjust network access while the agent runs<span><i></i></span></h2>
+
+
+
+<p>An agent may discover that it needs a service or data source that wasn’t known when the task began. When policy blocks the request, OpenShell records the denial so an operator or an AI agent approver can review it. With <a href="https://docs.nvidia.com/openshell/dev/sandboxes/policy-advisor#enable-policy-advisor" target="_blank" rel="noopener noreferrer nofollow">policy advisor</a> enabled, the agent can propose a narrowly scoped network or file policy change. The proposal remains pending for human review by default, and the agent cannot approve its own request. After approval, OpenShell loads the new rule into the running sandbox so the agent can retry without restarting its work.</p>
+
+
+
+<p>Filesystem and process restrictions are established when the sandbox starts. Changing those controls requires a new sandbox.</p>
+
+
+
+<p>Enable policy advisor for a sandbox with the following command.</p>
+
+
+<div><pre>
+openshell settings set &lt;sandbox-name&gt; \
+  --key agent_policy_proposals_enabled \
+  --value true
+</pre></div>
+
+
+<h2>Verify the permissions a policy grants<span><i></i></span></h2>
+
+
+
+<p>A policy can appear restrictive while leaving another route open. Blocking a GitHub write through one tool does not help if another permitted tool or generated code can use a credential to make the same write.</p>
+
+
+
+<p>The OpenShell policy prover uses formal logic to check the permissions granted by the policy, including provider-contributed access. It can prove modeled permissions remain within an operator-defined boundary or identify a concrete action that crosses it. Because the result comes from the policy model, an agent’s explanation cannot change that result. The linked <a href="https://nvidia.github.io/OpenShell-Research/dev-notes/posts/2026-09-10-learning-formal-methods-agent-policy-prover/" target="_blank" rel="noopener noreferrer nofollow">formal-methods primer</a> walks through how this works.</p>
+
+
+
+<p>In long-horizon adversarial experiments, frontier agents with reduced safeguards spent up to two hours trying to persuade an AI reviewer to grant permissions that would let them modify a protected GitHub repository. OpenShell’s formal policy analysis gave the reviewer evidence of what those permissions allowed, even when agents attempted to manipulate the reviewer. The combined review and runtime controls allowed useful access, and no protected repository writes occurred in these tests</p>
+
+
+
+<p>Ongoing work extends policy analysis across multiple agents, where one agent’s access can combine with another’s. The goal is to check the permissions of the system that they form together. See the <a href="https://docs.nvidia.com/openshell/dev/reference/policy-prover" target="_blank" rel="noopener noreferrer nofollow">prover documentation</a> for supported checks.</p>
+
+
+
+
+
+
+
+<p>Start with a local sandbox while building an application and defining its permissions. To serve multiple users, follow the <a href="https://docs.nvidia.com/openshell/latest/sandboxes/manage-workspaces" target="_blank" rel="noopener noreferrer nofollow">workspaces and access guide</a> and use the SDK to create and manage sandboxes. Each workload has its own policy and attached providers.</p>
+
+
+
+<p><a href="https://docs.nvidia.com/openshell/latest/extensibility/supervisor-middleware" target="_blank" rel="noopener noreferrer nofollow">Trusted middleware</a> outside the sandbox can connect identity services and add application-specific checks to the request path. Compute drivers connect OpenShell to Docker, Podman, MicroVM, and Kubernetes; the <a href="https://docs.nvidia.com/openshell/dev/reference/support-matrix" target="_blank" rel="noopener noreferrer nofollow">support matrix</a> covers current requirements.</p>
+
+
+
+<p>Join <strong>#openshell-dev</strong> on <a href="https://cncf-slack.netlify.app/" target="_blank" rel="noopener noreferrer nofollow">CNCF Slack</a> to ask questions, share feedback, and connect with other teams and developers building on OpenShell. Explore the code and contribute on <a href="https://github.com/NVIDIA/OpenShell" target="_blank" rel="noopener noreferrer nofollow">GitHub</a>, and follow ongoing research and engineering work in the <a href="https://nvidia.github.io/OpenShell-Research/dev-notes/" target="_blank" rel="noopener noreferrer nofollow">OpenShell dev notes</a>. If you’re upgrading an existing deployment, see the <a href="https://docs.nvidia.com/openshell/dev/about/release-notes" target="_blank" rel="noopener noreferrer nofollow">0.1.0 migration notes</a>.</p>
+
+
+
+<p>Ready to build? Start with the <a href="https://docs.nvidia.com/openshell/dev/get-started/quickstart" target="_blank" rel="noopener noreferrer nofollow">quickstart</a> to run your own agent with OpenShell and configure the services it can access.</p>
+</div></div></div>
+  <div class="footer">
+    本文由 AI热点监控系统自动抓取 · 内容版权归原作者/网站所有<br>
+    快照仅用于学习交流，如需转载请访问原文
+  </div>
+</div>
+</body>
+</html>
