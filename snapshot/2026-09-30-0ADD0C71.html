@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="referrer" content="no-referrer">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'unsafe-inline'; img-src data:; connect-src 'none'; frame-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'; frame-ancestors 'none'">
+<title>How to Test Tool-Calling Accuracy in AI Agents - AI热点快照</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','PingFang SC','Microsoft YaHei',sans-serif;background:#f8f9fa;color:#1a1a2e;line-height:1.8;min-height:100vh}
+.top-bar{background:#fff;border-bottom:1px solid #e5e7eb;padding:10px 20px;display:flex;align-items:center;gap:12px;position:sticky;top:0;z-index:10}
+.top-bar .logo{font-size:14px;font-weight:700;color:#0d9488}
+.top-bar .sep{color:#d1d5db}
+.top-bar .source{font-size:13px;color:#6b7280}
+.top-bar .back{margin-left:auto;font-size:13px;color:#0d9488;text-decoration:none}
+.top-bar .back:hover{text-decoration:underline}
+.container{max-width:760px;margin:0 auto;padding:40px 24px 80px}
+.article-title{font-size:1.8rem;font-weight:700;line-height:1.35;margin-bottom:16px;color:#1a1a2e}
+.article-meta{display:flex;flex-wrap:wrap;gap:16px;padding-bottom:20px;margin-bottom:28px;border-bottom:1px solid #e5e7eb;font-size:14px;color:#6b7280}
+.article-meta a{color:#0d9488;text-decoration:none}
+.article-meta a:hover{text-decoration:underline}
+.article-body{font-size:16.5px;line-height:1.85;color:#1f2937}
+.article-body p{margin-bottom:1.2em;text-align:justify}
+.article-body h1,.article-body h2,.article-body h3{font-size:1.25em;font-weight:700;margin:1.6em 0 0.6em;color:#1a1a2e}
+.article-body a{color:#0d9488}
+.article-body pre,.article-body code{background:#f1f5f9;border-radius:4px;font-size:0.9em}
+.article-body pre{padding:16px;overflow-x:auto;margin:1em 0}
+.article-body code{padding:2px 6px}
+.article-body blockquote{border-left:3px solid #0d9488;padding-left:16px;color:#4b5563;margin:1em 0}
+.article-body ul,.article-body ol{padding-left:1.6em;margin-bottom:1em}
+.article-body li{margin-bottom:0.4em}
+.article-body figure{margin:1.2em 0}
+.article-body figcaption{font-size:13px;color:#9ca3af;text-align:center;margin-top:6px}
+.footer{margin-top:48px;padding-top:20px;border-top:1px solid #e5e7eb;font-size:13px;color:#9ca3af;text-align:center}
+</style>
+</head>
+<body>
+<div class="top-bar">
+  <a class="back" href="../" style="font-size:13px;color:#6b7280;text-decoration:none">← 日报首页</a>
+  <span class="sep">|</span>
+  <span class="logo">AI热点快照</span>
+  <span class="sep">|</span>
+  <span class="source">OpenRouter</span>
+  <a class="back" href="https://openrouter.ai/blog/tutorials/how-to-test-tool-calling-accuracy-in-ai-agents/" target="_blank" rel="noopener noreferrer">查看原文 ↗</a>
+</div>
+<div class="container">
+  <h1 class="article-title">How to Test Tool-Calling Accuracy in AI Agents</h1>
+  <div class="article-meta">
+    <span>作者: OpenRouter</span>
+    <span>来源: OpenRouter</span>
+    <span>快照日期: 2026-09-30</span>
+  </div>
+  <div class="article-body"><div><div><p>An agent can fail in two places when it uses a tool. It can choose the wrong tool, or it can choose the right one and send the wrong arguments.</p>
+<p>Those failures tell you different things. If an agent calls <code>lookup_order</code> instead of <code>refund_order</code>, the problem is tool selection. If it calls <code>refund_order</code> with the wrong <code>order_id</code>, it chose the right tool and passed the wrong arguments.</p>
+<p>This guide covers three ways to test tool-calling behavior. The first is a reference-free large language model (LLM) judge. The second is deterministic argument checks. The third is trajectory comparison. It then shows how to run the same test cases against several tool-capable models through OpenRouter.</p>
+<h2>Tl;dr</h2>
+<ul>
+<li>Test tool selection and argument correctness separately. An agent can choose the wrong tool, call one unnecessarily, or choose the right tool and pass bad arguments.</li>
+<li>Use deterministic checks when you know the expected tool or argument value. Use a reference-free LLM judge when correctness depends on context or several choices could be valid.</li>
+<li>Use JSON Schema to catch malformed or structurally invalid arguments, and check argument values separately. A schema-valid value can still be wrong.</li>
+<li>Use trajectory comparison when the sequence of tool calls matters. If several paths can reach the same valid result, don’t require one exact sequence.</li>
+<li>When you compare models, keep the test cases, grading rules, model settings, and routing configuration the same for every candidate.</li>
+</ul>
+<h2>Two failure modes that need different tests</h2>
+<p>Start with the tool decision itself, then inspect the call the model produced.</p>
+<h3>Tool selection</h3>
+<p>Suppose an internal support agent can use <code>lookup_order</code>, <code>issue_refund</code>, and <code>search_docs</code>.</p>
+<p>If the user asks what the refund policy says, <code>search_docs</code> is the appropriate tool. If they ask to refund order <code>ord_7281</code>, the agent may need to look up the order before issuing the refund. Your test set should also include cases where the model already has enough information to answer and should not call a tool.</p>
+<p>The no-tool case matters because checking only whether a response contains <code>tool_calls</code> isn’t enough. A model that calls an unnecessary or incorrect function still produces a tool call.</p>
+<p>When one tool is clearly expected, compare the returned tool name with the expected one in code. If several tools could reasonably solve the request, exact matching can reject a valid choice. That’s where an LLM judge is more useful.</p>
+<h3>Argument correctness</h3>
+<p>After the model chooses a tool, inspect the arguments it generated. This check has two parts, structure and values.</p>
+<p>Structural validation catches malformed JSON, missing required fields, incorrect types, invalid enum values, and parameters the tool doesn’t accept.</p>
+<p>A structurally valid call can still contain the wrong value.</p>
+<pre><code><span><span>{</span></span>
+<span><span>  "order_id"</span><span>: </span><span>"ord_7282"</span></span>
+<span><span>}</span></span></code></pre>
+<p>If <code>order_id</code> is defined as a string, that payload satisfies the schema. It’s still wrong if the user asked about <code>ord_7281</code>.</p>
+<p>Existing eval frameworks make the same split. DeepEval has separate <a href="https://deepeval.com/docs/metrics-tool-correctness" target="_blank" rel="noopener noreferrer nofollow">Tool Correctness</a> and <a href="https://deepeval.com/docs/metrics-argument-correctness" target="_blank" rel="noopener noreferrer nofollow">Argument Correctness</a> metrics, and Phoenix has a separate evaluator for <a href="https://arize.com/docs/phoenix/evaluation/pre-built-metrics/tool-selection" target="_blank" rel="noopener noreferrer nofollow">tool selection</a>.</p>
+<h2>Approach 1. Reference-free LLM judge</h2>
+<p>A reference-free judge grades a tool call without a fixed expected answer. This approach is useful when correctness depends on context or several choices could be valid, so there is no single value you can compare against in code.</p>
+<p>For tool selection, give the judge the user’s request, the tools available to the agent, and the model’s output. Then ask it to decide whether the selected tool was appropriate, including whether the model should have avoided using a tool at all.</p>
+<p>Consider a research agent with both <code>web_search</code> and <code>search_internal_docs</code>. There may not be one correct choice. The better tool can depend on what the user asked and what information is already available in the conversation.</p>
+<p>The same issue appears in arguments. A search query, description, or date range may fit the schema and still fail to represent what the user meant. If there is no fixed value you can compare against, a judge can evaluate the meaning instead.</p>
+<p>A reference-free judge still needs clear instructions for what counts as correct. Keep those instructions and the judge model fixed when comparing candidate models, and check the judge’s decisions against a small set of cases you have reviewed yourself before you use it across the full dataset.</p>
+<p>If an equality check, schema validator, or business rule can answer the same question reliably, use that instead.</p>
+<h2>Approach 2. Deterministic schema checks on arguments</h2>
+<p>Not every argument error needs another model call. If the tool schema can prove the failure, validate it in code.</p>
+<p>Consider this tool definition.</p>
+<pre><code><span><span>tools </span><span>=</span><span> [</span></span>
+<span><span>    {</span></span>
+<span><span>        "type"</span><span>: </span><span>"function"</span><span>,</span></span>
+<span><span>        "function"</span><span>: {</span></span>
+<span><span>            "name"</span><span>: </span><span>"lookup_order"</span><span>,</span></span>
+<span><span>            "description"</span><span>: </span><span>"Look up an order by its ID."</span><span>,</span></span>
+<span><span>            "parameters"</span><span>: {</span></span>
+<span><span>                "type"</span><span>: </span><span>"object"</span><span>,</span></span>
+<span><span>                "properties"</span><span>: {</span></span>
+<span><span>                    "order_id"</span><span>: {</span><span>"type"</span><span>: </span><span>"string"</span><span>},</span></span>
+<span><span>                    "include_items"</span><span>: {</span><span>"type"</span><span>: </span><span>"boolean"</span><span>},</span></span>
+<span><span>                },</span></span>
+<span><span>                "required"</span><span>: [</span><span>"order_id"</span><span>],</span></span>
+<span><span>                "additionalProperties"</span><span>: </span><span>False</span><span>,</span></span>
+<span><span>            },</span></span>
+<span><span>        },</span></span>
+<span><span>    }</span></span>
+<span><span>]</span></span></code></pre>
+<p>The same schema you send to the model can validate the arguments it returns. It catches a missing <code>order_id</code>, a string where <code>include_items</code> expects a boolean, or an undeclared field such as <code>customer_email</code>.</p>
+<h2>Approach 3. Trajectory comparison</h2>
+<p>Tool selection and argument checks cover individual calls. Multi-step agents can also fail in the sequence of calls they make. When that sequence is part of the requirement, trajectory comparison tests it directly.</p>
+<p>A refund workflow might require three calls in order.</p>
+<pre><code><span><span>lookup_order</span></span>
+<span><span>    ↓</span></span>
+<span><span>verify_refund_eligibility</span></span>
+<span><span>    ↓</span></span>
+<span><span>issue_refund</span></span></code></pre>
+<p>Strict matching only makes sense when order is required. LangSmith’s <a href="https://docs.langchain.com/langsmith/trajectory-evals" target="_blank" rel="noopener noreferrer nofollow">trajectory evaluators</a> support strict, unordered, subset, and superset matching for this reason. A strict check enforces one sequence. The other modes accept different orderings or require only a particular set of calls.</p>
+<p>Agent benchmarks handle this the same way. In <a href="https://github.com/sierra-research/tau2-bench/blob/main/docs/evaluation.md" target="_blank" rel="noopener noreferrer nofollow">τ²-bench</a>, the recorded action list is one reference trajectory that is replayed to derive a target database end state. Any sequence of tool calls that produces an equivalent end state passes the database check.</p>
+<p>If <code>lookup_customer</code> and <code>lookup_subscription</code> can happen in either order, don’t fail one sequence because your reference used the other. Grade the required calls or the resulting state instead.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Eval approach</th><th>What it checks</th><th>Best fit</th></tr></thead><tbody><tr><td>Reference-free LLM judge</td><td>Whether a tool choice or argument value is appropriate in context</td><td>Decisions that can’t be checked mechanically</td></tr><tr><td>JSON Schema validation</td><td>JSON structure, required fields, types, enums, and undeclared fields</td><td>Structural validation of returned calls</td></tr><tr><td>Trajectory comparison</td><td>Which tools were called and, when required, in what order</td><td>Workflows with a known expected path</td></tr></tbody></table>
+<p>A test case can use more than one check. For example, you can compare the tool name, validate its arguments against JSON Schema, and then compare known argument values with the expected payload.</p>
+<h2>Run the same eval across models</h2>
+<p>Once you define the test cases and graders, you can run the same harness against each candidate model.</p>
+<p>We expose one <a href="https://openrouter.ai/docs/guides/features/tool-calling" target="_blank" rel="noopener noreferrer nofollow">tool-calling interface</a> across supported models, so you don’t need a separate provider integration for each model you want to compare.</p>
+<p>The example sets <code>tool_choice</code> to <code>"auto"</code>. That’s the default when you supply tools, and setting it explicitly makes the no-tool test easier to follow.</p>
+<p>This example uses the OpenAI Python SDK with our OpenAI-compatible endpoint. Install the dependencies first.</p>
+<pre><code><span><span>pip</span><span> install</span><span> openai</span><span> jsonschema</span></span></code></pre>
+<p>Set <code>OPENROUTER_API_KEY</code> in your environment, then run the same test cases against each candidate model.</p>
+<pre><code><span><span>import</span><span> json</span></span>
+<span><span>import</span><span> os</span></span>
+<span></span>
+<span><span>from</span><span> jsonschema </span><span>import</span><span> Draft7Validator, ValidationError</span></span>
+<span><span>from</span><span> openai </span><span>import</span><span> OpenAI</span></span>
+<span></span>
+<span><span>client </span><span>=</span><span> OpenAI(</span></span>
+<span><span>    base_url</span><span>=</span><span>"https://openrouter.ai/api/v1"</span><span>,</span></span>
+<span><span>    api_key</span><span>=</span><span>os.environ[</span><span>"OPENROUTER_API_KEY"</span><span>],</span></span>
+<span><span>)</span></span>
+<span></span>
+<span><span>tools </span><span>=</span><span> [</span></span>
+<span><span>    {</span></span>
+<span><span>        "type"</span><span>: </span><span>"function"</span><span>,</span></span>
+<span><span>        "function"</span><span>: {</span></span>
+<span><span>            "name"</span><span>: </span><span>"lookup_order"</span><span>,</span></span>
+<span><span>            "description"</span><span>: </span><span>"Look up an order by its ID."</span><span>,</span></span>
+<span><span>            "parameters"</span><span>: {</span></span>
+<span><span>                "type"</span><span>: </span><span>"object"</span><span>,</span></span>
+<span><span>                "properties"</span><span>: {</span></span>
+<span><span>                    "order_id"</span><span>: {</span><span>"type"</span><span>: </span><span>"string"</span><span>},</span></span>
+<span><span>                },</span></span>
+<span><span>                "required"</span><span>: [</span><span>"order_id"</span><span>],</span></span>
+<span><span>                "additionalProperties"</span><span>: </span><span>False</span><span>,</span></span>
+<span><span>            },</span></span>
+<span><span>        },</span></span>
+<span><span>    }</span></span>
+<span><span>]</span></span>
+<span></span>
+<span><span>tool_schemas </span><span>=</span><span> {</span></span>
+<span><span>    tool[</span><span>"function"</span><span>][</span><span>"name"</span><span>]: tool[</span><span>"function"</span><span>][</span><span>"parameters"</span><span>]</span></span>
+<span><span>    for</span><span> tool </span><span>in</span><span> tools</span></span>
+<span><span>}</span></span>
+<span></span>
+<span><span>test_cases </span><span>=</span><span> [</span></span>
+<span><span>    {</span></span>
+<span><span>        "name"</span><span>: </span><span>"known order"</span><span>,</span></span>
+<span><span>        "messages"</span><span>: [</span></span>
+<span><span>            {</span></span>
+<span><span>                "role"</span><span>: </span><span>"user"</span><span>,</span></span>
+<span><span>                "content"</span><span>: </span><span>"Check the status of order ord_7281."</span><span>,</span></span>
+<span><span>            }</span></span>
+<span><span>        ],</span></span>
+<span><span>        "expected_calls"</span><span>: [</span></span>
+<span><span>            {</span></span>
+<span><span>                "name"</span><span>: </span><span>"lookup_order"</span><span>,</span></span>
+<span><span>                "arguments"</span><span>: {</span><span>"order_id"</span><span>: </span><span>"ord_7281"</span><span>},</span></span>
+<span><span>            }</span></span>
+<span><span>        ],</span></span>
+<span><span>    },</span></span>
+<span><span>    {</span></span>
+<span><span>        "name"</span><span>: </span><span>"no tool needed"</span><span>,</span></span>
+<span><span>        "messages"</span><span>: [</span></span>
+<span><span>            {</span></span>
+<span><span>                "role"</span><span>: </span><span>"user"</span><span>,</span></span>
+<span><span>                "content"</span><span>: </span><span>"What does an order status of 'shipped' mean?"</span><span>,</span></span>
+<span><span>            }</span></span>
+<span><span>        ],</span></span>
+<span><span>        "expected_calls"</span><span>: [],</span></span>
+<span><span>    },</span></span>
+<span><span>]</span></span>
+<span></span>
+<span><span>models </span><span>=</span><span> [</span></span>
+<span><span>    "anthropic/claude-opus-5"</span><span>,</span></span>
+<span><span>    "openai/gpt-5.6-sol"</span><span>,</span></span>
+<span><span>    "moonshotai/kimi-k3"</span><span>,</span></span>
+<span><span>]</span></span>
+<span></span>
+<span></span>
+<span><span>def</span><span> grade_case</span><span>(model, case):</span></span>
+<span><span>    response </span><span>=</span><span> client.chat.completions.create(</span></span>
+<span><span>        model</span><span>=</span><span>model,</span></span>
+<span><span>        messages</span><span>=</span><span>case[</span><span>"messages"</span><span>],</span></span>
+<span><span>        tools</span><span>=</span><span>tools,</span></span>
+<span><span>        tool_choice</span><span>=</span><span>"auto"</span><span>,</span></span>
+<span><span>        extra_body</span><span>=</span><span>{</span></span>
+<span><span>            "reasoning"</span><span>: {</span><span>"effort"</span><span>: </span><span>"low"</span><span>},</span></span>
+<span><span>            "provider"</span><span>: {</span><span>"require_parameters"</span><span>: </span><span>True</span><span>},</span></span>
+<span><span>        },</span></span>
+<span><span>    )</span></span>
+<span></span>
+<span><span>    calls </span><span>=</span><span> response.choices[</span><span>0</span><span>].message.tool_calls </span><span>or</span><span> []</span></span>
+<span><span>    expected_calls </span><span>=</span><span> case[</span><span>"expected_calls"</span><span>]</span></span>
+<span></span>
+<span><span>    actual_names </span><span>=</span><span> [call.function.name </span><span>for</span><span> call </span><span>in</span><span> calls]</span></span>
+<span><span>    expected_names </span><span>=</span><span> [call[</span><span>"name"</span><span>] </span><span>for</span><span> call </span><span>in</span><span> expected_calls]</span></span>
+<span><span>    tool_selection </span><span>=</span><span> actual_names </span><span>==</span><span> expected_names</span></span>
+<span></span>
+<span><span>    schema_results </span><span>=</span><span> []</span></span>
+<span><span>    parsed_calls </span><span>=</span><span> []</span></span>
+<span></span>
+<span><span>    for</span><span> call </span><span>in</span><span> calls:</span></span>
+<span><span>        name </span><span>=</span><span> call.function.name</span></span>
+<span><span>        schema </span><span>=</span><span> tool_schemas.get(name)</span></span>
+<span></span>
+<span><span>        if</span><span> schema </span><span>is</span><span> None</span><span>:</span></span>
+<span><span>            schema_results.append(</span><span>False</span><span>)</span></span>
+<span><span>            continue</span></span>
+<span></span>
+<span><span>        try</span><span>:</span></span>
+<span><span>            arguments </span><span>=</span><span> json.loads(call.function.arguments)</span></span>
+<span><span>            Draft7Validator(schema).validate(arguments)</span></span>
+<span><span>        except</span><span> (json.JSONDecodeError, ValidationError):</span></span>
+<span><span>            schema_results.append(</span><span>False</span><span>)</span></span>
+<span><span>            continue</span></span>
+<span></span>
+<span><span>        schema_results.append(</span><span>True</span><span>)</span></span>
+<span><span>        parsed_calls.append(</span></span>
+<span><span>            {</span></span>
+<span><span>                "name"</span><span>: name,</span></span>
+<span><span>                "arguments"</span><span>: arguments,</span></span>
+<span><span>            }</span></span>
+<span><span>        )</span></span>
+<span></span>
+<span><span>    schema_valid </span><span>=</span><span> all</span><span>(schema_results) </span><span>if</span><span> calls </span><span>else</span><span> None</span></span>
+<span></span>
+<span><span>    argument_values </span><span>=</span><span> None</span></span>
+<span><span>    if</span><span> expected_calls:</span></span>
+<span><span>        argument_values </span><span>=</span><span> (</span></span>
+<span><span>            schema_valid </span><span>is</span><span> True</span></span>
+<span><span>            and</span><span> parsed_calls </span><span>==</span><span> expected_calls</span></span>
+<span><span>        )</span></span>
+<span></span>
+<span><span>    if</span><span> expected_calls:</span></span>
+<span><span>        passed </span><span>=</span><span> (</span></span>
+<span><span>            tool_selection</span></span>
+<span><span>            and</span><span> schema_valid </span><span>is</span><span> True</span></span>
+<span><span>            and</span><span> argument_values </span><span>is</span><span> True</span></span>
+<span><span>        )</span></span>
+<span><span>    else</span><span>:</span></span>
+<span><span>        passed </span><span>=</span><span> tool_selection</span></span>
+<span></span>
+<span><span>    return</span><span> {</span></span>
+<span><span>        "tool_selection"</span><span>: tool_selection,</span></span>
+<span><span>        "schema_valid"</span><span>: schema_valid,</span></span>
+<span><span>        "argument_values"</span><span>: argument_values,</span></span>
+<span><span>        "passed"</span><span>: passed,</span></span>
+<span><span>    }</span></span>
+<span></span>
+<span></span>
+<span><span>for</span><span> model </span><span>in</span><span> models:</span></span>
+<span><span>    results </span><span>=</span><span> [</span></span>
+<span><span>        grade_case(model, case)</span></span>
+<span><span>        for</span><span> case </span><span>in</span><span> test_cases</span></span>
+<span><span>    ]</span></span>
+<span></span>
+<span><span>    passed </span><span>=</span><span> sum</span><span>(result[</span><span>"passed"</span><span>] </span><span>for</span><span> result </span><span>in</span><span> results)</span></span>
+<span></span>
+<span><span>    print</span><span>(</span><span>f</span><span>"</span><span>{</span><span>model</span><span>}</span><span>: </span><span>{</span><span>passed</span><span>}</span><span>/</span><span>{len</span><span>(results)</span><span>}</span><span> cases passed"</span><span>)</span></span>
+<span></span>
+<span><span>    for</span><span> case, result </span><span>in</span><span> zip</span><span>(test_cases, results):</span></span>
+<span><span>        print</span><span>(</span><span>f</span><span>"  </span><span>{</span><span>case[</span><span>'name'</span><span>]</span><span>}</span><span>: </span><span>{</span><span>result</span><span>}</span><span>"</span><span>)</span></span></code></pre>
+<p>A correct no-tool case counts toward tool selection and the overall result, and there is no schema or argument payload to grade. For cases that return tools, the harness validates every call before comparing the returned values with the expected payload.</p>
+<p>The harness sets <code>reasoning.effort</code> to <code>low</code> for every candidate so that a difference in default reasoning effort doesn’t show up as a difference in tool-calling accuracy. Each of the three models above lists <code>low</code> in the <code>supported_efforts</code> array of its <code>reasoning</code> object in the models endpoint. It also sets <code>provider.require_parameters</code> to <code>true</code>. A model’s <code>supported_parameters</code> list can include a parameter that only some of that model’s provider endpoints accept, and with default routing a provider that doesn’t support a parameter still receives the request and ignores it. With <code>require_parameters</code> set, we only route the request to providers that support every parameter in it, so each graded response ran at the effort the harness asked for. See <a href="https://openrouter.ai/docs/guides/routing/provider-selection#requiring-providers-to-support-all-parameters" target="_blank" rel="noopener noreferrer nofollow">provider routing</a> for the field. The harness doesn’t set <code>temperature</code>, because <code>openai/gpt-5.6-sol</code> doesn’t list <code>temperature</code> in <code>supported_parameters</code>. If every candidate in your list accepts <code>temperature</code>, set it explicitly as well.</p>
+<p>The model IDs above are examples. Each entry in the <a href="https://openrouter.ai/docs/api/api-reference/models/list-all-models-and-their-properties" target="_blank" rel="noopener noreferrer nofollow">models endpoint</a> has a <code>supported_parameters</code> array. A model supports this harness when that array includes <code>tools</code> and <code>tool_choice</code>. Check the current <a href="https://openrouter.ai/collections/tool-calling-models" target="_blank" rel="noopener noreferrer nofollow">tool-calling models collection</a> before you fix a candidate list in a long-lived eval suite.</p>
+<p>For a real comparison, run each test case more than once so a model’s score isn’t based on a single response. A larger suite should also include the harder cases your application sees, such as missing arguments, similar tool descriptions, multiple calls, and requests where no tool should be used.</p>
+<p>This harness evaluates one tool-calling turn. For a multi-step agent, collect calls across the full trace and compare the sequence or the resulting state, depending on what the workflow requires.</p>
+<p>Provider routing also affects what your comparison measures. <a href="https://openrouter.ai/docs/guides/routing/auto-exacto" target="_blank" rel="noopener noreferrer nofollow">Auto Exacto</a> runs by default on every request that includes tools and reorders providers for your chosen model, so it can change which provider endpoint serves a tool-calling request. One of its inputs is the Tool Call Error Rate. For each request that includes tools, we inspect every tool call the model returned and classify structural failures as <code>InvalidJson</code>, <code>UnknownName</code>, or <code>SchemaMismatch</code>, validating <code>arguments</code> against the <code>parameters</code> schema you supplied under JSON Schema Draft 7. That metric measures provider behavior. It doesn’t replace the local schema validation in your own harness, which is why the example above validates arguments itself.</p>
+<p>If you want to test the routing setup your application will use in production, leave Auto Exacto enabled for every candidate. If you want an endpoint-level comparison, use our <a href="https://openrouter.ai/docs/guides/routing/provider-selection" target="_blank" rel="noopener noreferrer nofollow">provider routing controls</a> to pin the provider. Set the <code>order</code> field in the <code>provider</code> object to that provider’s slug and set <code>allow_fallbacks</code> to <code>false</code>, so every request goes to one endpoint.</p>
+<p>Keep the prompts, tools, test cases, judge model, and evaluation criteria the same between runs. Set sampling and reasoning parameters such as <code>temperature</code> and <code>reasoning</code> explicitly rather than relying on defaults, and check that each candidate supports the parameters you set. Don’t set <code>max_tokens</code> in the harness. A truncated response can cut off the tool call’s JSON and show up as an <code>InvalidJson</code> failure that has nothing to do with the model’s tool selection.</p>
+<p>If you’d rather not maintain the cross-model runner yourself, <a href="https://openrouter.ai/blog/announcements/ori-eval/" target="_blank" rel="noopener noreferrer nofollow">Ori Eval</a> runs your agent against candidate models, asserts on the tools it called and the tools it avoided, and grades open-ended answers with an LLM judge.</p>
+<h2>Common mistakes</h2>
+<p>A tool-calling eval can give you misleading results if the test cases or grading rules are too narrow.</p>
+<ul>
+<li><strong>Testing only clean requests.</strong> Include missing information, similar tools, cases where no tool should be called, and prompts where the model should ask for a value instead of inventing one.</li>
+<li><strong>Checking only <code>tool_calls[0]</code>.</strong> A response can contain several calls, so grade the full array.</li>
+<li><strong>Treating a valid payload as a correct payload.</strong> Schema validation can’t tell you whether a valid value is the right customer, order, date, or amount.</li>
+<li><strong>Changing the eval between models.</strong> If the tools, prompts, judge, model settings, or routing policy change between runs, you’re no longer making the same comparison.</li>
+</ul></div></div></div>
+  <div class="footer">
+    本文由 AI热点监控系统自动抓取 · 内容版权归原作者/网站所有<br>
+    快照仅用于学习交流，如需转载请访问原文
+  </div>
+</div>
+</body>
+</html>
