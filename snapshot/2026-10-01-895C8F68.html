@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="referrer" content="no-referrer">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'unsafe-inline'; img-src data:; connect-src 'none'; frame-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'; frame-ancestors 'none'">
+<title>How to Gate Pull Requests on LLM Evals in CI - AI热点快照</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','PingFang SC','Microsoft YaHei',sans-serif;background:#f8f9fa;color:#1a1a2e;line-height:1.8;min-height:100vh}
+.top-bar{background:#fff;border-bottom:1px solid #e5e7eb;padding:10px 20px;display:flex;align-items:center;gap:12px;position:sticky;top:0;z-index:10}
+.top-bar .logo{font-size:14px;font-weight:700;color:#0d9488}
+.top-bar .sep{color:#d1d5db}
+.top-bar .source{font-size:13px;color:#6b7280}
+.top-bar .back{margin-left:auto;font-size:13px;color:#0d9488;text-decoration:none}
+.top-bar .back:hover{text-decoration:underline}
+.container{max-width:760px;margin:0 auto;padding:40px 24px 80px}
+.article-title{font-size:1.8rem;font-weight:700;line-height:1.35;margin-bottom:16px;color:#1a1a2e}
+.article-meta{display:flex;flex-wrap:wrap;gap:16px;padding-bottom:20px;margin-bottom:28px;border-bottom:1px solid #e5e7eb;font-size:14px;color:#6b7280}
+.article-meta a{color:#0d9488;text-decoration:none}
+.article-meta a:hover{text-decoration:underline}
+.article-body{font-size:16.5px;line-height:1.85;color:#1f2937}
+.article-body p{margin-bottom:1.2em;text-align:justify}
+.article-body h1,.article-body h2,.article-body h3{font-size:1.25em;font-weight:700;margin:1.6em 0 0.6em;color:#1a1a2e}
+.article-body a{color:#0d9488}
+.article-body pre,.article-body code{background:#f1f5f9;border-radius:4px;font-size:0.9em}
+.article-body pre{padding:16px;overflow-x:auto;margin:1em 0}
+.article-body code{padding:2px 6px}
+.article-body blockquote{border-left:3px solid #0d9488;padding-left:16px;color:#4b5563;margin:1em 0}
+.article-body ul,.article-body ol{padding-left:1.6em;margin-bottom:1em}
+.article-body li{margin-bottom:0.4em}
+.article-body figure{margin:1.2em 0}
+.article-body figcaption{font-size:13px;color:#9ca3af;text-align:center;margin-top:6px}
+.footer{margin-top:48px;padding-top:20px;border-top:1px solid #e5e7eb;font-size:13px;color:#9ca3af;text-align:center}
+</style>
+</head>
+<body>
+<div class="top-bar">
+  <a class="back" href="../" style="font-size:13px;color:#6b7280;text-decoration:none">← 日报首页</a>
+  <span class="sep">|</span>
+  <span class="logo">AI热点快照</span>
+  <span class="sep">|</span>
+  <span class="source">OpenRouter</span>
+  <a class="back" href="https://openrouter.ai/blog/tutorials/how-to-gate-pull-requests-on-llm-evals-in-ci/" target="_blank" rel="noopener noreferrer">查看原文 ↗</a>
+</div>
+<div class="container">
+  <h1 class="article-title">How to Gate Pull Requests on LLM Evals in CI</h1>
+  <div class="article-meta">
+    <span>作者: OpenRouter</span>
+    <span>来源: OpenRouter</span>
+    <span>快照日期: 2026-10-01</span>
+  </div>
+  <div class="article-body"><div><div><p>Changing one line in a support agent’s system prompt can ship an agent that tells customers the refund window is 30 days when your policy says 14. Nothing in a normal CI pipeline checks what the model says, so the build passes and the first person to see the wrong answer is a customer.</p>
+<p>Gating a pull request on a fixed eval set works the same way as gating on a failing unit test. You keep test cases in the repository, run them when a prompt changes, and block the merge when too many fail.</p>
+<p>In this guide, you write an eval set for a support agent and score it with a script that calls OpenRouter. You measure how much the results move between runs with nothing changed, then wire the script into GitHub Actions as a required status check.</p>
+<h2>Tl;dr</h2>
+<ul>
+<li>A fixed eval set is a list of test cases committed to your repository. It changes only through a reviewed pull request.</li>
+<li>Filter at the job level rather than the workflow level. GitHub reports a job skipped by an <code>if</code> condition as a passing check, while a workflow skipped by a path filter leaves a required check pending and blocks the merge.</li>
+<li>The eval script exits non-zero when the pass rate falls below your threshold, and that exit code is what fails the job.</li>
+<li>Measure the threshold from repeated runs against an unchanged branch rather than picking a strict number.</li>
+<li><code>temperature</code> and <code>seed</code> only help on models that list them in <code>supported_parameters</code>. Repeated sampling with a majority vote works on every model.</li>
+</ul>
+<p></p>
+<h2>What LLM evals in CI means</h2>
+<p>An eval is a test case for an agent. It has an input and a rule for deciding whether the model’s answer was acceptable. A fixed eval set is a list of those cases committed to your repository, and it changes only through a reviewed pull request. The pipeline part is your CI setup. It decides when the cases run and what happens to the pull request when too many of them fail.</p>
+<p>Deciding whether a model’s answer was good is a separate problem, and one option is to hand it to another model acting as a grader. That technique is called LLM-as-a-judge, and we cover it in <a href="https://openrouter.ai/blog/tutorials/llm-as-a-judge-evaluate-ai-agents/" target="_blank" rel="noopener noreferrer nofollow">our LLM-as-a-judge guide</a>. <a href="https://openrouter.ai/blog/tutorials/build-tool-calling-agent-loop/" target="_blank" rel="noopener noreferrer nofollow">Our tool-calling loop guide</a> covers building the agent itself. This guide is about the pipeline between them.</p>
+<h2>What you need before you can gate anything</h2>
+<p>Three things need to be in place before the gate can tell you anything useful.</p>
+<ul>
+<li><strong>A fixed, versioned eval set.</strong> Anthropic’s guide to agent evals recommends <a href="https://www.anthropic.com/engineering/demystifying-evals-for-ai-agents" target="_blank" rel="noopener noreferrer nofollow">20 to 50 simple tasks drawn from real failures</a> as a starting set. We use three here so the example stays short.</li>
+<li><strong>A scoring method and a threshold.</strong> The scoring method turns one answer into a pass or a fail you can count. The threshold applies to the run as a whole. This guide uses string assertions. A rubric or a judge model also works.</li>
+<li><strong>Runs repeatable enough to trust.</strong> The gate should block on regressions, not on noise. Repeated sampling with a majority vote works on every model. <code>temperature</code> and <code>seed</code> help only on models that list them, so check <a href="https://openrouter.ai/docs/guides/overview/models" target="_blank" rel="noopener noreferrer nofollow">the model’s <code>supported_parameters</code></a> before relying on them.</li>
+</ul>
+<p>You also need an <a href="https://openrouter.ai/keys" target="_blank" rel="noopener noreferrer nofollow">OpenRouter API key</a> exported as <code>OPENROUTER_API_KEY</code>, Node 20 or newer, and <a href="https://jqlang.org/" target="_blank" rel="noopener noreferrer nofollow">jq</a>.</p>
+<h2>Build the gate in four steps</h2>
+<p>By the end of these four steps, a pull request that touches your prompts runs your eval set automatically and cannot merge if the score drops.</p>
+<ol>
+<li>Trigger the eval only on the changes that can break your agent.</li>
+<li>Put the eval set in the repository, beside the prompts it tests.</li>
+<li>Write the script the CI job runs.</li>
+<li>Measure the threshold that decides whether the merge is blocked.</li>
+</ol>
+<h3>Step 1: Trigger only on relevant changes</h3>
+<p>Run the eval when prompts, agent logic, tool schemas, the eval set, the eval script, or the workflow itself change. The last two are easy to leave out. If they are missing from the filter, a pull request that breaks the scoring logic or edits the gate skips the eval and merges untested.</p>
+<p>You do that with two jobs. The first one always runs. It checks the files the pull request changed against a list of paths and outputs <code>true</code> or <code>false</code> depending on whether any match. The second job runs the eval, and it starts only when the first job returns <code>true</code>.</p>
+<p>Start <code>.github/workflows/eval-gate.yml</code> with the workflow header and the first job. The paths listed under <code>agent:</code> are the ones you change for your own repository.</p>
+<pre><code><span><span>name</span><span>: </span><span>eval-gate</span></span>
+<span><span>on</span><span>: </span><span>pull_request</span></span>
+<span><span>concurrency</span><span>:</span></span>
+<span><span>  group</span><span>: </span><span>eval-gate-${{ github.ref }}</span></span>
+<span><span>  cancel-in-progress</span><span>: </span><span>true</span></span>
+<span><span>jobs</span><span>:</span></span>
+<span><span>  changes</span><span>:</span></span>
+<span><span>    runs-on</span><span>: </span><span>ubuntu-latest</span></span>
+<span><span>    outputs</span><span>:</span></span>
+<span><span>      agent</span><span>: </span><span>${{ steps.filter.outputs.agent }}</span></span>
+<span><span>    steps</span><span>:</span></span>
+<span><span>      - </span><span>uses</span><span>: </span><span>actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1</span><span> # v7.0.1</span></span>
+<span><span>      - </span><span>uses</span><span>: </span><span>dorny/paths-filter@ceb8a2b8f2d89434be7ff52d3de7ec3738c5cc9d</span><span> # v4.0.3</span></span>
+<span><span>        id</span><span>: </span><span>filter</span></span>
+<span><span>        with</span><span>:</span></span>
+<span><span>          filters</span><span>: </span><span>|</span></span>
+<span><span>            agent:</span></span>
+<span><span>              - '.github/workflows/eval-gate.yml'</span></span>
+<span><span>              - 'prompts/**'</span></span>
+<span><span>              - 'agents/**'</span></span>
+<span><span>              - 'tools/**/schema.json'</span></span>
+<span><span>              - 'eval-sets/**'</span></span>
+<span><span>              - 'scripts/run-evals.mjs'</span></span></code></pre>
+<p><code>concurrency</code> with <code>cancel-in-progress</code> cancels the previous run when someone pushes again to the same branch, so a pull request with several pushes in a row doesn’t pay for an eval run on each one.</p>
+<p>Two things can go wrong here.</p>
+<p>The first is a green check with no eval behind it. When the first job returns <code>false</code>, GitHub skips the eval job, and a <a href="https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/managing-protected-branches/about-protected-branches#require-status-checks-before-merging" target="_blank" rel="noopener noreferrer nofollow">skipped job satisfies a required status check</a>. That is what lets unrelated pull requests merge. It also means a mistyped glob passes the check without running a single case, and a <code>changes</code> job that fails outright has the same effect, because GitHub skips a job whose <code>needs</code> dependency failed. Step 3 closes the second gap by making <code>changes</code> a required check as well. For the first, open the run log the first time a prompt change goes through and confirm the eval ran.</p>
+<p>The second is where you put the filter. Do not move it up to the workflow level as <code>on.pull_request.paths</code>. GitHub’s documentation on <a href="https://docs.github.com/en/actions/how-tos/manage-workflow-runs/skip-workflow-runs" target="_blank" rel="noopener noreferrer nofollow">skipping workflow runs</a> says that when a workflow is skipped by path filtering, “checks associated with that workflow will remain in a ‘Pending’ state,” and a pull request that requires those checks is blocked from merging.</p>
+<h3>Step 2: Put the eval set in the repository</h3>
+<p>Keep the eval set in the same repository as the prompts it tests. When someone edits a prompt, the test for it changes in the same pull request, and one reviewer sees both.</p>
+<p>Four files sit alongside each other.</p>
+<pre><code><span><span>your-repo/</span></span>
+<span><span>  .github/workflows/eval-gate.yml  -&gt; the workflow from Step 1</span></span>
+<span><span>  prompts/support-agent.md         -&gt; the system prompt</span></span>
+<span><span>  eval-sets/support-agent.json     -&gt; the cases that test it</span></span>
+<span><span>  scripts/run-evals.mjs            -&gt; the script from Step 3</span></span></code></pre>
+<p>Save the eval set as <code>eval-sets/support-agent.json</code>. Each case has an input, the strings the answer must contain, and the strings it must not. An entry in <code>mustMention</code> can also be a list, as in the third case, and then the answer only has to contain one of the strings in it. A single literal string fails whenever the model writes “a person” or “our team” where you expected “human”, so use a list wherever more than one wording is acceptable.</p>
+<pre><code><span><span>[</span></span>
+<span><span>  {</span></span>
+<span><span>    "id"</span><span>: </span><span>"refund-window"</span><span>,</span></span>
+<span><span>    "input"</span><span>: </span><span>"How long do I have to request a refund on a digital download?"</span><span>,</span></span>
+<span><span>    "mustMention"</span><span>: [</span><span>"14 days"</span><span>],</span></span>
+<span><span>    "mustNotMention"</span><span>: [</span><span>"30 days"</span><span>]</span></span>
+<span><span>  },</span></span>
+<span><span>  {</span></span>
+<span><span>    "id"</span><span>: </span><span>"refund-exception"</span><span>,</span></span>
+<span><span>    "input"</span><span>: </span><span>"I bought a download 60 days ago. Can I still get a refund?"</span><span>,</span></span>
+<span><span>    "mustMention"</span><span>: [</span><span>"14 days"</span><span>],</span></span>
+<span><span>    "mustNotMention"</span><span>: [</span><span>"yes, you can"</span><span>]</span></span>
+<span><span>  },</span></span>
+<span><span>  {</span></span>
+<span><span>    "id"</span><span>: </span><span>"escalation"</span><span>,</span></span>
+<span><span>    "input"</span><span>: </span><span>"Your product deleted my files and I want a lawyer."</span><span>,</span></span>
+<span><span>    "mustMention"</span><span>: [[</span><span>"human"</span><span>, </span><span>"person"</span><span>, </span><span>"our team"</span><span>, </span><span>"specialist"</span><span>]],</span></span>
+<span><span>    "mustNotMention"</span><span>: [</span><span>"14 days"</span><span>]</span></span>
+<span><span>  }</span></span>
+<span><span>]</span></span></code></pre>
+<p>The prompt those cases test lives beside it, in <code>prompts/support-agent.md</code>.</p>
+<pre><code><span><span>You are a support agent for a digital downloads store.</span></span>
+<span><span>The refund window is 14 days from purchase. There are no exceptions to it.</span></span>
+<span><span>If a customer threatens legal action or reports data loss, hand off to a human</span></span>
+<span><span>and do not quote the refund policy.</span></span>
+<span><span>Answer in at most three sentences.</span></span></code></pre>
+<p>Start with three cases. Add one every time the agent does something wrong in production.</p>
+<p>Put both <code>prompts/</code> and <code>eval-sets/</code> behind a <a href="https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/about-code-owners" target="_blank" rel="noopener noreferrer nofollow">CODEOWNERS</a> rule, and turn on “Require review from Code Owners” in your branch protection rules. Otherwise the quickest way past a failing gate is to loosen the test that caught the regression. A <code>CODEOWNERS</code> file on its own only requests a review and does not block the merge.</p>
+<h3>Step 3: Write the script the CI job runs</h3>
+<p>The job runs one script and exits non-zero when the pass rate falls below the threshold. That exit code is all CI needs to block a merge.</p>
+<p>The script loads the eval set, sends each case to the model, checks the answer, and exits with a code that tells CI what happened. It uses only Node builtins, so there is nothing to install. Save it as <code>scripts/run-evals.mjs</code>.</p>
+<pre><code><span><span>import</span><span> { readFileSync } </span><span>from</span><span> "node:fs"</span><span>;</span></span>
+<span><span>import</span><span> { parseArgs } </span><span>from</span><span> "node:util"</span><span>;</span></span>
+<span></span>
+<span><span>const</span><span> { </span><span>values</span><span> } </span><span>=</span><span> parseArgs</span><span>({</span></span>
+<span><span>  options: {</span></span>
+<span><span>    set: { type: </span><span>"string"</span><span>, default: </span><span>"eval-sets/support-agent.json"</span><span> },</span></span>
+<span><span>    prompt: { type: </span><span>"string"</span><span>, default: </span><span>"prompts/support-agent.md"</span><span> },</span></span>
+<span><span>    model: { type: </span><span>"string"</span><span>, default: </span><span>"anthropic/claude-sonnet-5"</span><span> },</span></span>
+<span><span>    threshold: { type: </span><span>"string"</span><span>, default: </span><span>"0.9"</span><span> },</span></span>
+<span><span>    samples: { type: </span><span>"string"</span><span>, default: </span><span>"3"</span><span> },</span></span>
+<span><span>    concurrency: { type: </span><span>"string"</span><span>, default: </span><span>"8"</span><span> },</span></span>
+<span><span>  },</span></span>
+<span><span>});</span></span>
+<span></span>
+<span><span>const</span><span> systemPrompt</span><span> =</span><span> readFileSync</span><span>(values.prompt, </span><span>"utf8"</span><span>);</span></span>
+<span><span>const</span><span> cases</span><span> =</span><span> JSON</span><span>.</span><span>parse</span><span>(</span><span>readFileSync</span><span>(values.set, </span><span>"utf8"</span><span>));</span></span>
+<span><span>const</span><span> threshold</span><span> =</span><span> Number</span><span>(values.threshold);</span></span>
+<span><span>const</span><span> samples</span><span> =</span><span> Number</span><span>(values.samples);</span></span>
+<span><span>const</span><span> concurrency</span><span> =</span><span> Number</span><span>(values.concurrency);</span></span>
+<span></span>
+<span><span>// Exit 2 for anything that stops the eval from running, so the job can tell</span></span>
+<span><span>// "the agent got worse" apart from "the eval could not run".</span></span>
+<span><span>function</span><span> abort</span><span>(</span><span>message</span><span>) {</span></span>
+<span><span>  console.</span><span>error</span><span>(</span><span>`::error::eval could not run: ${</span><span>message</span><span>}`</span><span>);</span></span>
+<span><span>  process.</span><span>exit</span><span>(</span><span>2</span><span>);</span></span>
+<span><span>}</span></span>
+<span></span>
+<span><span>if</span><span> (</span><span>!</span><span>Array.</span><span>isArray</span><span>(cases) </span><span>||</span><span> cases.</span><span>length</span><span> ===</span><span> 0</span><span>) </span><span>abort</span><span>(</span><span>`${</span><span>values</span><span>.</span><span>set</span><span>} has no cases`</span><span>);</span></span>
+<span><span>if</span><span> (</span><span>!</span><span>(threshold </span><span>&gt;</span><span> 0</span><span> &amp;&amp;</span><span> threshold </span><span>&lt;=</span><span> 1</span><span>)) </span><span>abort</span><span>(</span><span>`--threshold must be greater than 0 and at most 1, got "${</span><span>values</span><span>.</span><span>threshold</span><span>}"`</span><span>);</span></span>
+<span><span>if</span><span> (</span><span>!</span><span>Number.</span><span>isInteger</span><span>(samples) </span><span>||</span><span> samples </span><span>&lt;</span><span> 1</span><span> ||</span><span> samples </span><span>%</span><span> 2</span><span> ===</span><span> 0</span><span>) </span><span>abort</span><span>(</span><span>`--samples must be a positive odd integer, got ${</span><span>values</span><span>.</span><span>samples</span><span>}`</span><span>);</span></span>
+<span><span>if</span><span> (</span><span>!</span><span>Number.</span><span>isInteger</span><span>(concurrency) </span><span>||</span><span> concurrency </span><span>&lt;</span><span> 1</span><span>) </span><span>abort</span><span>(</span><span>`--concurrency must be a positive integer, got ${</span><span>values</span><span>.</span><span>concurrency</span><span>}`</span><span>);</span></span>
+<span></span>
+<span><span>class</span><span> EvalDidNotRun</span><span> extends</span><span> Error</span><span> {}</span></span>
+<span></span>
+<span><span>async</span><span> function</span><span> callModel</span><span>(</span><span>input</span><span>) {</span></span>
+<span><span>  const</span><span> res</span><span> =</span><span> await</span><span> fetch</span><span>(</span><span>"https://openrouter.ai/api/v1/chat/completions"</span><span>, {</span></span>
+<span><span>    method: </span><span>"POST"</span><span>,</span></span>
+<span><span>    signal: AbortSignal.</span><span>timeout</span><span>(</span><span>60_000</span><span>),</span></span>
+<span><span>    headers: {</span></span>
+<span><span>      Authorization: </span><span>`Bearer ${</span><span>process</span><span>.</span><span>env</span><span>.</span><span>OPENROUTER_API_KEY</span><span>}`</span><span>,</span></span>
+<span><span>      "Content-Type"</span><span>: </span><span>"application/json"</span><span>,</span></span>
+<span><span>    },</span></span>
+<span><span>    body: </span><span>JSON</span><span>.</span><span>stringify</span><span>({</span></span>
+<span><span>      model: values.model,</span></span>
+<span><span>      // Route to one provider only. A different provider serving the same slug</span></span>
+<span><span>      // between runs would look like a prompt regression.</span></span>
+<span><span>      provider: { order: [</span><span>"anthropic"</span><span>], allow_fallbacks: </span><span>false</span><span> },</span></span>
+<span><span>      messages: [</span></span>
+<span><span>        { role: </span><span>"system"</span><span>, content: systemPrompt },</span></span>
+<span><span>        { role: </span><span>"user"</span><span>, content: input },</span></span>
+<span><span>      ],</span></span>
+<span><span>    }),</span></span>
+<span><span>  });</span></span>
+<span><span>  if</span><span> (</span><span>!</span><span>res.ok) </span><span>throw</span><span> new</span><span> EvalDidNotRun</span><span>(</span><span>`${</span><span>res</span><span>.</span><span>status</span><span>} ${</span><span>await</span><span> res</span><span>.</span><span>text</span><span>()</span><span>}`</span><span>);</span></span>
+<span><span>  const</span><span> body</span><span> =</span><span> await</span><span> res.</span><span>json</span><span>();</span></span>
+<span><span>  return</span><span> { text: body.choices?.[</span><span>0</span><span>]?.message?.content </span><span>??</span><span> ""</span><span>, cost: body.usage?.cost </span><span>??</span><span> 0</span><span> };</span></span>
+<span><span>}</span></span>
+<span></span>
+<span><span>async</span><span> function</span><span> run</span><span>(</span><span>input</span><span>) {</span></span>
+<span><span>  for</span><span> (</span><span>let</span><span> attempt </span><span>=</span><span> 1</span><span>; attempt </span><span>&lt;=</span><span> 3</span><span>; attempt</span><span>++</span><span>) {</span></span>
+<span><span>    try</span><span> {</span></span>
+<span><span>      return</span><span> await</span><span> callModel</span><span>(input);</span></span>
+<span><span>    } </span><span>catch</span><span> (err) {</span></span>
+<span><span>      if</span><span> (attempt </span><span>===</span><span> 3</span><span>) </span><span>throw</span><span> new</span><span> EvalDidNotRun</span><span>(err.message);</span></span>
+<span><span>      await</span><span> new</span><span> Promise</span><span>((</span><span>resolve</span><span>) </span><span>=&gt;</span><span> setTimeout</span><span>(resolve, attempt </span><span>*</span><span> 2000</span><span>));</span></span>
+<span><span>    }</span></span>
+<span><span>  }</span></span>
+<span><span>}</span></span>
+<span></span>
+<span><span>// A requirement is either a string, or an array meaning "any one of these".</span></span>
+<span><span>function</span><span> matches</span><span>(</span><span>answer</span><span>, </span><span>requirement</span><span>) {</span></span>
+<span><span>  const</span><span> options</span><span> =</span><span> Array.</span><span>isArray</span><span>(requirement) </span><span>?</span><span> requirement </span><span>:</span><span> [requirement];</span></span>
+<span><span>  return</span><span> options.</span><span>some</span><span>((</span><span>option</span><span>) </span><span>=&gt;</span><span> answer.</span><span>includes</span><span>(option.</span><span>toLowerCase</span><span>()));</span></span>
+<span><span>}</span></span>
+<span></span>
+<span><span>function</span><span> score</span><span>(</span><span>text</span><span>, </span><span>testCase</span><span>) {</span></span>
+<span><span>  const</span><span> answer</span><span> =</span><span> text.</span><span>toLowerCase</span><span>();</span></span>
+<span><span>  const</span><span> must</span><span> =</span><span> testCase.mustMention </span><span>??</span><span> [];</span></span>
+<span><span>  const</span><span> mustNot</span><span> =</span><span> testCase.mustNotMention </span><span>??</span><span> [];</span></span>
+<span><span>  return</span><span> (</span></span>
+<span><span>    must.</span><span>every</span><span>((</span><span>r</span><span>) </span><span>=&gt;</span><span> matches</span><span>(answer, r)) </span><span>&amp;&amp;</span></span>
+<span><span>    !</span><span>mustNot.</span><span>some</span><span>((</span><span>r</span><span>) </span><span>=&gt;</span><span> matches</span><span>(answer, r))</span></span>
+<span><span>  );</span></span>
+<span><span>}</span></span>
+<span></span>
+<span><span>// One unit of work per sample, so the whole matrix runs with a fixed</span></span>
+<span><span>// concurrency instead of one request at a time.</span></span>
+<span><span>const</span><span> jobs</span><span> =</span><span> cases.</span><span>flatMap</span><span>((</span><span>testCase</span><span>) </span><span>=&gt;</span></span>
+<span><span>  Array.</span><span>from</span><span>({ length: samples }, () </span><span>=&gt;</span><span> testCase),</span></span>
+<span><span>);</span></span>
+<span><span>const</span><span> results</span><span> =</span><span> new</span><span> Map</span><span>(cases.</span><span>map</span><span>((</span><span>c</span><span>) </span><span>=&gt;</span><span> [c.id, []]));</span></span>
+<span><span>let</span><span> spend </span><span>=</span><span> 0</span><span>;</span></span>
+<span><span>let</span><span> cursor </span><span>=</span><span> 0</span><span>;</span></span>
+<span></span>
+<span><span>async</span><span> function</span><span> worker</span><span>() {</span></span>
+<span><span>  while</span><span> (cursor </span><span>&lt;</span><span> jobs.</span><span>length</span><span>) {</span></span>
+<span><span>    const</span><span> testCase</span><span> =</span><span> jobs[cursor</span><span>++</span><span>];</span></span>
+<span><span>    const</span><span> { </span><span>text</span><span>, </span><span>cost</span><span> } </span><span>=</span><span> await</span><span> run</span><span>(testCase.input);</span></span>
+<span><span>    spend </span><span>+=</span><span> cost;</span></span>
+<span><span>    results.</span><span>get</span><span>(testCase.id).</span><span>push</span><span>(</span><span>score</span><span>(text, testCase));</span></span>
+<span><span>  }</span></span>
+<span><span>}</span></span>
+<span></span>
+<span><span>const</span><span> started</span><span> =</span><span> Date.</span><span>now</span><span>();</span></span>
+<span><span>try</span><span> {</span></span>
+<span><span>  await</span><span> Promise</span><span>.</span><span>all</span><span>(Array.</span><span>from</span><span>({ length: Math.</span><span>min</span><span>(concurrency, jobs.</span><span>length</span><span>) }, worker));</span></span>
+<span><span>} </span><span>catch</span><span> (err) {</span></span>
+<span><span>  // A provider timeout is not a quality regression.</span></span>
+<span><span>  abort</span><span>(err.message);</span></span>
+<span><span>}</span></span>
+<span></span>
+<span><span>let</span><span> passed </span><span>=</span><span> 0</span><span>;</span></span>
+<span><span>for</span><span> (</span><span>const</span><span> testCase</span><span> of</span><span> cases) {</span></span>
+<span><span>  const</span><span> verdicts</span><span> =</span><span> results.</span><span>get</span><span>(testCase.id);</span></span>
+<span><span>  const</span><span> majority</span><span> =</span><span> verdicts.</span><span>filter</span><span>(Boolean).</span><span>length</span><span> &gt;</span><span> samples </span><span>/</span><span> 2</span><span>;</span></span>
+<span><span>  if</span><span> (majority) passed</span><span>++</span><span>;</span></span>
+<span><span>  const</span><span> trace</span><span> =</span><span> verdicts.</span><span>map</span><span>((</span><span>v</span><span>) </span><span>=&gt;</span><span> (v </span><span>?</span><span> "."</span><span> :</span><span> "x"</span><span>)).</span><span>join</span><span>(</span><span>""</span><span>);</span></span>
+<span><span>  console.</span><span>log</span><span>(</span><span>`${</span><span>majority</span><span> ?</span><span> "PASS"</span><span> :</span><span> "FAIL"}  ${</span><span>testCase</span><span>.</span><span>id</span><span>}  ${</span><span>trace</span><span>}`</span><span>);</span></span>
+<span><span>}</span></span>
+<span></span>
+<span><span>const</span><span> rate</span><span> =</span><span> passed </span><span>/</span><span> cases.</span><span>length</span><span>;</span></span>
+<span><span>const</span><span> seconds</span><span> =</span><span> ((Date.</span><span>now</span><span>() </span><span>-</span><span> started) </span><span>/</span><span> 1000</span><span>).</span><span>toFixed</span><span>(</span><span>1</span><span>);</span></span>
+<span><span>console.</span><span>log</span><span>(</span><span>`</span><span>\n</span><span>pass rate ${</span><span>rate</span><span>.</span><span>toFixed</span><span>(</span><span>2</span><span>)</span><span>} against threshold ${</span><span>threshold</span><span>}`</span><span>);</span></span>
+<span><span>console.</span><span>log</span><span>(</span><span>`${</span><span>jobs</span><span>.</span><span>length</span><span>} calls in ${</span><span>seconds</span><span>}s, cost $${</span><span>spend</span><span>.</span><span>toFixed</span><span>(</span><span>4</span><span>)</span><span>} on ${</span><span>values</span><span>.</span><span>model</span><span>}`</span><span>);</span></span>
+<span></span>
+<span><span>if</span><span> (rate </span><span>&lt;</span><span> threshold) {</span></span>
+<span><span>  console.</span><span>error</span><span>(</span><span>`::error::eval gate failed: ${</span><span>passed</span><span>}/${</span><span>cases</span><span>.</span><span>length</span><span>} cases passed`</span><span>);</span></span>
+<span><span>  process.</span><span>exit</span><span>(</span><span>1</span><span>);</span></span>
+<span><span>}</span></span></code></pre>
+<p>The script does three things beyond calling the model.</p>
+<p>It refuses to run when the eval set is empty or an option is malformed, and exits 2 before sending a request. Without those checks, an eval set that was accidentally replaced with <code>[]</code> would produce a pass rate of <code>NaN</code>, and <code>NaN &lt; threshold</code> is false, so zero evaluations would pass the gate. A <code>--threshold</code> of <code>90%</code> or a negative <code>--samples</code> would pass it the same way, and a blank <code>--threshold</code> becomes <code>0</code>, which no pass rate can fall below, so the check also rejects <code>0</code>.</p>
+<p>It runs each case several times, and each of those runs is a sample. It takes the majority verdict across the samples, because the same prompt does not always produce the same answer.</p>
+<p>It also routes every request to one provider. A model slug such as <code>anthropic/claude-sonnet-5</code> is served by more than one provider through OpenRouter. At the time of writing, its endpoints include Anthropic, Amazon Bedrock, Azure, and Google. Without a routing preference, two runs of the same eval can reach two different providers, and a difference between their answers looks like a prompt regression. <code>provider.order</code> is a priority list of provider slugs, and <code>allow_fallbacks: false</code> tells us not to try any provider outside that list. If the listed provider fails, the request fails instead of moving to a backup, and the script exits 2. The <a href="https://openrouter.ai/docs/guides/routing/provider-selection" target="_blank" rel="noopener noreferrer nofollow">provider selection docs</a> cover both fields. The pin is tied to the model you name. If you change <code>--model</code> to a model from another vendor, change the <code>order</code> value too, or no provider will match and every request will fail.</p>
+<p>The cost printed on the last line comes from the <code>usage</code> object we include in every non-streaming response. The <a href="https://openrouter.ai/docs/cookbook/administration/usage-accounting" target="_blank" rel="noopener noreferrer nofollow">usage accounting docs</a> describe the fields.</p>
+<p>Run it locally first.</p>
+<pre><code><span><span>export</span><span> OPENROUTER_API_KEY</span><span>=</span><span>"sk-or-..."</span></span>
+<span><span>node</span><span> scripts/run-evals.mjs</span><span> --samples</span><span> 3</span></span></code></pre>
+<p>Each dot is a sample that passed and each <code>x</code> is one that failed, so you can see which case fails intermittently instead of only the final pass rate.</p>
+<pre><code><span><span>PASS  refund-window  ...</span></span>
+<span><span>PASS  refund-exception  ...</span></span>
+<span><span>PASS  escalation  ...</span></span>
+<span><span></span></span>
+<span><span>pass rate 1.00 against threshold 0.9</span></span>
+<span><span>9 calls in &lt;seconds&gt;s, cost $&lt;cost&gt; on anthropic/claude-sonnet-5</span></span></code></pre>
+<p>A case counts as passing when the majority of its samples pass, so <code>..x</code> is still a <code>PASS</code>.</p>
+<p>Now add the second job to <code>.github/workflows/eval-gate.yml</code>, below the <code>changes</code> job.</p>
+<pre><code><span><span>  eval-gate</span><span>:</span></span>
+<span><span>    needs</span><span>: </span><span>changes</span></span>
+<span><span>    if</span><span>: </span><span>needs.changes.outputs.agent == 'true'</span></span>
+<span><span>    runs-on</span><span>: </span><span>ubuntu-latest</span></span>
+<span><span>    timeout-minutes</span><span>: </span><span>15</span></span>
+<span><span>    steps</span><span>:</span></span>
+<span><span>      - </span><span>uses</span><span>: </span><span>actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1</span><span> # v7.0.1</span></span>
+<span><span>      - </span><span>uses</span><span>: </span><span>actions/setup-node@820762786026740c76f36085b0efc47a31fe5020</span><span> # v7.0.0</span></span>
+<span><span>        with</span><span>:</span></span>
+<span><span>          node-version</span><span>: </span><span>'24'</span></span>
+<span><span>      - </span><span>name</span><span>: </span><span>Run fixed eval set</span></span>
+<span><span>        env</span><span>:</span></span>
+<span><span>          OPENROUTER_API_KEY</span><span>: </span><span>${{ secrets.OPENROUTER_API_KEY }}</span></span>
+<span><span>        run</span><span>: </span><span>node scripts/run-evals.mjs --samples 3 --threshold 0.9</span></span></code></pre>
+<p>The <code>if:</code> line reads the output from the <code>changes</code> job, and it is what stops the eval from running on pull requests that cannot have broken the agent. <code>timeout-minutes: 15</code> stops a hung provider from holding a runner for the <a href="https://docs.github.com/en/actions/reference/workflows-and-actions/workflow-syntax#jobsjob_idtimeout-minutes" target="_blank" rel="noopener noreferrer nofollow">default six hours</a>. Each action is pinned to a full commit SHA, with the release it corresponds to in a trailing comment. A tag such as <code>v4</code> can be moved to point at new code, and this job holds your API key, so pinning to the SHA means the code that runs cannot change without a change in your repository. <a href="https://docs.github.com/en/actions/security-for-github-actions/security-guides/security-hardening-for-github-actions#using-third-party-actions" target="_blank" rel="noopener noreferrer nofollow">GitHub’s security hardening guide</a> recommends the same.</p>
+<p>Before the gate can block anything, do three things.</p>
+<ol>
+<li>Add your key as a repository secret under Settings &gt; Secrets and variables &gt; Actions, named <code>OPENROUTER_API_KEY</code>.</li>
+<li>Open a pull request that touches <code>prompts/</code> so the workflow runs once.</li>
+<li>Add both <code>changes</code> and <code>eval-gate</code> as <a href="https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/managing-protected-branches/about-protected-branches#require-status-checks-before-merging" target="_blank" rel="noopener noreferrer nofollow">required status checks</a> in your branch protection rules.</li>
+</ol>
+<p>The third step is what turns the eval into a gate. Without it, a failing eval shows a red X on the pull request, but the pull request can still merge. Requiring <code>changes</code> as well covers the case where the filter job itself fails, for example on a checkout error. GitHub then skips <code>eval-gate</code>, and a skipped job counts as passing, so with only <code>eval-gate</code> required a prompt change could merge without being evaluated. With <code>changes</code> required too, the failed filter job blocks the merge. An unrelated pull request still merges, because <code>changes</code> passes and <code>eval-gate</code> is skipped.</p>
+<p>With the exception of <code>GITHUB_TOKEN</code>, <a href="https://docs.github.com/en/actions/security-for-github-actions/security-guides/using-secrets-in-github-actions" target="_blank" rel="noopener noreferrer nofollow">GitHub does not pass secrets to workflows triggered from a forked repository</a>, so a pull request from a fork fails on a missing key. If your repository accepts fork contributions, run the eval on push to <code>main</code> as well, so a change that arrived through a fork is still checked. If you need a record of what a merge-blocking run checked, upload the run output as a workflow artifact.</p>
+<p>The gate now runs on every pull request that can break the agent. It still uses a threshold nobody has justified, so Step 4 measures one.</p>
+<h3>Step 4: Measure the threshold</h3>
+<p>Run the eval set six times against your unchanged <code>main</code> branch. Change nothing between the runs. Write down the lowest pass rate you see. You want the worst run rather than the typical one, so run the set more times if you can afford it. That lowest pass rate is your floor, and you set your threshold at or below it.</p>
+<p>With three cases, one case failing on one of those six runs gives a floor of 0.67. Against a threshold of 0.9, that run is a blocked pull request with no regression behind it.</p>
+<p>When your floor is low, work through these three checks in order.</p>
+<p>First, look at your own assertion. The <code>escalation</code> case above accepts any of <code>human</code>, <code>person</code>, <code>our team</code>, or <code>specialist</code>. A version that requires the literal string <code>human</code> fails every time the model writes “a person” instead, and the prompt does not stop it from doing that. Check your assertions before anything else, every time.</p>
+<p>Second, check whether your determinism settings do anything. Setting <code>temperature</code> to zero and fixing a <code>seed</code> only helps when the model supports those parameters. The command below prints the parameters a model supports, so you can see whether <code>temperature</code> and <code>seed</code> are in the list.</p>
+<pre><code><span><span>curl</span><span> -s</span><span> "https://openrouter.ai/api/v1/models"</span><span> \</span></span>
+<span><span>  |</span><span> jq</span><span> -r</span><span> '.data[] | select(.id=="anthropic/claude-sonnet-5") | .supported_parameters'</span></span></code></pre>
+<p><a href="https://openrouter.ai/anthropic/claude-sonnet-5" target="_blank" rel="noopener noreferrer nofollow">Claude Sonnet 5</a> lists neither of them, which is why the script above does not send them. Our <a href="https://openrouter.ai/docs/cookbook/evaluate-and-optimize/model-migrations/sonnet-5" target="_blank" rel="noopener noreferrer nofollow">Claude Sonnet 5 migration guide</a> says that <code>temperature</code>, <code>top_p</code>, and <code>top_k</code> are silently ignored for that model. On 18 September 2026, the catalog listed 445 models, and 267 of them listed both <code>seed</code> and <code>temperature</code>. The remaining 178, about two in five, listed one of them or neither. This command counts the models that list both, and you can re-run it for a current figure.</p>
+<pre><code><span><span>curl</span><span> -s</span><span> "https://openrouter.ai/api/v1/models"</span><span> |</span><span> jq</span><span> '</span></span>
+<span><span>  [.data[] | select(.supported_parameters | index("seed") and index("temperature"))] | length'</span></span></code></pre>
+<p>If your model does list them, add <code>temperature: 0</code> and <code>seed: 42</code> to the request body and set <code>provider.require_parameters: true</code> beside <code>order</code>. With the default <code>require_parameters: false</code>, a provider that does not support every parameter in the request can still receive it and ignore the parameters it does not know. With <code>require_parameters: true</code>, the request is only routed to providers that support all of them.</p>
+<p>Third, whatever variation survives those two checks is real, and you absorb it by sampling. Raise <code>--samples</code> until the floor stops moving. Three is a reasonable default, and it already costs three times a single run, so measure before raising it to five.</p>
+<p>A small set has one property worth knowing about. With three cases the pass rate can only be 0, 0.33, 0.67, or 1.00, so a threshold of 0.9 means all three cases must pass. That is another reason to grow the set toward 20 or more cases.</p>
+<p>When a pull request fails the gate by a single case, run the same eval against <code>main</code>. If <code>main</code> fails too, the failure is noise, and you need more samples or a lower threshold. If <code>main</code> passes, treat the failure as a regression in the pull request.</p>
+<p>That is the complete gate. The rest of this guide covers what to do when a string check is no longer enough, and when a plain script is worth trading for a platform that stores your run history.</p>
+<h2>Test an agent that calls tools with Ori Eval</h2>
+<p>The script above sends one message and reads one reply. If your agent calls tools, that is not enough. A string check cannot tell you whether the agent called the right tool, or called an expensive tool it should have left alone.</p>
+<p><a href="https://openrouter.ai/docs/guides/ori/eval" target="_blank" rel="noopener noreferrer nofollow">Ori Eval</a> is our eval harness for agents. A harness is the program that runs your evals. It runs the agent, records what the agent did, and checks the result against your assertions. Ori evals are <code>.eval.ts</code> files, and the assertions are about what the agent did.</p>
+<pre><code><span><span>import</span><span> { test } </span><span>from</span><span> 'bun:test'</span><span>;</span></span>
+<span><span>import</span><span> { assertModelIsLive, setupAgent, setupJudge } </span><span>from</span><span> 'ori/eval'</span><span>;</span></span>
+<span></span>
+<span><span>const</span><span> MODEL</span><span> =</span><span> 'anthropic/claude-sonnet-5'</span><span>;</span></span>
+<span><span>await</span><span> assertModelIsLive</span><span>(</span><span>MODEL</span><span>);</span></span>
+<span></span>
+<span><span>const</span><span> agent</span><span> =</span><span> setupAgent</span><span>({ model: </span><span>MODEL</span><span> });</span></span>
+<span></span>
+<span><span>// Grade with a different model family than the one under test.</span></span>
+<span><span>const</span><span> judge</span><span> =</span><span> setupJudge</span><span>({</span></span>
+<span><span>  agent: </span><span>setupAgent</span><span>({ model: </span><span>'openai/gpt-5-mini'</span><span> }),</span></span>
+<span><span>  minScore: </span><span>0.8</span><span>,</span></span>
+<span><span>});</span></span>
+<span></span>
+<span><span>test</span><span>(</span><span>'looks up the order before quoting the refund policy'</span><span>, </span><span>async</span><span> () </span><span>=&gt;</span><span> {</span></span>
+<span><span>  const</span><span> run</span><span> =</span><span> await</span><span> agent.</span><span>run</span><span>(</span><span>'Can I refund order #1234? I bought it 60 days ago.'</span><span>);</span></span>
+<span><span>  run.</span><span>tool</span><span>(</span><span>'lookup_order'</span><span>).</span><span>toBeCalled</span><span>();</span></span>
+<span><span>  run.</span><span>tool</span><span>(</span><span>'issue_refund'</span><span>).</span><span>toNotBeCalled</span><span>();</span></span>
+<span><span>  run.</span><span>toComplete</span><span>();</span></span>
+<span><span>  await</span><span> judge.</span><span>autoEvals</span><span>({</span></span>
+<span><span>    criteria: </span><span>'Cites the 14-day window and does not invent exceptions.'</span><span>,</span></span>
+<span><span>    run,</span></span>
+<span><span>  });</span></span>
+<span><span>});</span></span></code></pre>
+<p><code>run.tool(...)</code> is the part the plain script cannot do. <code>assertModelIsLive</code> fails the run with a clear message if the slug leaves the catalog, so the file fails loudly instead of testing a model that no longer exists. Before you let the judge fail builds, grade a sample of the same runs yourself and compare your verdicts with the judge’s. Anthropic’s guide recommends <a href="https://www.anthropic.com/engineering/demystifying-evals-for-ai-agents" target="_blank" rel="noopener noreferrer nofollow">calibrating LLM graders against human experts</a> for the same reason.</p>
+<p>Ori runs eval files with <a href="https://bun.sh/" target="_blank" rel="noopener noreferrer nofollow">Bun</a>, and when <code>CI</code> is true it does not install Bun for you. In a workflow, you install Bun, then download a pinned Ori release and verify its checksum before running it, because the job holds your API key. With <code>OPENROUTER_API_KEY</code> set, Ori does not need <code>ori login</code> in CI.</p>
+<pre><code><span><span>      - </span><span>uses</span><span>: </span><span>oven-sh/setup-bun@0c5077e51419868618aeaa5fe8019c62421857d6</span><span> # v2.2.0</span></span>
+<span><span>      - </span><span>name</span><span>: </span><span>Install Ori</span></span>
+<span><span>        env</span><span>:</span></span>
+<span><span>          ORI_RELEASE</span><span>: </span><span>cli-0.15.0-531912d</span></span>
+<span><span>          ORI_SHA256</span><span>: </span><span>d2545db7a686f29ebae5bbf7e134d89a409cd00c760c1f24a5f8a88692c5947d</span></span>
+<span><span>        run</span><span>: </span><span>|</span></span>
+<span><span>          base="https://github.com/OpenRouterLabs/ori-releases/releases/download/$ORI_RELEASE"</span></span>
+<span><span>          curl -fsSL --proto '=https' -o ori "$base/ori-linux-x64"</span></span>
+<span><span>          echo "$ORI_SHA256  ori" | sha256sum -c -</span></span>
+<span><span>          mkdir -p "$HOME/.local/bin"</span></span>
+<span><span>          install -m 0755 ori "$HOME/.local/bin/ori"</span></span>
+<span><span>          echo "$HOME/.local/bin" &gt;&gt; "$GITHUB_PATH"</span></span>
+<span><span>      - </span><span>name</span><span>: </span><span>Run pinned agent eval</span></span>
+<span><span>        env</span><span>:</span></span>
+<span><span>          OPENROUTER_API_KEY</span><span>: </span><span>${{ secrets.OPENROUTER_API_KEY }}</span></span>
+<span><span>        run</span><span>: </span><span>ori eval --report eval-report.md</span></span></code></pre>
+<p><code>ORI_RELEASE</code> and <code>ORI_SHA256</code> name the stable release and its <code>ori-linux-x64</code> digest at the time of writing. Update both together when you move to a newer release. Downloading a checksum file from the same release page would not add anything, because anyone who can replace the binary can replace the checksum beside it. Keeping the digest in your workflow means a changed binary fails the <code>sha256sum</code> check.</p>
+<p><code>ori eval</code> finds every <code>*.eval.ts</code> file below the current directory and hands them to <code>bun test</code>. Its exit code is the exit code of <code>bun test</code>, so a failing eval fails the job. <code>--report</code> writes a Markdown report you can upload as an artifact or append to the job summary.</p>
+<p>Every Ori run sends requests to real models and costs money, so keep these evals out of the job that runs on every commit. The <a href="https://openrouter.ai/docs/guides/ori/eval" target="_blank" rel="noopener noreferrer nofollow">Ori Eval documentation</a> covers running them from a job a person starts or on a schedule.</p>
+<h2>Compare a plain script with eval platforms</h2>
+<p>The script above is a complete eval gate. A platform adds dashboards, run history you can chart, and a way for people outside engineering to read results without opening CI logs.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Approach</th><th>How it runs in CI</th><th>Lock-in</th><th>Best fit</th></tr></thead><tbody><tr><td>Plain script</td><td>You write the CI step and the exit-code logic yourself</td><td>None, because it is your code</td><td>One or two eval sets with full control over scoring</td></tr><tr><td><a href="https://openrouter.ai/docs/guides/ori/eval" target="_blank" rel="noopener noreferrer nofollow">Ori Eval</a></td><td><code>ori eval</code> in a job, exiting non-zero when an eval fails</td><td>Low, since eval files stay in your repository and run against any model in the catalog</td><td>Tool-calling agents, or comparing models on your own agent</td></tr><tr><td><a href="https://deepeval.com/docs/evaluation-unit-testing-in-ci-cd" target="_blank" rel="noopener noreferrer nofollow">DeepEval</a></td><td><code>deepeval test run</code> under pytest, with <code>assert_test()</code> raising below a per-metric threshold</td><td>Low, because the scoring library is open source</td><td>Ready-made metrics such as answer relevancy and task completion</td></tr><tr><td><a href="https://github.com/braintrustdata/eval-action" target="_blank" rel="noopener noreferrer nofollow">Braintrust</a></td><td>A published GitHub Action that runs evals and posts a summary comment on the pull request</td><td>Moderate, since scoring history lives in their platform</td><td>Score changes surfaced in review rather than in CI logs</td></tr><tr><td><a href="https://arize.com/docs/ax/develop/datasets-and-experiments/ci-cd-for-automated-experiments" target="_blank" rel="noopener noreferrer nofollow">Arize</a></td><td><code>client.experiments.run()</code> from the SDK as a plain Python step, with a sample workflow in their docs</td><td>Moderate, since the experiments API is theirs</td><td>Repositories already using Arize for observability</td></tr><tr><td><a href="https://docs.galileo.ai/sdk-api/experiments/running-experiments" target="_blank" rel="noopener noreferrer nofollow">Galileo</a></td><td><code>run_experiment</code> from the SDK, or <code>create_experiment</code> for multi-turn agents</td><td>Moderate, as metrics and history are platform-native</td><td>Hosted dashboards over eval history</td></tr></tbody></table>
+<p>Start with the script. Your eval set and scoring logic stay in your repository either way, and you can point a platform at them later. Moving off a platform means porting scoring logic written against its SDK and losing the run history stored there.</p>
+<h2>Common failure modes</h2>
+<p>The first is cost. It is cases multiplied by samples multiplied by how often relevant pull requests are opened. The script prints the cost of each run from the <code>usage.cost</code> field, so read that line before you raise <code>--samples</code> or grow the set. Long prompts and a grading model move the figure a lot, so measure your own set. Current prices are on the <a href="https://openrouter.ai/pricing" target="_blank" rel="noopener noreferrer nofollow">pricing page</a>.</p>
+<p>The second is speed. Every minute the gate adds is added to every pull request that touches a prompt. Run the samples concurrently. The script’s <code>--concurrency</code> flag defaults to 8, so the nine calls in the example run in two waves instead of nine sequential requests, and the difference grows with the size of your set.</p>
+<p>The third is a gate that fails for the wrong reason. A provider timeout is not a regression, which is why the script exits with 2 when the eval could not run and 1 when the agent got worse, and prints a GitHub annotation saying which happened.</p>
+<p>The fourth is a threshold above the floor. A threshold you did not measure blocks pull requests that changed nothing, and the only ways past it are an admin merge or a lower threshold set under time pressure. Set the threshold from the floor you measured in Step 4.</p>
+<h2>Frequently asked questions</h2>
+<h3>How do you add LLM evals to a CI/CD pipeline?</h3>
+<p>Keep a fixed, versioned eval set in the repository, run it in a CI job that scores output against a threshold, and mark that job and the path-filter job that gates it as required status checks in branch protection. The job’s exit code decides the outcome, the same way a failing unit test does.</p>
+<h3>What is a fixed eval set, and why does it need to stay versioned with the code?</h3>
+<p>A fixed eval set is a checked-in list of test inputs and grading criteria that changes only through a reviewed pull request. If it lives outside the repository, it drifts out of sync with the prompts and stops testing what shipped.</p>
+<h3>Can you block a pull request from merging based on an eval score?</h3>
+<p>Yes. A plain script that exits non-zero below a threshold is enough, as long as the job that runs it is a required status check. Put the prompts and the eval set behind a <code>CODEOWNERS</code> rule with “Require review from Code Owners” enabled, so weakening the test that caught a regression also needs a review.</p>
+<h3>What is the difference between LLM-as-a-judge and running evals in CI?</h3>
+<p>LLM-as-a-judge is a scoring method for one run, where a second model grades the answer. Running evals in CI is the pipeline around any scoring method. It decides when the cases run, against which fixed set, and what happens to the pull request when the score is low.</p>
+<h3>Do evals need to run on every commit, or only on prompt and agent-logic changes?</h3>
+<p>Only on changes that touch prompts, agent logic, tool schemas, or the eval set. Filter at the job level rather than the workflow level. GitHub reports a job skipped by an <code>if</code> condition as a passing check, while a workflow skipped by a path filter leaves a required check pending and blocks the merge.</p>
+<h3>How much does running LLM evals on every PR cost in tokens and CI minutes?</h3>
+<p>Cost is the case count multiplied by the samples per case multiplied by how often relevant pull requests are opened. The script in this guide prints the cost of each run from the <code>usage</code> field in the API response, so you can measure your own set. Current model prices are on the <a href="https://openrouter.ai/pricing" target="_blank" rel="noopener noreferrer nofollow">pricing page</a>.</p>
+<h3>What tools support gating a PR on a fixed eval set before merge?</h3>
+<p>A plain script with a threshold check is enough on its own. Ori Eval, DeepEval, Braintrust, Arize, and Galileo add reporting, run history, or agent-specific assertions on top of the same exit-code pattern.</p>
+<h3>How do you handle a flaky or non-deterministic eval blocking a good PR?</h3>
+<p>Check your own assertion first, because a single literal string that the model paraphrases is a common cause. Then sample each case several times and take a majority verdict. Check the model’s <code>supported_parameters</code> on the <a href="https://openrouter.ai/docs/guides/overview/models" target="_blank" rel="noopener noreferrer nofollow">OpenRouter models endpoint</a> before relying on <code>temperature</code> or <code>seed</code>, because models that do not list them ignore them.</p>
+<h3>Is LLM-as-a-judge reliable enough to fail a build on?</h3>
+<p>It can be, if you measure the judge rather than assume it. Grade a sample of runs yourself and compare your verdicts with the judge’s, and pair the judge with plain assertions so a build never fails on one unverified model call.</p>
+<h2>Conclusion</h2>
+<p>In this guide, you wrote an eval set for a support agent, scored it with a script that exits non-zero below your threshold, measured your own floor across repeated runs, and made the job a required check. A fixed eval set, a measured threshold, and a job-level trigger give your prompts and agent logic the same protection that unit tests give your code. To extend the gate to an agent that calls tools, start with the <a href="https://openrouter.ai/docs/guides/ori/eval" target="_blank" rel="noopener noreferrer nofollow">Ori Eval documentation</a>.</p>
+<h2>References</h2>
+<ul>
+<li><a href="https://openrouter.ai/docs/guides/ori/eval" target="_blank" rel="noopener noreferrer nofollow">Ori Eval</a></li>
+<li><a href="https://openrouter.ai/docs/guides/routing/provider-selection" target="_blank" rel="noopener noreferrer nofollow">Provider selection</a></li>
+<li><a href="https://openrouter.ai/docs/guides/overview/models" target="_blank" rel="noopener noreferrer nofollow">Models and supported_parameters</a></li>
+<li><a href="https://openrouter.ai/docs/cookbook/administration/usage-accounting" target="_blank" rel="noopener noreferrer nofollow">Usage accounting</a></li>
+<li><a href="https://openrouter.ai/docs/cookbook/evaluate-and-optimize/model-migrations/sonnet-5" target="_blank" rel="noopener noreferrer nofollow">Claude Sonnet 5 migration guide</a></li>
+<li><a href="https://www.anthropic.com/engineering/demystifying-evals-for-ai-agents" target="_blank" rel="noopener noreferrer nofollow">Demystifying evals for AI agents</a></li>
+<li><a href="https://docs.github.com/en/actions/reference/workflows-and-actions/workflow-syntax" target="_blank" rel="noopener noreferrer nofollow">Workflow syntax for GitHub Actions</a></li>
+<li><a href="https://docs.github.com/en/actions/how-tos/manage-workflow-runs/skip-workflow-runs" target="_blank" rel="noopener noreferrer nofollow">Skipping workflow runs</a></li>
+<li><a href="https://docs.github.com/en/actions/how-tos/write-workflows/choose-when-workflows-run/control-jobs-with-conditions" target="_blank" rel="noopener noreferrer nofollow">Using conditions to control job execution</a></li>
+<li><a href="https://docs.github.com/en/actions/security-for-github-actions/security-guides/using-secrets-in-github-actions" target="_blank" rel="noopener noreferrer nofollow">Using secrets in GitHub Actions</a></li>
+<li><a href="https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/managing-protected-branches/about-protected-branches" target="_blank" rel="noopener noreferrer nofollow">About protected branches</a></li>
+<li><a href="https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/about-code-owners" target="_blank" rel="noopener noreferrer nofollow">About code owners</a></li>
+<li><a href="https://github.com/dorny/paths-filter" target="_blank" rel="noopener noreferrer nofollow">dorny/paths-filter</a></li>
+</ul></div></div></div>
+  <div class="footer">
+    本文由 AI热点监控系统自动抓取 · 内容版权归原作者/网站所有<br>
+    快照仅用于学习交流，如需转载请访问原文
+  </div>
+</div>
+</body>
+</html>
