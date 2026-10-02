@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="referrer" content="no-referrer">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'unsafe-inline'; img-src data:; connect-src 'none'; frame-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'; frame-ancestors 'none'">
+<title>OpenAI says it stopped a campaign to steal its models' reasoning, but the trick still worked on Azure - AI热点快照</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','PingFang SC','Microsoft YaHei',sans-serif;background:#f8f9fa;color:#1a1a2e;line-height:1.8;min-height:100vh}
+.top-bar{background:#fff;border-bottom:1px solid #e5e7eb;padding:10px 20px;display:flex;align-items:center;gap:12px;position:sticky;top:0;z-index:10}
+.top-bar .logo{font-size:14px;font-weight:700;color:#0d9488}
+.top-bar .sep{color:#d1d5db}
+.top-bar .source{font-size:13px;color:#6b7280}
+.top-bar .back{margin-left:auto;font-size:13px;color:#0d9488;text-decoration:none}
+.top-bar .back:hover{text-decoration:underline}
+.container{max-width:760px;margin:0 auto;padding:40px 24px 80px}
+.article-title{font-size:1.8rem;font-weight:700;line-height:1.35;margin-bottom:16px;color:#1a1a2e}
+.article-meta{display:flex;flex-wrap:wrap;gap:16px;padding-bottom:20px;margin-bottom:28px;border-bottom:1px solid #e5e7eb;font-size:14px;color:#6b7280}
+.article-meta a{color:#0d9488;text-decoration:none}
+.article-meta a:hover{text-decoration:underline}
+.article-body{font-size:16.5px;line-height:1.85;color:#1f2937}
+.article-body p{margin-bottom:1.2em;text-align:justify}
+.article-body h1,.article-body h2,.article-body h3{font-size:1.25em;font-weight:700;margin:1.6em 0 0.6em;color:#1a1a2e}
+.article-body a{color:#0d9488}
+.article-body pre,.article-body code{background:#f1f5f9;border-radius:4px;font-size:0.9em}
+.article-body pre{padding:16px;overflow-x:auto;margin:1em 0}
+.article-body code{padding:2px 6px}
+.article-body blockquote{border-left:3px solid #0d9488;padding-left:16px;color:#4b5563;margin:1em 0}
+.article-body ul,.article-body ol{padding-left:1.6em;margin-bottom:1em}
+.article-body li{margin-bottom:0.4em}
+.article-body figure{margin:1.2em 0}
+.article-body figcaption{font-size:13px;color:#9ca3af;text-align:center;margin-top:6px}
+.footer{margin-top:48px;padding-top:20px;border-top:1px solid #e5e7eb;font-size:13px;color:#9ca3af;text-align:center}
+</style>
+</head>
+<body>
+<div class="top-bar">
+  <a class="back" href="../" style="font-size:13px;color:#6b7280;text-decoration:none">← 日报首页</a>
+  <span class="sep">|</span>
+  <span class="logo">AI热点快照</span>
+  <span class="sep">|</span>
+  <span class="source">The Decoder</span>
+  <a class="back" href="https://the-decoder.com/openai-says-it-stopped-a-campaign-to-steal-its-models-reasoning-but-the-trick-still-worked-on-azure/" target="_blank" rel="noopener noreferrer">查看原文 ↗</a>
+</div>
+<div class="container">
+  <h1 class="article-title">OpenAI says it stopped a campaign to steal its models' reasoning, but the trick still worked on Azure</h1>
+  <div class="article-meta">
+    <span>作者: Maximilian Schreiner</span>
+    <span>来源: The Decoder</span>
+    <span>快照日期: 2026-10-02</span>
+  </div>
+  <div class="article-body"><div><div>
+<p>In distillation, one model learns from another model's full output. That includes the stronger model's complete chains of thought, not just its answers. Those intermediate steps are what make the output so valuable. OpenAI says they can contain information that's deliberately kept out of the final answer, and they can help others recreate a model's capabilities.</p>
+<p>According to OpenAI, the activity began at low volume on July 1. On July 24 and 25, it spiked to 16,000 requests from more than 4,000 users, all relying on a typical extraction pattern. A closer look uncovered a network of more than 15,000 accounts with related patterns, which OpenAI says it had fully shut down by July 28. A footnote clarifies that these were attempted extractions, not necessarily successful ones.</p>
+<p>OpenAI links a core group behind the activity to people associated with Moonshot AI, the company that makes the Kimi language model. The company says it's unclear whether all the actors it observed trace back to a single source. Anthropic recently reported <a href="https://the-decoder.com/how-hackers-used-claude-for-missiles-drone-swarms-and-surveillance-while-chinese-labs-mined-it-for-training-data/" target="_blank" rel="noopener noreferrer nofollow">similar attempts by Chinese AI companies</a>.</p>
+<h2>A cheap model can unlock an expensive model's hidden thoughts</h2>
+<p>According to OpenAI, the attackers copied encrypted reasoning from one conversation and then asked a model in a separate conversation to decrypt it and write it out.</p>
+<p>Researcher Joachim Schaeffer and his team had already shown how this works in a <a href="https://arxiv.org/abs/2608.09867" target="_blank" rel="noopener noreferrer nofollow">paper</a>. AI providers send reasoning back to customers only as encrypted data packets, which customers pass along with follow-up requests. Because those packets are encrypted with shared keys, the researchers found, they can be moved between sessions, between users, and even between different models from the same provider. That lets a weaker, cheaper model from the same family act as a "decryption oracle" that prints the stronger model's hidden thoughts word for word.</p>
+<p>OpenAI credits the researchers by name. The company says it confirmed that the attack paths they reported were real and that their findings helped it roll out countermeasures faster.</p>
+<p>OpenAI says it has since banned fraudulent accounts, tightened sign-ups, and closed the hole that let people reuse and read encrypted reasoning that didn't belong to them. It also now screens streamed outputs and holds them back if they might reveal reasoning. OpenAI says it shared what it learned through the <a href="https://the-decoder.com/big-ai-unites-in-frontier-model-forum-to-focus-on-safe-ai-progress/" target="_blank" rel="noopener noreferrer nofollow">Frontier Model Forum</a> and government channels, because the problem isn't limited to its own models.</p>
+<h2>Locking down the API doesn't help if the cloud stays open</h2>
+<p>The story doesn't end there. On the same day, the researchers published an <a href="https://stolen-thoughts.com/stolen_thoughts_update.pdf" target="_blank" rel="noopener noreferrer nofollow">update to their study</a>. "We stole reasoning. Again," Schaeffer wrote <a href="https://x.com/JSchaeff3r/status/2105356987630543057" target="_blank" rel="noopener noreferrer nofollow">on X</a>. Securing your own API, he argues, doesn't secure the wider ecosystem of cloud providers that also sell access to the models.</p>
+<p>When the team tested again on September 13, the attack was blocked on OpenAI's and Anthropic's own APIs. On Microsoft Azure, it worked against every OpenAI model they tried, including the new GPT-6 Astra, and against Anthropic models up to Sonnet 5. A single attempt was enough to pull out the reasoning verbatim. "Same models, but different protections depending on which platform serves them," Schaeffer said.</p>
+<p>There's also a second, even simpler method, which developer Can Bölük demonstrated publicly. The model gets a virtual notepad as a tool and is told to write its reasoning there, and the user can then read whatever it wrote. The researchers say this worked on every OpenAI model, as well as on Opus 4.8 and Sonnet 5. Only Opus 5, Fable 5, and Fable 5.1 didn't reveal their reasoning. The output closely resembled what the decryption attack produced, and the researchers believe it would likely be just as useful for distillation.</p>
+<p>The researchers describe the fixes so far as piecemeal and superficial. Many rely on brittle matching of specific request patterns, and some reached the cloud platforms only days later. GPT-6 Astra launched on third-party platforms without any of the protections in place. According to the researchers' timeline, OpenAI didn't add safeguards to the Azure endpoint until September 27. For Anthropic models, the reported extraction could no longer be reproduced on Azure starting September 28.</p>
+<p>Schaeffer argues that patches have to cover every type of attack and every cloud that hosts the models. Otherwise, attackers can simply pick the route with the weakest defenses. The paper goes a step further, arguing that cloud providers that don't enforce equivalent protections shouldn't be allowed to serve reasoning models at all. If they do, the researchers write, open backdoors would effectively let people sidestep export controls at the API level. OpenAI acknowledges that models hosted by partners need the same protection as its own services and says the work is not finished.</p>
+<p>We <a href="https://the-decoder.com/but-marinade-and-leaked-passwords-are-what-researchers-found-in-chatgpts-hidden-reasoning/" target="_blank" rel="noopener noreferrer nofollow">previously covered</a> the research team's original discovery of the vulnerability. Our latest <a href="https://the-decoder.com/frontier-radar-4-china-has-caught-up-so-whats-left-of-the-western-ai-lead/" target="_blank" rel="noopener noreferrer nofollow">AI Radar newsletter on Chinese language models</a> takes a deeper look at distillation. OpenAI expects these attempts to grow more sophisticated as leading models improve and more players hunt for cheap ways to copy what they can do.</p></div></div></div>
+  <div class="footer">
+    本文由 AI热点监控系统自动抓取 · 内容版权归原作者/网站所有<br>
+    快照仅用于学习交流，如需转载请访问原文
+  </div>
+</div>
+</body>
+</html>
