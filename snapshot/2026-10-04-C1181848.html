@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="referrer" content="no-referrer">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'unsafe-inline'; img-src data:; connect-src 'none'; frame-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'; frame-ancestors 'none'">
+<title>Toward provably private learning from federated data - AI热点快照</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','PingFang SC','Microsoft YaHei',sans-serif;background:#f8f9fa;color:#1a1a2e;line-height:1.8;min-height:100vh}
+.top-bar{background:#fff;border-bottom:1px solid #e5e7eb;padding:10px 20px;display:flex;align-items:center;gap:12px;position:sticky;top:0;z-index:10}
+.top-bar .logo{font-size:14px;font-weight:700;color:#0d9488}
+.top-bar .sep{color:#d1d5db}
+.top-bar .source{font-size:13px;color:#6b7280}
+.top-bar .back{margin-left:auto;font-size:13px;color:#0d9488;text-decoration:none}
+.top-bar .back:hover{text-decoration:underline}
+.container{max-width:760px;margin:0 auto;padding:40px 24px 80px}
+.article-title{font-size:1.8rem;font-weight:700;line-height:1.35;margin-bottom:16px;color:#1a1a2e}
+.article-meta{display:flex;flex-wrap:wrap;gap:16px;padding-bottom:20px;margin-bottom:28px;border-bottom:1px solid #e5e7eb;font-size:14px;color:#6b7280}
+.article-meta a{color:#0d9488;text-decoration:none}
+.article-meta a:hover{text-decoration:underline}
+.article-body{font-size:16.5px;line-height:1.85;color:#1f2937}
+.article-body p{margin-bottom:1.2em;text-align:justify}
+.article-body h1,.article-body h2,.article-body h3{font-size:1.25em;font-weight:700;margin:1.6em 0 0.6em;color:#1a1a2e}
+.article-body a{color:#0d9488}
+.article-body pre,.article-body code{background:#f1f5f9;border-radius:4px;font-size:0.9em}
+.article-body pre{padding:16px;overflow-x:auto;margin:1em 0}
+.article-body code{padding:2px 6px}
+.article-body blockquote{border-left:3px solid #0d9488;padding-left:16px;color:#4b5563;margin:1em 0}
+.article-body ul,.article-body ol{padding-left:1.6em;margin-bottom:1em}
+.article-body li{margin-bottom:0.4em}
+.article-body figure{margin:1.2em 0}
+.article-body figcaption{font-size:13px;color:#9ca3af;text-align:center;margin-top:6px}
+.footer{margin-top:48px;padding-top:20px;border-top:1px solid #e5e7eb;font-size:13px;color:#9ca3af;text-align:center}
+</style>
+</head>
+<body>
+<div class="top-bar">
+  <a class="back" href="../" style="font-size:13px;color:#6b7280;text-decoration:none">← 日报首页</a>
+  <span class="sep">|</span>
+  <span class="logo">AI热点快照</span>
+  <span class="sep">|</span>
+  <span class="source">AIHOT AI产品</span>
+  <a class="back" href="https://research.google/blog/toward-provably-private-learning-from-federated-data/" target="_blank" rel="noopener noreferrer">查看原文 ↗</a>
+</div>
+<div class="container">
+  <h1 class="article-title">Toward provably private learning from federated data</h1>
+  <div class="article-meta">
+    
+    <span>来源: AIHOT AI产品</span>
+    <span>快照日期: 2026-10-04</span>
+  </div>
+  <div class="article-body"><div><div>
+                    
+                    
+    
+
+
+<div>
+  
+
+
+
+
+  <p>In 2017, Google introduced <a href="https://research.google/blog/federated-learning-collaborative-machine-learning-without-centralized-training-data/" target="_blank" rel="noopener noreferrer nofollow">Federated Learning</a> (FL) a machine learning technique that trains models across decentralized, private data. It has been used to power everyday helpful features, including <a href="https://arxiv.org/abs/1811.03604" target="_blank" rel="noopener noreferrer nofollow">next-word prediction</a> and <a href="https://support.google.com/gboard/answer/7068415" target="_blank" rel="noopener noreferrer nofollow">Smart Compose</a> on Gboard, <a href="https://support.google.com/messages/answer/9327902?hl=en" target="_blank" rel="noopener noreferrer nofollow">reply suggestions</a> in Google Messages, and <a href="https://research.google/blog/predicting-text-selections-with-federated-learning/" target="_blank" rel="noopener noreferrer nofollow">Smart Text Selection</a> in Android.</p><p>Our FL systems development is guided by four essential <a href="https://queue.acm.org/detail.cfm?id=3501293" target="_blank" rel="noopener noreferrer nofollow">privacy principles</a>: (1) data minimization, (2) data anonymization, (3) transparency and control, and (4) verifiability and auditability. Years of research development on anonymization have led to <a href="https://research.google/blog/advances-in-private-training-for-production-on-device-language-models/" target="_blank" rel="noopener noreferrer nofollow">strong differential privacy (DP) guarantees</a> for production models through algorithms like <a href="https://arxiv.org/abs/2202.08312" target="_blank" rel="noopener noreferrer nofollow">matrix factorization DP-FTRL</a> (MF-DP-FTRL) and <a href="https://research.google/blog/distributed-differential-privacy-for-federated-learning/" target="_blank" rel="noopener noreferrer nofollow">distributed differential privacy coupled with Secure Aggregation</a>. In 2025, we <a href="https://ieeexplore.ieee.org/abstract/document/10835558/" target="_blank" rel="noopener noreferrer nofollow">introduced</a> an evolved definition of FL centered on these four principles:</p><p><i>Federated learning (FL) is a machine learning setting where multiple entities (clients) collaborate in solving a machine learning problem, under the coordination of a service provider. A complete FL system should enable clients to maintain full control over their data, the set of workloads allowed to access their data, and the anonymization properties of those workloads. FL systems should provide appropriate transparency and control to the users whose data is managed by FL clients.</i></p><p>In “<a href="https://arxiv.org/abs/2609.31494" target="_blank" rel="noopener noreferrer nofollow">Toward provably private learning from federated data</a>”, we announce the next generation of our FL system, which leverages <a href="https://en.wikipedia.org/wiki/Trusted_execution_environment" target="_blank" rel="noopener noreferrer nofollow">Trusted Execution Environments</a> (TEEs) to provide fully verifiable and auditable data anonymization guarantees. Logic that runs in TEEs is remotely attestable (third parties can verify the logic that is being executed), and it also gains confidentiality (its internal state cannot be observed) and integrity (the logic cannot be disrupted), subject to current-generation TEE <a href="https://arxiv.org/abs/2506.15924" target="_blank" rel="noopener noreferrer nofollow">limitations</a>. Our new TEE-based FL system builds on these properties which TEEs offer at the level of a single machine to form a fully verifiable end-to-end FL system that achieves stronger privacy guarantees and improved accuracy. <a href="https://play.google.com/store/apps/details?id=com.google.android.inputmethod.latin&amp;hl=en_US?" target="_blank" rel="noopener noreferrer nofollow">Gboard</a> has already adopted the new system and is benefiting from substantially faster compute times than our previous FL system.</p>
+  
+</div>
+
+                    
+                    
+    
+
+
+<div>
+  
+
+
+    <p>
+        
+            
+                </p><h2>Building a verifiably private FL system out of individual TEEs</h2>
+            
+        
+        
+    <p></p>
+
+
+
+  <p>Our TEE-based FL system builds on techniques developed in our earlier work on <a href="https://research.google/blog/discovering-new-words-with-confidential-federated-analytics/" target="_blank" rel="noopener noreferrer nofollow">confidential federated analytics</a> and <a href="https://research.google/blog/toward-provably-private-insights-into-ai-use/" target="_blank" rel="noopener noreferrer nofollow">provably private insights</a>.</p><p>The system coordinates four core operational concepts:</p><ul><li><b>Data upload</b><i>:</i> Client devices locally encrypt training examples and upload them. The devices pre-authorize an <i>access policy</i>, which is the set of TEE computations that will be allowed to process this data, and these computations only release anonymized results. Clients require access policies to be published to a public transparency log.</li><li><b>KMS and policy verification</b>: The Key Management System (KMS), which consists of a cluster of TEEs implementing the <a href="https://raft.github.io/raft.pdf" target="_blank" rel="noopener noreferrer nofollow">RAFT consensus protocol</a>, only gives decryption keys to server-side TEE workloads that match the computations in the access policy.</li><li><b>Workload execution</b><i>:</i> A data processing TEE executes a Python program that implements a training loop. This "root" TEE delegates parallelizable subtasks to a cluster of worker TEEs. Distributed logic is expressed using <a href="https://github.com/google-parfait/federated-language" target="_blank" rel="noopener noreferrer nofollow">Federated Language</a>, an open-source, framework-agnostic orchestration language derived from <a href="https://www.tensorflow.org/federated" target="_blank" rel="noopener noreferrer nofollow">TensorFlow Federated</a>, which powered our earlier FL system. The training loop periodically releases anonymized model weights to the data analyst.</li><li><b>Fault-tolerant recovery</b>: The Python program saves a KMS-encrypted recovery state at the end of the training round. This can be used to recover from intermittent root or worker failures, without leaking any additional privacy-sensitive information.</li></ul>
+  
+</div>
+
+                    
+                    
+    
+
+
+
+
+                    
+                    
+    
+
+
+<div>
+  
+
+
+
+
+  <p>For more details on the TEE-based FL system design please see our whitepaper, <a href="https://arxiv.org/abs/2609.31494" target="_blank" rel="noopener noreferrer nofollow">Toward provably private learning from federated data</a>.</p>
+  
+</div>
+
+                    
+                    
+    
+
+
+<div>
+  
+
+
+    <p>
+        
+            
+                </p><h2>How TEE-based FL strengthens privacy</h2>
+            
+        
+        
+    <p></p>
+
+
+
+  <p>In earlier FL systems, device data was uploaded for the purpose of immediate aggregation, but there was no way for external observers to verify that the data was never logged or inspected. Later, <a href="https://arxiv.org/abs/1611.04482" target="_blank" rel="noopener noreferrer nofollow">Secure Aggregation</a> allowed uploads to be protected cryptographically, but was not compatible with <a href="https://arxiv.org/abs/2202.08312" target="_blank" rel="noopener noreferrer nofollow">state-of-the-art central DP guarantees</a>. Our new TEE-based system represents the next milestone in our ongoing effort to completely remove the need to trust the server operator.</p><p>In our new TEE-based FL system, only metrics and differentially private model weights are visible to workload operators. Encrypted training data collected from devices can only be decrypted and processed within TEEs running Python training programs represented in the access policies, and only for a limited amount of time after upload.</p>
+  
+</div>
+
+                    
+                    
+    
+
+
+<div>
+  
+
+
+    <p>
+        
+            
+                </p><h3>Public transparency log and reproducible builds</h3>
+            
+        
+        
+    <p></p>
+
+
+
+  <p>Devices participating in our new TEE-based FL system know the full set of server workloads that may access data they’re uploading. The access policies representing these potential future server workloads are published to <a href="https://docs.sigstore.dev/logging/overview/" target="_blank" rel="noopener noreferrer nofollow">Rekor</a>, a public transparency log, and external auditors are able to observe these logs to track the full set of server-side workloads that devices could potentially be participating in.</p><p>The KMS and data processing binaries used in our FL system can be reproducibly built from open source code published in the <a href="https://github.com/google-parfait/confidential-federated-compute" target="_blank" rel="noopener noreferrer nofollow">Confidential Federated Compute</a> Github repository.</p>
+  
+</div>
+
+                    
+                    
+    
+
+
+<div>
+  
+
+
+    <p>
+        
+            
+                </p><h3>Verifiable execution with dynamic sideloading</h3>
+            
+        
+        
+    <p></p>
+
+
+
+  <p>In our earlier FL systems, the logic running on the server could be verified neither by devices nor auditors, and thus we needed to be trusted to correctly add random noise to gradient sums to provide differential privacy.</p><p>In our new TEE-based FL system, the access policies that are published to Rekor directly describe the Python program that expresses the FL training logic. To protect proprietary model architectures and data preprocessing logic while preserving auditability, our data processing TEEs support sideloading serialized information into the Python program at runtime. As long as all privacy-relevant logic remains hardcoded in the Python program, this sideloading functionality allows logic that must remain proprietary to run in the TEE while still providing strong externally verifiable privacy guarantees (see below for a discussion on <a href="https://en.wikipedia.org/wiki/Side-channel_attack" target="_blank" rel="noopener noreferrer nofollow">side-channel observations</a>).</p>
+  
+</div>
+
+                    
+                    
+    
+
+
+<div>
+  
+
+
+    <p>
+        
+            
+                </p><h2>How Gboard is using TEE-based FL</h2>
+            
+        
+        
+    <p></p>
+
+
+
+  <p>Gboard has deployed this TEE-based FL system to launch English and Japanese next word prediction models with stronger privacy guarantees and improved accuracy. These improvements can be attributed to several aspects of the new system design.</p>
+  
+</div>
+
+                    
+                    
+    
+
+
+<div>
+  
+
+
+    <p>
+        
+            
+                </p><h3>Mitigating diurnal availability constraints</h3>
+            
+        
+        
+    <p></p>
+
+
+
+  <p>By collecting all device uploads before running the server-side training workload, we no longer have to worry about <a href="https://arxiv.org/abs/1912.04977" target="_blank" rel="noopener noreferrer nofollow">diurnal variations</a> in device availability impacting training progress. At server-side execution time, we can dynamically calculate the optimal device participation schedule within the program, and can use it to tune other DP parameters.</p>
+  
+</div>
+
+                    
+                    
+    
+
+
+
+
+                    
+                    
+    
+
+
+<div>
+  
+
+
+    <p>
+        
+            
+                </p><h3>Training speedups</h3>
+            
+        
+        
+    <p></p>
+
+
+
+  <p>In the past, training these FL models could take 1-2 months each, with progress limited by device availability, on-device compute, and competition across multiple training workloads for the same set of device resources. With the new TEE-based system, bottlenecks have been moved to the server, and computation parallelization across many machines allows us to achieve significant speedups in training time, currently only limited by TEE resource availability.</p>
+  
+</div>
+
+                    
+                    
+    
+
+
+<div>
+  
+
+
+    <p>
+        
+            
+                </p><h2>What’s next?</h2>
+            
+        
+        
+    <p></p>
+
+
+
+  <p>In our new TEE-based FL system, computation of client gradients is shifted to the server, lifting limitations related to on-device compute resources that were present in earlier systems. This paves the way for training increasingly larger models using FL techniques. Integrating TEEs with accelerators will play an important role in such use cases.</p><p>The system we have described above is capable of executing not just FL training workloads in a verifiable manner, but also arbitrary workloads that can be expressed using Python. We are experimenting with running other types of workloads on this infrastructure, such as synthetic data generation workloads. Another area of exploration: using the data processing TEEs that execute arbitrary Python in combination with our other data processing TEEs that specialize in functionality such as LLM inference.</p><p>This work is a step toward rigorous proof that server side processing preserves individual privacy. With external verifiers able to inspect exactly what code we run at Google, we are able to offer strong assurances that data is processed server-side exactly as described. We expect future TEE hardware, along with ongoing research into mitigating side-channel observations, to offer deeper protections for dynamically loaded workloads against malicious server-side attacks. We anticipate that systems like ours may one day come with full proofs of correctness of the software implementations of the DP algorithms and system components.</p>
+  
+</div>
+
+                    
+                    
+    
+
+
+<div>
+  
+
+
+    <p>
+        
+            
+                </p><h2>Acknowledgements</h2>
+            
+        
+        
+    <p></p>
+
+
+
+  <p><i>The authors would like to thank the collaborators who contributed to the infrastructure design and implementation: Arun Ganesh, Brendan McMahan, Brett McLarnon, Chunxiang (Jake) Zheng, Emily Glanz, Maya Spivak, Michael Reneer, Nova Fallen, Stefan Dierauf, Suxin Guo, Timon Van Overveldt, Yu Xiao, Zachary Charles, and Zachary Garrett. We also thank close partners who supported the Gboard integration: Haicheng Sun, Heng Su, Jianpeng Hou, Liyang Jiang, Noriyuki Takahashi, Wenzhi Mao, Xiaojuan Fang, Yanxiang Zhang, Yingjie Liu, Yuanbo Zhang, and Yun Wang. This work was supported by Corinna Cortes, Shumin Zhai, and Yossi Matias. We additionally thank Maysam Moussalem for feedback on the writing of this post.</i></p>
+  
+</div>
+
+                    
+                </div></div></div>
+  <div class="footer">
+    本文由 AI热点监控系统自动抓取 · 内容版权归原作者/网站所有<br>
+    快照仅用于学习交流，如需转载请访问原文
+  </div>
+</div>
+</body>
+</html>
