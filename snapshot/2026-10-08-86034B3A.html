@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="referrer" content="no-referrer">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'unsafe-inline'; img-src data:; connect-src 'none'; frame-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'; frame-ancestors 'none'">
+<title>Supercharge your development with the Google Developer Knowledge API ecosystem - AI热点快照</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','PingFang SC','Microsoft YaHei',sans-serif;background:#f8f9fa;color:#1a1a2e;line-height:1.8;min-height:100vh}
+.top-bar{background:#fff;border-bottom:1px solid #e5e7eb;padding:10px 20px;display:flex;align-items:center;gap:12px;position:sticky;top:0;z-index:10}
+.top-bar .logo{font-size:14px;font-weight:700;color:#0d9488}
+.top-bar .sep{color:#d1d5db}
+.top-bar .source{font-size:13px;color:#6b7280}
+.top-bar .back{margin-left:auto;font-size:13px;color:#0d9488;text-decoration:none}
+.top-bar .back:hover{text-decoration:underline}
+.container{max-width:760px;margin:0 auto;padding:40px 24px 80px}
+.article-title{font-size:1.8rem;font-weight:700;line-height:1.35;margin-bottom:16px;color:#1a1a2e}
+.article-meta{display:flex;flex-wrap:wrap;gap:16px;padding-bottom:20px;margin-bottom:28px;border-bottom:1px solid #e5e7eb;font-size:14px;color:#6b7280}
+.article-meta a{color:#0d9488;text-decoration:none}
+.article-meta a:hover{text-decoration:underline}
+.article-body{font-size:16.5px;line-height:1.85;color:#1f2937}
+.article-body p{margin-bottom:1.2em;text-align:justify}
+.article-body h1,.article-body h2,.article-body h3{font-size:1.25em;font-weight:700;margin:1.6em 0 0.6em;color:#1a1a2e}
+.article-body a{color:#0d9488}
+.article-body pre,.article-body code{background:#f1f5f9;border-radius:4px;font-size:0.9em}
+.article-body pre{padding:16px;overflow-x:auto;margin:1em 0}
+.article-body code{padding:2px 6px}
+.article-body blockquote{border-left:3px solid #0d9488;padding-left:16px;color:#4b5563;margin:1em 0}
+.article-body ul,.article-body ol{padding-left:1.6em;margin-bottom:1em}
+.article-body li{margin-bottom:0.4em}
+.article-body figure{margin:1.2em 0}
+.article-body figcaption{font-size:13px;color:#9ca3af;text-align:center;margin-top:6px}
+.footer{margin-top:48px;padding-top:20px;border-top:1px solid #e5e7eb;font-size:13px;color:#9ca3af;text-align:center}
+</style>
+</head>
+<body>
+<div class="top-bar">
+  <a class="back" href="../" style="font-size:13px;color:#6b7280;text-decoration:none">← 日报首页</a>
+  <span class="sep">|</span>
+  <span class="logo">AI热点快照</span>
+  <span class="sep">|</span>
+  <span class="source">AIHOT AI产品</span>
+  <a class="back" href="https://developers.googleblog.com/supercharge-your-development-with-the-google-developer-knowledge-api-ecosystem/" target="_blank" rel="noopener noreferrer">查看原文 ↗</a>
+</div>
+<div class="container">
+  <h1 class="article-title">Supercharge your development with the Google Developer Knowledge API ecosystem</h1>
+  <div class="article-meta">
+    <span>作者: Christina Gonzalez</span>
+    <span>来源: AIHOT AI产品</span>
+    <span>快照日期: 2026-10-08</span>
+  </div>
+  <div class="article-body"><div><div>
+
+    
+      
+    
+
+    
+
+    <div>
+        <p>OCT. 7, 2026</p>
+      </div>
+
+    
+
+    
+    <div>
+          
+
+<div>
+    <p>If you build AI agents or developer tools on Google Cloud, stop relying on brittle web-scraping or wrestling with stale LLM training cutoffs.</p><p>Build faster, smarter, and with greater confidence using the <a href="https://developers.google.com/knowledge/api?utm_campaign=cloud-ix-social-media-post_562111984" target="_blank" rel="noopener noreferrer nofollow">Google Developer Knowledge API</a> ecosystem, including our gcloud CLI surface, an official agent skill, API Explorer, and multi-language client libraries. Whether you are operating in a command-line terminal, prompting an AI agent, testing requests interactively, or writing production software, our tools deliver Google documentation.</p><hr /><h2><b>What is the Developer Knowledge API?</b></h2><p>The Developer Knowledge API is Google's official, programmatic source of truth for developer documentation about Google Cloud, Firebase, Android, and more. Designed specifically for modern AI agents, IDE extensions, and automated workflows, it replaces brittle web-scraping with a structured API that serves fresh, Markdown-formatted documentation.</p><p>By offering semantic and keyword search, intelligent document chunking, and grounded Q&amp;A capabilities, the API ensures your agents and developer tools remain accurate and token-efficient.</p><p>The Developer Knowledge API is indexed frequently to ensure predictable retrieval, fresh documentation, and minimal lag between upstream updates and agent access.</p><h2><b>Tooling overview and capabilities</b></h2><p>With the Developer Knowledge API interfaces, developers and AI agents can discover, retrieve, and synthesize answers grounded in official Google documentation across terminals, IDEs, and backend codebases.</p><h3><b>gcloud CLI</b></h3><p>The <a href="https://docs.cloud.google.com/sdk/gcloud/reference/developer-knowledge?utm_campaign=cloud-ix-social-media-post_562111984" target="_blank" rel="noopener noreferrer nofollow">Developer Knowledge API gcloud CLI</a> surface integrates official documentation search, retrieval, and grounded Q&amp;A into your command-line environment. It comes pre-installed in <a href="https://cloud.google.com/shell?utm_campaign=cloud-ix-social-media-post_562111984" target="_blank" rel="noopener noreferrer nofollow">Cloud Shell</a> and works across standard Google Cloud SDK installations on Linux, macOS, and Windows without requiring extra plugins or configuration.</p><p><b>Key capabilities and commands:</b></p><ul><li><code>answer-query</code><b>:</b> Get grounded answers in your terminal.</li><li><code>documents search-chunks</code><b>:</b> Search document snippets and chunks across Google documentation.</li><li><code>documents describe</code><b>:</b> Retrieve metadata and content for a specific document.</li></ul><h3><b>Examples:</b></h3>
+</div>  <div>
+    <pre><code># Get grounded answers
+gcloud developer-knowledge answer-query --query="How do I create a BigQuery dataset?"
+
+# Search document chunks
+gcloud developer-knowledge documents search-chunks --query="Firestore transactions"
+
+# Retrieve metadata and content for a specific document
+gcloud developer-knowledge documents describe "documents/docs.cloud.google.com/storage/docs/creating-buckets"
+
+# Troubleshoot an error trace by piping it directly into the answer-query command
+gcloud developer-knowledge answer-query --query="$(cat error.txt)"</code></pre>
+    <p>
+        Shell
+    </p>
+    <p><span>Copied</span>
+        
+    </p>
+    
+    
+</div>  <div>
+    <p>To get started with the gcloud CLI, see the <a href="https://developers.google.com/knowledge/quickstart-gcloud?utm_campaign=cloud-ix-social-media-post_562111984" target="_blank" rel="noopener noreferrer nofollow">gcloud CLI Quickstart</a>.</p><h3><b>Agent skill</b></h3><p>The <a href="https://github.com/google/skills/tree/main/skills/developers/retrieving-developer-knowledge" target="_blank" rel="noopener noreferrer nofollow">Developer Knowledge agent skill</a> establishes a link between AI coding assistants and Google's documentation ecosystem, enabling autonomous tools to access up-to-date technical specifications.</p><p><b>Key Benefits</b></p><ul><li><b>Grounding &amp; reduced hallucinations:</b> Provides AI coding assistants and agentic workflows access to up-to-date Google developer documentation, reducing hallucinations from stale LLM training cutoffs.</li><li><b>Optimized token &amp; context usage:</b> Uses a multi-step retrieval workflow—inspecting code and documentation chunks using <a href="https://developers.google.com/knowledge/reference/rest/v1/documents/searchDocumentChunks" target="_blank" rel="noopener noreferrer nofollow"><code>searchDocumentChunks</code></a> first before fetching complete Markdown pages with <a href="https://developers.google.com/knowledge/reference/rest/v1/documents/get" target="_blank" rel="noopener noreferrer nofollow"><code>documents.get</code></a>, or delivering grounded answers using <a href="https://developers.google.com/knowledge/reference/rest/v1/TopLevel/answerQuery" target="_blank" rel="noopener noreferrer nofollow"><code>answerQuery</code></a>.</li><li><b>Broad tooling compatibility:</b> Uses the standard MCP integration across Google Antigravity, Claude Code, Cursor, GitHub Copilot, and custom agentic frameworks. The skill instructs your assistant how to use the <a href="https://developers.google.com/knowledge/mcp?utm_campaign=cloud-ix-social-media-post_562111984" target="_blank" rel="noopener noreferrer nofollow">Developer Knowledge MCP server</a> (or fall back to the REST API via <code>curl</code>).</li></ul><p><b>Configure the agent skill</b></p><p>Configure the skill by running the following CLI helper command in your terminal:</p>
+</div>  <div>
+    <pre><code>npx skills add google/skills --skill retrieving-developer-knowledge</code></pre>
+    <p>
+        Shell
+    </p>
+    <p><span>Copied</span>
+        
+    </p>
+    
+    
+</div>  <div>
+    <p>This command installs the Developer Knowledge agent skill in your project. The skill instructs your assistant how to use the <a href="https://developers.google.com/knowledge/mcp?utm_campaign=cloud-ix-social-media-post_562111984" target="_blank" rel="noopener noreferrer nofollow">Developer Knowledge MCP server</a> (or fall back to the REST API using curl).</p><p>To connect to the MCP server in your IDE, or to configure authentication with Application Default Credentials or an <a href="https://developers.google.com/knowledge/quickstart?utm_campaign=cloud-ix-social-media-post_562111984#create-secure-key" target="_blank" rel="noopener noreferrer nofollow">API key</a>, see <a href="https://developers.google.com/knowledge/mcp?utm_campaign=cloud-ix-social-media-post_562111984" target="_blank" rel="noopener noreferrer nofollow">Connect to the Developer Knowledge MCP server</a>.</p><h3><b>Client libraries</b></h3><p>The <a href="https://developers.google.com/knowledge/quickstart-client-libraries?utm_campaign=cloud-ix-social-media-post_562111984" target="_blank" rel="noopener noreferrer nofollow">client libraries</a> let you embed documentation retrieval, search, and grounded answer generation into production systems, automated CI/CD pipelines, and enterprise knowledge bots.</p><p><b>Key benefits:</b></p><ul><li><b>Programmatic access:</b> Provides programmatic access to <code>AnswerQuery</code>, <code>SearchDocumentChunks</code>, <code>GetDocument</code>, and <code>BatchGetDocuments</code>.</li><li><b>Idiomatic integration:</b> Native type definitions, builder patterns, error handling, and asynchronous execution tailored to each supported language ecosystem.</li><li><b>Batching and efficiency:</b> Methods like <code>BatchGetDocuments</code> enable retrieving up to 20 documents in a single API call.</li><li><b>Enterprise security and reliability:</b> Support for Google Cloud Application Default Credentials, automatic retries, and structured citation tracking.</li></ul><p><b>Supported languages:</b></p><ul><li><a href="https://developers.google.com/dotnet/docs/reference/Google.Developers.DeveloperKnowledge.V1/latest?utm_campaign=cloud-ix-social-media-post_562111984" target="_blank" rel="noopener noreferrer nofollow"><b>C#</b></a></li><li><a href="https://developers.google.com/go/docs/reference/cloud.google.com/go/developerknowledge/latest?utm_campaign=cloud-ix-social-media-post_562111984" target="_blank" rel="noopener noreferrer nofollow"><b>Go</b></a></li><li><a href="https://developers.google.com/java/docs/reference/google-cloud-developer-knowledge/latest/overview?utm_campaign=cloud-ix-social-media-post_562111984" target="_blank" rel="noopener noreferrer nofollow"><b>Java</b></a></li><li><a href="https://developers.google.com/knowledge/quickstart-client-libraries?utm_campaign=cloud-ix-social-media-post_562111984#node.js-and-typescript" target="_blank" rel="noopener noreferrer nofollow"><b>Node.js and TypeScript</b></a></li><li><a href="https://developers.google.com/php/docs/reference/developer-knowledge/latest?utm_campaign=cloud-ix-social-media-post_562111984" target="_blank" rel="noopener noreferrer nofollow"><b>PHP</b></a></li><li><a href="https://developers.google.com/python/docs/reference/google-developer-knowledge/latest?utm_campaign=cloud-ix-social-media-post_562111984" target="_blank" rel="noopener noreferrer nofollow"><b>Python</b></a></li><li><a href="https://developers.google.com/ruby/docs/reference/google-developers-developer_knowledge-v1/latest?utm_campaign=cloud-ix-social-media-post_562111984" target="_blank" rel="noopener noreferrer nofollow"><b>Ruby</b></a></li></ul><p>Get started by following the <a href="https://developers.google.com/knowledge/quickstart-client-libraries?utm_campaign=cloud-ix-social-media-post_562111984" target="_blank" rel="noopener noreferrer nofollow">Quickstart</a> to set up your environment, install a library, and start retrieving developer documentation.</p><p><b>Code examples:</b></p><p>The following example demonstrates how an AI agent can use the Python client library to fetch the latest product release notes, ensuring its responses are grounded in data beyond its training cutoff:</p>
+</div>  <div>
+    <pre><code>from google.cloud import developer_knowledge_v1
+
+def FetchMyProductReleaseNotes(my_product_name: str) -&gt; str:
+    """Fetches the latest release notes to bridge a model's knowledge cutoff."""
+    # Initialize the Developer Knowledge API client
+    my_api_client = developer_knowledge_v1.DeveloperKnowledgeClient()
+
+    # Formulate a targeted query for the specific product's release notes
+    my_search_query = f"{my_product_name} latest release notes"
+    my_request = developer_knowledge_v1.SearchDocumentChunksRequest(
+        query=my_search_query,
+    )
+
+    # Retrieve and return the relevant documentation chunks
+    my_response = my_api_client.search_document_chunks(request=my_request)
+
+    # Extract the chunk text
+    my_release_notes = [my_chunk.text for my_chunk in my_response.chunks]
+    return "\n".join(my_release_notes)
+
+# Example usage:
+# my_latest_notes = FetchMyProductReleaseNotes("Firestore")</code></pre>
+    <p>
+        Python
+    </p>
+    <p><span>Copied</span>
+        
+    </p>
+    
+    
+</div>  <div>
+    <p>Code examples across various tasks:</p><ul><li><a href="https://developers.google.com/knowledge/quickstart-client-libraries?utm_campaign=cloud-ix-social-media-post_562111984#answer-query" target="_blank" rel="noopener noreferrer nofollow">Answer a query with grounded generation</a></li><li><a href="https://developers.google.com/knowledge/quickstart-client-libraries?utm_campaign=cloud-ix-social-media-post_562111984#search-document-chunks" target="_blank" rel="noopener noreferrer nofollow">Search for document chunks</a></li><li><a href="https://developers.google.com/knowledge/quickstart-client-libraries?utm_campaign=cloud-ix-social-media-post_562111984#retrieve-document" target="_blank" rel="noopener noreferrer nofollow">Retrieve a document</a></li><li><a href="https://developers.google.com/knowledge/quickstart-client-libraries?utm_campaign=cloud-ix-social-media-post_562111984#batch-get-documents" target="_blank" rel="noopener noreferrer nofollow">Retrieve multiple documents</a></li></ul><h3><b>APIs Explorer</b></h3><p>The <a href="https://developers.google.com/knowledge/reference/rest?utm_campaign=cloud-ix-social-media-post_562111984" target="_blank" rel="noopener noreferrer nofollow">Google APIs Explorer for the Developer Knowledge API</a> offers an interactive, zero-code interface integrated into Google's developer site, enabling experimentation and verification of API requests and response structures.</p><p>Through the APIs Explorer, you can test the following core endpoints:</p>
+</div>   
+
+
+    
+    <div>
+        <p>
+            
+            
+        </p>
+    </div>
+  <div>
+    <h3><b>Next steps</b></h3><p>Ready to integrate Google developer documentation into your workflows and AI tools? Here are a few ways to get started:</p><ul><li><b>If you already have the gcloud CLI:</b> You can start querying official documentation right away using the <a href="https://docs.cloud.google.com/sdk/gcloud/reference/developer-knowledge?utm_campaign=cloud-ix-social-media-post_562111984" target="_blank" rel="noopener noreferrer nofollow">gcloud CLI surface</a>.</li><li><b>If you don't have the gcloud CLI:</b> Give the <a href="https://github.com/google/skills/tree/main/skills/developers/retrieving-developer-knowledge" target="_blank" rel="noopener noreferrer nofollow">agent skill</a> to your AI coding assistant or agent to enable grounded retrieval.</li></ul>
+</div> 
+      </div>
+    
+
+    <div>
+        <div>
+          <span>
+            
+          </span>
+          <p><span>Previous</span>
+        </p></div>
+        <div>
+          <p><span>Next</span></p><span>
+            
+          </span>
+        </div>
+      </div>
+
+    
+    
+    
+  </div></div></div>
+  <div class="footer">
+    本文由 AI热点监控系统自动抓取 · 内容版权归原作者/网站所有<br>
+    快照仅用于学习交流，如需转载请访问原文
+  </div>
+</div>
+</body>
+</html>
