@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="referrer" content="no-referrer">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'unsafe-inline'; img-src data:; connect-src 'none'; frame-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'; frame-ancestors 'none'">
+<title>How I Generated Live Video with MiniMax H3 on a Single GPU - AI热点快照</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','PingFang SC','Microsoft YaHei',sans-serif;background:#f8f9fa;color:#1a1a2e;line-height:1.8;min-height:100vh}
+.top-bar{background:#fff;border-bottom:1px solid #e5e7eb;padding:10px 20px;display:flex;align-items:center;gap:12px;position:sticky;top:0;z-index:10}
+.top-bar .logo{font-size:14px;font-weight:700;color:#0d9488}
+.top-bar .sep{color:#d1d5db}
+.top-bar .source{font-size:13px;color:#6b7280}
+.top-bar .back{margin-left:auto;font-size:13px;color:#0d9488;text-decoration:none}
+.top-bar .back:hover{text-decoration:underline}
+.container{max-width:760px;margin:0 auto;padding:40px 24px 80px}
+.article-title{font-size:1.8rem;font-weight:700;line-height:1.35;margin-bottom:16px;color:#1a1a2e}
+.article-meta{display:flex;flex-wrap:wrap;gap:16px;padding-bottom:20px;margin-bottom:28px;border-bottom:1px solid #e5e7eb;font-size:14px;color:#6b7280}
+.article-meta a{color:#0d9488;text-decoration:none}
+.article-meta a:hover{text-decoration:underline}
+.article-body{font-size:16.5px;line-height:1.85;color:#1f2937}
+.article-body p{margin-bottom:1.2em;text-align:justify}
+.article-body h1,.article-body h2,.article-body h3{font-size:1.25em;font-weight:700;margin:1.6em 0 0.6em;color:#1a1a2e}
+.article-body a{color:#0d9488}
+.article-body pre,.article-body code{background:#f1f5f9;border-radius:4px;font-size:0.9em}
+.article-body pre{padding:16px;overflow-x:auto;margin:1em 0}
+.article-body code{padding:2px 6px}
+.article-body blockquote{border-left:3px solid #0d9488;padding-left:16px;color:#4b5563;margin:1em 0}
+.article-body ul,.article-body ol{padding-left:1.6em;margin-bottom:1em}
+.article-body li{margin-bottom:0.4em}
+.article-body figure{margin:1.2em 0}
+.article-body figcaption{font-size:13px;color:#9ca3af;text-align:center;margin-top:6px}
+.footer{margin-top:48px;padding-top:20px;border-top:1px solid #e5e7eb;font-size:13px;color:#9ca3af;text-align:center}
+</style>
+</head>
+<body>
+<div class="top-bar">
+  <a class="back" href="../" style="font-size:13px;color:#6b7280;text-decoration:none">← 日报首页</a>
+  <span class="sep">|</span>
+  <span class="logo">AI热点快照</span>
+  <span class="sep">|</span>
+  <span class="source">ComfyUI Newsletter</span>
+  <a class="back" href="https://blog.comfy.org/p/how-i-generated-live-video-with-minimax" target="_blank" rel="noopener noreferrer">查看原文 ↗</a>
+</div>
+<div class="container">
+  <h1 class="article-title">How I Generated Live Video with MiniMax H3 on a Single GPU</h1>
+  <div class="article-meta">
+    <span>作者: Bryan Wade</span>
+    <span>来源: ComfyUI Newsletter</span>
+    <span>快照日期: 2026-10-09</span>
+  </div>
+  <div class="article-body"><div><div><div><div><p><span>Live video has been the talk of the town on AI twitter these days.  From Fal’s post trained </span><a href="https://fal.ai/h3-max-director" target="_blank" rel="noopener noreferrer nofollow">H3 Max</a><span> model that competed on quality and topped the charts last month, to the </span><a href="https://huggingface.co/FastVideo/FastVideo-FastH3-8-Step-V2" target="_blank" rel="noopener noreferrer nofollow">FastH3</a><span> model that optimized on cost.  Video models have come a long way since people joked about AI models being unable to animate Will Smith Eating Spaghetti!</span></p><p><span>As impressive as these recent model are, there exists a problem.  And that problem is cost.  Running these models continuously can cost an upwards of 6k per day!  This makes these models completely unusable for the average consumer.</span></p></div><p>So the question I asked is how far can these models be pushed?  What if you had an agent search the internet for every optimization, every speed up, every cost savings, and definitely every dirty hack that sacrificed quality for speed. And then what if you put it all together into a single custom comfy node that runs on a single consumer GPU? My requirements were the following:</p><ul><li><p><strong>Hardware:</strong><span> one RTX 5090 with 32 GB of VRAM</span></p></li><li><p><strong>Speed:</strong><span> generate 15 seconds of video in 15 seconds or less</span></p></li><li><p><strong>Resolution:</strong><span> 448×256 resolution</span></p></li><li><p><strong>Quality:</strong><span> keep it watchable, even if the clips have rough edges</span></p></li></ul><p>The RTX 5090 was a useful target: some high-end gaming PCs have one, and rentals can be found for around 70¢ an hour at the cheapest end of the market.</p><div><figure><a href="https://substackcdn.com/image/fetch/$s_!Zrhb!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F442e378c-d9f2-4def-be36-6a7e05d00a8d_1600x860.png" target="_blank" rel="noopener noreferrer nofollow"><div></div></a></figure></div><p>Anime</p><p>Stylized 3D</p><p>Watercolor</p><div><p><span>The clips clearly have some rough edges and artifacts. But its not a completely horrible result for a single GPU you can rent for under 70 cents an hour!</span></p><p><span>But enough with the talk, lets get into the nitty gritty details.  Casual viewers be warned, I don’t even understand some of these, as they were simply what my agent was able to pull from other projects.  Astra Codex be praised!</span></p></div><p><span>I used </span><a href="https://huggingface.co/FastVideo/FastVideo-FastH3-8-Step-V2" target="_blank" rel="noopener noreferrer nofollow">FastVideo’s FastH3 V2 checkpoint</a><span> in a four-step setup. For comparison, FastVideo’s Preview V1 generated a 15-second, 1344×768 clip in </span><strong>47.2 seconds</strong><span> on one B200 (hint:  much more expensive GPU).</span></p><p>Here’s what we optimized to run the workflow on one RTX 5090:</p><ul><li><p><strong>Four sampling steps.</strong><span> Each step is another round of model work to refine the video. Using four means less work for each clip.</span></p></li><li><p><strong>Sparse attention.</strong><span> Attention lets parts of the video share information as it is generated. VSA focuses full attention on the selected </span><strong>20% of video blocks</strong><span>—skipping about </span><strong>80%</strong><span>—while still including the prompt.</span></p></li><li><p><strong>A smaller text encoder.</strong><span> The encoder turns your prompt into information H3 can use. </span><a href="https://huggingface.co/NicoLab28/ClipProj-MiniMax-H3" target="_blank" rel="noopener noreferrer nofollow">NicoLab28’s ClipProj</a><span> adapts Qwen3-VL-4B to stand in for H3’s 32B encoder: it uses about </span><strong>4.5 GB instead of 15.7 GB</strong><span>.</span></p></li><li><p><strong>A smaller checkpoint.</strong><span> </span><a href="https://huggingface.co/FastVideo/FastVideo-FastH3-Comfy/tree/ec1e3aa374a91c57b0b94a1623b7e657c0498cf2/diffusion_models" target="_blank" rel="noopener noreferrer nofollow">FastVideo’s pruned INT8 checkpoint</a><span> combines pruning (removing selected weights) with INT8 storage (8-bit numbers), reducing the GPU memory the model needs.</span></p></li><li><p><strong>A fused FP4 MLP.</strong><span> The MLP handles a lot of the model’s repeated calculations. Using four-bit math for this part and fusing its operations means less memory for the weights and fewer temporary results to move around; this builds on </span><a href="https://github.com/ByronLeeeee/ComfyUI-MiniMax-H3-Optimization-Suite#h3-nvfp4-fused-mlp" target="_blank" rel="noopener noreferrer nofollow">ByronLeeeee’s H3 optimizations</a><span>.</span></p></li><li><p><strong>Decode and encode together.</strong><span> </span><a href="https://huggingface.co/Kijai/MiniMax-H3-experimental" target="_blank" rel="noopener noreferrer nofollow">Kijai’s INT8 H3 video decoder</a><span> rebuilds the video in tiles. NVENC starts writing each finished tile while the decoder prepares the next, so the steps overlap. The workflow keeps only the last frame for the next job instead of caching every decoded frame.</span></p></li></ul><p><span>These optimizations both improved speed and memory uses, bringing VRAM requirements down from 80GB to &lt; 30GB, safely fitting within a RTX 5090’s </span><strong>32 GB of GPU memory</strong><span>.</span></p><p><span>If you want to test out the results for yourself the custom comfy node is released open source here:  </span><a href="https://github.com/Comfy-Org/comfystreamerh3" target="_blank" rel="noopener noreferrer nofollow">https://github.com/Comfy-Org/comfystreamerh3</a><span> </span></p><div><p><span>Additionally you can rent GPUs from the  </span><a href="https://platform.comfy.org/" target="_blank" rel="noopener noreferrer nofollow">Comfy Developer Platform</a><span>.  </span></p><p><span>Comfy API handles GPU hosting, models, and dependencies, so your app can request video without needing a GPU of your own.  And you can follow the instructions to sign up and deploy this demo to Comfy API in the readme </span><a href="https://github.com/Comfy-Org/comfystreamerh3#deploy-to-the-comfy-developer-platform" target="_blank" rel="noopener noreferrer nofollow">here</a><span>.</span></p></div><p><span>There is clearly significant room to improve image detail, consistency, and resolution of these videos. But getting H3 to generate even partially legible video in real time on one RTX 5090 shows how far these models can be pushed when it comes to the frontier of single-GPU live video. One next step would be to pass each clip through a cost optimized video upscaling model, such as the recently release </span><a href="https://github.com/NVlabs/Sana/tree/670482d8a857d578ac8a2ea89b052d0fb47badba/models/sol-refiner/MiniMax-H3" target="_blank" rel="noopener noreferrer nofollow">SolRefinery</a><span> : IE generate quick initial videos at 448 × 256 and then cheaply upscale to a higher resolution.  My preliminary testing with this model shows a 7× pixel density increase using only 3X the GPUs.  So given the possibility of future optimizations, we might have cost efficient, semi-usable live video sooner than you’d think!</span></p></div></div><div><p>No posts</p></div></div></div>
+  <div class="footer">
+    本文由 AI热点监控系统自动抓取 · 内容版权归原作者/网站所有<br>
+    快照仅用于学习交流，如需转载请访问原文
+  </div>
+</div>
+</body>
+</html>
