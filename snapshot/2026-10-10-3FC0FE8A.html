@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="referrer" content="no-referrer">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'unsafe-inline'; img-src data:; connect-src 'none'; frame-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'; frame-ancestors 'none'">
+<title>Anthropic can’t reliably control its AI agents. It’s cutting off its internal evals from the live internet instead - AI热点快照</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','PingFang SC','Microsoft YaHei',sans-serif;background:#f8f9fa;color:#1a1a2e;line-height:1.8;min-height:100vh}
+.top-bar{background:#fff;border-bottom:1px solid #e5e7eb;padding:10px 20px;display:flex;align-items:center;gap:12px;position:sticky;top:0;z-index:10}
+.top-bar .logo{font-size:14px;font-weight:700;color:#0d9488}
+.top-bar .sep{color:#d1d5db}
+.top-bar .source{font-size:13px;color:#6b7280}
+.top-bar .back{margin-left:auto;font-size:13px;color:#0d9488;text-decoration:none}
+.top-bar .back:hover{text-decoration:underline}
+.container{max-width:760px;margin:0 auto;padding:40px 24px 80px}
+.article-title{font-size:1.8rem;font-weight:700;line-height:1.35;margin-bottom:16px;color:#1a1a2e}
+.article-meta{display:flex;flex-wrap:wrap;gap:16px;padding-bottom:20px;margin-bottom:28px;border-bottom:1px solid #e5e7eb;font-size:14px;color:#6b7280}
+.article-meta a{color:#0d9488;text-decoration:none}
+.article-meta a:hover{text-decoration:underline}
+.article-body{font-size:16.5px;line-height:1.85;color:#1f2937}
+.article-body p{margin-bottom:1.2em;text-align:justify}
+.article-body h1,.article-body h2,.article-body h3{font-size:1.25em;font-weight:700;margin:1.6em 0 0.6em;color:#1a1a2e}
+.article-body a{color:#0d9488}
+.article-body pre,.article-body code{background:#f1f5f9;border-radius:4px;font-size:0.9em}
+.article-body pre{padding:16px;overflow-x:auto;margin:1em 0}
+.article-body code{padding:2px 6px}
+.article-body blockquote{border-left:3px solid #0d9488;padding-left:16px;color:#4b5563;margin:1em 0}
+.article-body ul,.article-body ol{padding-left:1.6em;margin-bottom:1em}
+.article-body li{margin-bottom:0.4em}
+.article-body figure{margin:1.2em 0}
+.article-body figcaption{font-size:13px;color:#9ca3af;text-align:center;margin-top:6px}
+.footer{margin-top:48px;padding-top:20px;border-top:1px solid #e5e7eb;font-size:13px;color:#9ca3af;text-align:center}
+</style>
+</head>
+<body>
+<div class="top-bar">
+  <a class="back" href="../" style="font-size:13px;color:#6b7280;text-decoration:none">← 日报首页</a>
+  <span class="sep">|</span>
+  <span class="logo">AI热点快照</span>
+  <span class="sep">|</span>
+  <span class="source">TechCrunch</span>
+  <a class="back" href="https://techcrunch.com/2026/10/09/anthropic-cant-reliably-control-its-ai-agents-its-cutting-off-its-internal-evals-from-the-live-internet-instead/" target="_blank" rel="noopener noreferrer">查看原文 ↗</a>
+</div>
+<div class="container">
+  <h1 class="article-title">Anthropic can’t reliably control its AI agents. It’s cutting off its internal evals from the live internet instead</h1>
+  <div class="article-meta">
+    <span>作者: Tim Fernholz</span>
+    <span>来源: TechCrunch</span>
+    <span>快照日期: 2026-10-10</span>
+  </div>
+  <div class="article-body"><div><div>
+<p>Anthropic said its models exploited websites on the internet, including some run by U.S. government agencies, and it will turn off live internet access for all of its internal evaluations until the frontier lab is sure it can monitor and control its AI agents.</p>
+
+<p>The incidents, disclosed in a <a href="https://www.anthropic.com/research/investigating-unintended-model-actions" target="_blank" rel="noopener noreferrer nofollow">blog post</a>, involved AI agents <a href="https://techcrunch.com/2026/09/25/for-months-openais-agent-swarms-have-been-attacking-online-databases-to-find-obscure-facts/" target="_blank" rel="noopener noreferrer nofollow">tasked to solve problems</a> seeking resources on the internet. In the process, they exploited software flaws, accessed databases without paying fees, used URL shortening services to smuggle information pass restrictions, and even <a href="https://techcrunch.com/2026/10/09/an-anthropic-ai-model-sent-a-false-homicide-tip-to-philadelphia-police/" target="_blank" rel="noopener noreferrer nofollow">submitted</a> a false murder tip to the Philadelphia police.</p>
+
+<p>Anthropic said it discovered these new issues in a review of its model’s activities that began in July, demonstrating the lab’s lack of awareness of its software’s behavior in real time.</p>
+
+<p>Notably, the company said that alignment training was not yet sufficient for skills like search and computer use that are central to its pitch that AI agents will be used by any professional who relies on digital tools.</p>
+
+<p>The behaviors Anthropic disclosed are similar to incidents involving OpenAI agents that <a href="https://techcrunch.com/2026/09/04/another-swarm-of-openai-agents-reached-the-open-internet-without-the-frontier-labs-knowledge/" target="_blank" rel="noopener noreferrer nofollow">collaborated</a> to break into various websites in search of information, including some run by the Australian government.</p>
+
+<p>Anthropic previously disclosed that its models had <a href="https://www.anthropic.com/research/alignment-assessment-cybersecurity-incidents" target="_blank" rel="noopener noreferrer nofollow">broken into</a> external systems. The frontier lab said it considered today’s disclosures “significantly less severe from an alignment and security perspective” than those it announced before.</p>
+
+<p>However, the lab still said it had “turned off live internet access” for “all our internal evaluations” until it is certain it can monitor and control its agents.</p>
+
+
+<p>It’s not clear what that means. Sydney Von Arx, the founder of Nightingale, an AI safety organization, told TechCrunch in an interview before this disclosure that developing models on a data center cut off from the open internet would be very challenging for researchers, and hinder the progress of the models, which benefit from internet access.</p>
+
+<p>“You have to align them at some point,” Von Arx said. “If the AIs are released to production and never have access to the internet, that’s not a very useful tool.”</p>
+
+<p>Anthropic said the behavior was a result of flaws in the lab’s training environments, which led the models to believe they would be rewarded for finding loopholes or avoiding restrictions, a behavior called “reward hacking.”</p>
+
+
+
+
+
+
+
+<p>The company said it would stop running some of its evaluations or move them offline, and has built tooling to detect and block this behavior. This tooling was tested against the kind of incidents disclosed today and blocked them; it’s not clear what evidence will prompt Anthropic to return live internet access to its internal evaluations. Anthropic also said it would migrate its internal AI agents to “centrally managed infrastructure with strong containment,” and is beginning to using safety classifiers more frequently to monitor those agents.</p>
+
+<p>“It’s encouraging that Anthropic voluntarily disclosed more recent incidents, including where their agents targeted U.S. government websites,” Conrad Stosz, an official at AI oversight lab Transluce and former head of the US Center for AI Standards and Innovation, said in a statement. “But it just underscores the need for independent, credible, third-party verification of Al systems. Trust in this technology needs to be built through science-backed oversight and governance with meaningful access — not by relying on researchers to find these things in the wild or on companies to voluntarily disclose.”</p>
+</div><p><em>When you purchase through links in our articles, <a href="https://techcrunch.com/techcrunch-affiliate-monetization-standards/" target="_blank" rel="noopener noreferrer nofollow">we may earn a small commission</a>. This doesn’t affect our editorial independence.</em></p><div>
+	
+	
+	
+	
+
+	
+<div>
+	<p>
+		Tim Fernholz is a journalist who writes about technology, finance and public policy. He has closely covered the rise of the private space industry and is the author of <i> Rocket Billionaires: Elon Musk, Jeff Bezos and the New Space Race.</i> Formerly, he was a senior reporter at Quartz, the global business news site, for more than a decade, and began his career as a political reporter in Washington, D.C. 
+
+You can contact or verify outreach from Tim by emailing <span>[email protected]</span> or via an encrypted message to tim_fernholz.21 on Signal.
+	</p>
+</div>
+
+
+	
+<p>
+	<a href="https://techcrunch.com/author/tim-fernholz/" target="_blank" rel="noopener noreferrer nofollow">View Bio </a>
+</p>
+
+</div></div></div>
+  <div class="footer">
+    本文由 AI热点监控系统自动抓取 · 内容版权归原作者/网站所有<br>
+    快照仅用于学习交流，如需转载请访问原文
+  </div>
+</div>
+</body>
+</html>

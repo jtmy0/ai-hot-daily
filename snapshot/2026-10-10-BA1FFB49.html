@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="referrer" content="no-referrer">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'unsafe-inline'; img-src data:; connect-src 'none'; frame-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'; frame-ancestors 'none'">
+<title>Sharing a draft of Personal Agent Protocol - AI热点快照</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','PingFang SC','Microsoft YaHei',sans-serif;background:#f8f9fa;color:#1a1a2e;line-height:1.8;min-height:100vh}
+.top-bar{background:#fff;border-bottom:1px solid #e5e7eb;padding:10px 20px;display:flex;align-items:center;gap:12px;position:sticky;top:0;z-index:10}
+.top-bar .logo{font-size:14px;font-weight:700;color:#0d9488}
+.top-bar .sep{color:#d1d5db}
+.top-bar .source{font-size:13px;color:#6b7280}
+.top-bar .back{margin-left:auto;font-size:13px;color:#0d9488;text-decoration:none}
+.top-bar .back:hover{text-decoration:underline}
+.container{max-width:760px;margin:0 auto;padding:40px 24px 80px}
+.article-title{font-size:1.8rem;font-weight:700;line-height:1.35;margin-bottom:16px;color:#1a1a2e}
+.article-meta{display:flex;flex-wrap:wrap;gap:16px;padding-bottom:20px;margin-bottom:28px;border-bottom:1px solid #e5e7eb;font-size:14px;color:#6b7280}
+.article-meta a{color:#0d9488;text-decoration:none}
+.article-meta a:hover{text-decoration:underline}
+.article-body{font-size:16.5px;line-height:1.85;color:#1f2937}
+.article-body p{margin-bottom:1.2em;text-align:justify}
+.article-body h1,.article-body h2,.article-body h3{font-size:1.25em;font-weight:700;margin:1.6em 0 0.6em;color:#1a1a2e}
+.article-body a{color:#0d9488}
+.article-body pre,.article-body code{background:#f1f5f9;border-radius:4px;font-size:0.9em}
+.article-body pre{padding:16px;overflow-x:auto;margin:1em 0}
+.article-body code{padding:2px 6px}
+.article-body blockquote{border-left:3px solid #0d9488;padding-left:16px;color:#4b5563;margin:1em 0}
+.article-body ul,.article-body ol{padding-left:1.6em;margin-bottom:1em}
+.article-body li{margin-bottom:0.4em}
+.article-body figure{margin:1.2em 0}
+.article-body figcaption{font-size:13px;color:#9ca3af;text-align:center;margin-top:6px}
+.footer{margin-top:48px;padding-top:20px;border-top:1px solid #e5e7eb;font-size:13px;color:#9ca3af;text-align:center}
+</style>
+</head>
+<body>
+<div class="top-bar">
+  <a class="back" href="../" style="font-size:13px;color:#6b7280;text-decoration:none">← 日报首页</a>
+  <span class="sep">|</span>
+  <span class="logo">AI热点快照</span>
+  <span class="sep">|</span>
+  <span class="source">Sierra</span>
+  <a class="back" href="https://sierra.ai/blog/poppy" target="_blank" rel="noopener noreferrer">查看原文 ↗</a>
+</div>
+<div class="container">
+  <h1 class="article-title">Sharing a draft of Personal Agent Protocol</h1>
+  <div class="article-meta">
+    <span>作者: Bret Taylor, Clay Bavor</span>
+    <span>来源: Sierra</span>
+    <span>快照日期: 2026-10-10</span>
+  </div>
+  <div class="article-body"><div><div><div><p>Since <a href="https://sierra.ai/blog/introducing-personal-agent-protocol" target="_blank" rel="noopener noreferrer nofollow">announcing</a> this new protocol on Tuesday with Meta and Genesys, Instinct, NiCE, Rocket, Shopify, Stripe, and Walmart, the response has been overwhelming.</p><p>So today we’re publishing a draft of <a href="https://personalagentprotocol.org/" target="_blank" rel="noopener noreferrer nofollow">Personal Agent Protocol</a>, known as Poppy, and announcing an additional 35 design partners: Adyen, Atomic, Bank of America, BBVA, Chime, Cigna, Cloudflare, Comcast, DIRECTV, ElevenLabs, FOX, Gap Inc., GEICO, Hertz, Insurify, Klaviyo, Liberty Mutual, Mastercard, Nordstrom, Notion, Okta, OneSignal, OpenAI, PayPal, Plaid, SiriusXM, Synchrony, Target, United Airlines, Venmo, Visa, Wells Fargo, Zapier, Zendesk, and 1Password. These companies will participate in the design process for the draft Personal Agent Protocol, contributing valuable feedback from their unique business perspectives.</p></div><figure><div><p></p></div></figure><div><p>Today, when someone asks their personal agent to make a purchase or resolve an issue, it often has to sign in as the customer and navigate pages built for people. Businesses have no standard way to help guide the agent, which limits what the customer, their personal agent and the brand can do directly together. With the Personal Agent Protocol, consumers have choice and control, and companies know when they’re dealing with an agent and who it represents.</p><h2><strong>How Personal Agent Protocol works</strong></h2><p>Poppy is built on the principle that customers decide what access to give their personal agents, and companies set parameters for what those agents can do. This enables companies to work with personal agents in the way that is best for their customers: through their existing websites and APIs, or through an agent of their own.</p><p>Poppy defines five building blocks for how personal agents and companies work together.</p><ul><li><strong>Discovery</strong>. Companies publish one file at a standard address on their website (/.well-known/poppy.json). This tells personal agents how to interact with the company, how customers can sign in, and what the agent can do.</li><li><strong>Sessions</strong>. The personal agent starts a session on its customer’s behalf. It can begin as a guest, which may be enough to check whether a product is in stock or ask about a returns policy. The personal agent identifies itself, so the company always knows when an agent is acting for a customer.</li><li><strong>Sign-in</strong>. When a task needs the customer’s account, the person signs in on the company’s page through OAuth. If permitted by the company, the agent can sign in on the customer’s behalf with a session token that grants only the access the customer approved.</li><li><strong>One session across every channel.</strong> The same token works for the company’s APIs, its website and conversations with its agent. A question asked before sign-in and an order change made afterward are part of the same visit. The customer doesn’t have to start over, and the company sees the whole journey instead of disconnected fragments.</li><li><strong>Getting the job done.</strong> The company decides which channels to offer, based on what works best for its customers:<ul><li><em>Its website</em>: the agent browses the company’s regular pages, and the company applies the customer’s permissions on each one.</li><li><em>Its APIs</em>: the agent connects through interfaces built on standards such as OpenAPI and MCP.</li><li><em>Its own agent</em>: for tasks that need conversation, such as a warranty claim or an exchange. Replies can stream as they’re written, and companies can hold a request open until there’s news to share.</li></ul></li></ul></div><figure><div><p></p></div></figure><div><h2><strong>Built on standards companies already use</strong></h2><p>A company can start with what it already has and add more over time. Companies can connect once through Poppy, rather than building a separate connection for each personal agent.</p><p>The protocol is built on OAuth, JSON Web Tokens (JWTs), HTTPS, OpenAPI and MCP. Because these are open and widely used, teams can implement it with libraries and tools they already have. The core is also designed to be extended, so industries can build their own layers on top.</p><p>Protocols such as Universal Commerce Protocol (UCP) focus on shopping, from finding products to checking out and managing orders. Personal Agent Protocol is complementary, covering how a personal agent identifies itself, gets the customer’s permission, and works with a company across any kind of task — from buying a sweater to applying for a mortgage.</p><h2><strong>What it looks like in practice</strong></h2><p>Personal Agent Protocol works whether a company offers its website, its APIs or its own agent.</p><ul><li><strong>Through a website</strong>. A customer asks their personal agent to return a jacket. The agent finds the retailer using the protocol, identifies itself, and the customer signs in once. The agent then uses the retailer’s regular returns page. The retailer knows it’s an agent acting for a signed-in customer, and lets it start a return but not change the payment details on file.</li><li><strong>Through APIs</strong>. A customer’s flight is canceled, and they ask their personal agent to rebook them. The agent connects to the airline’s booking tools through MCP using the customer’s approved access. It finds the next available flight and confirms the seat with the customer before booking.</li><li><strong>Through a company agent</strong>. At Sierra Summit on Tuesday, Alex McGillis, VP of Product at Rocket, showed the <a href="https://x.com/SierraPlatform/status/2108245197440307584" target="_blank" rel="noopener noreferrer nofollow">protocol live</a> featuring Meta’s personal agent, Muse. Alex asked Muse to get pre-approved for a mortgage. Muse went to Rocket’s website, found Rocket’s agent through Poppy, and asked Alex for permission to connect. Alex then signed in to share the credit and income details a mortgage needs. The two agents worked through the purchase price, down payment and interest rate and within moments, Alex had a pre-approval letter ready. While he was in control at every step of the way, the agents did all the work.</li></ul><h2><strong>What comes next</strong></h2><p>This draft is a starting point. Over the next month we will host design workshops and publish a reference implementation to help developers get started. As personal agents grow in popularity and take on more work, our goal is simple: customers choose who acts for them, companies know who they are working with, and both can do so securely and within the boundaries they set.</p><p>We’d love as many companies as possible to <a href="https://personalagentprotocol.org/" target="_blank" rel="noopener noreferrer nofollow">read the draft</a> and help shape this new protocol.</p></div></div></div></div>
+  <div class="footer">
+    本文由 AI热点监控系统自动抓取 · 内容版权归原作者/网站所有<br>
+    快照仅用于学习交流，如需转载请访问原文
+  </div>
+</div>
+</body>
+</html>

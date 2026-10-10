@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="referrer" content="no-referrer">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'unsafe-inline'; img-src data:; connect-src 'none'; frame-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'; frame-ancestors 'none'">
+<title>Deno is joining Cloudflare | Deno - AI热点快照</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','PingFang SC','Microsoft YaHei',sans-serif;background:#f8f9fa;color:#1a1a2e;line-height:1.8;min-height:100vh}
+.top-bar{background:#fff;border-bottom:1px solid #e5e7eb;padding:10px 20px;display:flex;align-items:center;gap:12px;position:sticky;top:0;z-index:10}
+.top-bar .logo{font-size:14px;font-weight:700;color:#0d9488}
+.top-bar .sep{color:#d1d5db}
+.top-bar .source{font-size:13px;color:#6b7280}
+.top-bar .back{margin-left:auto;font-size:13px;color:#0d9488;text-decoration:none}
+.top-bar .back:hover{text-decoration:underline}
+.container{max-width:760px;margin:0 auto;padding:40px 24px 80px}
+.article-title{font-size:1.8rem;font-weight:700;line-height:1.35;margin-bottom:16px;color:#1a1a2e}
+.article-meta{display:flex;flex-wrap:wrap;gap:16px;padding-bottom:20px;margin-bottom:28px;border-bottom:1px solid #e5e7eb;font-size:14px;color:#6b7280}
+.article-meta a{color:#0d9488;text-decoration:none}
+.article-meta a:hover{text-decoration:underline}
+.article-body{font-size:16.5px;line-height:1.85;color:#1f2937}
+.article-body p{margin-bottom:1.2em;text-align:justify}
+.article-body h1,.article-body h2,.article-body h3{font-size:1.25em;font-weight:700;margin:1.6em 0 0.6em;color:#1a1a2e}
+.article-body a{color:#0d9488}
+.article-body pre,.article-body code{background:#f1f5f9;border-radius:4px;font-size:0.9em}
+.article-body pre{padding:16px;overflow-x:auto;margin:1em 0}
+.article-body code{padding:2px 6px}
+.article-body blockquote{border-left:3px solid #0d9488;padding-left:16px;color:#4b5563;margin:1em 0}
+.article-body ul,.article-body ol{padding-left:1.6em;margin-bottom:1em}
+.article-body li{margin-bottom:0.4em}
+.article-body figure{margin:1.2em 0}
+.article-body figcaption{font-size:13px;color:#9ca3af;text-align:center;margin-top:6px}
+.footer{margin-top:48px;padding-top:20px;border-top:1px solid #e5e7eb;font-size:13px;color:#9ca3af;text-align:center}
+</style>
+</head>
+<body>
+<div class="top-bar">
+  <a class="back" href="../" style="font-size:13px;color:#6b7280;text-decoration:none">← 日报首页</a>
+  <span class="sep">|</span>
+  <span class="logo">AI热点快照</span>
+  <span class="sep">|</span>
+  <span class="source">Deno</span>
+  <a class="back" href="https://deno.com/blog/cloudflare" target="_blank" rel="noopener noreferrer">查看原文 ↗</a>
+</div>
+<div class="container">
+  <h1 class="article-title">Deno is joining Cloudflare | Deno</h1>
+  <div class="article-meta">
+    
+    <span>来源: Deno</span>
+    <span>快照日期: 2026-10-10</span>
+  </div>
+  <div class="article-body"><div><div><p>For years, we’ve been working to make building server software simpler. We
+questioned how modules could be distributed, what security guarantees a
+JavaScript runtime could provide, what belonged in a complete toolchain, and how
+easily an application could be distributed as a standalone executable.
+Compatibility with Node.js became an important part of that work too: our users
+wanted the Deno improvements while continuing to plug into the existing JS
+ecosystem. The team and community built a runtime that brought these
+capabilities together and challenged assumptions about what JS development could
+look like.</p>
+<p><strong>Today we’re announcing that the entire Deno team is joining
+<a href="https://www.cloudflare.com/" target="_blank" rel="noopener noreferrer nofollow">Cloudflare</a> to take that work further.</strong></p>
+<p>Our ambition has always extended beyond the runtime. I wrote about this in my
+<a href="https://tinyclouds.org/javascript-containers/" target="_blank" rel="noopener noreferrer nofollow">JavaScript Containers</a> blog
+post: compute, storage, and communication working together, without every
+application assembling its own infrastructure.</p>
+<p>With <a href="https://deno.com/deploy" target="_blank" rel="noopener noreferrer nofollow">Deno Deploy</a>, we took another step towards that
+goal. We wanted to make running applications as straightforward as possible. But
+building and operating Deploy also showed us how much complexity remained
+underneath that developer experience. I wanted to simplify that layer, too.</p>
+<p>This led to <a href="https://celld.dev/" target="_blank" rel="noopener noreferrer nofollow">celld</a>. Building on the
+<a href="https://www.cloudflare.com/products/workers/" target="_blank" rel="noopener noreferrer nofollow">Cloudflare Workers</a> programming
+model, celld lets developers build distributed applications from the start while
+making the system simple to operate. What excites me greatly is that the scaling
+is built into the programming model, rather than infrastructure each app has to
+assemble itself.</p>
+<p>The progression from Deno to Deno Deploy to celld explains why this move makes
+sense to us. At Cloudflare we’ll combine our work with that of the Workers and
+<a href="https://developers.cloudflare.com/durable-objects/" target="_blank" rel="noopener noreferrer nofollow">Durable Objects</a> teams. We
+want to make this programming model the default way to build servers, whether
+you run on Cloudflare’s network or your own infrastructure.</p>
+<p>Joining also means choosing where to focus our effort. We’ve decided to put our
+future development work into this shared platform rather than continuing to
+develop a separate runtime and hosting service. We know this is a consequential
+change for people who have built on Deno.</p>
+<p>To everyone who contributed code, built businesses on Deno, reported problems,
+and trusted our direction: thank you. Here’s what this means concretely:</p>
+<ul>
+<li>We will support the <a href="https://github.com/denoland/deno" target="_blank" rel="noopener noreferrer nofollow">Deno runtime</a> for
+another year with monthly releases containing bug fixes and security updates.
+After that year we will end our development of the Deno runtime. Deno will
+remain open source, and we welcome others who want to continue its
+development.</li>
+<li>Deno Deploy will continue operating for six months before shutting down. We
+will provide migration support for paying customers moving to Cloudflare
+Workers.</li>
+<li><a href="https://jsr.io/" target="_blank" rel="noopener noreferrer nofollow">JSR</a> will continue operating, with its infrastructure moving
+to Cloudflare.</li>
+<li>We will continue supporting <a href="https://github.com/denoland/rusty_v8" target="_blank" rel="noopener noreferrer nofollow"><code>rusty_v8</code></a>
+and work toward integrating it into
+<a href="https://github.com/cloudflare/workerd" target="_blank" rel="noopener noreferrer nofollow"><code>workerd</code></a>.</li>
+</ul>
+<p>The need for better abstractions is especially acute with AI. Durable Objects
+bring together capabilities that are particularly useful for agent harnesses:
+inexpensive, serverless execution, persistent state, WebSockets, and a
+high-level JavaScript interface. This is what I’m most excited to explore and
+why celld focuses on Durable Objects.</p>
+<p>Kenton Varda and I explain more in our
+<a href="http://blog.cloudflare.com/deno-joins-cloudflare" target="_blank" rel="noopener noreferrer nofollow">joint post on the Cloudflare blog</a>.
+If you’re building agents at scale and want to run them on your own
+infrastructure, please reach me now at <span>ry@cloudflare.com</span>.</p>
+</div></div></div>
+  <div class="footer">
+    本文由 AI热点监控系统自动抓取 · 内容版权归原作者/网站所有<br>
+    快照仅用于学习交流，如需转载请访问原文
+  </div>
+</div>
+</body>
+</html>
