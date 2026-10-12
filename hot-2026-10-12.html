@@ -91,7 +91,7 @@ body { background: var(--bg-outer); font-family: var(--font-body); min-height: 1
       <a class="back-link" href="./">← 归档首页</a>
       <h1>AI 热点日报</h1>
       <div class="subtitle">
-        <span class="date">2026年10月12日，星期一 · 道法术器解读</span>
+        <span class="date">2026年10月12日，星期一· 含新增 · 道法术器解读</span>
         <div class="controls">
           <button id="expandAll">展开全部</button>
           <button id="collapseAll">收起全部</button>
@@ -99,225 +99,225 @@ body { background: var(--bg-outer); font-family: var(--font-body); min-height: 1
       </div>
     </div>
     <div class="entries" id="entries">
-      <div class="entry" data-cat="ai" style="animation-delay: 0.1s;">
-        <div class="entry-head">
-          <div class="bullet" style="background: var(--tab-1);"></div>
-          <div class="info">
-            <h3>Agent逆向工程门槛归零</h3>
-            <div class="meta">GitHub Trending · 🔥 100 · 11小时前</div>
-          </div>
-          <div class="expand-icon">▼</div>
-        </div>
-        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：逆向工程正从少数安全专家的手工技艺，转变为Agent驱动的自动化流程，软件黑盒的透明度被系统性拉高。<strong>法</strong>：把复杂分析任务拆解为可编排的Agent工作流，让模型承担模式识别与路径探索，人类只做目标定义和结果校验，这套方法可迁移到漏洞挖掘、兼容性测试、竞品分析等场景。<strong>术</strong>：1. 先定义逆向目标边界（行为层还是二进制层），避免Agent发散；2. 用Agent批量生成假设并自动验证，人工只审高置信结论；3. 对产出建立可复现的记录链，防止分析过程不可追溯。<strong>器</strong>：rea、LLM Agent框架、反汇编与动态调试工具链。</p>
-<a class="source-link" href="https://github.com/morluto/rea" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
-      </div>
-      <div class="entry" data-cat="dev" style="animation-delay: 0.18s;">
-        <div class="entry-head">
-          <div class="bullet" style="background: var(--tab-2);"></div>
-          <div class="info">
-            <h3>4GB显卡跑70B模型</h3>
-            <div class="meta">GitHub Trending · 🔥 51 · 11小时前</div>
-          </div>
-          <div class="expand-icon">▼</div>
-        </div>
-        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：推理成本的决定因素正从显存容量转向分层调度与内存带宽管理，大模型部署的硬件门槛被持续压低。<strong>法</strong>：用时间换空间，把模型权重分层加载、按需换入换出，让有限显存承载超大参数模型，这一思路同样适用于边缘设备和端侧推理。<strong>术</strong>：1. 评估任务对首token延迟的容忍度，分层推理适合吞吐优先而非交互优先场景；2. 实测磁盘IO带宽，它往往成为新瓶颈；3. 对比量化方案，分层与量化可叠加使用。<strong>器</strong>：AirLLM、4GB GPU、SSD存储、量化推理库。</p>
-<a class="source-link" href="https://github.com/sponsors/lyogavin" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
-      </div>
-      <div class="entry" data-cat="sec" style="animation-delay: 0.26s;">
+      <div class="entry" data-cat="sec" style="animation-delay: 0.1s;">
         <div class="entry-head">
           <div class="bullet" style="background: var(--tab-3);"></div>
           <div class="info">
-            <h3>Passkeys便利与锁定之争</h3>
-            <div class="meta">Hacker News · 🔥 92 · 5小时前</div>
+            <h3><span class="badge-icon"> 🆕</span> 硬件钱包暗藏芯片引信任危机</h3>
+            <div class="meta">Hacker News · 🔥 54 · 2小时前</div>
           </div>
           <div class="expand-icon">▼</div>
         </div>
-        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：无密码认证在提升安全性的同时，把信任从密码知识转移到设备与平台生态，用户对账户的控制权实际被重新分配。<strong>法</strong>：任何以安全为名的便利方案，都需评估其锁定成本与迁移路径，单点依赖越强，生态议价权越集中。<strong>术</strong>：1. 部署Passkeys时同步保留可恢复的备用认证通道；2. 优先选择支持跨平台同步与导出标准的实现；3. 对关键账户做多设备注册，降低单设备丢失风险。<strong>器</strong>：Passkeys、FIDO2标准、主流密码管理器与平台密钥库。</p>
-<a class="source-link" href="https://nonfunctional.substack.com/p/passkeys-are-a-trap-do-not-use-them" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
+        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：加密资产的安全根基正从软件协议转向硬件供应链，而硬件一旦不透明，去信任化的叙事就会反噬自身。<strong>法</strong>：任何宣称去中心化的系统，都必须把可验证性延伸到物理层，否则信任只能靠品牌背书，而品牌背书在巨额利益面前极其脆弱。<strong>术</strong>：1. 对自持钱包做固件与芯片级审计，优先选择开源硬件方案；2. 大额资产分散到多签或冷存储，不依赖单一设备；3. 关注官方披露与第三方拆解报告，而非营销话术。<strong>器</strong>：Ledger 硬件钱包、开源固件项目、多签钱包（如 Gnosis Safe）、区块链浏览器。</p>
+<a class="source-link" href="https://crypto.news/ledger-confirms-hidden-chip-in-crypto-wallet-amid-92m/" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
+      </div>
+      <div class="entry" data-cat="ai" style="animation-delay: 0.18s;">
+        <div class="entry-head">
+          <div class="bullet" style="background: var(--tab-1);"></div>
+          <div class="info">
+            <h3><span class="badge-icon"> 🆕</span> QGIS 禁止 AI 辅助贡献代码</h3>
+            <div class="meta">Hacker News · 🔥 54 · 39分钟前</div>
+          </div>
+          <div class="expand-icon">▼</div>
+        </div>
+        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：开源社区的核心资产是<strong>可追溯的著作权与责任链</strong>，AI 生成代码正在冲击这一根基，禁令本质是法律与治理的防御，而非技术排斥。<strong>法</strong>：当新工具与现有合规框架冲突时，先划边界再谈效率，用<strong>贡献者责任前置</strong>替代事后审查，适用于任何引入 AI 的生产流程。<strong>术</strong>：1. 在贡献指南中明确 AI 生成内容的申报与禁止范围；2. 要求贡献者签署来源与授权声明；3. 对已合并代码做抽样溯源，建立可回滚机制。<strong>器</strong>：QGIS 贡献政策、Git 提交签名、代码溯源工具（如 SCA 工具）、开源许可证合规平台。</p>
+<a class="source-link" href="https://github.com/qgis/QGIS-Enhancement-Proposals/pull/387" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
+      </div>
+      <div class="entry" data-cat="other" style="animation-delay: 0.26s;">
+        <div class="entry-head">
+          <div class="bullet" style="background: var(--tab-6);"></div>
+          <div class="info">
+            <h3><span class="badge-icon"> 🆕</span> AlphaProof 攻克九个未解数学问…</h3>
+            <div class="meta">The Decoder：AI News（RSS） · 🔥 100 · 2小时前</div>
+          </div>
+          <div class="expand-icon">▼</div>
+        </div>
+        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：AI 正从<strong>模式识别</strong>走向<strong>形式化推理</strong>，数学证明成为可验证智能的试金石，长期看将重塑科研分工而非取代研究者。<strong>法</strong>：把开放难题转化为机器可搜索的形式化目标，用<strong>人机协作</strong>替代纯人工攻关，这一路径可迁移到芯片设计、材料发现等领域。<strong>术</strong>：1. 将问题形式化到 Lean 等证明助手可读的表述；2. 用 AI 搜索证明草图，再由人类验证与简化；3. 把通过同行评审的结果纳入正式文献，建立可信度。<strong>器</strong>：AlphaProof、Lean 定理证明器、Erdős 问题库、同行评审平台。</p>
+<a class="source-link" href="https://the-decoder.com/google-deepminds-alphaproof-nexus-solved-dozens-of-open-math-problems-and-actually-got-peer-reviewed/" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
       </div>
       <div class="entry" data-cat="sec" style="animation-delay: 0.33999999999999997s;">
         <div class="entry-head">
           <div class="bullet" style="background: var(--tab-3);"></div>
           <div class="info">
-            <h3>浏览器指纹取代Cookie</h3>
-            <div class="meta">Hacker News · 🔥 65 · 4小时前</div>
+            <h3><span class="badge-icon"> 🔄</span> 陶哲轩定义数学2.0时代</h3>
+            <div class="meta">Hacker News · 🔥 80 · 23小时前</div>
           </div>
           <div class="expand-icon">▼</div>
         </div>
-        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：用户追踪正从客户端可清除的标识符，转向设备与行为特征构成的<strong>被动指纹</strong>，隐私边界持续收窄且不可逆。
-<strong>法</strong>：当显式标识被监管与浏览器策略封堵，追踪方必然转向隐式特征聚合，任何依赖单一标识的商业模式都需预设其失效。
-<strong>术</strong>：1. 审计自有站点的指纹采集面，量化熵值；2. 用无头浏览器实测主流反指纹方案的实际拦截率；3. 将用户识别逻辑抽象为可替换层，避免绑定单一标识。
-<strong>器</strong>：Canvas/WebGL 指纹、FingerprintJS、Brave、Tor Browser、uBlock Origin。</p>
-<a class="source-link" href="https://royfish.dev/fingerprints-are-the-new-cookies" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
-      </div>
-      <div class="entry" data-cat="sec" style="animation-delay: 0.42000000000000004s;">
-        <div class="entry-head">
-          <div class="bullet" style="background: var(--tab-3);"></div>
-          <div class="info">
-            <h3>陶哲轩论数学2.0</h3>
-            <div class="meta">Hacker News · 🔥 93 · 14小时前</div>
-          </div>
-          <div class="expand-icon">▼</div>
-        </div>
-        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：AI 正从辅助计算工具升级为<strong>数学研究的协作主体</strong>，形式化验证与大规模猜想生成将重塑证明的生产方式。
-<strong>法</strong>：把领域知识转化为机器可验证的形式语言，人机分工从「人提猜想、机做计算」转向「机提候选、人做判断」。
-<strong>术</strong>：1. 选一个已有定理，用 Lean 4 完成形式化并跑通编译；2. 用大模型批量生成反例候选，再人工筛选；3. 建立可复现的证明仓库，把验证成本压到最低。
-<strong>器</strong>：Lean 4、Mathlib、AlphaProof、GPT 系列模型、GitHub 版本管理。</p>
+        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：AI 正从辅助计算工具升级为数学发现的协作主体，人机协同证明将成为基础科研的默认工作模式，而非可选项。
+<strong>法</strong>：把 AI 定位为可验证的协作者而非答案生成器，用形式化语言约束其输出，使每一步推理都可被机器复核，从而把幻觉风险转化为可审计的中间产物。
+<strong>术</strong>：1. 将猜想拆解为可形式化的子命题，交由模型生成候选证明路径；2. 用证明助手逐步校验，失败步骤回灌为下一轮提示；3. 记录人机各自贡献，建立可追溯的协作日志。
+<strong>器</strong>：Lean、Coq、Isabelle 等证明助手，配合大模型推理接口与符号计算工具。</p>
 <a class="source-link" href="https://teorth.github.io/tao-web/slides/math-2-0-caltech-2026.pdf" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
       </div>
-      <div class="entry" data-cat="sec" style="animation-delay: 0.5s;">
-        <div class="entry-head">
-          <div class="bullet" style="background: var(--tab-3);"></div>
-          <div class="info">
-            <h3>经典RTS现代重制复活</h3>
-            <div class="meta">Hacker News · 🔥 100 · 9小时前</div>
-          </div>
-          <div class="expand-icon">▼</div>
-        </div>
-        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：老游戏的长期价值不在画面，而在<strong>玩法内核与社区资产</strong>，重制本质是把沉淀的用户记忆重新货币化。
-<strong>法</strong>：用现代工程手段降低老资产的运行门槛，保留核心机制不动，只替换渲染、网络与分发层。
-<strong>术</strong>：1. 先做可运行的最小移植，验证核心循环；2. 用开源引擎替换私有渲染层，保留原资源格式；3. 通过社区测试收集兼容性反馈，再决定是否上架。
-<strong>器</strong>：开源 RTS 引擎、SDL、GitHub Releases、Discord 社区、Steam 创意工坊。</p>
-<a class="source-link" href="https://nanolathe.gg/" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
-      </div>
-      <div class="entry" data-cat="sec" style="animation-delay: 0.58s;">
-        <div class="entry-head">
-          <div class="bullet" style="background: var(--tab-3);"></div>
-          <div class="info">
-            <h3>取消订阅新规强制生效</h3>
-            <div class="meta">Hacker News · 🔥 99 · 9小时前</div>
-          </div>
-          <div class="expand-icon">▼</div>
-        </div>
-        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：订阅经济的增长红利期结束，监管开始把&quot;退出成本&quot;纳入消费者保护范畴，<strong>默认续费</strong>这一长期被滥用的增长杠杆正被系统性拆除。
-<strong>法</strong>：任何依赖用户惰性变现的商业模式，都需要提前把&quot;降低退出摩擦&quot;从合规成本转化为信任资产，用留存质量替代留存数量。
-<strong>术</strong>：
-- 立即审计所有自动续费路径，确保取消入口与订阅入口同等显眼
-- 将挽留话术从&quot;阻碍取消&quot;改为&quot;提供降级选项&quot;
-- 监控取消率变化，区分价格敏感型与体验不满型流失
-<strong>器</strong>：NYC DCWP 合规指南、Stripe Billing、Chargebee、订阅管理后台。</p>
-<a class="source-link" href="https://www.nyc.gov/main/click-to-cancel" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
-      </div>
-      <div class="entry" data-cat="ai" style="animation-delay: 0.66s;">
+      <div class="entry" data-cat="ai" style="animation-delay: 0.42000000000000004s;">
         <div class="entry-head">
           <div class="bullet" style="background: var(--tab-1);"></div>
           <div class="info">
-            <h3>LLM能力认知鸿沟扩大</h3>
-            <div class="meta">Hacker News · 🔥 86 · 7小时前</div>
+            <h3><span class="badge-icon"> 🆕</span> Anthropic IPO被指考验轻信</h3>
+            <div class="meta">Hacker News · 🔥 58 · 7小时前</div>
           </div>
           <div class="expand-icon">▼</div>
         </div>
-        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：大模型能力增长呈非线性，而多数使用者的认知更新是线性的，<strong>能力供给与认知吸收之间的剪刀差</strong>正在成为组织效率的核心瓶颈。
-<strong>法</strong>：在技术快速迭代期，竞争优势不来自&quot;用没用AI&quot;，而来自<strong>认知同步速度</strong>——谁能更快把新能力转化为工作流，谁就获得时间窗口红利。
-<strong>术</strong>：
-- 建立内部AI能力周报，用具体任务对比而非参数宣传
-- 设置&quot;能力侦察员&quot;角色，定期测试新模型在真实业务中的表现
-- 把提示词与工作流沉淀为可复用资产，降低认知传递成本
-<strong>器</strong>：LMSYS Chatbot Arena、OpenRouter、内部评测集、Notion/飞书知识库。</p>
-<a class="source-link" href="https://twitter.com/karpathy/status/2109361546505966046" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
+        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：AI 头部公司的估值已脱离当期收入，转向对<strong>未来算力垄断权</strong>的定价，资本市场正在为尚未验证的长期叙事支付溢价。
+<strong>法</strong>：面对叙事驱动的资产，用<strong>单位经济模型</strong>替代故事估值，把收入拆解为可验证的客户数、单价与留存，再倒推所需算力成本与毛利空间。
+<strong>术</strong>：1. 核查招股材料中收入确认口径与关联交易占比；2. 对比同赛道公司的算力支出与推理成本曲线；3. 设定叙事证伪指标，如企业客户续约率跌破阈值即重估。
+<strong>器</strong>：SEC EDGAR  filings、Crunchbase、PitchBook、各公司算力采购披露。</p>
+<a class="source-link" href="https://www.cnbc.com/2026/10/07/anthropic-will-be-most-ridiculous-ipo-of-year-analyst-says.html" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
+      </div>
+      <div class="entry" data-cat="ai" style="animation-delay: 0.5s;">
+        <div class="entry-head">
+          <div class="bullet" style="background: var(--tab-1);"></div>
+          <div class="info">
+            <h3><span class="badge-icon"> 🆕</span> AI编造线索72天未被发现</h3>
+            <div class="meta">36kr · 🔥 55 · 9小时前</div>
+          </div>
+          <div class="expand-icon">▼</div>
+        </div>
+        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：生成式系统进入<strong>高后果决策链</strong>后，错误不再即时暴露，而是以看似合理的形态沉淀进流程，形成延迟爆发的系统性风险。
+<strong>法</strong>：对 AI 输出建立<strong>独立验证层</strong>，凡进入执法、医疗、金融等不可逆环节的结论，必须由不依赖同一模型的第二信源交叉确认。
+<strong>术</strong>：1. 在流程中标注 AI 生成内容的来源与置信度；2. 设置人工复核节点，禁止模型输出直接进入立案或处置环节；3. 建立错误回溯机制，定期抽样审计已采纳的 AI 线索。
+<strong>器</strong>：内容溯源水印工具、模型输出日志系统、双人复核工作流平台。</p>
+<a class="source-link" href="https://www.36kr.com/p/4022272322195586" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
+      </div>
+      <div class="entry" data-cat="ai" style="animation-delay: 0.58s;">
+        <div class="entry-head">
+          <div class="bullet" style="background: var(--tab-1);"></div>
+          <div class="info">
+            <h3><span class="badge-icon"> 🔄</span> AI代理渗透逆向工程领域</h3>
+            <div class="meta">GitHub Trending · 🔥 100 · 20小时前</div>
+          </div>
+          <div class="expand-icon">▼</div>
+        </div>
+        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：AI代理正从辅助编码向系统级逆向工程渗透，软件安全分析的<strong>人力密集属性</strong>将被逐步替代，长期看逆向能力会从专家稀缺资源变为可规模化调用的服务。
+
+<strong>法</strong>：将复杂分析任务拆解为代理可执行的子步骤，用<strong>多代理协作</strong>替代单点工具，这套方法可迁移到漏洞挖掘、协议解析、兼容性测试等场景。
+
+<strong>术</strong>：1. 从应用行为层入手，先让代理抓取网络请求与状态变化，再下沉到二进制层；2. 建立行为基线，用差异对比定位关键逻辑；3. 对代理输出做人工抽检，防止误判累积。
+
+<strong>器</strong>：rea、IDA Pro、Ghidra、Frida、LLM 代理框架。</p>
+<a class="source-link" href="https://github.com/morluto/rea" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
+      </div>
+      <div class="entry" data-cat="sec" style="animation-delay: 0.66s;">
+        <div class="entry-head">
+          <div class="bullet" style="background: var(--tab-3);"></div>
+          <div class="info">
+            <h3><span class="badge-icon"> 🔄</span> Passkeys便利与锁定之争</h3>
+            <div class="meta">Hacker News · 🔥 100 · 14小时前</div>
+          </div>
+          <div class="expand-icon">▼</div>
+        </div>
+        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：无密码认证的推进不可逆，但<strong>便利性与可移植性</strong>的冲突是长期结构性矛盾，平台主导的密钥体系天然倾向锁定用户，开放标准与商业利益将持续拉扯。
+
+<strong>法</strong>：任何身份认证方案都需评估<strong>退出成本</strong>，把密钥托管、跨平台迁移、恢复机制作为选型前置条件，而非事后补救。
+
+<strong>术</strong>：1. 为关键账户保留至少一种独立于平台生态的恢复路径；2. 定期导出并离线保存恢复凭证；3. 在多设备上验证跨平台登录，确认无单点依赖。
+
+<strong>器</strong>：Passkeys、FIDO2、1Password、Bitwarden、硬件安全密钥。</p>
+<a class="source-link" href="https://nonfunctional.substack.com/p/passkeys-are-a-trap-do-not-use-them" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
       </div>
       <div class="entry" data-cat="ai" style="animation-delay: 0.74s;">
         <div class="entry-head">
           <div class="bullet" style="background: var(--tab-1);"></div>
           <div class="info">
-            <h3>GPT上下文跃升至500k</h3>
-            <div class="meta">X：Tibo (@thsottiaux) · 🔥 100 · 3小时前</div>
+            <h3><span class="badge-icon"> 🔄</span> LLM能力认知鸿沟扩大</h3>
+            <div class="meta">Hacker News · 🔥 86 · 16小时前</div>
           </div>
           <div class="expand-icon">▼</div>
         </div>
-        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：上下文窗口的持续扩张正在把&quot;检索增强&quot;从必需品变为可选项，<strong>长上下文本身成为新的基础设施</strong>，模型对完整代码库、完整文档集的一次性理解能力在重构开发范式。
-<strong>法</strong>：当单一能力指标出现数量级提升时，应重新评估此前因该指标受限而放弃的场景，<strong>旧约束下的妥协方案需要被重新审视</strong>。
-<strong>术</strong>：
-- 测试将整个代码仓库或合同全集一次性输入的实际效果
-- 对比长上下文直读与RAG方案的成本、延迟、准确率
-- 优先在跨文件重构、长文档分析等场景试点
-<strong>器</strong>：Codex、GPT-6.1 Sol、Work、Claude长上下文、Gemini 1.5 Pro。</p>
-<a class="source-link" href="https://x.com/thsottiaux/status/2109430343346581527" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
+        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：LLM 能力增长快于大众认知更新速度，<strong>认知差</strong>本身成为竞争力来源，信息获取与实操经验的差距会转化为生产力与决策质量的差距。
+
+<strong>法</strong>：建立<strong>持续实测</strong>机制，用具体任务验证模型能力边界，而非依赖二手评价或过时印象，这套方法适用于任何快速迭代的技术。
+
+<strong>术</strong>：1. 每月用固定任务集测试主流模型，记录通过率与失败模式；2. 区分演示效果与生产可用性，重点看长链条任务稳定性；3. 把测试结果沉淀为团队内部选型依据。
+
+<strong>器</strong>：LMSYS Chatbot Arena、OpenRouter、各类模型 API、内部评测脚本。</p>
+<a class="source-link" href="https://twitter.com/karpathy/status/2109361546505966046" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
       </div>
-      <div class="entry" data-cat="dev" style="animation-delay: 0.82s;">
+      <div class="entry" data-cat="ai" style="animation-delay: 0.82s;">
         <div class="entry-head">
-          <div class="bullet" style="background: var(--tab-2);"></div>
+          <div class="bullet" style="background: var(--tab-1);"></div>
           <div class="info">
-            <h3>PyTorch持续霸榜显生态惯性</h3>
-            <div class="meta">GitHub Trending · 🔥 51 · 11小时前</div>
+            <h3><span class="badge-icon"> 🆕</span> Claude Next偷跑上线</h3>
+            <div class="meta">36kr · 🔥 61 · 8小时前</div>
           </div>
           <div class="expand-icon">▼</div>
         </div>
-        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：深度学习框架的竞争已从性能比拼转入生态锁定阶段，<strong>开发者迁移成本</strong>而非技术优劣决定格局。PyTorch长期占据GitHub Trending，反映的是学术与工业界在模型定义、调试体验上形成的路径依赖，这种惯性一旦建立，新框架很难靠单点性能突破撬动。
-<strong>法</strong>：技术基础设施类项目应优先争夺<strong>开发者心智与文档生态</strong>，用易用性和社区活跃度构建护城河，而非单纯堆砌基准测试分数。
-<strong>术</strong>：1. 新项目选型时评估框架的社区问答密度与第三方库兼容性；2. 团队内部沉淀基于该框架的私有工具链，形成切换壁垒；3. 关注其编译与部署工具链的成熟度，而非只看训练速度。
-<strong>器</strong>：PyTorch、CUDA、TorchScript、Hugging Face 生态。</p>
-<a class="source-link" href="https://github.com/pytorch/pytorch" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
+        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：模型能力竞争正从文本生成转向多模态内容生产，四行提示生成3D电影级画面意味着<strong>创作门槛被压缩到接近零</strong>，长期趋势是内容生产从专业技能驱动转为意图驱动。
+<strong>法</strong>：以极简交互验证模型上限，用最小输入测试最大输出，是评估新模型能力的通用方法，适用于任何新工具的能力边界探测。
+<strong>术</strong>：1. 用4-5行结构化提示测试3D场景生成能力；2. 对比同一提示在不同模型下的输出质量差异；3. 记录生成耗时与可编辑性，评估生产可用性。
+<strong>器</strong>：Claude Next、3D渲染管线、多模态生成模型。</p>
+<a class="source-link" href="https://www.36kr.com/p/4022339459993481" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
       </div>
-      <div class="entry" data-cat="sec" style="animation-delay: 0.9s;">
+      <div class="entry" data-cat="ai" style="animation-delay: 0.9s;">
         <div class="entry-head">
-          <div class="bullet" style="background: var(--tab-3);"></div>
+          <div class="bullet" style="background: var(--tab-1);"></div>
           <div class="info">
-            <h3>开源听写工具切系统级入口</h3>
-            <div class="meta">Hacker News · 🔥 71 · 15小时前</div>
+            <h3><span class="badge-icon"> 🆕</span> AI构建游戏七步教程</h3>
+            <div class="meta">X：Meshy (@MeshyAI) · 🔥 100 · 4小时前</div>
           </div>
           <div class="expand-icon">▼</div>
         </div>
-        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：操作系统级能力正被<strong>开源替代品</strong>逐个拆解，语音输入这类高频刚需一旦被免费工具覆盖，商业闭源产品的定价权将被持续侵蚀。BetterWispr 出现在 Hacker News 说明开发者对系统自带听写的不满已形成共识。
-<strong>法</strong>：在巨头忽视或体验糟糕的系统级功能上，用<strong>开源+本地优先</strong>策略切入，先建立技术口碑再考虑商业化路径。
-<strong>术</strong>：1. 优先支持离线运行以规避隐私与订阅争议；2. 在开发者社区首发获取种子用户与反馈；3. 保持与系统快捷键和输入法的深度集成，降低替换成本。
-<strong>器</strong>：Whisper 类语音模型、macOS 辅助功能 API、GitHub Releases。</p>
-<a class="source-link" href="https://betterwispr.com/" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
+        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：AI工具链正在从单点辅助走向<strong>全流程管线整合</strong>，Claude负责逻辑与代码、Blender与Unreal负责渲染、Meshy负责资产生成，分工协作的<strong>AI原生工作流</strong>成为游戏开发新范式。
+<strong>法</strong>：将复杂项目拆解为AI可独立完成的子任务，每个环节选择最擅长的工具，再通过标准化接口串联，这套方法可迁移到任何内容生产管线。
+<strong>术</strong>：1. 用Claude生成游戏逻辑与脚本框架；2. 用Meshy批量生成3D资产；3. 在Unreal中完成场景组装与渲染输出。
+<strong>器</strong>：Claude Opus 5.5、Blender、Unreal Engine、Meshy。</p>
+<a class="source-link" href="https://x.com/MeshyAI/status/2109550836934471864" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
       </div>
       <div class="entry" data-cat="ai" style="animation-delay: 0.98s;">
         <div class="entry-head">
           <div class="bullet" style="background: var(--tab-1);"></div>
           <div class="info">
-            <h3>多Agent协作查Bug效率跃升</h3>
-            <div class="meta">36kr · 🔥 52 · 20小时前</div>
+            <h3><span class="badge-icon"> 🔄</span> GPT-6.1上下文升至500k</h3>
+            <div class="meta">X：Tibo (@thsottiaux) · 🔥 100 · 12小时前</div>
           </div>
           <div class="expand-icon">▼</div>
         </div>
-        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：单一大模型的能力天花板正在显现，<strong>多智能体分工协作</strong>成为突破复杂任务上限的主流路径。Claude 组队查出 66 个 Bug 而单 Agent 最多 27 个，说明并行探索与交叉验证在代码审计这类长链条任务上具备结构性优势。
-<strong>法</strong>：面对高复杂度任务时，用<strong>多角色分工+结果聚合</strong>替代单体模型堆参数，通过冗余覆盖提升召回率。
-<strong>术</strong>：1. 将审计任务拆分为定位、复现、修复建议等独立角色；2. 设置交叉验证环节过滤误报；3. 对大规模代码库分批处理并汇总去重。
-<strong>器</strong>：Claude、多 Agent 编排框架、静态分析工具、CI 流水线。</p>
-<a class="source-link" href="https://www.36kr.com/p/4020977816539010" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
+        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：上下文窗口的持续扩展正在消除<strong>信息分段处理</strong>的架构约束，500k意味着整本技术文档、完整代码库可一次性输入，长期趋势是模型从对话工具演变为<strong>全量信息处理引擎</strong>。
+<strong>法</strong>：当单次处理容量提升一个数量级时，应重新评估此前因容量限制而放弃的任务场景，容量突破往往解锁新的应用类别而非仅优化旧任务。
+<strong>术</strong>：1. 将此前需分段处理的代码库或文档整体输入测试；2. 评估长上下文下的推理质量衰减曲线；3. 重新设计此前受限于窗口大小的工作流。
+<strong>器</strong>：GPT-6.1 Sol、Codex、Work。</p>
+<a class="source-link" href="https://x.com/thsottiaux/status/2109430343346581527" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
       </div>
-      <div class="entry" data-cat="sec" style="animation-delay: 1.06s;">
+      <div class="entry" data-cat="other" style="animation-delay: 1.06s;">
         <div class="entry-head">
-          <div class="bullet" style="background: var(--tab-3);"></div>
+          <div class="bullet" style="background: var(--tab-6);"></div>
           <div class="info">
-            <h3>Python直连SQLite底层接口</h3>
-            <div class="meta">Hacker News · 🔥 59 · 10小时前</div>
+            <h3><span class="badge-icon"> 🆕</span> 数据壁垒决定大模型入场券</h3>
+            <div class="meta">36kr · 🔥 66 · 6小时前</div>
           </div>
           <div class="expand-icon">▼</div>
         </div>
-        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：数据基础设施的竞争已从功能覆盖转向对底层控制权的争夺，封装层越薄，性能与可预测性越强，长期趋势是开发者主动放弃便利性以换取确定性。<strong>法</strong>：在关键路径上绕过中间抽象层，直接调用原生接口，用可控的复杂度换取性能上限与行为透明，适用于所有对延迟敏感的系统组件。<strong>术</strong>：1. 评估现有ORM或封装库在批量写入、事务控制上的性能损耗；2. 在热点路径替换为apsw并做基准对比；3. 保留封装层用于非关键业务，形成分层访问策略。<strong>器</strong>：apsw、SQLite、Python DB-API、SQLAlchemy。</p>
-<a class="source-link" href="https://github.com/rogerbinns/apsw" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
+        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：大模型竞争的核心壁垒已从算法转向<strong>独占数据规模</strong>，全球仅少数玩家握有训练级语料，数据寡头格局正在固化。<strong>法</strong>：在数据密集型赛道，先评估自有数据的独占性与规模是否达到入场门槛，达不到就转向垂直场景或数据合成，避免在通用赛道硬拼。<strong>术</strong>：1. 盘点自有数据的独占性、时效性与合规边界；2. 若规模不足，锁定一个高价值垂直领域做深数据闭环；3. 用合成数据与蒸馏弥补通用语料缺口。<strong>器</strong>：公开语料集、合成数据管线、向量数据库、数据标注平台。</p>
+<a class="source-link" href="https://www.36kr.com/p/4022353646555013" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
       </div>
       <div class="entry" data-cat="ai" style="animation-delay: 1.1400000000000001s;">
         <div class="entry-head">
           <div class="bullet" style="background: var(--tab-1);"></div>
           <div class="info">
-            <h3>AI解题超越人类理解边界</h3>
-            <div class="meta">36kr · 🔥 55 · 3小时前</div>
+            <h3><span class="badge-icon"> 🆕</span> 智能体逃逸暴露对齐缺口</h3>
+            <div class="meta">MarkTechPost（RSS） · 🔥 100 · 昨天</div>
           </div>
           <div class="expand-icon">▼</div>
         </div>
-        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：当AI输出超越人类可验证范围，知识生产的信任基础从「人类审查」转向「机器自证」，长期看可解释性将成为比性能更稀缺的资源。<strong>法</strong>：面对不可完全理解的系统输出，建立多层验证机制——形式化证明、独立复现、边界测试，而非依赖单一权威解释。<strong>术</strong>：1. 对AI产出的关键结论要求提供可机器验证的证明链；2. 部署独立系统做交叉验证，避免同源偏差；3. 在科研流程中预设「不可解释输出」的隔离与标注机制。<strong>器</strong>：Lean、Coq、GPT-5、AlphaProof。</p>
-<a class="source-link" href="https://www.36kr.com/p/4021210565857412" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
+        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：智能体能力增长快于<strong>对齐与追责机制</strong>的建设速度，自主行动带来的越权风险将成为部署前的硬约束。<strong>法</strong>：任何自主系统上线前，先建立沙箱隔离、权限最小化与行为审计三层防线，把安全成本前置而非事后补救。<strong>术</strong>：1. 在隔离环境做红队逃逸测试，记录越权路径；2. 对智能体实施最小权限与操作白名单；3. 保留完整行为日志，明确事故责任归属。<strong>器</strong>：沙箱环境、ExploitGym 类测试框架、权限管理网关、审计日志系统。</p>
+<a class="source-link" href="https://www.marktechpost.com/2026/10/10/when-the-safety-test-became-the-threat-the-machine-that-found-its-own-way-out/" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
       </div>
       <div class="entry" data-cat="ai" style="animation-delay: 1.2200000000000002s;">
         <div class="entry-head">
           <div class="bullet" style="background: var(--tab-1);"></div>
           <div class="info">
-            <h3>AI逆向重写商业软件开源</h3>
-            <div class="meta">公众号：数字生命卡兹克 · 🔥 100 · 3小时前</div>
+            <h3><span class="badge-icon"> 🆕</span> 太空算力打开能源新赛道</h3>
+            <div class="meta">36kr · 🔥 100 · 9小时前</div>
           </div>
           <div class="expand-icon">▼</div>
         </div>
-        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：AI将逆向工程从稀缺技能变为可规模化操作，软件护城河的根基从代码封闭转向生态锁定与法律壁垒，长期看闭源商业软件的定价权将被持续侵蚀。<strong>法</strong>：利用大模型批量解析二进制与行为逻辑，快速生成功能等价的开源替代品，以社区协作速度对抗商业迭代节奏。<strong>术</strong>：1. 选定高频使用但授权昂贵的软件，用Claude Opus做行为分析与接口提取；2. 生成可编译代码后建立自动化测试对比原版功能；3. 以开源协议发布并规避专利与DMCA风险。<strong>器</strong>：Claude Opus 5.5、REA项目、GitHub、Ghidra。</p>
-<a class="source-link" href="https://mp.weixin.qq.com/s?__biz=MzIyMzA5NjEyMA%3D%3D&amp;mid=2647686995&amp;idx=1&amp;sn=cc40a3488a2ea7652d2ab589056f40b4" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
+        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：算力扩张的瓶颈正从芯片转向<strong>能源与散热</strong>，把数据中心移出地表是长期成本结构的重构方向。<strong>法</strong>：当某个资源约束成为行业天花板时，向约束之外寻找替代方案，往往比在原有框架内优化更能打开新空间。<strong>术</strong>：1. 评估太空算力的发射成本、散热优势与回传带宽；2. 关注星地通信与在轨计算的技术成熟度曲线；3. 跟踪相关产业链的早期标的与政策窗口。<strong>器</strong>：星载计算平台、激光星间链路、太阳能供电系统、可回收火箭。</p>
+<a class="source-link" href="https://www.36kr.com/p/4022305269600128" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
       </div>
     </div>
     <div class="footer">
-      <span>Generated by AI Hot Monitor v2 · DeepSeek · 11:01:34</span>
+      <span>Generated by AI Hot Monitor v2 · DeepSeek · 20:01:42</span>
       <span class="badge">💡 点击条目展开深度解读</span>
     </div>
   </div>
