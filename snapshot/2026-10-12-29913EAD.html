@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="referrer" content="no-referrer">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'unsafe-inline'; img-src data:; connect-src 'none'; frame-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'; frame-ancestors 'none'">
+<title>Claude自己组队查Bug！11.6万行代码揪出66个，单Agent最高只找到27个-36氪 - AI热点快照</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','PingFang SC','Microsoft YaHei',sans-serif;background:#f8f9fa;color:#1a1a2e;line-height:1.8;min-height:100vh}
+.top-bar{background:#fff;border-bottom:1px solid #e5e7eb;padding:10px 20px;display:flex;align-items:center;gap:12px;position:sticky;top:0;z-index:10}
+.top-bar .logo{font-size:14px;font-weight:700;color:#0d9488}
+.top-bar .sep{color:#d1d5db}
+.top-bar .source{font-size:13px;color:#6b7280}
+.top-bar .back{margin-left:auto;font-size:13px;color:#0d9488;text-decoration:none}
+.top-bar .back:hover{text-decoration:underline}
+.container{max-width:760px;margin:0 auto;padding:40px 24px 80px}
+.article-title{font-size:1.8rem;font-weight:700;line-height:1.35;margin-bottom:16px;color:#1a1a2e}
+.article-meta{display:flex;flex-wrap:wrap;gap:16px;padding-bottom:20px;margin-bottom:28px;border-bottom:1px solid #e5e7eb;font-size:14px;color:#6b7280}
+.article-meta a{color:#0d9488;text-decoration:none}
+.article-meta a:hover{text-decoration:underline}
+.article-body{font-size:16.5px;line-height:1.85;color:#1f2937}
+.article-body p{margin-bottom:1.2em;text-align:justify}
+.article-body h1,.article-body h2,.article-body h3{font-size:1.25em;font-weight:700;margin:1.6em 0 0.6em;color:#1a1a2e}
+.article-body a{color:#0d9488}
+.article-body pre,.article-body code{background:#f1f5f9;border-radius:4px;font-size:0.9em}
+.article-body pre{padding:16px;overflow-x:auto;margin:1em 0}
+.article-body code{padding:2px 6px}
+.article-body blockquote{border-left:3px solid #0d9488;padding-left:16px;color:#4b5563;margin:1em 0}
+.article-body ul,.article-body ol{padding-left:1.6em;margin-bottom:1em}
+.article-body li{margin-bottom:0.4em}
+.article-body figure{margin:1.2em 0}
+.article-body figcaption{font-size:13px;color:#9ca3af;text-align:center;margin-top:6px}
+.footer{margin-top:48px;padding-top:20px;border-top:1px solid #e5e7eb;font-size:13px;color:#9ca3af;text-align:center}
+</style>
+</head>
+<body>
+<div class="top-bar">
+  <a class="back" href="../" style="font-size:13px;color:#6b7280;text-decoration:none">← 日报首页</a>
+  <span class="sep">|</span>
+  <span class="logo">AI热点快照</span>
+  <span class="sep">|</span>
+  <span class="source">36kr</span>
+  <a class="back" href="https://www.36kr.com/p/4020977816539010" target="_blank" rel="noopener noreferrer">查看原文 ↗</a>
+</div>
+<div class="container">
+  <h1 class="article-title">Claude自己组队查Bug！11.6万行代码揪出66个，单Agent最高只找到27个-36氪</h1>
+  <div class="article-meta">
+    <span>作者: 新智元</span>
+    <span>来源: 36kr</span>
+    <span>快照日期: 2026-10-12</span>
+  </div>
+  <div class="article-body"><div><div>
+ 
+ 
+  <p>单Agent最好的一次，找出27个Bug。</p>
+  <p>换成Claude自己组队，连跑三次，每次都查出66个。</p>
+  <p>这是Anthropic刚公布的一组测试结果：在11.6万行代码中预先埋入70个Bug，让单Agent和动态工作流各跑三次。</p>
+  <p>结果，单打独斗，最好也没查出四成；而组队协作，三次都查出了九成以上。</p>
+  <p></p>
+  <p>Anthropic公布的单Agent与动态工作流查错结果对比。</p>
+  <p>这组结果背后，是Claude开始自己安排分工、组织多个Agent协作。</p>
+  <p>10月10日，Claude Managed Agents动态工作流开启公测。</p>
+  <p>有了这项功能，主Agent接到任务后，可以自己编写分工程序，安排其他Agent分阶段完成任务，最后汇总结果。</p>
+  <p>同一天，Claude Code Projects也扩大了公测范围：所有此前加入等待名单的Pro和Max用户，现在都已获得使用资格。</p>
+  <p></p>
+  <p>在Projects里，你可以围绕一个项目持续提出需求，Claude负责拆任务、协调多条线程并行推进。</p>
+  <p>一个让开发者把多Agent协作接进自己的应用，一个让用户在项目对话里直接交代工作、跟进进展。</p>
+  <p>两项更新指向同一个变化：除了执行任务，分活、盯进度、交接结果，这些原本需要人来操心的事，Claude也开始接手了。</p>
+  <h2><strong>你提目标</strong></h2>
+  <h2><strong>Claude自己分活</strong></h2>
+  <p>同时开几个AI窗口不难。</p>
+  <p>麻烦的是，给每个窗口重讲一遍背景，把一边的发现送到另一边，再挨个追问：做到哪了，卡在哪里，还缺什么？</p>
+  <p>窗口越来越多，人反而忙成了传话员。</p>
+  <p>Projects想接下这部分工作。</p>
+  <p>你在同一个项目对话里持续提出需求，Claude判断该新开一条任务线程，还是交给已经在处理相关工作的线程。</p>
+  <p>每条线程可以理解为一段独立推进任务的工作对话。</p>
+  <p></p>
+  <p>Projects协调对话与任务总览</p>
+  <p>Anthropic举过一个例子：让API、网页端和移动端一起停用旧接口。</p>
+  <p>这件事涉及多个代码仓库，各处修改还得互相配合。</p>
+  <p>Claude可以按代码仓库拆出任务，分别修改、运行测试、提交代码合并请求，再告诉你哪些改动需要先合并。</p>
+  <p>每条云端线程有自己的上下文和代码副本，在自己的分支上工作，再把结果报回项目对话。</p>
+  <p>你仍能进入某条线程看细节、纠正方向。项目总览则把正在工作、等待你回答、可以审查的任务分开列出。</p>
+  <p>如果离开一会儿再回来，你也不必挨个窗口问进度，可以直接从需要你处理的地方接上。</p>
+  <p>要省下反复沟通的时间，之前交代过的事就必须记得住。</p>
+  <p>Projects会积累项目记忆。</p>
+  <p>需求改了什么、做过什么决定、哪些地方踩过坑，都可以记录下来，供后续云端线程读取。</p>
+  <p>官方举了一个日常工作场景：发布日期改到了周五，某项功能为什么被砍掉，修改某个服务前要先找谁确认，这些信息都可以留在项目记忆里。</p>
+  <p>资料库也会保存上传的资料和Claude生成的文件，让后续任务接着已有成果往下做。</p>
+  <p></p>
+  <p>需求分配到右侧线程，相关决定和工作结果逐步积累，供后续任务使用。</p>
+  <p>新版Projects在9月17日已开启分批公测。</p>
+  <p>这次扩大的是准入范围，功能本身仍处于公测阶段，尚未报名的用户仍可加入等待名单。</p>
+  <p>云端线程可以在合上电脑后继续工作。需要本机工具或本地数据库的任务，也能通过Remote Control在电脑上运行，但电脑必须保持唤醒。</p>
+  <p>项目有人协调之后，一项复杂任务内部又该怎样分工？</p>
+  <h2><strong>300份合同</strong></h2>
+  <h2><strong>把分工写成程序</strong></h2>
+  <p>Managed Agents动态工作流，处理的就是这类问题。</p>
+  <p></p>
+  <p>官方给出了一个具体任务示例：</p>
+  <p>检查300份合同，找出哪些包含控制权变更条款，也就是公司控制权发生变化时，合同该如何处理的约定。</p>
+  <p>逐份读懂已经很费工夫，还得确保每份都查过、结论有据可查，漏掉的也能及时补查。</p>
+  <p>Claude会为任务写出一段工作流程序，安排哪些Agent读材料、哪些步骤处理结果，以及后续怎样继续。</p>
+  <p></p>
+  <p>合同阅读任务并行展开，再进入核对与汇总</p>
+  <p>分工和交接都写进了程序，可以直接运行。</p>
+  <p>一个Agent读完材料，结果交给程序。程序再把结果传给后续Agent，或者据此决定下一步走哪个分支。</p>
+  <p>需要反复修改的工作，也能把循环安排进去。</p>
+  <p>官方文档举的例子是稿件审校：持续修改，直到审核通过，或者达到预设轮数。</p>
+  <p>普通子Agent委派中，主Agent要读汇报、接着决定下一步。动态工作流则把大量中间交接写进程序，在后台推进。</p>
+  <p>等待期间，主Agent仍可以和用户交流、查看进度。运行结束后，再读取结果，答复用户或发起下一轮工作。</p>
+  <p>不过，工作流中的线程交回结果后，主Agent不能像调用普通子Agent那样，继续向同一线程追问。因此，核对和返工最好提前安排进流程。</p>
+  <p></p>
+  <p>官方的合同审查指令样例就规定：</p>
+  <p>第一轮，每份合同交给一个Agent；第二轮，由另一个Agent重新检查全部合同，连首轮未发现目标条款的也不能跳过；复核未通过的，返工后再次复核。</p>
+  <p>这给首轮漏掉的条款，多留了一次被发现的机会。</p>
+  <p>当然，合同案例展示的是工作方式。</p>
+  <p>Anthropic并未在那组Bug测试帖子中披露具体分工，不能据此认定，这66个Bug也是通过同样的流程找出来的。</p>
+  <h2><strong>1000个Agent</strong></h2>
+  <h2><strong>也要排好队</strong></h2>
+  <p>单次最多1000个Agent，是这次公测最抢眼的数字之一。</p>
+  <p></p>
+  <p>它指的是一次工作流在整个运行期间，累计最多启动1000个Agent。</p>
+  <p>当前文档列出的同时工作线程上限为64，官方也说明，这个并发数可能调整。</p>
+  <p>工作流可以一批接一批地执行，也可以等前一阶段交回结果，再安排后一阶段。</p>
+  <p>每个Agent有独立的对话历史，同时共享会话中的文件和沙箱，也就是运行代码、处理材料的工作环境。</p>
+  <p>开发者可以提前配置专门的Agent，也可以让工作流根据任务需要临时定义。</p>
+  <p>接入时，在multiagent配置中将type设为multiagent_20261001，再配置模型、工具和任务要求。</p>
+  <p></p>
+  <p>启用动态工作流后，向Claude交代任务，便可让它编写分工计划。图中示例为筛查300份合同中的控制权变更条款。</p>
+  <p>不过，会分工还不够，还得把没做完的地方交代清楚。</p>
+  <p>官方的一条指令样例要求：某个Agent读不了合同，就把这份合同列为「未覆盖」，其余任务继续。</p>
+  <p>「没查出问题」和「根本没查到」必须分开。否则，一份整齐的汇总，很容易把任务缺口藏起来。</p>
+  <p>开发者可以查看运行阶段和各条线程的记录，沿着记录定位问题。</p>
+  <p></p>
+  <p>以合同审查为例，开发者可以跟踪阅读、核对等阶段，并查看每条任务线程的执行记录。</p>
+  <p>Agent多了，既要安排好执行顺序，也要看清哪些任务完成了、哪些仍有缺口。</p>
+  <p>需要区分的是：最多启动1000个Agent、三次均查出66个Bug，说的都是Managed Agents动态工作流，并非Projects。</p>
+  <h2><strong>省下协调时间</strong></h2>
+  <h2><strong>账单继续跑</strong></h2>
+  <p>回到开头的测试：单Agent三次找出14、15、27个Bug，动态工作流三次都是66个。</p>
+  <p>查出的Bug更多了，但为此多花了多少时间和费用，还不清楚。</p>
+  <p>官方没有披露所用模型、实际Agent数量、耗时、Token用量和误报情况，暂时还无法判断这套工作流是否更快、更划算。</p>
+  <p>实际使用时，两项功能的费用也要分开看。</p>
+  <p>Projects使用现有套餐额度，工作线程和协调对话都会消耗用量。并行任务越多，额度也会用得越快。</p>
+  <p>用户可以调整模型和推理强度，或让Claude少开一些线程。通常，工作线程达到套餐用量上限后会暂停，等额度重置再继续。</p>
+  <p>Managed Agents则按模型Token用量计费。此外，每个会话每小时另收0.08美元运行费，只计算会话处于运行状态的时间。</p>
+  <p></p>
+  <p>这0.08美元只是运行费，多Agent阅读材料、生成答案消耗的Token还要另算。</p>
+  <p>开发者可以设置会话预算，工作流的模型消耗也计入其中。达到预算后运行暂停，但已发出的模型请求仍会完成，最终费用可能超出预算。</p>
+  <p></p>
+  <p>会话预算覆盖动态工作流中的模型消耗，方便控制多Agent协作的支出。</p>
+  <p>因此，官方建议先从范围明确的任务开始，摸清消耗，再逐步增加复杂度。</p>
+  <p>Agent多了，并不自动等于更划算。</p>
+  <p>多找出多少真实问题，增加了多少模型调用费用，又需要人花多少时间复核、修错，都得算进同一笔账。</p>
+  <p>少花时间分活，如果换来更多收尾工作，项目未必更快结束。</p>
+  <p>这两项更新，让Claude开始承担更多组织工作。用户交代目标、预算和验收标准，Claude负责分工、推进和交接。</p>
+  <p>接下来的考验是：把活分出去之后，Claude能不能少让人操心，把经得起检查的结果交回来。</p>
+  <p>参考资料：</p>
+  <p>https://x.com/ClaudeDevs/status/2108591328732856655</p>
+  <p>https://x.com/ClaudeDevs/status/2108591330129523146</p>
+  <p>https://x.com/ClaudeDevs/status/2108591331660468538</p>
+  <p>编辑：元宇 摩西</p>
+  <p>本文来自微信公众号<a href="https://mp.weixin.qq.com/s?__biz=MzI3MTA0MTk1MA==&amp;mid=2652733514&amp;idx=2&amp;sn=2e93ac9eda5d496bb15f21a75eace541&amp;chksm=f00d02e2a060a102d768e218fbb5a160136a609d5213ba092e89244e321c193ce548408e9a9f&amp;scene=0&amp;xtrack=1#rd" target="_blank" rel="noopener noreferrer nofollow">“新智元”（ID：AI_era）</a>，作者：ASI启示录，36氪经授权发布。</p>
+ 
+</div></div></div>
+  <div class="footer">
+    本文由 AI热点监控系统自动抓取 · 内容版权归原作者/网站所有<br>
+    快照仅用于学习交流，如需转载请访问原文
+  </div>
+</div>
+</body>
+</html>
