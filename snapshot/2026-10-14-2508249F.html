@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="referrer" content="no-referrer">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'unsafe-inline'; img-src data:; connect-src 'none'; frame-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'; frame-ancestors 'none'">
+<title>Releasing Nvidia VFX Nodes for Video Upscaling, Frame Generation and SDR-to-HDR, for VFX Professionals - AI热点快照</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','PingFang SC','Microsoft YaHei',sans-serif;background:#f8f9fa;color:#1a1a2e;line-height:1.8;min-height:100vh}
+.top-bar{background:#fff;border-bottom:1px solid #e5e7eb;padding:10px 20px;display:flex;align-items:center;gap:12px;position:sticky;top:0;z-index:10}
+.top-bar .logo{font-size:14px;font-weight:700;color:#0d9488}
+.top-bar .sep{color:#d1d5db}
+.top-bar .source{font-size:13px;color:#6b7280}
+.top-bar .back{margin-left:auto;font-size:13px;color:#0d9488;text-decoration:none}
+.top-bar .back:hover{text-decoration:underline}
+.container{max-width:760px;margin:0 auto;padding:40px 24px 80px}
+.article-title{font-size:1.8rem;font-weight:700;line-height:1.35;margin-bottom:16px;color:#1a1a2e}
+.article-meta{display:flex;flex-wrap:wrap;gap:16px;padding-bottom:20px;margin-bottom:28px;border-bottom:1px solid #e5e7eb;font-size:14px;color:#6b7280}
+.article-meta a{color:#0d9488;text-decoration:none}
+.article-meta a:hover{text-decoration:underline}
+.article-body{font-size:16.5px;line-height:1.85;color:#1f2937}
+.article-body p{margin-bottom:1.2em;text-align:justify}
+.article-body h1,.article-body h2,.article-body h3{font-size:1.25em;font-weight:700;margin:1.6em 0 0.6em;color:#1a1a2e}
+.article-body a{color:#0d9488}
+.article-body pre,.article-body code{background:#f1f5f9;border-radius:4px;font-size:0.9em}
+.article-body pre{padding:16px;overflow-x:auto;margin:1em 0}
+.article-body code{padding:2px 6px}
+.article-body blockquote{border-left:3px solid #0d9488;padding-left:16px;color:#4b5563;margin:1em 0}
+.article-body ul,.article-body ol{padding-left:1.6em;margin-bottom:1em}
+.article-body li{margin-bottom:0.4em}
+.article-body figure{margin:1.2em 0}
+.article-body figcaption{font-size:13px;color:#9ca3af;text-align:center;margin-top:6px}
+.footer{margin-top:48px;padding-top:20px;border-top:1px solid #e5e7eb;font-size:13px;color:#9ca3af;text-align:center}
+</style>
+</head>
+<body>
+<div class="top-bar">
+  <a class="back" href="../" style="font-size:13px;color:#6b7280;text-decoration:none">← 日报首页</a>
+  <span class="sep">|</span>
+  <span class="logo">AI热点快照</span>
+  <span class="sep">|</span>
+  <span class="source">ComfyUI Newsletter</span>
+  <a class="back" href="https://blog.comfy.org/p/nvidia-vfx-nodes-for-video-upscaling" target="_blank" rel="noopener noreferrer">查看原文 ↗</a>
+</div>
+<div class="container">
+  <h1 class="article-title">Releasing Nvidia VFX Nodes for Video Upscaling, Frame Generation and SDR-to-HDR, for VFX Professionals</h1>
+  <div class="article-meta">
+    <span>作者: Rob, Alexis Rolland</span>
+    <span>来源: ComfyUI Newsletter</span>
+    <span>快照日期: 2026-10-14</span>
+  </div>
+  <div class="article-body"><div><div><div><p><span>Nvidia’s RTX video effects now run inside ComfyUI as </span><a href="https://github.com/Comfy-Org/ComfyUI_Nvidia_VFX_Nodes/tree/main" target="_blank" rel="noopener noreferrer nofollow">custom nodes</a><span>. The models are fast, lightweight, ship with the nodes, and run locally on your Nvidia RTX GPU.</span></p><ul><li><p><span>The </span><strong>RTX Video Super Resolution</strong><span> node upscales images and video frames up to 4×, either by a multiplier or to target dimensions up to 8192 px. The same node can also denoise or deblur a source without changing its resolution.</span></p></li><li><p><span>The </span><strong>RTX Video Frame Generation</strong><span> node creates new frames between adjacent pairs, for frame-rate conversion or slow motion. It works at 2× to 16× or at a specific timestep.</span></p></li><li><p><span>The </span><strong>RTX Video HDR</strong><span> node converts SDR images to BT.2020 HDR data, with HLG or PQ output. Contrast, saturation, middle gray, and peak luminance from 400 to 2000 nits are all adjustable, and a debanding pass is on by default.</span></p></li></ul><div><figure><a href="https://substackcdn.com/image/fetch/$s_!5qOr!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F3dde54a1-2362-46eb-842b-30bc6e2be9cf_2400x817.jpeg" target="_blank" rel="noopener noreferrer nofollow"><div></div></a><figcaption>Full workflow, optimal sequence is Super Resolution → Frame Generation → HDR</figcaption></figure></div><p>With the NVIDIA VFX Nodes, you can now run a full professional grade VFX pipeline end-to-end. Chaining the nodes from Video Super Resolution → Frame Generation → Video HDR is a quick and simple way to level up your footage and prepare it for the rest of your VFX pipeline.</p><p>The RTX Video Super Resolution node is a great option for efficient upscaling and has 19 modes that can handle different kinds of source material. </p><ul><li><p>Standard modes upscale typical compressed footage. </p></li><li><p>High-bitrate modes upscale clean or lossless sources without unnecessary artifact suppression. </p></li><li><p>Streaming modes are tuned for broadcast and webcam streams. </p></li><li><p>Denoise and deblur modes clean up noise, compression artifacts, or softness and keep the input resolution. </p></li><li><p>A plain bicubic mode is also available when you don’t need AI processing. </p></li></ul><p><span>Most modes run from </span><code>LOW</code><span> to </span><code>ULTRA</code><span>, trading speed for detail. An optional 10-bit encoding preserves more precision. The frame count and frame rate are unchanged, which sets your footage up for the next step in the workflow.</span></p><p><span>The RTX Video Frame Generation node offers two ways to generate new frames within an input video. Frame-rate multiplier mode fills every gap evenly, from 2× to 16×. To keep the original duration, encode the output at the source frame rate times the multiplier. Specific-timestep mode inserts one frame per pair at any point between the two frames, which suits custom timing in downstream workflows. The Quality parameter runs from </span><code>LOW, MEDIUM</code><span> and </span><code>HIGH</code><span>. Shot changes are detected automatically, and a manual option marks a known cut. Like RTX Video Super Resolution, the node offers an optional 10-bit encoding for more precision.</span></p><p>In the final step of the workflow, use the RTX Video HDR node to convert SDR images to BT.2020 HDR at their original dimensions. You can tune the conversion with three tone controls. The Contrast and saturation parameters work as they do in any grade. Middle gray sets the reference level for midtones, which decides how bright the overall image sits. Peak luminance tells the node how bright the brightest highlights should get. Set it to match the display you’re grading for, anywhere from 400 to 2000 nits. A debanding pass is on by default, which helps smooth out the visible steps that can show up in gradients like skies when SDR footage is stretched to a wider range. The output is a standard ComfyUI image with no color-space metadata, so downstream Create Video nodes need to be told whether the data is HDR or HDR PQ. The color management and EXR support in this release also handle that step.</p><p><span>Finally, the node pack’s </span><code>example_workflows</code><span> folder has a starter workflow for each node: image upscaling, video upscaling, frame generation, and HDR conversion, plus one for converting longer videos to HDR using the loop nodes. To see all three nodes working together, try the full VFX pipeline below.</span></p><p><a href="https://github.com/Comfy-Org/ComfyUI_Nvidia_VFX_Nodes/blob/main/example_workflows/rtx_video_full_workflow.json" target="_blank" rel="noopener noreferrer nofollow"><span>Nvidia VFX Nodes Workflow</span></a></p><p>In addition to Nvidia’s VFX nodes, we’re improving support for EXR files format. EXR is the standard format in VFX pipelines, and this release makes it much easier to work with in ComfyUI.</p><ul><li><p><span>The </span><strong>Save Image (Advanced)</strong><span> node can now write half-float (16-bit) EXRs, now the default, as well as full-float (32-bit) EXRs.</span></p></li><li><p><span>The </span><strong>Load Image</strong><span> node has been improved to ensure images remain intact. It now reads half-float and full-float EXRs. Superwhites above 1.0 and negative values come through untouched instead of being silently clipped, so the full range of data is preserved.</span></p></li><li><p><span>Color management gets an upgrade as well. The </span><strong>Convert Image Color Space</strong><span> node handles sRGB, scene-linear Rec.709, HDR HLG and PQ (Rec.2020), ARRI LogC3 (EI 800) and ACEScct.</span></p></li></ul><div><figure><a href="https://substackcdn.com/image/fetch/$s_!j7WK!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F3204d536-eed1-4742-9f56-ad17eb7fb879_2038x1162.png" target="_blank" rel="noopener noreferrer nofollow"><div></div></a><figcaption>Convert Image Color Space node, EXR preview in Load Image and Save Image (Advanced) nodes.</figcaption></figure></div><p>EXRs also get a major quality-of-life improvement: they are now easier to inspect and to download. Since web browsers can’t display EXR files, our new asset management system attaches a JPEG preview to every EXR output. The preview is visible in the save and load nodes, in the Assets panel, and in the Jobs history. The small sun button in the load and save nodes also opens the EXR file in the HDR Viewer for more comfortable viewing.</p><blockquote><p><span>Remark: Previews are only available when ComfyUI starts with the command line argument</span><code>--enable-asset</code><span>. The flag is set by default in Comfy Desktop since version </span><code>1.1.7</code><span> and in ComfyUI portable since </span><code>0.40.0</code><span>.</span></p></blockquote><p><span>Finally, when a save node outputs a sequence of images, the new </span><strong>Download images</strong><span> action lets you pick frames, or hit “Download all”, and download them as a single zip.</span></p><ol><li><p>Update ComfyUI to the latest version.</p></li><li><p><span>Install the </span><a href="https://github.com/Comfy-Org/ComfyUI_Nvidia_VFX_Nodes" target="_blank" rel="noopener noreferrer nofollow">Nividia VFX custom nodes</a><span> from the ComfyUI Manager.</span></p></li><li><p><span>Load the example workflows from the custom nodes templates, or download the </span><a href="https://github.com/Comfy-Org/ComfyUI_Nvidia_VFX_Nodes/tree/main/example_workflows" target="_blank" rel="noopener noreferrer nofollow">workflows here</a><span>.</span></p></li></ol><p><span>Try it on </span><a href="https://links.comfy.org/4zwrSjr" target="_blank" rel="noopener noreferrer nofollow">Comfy Cloud</a><span>, and let us know what you make. As always, enjoy creating!</span></p><p><a href="https://links.comfy.org/4zwrSjr" target="_blank" rel="noopener noreferrer nofollow"><span>Try the Workflow on Comfy Cloud</span></a></p></div></div><div><p>No posts</p></div></div></div>
+  <div class="footer">
+    本文由 AI热点监控系统自动抓取 · 内容版权归原作者/网站所有<br>
+    快照仅用于学习交流，如需转载请访问原文
+  </div>
+</div>
+</body>
+</html>
