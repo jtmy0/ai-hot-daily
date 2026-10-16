@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="referrer" content="no-referrer">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'unsafe-inline'; img-src data:; connect-src 'none'; frame-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'; frame-ancestors 'none'">
+<title>Scaling Kimi K3 on AMD Instinct MI355X: Matching NVIDIA HGX B300 Throughput per GPU on AgentX - AI热点快照</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','PingFang SC','Microsoft YaHei',sans-serif;background:#f8f9fa;color:#1a1a2e;line-height:1.8;min-height:100vh}
+.top-bar{background:#fff;border-bottom:1px solid #e5e7eb;padding:10px 20px;display:flex;align-items:center;gap:12px;position:sticky;top:0;z-index:10}
+.top-bar .logo{font-size:14px;font-weight:700;color:#0d9488}
+.top-bar .sep{color:#d1d5db}
+.top-bar .source{font-size:13px;color:#6b7280}
+.top-bar .back{margin-left:auto;font-size:13px;color:#0d9488;text-decoration:none}
+.top-bar .back:hover{text-decoration:underline}
+.container{max-width:760px;margin:0 auto;padding:40px 24px 80px}
+.article-title{font-size:1.8rem;font-weight:700;line-height:1.35;margin-bottom:16px;color:#1a1a2e}
+.article-meta{display:flex;flex-wrap:wrap;gap:16px;padding-bottom:20px;margin-bottom:28px;border-bottom:1px solid #e5e7eb;font-size:14px;color:#6b7280}
+.article-meta a{color:#0d9488;text-decoration:none}
+.article-meta a:hover{text-decoration:underline}
+.article-body{font-size:16.5px;line-height:1.85;color:#1f2937}
+.article-body p{margin-bottom:1.2em;text-align:justify}
+.article-body h1,.article-body h2,.article-body h3{font-size:1.25em;font-weight:700;margin:1.6em 0 0.6em;color:#1a1a2e}
+.article-body a{color:#0d9488}
+.article-body pre,.article-body code{background:#f1f5f9;border-radius:4px;font-size:0.9em}
+.article-body pre{padding:16px;overflow-x:auto;margin:1em 0}
+.article-body code{padding:2px 6px}
+.article-body blockquote{border-left:3px solid #0d9488;padding-left:16px;color:#4b5563;margin:1em 0}
+.article-body ul,.article-body ol{padding-left:1.6em;margin-bottom:1em}
+.article-body li{margin-bottom:0.4em}
+.article-body figure{margin:1.2em 0}
+.article-body figcaption{font-size:13px;color:#9ca3af;text-align:center;margin-top:6px}
+.footer{margin-top:48px;padding-top:20px;border-top:1px solid #e5e7eb;font-size:13px;color:#9ca3af;text-align:center}
+</style>
+</head>
+<body>
+<div class="top-bar">
+  <a class="back" href="../" style="font-size:13px;color:#6b7280;text-decoration:none">← 日报首页</a>
+  <span class="sep">|</span>
+  <span class="logo">AI热点快照</span>
+  <span class="sep">|</span>
+  <span class="source">vLLM</span>
+  <a class="back" href="https://vllm.ai/blog/2026-10-16-kimi-k3-mi355x" target="_blank" rel="noopener noreferrer">查看原文 ↗</a>
+</div>
+<div class="container">
+  <h1 class="article-title">Scaling Kimi K3 on AMD Instinct MI355X: Matching NVIDIA HGX B300 Throughput per GPU on AgentX</h1>
+  <div class="article-meta">
+    <span>作者: AMD and Embedded LLM</span>
+    <span>来源: vLLM</span>
+    <span>快照日期: 2026-10-16</span>
+  </div>
+  <div class="article-body"><div><div>
+<p><em>Inside the Kimi K3 optimization effort: understanding the bottlenecks and the decisions that made inference faster</em></p>
+
+In this article
+<ul>
+<li><span>AgentX: the workload and results</span></li>
+<li><span>Inside Kimi K3: experts, attention and recurrent state</span></li>
+<li><span>1. Cache: keep conversation state available for reuse</span></li>
+<li><span>2. MoE: remove duplicate work across GPUs</span></li>
+<li><span>3. Memory traffic: fuse operations and remove unnecessary copies</span></li>
+<li><span>4. MLA: faster long-context decoding with AMD AITER assembly</span></li>
+<li><span>5. KDA: parallelize prefill and speculative verification</span></li>
+<li><span>6. Speculative decoding: choose how many tokens to draft</span></li>
+<li><span>What to optimize next</span></li>
+<li><span>Contributions and acknowledgments</span></li>
+</ul>
+
+<p>On AgentX, an eight-GPU AMD Instinct MI355X system serving Kimi K3 with vLLM delivers <strong>24.4% more total tokens per second per GPU</strong> than NVIDIA HGX B300 at 50 tokens/s/user P90 interactivity. Under the benchmark’s ownership-cost model, it delivers <strong>87.4% more tokens per dollar</strong>.</p>
+<p>In this post, we’ll unpack the engineering behind Kimi K3 on AMD Instinct MI355X, connecting vLLM’s serving decisions to GPU kernels and the hardware underneath. We’ll explain why the optimizations worked and build the intuition to spot wasted work, identify bottlenecks and find the next optimization in your own inference stack.</p>
+<figure>
+  <figure><figcaption>Current Kimi K3 AgentX throughput and modeled tokens per dollar at 30, 50 and 150 tokens per second per user; AMD in black, NVIDIA in green.</figcaption></figure>
+  <figcaption>
+    <p>Interactivity is reciprocal P90 response inter-token latency and excludes time to first token. Total tokens include reused input and generated output.</p>
+    <p>Source: <a href="https://inferencex.semianalysis.com/compare/kimi-k3-b300-vs-mi355x/agentic" target="_blank" rel="noopener noreferrer nofollow">SemiAnalysis InferenceX</a>, October 9, 2026 snapshot. <span>Comparison configurations</span>.</p>
+  </figcaption>
+</figure>
+<p>Published dense matrix peaks are 10.1 PFLOP/s MXFP4 for AMD Instinct MI355X and 13.5 PFLOP/s FP4 for NVIDIA B300. Both have 288 GB HBM3E and 8 TB/s peak memory bandwidth. Reaching this serving performance reflects sustained software engineering by AMD and collaborators across the vLLM community.</p>
+<h2>AgentX: the workload and results</h2>
+<p>The public <a href="https://vllm.ai/blog/2026-09-08-vllm-agentx" target="_blank" rel="noopener noreferrer nofollow">AgentX</a> benchmark replays real coding-agent session traces with synthetic tokens, retaining request lengths, timing and prefix-sharing patterns. The workload offers over 96% theoretical prefix reuse with unlimited cache. Speculative runs use a fixed synthetic acceptance reference.</p>
+<p>At <strong>50 tokens/s/user P90 interactivity</strong>, AMD Instinct MI355X serves approximately <strong>7,567 total tokens/s/GPU</strong>, compared with <strong>6,083 for NVIDIA HGX B300</strong>, a <strong>24.4% throughput advantage</strong>. Using SemiAnalysis’s modeled TCO of <strong>$1.50 versus $2.26 per GPU-hour</strong>, respectively, that translates to <strong>18.16 million versus 9.69 million total tokens per dollar of TCO: 87.4% more tokens per dollar</strong>.</p>
+<figure>
+  <figure><figcaption>SemiAnalysis InferenceX Kimi K3 total tokens per modeled dollar versus P90 interactivity, with an added annotation comparing AMD Instinct MI355X and NVIDIA HGX B300 at 50 tokens per second per user.</figcaption></figure>
+  <figcaption>
+    <p><a href="https://inferencex.semianalysis.com/compare/kimi-k3-b300-vs-mi355x/agentic" target="_blank" rel="noopener noreferrer nofollow">SemiAnalysis InferenceX</a> public curves, with the 50 tokens/s/user target annotated. <span>Benchmark notes</span>.</p>
+  </figcaption>
+</figure>
+<p>The public curves compare complete serving stacks. The measurements beside each optimization come from separate tests and explain individual mechanisms under their stated configurations.</p>
+<h2>Inside Kimi K3: experts, attention and recurrent state</h2>
+<p>A returning agent turn can reuse most of its prefix, but processing a short continuation still touches three kinds of data.</p>
+<p>Kimi K3 uses two kinds of attention. Its <strong>24 MLA layers</strong> retain a compressed KV history that grows with the conversation. A new query still consults that history. Its <strong>69 KDA layers</strong> instead carry forward state matrices with fixed dimensions, updating them as new tokens arrive. <a href="https://huggingface.co/moonshotai/Kimi-K3/blob/c5d1dd4c428bd1ce8b88c5044f3b6ccde9e3b721/config.json" target="_blank" rel="noopener noreferrer nofollow">Model configuration</a>.</p>
+<p>In MoE layers, a router selects expert networks to transform each token. Their weights are shared across requests.</p>
+<figure>
+  <figure><figcaption>Kimi K3 request flow: recover compatible saved state, process the new suffix through MLA or KDA attention and routed experts, then decode or verify new positions.</figcaption></figure>
+  <figcaption>
+    <p>MLA retains more history as the conversation grows. KDA updates a fixed-dimension state; retaining earlier checkpoints means keeping additional copies of that state.</p>
+  </figcaption>
+</figure>
+<p><strong>Across turns:</strong> cache reuse and offload (Section 1).<br />
+<strong>Within a model step:</strong> expert projections, kernel handoffs, and MLA/KDA scheduling (Sections 2–5).<br />
+<strong>Choosing draft depth:</strong> committed output versus complete cycle cost (Section 6).</p>
+
+<h2>1. Cache: keep conversation state available for reuse</h2>
+<p>DCP reduces duplicate history in GPU memory; CPU offload preserves reusable state outside it.</p>
+
+<p>Under TP8, each GPU handles 12 of Kimi K3’s 96 MLA query heads but stores the entire compressed KV history. Tensor parallelism divides the heads without dividing the cache.</p>
+<p>With <a href="https://vllm.ai/blog/2026-08-07-decode-context-parallelism" target="_blank" rel="noopener noreferrer nofollow">eight-way decode context parallelism (DCP8)</a>, each GPU stores one eighth of the cached positions. During decode, the GPUs exchange queries, compute against their local history and merge their partial answers.</p>
+<figure>
+  <figure><figcaption>TP replicates the complete MLA history on each GPU. DCP exchanges query heads, divides cached positions between GPUs, then merges their partial answers using softmax weights.</figcaption></figure>
+  <figcaption>
+    <p>Two GPUs illustrate the same partition used by TP8/DCP8. This extra division applies to MLA history; KDA state keeps its existing partition across heads.</p>
+  </figcaption>
+</figure>
+<p>Each partial answer carries normalization information so the merge can weight shards correctly. <a href="https://github.com/vllm-project/vllm/pull/51705" target="_blank" rel="noopener noreferrer nofollow">#51705</a> extends the ROCm AITER DCP path to multi-token verification.</p>
+<p>For a 142,000-token conversation, the estimated MLA payload is 24 layers × 142,000 positions × 576 FP8 bytes ≈ 1.96 GB per GPU. DCP8 reduces this to about 245 MB, before allocation overhead. Each GPU processes eight times as many heads against one eighth of the history, leaving the leading attention arithmetic roughly unchanged.</p>
+<h3>CPU offload: keep state that no longer fits in HBM</h3>
+<p>When state no longer fits in GPU memory, the <a href="https://github.com/SemiAnalysisAI/InferenceX/blob/8adb5c5589b84c0afdccc60bab521eb1114f52b5/inferencex-e2e/benchmarks/single_node/srt-slurm-recipes/kimik3/vllm/mi355x-fp4-mtp/agentic.yaml" target="_blank" rel="noopener noreferrer nofollow">AMD recipe</a>’s native vLLM CPU offload preserves MLA history and KDA checkpoints in host DRAM.</p>
+<p>A cache hit needs matching resume points. If MLA history reaches token 3,072 but the latest compatible KDA checkpoint is at 2,048, the request must resume at 2,048 and recompute the remaining prefix.</p>
+<figure>
+  <figure><figcaption>MLA history reaches token 3,072, but the latest compatible KDA checkpoint is at 2,048. The request must resume at 2,048 and recompute the remaining 1,024 prefix positions.</figcaption></figure>
+  <figcaption>
+    <p>A usable resume point needs compatible state across all required layers. Positions are illustrative.</p>
+  </figcaption>
+</figure>
+<p>Saving the attention-block tail alongside the KDA checkpoint aligns their resume positions (<a href="https://github.com/vllm-project/vllm/pull/54736" target="_blank" rel="noopener noreferrer nofollow">#54736</a>). Restoring that state trades a transfer back to the GPU for avoided prefix recomputation. Once a request resumes, its new tokens can still make several GPUs repeat the same calculation.</p>
+
+<h2>2. MoE: remove duplicate work across GPUs</h2>
+<p>On one GPU, the routed-expert output projection returns the complete vector its consumer expects. In the original ROCm path, an earlier reduction and normalization gave all eight GPUs the same latent input, and each held the full weights. <strong>The same projection therefore ran eight times.</strong></p>
+<p>The output coordinates can be divided among GPUs, but every rank still needs the complete result. Kimi K3 already has an all-reduce for its shared-expert partials.</p>
+<p>Each GPU adds only the routed outputs it owns to its shared-expert partial. The existing all-reduce assembles the complete result, with no new collective (<a href="https://github.com/vllm-project/vllm/pull/51253" target="_blank" rel="noopener noreferrer nofollow">#51253</a>). The ROCm implementation builds on the corresponding CUDA strategy.</p>
+<figure>
+  <figure><figcaption>Before: each GPU repeats the full routed projection. After: output coordinates are divided among GPUs and added before the existing shared-expert all-reduce. Both paths give every GPU the same full output.</figcaption></figure>
+  <figcaption>
+    <p>Two GPUs illustrate output-coordinate ownership. Both paths use one existing all-reduce and return the same full result to every GPU.</p>
+  </figcaption>
+</figure>
+<p>Each output coordinate receives its routed contribution exactly once. The full projection weights remain replicated.</p>
+<p>Output throughput rose 3.05–4.91% in the PR’s test on eight AMD Instinct MI355X GPUs at TP8, across concurrency 8–128 with random 8K-input/1K-output requests and prefix caching disabled.</p>
+<h3>Free up GPU memory to keep more cached state</h3>
+<p>Each rank now computes only its assigned projection coordinates while retaining the full weights.</p>
+<p>Loading only the rows each rank uses frees about <strong>3.85 GiB per GPU</strong> across 92 MoE layers at TP8 (<a href="https://github.com/vllm-project/vllm/pull/59591" target="_blank" rel="noopener noreferrer nofollow">#59591</a>). The fused path’s calculation stays the same; the extra space can hold MLA history and KDA checkpoints.</p>
+<p>This change landed after the image used for the headline public result. Its separate AgentX experiment found <strong>less than 1% higher throughput at concurrency 32 and 48, but 28.9% at 70</strong>, where the reported prefix-cache hit rate rose from 74.8% to 80.1%.</p>
+<figure>
+  <figure><figcaption>PR 59591: throughput gains and prefix-cache hit rates at concurrency 32, 48, 64 and 70. Gains increase with load in these separate measurements.</figcaption></figure>
+  <figcaption>
+    <p>Separate <a href="https://github.com/vllm-project/vllm/pull/59591" target="_blank" rel="noopener noreferrer nofollow">#59591 measurements</a>: eight AMD Instinct MI355X GPUs, TP8/DCP8, FP8 KV, 30-minute runs, no CPU offload or speculative decoding. Points show the reported runs; repeated-run uncertainty was not reported.</p>
+  </figcaption>
+</figure>
+<p>The larger gain at high concurrency is consistent with cache pressure. Comparing both implementations at equal cache capacity would help isolate that effect.</p>
+<p>More on <span>expert routing and four-bit activations</span>.</p>
+
+<h2>3. Memory traffic: fuse operations and remove unnecessary copies</h2>
+<p>Within each GPU, the next place to look is the data passed between kernels.</p>
+<p>Kimi K3’s single-token KDA path ran three compute kernels and two output copies. Convolution ran before a kernel that already fused Q/K normalization, decay and beta gates, and the recurrent update; output normalization ran afterward. The fused HIP path performs these operations in one launch and writes directly to the destination buffer (<a href="https://github.com/vllm-project/vllm/pull/50654" target="_blank" rel="noopener noreferrer nofollow">#50654</a>).</p>
+<p>Intermediate handoffs stay on chip. Convolution history and recurrent state still go to GPU memory for the next token.</p>
+<figure>
+  <figure><figcaption>KDA decode before fusion: three compute kernels and two copies</figcaption></figure>
+</figure>
+<figure>
+  <figure><figcaption>KDA decode after fusion: one HIP kernel; saved state remains</figcaption></figure>
+  <figcaption>
+    <p>Single-token, non-speculative KDA decode in <a href="https://github.com/vllm-project/vllm/pull/50654" target="_blank" rel="noopener noreferrer nofollow">#50654</a>. Before uses the fused Triton normalization path. Counts follow the source code; projections are outside the view. Saved-state reads and writes remain.</p>
+  </figcaption>
+</figure>
+<p>AttnRes mixes earlier layer-block outputs with the running residual. Combining that mix with RMSNorm keeps the temporary mixture in registers (<a href="https://github.com/vllm-project/vllm/pull/50593" target="_blank" rel="noopener noreferrer nofollow">#50593</a>). The running residual saved for later layers retains its BF16 rounding; the mixture stays in FP32 through normalization. Tests require exact persistent updates and allow numerical tolerances for normalized output.</p>
+<p>With AttnRes fusion, output throughput rose 14.2% on eight AMD Instinct MI355X GPUs at TP8, with 100K-input/1K-output requests and prefix caching disabled. Long-prefill latency was effectively unchanged.</p>
+<h3>Copy inputs only for kernels that use them</h3>
+<p>The ROCm matrix-multiplication dispatcher packed inputs before choosing a kernel. When it selected the fallback, that kernel read the original input and left the copy unused. Moving packing into the specialized branches removed these copies (<a href="https://github.com/vllm-project/vllm/pull/58566" target="_blank" rel="noopener noreferrer nofollow">#58566</a>).</p>
+<p>The profile made the waste visible: <strong>69 unnecessary copies per decode step</strong>, one per KDA layer. Each moved only 1,792 bytes but took about 4.8 microseconds. Moving those bytes faster would barely help; launch overhead dominated.</p>
+<figure>
+  <figure><figcaption>Before: prepare a contiguous input before choosing the kernel, discarding it on fallback. After: copy only inside specialized branches that consume it.</figcaption></figure>
+  <figcaption>
+    <p>In the PR’s TP8, concurrency-one, six-draft, 384K-context profile, the removed copies account for 0.339 ms of copy-kernel time per step.</p>
+  </figcaption>
+</figure>
+
+<h2>4. MLA: faster long-context decoding with AMD AITER assembly</h2>
+<p>Kimi K3 has twelve query heads per GPU at TP8. Padding to sixteen made AMD AITER’s assembly decode path available. In the reported long-context test, time per output token fell from 43.8 to 23.6 milliseconds.</p>
+<p>The comparison used TP8 without DCP, at concurrency one. The adapter in <a href="https://github.com/vllm-project/vllm/pull/50578" target="_blank" rel="noopener noreferrer nofollow">#50578</a> copies four query heads, packs them into the sixteen-head layout and discards their outputs. DCP8 presents a different, 96-head shape.</p>
+<p>This preserves the model's operation because each query head attends independently over cached positions. Adding another head does not change the original head's softmax. Only the query is padded in this decode path; the stored compressed KV history stays the same size.</p>
+<p>A long conversation gives attention plenty of work, but that work needs to be spread across the GPU. In the historical code we inspected, a conservative <a href="https://github.com/vllm-project/vllm/blob/7b9f2dad8920f115c1caea36e096e43c04c3da68/vllm/v1/attention/backends/mla/rocm_aiter_mla.py#L1092" target="_blank" rel="noopener noreferrer nofollow">scheduling hint</a> restricted the Gluon path to <a href="https://github.com/ROCm/aiter/blob/31350226161346314b3d8882c8085bd31dce6a34/aiter/ops/triton/gluon/mla_gluon.py#L937" target="_blank" rel="noopener noreferrer nofollow">one workgroup per request</a>. That workgroup still processed the entire conversation. Padding made AMD AITER’s assembly path available, with a <a href="https://github.com/ROCm/aiter/blob/31350226161346314b3d8882c8085bd31dce6a34/aiter/mla.py#L149" target="_blank" rel="noopener noreferrer nofollow">different policy</a> for dividing the history into parallel pieces and combining the results.</p>
+<figure>
+  <figure><figcaption>Within one GPU, the historical Gluon path assigns the full history to one workgroup; the adapted AITER assembly path divides history among workgroups and merges their partial attention results. Query padding enables that path.</figcaption></figure>
+  <figcaption>
+    <p>History partitions are work assigned to workgroups within one GPU. Four are shown for illustration; the inspected assembly policy selected sixteen. KV storage is unchanged.</p>
+  </figcaption>
+</figure>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div><table><thead><tr><th><strong>Input / output tokens</strong></th><th><strong>Original Gluon path</strong></th><th><strong>Padded assembly path</strong></th></tr></thead><tbody><tr><td>1K / 1K</td><td>22.9 ms/token</td><td>22.8 ms/token</td></tr><tr><td>32K / 1K</td><td>43.8 ms/token</td><td>23.6 ms/token</td></tr></tbody></table></div>
+<p>PR-reported mean time per output token: eight AMD Instinct MI355X GPUs, TP8, concurrency one, MXFP4 model weights, BF16 attention and ordinary single-token decode.</p>
+<p>The short-input case barely changes; the long-input case nearly halves time per output token. These serving measurements include query preparation and output handling.</p>
+
+<h2>5. KDA: parallelize prefill and speculative verification</h2>
+<p>MLA can split a retained history among workgroups. KDA presents a harder scheduling problem: each token depends on the preceding state. Fused prefill in <a href="https://github.com/vllm-project/vllm/pull/54038" target="_blank" rel="noopener noreferrer nofollow">#54038</a> prepares each token group’s combined transformation before its incoming state is known.</p>
+<p>For example, “halve the state and add two,” then “halve it and add one,” combine into “take a quarter of the starting state and add two.” This rule can be computed before the starting state arrives.</p>
+<figure>
+  <figure><figcaption>Combine ordered token updates into group rules, scan the summaries to find group starting states, then replay the groups in parallel while keeping tokens within each group ordered.</figcaption></figure>
+</figure>
+
+Step through the KDA dependency sequence
+
+
+<p>KDA does this with matrix transformations. An ordered scan of the group summaries determines each group’s starting state; the groups then replay their tokens in parallel. Token order stays intact, but each group no longer waits for the preceding group’s replay.</p>
+<p>Grouping adds a second walk and expands the fused chunk path from two launches to four. It helps when few sequences or heads expose too little parallel work; otherwise, the extra passes can cost more than they save.</p>
+<p>Within each group, the recurrent walk keeps state in matrix-accumulator registers between chunks, avoiding a global-memory write and reload. <span>State storage diagram.</span></p>
+<p><span></span>Fused KDA delivered 5.3–5.6% more input throughput than Triton at 4K and 16K input lengths in a separate three-backend comparison: eight AMD Instinct MI355X GPUs, TP8, concurrency 32, prefix caching disabled and one-token outputs. This measures the complete backend. <a href="https://github.com/vllm-project/vllm/pull/56036#issuecomment-5667437134" target="_blank" rel="noopener noreferrer nofollow">Benchmark results</a>.</p>
+<h3>Use smaller tiles for speculative verification</h3>
+<p>Short verification batches need a different split. At TP8, each GPU has 12 KDA heads with 128 value columns. Splitting each head into four 32-column tiles launches only 48 workgroups on 256 compute units. <a href="https://github.com/vllm-project/vllm/pull/58045" target="_blank" rel="noopener noreferrer nofollow">#58045</a> switches to four-column tiles, raising the count to 384.</p>
+<figure>
+  <figure><figcaption>One sequence and twelve KDA heads: dividing each head into four-column rather than thirty-two-column tiles exposes 384 instead of 48 independent workgroups.</figcaption></figure>
+  <figcaption>
+    <p>Each tile owns different value columns and walks the same token sequence in order. Narrower tiles increase the number of independent workgroups from 48 to 384.</p>
+  </figcaption>
+</figure>
+<p>In a separate graph-replay kernel test on one AMD Instinct MI355X GPU (TP8 dimensions, one sequence, four verification positions), time fell from 16.20 to 5.61 microseconds per layer (2.89×). This includes narrower tiles, single-wave workgroups, uniform-length specialization and hoisted token-invariant work. Ragged batches retain a dynamic path; tests compare outputs and recurrent state.</p>
+
+<h2>6. Speculative decoding: choose how many tokens to draft</h2>
+<p>Faster verification can change how many draft tokens are worth checking. The useful rate is committed output divided by the full draft–verify–commit cycle time.</p>
+<p>For example, AgentX’s fixed acceptance reference gives 3.00 expected committed tokens per cycle with three drafts, and 3.36 with four, including the recovery or bonus token. That is 12% more committed output per cycle. <strong>Four drafts improve throughput only if the complete cycle takes less than 12% longer than three drafts.</strong></p>
+<figure>
+  <figure><figcaption>Three drafts yield 3.00 expected committed tokens per cycle; four yield 3.36. The fourth draft helps if the complete cycle grows by less than 12%.</figcaption></figure>
+  <figcaption>
+    <p>Illustrative comparison under the controlled acceptance reference. The 12% threshold is a cost budget; complete cycle growth was not measured here.</p>
+  </figcaption>
+</figure>
+<p>The <a href="https://github.com/SemiAnalysisAI/InferenceX/blob/8adb5c5589b84c0afdccc60bab521eb1114f52b5/inferencex-e2e/benchmarks/single_node/srt-slurm-recipes/kimik3/vllm/mi355x-fp4-mtp/agentic.yaml" target="_blank" rel="noopener noreferrer nofollow">public AMD recipe</a> uses three to seven drafts with DCP1 and disables speculation at the larger DCP8 concurrency settings.</p>
+<h2>What to optimize next</h2>
+<p>Ongoing prefill/decode disaggregation work adds another place to look: worker balance and whether transfers finish before their data is needed.</p>
+<p>For another model or workload, start with the deployed request shapes and make three checks:</p>
+<p><strong>Compare ranks.</strong> Are several GPUs computing the same result before a collective that could assemble it?</p>
+<p><strong>Follow buffers.</strong> Does each temporary tensor have a consumer on the selected path? Can the data stay on chip?</p>
+<p><strong>Count independent work.</strong> Do the actual heads, tokens and tiles produce enough workgroups to spread the load?</p>
+<p>Measure the complete request at the response speed you need, and check both outputs and saved state. A faster kernel matters when it shortens the work holding up the next token.</p>
+<h2>Contributions and acknowledgments</h2>
+<p>The Kimi K3 effort spans <strong>more than 50 merged AMD/ROCm-related vLLM PRs</strong> from AMD, Embedded LLM and the wider community, alongside AITER development, integration, review and benchmarking. Contributions cover attention, recurrence, MoE, quantization, graph execution, cache support and platform integration.</p>
+<p>Special thanks to: Pin Siang Tan, Jun Kang Chow, Ye Hur Cheong, Hongxia Yang, Seungrok Jung, Bill He, Yichao Zhu, Hyukjoon Lee, Andy Luo, Mrinal Karvir, Richard Li, Sun Peng</p>
+<div>
+<p><a href="https://github.com/afriedri" target="_blank" rel="noopener noreferrer nofollow">Andy Friedrich</a>,
+<a href="https://github.com/amd-ethany" target="_blank" rel="noopener noreferrer nofollow">Ethan Yang</a>,
+<a href="https://github.com/amd-ruitang3" target="_blank" rel="noopener noreferrer nofollow">Tang Rui</a>,
+<a href="https://github.com/AndreasKaratzas" target="_blank" rel="noopener noreferrer nofollow">Andreas Karatzas</a>,
+<a href="https://github.com/Ankur-singh" target="_blank" rel="noopener noreferrer nofollow">Ankur Singh</a>,
+<a href="https://github.com/ApostaC" target="_blank" rel="noopener noreferrer nofollow">Yihua Cheng</a>,
+<a href="https://github.com/BadrBasowid" target="_blank" rel="noopener noreferrer nofollow">Badr Ba Sowid</a>,
+<a href="https://github.com/benchislett" target="_blank" rel="noopener noreferrer nofollow">Benjamin Chislett</a>,
+<a href="https://github.com/benenzhu" target="_blank" rel="noopener noreferrer nofollow">Taoyu Zhu</a>,
+<a href="https://github.com/billishyahao" target="_blank" rel="noopener noreferrer nofollow">Bill He</a>,
+<a href="https://github.com/binding7012" target="_blank" rel="noopener noreferrer nofollow">Bin Ding</a>,
+<a href="https://github.com/BowenBao" target="_blank" rel="noopener noreferrer nofollow">Bowen Bao</a>,
+<a href="https://github.com/brandonfzhang" target="_blank" rel="noopener noreferrer nofollow">Brandon Zhang</a>,
+<a href="https://github.com/chaeminlim-mb" target="_blank" rel="noopener noreferrer nofollow">Chaemin Lim</a>,
+<a href="https://github.com/charxwu" target="_blank" rel="noopener noreferrer nofollow">Charles Wu</a>,
+<a href="https://github.com/ChuanLi1101" target="_blank" rel="noopener noreferrer nofollow">Chuan (Richard) Li</a>,
+<a href="https://github.com/coderfeli" target="_blank" rel="noopener noreferrer nofollow">Felix Li</a>,
+<a href="https://github.com/cquil11" target="_blank" rel="noopener noreferrer nofollow">Cameron Quilici</a>,
+<a href="https://github.com/deng451e" target="_blank" rel="noopener noreferrer nofollow">Weishu Deng</a>,
+<a href="https://github.com/Dewei-Wang-sh" target="_blank" rel="noopener noreferrer nofollow">Dewei Wang</a>,
+<a href="https://github.com/divakar-amd" target="_blank" rel="noopener noreferrer nofollow">Divakar Verma</a>,
+<a href="https://github.com/dllehr-amd" target="_blank" rel="noopener noreferrer nofollow">Douglas Lehr</a>,
+<a href="https://github.com/edwinlim0919" target="_blank" rel="noopener noreferrer nofollow">Edwin Lim</a>,
+<a href="https://github.com/eecspan" target="_blank" rel="noopener noreferrer nofollow">Yudong Pan</a>,
+<a href="https://github.com/elvircrn" target="_blank" rel="noopener noreferrer nofollow">Elvir Crnčević</a>,
+<a href="https://github.com/fangche123" target="_blank" rel="noopener noreferrer nofollow">Fang Che</a>,
+<a href="https://github.com/Fangzhou-Ai" target="_blank" rel="noopener noreferrer nofollow">Fangzhou Ai</a>,
+<a href="https://github.com/fanxingran" target="_blank" rel="noopener noreferrer nofollow">Xingran Fan</a>,
+<a href="https://github.com/fululi12" target="_blank" rel="noopener noreferrer nofollow">Fulu Li</a>,
+<a href="https://github.com/fxmarty-amd" target="_blank" rel="noopener noreferrer nofollow">Felix Marty</a>,
+<a href="https://github.com/gcanlin" target="_blank" rel="noopener noreferrer nofollow">Canlin Guo</a>,
+<a href="https://github.com/GirasoleY" target="_blank" rel="noopener noreferrer nofollow">Summer Yang</a>,
+<a href="https://github.com/haic0" target="_blank" rel="noopener noreferrer nofollow">Haichen Zhang</a>,
+<a href="https://github.com/he-yufeng" target="_blank" rel="noopener noreferrer nofollow">Yufeng He</a>,
+<a href="https://github.com/heliubj18" target="_blank" rel="noopener noreferrer nofollow">He Liu</a>,
+<a href="https://github.com/hongxiayang" target="_blank" rel="noopener noreferrer nofollow">Hongxia Yang</a>,
+<a href="https://github.com/hyukjlee" target="_blank" rel="noopener noreferrer nofollow">Hyukjoon Lee</a>,
+<a href="https://github.com/ivanium" target="_blank" rel="noopener noreferrer nofollow">Yifan Qiao</a>,
+<a href="https://github.com/jamesETsmith" target="_blank" rel="noopener noreferrer nofollow">James E T Smith</a>,
+<a href="https://github.com/jiacao-amd" target="_blank" rel="noopener noreferrer nofollow">Jiahui Cao</a>,
+<a href="https://github.com/JohnQinAMD" target="_blank" rel="noopener noreferrer nofollow">Yanyuan Qin</a>,
+<a href="https://github.com/jonathanc-n" target="_blank" rel="noopener noreferrer nofollow">Jonathan Chen</a>,
+<a href="https://github.com/Juntian777" target="_blank" rel="noopener noreferrer nofollow">Juntian Liu</a>,
+<a href="https://github.com/k50112113" target="_blank" rel="noopener noreferrer nofollow">Shao-Chun Lee</a>,
+<a href="https://github.com/kedarpotdar-nv" target="_blank" rel="noopener noreferrer nofollow">Kedar Potdar</a>,
+<a href="https://github.com/khluu" target="_blank" rel="noopener noreferrer nofollow">Kevin H. Luu</a>,
+<a href="https://github.com/kliuae" target="_blank" rel="noopener noreferrer nofollow">Kuan-Fu Liu</a>,
+<a href="https://github.com/KuntaiDu" target="_blank" rel="noopener noreferrer nofollow">Kuntai Du</a>,
+<a href="https://github.com/kylesayrs" target="_blank" rel="noopener noreferrer nofollow">Kyle Sayers</a>,
+<a href="https://github.com/lalala-sh" target="_blank" rel="noopener noreferrer nofollow">@lalala-sh</a>,
+<a href="https://github.com/linnea-lin-00638949" target="_blank" rel="noopener noreferrer nofollow">@linnea-lin-00638949</a>,
+<a href="https://github.com/LiuYinfeng01" target="_blank" rel="noopener noreferrer nofollow">Yinfeng Liu</a>,
+<a href="https://github.com/LucasWilkinson" target="_blank" rel="noopener noreferrer nofollow">Lucas Wilkinson</a>,
+<a href="https://github.com/lucifer1004" target="_blank" rel="noopener noreferrer nofollow">Gabriel Wu</a>,
+<a href="https://github.com/maeehart" target="_blank" rel="noopener noreferrer nofollow">Markus Hartikainen</a>,
+<a href="https://github.com/maithilijoshi20" target="_blank" rel="noopener noreferrer nofollow">Maithili Joshi</a>,
+<a href="https://github.com/majunze2001" target="_blank" rel="noopener noreferrer nofollow">Jeff (Junze) Ma</a>,
+<a href="https://github.com/mawong-amd" target="_blank" rel="noopener noreferrer nofollow">Matthew Wong</a>,
+<a href="https://github.com/mgoin" target="_blank" rel="noopener noreferrer nofollow">Misha Goin</a>,
+<a href="https://github.com/micah-wil" target="_blank" rel="noopener noreferrer nofollow">Micah Williamson</a>,
+<a href="https://github.com/minmengdie" target="_blank" rel="noopener noreferrer nofollow">@minmengdie</a>,
+<a href="https://github.com/mpashkovskii" target="_blank" rel="noopener noreferrer nofollow">Matvei Pashkovskii</a>,
+<a href="https://github.com/nehmathe2" target="_blank" rel="noopener noreferrer nofollow">Mathews Neha</a>,
+<a href="https://github.com/NickLucche" target="_blank" rel="noopener noreferrer nofollow">Nicolò Lucchesi</a>,
+<a href="https://github.com/njhill" target="_blank" rel="noopener noreferrer nofollow">Nick Hill</a>,
+<a href="https://github.com/nsusanto" target="_blank" rel="noopener noreferrer nofollow">Nicholas Susanto</a>,
+<a href="https://github.com/okorzh-amd" target="_blank" rel="noopener noreferrer nofollow">Oxana Korzh</a>,
+<a href="https://github.com/peizhang56" target="_blank" rel="noopener noreferrer nofollow">Pei Zhang</a>,
+<a href="https://github.com/ppalanga" target="_blank" rel="noopener noreferrer nofollow">@ppalanga</a>,
+<a href="https://github.com/QinPR" target="_blank" rel="noopener noreferrer nofollow">Peiran Qin</a>,
+<a href="https://github.com/qyYue1389" target="_blank" rel="noopener noreferrer nofollow">Qiuyang Yue</a>,
+<a href="https://github.com/rbrugaro-amd" target="_blank" rel="noopener noreferrer nofollow">Rita Brugarolas</a>,
+<a href="https://github.com/rebklee" target="_blank" rel="noopener noreferrer nofollow">Rebecca Lee</a>,
+<a href="https://github.com/rjrock" target="_blank" rel="noopener noreferrer nofollow">Ryan Rock</a>,
+<a href="https://github.com/Rohan138" target="_blank" rel="noopener noreferrer nofollow">Rohan Potdar</a>,
+<a href="https://github.com/Saddss" target="_blank" rel="noopener noreferrer nofollow">@Saddss</a>,
+<a href="https://github.com/sammshen" target="_blank" rel="noopener noreferrer nofollow">Samuel Shen</a>,
+<a href="https://github.com/seanfilimon" target="_blank" rel="noopener noreferrer nofollow">Sean Filimon</a>,
+<a href="https://github.com/seungrokj" target="_blank" rel="noopener noreferrer nofollow">Seungrok Jung</a>,
+<a href="https://github.com/shantipriya-amd" target="_blank" rel="noopener noreferrer nofollow">Shantipriya Parida</a>,
+<a href="https://github.com/shen-shanshan" target="_blank" rel="noopener noreferrer nofollow">Shanshan Shen</a>,
+<a href="https://github.com/shengnxu" target="_blank" rel="noopener noreferrer nofollow">Shengnan Xu</a>,
+<a href="https://github.com/simondanielsson" target="_blank" rel="noopener noreferrer nofollow">Simon Danielsson</a>,
+<a href="https://github.com/Siraj637909" target="_blank" rel="noopener noreferrer nofollow">Siraj Shaikh</a>,
+<a href="https://github.com/stacyroberts" target="_blank" rel="noopener noreferrer nofollow">Stacy Roberts</a>,
+<a href="https://github.com/stefankoncarevic" target="_blank" rel="noopener noreferrer nofollow">Stefan Koncarevic</a>,
+<a href="https://github.com/stefanskiasan" target="_blank" rel="noopener noreferrer nofollow">Asan Stefanski</a>,
+<a href="https://github.com/Sy0307" target="_blank" rel="noopener noreferrer nofollow">Minghui Jiang</a>,
+<a href="https://github.com/tarik-sarac" target="_blank" rel="noopener noreferrer nofollow">Tarık Saraç</a>,
+<a href="https://github.com/tjtanaa" target="_blank" rel="noopener noreferrer nofollow">Tun Jian Tan</a>,
+<a href="https://github.com/valarLip" target="_blank" rel="noopener noreferrer nofollow">Lingpeng Jin</a>,
+<a href="https://github.com/vanshbhatia-amd" target="_blank" rel="noopener noreferrer nofollow">Vansh Bhatia</a>,
+<a href="https://github.com/vedenev-amd" target="_blank" rel="noopener noreferrer nofollow">Maksim Vedenev</a>,
+<a href="https://github.com/vllmellm" target="_blank" rel="noopener noreferrer nofollow">Ye Hur Cheong</a>,
+<a href="https://github.com/wenwzhan" target="_blank" rel="noopener noreferrer nofollow">@wenwzhan</a>,
+<a href="https://github.com/wzhao18" target="_blank" rel="noopener noreferrer nofollow">Wei Zhao</a>,
+<a href="https://github.com/xaguilar-amd" target="_blank" rel="noopener noreferrer nofollow">Xavier Aguilar</a>,
+<a href="https://github.com/XiaobingSuper" target="_blank" rel="noopener noreferrer nofollow">Xiaobing Zhang</a>,
+<a href="https://github.com/xiaohuguo2023" target="_blank" rel="noopener noreferrer nofollow">Xiaohu Guo</a>,
+<a href="https://github.com/xinli-sw" target="_blank" rel="noopener noreferrer nofollow">Xin Li</a>,
+<a href="https://github.com/xudonlyu" target="_blank" rel="noopener noreferrer nofollow">Xudong Lyu</a>,
+<a href="https://github.com/yanxuer-999" target="_blank" rel="noopener noreferrer nofollow">Yanxue Ren</a>,
+<a href="https://github.com/yewentao256" target="_blank" rel="noopener noreferrer nofollow">Wentao Ye</a>,
+<a href="https://github.com/yongqinwang-cmd" target="_blank" rel="noopener noreferrer nofollow">Yongqin Wang</a>,
+<a href="https://github.com/yoo-kumaneko" target="_blank" rel="noopener noreferrer nofollow">Riggins Chen</a>,
+<a href="https://github.com/youzhedian" target="_blank" rel="noopener noreferrer nofollow">Chao Hong</a>,
+<a href="https://github.com/yucshen" target="_blank" rel="noopener noreferrer nofollow">Yuchen Shen</a>,
+<a href="https://github.com/yudigege86" target="_blank" rel="noopener noreferrer nofollow">Matt Qin</a>,
+<a href="https://github.com/YukioZzz" target="_blank" rel="noopener noreferrer nofollow">Yichao Zhu</a>,
+<a href="https://github.com/ywang96" target="_blank" rel="noopener noreferrer nofollow">Roger Wang</a>,
+<a href="https://github.com/ZhengGong-amd" target="_blank" rel="noopener noreferrer nofollow">Zheng Gong</a>,
+<a href="https://github.com/ZJY0516" target="_blank" rel="noopener noreferrer nofollow">Jiangyun Zhu</a>,
+<a href="https://github.com/zvigrinberg" target="_blank" rel="noopener noreferrer nofollow">Zvi Grinberg</a>,
+<a href="https://github.com/zyongye" target="_blank" rel="noopener noreferrer nofollow">Yongye Zhu</a>.</p>
+</div>
+
+<h2>Benchmark notes</h2>
+<p><span></span>Serving configurations at the comparison targets</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div><table><thead><tr><th>P90 interactivity (tokens/s/user)</th><th>AMD Instinct MI355X</th><th>NVIDIA HGX B300</th></tr></thead><tbody><tr><td>30 and 50</td><td>SimpleCPU offload; DCP8 / no drafts to DCP1 / three drafts</td><td>Mooncake offload; DCP8</td></tr><tr><td>150</td><td>GPU-only; DCP1; five to seven drafts</td><td>Mooncake offload; DCP8</td></tr></tbody></table></div>
+<p>Both systems use eight GPUs, TP8, FP4 weights and FP8 KV. Values interpolate within each published offload or GPU-only series at matching interactivity; concurrency, DCP and draft depth can vary between the bracketing runs. The pinned <a href="https://github.com/SemiAnalysisAI/InferenceX/blob/8adb5c5589b84c0afdccc60bab521eb1114f52b5/inferencex-e2e/benchmarks/single_node/srt-slurm-recipes/kimik3/vllm/mi355x-fp4-mtp/agentic.yaml" target="_blank" rel="noopener noreferrer nofollow">AMD recipe (YAML)</a> and <a href="https://github.com/SemiAnalysisAI/InferenceX/blob/630dc8c73f84d6f3a74062384c86aa660440929f/benchmarks/single_node/agentic/kimik3_fp4_b300_vllm_mtp.sh" target="_blank" rel="noopener noreferrer nofollow">NVIDIA launcher</a> give the image tags and full settings.</p>
+<p>Replay uses the <a href="https://huggingface.co/datasets/semianalysisai/cc-traces-weka-062126/blob/23f152f6f0f9399a85901b89a6458def0ef16729/README.md" target="_blank" rel="noopener noreferrer nofollow">cc-traces-weka-062126</a> dataset and a <a href="https://github.com/SemiAnalysisAI/agentx-harness/blob/754356e9a39acc6cc6afb242d123bb57c3fb6f75/docs/tutorials/agentx-mvp.md#optional-cache-pressure-warmup" target="_blank" rel="noopener noreferrer nofollow">pinned AIPerf harness</a>, with warmup excluded and one hour of profiling under <a href="https://github.com/SemiAnalysisAI/InferenceX/blob/a79e12d2c1fbb86ead753cb7c7d05e11acbb1185/golden_al_distribution/kimik3_dspark_probabilistic_sample_method_block_rejection_sample_method.yaml" target="_blank" rel="noopener noreferrer nofollow">fixed synthetic acceptance curves</a>. The recipes give the seed, session-start and warmup settings. The downloaded dataset revision is unrecorded. Closed-loop replay can produce different completed request mixes.</p>
+<p>Software and offload. The submissions use <a href="https://github.com/vllm-project/vllm/tree/36768d1bfd39094681cdbc8cb37d4b31c0729c89" target="_blank" rel="noopener noreferrer nofollow">vLLM 36768d1bf</a> (AMD) and 5894fdf98 (NVIDIA). Configured host-cache budgets are 224.875 and 281 GB per GPU, respectively; connector and image settings are in the linked recipes.</p>
+<p>Costs. SemiAnalysis’s <a href="https://github.com/SemiAnalysisAI/InferenceX-app/blob/43e626e6baa05af8e7932c85d02a82d70c9e68cf/packages/constants/src/tco.ts" target="_blank" rel="noopener noreferrer nofollow">large-hyperscaler ownership model</a> and <a href="https://github.com/SemiAnalysisAI/InferenceX-app/blob/43e626e6baa05af8e7932c85d02a82d70c9e68cf/packages/constants/src/gpu-keys.ts" target="_blank" rel="noopener noreferrer nofollow">published GPU cost constants</a> use $1.50 per GPU-hour for AMD Instinct MI355X and $2.26 for NVIDIA HGX B300. Total tokens/$ = total tokens/s/GPU × 3,600 ÷ modeled $/GPU-hour. Some capital and utilization assumptions remain unpublished. At the 50-token interactivity target, the comparison gives 46.6% lower modeled cost per token.</p>
+<p>Snapshot. <a href="https://inferencex.semianalysis.com/api/v1/benchmarks?model=Kimi-K3" target="_blank" rel="noopener noreferrer nofollow">SemiAnalysis InferenceX data</a> retrieved October 9, 2026; submissions dated September 30, 2026 (AMD) and August 16, 2026 (NVIDIA). PR benchmarks use their stated workloads; <a href="https://github.com/vllm-project/vllm/pull/59591" target="_blank" rel="noopener noreferrer nofollow">#59591</a> is a separate experiment after the headline image.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div><table><thead><tr><th><strong>Published specification, per GPU</strong></th><th><strong>AMD Instinct MI355X</strong></th><th><strong>NVIDIA B300 GPU</strong></th></tr></thead><tbody><tr><td>Dense low-precision matrix peak</td><td><strong>10.1 PFLOP/s MXFP4</strong></td><td><strong>13.5 PFLOP/s FP4</strong></td></tr><tr><td>GPU memory</td><td><strong>288 GB HBM3E</strong></td><td><strong>288 GB HBM3E</strong></td></tr><tr><td>Peak memory bandwidth</td><td><strong>8 TB/s</strong></td><td><strong>8 TB/s</strong></td></tr></tbody></table></div>
+<p>Sources: <a href="https://www.amd.com/en/products/accelerators/instinct/mi350/mi355x.html" target="_blank" rel="noopener noreferrer nofollow">AMD Instinct MI355X</a>, <a href="https://www.nvidia.com/en-us/data-center/hgx/" target="_blank" rel="noopener noreferrer nofollow">NVIDIA HGX B300</a>, <a href="https://docs.nvidia.com/enterprise-reference-architectures/hgx-ai-factory/latest/components.html" target="_blank" rel="noopener noreferrer nofollow">NVIDIA memory specifications</a>. Benchmark details: <a href="https://inferencex.semianalysis.com/agentx" target="_blank" rel="noopener noreferrer nofollow">AgentX methodology</a>.</p>
+
+
+<h2>Technical note: expert routing and precision</h2>
+<p>Kimi K3 selects 16 of 896 experts per token, so a substantial server batch can still leave few rows per expert. The resulting expert tiles may contain padding.</p>
+<p>A4W4 reduces a different part of the traffic: the integration in <a href="https://github.com/vllm-project/vllm/pull/53940" target="_blank" rel="noopener noreferrer nofollow">#53940</a> changes activations from eight bits to four, while weights remain four-bit. Total traffic also includes BF16 intermediate outputs and expert-tile padding.</p>
+
+
+<h2>Technical note: KDA precision and on-chip memory</h2>
+<p>Each chunk still needs to resolve dependencies between its tokens. The kernel combines them into a transformation that later matrix products can apply. That creates two practical questions: which precision preserves the answer, and how much temporary data fits on chip?</p>
+<p>A small example shows the idea. Substitute the earlier corrections into the later ones, and each answer can be expressed directly in terms of the known inputs. The resulting coefficient table has already accounted for the chain of dependencies:</p>
+<figure>
+  <figure><figcaption>Three-position scalar dependency example: combine direct and indirect correction paths into a lower-triangular coefficient table so each row uses only known inputs.</figcaption></figure>
+  <figcaption>
+    <p>In this scalar illustration, position one's effect on position three takes two paths: directly, −1/8; through position two, (−1/4) × (−1/4) = 1/16. Together they give −1/16, the table's lower-left entry. Zeros above the diagonal reflect that later positions cannot affect earlier ones.</p>
+  </figcaption>
+</figure>
+<p>The real prologue computes the inverse of the 64×64 within-chunk dependency matrix. Later matrix products use this transformation to account for those dependencies.</p>
+<p>The inverse's intermediate values can grow and cancel. Rounding them too early loses information the final result needs. The implementation uses AMD's native <a href="https://www.amd.com/content/dam/amd/en/documents/instinct-tech-docs/instruction-set-architectures/amd-instinct-cdna4-instruction-set-architecture.pdf#page=295" target="_blank" rel="noopener noreferrer nofollow"><strong>FP32 matrix instructions</strong></a>, retaining FP32 inputs and accumulation for the sensitive inverse. Only the completed inverse is rounded to BF16 for subsequent products. <a href="https://github.com/vllm-project/vllm/blob/af1c01499b289be555c475669ba50a88e96d846e/csrc/libtorch_stable/kimi_k3/fused_kda_chunk_kernel_rocm.cu#L1639" target="_blank" rel="noopener noreferrer nofollow">Kernel implementation</a>.</p>
+<h3>Why FP32 accumulation cannot recover rounded inputs</h3>
+<p>Consider subtracting 256 from 256.5. Both inputs are exact in FP32. At this magnitude, converting 256.5 to BF16 rounds it to 256:</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div><table><thead><tr><th><strong>Input precision</strong></th><th><strong>Subtraction performed in FP32</strong></th><th><strong>Result</strong></th></tr></thead><tbody><tr><td>Keep the original FP32 inputs</td><td>256.5 − 256</td><td>0.5</td></tr><tr><td>Round the inputs to BF16 first</td><td>256 − 256</td><td>0</td></tr></tbody></table></div>
+<p>FP32 subtraction cannot recover information lost before it starts. These toy values illustrate why the inverse uses native 16×16×4 FP32 matrix instructions, retaining both input and accumulation precision.</p>
+<p>An FP4 model also relies on operations at higher precision. Their performance depends on making those numerical paths efficient.</p>
+<p>The prologue also has a local-memory budget. AMD calls its on-chip shared scratch LDS. Q and K tiles reuse storage because they are needed at different times; the triangular input stores only its ten occupied 16×16 blocks. The workgroup requests <strong>79.5 KiB</strong>, which rounds to <strong>80 KiB</strong>, half of an AMD CDNA 4 compute unit’s <a href="https://www.amd.com/content/dam/amd/en/documents/instinct-tech-docs/instruction-set-architectures/amd-instinct-cdna4-instruction-set-architecture.pdf#page=14" target="_blank" rel="noopener noreferrer nofollow">160 KiB LDS budget</a>.</p>
+<figure>
+  <figure><figcaption>Within a 160 KiB LDS budget, two 80 KiB allocations fit; two 81.25 KiB allocations do not. Allocation rounds to 1,280-byte units.</figcaption></figure>
+  <figcaption>
+    <p>Allocation rounds to 1,280-byte units. The illustrated extra KiB crosses a residency threshold: two allocations no longer fit. This is a capacity calculation; registers and other resources can impose additional limits.</p>
+  </figcaption>
+</figure>
+<p>Test this threshold by reserving enough unused LDS to cross it while keeping the kernel binary fixed. If runtime barely changes, the extra resident workgroup was contributing little for that shape.</p>
+<h3>State between chunks</h3>
+<figure>
+  <figure><figcaption>The prologue uses LDS scratch separately from the group kernel, which retains recurrent state in matrix accumulators between chunks. Incoming state, requested checkpoints and final state still use GPU memory.</figcaption></figure>
+  <figcaption>
+    <p>Group summaries and starting states still cross kernel boundaries; requested checkpoints and final state are saved.</p>
+  </figcaption>
+</figure>
+<p><span>Return to the KDA serving result</span>.</p>
+
+<h2><strong>Disclaimers</strong></h2>
+<p>The information presented in this document is for informational purposes only and may contain technical inaccuracies, omissions, and typographical errors. The information contained herein is subject to change and may be rendered inaccurate for many reasons, including but not limited to product and roadmap changes, component and motherboard version changes, new model and/or product releases, product differences between differing manufacturers, software changes, BIOS flashes, firmware upgrades, or the like. Any computer system has risks of security vulnerabilities that cannot be completely prevented or mitigated. AMD assumes no obligation to update or otherwise correct or revise this information. However, AMD reserves the right to revise this information and to make changes from time to time to the content hereof without obligation of AMD to notify any person of such revisions or changes. THIS INFORMATION IS PROVIDED ‘AS IS.” AMD MAKES NO REPRESENTATIONS OR WARRANTIES WITH RESPECT TO THE CONTENTS HEREOF AND ASSUMES NO RESPONSIBILITY FOR ANY INACCURACIES, ERRORS, OR OMISSIONS THAT MAY APPEAR IN THIS INFORMATION. AMD SPECIFICALLY DISCLAIMS ANY IMPLIED WARRANTIES OF NON-INFRINGEMENT, MERCHANTABILITY, OR FITNESS FOR ANY PARTICULAR PURPOSE. IN NO EVENT WILL AMD BE LIABLE TO ANY PERSON FOR ANY RELIANCE, DIRECT, INDIRECT, SPECIAL, OR OTHER CONSEQUENTIAL DAMAGES ARISING FROM THE USE OF ANY INFORMATION CONTAINED HEREIN, EVEN IF AMD IS EXPRESSLY ADVISED OF THE POSSIBILITY OF SUCH DAMAGES. AMD, the AMD Arrow logo, and combinations thereof are trademarks of Advanced Micro Devices, Inc. Other product names used in this publication are for identification purposes only and may be trademarks of their respective companies. © 2026 Advanced Micro Devices, Inc. All rights reserved.</p>
+</div></div></div>
+  <div class="footer">
+    本文由 AI热点监控系统自动抓取 · 内容版权归原作者/网站所有<br>
+    快照仅用于学习交流，如需转载请访问原文
+  </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="referrer" content="no-referrer">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'unsafe-inline'; img-src data:; connect-src 'none'; frame-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'; frame-ancestors 'none'">
+<title>Open From Data Center to Desktop: NVIDIA Expands Nemotron Family With Highest Efficiency Super VL and Bolt Models - AI热点快照</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','PingFang SC','Microsoft YaHei',sans-serif;background:#f8f9fa;color:#1a1a2e;line-height:1.8;min-height:100vh}
+.top-bar{background:#fff;border-bottom:1px solid #e5e7eb;padding:10px 20px;display:flex;align-items:center;gap:12px;position:sticky;top:0;z-index:10}
+.top-bar .logo{font-size:14px;font-weight:700;color:#0d9488}
+.top-bar .sep{color:#d1d5db}
+.top-bar .source{font-size:13px;color:#6b7280}
+.top-bar .back{margin-left:auto;font-size:13px;color:#0d9488;text-decoration:none}
+.top-bar .back:hover{text-decoration:underline}
+.container{max-width:760px;margin:0 auto;padding:40px 24px 80px}
+.article-title{font-size:1.8rem;font-weight:700;line-height:1.35;margin-bottom:16px;color:#1a1a2e}
+.article-meta{display:flex;flex-wrap:wrap;gap:16px;padding-bottom:20px;margin-bottom:28px;border-bottom:1px solid #e5e7eb;font-size:14px;color:#6b7280}
+.article-meta a{color:#0d9488;text-decoration:none}
+.article-meta a:hover{text-decoration:underline}
+.article-body{font-size:16.5px;line-height:1.85;color:#1f2937}
+.article-body p{margin-bottom:1.2em;text-align:justify}
+.article-body h1,.article-body h2,.article-body h3{font-size:1.25em;font-weight:700;margin:1.6em 0 0.6em;color:#1a1a2e}
+.article-body a{color:#0d9488}
+.article-body pre,.article-body code{background:#f1f5f9;border-radius:4px;font-size:0.9em}
+.article-body pre{padding:16px;overflow-x:auto;margin:1em 0}
+.article-body code{padding:2px 6px}
+.article-body blockquote{border-left:3px solid #0d9488;padding-left:16px;color:#4b5563;margin:1em 0}
+.article-body ul,.article-body ol{padding-left:1.6em;margin-bottom:1em}
+.article-body li{margin-bottom:0.4em}
+.article-body figure{margin:1.2em 0}
+.article-body figcaption{font-size:13px;color:#9ca3af;text-align:center;margin-top:6px}
+.footer{margin-top:48px;padding-top:20px;border-top:1px solid #e5e7eb;font-size:13px;color:#9ca3af;text-align:center}
+</style>
+</head>
+<body>
+<div class="top-bar">
+  <a class="back" href="../" style="font-size:13px;color:#6b7280;text-decoration:none">← 日报首页</a>
+  <span class="sep">|</span>
+  <span class="logo">AI热点快照</span>
+  <span class="sep">|</span>
+  <span class="source">NVIDIA Blog</span>
+  <a class="back" href="https://blogs.nvidia.com/blog/nemotron-3-5-super-vl/" target="_blank" rel="noopener noreferrer">查看原文 ↗</a>
+</div>
+<div class="container">
+  <h1 class="article-title">Open From Data Center to Desktop: NVIDIA Expands Nemotron Family With Highest Efficiency Super VL and Bolt Models</h1>
+  <div class="article-meta">
+    <span>作者: Kari Briski</span>
+    <span>来源: NVIDIA Blog</span>
+    <span>快照日期: 2026-10-16</span>
+  </div>
+  <div class="article-body"><div><div>
+			<p><span>NVIDIA today released Nemotron 3.5 Super VL, an open 120-billion-parameter model that delivers the fastest task completion and highest accuracy for specialized always-on agents.</span></p>
+<p><span>Joining it are two new edge models: Nemotron 3.5 Bolt 74B-A9B 24GB, optimized to balance intelligence and speed per GB for local agentic workloads, and Nemotron 3.5 Bolt E4B 4GB, optimized for intelligence per GB for fast conversational agents.</span></p>
+<p><span>Super VL and Bolt 74B-A9B are available now, with Bolt E4B coming Oct. 23.</span><b><i><br />
+</i></b><b><br />
+</b><span>The three </span><a href="https://www.nvidia.com/en-us/glossary/open-models/" target="_blank" rel="noopener noreferrer nofollow"><span>open models</span></a><span> together cover the full range of agent deployments, from large enterprise servers down to edge devices and local hardware. </span></p>
+<p><span>Any organization that wants to run agents on NVIDIA infrastructure now has an open, optimized model for their tier, without having to choose between capability and deployability. </span></p>
+<p><span>Super VL and Bolt join the Nemotron family alongside </span><a href="https://blogs.nvidia.com/blog/nemotron-lightning-switchyard-rtx-dgx/" target="_blank" rel="noopener noreferrer nofollow"><span>Lightning</span></a><span> and Ultra. </span></p>
+<p><span>Lightning, released in August, handles high-throughput workloads; Ultra handles the hardest reasoning tasks; and Bolt brings intelligence to the edge. </span></p>
+<h2><b>Nemotron 3.5 Super VL: Frontier Accuracy at One-Fifth the Size</b></h2>
+<p><span>Super VL, built in collaboration with the </span><a href="https://nvidianews.nvidia.com/news/nvidia-launches-nemotron-coalition-of-leading-global-ai-labs-to-advance-open-frontier-models" target="_blank" rel="noopener noreferrer nofollow"><span>Nemotron Coalition</span></a><span>, delivers leading accuracy on multimodal agentic tasks — instruction following, tool use, multistep business workflows, and visual understanding — comparable with NVIDIA’s largest reasoning model at roughly one-fifth the parameter count.<br />
+</span></p>
+<figure><figcaption>Nemotron 3.5 Super VL delivers frontier-level intelligence in its class for high-volume agentic workflows.</figcaption></figure>
+<p><span>As the fastest open agentic model in its class — 5x faster than the next best — it helps enterprise agents complete high-volume tasks faster across workflows that span days or weeks. </span></p>
+<figure><figcaption>Nemotron 3.5 Super VL, on Artificial Analysis Intelligence Index leadboard, achieves up to 5x faster throughput compared to other models in its class.</figcaption></figure>
+<p><span>Unlike closed frontier models, organizations can post-train Super VL on their own data, deploy it on their own infrastructure and oversee what they build.</span><span><br />
+</span></p>
+<h2>Nemotron 3.5 Bolt: Agentic Intelligence at the Edge</h2>
+<p><span>Bolt 74B-A9B 24GB is designed to run everyday agentic tasks locally on NVIDIA RTX/DGX Spark, using a native 2-bit quantization to fit in 24GB of memory and run alongside other applications.</span></p>
+<p><span>Relative to other models with a similar memory footprint, it provides a good balance of intelligence and speed: smart enough to get most jobs done, yet much faster than the smartest models.</span></p>
+<p></p>
+
+<p><span>With Bolt 74B-A9B 24GB, users can delegate their projects to popular local agent harnesses — from researching the web to writing to debugging code — all without sending those workloads to the cloud. It is the #1 open model in its class on </span><a href="https://pinchbench.com/?slm=true" target="_blank" rel="noopener noreferrer nofollow"><span>PinchBench</span></a><span>, and the #2 open model for </span><a href="https://leaderboard.steel.dev/leaderboards/browsecomp/?weights=open&amp;sizes=tiny%2Csmall%2Cmedium" target="_blank" rel="noopener noreferrer nofollow"><span>BrowseComp</span></a><span>.</span><span><br />
+</span><span><br />
+</span><span>Bolt E4B 4GB is built for physical and conversational agents on GeForce RTX, Jetson, and RTX/DGX Spark. It combines natural conversation with multi-turn agentic capabilities to power fast local voice assistants, interactive characters and embedded interfaces. </span></p>
+<h2><b>Adoption of Custom Super Intelligence</b></h2>
+<p><span>Dozens of organizations across industries are post-training Super VL on their own data, tools, policies and workflows to push accuracy higher on the specialized tasks that define their agent deployments. </span></p>
+<p><span>Super VL is being post-trained and customized by organizations across industries. </span><a href="https://scale.com/blog/scale-partners-with-nvidia" target="_blank" rel="noopener noreferrer nofollow"><span>Scale AI</span></a><span> post-trained the model for Skydance’s vendor credit finance agent and for EY’s M&amp;A due diligence agent.</span> <span>AfterQuery</span><span> customized the model for Hebbia for credit agreement analysis. </span><span><a href="https://www.ai21.com/blog/ai21-post-trains-nvidia-nemotron-35-super-vl/" target="_blank" rel="noopener noreferrer nofollow">AI21</a> and <a href="http://alice.io/blog/nemotron-ai21" target="_blank" rel="noopener noreferrer nofollow">Alice</a></span><span> post-trained the model for cybersecurity attack resilience.</span> <span>Mercor </span><span>post-trained the model on APEX-SWE coding benchmark, for coding agents that plan, write and debug code. </span><span><a href="https://modelscope.ai/collections/nv-community/Nemotron-35-Super-VL" target="_blank" rel="noopener noreferrer nofollow">ModelScope</a> enables developers to fine-tune the model through its <a href="https://github.com/modelscope/ms-swift" target="_blank" rel="noopener noreferrer nofollow">ms-swift </a>framework for specialized multimodal applications.</span></p>
+<p><span>Additional organizations customizing Nemotron 3.5 Super VL include </span><span>Ramp </span><span>for financial document intelligence; </span><span>Dream</span><span>, sovereign AI-powered cybersecurity research and vulnerability analysis;</span><span> Lila Sciences </span><span>for scientific discovery and search, and</span> <a href="http://www.r1rcm.com/resources/long-context-medical-reasoning-to-reduce-denials-post-training-nvidia-nemotron-3-5-super" target="_blank" rel="noopener noreferrer nofollow"><span>R1</span></a> <span>for medical claims analysis and revenue cycle management. </span><span>TrainLoop</span><span> post-trained the model with dermatology data from Nolla, which just became the first company approved for AI to write initial patient prescriptions.</span><span><br />
+</span><span><br />
+</span><span>Software platform companies integrating Nemotron 3.5 Super VL include: </span></p>
+<ul>
+<li><b>Atlassian</b><b>, </b><span>for tasks like agentic search across apps such as Jira and Confluence.</span></li>
+<li><b>CrowdStrike</b><span>, which is customizing the model for agentic blue teaming in enterprise security.</span></li>
+<li><b>Dassault Systèmes</b><span>, powering engineering design and simulation. </span></li>
+<li><b>Perplexity</b><span>, for search and agentic tasks in Perplexity Search and Computer.</span></li>
+<li><strong><a href="https://www.salesforce.com/news/press-releases/2026/09/15/koa-reasoning-model/" target="_blank" rel="noopener noreferrer nofollow">Salesforce</a></strong><span>, which is customizing Nemotron to power AI agents that digitize and automate complex government workflows in secure customer environments through Missionforce Operations.</span></li>
+<li><b>Synopsys</b><span> software for semiconductor design verification interoperates with the model.</span></li>
+</ul>
+<h2>What Nemotron 3.5 Super VL Actually Sees</h2>
+<p><span>Nemotron 3.5 Super VL’s </span><a href="https://www.nvidia.com/en-us/glossary/vision-language-models/" target="_blank" rel="noopener noreferrer nofollow"><span>vision language</span></a><span> strengths are targeted at what agents encounter in practice: optical character recognition, tables, charts and structured information in visual documents. </span></p>
+<p><span>It processes a web page, extracts text, reads graphs and charts, and returns insights from what it finds. The same applies to PDFs and other documents agents commonly work with.</span></p>
+<p><span>Nemotron 3.5 Super VL understands images, webpages and PDFs and acts on that understanding. Combining text and visual understanding in one model means agents don’t need to route tasks between separate systems — context carries through as work moves from document to data to decision. </span></p>
+<h2><b>Open for Maximum Control, Security, and Privacy</b></h2>
+<p><span>Openness and customizability reinforce each other. The model ships with open weights, open datasets and training recipes.</span></p>
+<p><span>Control runs in two directions. Organizations can run the model wherever their security and data-residency requirements dictate. They also choose to adopt a model they can adapt, rather than one subject to a provider’s restrictions.</span></p>
+<p><span>In insurance, for example, a customized agent can scan claims for fraud markers on repeat. In financial services, an agent can review credit scores and flag activity against an organization’s own lending criteria. The model stays on premises. The data stays private.</span></p>
+<p><span>Customization is supported through NVIDIA NeMo, Python-based pipelines and open datasets.</span></p>
+<p><span>Nemotron 3.5 Super VL was trained on about 26 trillion tokens across </span><a href="https://huggingface.co/collections/nvidia/nemotron-pre-training-datasets" target="_blank" rel="noopener noreferrer nofollow"><span>pretraining</span></a><span> and continued pretraining, then post-trained with roughly 3.8 million samples and reinforcement learning across dozens of environments. </span></p>
+<p><span>NVIDIA is also releasing open datasets on Hugging Face spanning </span><a href="https://huggingface.co/collections/nvidia/nemotron-post-training-v3" target="_blank" rel="noopener noreferrer nofollow"><span>agentic tool use</span></a><span>, finance, instruction following, long context, fairness and vision-language understanding, along with the reinforcement learning environments in NeMo Gym.</span></p>
+<p><a href="https://www.nvidia.com/en-us/ai-data-science/products/nim-microservices/" target="_blank" rel="noopener noreferrer nofollow"><span>NVIDIA NIM</span></a><span> packages the model as a production-ready microservice with performance-optimized, validated configurations and enterprise-grade support, refreshed every two weeks with security patches and performance improvements.</span></p>
+<p><span>And with the model running on NVIDIA Dynamo, organizations can serve up to 8x more users with 85% lower latency.</span></p>
+<p><span>Nemotron 3.5 Super VL is available now on Hugging Face, Open Router, </span><a href="https://modelscope.ai/collections/nv-community/Nemotron-35-Super-VL" target="_blank" rel="noopener noreferrer nofollow"><span>ModelScope</span><span> community</span></a><span> and as NVIDIA NIM.</span></p>
+<h2><b>Runs on DGX Spark, DGX Station, and RTX </b></h2>
+<p><span>Nemotron 3.5 Super VL runs across NVIDIA’s full hardware stack: on </span><a href="https://www.nvidia.com/en-us/products/workstations/dgx-spark/" target="_blank" rel="noopener noreferrer nofollow"><span>DGX Spark</span></a><span>, </span><a href="https://www.nvidia.com/en-us/products/workstations/dgx-station/" target="_blank" rel="noopener noreferrer nofollow"><span>DGX Station</span></a><span>,  RTX PRO and RTX systems for local intelligence at the desktop, on </span><a href="https://www.nvidia.com/en-us/autonomous-machines/embedded-systems/" target="_blank" rel="noopener noreferrer nofollow"><span>NVIDIA Jetson</span></a><span> at the edge, and across data center and cloud environments.</span></p>
+<p><a href="https://research.nvidia.com/labs/nemotron/Nemotron-3.5-Bolt-24GB/" target="_blank" rel="noopener noreferrer nofollow"><span>Nemotron 3.5 Bolt 74B-A9B 24G</span><span>B</span></a><span> is available now on Hugging Face, with support for llama.cpp, <a href="https://huggingface.co/nvidia/NVIDIA-Nemotron-3.5-Bolt-74B-A9B-24GB-GGUF" target="_blank" rel="noopener noreferrer nofollow">Ollama</a>, <a href="https://lmstudio.ai/models/nvidia/nemotron-3.5-bolt-74b-a9b" target="_blank" rel="noopener noreferrer nofollow">LM Studio</a>, <a href="https://unsloth.ai/docs/models/nemotron-3.5-bolt" target="_blank" rel="noopener noreferrer nofollow">Unsloth</a>, and <a href="https://huggingface.co/nvidia/NVIDIA-Nemotron-3.5-Bolt-74B-A9B-24GB" target="_blank" rel="noopener noreferrer nofollow">vLLM</a>. Built for </span><a href="https://www.nvidia.com/en-us/products/rtx-spark/" target="_blank" rel="noopener noreferrer nofollow"><span>NVIDIA RTX Spark laptops</span></a><span> arriving Oct. 16, it also runs on </span><a href="https://www.nvidia.com/en-us/ai-on-rtx/" target="_blank" rel="noopener noreferrer nofollow"><span>GeForce RTX PCs</span></a><span>, </span><a href="https://www.nvidia.com/en-us/products/workstations/dgx-spark/" target="_blank" rel="noopener noreferrer nofollow"><span>DGX Spark</span></a><span>, </span><a href="https://www.nvidia.com/en-us/products/workstations/dgx-station/" target="_blank" rel="noopener noreferrer nofollow"><span>DGX Station</span></a><span> and </span><a href="https://www.nvidia.com/en-us/products/workstations/" target="_blank" rel="noopener noreferrer nofollow"><span>RTX PRO workstations</span></a><span>.</span></p>
+<p><i><span>Download the </span></i><a href="https://huggingface.co/nvidia/NVIDIA-Nemotron-3.5-Super-VL-120B-A12B-NVFP4" target="_blank" rel="noopener noreferrer nofollow"><i><span>open weights</span></i></a><i><span>, explore customization resources with NVIDIA NeMo, or read the </span></i><a href="https://developer.nvidia.com/blog/nvidia-nemotron-3-5-super-vl-powers-specialized-agents-with-multimodal-reasoning/" target="_blank" rel="noopener noreferrer nofollow"><i><span>technical blog</span></i></a><i><span> for the full architecture breakdown.</span></i></p>
+<p><i><span>Stay up to date on agents, NVIDIA</span></i><a href="https://www.nvidia.com/en-us/ai-data-science/foundation-models/nemotron/" target="_blank" rel="noopener noreferrer nofollow"> <i><span>Nemotron</span></i></a><i><span> and more by subscribing to</span></i><a href="https://www.nvidia.com/en-us/executive-insights/generative-ai-tools/?modal=stay-inf" target="_blank" rel="noopener noreferrer nofollow"> <i><span>NVIDIA news</span></i></a><i><span>,</span></i><a href="https://developer.nvidia.com/community" target="_blank" rel="noopener noreferrer nofollow"> <i><span>joining the community</span></i></a><i><span>, and following NVIDIA AI on</span></i><a href="https://www.linkedin.com/showcase/nvidia-ai/posts/?feedView=all" target="_blank" rel="noopener noreferrer nofollow"> <i><span>LinkedIn</span></i></a><i><span>,</span></i><a href="https://www.instagram.com/nvidiaai/?hl=en" target="_blank" rel="noopener noreferrer nofollow"> <i><span>Instagram</span></i></a><i><span>,</span></i><a href="https://x.com/NVIDIAAIDev" target="_blank" rel="noopener noreferrer nofollow"> <i><span>X</span></i></a><i><span> and</span></i><a href="https://www.facebook.com/NVIDIAAI" target="_blank" rel="noopener noreferrer nofollow"> <i><span>Facebook</span></i></a><i><span>.</span></i></p>
+<p><i><span>Explore</span></i><a href="https://youtube.com/playlist?list=PL5B692fm6--vdRKB14FImVi7MTJ77zjn4&amp;feature=shared" target="_blank" rel="noopener noreferrer nofollow"> <i><span>self-paced video tutorials and livestreams</span></i></a><i><span>.</span></i></p>
+<p><i><span>See</span></i><a href="https://www.nvidia.com/en-eu/about-nvidia/terms-of-service/" target="_blank" rel="noopener noreferrer nofollow"> <i><span>notice</span></i></a><i><span> regarding software product information.</span></i></p>
+		</div></div></div>
+  <div class="footer">
+    本文由 AI热点监控系统自动抓取 · 内容版权归原作者/网站所有<br>
+    快照仅用于学习交流，如需转载请访问原文
+  </div>
+</div>
+</body>
+</html>
