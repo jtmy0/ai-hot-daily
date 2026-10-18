@@ -91,7 +91,7 @@ body { background: var(--bg-outer); font-family: var(--font-body); min-height: 1
       <a class="back-link" href="./">← 归档首页</a>
       <h1>AI 热点日报</h1>
       <div class="subtitle">
-        <span class="date">2026年10月18日，星期日 · 道法术器解读</span>
+        <span class="date">2026年10月18日，星期日· 含新增 · 道法术器解读</span>
         <div class="controls">
           <button id="expandAll">展开全部</button>
           <button id="collapseAll">收起全部</button>
@@ -103,203 +103,185 @@ body { background: var(--bg-outer); font-family: var(--font-body); min-height: 1
         <div class="entry-head">
           <div class="bullet" style="background: var(--tab-1);"></div>
           <div class="info">
-            <h3>官方插件目录争夺入口</h3>
-            <div class="meta">GitHub Trending · 🔥 100 · 11小时前</div>
+            <h3><span class="badge-icon"> 🆕</span> 检索定价战开打</h3>
+            <div class="meta">Hacker News · 🔥 65 · 5小时前</div>
           </div>
           <div class="expand-icon">▼</div>
         </div>
-        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：AI 编程工具的竞争正从模型能力转向<strong>生态入口</strong>，官方托管插件目录意味着厂商开始收拢分发权，把开发者留在自有体系内。<strong>法</strong>：以官方认证目录建立质量门槛，用分发权换取生态锁定，适用于所有平台型工具从开放走向治理的阶段。<strong>术</strong>：优先接入官方目录获取曝光与信任背书；同步保留自建分发渠道避免单一依赖；评估插件被官方收录后的审核与迭代成本。<strong>器</strong>：Claude Code、anthropics/claude-plugins-official、GitHub Trending。</p>
-<a class="source-link" href="https://github.com/anthropics/claude-plugins-official" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
+        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：AI 应用的成本结构正从模型推理向检索与数据获取迁移，搜索抓取按成功请求计价的模式，标志信息获取环节被彻底商品化，价格战沿产业链向上游蔓延。<strong>法</strong>：把不可控的固定成本拆成按结果付费的可变成本，用成功计费降低采用门槛，适用于所有依赖外部数据源的 AI 产品。<strong>术</strong>：按成功请求而非调用次数核算真实成本；在检索层做缓存与去重，压低重复抓取；对高价值查询与长尾查询分层路由。<strong>器</strong>：DeepSeek 搜索抓取接口、自建缓存层、向量数据库。</p>
+<a class="source-link" href="https://api-docs.deepseek.com/guides/search/" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
       </div>
       <div class="entry" data-cat="ai" style="animation-delay: 0.18s;">
         <div class="entry-head">
           <div class="bullet" style="background: var(--tab-1);"></div>
           <div class="info">
-            <h3>轻量模型冲击成本线</h3>
-            <div class="meta">Hacker News · 🔥 100 · 19小时前</div>
+            <h3><span class="badge-icon"> 🆕</span> 上线前先考自己</h3>
+            <div class="meta">Hacker News · 🔥 59 · 7小时前</div>
           </div>
           <div class="expand-icon">▼</div>
         </div>
-        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：模型迭代正沿<strong>更低推理成本、更快响应</strong>的路径持续压缩，Flash 类轻量版本把高性能从稀缺资源变成可批量调用的基础设施。<strong>法</strong>：用轻量模型承接高频低复杂度任务，把重模型留给关键推理，形成分层调用以控制总成本。<strong>术</strong>：对现有调用链做任务分级，把分类、抽取、格式化迁到轻量模型；建立效果与成本的对照基线再切换；保留回退到重模型的开关。<strong>器</strong>：DeepSeek-v4.1-Flash-1017、Hacker News、模型路由与评测脚本。</p>
-<a class="source-link" href="https://huggingface.co/deepseek-ai/DeepSeek-V4.1-Flash-1017" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
+        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：AI 生成代码的瓶颈已从写得出来转向审得过来，人类审查能力成为交付速度的真实上限，把理解验证前置到提交环节是必然趋势。<strong>法</strong>：用主动测验替代被动阅读，让开发者先证明理解再放行，把质量门禁从测试阶段前移到认知阶段。<strong>术</strong>：在提交钩子中自动抽取改动逻辑生成问答；答错即阻断合并并记录薄弱点；按模块统计错题率，定位高风险代码区。<strong>器</strong>：Sphinx 钩子、Git pre-commit、CI 流水线。</p>
+<a class="source-link" href="https://sphinx-six-theta.vercel.app/" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
       </div>
       <div class="entry" data-cat="ai" style="animation-delay: 0.26s;">
         <div class="entry-head">
           <div class="bullet" style="background: var(--tab-1);"></div>
           <div class="info">
-            <h3>多智能体编排成新层</h3>
-            <div class="meta">GitHub Trending · 🔥 80 · 11小时前</div>
+            <h3><span class="badge-icon"> 🆕</span> AI 摘要责任落地</h3>
+            <div class="meta">The Decoder：AI News（RSS） · 🔥 100 · 1小时前</div>
           </div>
           <div class="expand-icon">▼</div>
         </div>
-        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：当编码智能体数量增多，价值重心从单个智能体能力转向<strong>编排与调度层</strong>，谁能统一管理一队智能体，谁就掌握工作流入口。<strong>法</strong>：把异构智能体抽象为可统一调度的资源池，用编排层屏蔽底层差异，适用于任何多工具并存的场景。<strong>术</strong>：先选一个高频任务做多智能体并行试点；统一日志与产物落盘规范便于比对；设定人工审核节点控制失控风险。<strong>器</strong>：stablyai/orca、Claude Code、Grok Bot、GitHub Trending。</p>
-<a class="source-link" href="https://github.com/stablyai/orca" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
+        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：生成式内容的法律责任正从免责声明转向实质归责，平台不能再用技术中立切割搜索结果与自生成答案的边界，合规成本将内化为产品设计约束。<strong>法</strong>：把责任风险前置为内容治理流程，对自动生成结论建立来源可追溯、错误可纠正、争议可申诉的闭环。<strong>术</strong>：为每条 AI 摘要保留引用来源与生成时间戳；建立错误反馈与快速下架通道；按司法辖区配置差异化输出策略。<strong>器</strong>：Google AI Overview、来源引用标注系统、内容审核平台。</p>
+<a class="source-link" href="https://the-decoder.com/two-german-courts-now-hold-google-liable-for-what-its-ai-overviews-say/" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
       </div>
       <div class="entry" data-cat="ai" style="animation-delay: 0.33999999999999997s;">
         <div class="entry-head">
           <div class="bullet" style="background: var(--tab-1);"></div>
           <div class="info">
-            <h3>软件全面Agent化接口层</h3>
-            <div class="meta">GitHub Trending · 🔥 71 · 11小时前</div>
+            <h3><span class="badge-icon"> 🆕</span> LLM课程登顶反映人才缺口</h3>
+            <div class="meta">GitHub Trending · 🔥 52 · 20小时前</div>
           </div>
           <div class="expand-icon">▼</div>
         </div>
-        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：软件交互正从面向人的图形界面转向面向智能体的命令行接口，<strong>Agent-Native 成为软件的基础属性而非附加功能</strong>，这一趋势不可逆。
-<strong>法</strong>：把既有软件能力抽象为<strong>机器可调用的原子接口</strong>，让智能体像调用函数一样调用软件，适用于任何需要被自动化编排的系统。
-<strong>术</strong>：优先为高频操作封装稳定 CLI 命令；统一参数与输出格式便于智能体解析；建立接口版本管理避免调用断裂。
-<strong>器</strong>：CLI-Anything、CLI-Hub、各类开源编码智能体。</p>
-<a class="source-link" href="https://github.com/HKUDS/CLI-Anything" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
+        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：大模型技术栈的标准化速度已超过高校课程更新速度，开源课程登顶趋势榜说明<strong>知识供给正从机构垄断转向社区众包</strong>，这一结构性变化不可逆。<strong>法</strong>：以路线图加可运行 Notebook 的组合降低入门门槛，用<strong>可验证的动手产出替代理论灌输</strong>，该模式可迁移到任何新兴技术领域的教育产品设计。<strong>术</strong>：按路线图分阶段完成 Colab 实操并留存产出物；将 Notebook 改造为自有业务场景的最小验证；以提交 PR 或复现结果建立可展示的能力凭证。<strong>器</strong>：GitHub、Google Colab、Hugging Face 模型库、Jupyter 生态。</p>
+<a class="source-link" href="https://github.com/mlabonne/llm-course" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
       </div>
       <div class="entry" data-cat="ai" style="animation-delay: 0.42000000000000004s;">
         <div class="entry-head">
           <div class="bullet" style="background: var(--tab-1);"></div>
           <div class="info">
-            <h3>开源编码智能体成入口</h3>
-            <div class="meta">GitHub Trending · 🔥 66 · 11小时前</div>
+            <h3><span class="badge-icon"> 🔄</span> DeepSeek新版本压低推理成本</h3>
+            <div class="meta">Hacker News · 🔥 100 · 昨天</div>
           </div>
           <div class="expand-icon">▼</div>
         </div>
-        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：编码智能体正从辅助工具演变为<strong>软件生产的主入口</strong>，开源路线以低成本快速聚集开发者，形成事实标准。
-<strong>法</strong>：以开源核心吸引开发者共建生态，再通过托管服务与企业版变现，<strong>用社区规模换取商业议价权</strong>。
-<strong>术</strong>：在本地部署开源智能体跑通完整开发闭环；评估其与现有 CI/CD 的集成成本；跟踪社区迭代节奏决定是否深度绑定。
-<strong>器</strong>：anomalyco 开源编码智能体、GitHub Trending、主流代码托管平台。</p>
-<a class="source-link" href="https://github.com/sponsors/anomalyco" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
+        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：模型迭代正从参数规模竞赛转向<strong>单位推理成本竞赛</strong>，Flash 类命名指向低延迟低成本路线，价格下行是长期确定趋势。<strong>法</strong>：以高频小版本快速迭代抢占开发者心智，用<strong>成本优势换取调用量和使用数据</strong>，再反哺模型优化，形成闭环。<strong>术</strong>：在灰度期用自有任务集做 A/B 对比延迟与准确率；核算迁移后的单次调用成本与重训开销；对关键链路保留双模型兜底以规避版本波动风险。<strong>器</strong>：DeepSeek API、vLLM 推理框架、LangChain、主流云厂商模型网关。</p>
+<a class="source-link" href="https://huggingface.co/deepseek-ai/DeepSeek-V4.1-Flash-1017" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
       </div>
       <div class="entry" data-cat="ai" style="animation-delay: 0.5s;">
         <div class="entry-head">
           <div class="bullet" style="background: var(--tab-1);"></div>
           <div class="info">
-            <h3>效率工具侵蚀专业能力</h3>
-            <div class="meta">36kr · 🔥 100 · 3小时前</div>
+            <h3><span class="badge-icon"> 🔄</span> AI提效或削弱新人成长路径</h3>
+            <div class="meta">36kr · 🔥 100 · 12小时前</div>
           </div>
           <div class="expand-icon">▼</div>
         </div>
-        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：AI 提升单点效率的同时，<strong>压缩了专业人才成长所需的重复训练环节</strong>，长期看削弱行业整体能力厚度。
-<strong>法</strong>：把 AI 定位为<strong>放大器而非替代品</strong>，在关键能力上保留人工刻意练习，在低价值环节才交给模型。
-<strong>术</strong>：识别岗位中不可外包的核心判断环节；为新人设计必须手做的训练任务；用 AI 产出做对照而非直接采用。
-<strong>器</strong>：AI 编程助手、代码审查工具、能力评估与训练平台。</p>
+        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：效率工具压缩了初级岗位的练手环节，<strong>经验积累的阶梯正在被抽走</strong>，这是组织能力断层的长期隐患而非短期效率问题。<strong>法</strong>：把 AI 定位为<strong>放大器而非替代品</strong>，在流程中刻意保留高认知负荷的练习环节，用结构化复盘替代重复劳动带来的隐性学习。<strong>术</strong>：为新人设定必须手工完成的核心任务清单；建立 AI 产出的人工校验与错误归因机制；将节省的时间定向投入判断力训练与跨环节轮岗。<strong>器</strong>：代码评审工具、AI 输出溯源与日志平台、内部知识库与复盘模板。</p>
 <a class="source-link" href="https://www.36kr.com/p/3987041583676160" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
       </div>
       <div class="entry" data-cat="ai" style="animation-delay: 0.58s;">
         <div class="entry-head">
           <div class="bullet" style="background: var(--tab-1);"></div>
           <div class="info">
-            <h3>本地大模型硬件决策工具</h3>
-            <div class="meta">Hacker News · 🔥 68 · 22小时前</div>
+            <h3><span class="badge-icon"> 🔄</span> 搜索API开放补全闭环</h3>
+            <div class="meta">DeepSeek：API 更新日志 · 🔥 99 · 昨天</div>
           </div>
           <div class="expand-icon">▼</div>
         </div>
-        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：本地推理的瓶颈正从模型能力转向硬件匹配，用户决策成本成为生态扩张的主要摩擦。<strong>法</strong>：把不可见的性能差异转化为可感知的体验对比，用前置评测降低高客单价硬件的试错门槛，适用于所有软硬结合型产品。<strong>术</strong>：先用真实业务负载跑基准而非跑分；记录首 token 延迟与长上下文吞吐两项关键指标；按目标模型量化版本反推显存与带宽下限。<strong>器</strong>：Llmspeed、llama.cpp、Ollama、消费级 GPU 与统一内存设备。</p>
-<a class="source-link" href="https://llmspeed.dev/" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
+        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：模型厂商的竞争焦点正从参数规模转向<strong>数据获取与分发闭环</strong>，自研搜索API开放意味着模型能力与实时信息检索深度绑定，长期看搜索将成为大模型基础设施而非独立产品。<strong>法</strong>：以核心能力开放接口换取生态位，让开发者在自家平台上构建应用，从而锁定调用路径和数据回流，适用于所有平台型技术产品。<strong>术</strong>：优先评估该API的检索延迟与结果可控性，在现有RAG链路中做A/B替换测试，测算自建搜索与调用API的成本差。<strong>器</strong>：DeepSeek搜索API、向量数据库、RAG编排框架。</p>
+<a class="source-link" href="https://api-docs.deepseek.com/zh-cn/updates/#%E5%BC%80%E6%94%BE%E8%87%AA%E7%A0%94%E6%90%9C%E7%B4%A2-api" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
       </div>
-      <div class="entry" data-cat="sec" style="animation-delay: 0.66s;">
+      <div class="entry" data-cat="ai" style="animation-delay: 0.66s;">
         <div class="entry-head">
-          <div class="bullet" style="background: var(--tab-3);"></div>
+          <div class="bullet" style="background: var(--tab-1);"></div>
           <div class="info">
-            <h3>图表即代码的主题化输出</h3>
-            <div class="meta">Hacker News · 🔥 68 · 11小时前</div>
+            <h3><span class="badge-icon"> 🔄</span> 加量不加价挤压竞品</h3>
+            <div class="meta">DeepSeek：API 更新日志 · 🔥 99 · 昨天</div>
           </div>
           <div class="expand-icon">▼</div>
         </div>
-        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：文档与图表的边界正在消解，<strong>文本源码成为唯一事实源</strong>，渲染层可替换。<strong>法</strong>：把结构化描述与视觉呈现解耦，同一份源码适配多终端与多品牌主题，降低维护重复成本。<strong>术</strong>：将图表源码纳入版本控制并与代码同仓；用主题变量统一配色而非逐图手调；在 CI 中校验图表语法防止文档腐化。<strong>器</strong>：Pele、Mermaid、SVG、静态站点生成器与设计令牌体系。</p>
-<a class="source-link" href="https://pele.run/" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
+        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：模型迭代进入<strong>性能提升而价格不涨</strong>的阶段，说明推理成本下降速度快于能力提升速度，价格战将以隐性方式持续，中小模型厂商的利润空间被系统性压缩。<strong>法</strong>：用版本升级维持用户留存而不触动定价体系，把成本优化红利转化为性能优势而非降价，避免过早消耗价格弹药。<strong>术</strong>：对比新旧版本在自有业务基准上的实际增益，评估是否值得迁移；关注API限流与上下文窗口变化；对关键任务保留旧版本回滚通道。<strong>器</strong>：DeepSeek-V4.1-Flash-1017、多基准评测集、API网关监控。</p>
+<a class="source-link" href="https://api-docs.deepseek.com/zh-cn/updates/#deepseek-v41-flash-1017-%E6%9B%B4%E6%96%B0" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
       </div>
       <div class="entry" data-cat="ai" style="animation-delay: 0.74s;">
         <div class="entry-head">
           <div class="bullet" style="background: var(--tab-1);"></div>
           <div class="info">
-            <h3>模型厂商开放搜索能力</h3>
-            <div class="meta">DeepSeek：API 更新日志 · 🔥 99 · 昨天</div>
+            <h3><span class="badge-icon"> 🔄</span> 开源编码代理加速普及</h3>
+            <div class="meta">GitHub Trending · 🔥 82 · 20小时前</div>
           </div>
           <div class="expand-icon">▼</div>
         </div>
-        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：模型竞争正从参数规模转向<strong>信息获取链路</strong>的完整度，检索能力成为推理质量的上限约束。<strong>法</strong>：把内部能力封装为可计费 API 对外输出，以调用量换取数据回流与生态绑定，适用于所有平台型技术厂商。<strong>术</strong>：优先接入搜索 API 补齐时效性短板；对检索结果做来源标注与缓存以控成本；建立召回质量与延迟的监控基线再扩量。<strong>器</strong>：DeepSeek 搜索 API、向量数据库、RAG 框架与可观测性平台。</p>
-<a class="source-link" href="https://api-docs.deepseek.com/zh-cn/updates/#%E5%BC%80%E6%94%BE%E8%87%AA%E7%A0%94%E6%90%9C%E7%B4%A2-api" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
+        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：编码代理正从商业闭源产品走向<strong>开源可自托管</strong>，开发工具的控制权向使用者转移，长期看编码环节的自动化将成为默认配置而非增值功能。<strong>法</strong>：以开源项目积累社区贡献和真实场景反馈，再通过托管服务或企业版变现，是基础设施类工具的标准路径。<strong>术</strong>：在隔离环境中试跑该代理的代码修改权限边界，评估其对现有仓库规范的遵循度，测算自托管与商用方案的维护成本。<strong>器</strong>：anomalyco开源编码代理、Git版本控制、容器化沙箱环境。</p>
+<a class="source-link" href="https://github.com/sponsors/anomalyco" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
       </div>
       <div class="entry" data-cat="ai" style="animation-delay: 0.82s;">
         <div class="entry-head">
           <div class="bullet" style="background: var(--tab-1);"></div>
           <div class="info">
-            <h3>模型升级不涨价挤压中小厂商</h3>
-            <div class="meta">DeepSeek：API 更新日志 · 🔥 99 · 昨天</div>
+            <h3><span class="badge-icon"> 🔄</span> 官方插件目录争夺入口</h3>
+            <div class="meta">GitHub Trending · 🔥 77 · 20小时前</div>
           </div>
           <div class="expand-icon">▼</div>
         </div>
-        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：头部模型能力持续提升而价格不变，说明推理成本下降速度已快于定价下调速度，模型层正加速走向<strong>同质化商品</strong>，单靠参数领先无法维持溢价。
-<strong>法</strong>：用<strong>能力升级+价格锁定</strong>组合抬高竞争门槛，把对手逼入&quot;跟进即亏损、不跟进即掉队&quot;的两难，适用于所有边际成本递减的技术产品。
-<strong>术</strong>：在同等预算下重跑自有业务基准，验证升级是否带来真实收益；把节省的算力预算转向数据与评测体系建设；对关键任务保留多模型备份，避免单一供应商锁定。
-<strong>器</strong>：DeepSeek-V4.1-Flash-1017 API、自建评测集、多模型路由网关。</p>
-<a class="source-link" href="https://api-docs.deepseek.com/zh-cn/updates/#deepseek-v41-flash-1017-%E6%9B%B4%E6%96%B0" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
+        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：AI 编程工具竞争已从模型能力转向<strong>生态入口</strong>，官方插件目录本质是把开发者工作流锁定在自家标准上，形成分发权。<strong>法</strong>：以官方认证目录建立插件质量标准，用审核与托管换取生态控制权，再以目录流量反哺核心产品，适用于任何平台型工具。<strong>术</strong>：优先把高频操作封装为插件并提交官方目录，借认证背书降低用户信任成本；同步保留自建分发渠道，避免单一目录依赖。<strong>器</strong>：Claude Code、官方插件目录、GitHub Trending。</p>
+<a class="source-link" href="https://github.com/anthropics/claude-plugins-official" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
       </div>
       <div class="entry" data-cat="ai" style="animation-delay: 0.9s;">
         <div class="entry-head">
           <div class="bullet" style="background: var(--tab-1);"></div>
           <div class="info">
-            <h3>求职流程本地化智能体框架</h3>
-            <div class="meta">GitHub Trending · 🔥 99 · 11小时前</div>
+            <h3><span class="badge-icon"> 🔄</span> 多智能体编排成新战场</h3>
+            <div class="meta">GitHub Trending · 🔥 76 · 20小时前</div>
           </div>
           <div class="expand-icon">▼</div>
         </div>
-        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：AI 应用正从云端通用助手转向<strong>本地运行、垂直场景</strong>的个人智能体，隐私与数据主权成为差异化卖点，通用平台难以覆盖长尾个人流程。
-<strong>法</strong>：把重复性强的个人事务拆成<strong>可编排的步骤链</strong>，交给本地智能体执行，人只做判断与最终确认，这一模式可迁移到报税、比价、投研等场景。
-<strong>术</strong>：先梳理岗位筛选、简历定制、投递跟踪的标准流程；把个人资料与偏好存于本地，仅向模型传递必要片段；设置人工复核节点，防止批量投递失控。
-<strong>器</strong>：Claude Code、本地文件存储、浏览器自动化脚本。</p>
-<a class="source-link" href="https://github.com/sponsors/MadsLorentzen" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
+        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：单智能体能力趋于同质化后，价值向<strong>多智能体编排层</strong>迁移，谁能统一调度异构代理，谁就掌握任务分发的枢纽位置。<strong>法</strong>：以统一运行时抽象不同代理的差异，把切换成本转化为编排价值，适用于所有多模型、多工具并存的场景。<strong>术</strong>：先接入两到三个主力编码代理做并行任务验证；建立任务路由与结果校验规则，避免代理间互相污染上下文；记录各代理成功率用于动态调度。<strong>器</strong>：Orca、Claude Code、Grok Bot、GitHub Trending。</p>
+<a class="source-link" href="https://github.com/stablyai/orca" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
       </div>
       <div class="entry" data-cat="ai" style="animation-delay: 0.98s;">
         <div class="entry-head">
           <div class="bullet" style="background: var(--tab-1);"></div>
           <div class="info">
-            <h3>技能库让通用智能体变专家</h3>
-            <div class="meta">GitHub Trending · 🔥 81 · 11小时前</div>
+            <h3><span class="badge-icon"> 🔄</span> CLI 成智能体原生接口</h3>
+            <div class="meta">GitHub Trending · 🔥 63 · 20小时前</div>
           </div>
           <div class="expand-icon">▼</div>
         </div>
-        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：智能体竞争重心从模型能力转向<strong>技能与知识封装</strong>，可复用的技能库正在成为新的分发层，谁掌握高质量领域技能包，谁就掌握垂直入口。
-<strong>法</strong>：把领域专家的隐性经验沉淀为<strong>标准化技能模块</strong>，让通用智能体按需加载，从而以低成本复制专业能力，适用于科研、法务、运维等知识密集领域。
-<strong>术</strong>：优先挑选高频、可验证的科研子任务封装成技能；为每个技能配套输入输出规范与失败回退策略；建立技能版本管理与效果评测，避免能力漂移。
-<strong>器</strong>：K-Dense-AI/scientific-agent-skills、通用智能体运行时、技能评测脚本。</p>
-<a class="source-link" href="https://github.com/K-Dense-AI/scientific-agent-skills" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
+        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：软件与智能体的交互正从图形界面回归<strong>命令行接口</strong>，CLI 结构清晰、可组合、易被模型调用，是智能体接管软件的最低成本路径。<strong>法</strong>：把现有软件能力抽象为可脚本化的命令层，再以统一协议暴露给代理，适用于所有需要被自动化调用的存量系统。<strong>术</strong>：盘点高频操作并封装为幂等命令；为命令补充结构化输出与错误码，便于代理解析；用统一入口聚合分散工具，降低接入成本。<strong>器</strong>：CLI-Anything、CLI-Hub、GitHub Trending。</p>
+<a class="source-link" href="https://github.com/HKUDS/CLI-Anything" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
       </div>
       <div class="entry" data-cat="ai" style="animation-delay: 1.06s;">
         <div class="entry-head">
           <div class="bullet" style="background: var(--tab-1);"></div>
           <div class="info">
-            <h3>多智能体编排层成新战场</h3>
-            <div class="meta">GitHub Trending · 🔥 65 · 11小时前</div>
+            <h3><span class="badge-icon"> 🆕</span> Agent长期记忆成新基建</h3>
+            <div class="meta">GitHub Trending · 🔥 62 · 20小时前</div>
           </div>
           <div class="expand-icon">▼</div>
         </div>
-        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：AI 应用正从单模型调用转向多智能体协同，竞争焦点从模型能力下移到<strong>编排与调度层</strong>，谁掌握 agent harness 谁就掌握工作流入口。<strong>法</strong>：在基础模型同质化阶段，通过封装编排框架抢占开发者心智，形成生态锁定，适用于所有平台型技术产品。<strong>术</strong>：优先评估多智能体框架的任务拆解与失败重试机制；用真实业务流程做压力测试，验证并发协作稳定性；关注与现有工具链的集成成本而非功能数量。<strong>器</strong>：ruflo、LangGraph、AutoGen、CrewAI。</p>
-<a class="source-link" href="https://github.com/ruvnet/ruflo" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
+        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：Agent 竞争正从模型能力转向上下文工程，长期记忆与跨会话交接成为编码类 CLI 工具的核心瓶颈，记忆层将像数据库一样成为独立基础设施。<strong>法</strong>：把无状态工具改造为有状态系统，通过外部记忆层沉淀用户偏好与任务上下文，可复用于客服、写作、运维等所有多轮交互场景。<strong>术</strong>：1. 为 Agent 建立分层记忆：短期会话缓存、中期任务摘要、长期偏好档案；2. 设计显式 handoff 协议，让不同 CLI 之间可传递结构化上下文；3. 用检索命中率与任务重述率评估记忆质量。<strong>器</strong>：ai-memory、Claude Code、Cursor CLI、向量数据库与本地文件存储。</p>
+<a class="source-link" href="https://github.com/akitaonrails/ai-memory" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
       </div>
-      <div class="entry" data-cat="other" style="animation-delay: 1.1400000000000001s;">
+      <div class="entry" data-cat="ai" style="animation-delay: 1.1400000000000001s;">
         <div class="entry-head">
-          <div class="bullet" style="background: var(--tab-6);"></div>
+          <div class="bullet" style="background: var(--tab-1);"></div>
           <div class="info">
-            <h3>AI技术出口管制常态化</h3>
-            <div class="meta">IT之家·人工智能 · 🔥 100 · 昨天</div>
+            <h3><span class="badge-icon"> 🆕</span> 未上市先变现的资本新范式</h3>
+            <div class="meta">36kr · 🔥 59 · 6小时前</div>
           </div>
           <div class="expand-icon">▼</div>
         </div>
-        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：人工智能技术正被纳入<strong>国家安全与贸易管制框架</strong>，技术主权化是不可逆趋势，开源与出口的边界将持续收紧。<strong>法</strong>：技术企业需建立合规前置机制，把出口管制审查嵌入研发与商务流程，而非事后补救。<strong>术</strong>：梳理自身技术栈是否落入拟增列目录范围；对涉及跨境交付的项目提前做合规评估；跟踪征求意见稿的最终版本与豁免条款。<strong>器</strong>：商务部出口技术目录、技术出口许可申报系统、合规审查清单工具。</p>
-<a class="source-link" href="https://www.ithome.com/1/013/983.htm" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
+        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：顶级 AI 公司的估值逻辑已脱离传统 IPO 路径，<strong>员工老股转让成为一级市场流动性主通道</strong>，资本在公开市场之外完成定价与退出。<strong>法</strong>：用二级份额交易替代上市退出，把人才激励与估值锚定解耦，适用于所有高估值、长周期、重资本的科技企业。<strong>术</strong>：1. 关注 tender offer 价格作为公司真实估值信号；2. 评估员工套现比例判断团队稳定性与信心；3. 对未上市 AI 标的，用老股转让频次与折价率做风险定价。<strong>器</strong>：tender offer 交易平台、二级份额交易市场、OpenAI 股权结构披露文件。</p>
+<a class="source-link" href="https://www.36kr.com/p/4030896887387784" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
       </div>
-      <div class="entry" data-cat="other" style="animation-delay: 1.2200000000000002s;">
+      <div class="entry" data-cat="biz" style="animation-delay: 1.2200000000000002s;">
         <div class="entry-head">
-          <div class="bullet" style="background: var(--tab-6);"></div>
+          <div class="bullet" style="background: var(--tab-4);"></div>
           <div class="info">
-            <h3>英伟达投资竞对布生态</h3>
-            <div class="meta">36kr · 🔥 56 · 21小时前</div>
+            <h3><span class="badge-icon"> 🆕</span> 具身智能进入人才创业期</h3>
+            <div class="meta">36kr · 🔥 51 · 11小时前</div>
           </div>
           <div class="expand-icon">▼</div>
         </div>
-        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：芯片巨头通过资本手段<strong>绑定潜在竞争者与下游生态</strong>，从卖硬件转向控制算力供应链的资本布局，这是平台型企业扩张的长期规律。<strong>法</strong>：头部企业用投资替代对抗，把竞争关系转化为股权与生态协同，降低被颠覆风险，适用于所有高壁垒硬件与基础设施行业。<strong>术</strong>：追踪被投芯片公司的技术路线与英伟达的互补关系；评估该投资对算力供给格局与议价能力的影响；关注后续是否有排他性供货或联合研发条款。<strong>器</strong>：英伟达投资组合、被投芯片企业公告、算力供应链分析平台。</p>
-<a class="source-link" href="https://www.36kr.com/p/4029392211480960" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
+        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：具身智能的竞争焦点正从算法演示转向<strong>世界模型与真实物理数据闭环</strong>，大厂技术负责人外溢创业成为行业常态，资本押注的是团队对物理世界的建模经验而非单点模型。<strong>法</strong>：以顶尖技术带头人为锚点、以场景数据为壁垒，先拿融资再补产品化，适用于所有技术密集型硬科技赛道。<strong>术</strong>：1. 评估团队是否具备世界模型基模训练与车规级量产双重经验；2. 关注融资后首年是否锁定真实场景数据源；3. 用仿真到真机的迁移成功率作为技术尽调核心指标。<strong>器</strong>：世界模型基模、具身大脑、仿真训练平台、杭州具身智能产业配套。</p>
+<a class="source-link" href="https://www.36kr.com/p/4025325566054529" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
       </div>
     </div>
     <div class="footer">
-      <span>Generated by AI Hot Monitor v2 · DeepSeek · 11:01:39</span>
+      <span>Generated by AI Hot Monitor v2 · DeepSeek · 20:01:34</span>
       <span class="badge">💡 点击条目展开深度解读</span>
     </div>
   </div>
