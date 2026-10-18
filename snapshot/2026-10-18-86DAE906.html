@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="referrer" content="no-referrer">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'unsafe-inline'; img-src data:; connect-src 'none'; frame-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'; frame-ancestors 'none'">
+<title>Pele · Mermaid diagrams as themeable SVG - AI热点快照</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','PingFang SC','Microsoft YaHei',sans-serif;background:#f8f9fa;color:#1a1a2e;line-height:1.8;min-height:100vh}
+.top-bar{background:#fff;border-bottom:1px solid #e5e7eb;padding:10px 20px;display:flex;align-items:center;gap:12px;position:sticky;top:0;z-index:10}
+.top-bar .logo{font-size:14px;font-weight:700;color:#0d9488}
+.top-bar .sep{color:#d1d5db}
+.top-bar .source{font-size:13px;color:#6b7280}
+.top-bar .back{margin-left:auto;font-size:13px;color:#0d9488;text-decoration:none}
+.top-bar .back:hover{text-decoration:underline}
+.container{max-width:760px;margin:0 auto;padding:40px 24px 80px}
+.article-title{font-size:1.8rem;font-weight:700;line-height:1.35;margin-bottom:16px;color:#1a1a2e}
+.article-meta{display:flex;flex-wrap:wrap;gap:16px;padding-bottom:20px;margin-bottom:28px;border-bottom:1px solid #e5e7eb;font-size:14px;color:#6b7280}
+.article-meta a{color:#0d9488;text-decoration:none}
+.article-meta a:hover{text-decoration:underline}
+.article-body{font-size:16.5px;line-height:1.85;color:#1f2937}
+.article-body p{margin-bottom:1.2em;text-align:justify}
+.article-body h1,.article-body h2,.article-body h3{font-size:1.25em;font-weight:700;margin:1.6em 0 0.6em;color:#1a1a2e}
+.article-body a{color:#0d9488}
+.article-body pre,.article-body code{background:#f1f5f9;border-radius:4px;font-size:0.9em}
+.article-body pre{padding:16px;overflow-x:auto;margin:1em 0}
+.article-body code{padding:2px 6px}
+.article-body blockquote{border-left:3px solid #0d9488;padding-left:16px;color:#4b5563;margin:1em 0}
+.article-body ul,.article-body ol{padding-left:1.6em;margin-bottom:1em}
+.article-body li{margin-bottom:0.4em}
+.article-body figure{margin:1.2em 0}
+.article-body figcaption{font-size:13px;color:#9ca3af;text-align:center;margin-top:6px}
+.footer{margin-top:48px;padding-top:20px;border-top:1px solid #e5e7eb;font-size:13px;color:#9ca3af;text-align:center}
+</style>
+</head>
+<body>
+<div class="top-bar">
+  <a class="back" href="../" style="font-size:13px;color:#6b7280;text-decoration:none">← 日报首页</a>
+  <span class="sep">|</span>
+  <span class="logo">AI热点快照</span>
+  <span class="sep">|</span>
+  <span class="source">Hacker News</span>
+  <a class="back" href="https://pele.run/" target="_blank" rel="noopener noreferrer">查看原文 ↗</a>
+</div>
+<div class="container">
+  <h1 class="article-title">Pele · Mermaid diagrams as themeable SVG</h1>
+  <div class="article-meta">
+    
+    <span>来源: Hacker News</span>
+    <span>快照日期: 2026-10-18</span>
+  </div>
+  <div class="article-body"><div><div><div><h2>How it works</h2><p>Write Mermaid syntax, Pele renders it to SVG. Try editing the example below.</p><div><p><span>Mermaid</span><span></span></p><pre><code><span><span><span>flowchart</span> <span>TD</span></span></span><span><span>  <span>A</span><span>[</span><span>Mermaid text</span><span>]</span> <span>--&gt;</span> <span>B</span><span>{</span><span>Flowchart?</span><span>}</span></span></span><span><span>  <span>B</span> <span>--</span><span> Yes </span><span>--&gt;</span> <span>C</span><span>[</span><span>Pele</span><span>]</span></span></span><span><span>  <span>B</span> <span>--</span><span> No </span><span>--&gt;</span> <span>D</span><span>[</span><span>Mermaid</span><span>]</span></span></span><span><span>  <span>C</span> <span>--&gt;</span> <span>E</span><span>([</span><span>SVG</span><span>])</span></span></span><span><span>  <span>D</span> <span>--&gt;</span> <span>E</span></span></span></code></pre></div><p>Use CSS variables to set colors and fonts. Color changes apply without re-rendering.</p><div><div><p><span>CSS</span><span></span></p><pre><code><span><span><span>.pele </span><span>{</span></span></span><span><span>  <span>--pele-bg</span><span>: </span><span>#fffcf0</span><span>;</span></span></span><span><span>  <span>--pele-fg</span><span>: </span><span>#100f0f</span><span>;</span></span></span><span><span>  <span>--pele-muted</span><span>: </span><span>#6f6e69</span><span>;</span></span></span><span><span>  <span>--pele-line</span><span>: </span><span>#100f0f</span><span>;</span></span></span><span><span>  <span>--pele-surface</span><span>: </span><span>#f2f0e5</span><span>;</span></span></span><span><span>  <span>--pele-surface-alt</span><span>: </span><span>#e6e4d9</span><span>;</span></span></span><span><span>  <span>--pele-border</span><span>: </span><span>#cecdc3</span><span>;</span></span></span><span><span><span>}</span></span></span></code></pre></div><div><p><span>Pele</span></p><figure>ThemesVariablesLightDark</figure></div></div><h2>Why Pele?</h2><p>Zero dependencies, 6× smaller, and up to 500× faster than Mermaid.js. Pele supports every diagram type built into Mermaid 12.1.0.</p><div><table><thead><tr><td></td><th>Pele</th><th>Mermaid.js</th></tr></thead><tbody><tr><td>Bundle size gzip</td><td>230 kB</td><td>1.6 MB</td></tr><tr><td>Render time</td><td>0.05–0.3 ms</td><td>6–82 ms</td></tr><tr><td>Direct dependencies</td><td>0</td><td>23</td></tr><tr><td>Small screens</td><td>Adapts the layout</td><td>Scales the diagram</td></tr><tr><td>Theming</td><td>CSS variables</td><td>Theme configuration</td></tr></tbody></table></div><h2>Pele in your app</h2><p>Add Pele to your app using the <span>API</span>.</p><div><figure><span></span><pre><code><span><span><span>npm</span> install pele</span></span></code></pre></figure></div><p>Pass Mermaid syntax to <code>render()</code> and insert the returned SVG into your page.</p><figure><span></span><pre><code><span><span><span>import</span> <span>{</span> <span>render</span> <span>}</span> <span>from</span> <span>'</span><span>pele</span><span>'</span><span>;</span></span></span><span><span></span></span><span><span><span>const</span> <span>{</span> <span>svg</span> <span>}</span> <span>=</span> <span>render</span><span>(</span><span>`</span><span>flowchart LR</span></span></span><span><span><span>  A[Mermaid text] --&gt; B[SVG]</span><span>`</span><span>)</span><span>;</span></span></span><span><span></span></span><span><span><span>document</span><span>.</span><span>querySelector</span><span>(</span><span>'</span><span>#diagram</span><span>'</span><span>)</span><span>.</span><span>innerHTML</span> <span>=</span> <span>svg</span><span>;</span></span></span></code></pre></figure><h2>Explore</h2><span><h3>Examples</h3><p>Browse supported diagram types.</p></span><span><h3>API</h3><p>Render diagrams in your app.</p></span><span><h3>Theming</h3><p>Set colors and fonts with CSS variables.</p></span><span><h3>Compatibility</h3><p>Compare syntax, layout, and features with Mermaid.</p></span><p></p><h2>Pele in use</h2><p></p><p>Pele is <a href="https://github.com/obsidianmd/pele" target="_blank" rel="noopener noreferrer nofollow">open source</a>, developed for <a href="https://obsidian.md/" target="_blank" rel="noopener noreferrer nofollow">Obsidian</a> to render diagrams quickly and match your theme. It is named after <a href="https://en.wikipedia.org/wiki/Pele_(deity)" target="_blank" rel="noopener noreferrer nofollow">Pele</a>, the goddess of volcanoes and fire.</p></div></div></div></div>
+  <div class="footer">
+    本文由 AI热点监控系统自动抓取 · 内容版权归原作者/网站所有<br>
+    快照仅用于学习交流，如需转载请访问原文
+  </div>
+</div>
+</body>
+</html>
