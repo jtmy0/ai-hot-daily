@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="referrer" content="no-referrer">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'unsafe-inline'; img-src data:; connect-src 'none'; frame-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'; frame-ancestors 'none'">
+<title>Diffusion at Scale: Introducing Mercury 3 – Inception - AI热点快照</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','PingFang SC','Microsoft YaHei',sans-serif;background:#f8f9fa;color:#1a1a2e;line-height:1.8;min-height:100vh}
+.top-bar{background:#fff;border-bottom:1px solid #e5e7eb;padding:10px 20px;display:flex;align-items:center;gap:12px;position:sticky;top:0;z-index:10}
+.top-bar .logo{font-size:14px;font-weight:700;color:#0d9488}
+.top-bar .sep{color:#d1d5db}
+.top-bar .source{font-size:13px;color:#6b7280}
+.top-bar .back{margin-left:auto;font-size:13px;color:#0d9488;text-decoration:none}
+.top-bar .back:hover{text-decoration:underline}
+.container{max-width:760px;margin:0 auto;padding:40px 24px 80px}
+.article-title{font-size:1.8rem;font-weight:700;line-height:1.35;margin-bottom:16px;color:#1a1a2e}
+.article-meta{display:flex;flex-wrap:wrap;gap:16px;padding-bottom:20px;margin-bottom:28px;border-bottom:1px solid #e5e7eb;font-size:14px;color:#6b7280}
+.article-meta a{color:#0d9488;text-decoration:none}
+.article-meta a:hover{text-decoration:underline}
+.article-body{font-size:16.5px;line-height:1.85;color:#1f2937}
+.article-body p{margin-bottom:1.2em;text-align:justify}
+.article-body h1,.article-body h2,.article-body h3{font-size:1.25em;font-weight:700;margin:1.6em 0 0.6em;color:#1a1a2e}
+.article-body a{color:#0d9488}
+.article-body pre,.article-body code{background:#f1f5f9;border-radius:4px;font-size:0.9em}
+.article-body pre{padding:16px;overflow-x:auto;margin:1em 0}
+.article-body code{padding:2px 6px}
+.article-body blockquote{border-left:3px solid #0d9488;padding-left:16px;color:#4b5563;margin:1em 0}
+.article-body ul,.article-body ol{padding-left:1.6em;margin-bottom:1em}
+.article-body li{margin-bottom:0.4em}
+.article-body figure{margin:1.2em 0}
+.article-body figcaption{font-size:13px;color:#9ca3af;text-align:center;margin-top:6px}
+.footer{margin-top:48px;padding-top:20px;border-top:1px solid #e5e7eb;font-size:13px;color:#9ca3af;text-align:center}
+</style>
+</head>
+<body>
+<div class="top-bar">
+  <a class="back" href="../" style="font-size:13px;color:#6b7280;text-decoration:none">← 日报首页</a>
+  <span class="sep">|</span>
+  <span class="logo">AI热点快照</span>
+  <span class="sep">|</span>
+  <span class="source">AIHOT 模型发布</span>
+  <a class="back" href="https://www.inceptionlabs.ai/blog/introducing-mercury-3" target="_blank" rel="noopener noreferrer">查看原文 ↗</a>
+</div>
+<div class="container">
+  <h1 class="article-title">Diffusion at Scale: Introducing Mercury 3 – Inception</h1>
+  <div class="article-meta">
+    
+    <span>来源: AIHOT 模型发布</span>
+    <span>快照日期: 2026-10-20</span>
+  </div>
+  <div class="article-body"><div><div><p>Today we’re introducing Mercury 3, the most capable diffusion-based LLM released to date. Across a range of benchmarks, Mercury 3 outperforms GPT-6 Luna and Claude Haiku 5.5, while running 4–8x faster at 1,000+ tokens per second.</p><p>Mercury 3 demonstrates that text diffusion scales. It’s more than 40x larger than Mercury 1 and is vastly more intelligent, but just as fast.</p><p></p><p>Early-access partners already use Mercury 3 for voice and chat support, real-time tutoring, data engineering, and web navigation:</p><h2>Mercury 3 at a glance</h2><ul><li><p><strong>Quality:</strong> On par or better than frontier speed-optimized models like GPT-6 Luna and Claude Haiku 5.5.</p></li><li><p><strong>Speed:</strong> 1,068 tokens per second on NVIDIA GPUs. </p></li><li><p><strong>Context:</strong> 1M tokens, up from 260K for Mercury 2.5</p></li><li><p><strong>Price:</strong> $0.20 per million input and $0.70 per million output tokens.</p><ul><li><p>At launch, Mercury 3 is 50% off at $0.10 per 1M input and $0.35 per 1M output. Cached tokens are 90% off the input price.</p></li></ul></li></ul><p></p><h2>Diffusion at scale</h2><p>When we launched Mercury 1, it was the first proof point that diffusion LLMs could be built for commercial applications. The open question in the AI community was whether diffusion LLMs could scale to compete with autoregressive models on complex use cases.</p><p>Mercury 3 answers that question: they can. We’ve scaled Mercury more than 40x in total parameters, and intelligence across a range of standard benchmarks has risen 3x from Mercury 1 (mini) to Mercury 3. The scaling laws that drove progress in autoregressive models hold for diffusion too.</p><p></p><h2>Mercury 3 in production</h2><p>Early-access partners are already running Mercury 3 to power latency-sensitive applications such as browser use agents, interactive education, real-time search agents, and customer support.</p><h3>Browser Use Agents</h3><p>Agents wait on the model at every step, so small delays compound quickly. Mercury keeps each pass fast, whether the agent is navigating websites, researching across sources, or analyzing logs and tracing incidents. Agents finish sooner and have time to try more approaches before answering.</p><div><p>We ran Mercury 3 inside our production web-agent harness against frontier models, on 50 live Mind2Web navigation tasks. Mercury 3 completed 50% of them, significantly more than GPT-6.1-Sol. It did so using the same token volume and the same number of agent steps as a frontier model, at a fraction of the per-token cost.</p><p>Shuhao Zhang, Cofounder, TinyFish AI</p></div><h3>Interactive Education</h3><p>Learning runs on fast feedback loops, and any delay pulls a student out of the material. Mercury reasons through each request and responds in near real time, whether it’s a voice tutor carrying a conversation, an assistant grading work, or an app adapting the next question to what the student just got wrong.</p><div><p>Mercury 3 allowed us to give every student instant feedback without giving up reasoning. Hints, marked answers and definitions now come back in about a second, with quality as good as or better than the models we ran before. When a student is stuck on a question, that speed keeps them working instead of waiting, and it was a drop-in swap for our existing stack.</p><p>Michael Tong, Co-founder/CTO, General Learning aka RevisionDojo</p></div><h3>Real-time search agents</h3><p>Search applications start to feel unresponsive after just a few seconds delay. Mercury 3 runs fast enough to process dozens of documents and still answer while the user is engaged.</p><div><p>On smart glasses, an answer that takes five seconds feels broken. In our Sense API tests, Octen search took about 80ms; model generation was the bottleneck. Mercury 3 delivered the best balance of speed and quality among the fast models we tested, with a median generation time of 0.9 seconds and a median end-to-end response time of 2.2 seconds.</p><p>Kuan Zou, Founder &amp; CEO, Octen AI</p></div><h3>Customer support</h3><p>Support agents have to answer quickly, often for regulated businesses where a wrong answer is costly. Mercury keeps responses conversational without sacrificing accuracy.</p><div><p>At Lorikeet, we help complex and regulated businesses build a concierge for their customers that works across voice, chat and email. In chat and voice, customers need fast responses, but we can't compromise on accuracy or getting the job done correctly. In early testing, Mercury 3 beat other models on latency while also performing higher on evals and in production.</p><p>Michael Gribben, Member of Technical Staff, Lorikeet</p></div><h2>A real-time product portfolio</h2><p>Mercury 3 is the flagship model in a widening portfolio of products that enable real-time AI.</p><ul><li><p><strong>Mercury Voice:</strong> Mercury Voice is customized for the extreme low-latency requirements of voice applications and for minimizing time to first answer token (TTFAT), not just end-to-end latency. It’s already powering agents at Audivi AI, Altur, and OpenCall. </p></li></ul><ul><li><p><strong>Mercury Decide:</strong> Mercury Decide is a decision model built for high-volume classification. It outperforms Jev on benchmarks including JevBench and LegalBench.</p></li></ul><h2>Get started</h2><p>Mercury 3 is available today on the Inception API Platform and through OpenRouter, Baseten, and Vercel. It is OpenAI API compatible, so it drops into your existing stack with no rewrites. Enterprise deployments support dedicated capacity, autoscaling, compliance controls, and configurable data retention.</p><ul><li><p><a href="https://chat.inceptionlabs.ai/" target="_blank" rel="noopener noreferrer nofollow"><strong>Try Mercury 3 in chat</strong></a></p></li><li><p><a href="https://platform.inceptionlabs.ai/" target="_blank" rel="noopener noreferrer nofollow"><strong>Try the API</strong></a> with 100 million free tokens</p></li><li><p><a href="https://docs.inceptionlabs.ai/get-started/get-started" target="_blank" rel="noopener noreferrer nofollow"><strong>Read the API docs</strong></a></p></li><li><p><strong>Enterprise evaluations:</strong> we'll partner with you on workload fit, eval design, and performance under your serving constraints. <span><strong>Contact us</strong>.</span></p></li></ul><h2>Mercury 3 is live. Diffusion scales.</h2></div></div></div>
+  <div class="footer">
+    本文由 AI热点监控系统自动抓取 · 内容版权归原作者/网站所有<br>
+    快照仅用于学习交流，如需转载请访问原文
+  </div>
+</div>
+</body>
+</html>
