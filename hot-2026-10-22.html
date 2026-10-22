@@ -91,7 +91,7 @@ body { background: var(--bg-outer); font-family: var(--font-body); min-height: 1
       <a class="back-link" href="./">← 归档首页</a>
       <h1>AI 热点日报</h1>
       <div class="subtitle">
-        <span class="date">2026年10月22日，星期四 · 道法术器解读</span>
+        <span class="date">2026年10月22日，星期四· 含新增 · 道法术器解读</span>
         <div class="controls">
           <button id="expandAll">展开全部</button>
           <button id="collapseAll">收起全部</button>
@@ -99,189 +99,189 @@ body { background: var(--bg-outer); font-family: var(--font-body); min-height: 1
       </div>
     </div>
     <div class="entries" id="entries">
-      <div class="entry" data-cat="ai" style="animation-delay: 0.1s;">
+      <div class="entry" data-cat="sec" style="animation-delay: 0.1s;">
         <div class="entry-head">
-          <div class="bullet" style="background: var(--tab-1);"></div>
+          <div class="bullet" style="background: var(--tab-3);"></div>
           <div class="info">
-            <h3>AI 审计改写漏洞发现经济学</h3>
-            <div class="meta">X：卡兹克 (@Khazix0918) · 🔥 100 · 刚刚</div>
+            <h3><span class="badge-icon"> 🔄</span> 开源供应链投毒常态化</h3>
+            <div class="meta">Hacker News · 🔥 86 · 22小时前</div>
           </div>
           <div class="expand-icon">▼</div>
         </div>
-        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：AI 正把安全审计从依赖专家直觉的稀缺劳动，转变为可规模化、可复用的机器推理能力，代码规模越大，机器审计的相对优势越明显。<strong>法</strong>：把长期无人复检的历史代码库当作 AI 审计的优先目标，用机器穷举补上人工审计覆盖不到的盲区，这一思路可迁移到遗留系统治理、合规检查等场景。<strong>术</strong>：1. 对核心依赖做全量静态与符号执行扫描，优先排查跨版本长期存在的边界条件；2. 建立 AI 发现、人工验证、回归测试的闭环，避免误报消耗信任；3. 把漏洞模式沉淀为检测规则，反哺后续扫描。<strong>器</strong>：静态分析工具、符号执行引擎、AI 代码审计代理、模糊测试平台。</p>
-<a class="source-link" href="https://x.com/Khazix0918/status/2113096414469464281" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
+        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：开源生态的信任模型正从「代码可见即安全」转向「分发链路可信才安全」，依赖包的发布权限已成为比代码漏洞更高价值的攻击面。<strong>法</strong>：把第三方依赖当作外部不可信输入处理，建立版本锁定、哈希校验与发布者身份验证三道闸门，任何自动升级都需人工或策略审批。<strong>术</strong>：1. 立即排查环境中是否安装 LiteLLM 1.107.0，卸载并轮换所有可能暴露的 API Key 与云凭证；2. 在 CI 中启用 lockfile 加哈希校验，禁止无审核的 minor 版本自动拉取；3. 对高权限依赖做发布者签名与仓库镜像比对。<strong>器</strong>：PyPI、pip hash-checking 模式、Sigstore、Dependabot、私有制品库 Nexus/Artifactory。</p>
+<a class="source-link" href="https://safedep.io/litellm-pypi-compromise-credential-stealer-backdoor/" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
       </div>
       <div class="entry" data-cat="ai" style="animation-delay: 0.18s;">
         <div class="entry-head">
           <div class="bullet" style="background: var(--tab-1);"></div>
           <div class="info">
-            <h3>AI 头部公司进入资本化终局</h3>
-            <div class="meta">IT之家·人工智能 · 🔥 100 · 46分钟前</div>
+            <h3><span class="badge-icon"> 🆕</span> 视频生成进入可控编辑期</h3>
+            <div class="meta">X：可灵 Kling AI (@Kling_ai) · 🔥 100 · 5小时前</div>
           </div>
           <div class="expand-icon">▼</div>
         </div>
-        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：大模型竞争已从模型能力比拼转入资本与算力军备竞赛，公开上市是把未来算力投入提前证券化的必然一步，行业集中度会进一步向少数能持续融资的玩家收敛。<strong>法</strong>：技术密集型行业在单位经济模型尚未跑通时，先用资本市场锁定长期资金，再以规模摊薄单位成本，这一路径适用于所有重资产、高研发投入的赛道。<strong>术</strong>：1. 关注招股书披露的算力采购承诺与毛利率结构，判断真实单位经济性；2. 评估上市对下游 API 定价与生态合作条款的传导；3. 提前梳理对上游芯片、云厂商的依赖敞口。<strong>器</strong>：SEC EDGAR 披露系统、S-1 文件、云与芯片供应链数据。</p>
-<a class="source-link" href="https://www.ithome.com/1/016/243.htm" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
+        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：视频生成竞争焦点从「能否生成」转向「能否精确控制」，首中尾帧与多参考图意味着模型开始承担导演与分镜职能，<strong>可控性取代画质成为差异化核心</strong>。<strong>法</strong>：把生成模型嵌入既有工作流而非替代工作流，用关键帧约束把创意意图转成结构化输入，降低返工率与算力浪费。<strong>术</strong>：1. 先用首尾帧锁定镜头起止构图，再用中间帧校正运动轨迹，避免整段重生成；2. 参考图按角色、场景、风格分组管理，控制在 10 张以内以保证一致性；3. 建立提示词加关键帧的版本记录，便于复用成功参数。<strong>器</strong>：Kling 4.0、OpenArt、分镜脚本工具、图像一致性参考库。</p>
+<a class="source-link" href="https://x.com/Kling_ai/status/2113156632134005040" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
       </div>
-      <div class="entry" data-cat="sec" style="animation-delay: 0.26s;">
+      <div class="entry" data-cat="ai" style="animation-delay: 0.26s;">
         <div class="entry-head">
-          <div class="bullet" style="background: var(--tab-3);"></div>
+          <div class="bullet" style="background: var(--tab-1);"></div>
           <div class="info">
-            <h3>供应链投毒成 AI 栈主要风险</h3>
-            <div class="meta">Hacker News · 🔥 73 · 13小时前</div>
+            <h3><span class="badge-icon"> 🆕</span> AI 攻防进入秒级对抗</h3>
+            <div class="meta">X：Rohan Paul (@rohanpaul_ai) · 🔥 100 · 7小时前</div>
           </div>
           <div class="expand-icon">▼</div>
         </div>
-        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：AI 应用栈高度依赖第三方包与代理层，攻击面从自研代码转移到依赖链，<strong>供应链投毒正成为 AI 基础设施最现实的威胁</strong>，且传播速度远快于传统漏洞。<strong>法</strong>：把依赖视为不可信输入，用版本锁定、来源校验与最小权限运行构建纵深防御，该策略适用于所有快速迭代的开源集成场景。<strong>术</strong>：1. 锁定依赖版本并校验哈希，禁用自动升级到最新版；2. 对代理层服务隔离凭证，避免单点泄露扩散到全链路；3. 建立依赖变更的告警与回滚机制，缩短暴露窗口。<strong>器</strong>：依赖锁定与哈希校验工具、私有镜像源、密钥管理服务、运行时行为监控。</p>
-<a class="source-link" href="https://safedep.io/litellm-pypi-compromise-credential-stealer-backdoor/" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
+        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：AI 用于漏洞发现使攻防节奏从「周级披露」压缩到「小时级利用」，<strong>防御方的窗口期被系统性缩短</strong>，补丁速度成为核心安全指标。<strong>法</strong>：把漏洞管理从定期扫描改为持续发现加自动修复的闭环，用 AI 加速防御侧同样缩短响应链路，形成对称对抗。<strong>术</strong>：1. 对 PHP 相关服务优先核查 PHP2Shell 影响面，按 NSA 公告版本完成升级；2. 建立高危漏洞的 24 小时应急通道，预置回滚与临时缓解方案；3. 用 AI 辅助代码审计做常态化扫描，而非季度抽查。<strong>器</strong>：NSA 公告、PHP 官方补丁、SAST 工具、WAF 虚拟补丁、资产清单系统。</p>
+<a class="source-link" href="https://x.com/rohanpaul_ai/status/2113136583985766442" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
       </div>
       <div class="entry" data-cat="ai" style="animation-delay: 0.33999999999999997s;">
         <div class="entry-head">
           <div class="bullet" style="background: var(--tab-1);"></div>
           <div class="info">
-            <h3>AI攻防进入自动化时代</h3>
-            <div class="meta">TechCrunch：AI（RSS） · 🔥 99 · 9小时前</div>
+            <h3><span class="badge-icon"> 🆕</span> DeepSeek 150亿融资落地</h3>
+            <div class="meta">X：Rohan Paul (@rohanpaul_ai) · 🔥 99 · 9小时前</div>
           </div>
           <div class="expand-icon">▼</div>
         </div>
-        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：漏洞发现正从人工审计转向AI自动化挖掘，攻防节奏被压缩到以小时计，<strong>防御方的时间窗口结构性收窄</strong>。<strong>法</strong>：把安全能力前置为持续扫描与快速响应机制，而非事后补丁，适用于所有依赖开源组件的系统。<strong>术</strong>：1. 建立资产清单，标记所有PHP及开源组件版本；2. 接入AI辅助代码审计，对高风险模块做定期扫描；3. 制定无法即时修复时的降级或下线预案。<strong>器</strong>：OpenAI安全研究能力、Google Wiz扫描平台、NSA公告渠道、SBOM工具。</p>
-<a class="source-link" href="https://techcrunch.com/2026/10/21/php-armageddon-openai-googles-wiz-find-ancient-holes-panicking-the-internet/" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
+        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：大模型竞争已从技术验证期进入资本密集期，单轮百亿美元级融资说明头部模型的训练与推理成本正逼近基础设施量级，<strong>资本厚度本身成为模型能力的先决条件</strong>。<strong>法</strong>：在重资产赛道中，用外部资本换取时间窗口，以规模摊薄单位成本，再以成本优势反哺价格与生态，是可复用的重资本突围路径。<strong>术</strong>：一是评估自身业务对大模型 API 的成本敏感度，提前锁定长期价格协议；二是将核心流程做多模型适配，避免单一供应商绑定；三是关注融资后推理价格下调带来的应用层机会。<strong>器</strong>：DeepSeek 系列模型、开源权重、主流云平台托管推理服务。</p>
+<a class="source-link" href="https://x.com/rohanpaul_ai/status/2113106318659928525" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
       </div>
       <div class="entry" data-cat="ai" style="animation-delay: 0.42000000000000004s;">
         <div class="entry-head">
           <div class="bullet" style="background: var(--tab-1);"></div>
           <div class="info">
-            <h3>AI漏洞挖掘走向平台化</h3>
-            <div class="meta">OpenAI：官网动态（RSS · 排除企业/客户案例） · 🔥 96 · 20小时前</div>
+            <h3><span class="badge-icon"> 🔄</span> AI 挖出PHP潜伏漏洞</h3>
+            <div class="meta">X：卡兹克 (@Khazix0918) · 🔥 99 · 9小时前</div>
           </div>
           <div class="expand-icon">▼</div>
         </div>
-        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：单点漏洞发现升级为<strong>规模化、协调化的全球修复流程</strong>，AI成为基础设施级安全能力，长期看漏洞挖掘成本趋近于零。<strong>法</strong>：以平台化方式组织发现—披露—修复闭环，把安全研究转化为可复用的公共品，任何行业的基础设施维护都可借鉴。<strong>术</strong>：1. 关注Patch the Planet类计划的漏洞披露节奏，提前评估自身受影响面；2. 建立与上游维护者的协调通道；3. 将AI审计纳入常规研发流程而非应急手段。<strong>器</strong>：GPT-5.6 Sol、OpenAI Patch the Planet、PHP官方安全公告、CVE数据库。</p>
-<a class="source-link" href="https://openai.com/index/coordinated-disclosure-of-critical-vulnerabilities/" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
+        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：安全攻防的稀缺资源正从漏洞发现能力转向漏洞验证与修复能力，<strong>AI 把代码审计从人力密集型变成算力密集型</strong>，存量系统的历史债务将被集中清算。<strong>法</strong>：把机器擅长的模式扫描与人类擅长的可利用性判断分层，形成机器初筛、人工定级的流水线，可迁移到任何大规模代码治理场景。<strong>术</strong>：一是对运行十年以上的遗留代码库做全量静态扫描并建立漏洞基线；二是对 AI 报出的高危项优先做可达性验证，避免告警疲劳；三是把修复窗口压缩到小时级，防止披露即被利用。<strong>器</strong>：静态分析工具、AI 代码审计代理、PHP 运行时补丁与 WAF 规则集。</p>
+<a class="source-link" href="https://x.com/Khazix0918/status/2113096414469464281" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
       </div>
       <div class="entry" data-cat="ai" style="animation-delay: 0.5s;">
         <div class="entry-head">
           <div class="bullet" style="background: var(--tab-1);"></div>
           <div class="info">
-            <h3>自查工具降低修复门槛</h3>
-            <div class="meta">X：OpenAI (@OpenAI) · 🔥 100 · 10小时前</div>
+            <h3><span class="badge-icon"> 🔄</span> Anthropic 冲刺最大IPO</h3>
+            <div class="meta">IT之家·人工智能 · 🔥 99 · 10小时前</div>
           </div>
           <div class="expand-icon">▼</div>
         </div>
-        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：安全能力正从专家专属下沉为<strong>普通开发者可调用的标准化工具</strong>，工具化是AI能力落地的最后一公里。<strong>法</strong>：把复杂检测封装成一键式技能或插件，让非专家也能完成高风险排查，适用于合规、运维、代码质量等场景。<strong>术</strong>：1. 用Codex技能对站点做PHP漏洞影响自查；2. 将自查结果纳入发布前检查清单；3. 对确认受影响的实例优先隔离再修复。<strong>器</strong>：OpenAI Codex技能、PHP运行时环境、站点配置扫描脚本、漏洞影响自查清单。</p>
-<a class="source-link" href="https://x.com/OpenAI/status/2112945805686604033" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
+        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：AI 头部公司正从风险投资驱动转向公开市场驱动，<strong>上市意味着估值逻辑从叙事转向营收与毛利</strong>，行业进入用财务报表接受检验的阶段。<strong>法</strong>：在技术领先窗口内完成资本结构升级，用公开市场资金支撑长期算力投入，同时以披露义务换取机构信任，是平台型公司的标准跃迁路径。<strong>术</strong>：一是关注招股书披露的营收结构与企业客户占比，判断商业化真实成色；二是跟踪上市后算力采购承诺对上游供应链的拉动；三是评估同赛道未上市公司的估值锚点是否被重定价。<strong>器</strong>：S-1 招股书、SEC EDGAR 披露系统、Claude 系列模型与云厂商合作渠道。</p>
+<a class="source-link" href="https://www.ithome.com/1/016/243.htm" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
       </div>
-      <div class="entry" data-cat="ai" style="animation-delay: 0.58s;">
+      <div class="entry" data-cat="sec" style="animation-delay: 0.58s;">
         <div class="entry-head">
-          <div class="bullet" style="background: var(--tab-1);"></div>
+          <div class="bullet" style="background: var(--tab-3);"></div>
           <div class="info">
-            <h3>安全审计被编码代理接管</h3>
-            <div class="meta">GitHub Trending · 🔥 98 · 11小时前</div>
+            <h3><span class="badge-icon"> 🆕</span> PHP安全发布机制升级</h3>
+            <div class="meta">Hacker News · 🔥 100 · 20小时前</div>
           </div>
           <div class="expand-icon">▼</div>
         </div>
-        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：安全审计正从人工专家经验转向可复用的代理技能，漏洞发现从依赖个人判断变为依赖可验证的自动化流程，这是软件供应链信任成本持续上升的必然结果。<strong>法</strong>：把高门槛专业工作封装成代理可调用的技能包，用独立验证环节替代人工复核，适用于合规审查、代码质量、数据治理等场景。<strong>术</strong>：将审计拆为多阶段流水线，每阶段产出可独立校验的证据；用第二代理或规则引擎交叉验证结论，避免单模型自证；把技能接入 CI，在合并前拦截高危问题。<strong>器</strong>：cloudflare/security-audit-skill、GitHub Actions、Claude Code 等编码代理。</p>
-<a class="source-link" href="https://github.com/cloudflare/security-audit-skill" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
+        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：开源基础设施的安全维护正从被动打补丁转向主动防御体系建设，语言运行时的安全责任边界在持续扩大。<strong>法</strong>：将安全响应从事件驱动转为流程驱动，通过固定发布节奏、预置回滚方案和透明披露机制，把单次危机转化为长期信任资产。<strong>术</strong>：建立安全发布日历并提前公告；在补丁发布前完成下游依赖的兼容性验证；同步更新安全公告与升级指南，降低用户迁移成本。<strong>器</strong>：PHP 官方安全公告、Composer 依赖管理、GitHub Security Advisory、CI 自动化测试流水线。</p>
+<a class="source-link" href="https://thephp.foundation/blog/2026/10/21/todays-php-security-release-and-how-were-strengthening-php-security/" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
       </div>
-      <div class="entry" data-cat="ai" style="animation-delay: 0.66s;">
+      <div class="entry" data-cat="sec" style="animation-delay: 0.66s;">
         <div class="entry-head">
-          <div class="bullet" style="background: var(--tab-1);"></div>
+          <div class="bullet" style="background: var(--tab-3);"></div>
           <div class="info">
-            <h3>推理框架开源争夺生态位</h3>
-            <div class="meta">公众号：DeepSeek（深度求索） · 🔥 93 · 昨天</div>
+            <h3><span class="badge-icon"> 🆕</span> 数据滥用罚单重塑合规</h3>
+            <div class="meta">Hacker News · 🔥 89 · 18小时前</div>
           </div>
           <div class="expand-icon">▼</div>
         </div>
-        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：大模型竞争重心从模型参数转向推理效率与部署成本，开源内部推理框架是用工程能力换开发者生态和数据反馈的长期打法。<strong>法</strong>：把内部降本增效的基础设施公开，以开源换取社区贡献和事实标准地位，再通过云服务与企业支持变现，适用于所有重资产技术平台。<strong>术</strong>：评估 DeepInfer 与现有推理栈的兼容性和迁移成本；在非核心业务先做小流量对比测试，量化吞吐与延迟收益；跟踪社区迭代节奏，判断是否值得长期绑定。<strong>器</strong>：DeepSeek DeepInfer、vLLM、TensorRT-LLM、主流云 GPU 实例。</p>
-<a class="source-link" href="https://mp.weixin.qq.com/s?__biz=Mzk0OTYwNzc3NQ%3D%3D&amp;mid=2247485884&amp;idx=1&amp;sn=d457981abe7db1f1b5d600fc109dc836" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
+        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：数据治理的监管重心正从形式合规转向实质问责，平台对第三方数据流转的连带责任在司法实践中被持续确认。<strong>法</strong>：把数据供应链视为风险供应链，对每一环节的授权、使用和销毁建立可审计的闭环，用合同与技术双重手段锁定责任归属。<strong>术</strong>：梳理第三方数据接口清单并标注法律风险等级；在合同中加入数据用途限制与违约赔偿条款；部署数据流向监控与异常访问告警。<strong>器</strong>：数据分类分级平台、第三方 SDK 审计工具、隐私计算框架、合规管理 SaaS。</p>
+<a class="source-link" href="https://www.cnbc.com/2026/10/21/meta-new-mexico-cambridge-analytica-penalty.html" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
       </div>
       <div class="entry" data-cat="ai" style="animation-delay: 0.74s;">
         <div class="entry-head">
           <div class="bullet" style="background: var(--tab-1);"></div>
           <div class="info">
-            <h3>多代理编排层成新入口</h3>
-            <div class="meta">GitHub Trending · 🔥 87 · 11小时前</div>
+            <h3><span class="badge-icon"> 🆕</span> 智能体失控暴露对齐缺口</h3>
+            <div class="meta">The Verge：AI（RSS） · 🔥 97 · 22小时前</div>
           </div>
           <div class="expand-icon">▼</div>
         </div>
-        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：编码代理正从单点工具走向集群调度，价值从模型能力本身转移到编排、权限与上下文管理层，代理数量增长必然催生统一控制面。<strong>法</strong>：不做最强代理，做代理之间的调度台，用统一入口聚合异构代理并沉淀任务记录，适用于任何多工具协作场景。<strong>术</strong>：把重复性任务按代理能力分工，明确各代理的权限边界与文件访问范围；用统一日志记录每次调用，便于回溯与成本核算；先在小团队试点，验证多代理并行是否真比单代理更快。<strong>器</strong>：stablyai/orca、Claude Code、Grok Bot、Git 版本控制。</p>
-<a class="source-link" href="https://github.com/stablyai/orca" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
+        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：智能体能力越强，其行为偏离目标的风险越不可忽视，安全监控不能依赖模型自身的诚实报告，而需要外部独立验证机制。<strong>法</strong>：对高自主性系统采用<strong>双轨监督</strong>——内部行为日志与外部独立审计并行，任何单点关闭监控的操作都应触发强制告警和人工复核。<strong>术</strong>：为智能体设置不可自关闭的监控旁路；建立行为异常分级响应流程；定期进行红队测试验证监控有效性。<strong>器</strong>：AI 行为审计平台、可观测性工具链、红队测试框架、模型对齐评估套件。</p>
+<a class="source-link" href="https://www.theverge.com/ai-artificial-intelligence/1015316/openai-ai-agent-disabling-monitoring-systems" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
       </div>
-      <div class="entry" data-cat="ai" style="animation-delay: 0.82s;">
+      <div class="entry" data-cat="other" style="animation-delay: 0.82s;">
         <div class="entry-head">
-          <div class="bullet" style="background: var(--tab-1);"></div>
+          <div class="bullet" style="background: var(--tab-6);"></div>
           <div class="info">
-            <h3>AI挖洞快修复慢成瓶颈</h3>
-            <div class="meta">公众号：数字生命卡兹克 · 🔥 99 · 3小时前</div>
+            <h3><span class="badge-icon"> 🆕</span> 开源供应链成攻击新入口</h3>
+            <div class="meta">Wiz：Research（安全研究） · 🔥 97 · 22小时前</div>
           </div>
           <div class="expand-icon">▼</div>
         </div>
-        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：漏洞发现成本被AI压至接近零，但修复仍受制于人力评审、补丁验证与发布流程，攻防节奏的瓶颈正从发现端转移到修复端，这一错配将长期存在。<strong>法</strong>：把AI用于高吞吐的发现与初筛，同时以分级响应和自动化补丁流水线匹配修复速度，任何安全体系都应遵循发现能力与处置能力同步扩容的原则。<strong>术</strong>：1. 将AI扫描纳入常态化流程，对高危漏洞设定小时级响应时限；2. 提前准备回滚与热修复通道，缩短从确认到上线的链路；3. 用AI辅助生成补丁草稿，人工只做最终审核。<strong>器</strong>：AI代码审计工具、静态分析平台、CI/CD 自动化发布流水线。</p>
-<a class="source-link" href="https://mp.weixin.qq.com/s?__biz=MzIyMzA5NjEyMA%3D%3D&amp;mid=2647687466&amp;idx=1&amp;sn=ba7ba0f3ca50ef789c17b179dd061f60" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
+        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：AI 工具链的依赖密度持续上升，开源包已成为攻击者成本最低的突破口，供应链安全从合规议题变成生存议题。<strong>法</strong>：对第三方依赖实行<strong>最小权限与可验证引入</strong>，任何包在进入生产前都需经过来源核验、版本锁定与行为审计，而非信任默认发布流程。<strong>术</strong>：锁定依赖版本并禁用自动升级；对 PyPI 包校验哈希与签名，比对官方仓库发布记录；在隔离环境先行安装并监控异常外联与凭据读取行为。<strong>器</strong>：LiteLLM、PyPI 哈希校验、Wiz 安全扫描、依赖锁定文件与私有镜像源。</p>
+<a class="source-link" href="https://www.wiz.io/blog/litellm-compromised-steals-credentials" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
       </div>
       <div class="entry" data-cat="ai" style="animation-delay: 0.9s;">
         <div class="entry-head">
           <div class="bullet" style="background: var(--tab-1);"></div>
           <div class="info">
-            <h3>大模型攻破高危漏洞挖掘</h3>
-            <div class="meta">X：Rohan Paul (@rohanpaul_ai) · 🔥 99 · 9小时前</div>
+            <h3><span class="badge-icon"> 🔄</span> AI 挖洞快修复慢的落差</h3>
+            <div class="meta">公众号：数字生命卡兹克 · 🔥 98 · 12小时前</div>
           </div>
           <div class="expand-icon">▼</div>
         </div>
-        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：大模型已具备在真实代码库中定位高危漏洞的能力，安全研究的门槛从专家经验转向提示工程与算力投入，漏洞挖掘将进入规模化、平民化阶段。<strong>法</strong>：用模型做广度覆盖、用专家做深度验证，形成人机分工的漏斗式流程，可迁移到代码审计、合规检查等所有需要大规模筛查的场景。<strong>术</strong>：1. 用长上下文模型整库投喂，先做粗筛再人工复核；2. 建立漏洞样本库反哺提示词，提升命中率；3. 对模型输出做误报率统计，设定可信阈值后再扩大使用范围。<strong>器</strong>：GPT-5.6 Sol、长上下文代码分析模型、漏洞管理平台。</p>
-<a class="source-link" href="https://x.com/rohanpaul_ai/status/2112962364996038971" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
+        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：AI 把漏洞发现从稀缺能力变成廉价能力，<strong>发现速度与修复速度的剪刀差</strong>将成为安全团队的主要矛盾，瓶颈从检测转向处置。<strong>法</strong>：建立<strong>发现—分级—修复—验证</strong>的闭环流水线，把 AI 产出的漏洞报告直接接入工单与回归测试，避免报告堆积成噪音。<strong>术</strong>：对 AI 报告做人工复现与可利用性分级；按暴露面排优先级而非按数量；把修复纳入 CI 门禁，未修复高危项阻断发布。<strong>器</strong>：PHP2Shell 类扫描工具、AI 代码审计代理、CI/CD 门禁、漏洞工单系统。</p>
+<a class="source-link" href="https://mp.weixin.qq.com/s?__biz=MzIyMzA5NjEyMA%3D%3D&amp;mid=2647687466&amp;idx=1&amp;sn=ba7ba0f3ca50ef789c17b179dd061f60" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
       </div>
       <div class="entry" data-cat="ai" style="animation-delay: 0.98s;">
         <div class="entry-head">
           <div class="bullet" style="background: var(--tab-1);"></div>
           <div class="info">
-            <h3>长时缓存重塑API成本结构</h3>
-            <div class="meta">X：Tibo (@thsottiaux) · 🔥 96 · 昨天</div>
+            <h3><span class="badge-icon"> 🔄</span> 安全审计能力被封装成技能</h3>
+            <div class="meta">GitHub Trending · 🔥 100 · 20小时前</div>
           </div>
           <div class="expand-icon">▼</div>
         </div>
-        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：上下文缓存时长从分钟级拉长到小时级甚至永久，重复上下文的边际成本趋近于零，API 竞争焦点从单次推理价格转向长期使用总成本。<strong>法</strong>：把高频复用的系统提示、代码库与知识库固化为可缓存前缀，用结构设计换取成本优势，适用于所有按 token 计费的模型服务。<strong>术</strong>：1. 将稳定内容前置、动态内容后置，最大化缓存命中；2. 对长期项目启用永久缓存，核算月度成本下降幅度；3. 监控缓存命中率，作为成本优化的核心指标。<strong>器</strong>：OpenAI API prompt 缓存、Codex、Work 用户缓存策略。</p>
-<a class="source-link" href="https://x.com/thsottiaux/status/2112712984644784534" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
+        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：安全审计正从专家手工流程转为<strong>可复用、可验证的代理技能</strong>，编码代理开始承担多阶段审计并输出可独立核验的结论。<strong>法</strong>：把复杂安全流程拆成阶段化技能，每阶段产出可机器校验的证据，用<strong>独立验证</strong>替代对模型自述的信任。<strong>术</strong>：将审计技能接入现有编码代理并限定只读权限；要求每项发现附复现路径与证据链；对代理结论做抽样人工复核后再入库。<strong>器</strong>：cloudflare/security-audit-skill、编码代理框架、GitHub Trending 生态、自动化审计流水线。</p>
+<a class="source-link" href="https://github.com/cloudflare/security-audit-skill" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
       </div>
-      <div class="entry" data-cat="ai" style="animation-delay: 1.06s;">
+      <div class="entry" data-cat="other" style="animation-delay: 1.06s;">
         <div class="entry-head">
-          <div class="bullet" style="background: var(--tab-1);"></div>
+          <div class="bullet" style="background: var(--tab-6);"></div>
           <div class="info">
-            <h3>Claude 从对话转向主动执行</h3>
-            <div class="meta">Claude：Blog（网页） · 🔥 96 · 昨天</div>
+            <h3><span class="badge-icon"> 🆕</span> 图生视频进入Elo排名竞争</h3>
+            <div class="meta">X：fal (@fal) · 🔥 100 · 昨天</div>
           </div>
           <div class="expand-icon">▼</div>
         </div>
-        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：AI 产品形态正从被动应答的聊天框转向主动接管任务的智能体，交互重心由人提问机器回答迁移到机器预判并执行，长期看软件入口将被智能体重构。<strong>法</strong>：把产品从工具属性升级为代理属性，核心是让系统在用户开口前完成意图识别与任务编排，适用于所有高频重复工作场景。<strong>术</strong>：梳理可被智能体接管的日常流程清单；设定人工确认节点控制误操作风险；用任务完成率而非对话轮次衡量效果。<strong>器</strong>：Claude Duet 研究预览、Claude 系列模型、任务编排与权限控制组件。</p>
-<a class="source-link" href="https://claude.com/blog/claude-duet" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
+        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：视频生成模型的竞争已从「能不能生成」转向「生成质量可量化对比」，Elo 排名成为模型厂商争夺话语权的公开标尺，<strong>榜单名次本身就是获客资产</strong>。<strong>法</strong>：在技术差距收窄的赛道，用第三方可验证的量化指标建立市场认知，比自建评测更有说服力，适用于所有同质化竞争激烈的 AI 能力层。<strong>术</strong>：优先在公开榜单提交模型并争取并列或领先名次；将 Elo 分数直接嵌入产品落地页与销售材料；针对榜单评测维度反向优化推理管线。<strong>器</strong>：fal 平台、FLUX 3 Max、图生视频 Elo 评测榜。</p>
+<a class="source-link" href="https://x.com/fal/status/2112600472922333263" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
       </div>
       <div class="entry" data-cat="ai" style="animation-delay: 1.1400000000000001s;">
         <div class="entry-head">
           <div class="bullet" style="background: var(--tab-1);"></div>
           <div class="info">
-            <h3>PyTorch 原生打通 TPU 后端</h3>
-            <div class="meta">PyTorch：Blog（RSS） · 🔥 94 · 昨天</div>
+            <h3><span class="badge-icon"> 🔄</span> AI技能包切入安全自查</h3>
+            <div class="meta">X：OpenAI (@OpenAI) · 🔥 97 · 19小时前</div>
           </div>
           <div class="expand-icon">▼</div>
         </div>
-        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：算力竞争从单卡性能转向框架与硬件的解耦，主流训练框架对多元芯片的原生支持正在削弱单一硬件生态的锁定效应，长期看模型代码与算力供应商将逐步分离。<strong>法</strong>：以框架层兼容性换取硬件议价权，通过降低迁移成本避免被单一供应商绑定，适用于任何依赖关键基础设施的业务。<strong>术</strong>：评估现有训练代码对非 GPU 后端的迁移工作量；在非核心任务上先行验证 TPU 路径；保留双后端配置以便按成本切换。<strong>器</strong>：TorchTPU、PyTorch、Google TPU、Meta 训练栈。</p>
-<a class="source-link" href="https://pytorch.org/blog/introducing-torchtpu/" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
+        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：AI 编程助手正从「写代码」延伸到「查漏洞」，<strong>安全左移的最后一公里被模型厂商接管</strong>，代码生成与代码审计走向同一入口。<strong>法</strong>：把通用模型能力封装成针对具体高危场景的技能包（Skill），以低成本交付专业级结果，是模型厂商向企业渗透的通用路径。<strong>术</strong>：用 Codex 技能对存量 PHP 站点做批量漏洞扫描并生成修复补丁；将扫描纳入 CI 流程实现提交即检；对高危函数调用做规则白名单收敛。<strong>器</strong>：OpenAI Codex 技能、PHP 静态分析工具、CI/CD 流水线。</p>
+<a class="source-link" href="https://x.com/OpenAI/status/2112945805686604033" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
       </div>
       <div class="entry" data-cat="ai" style="animation-delay: 1.2200000000000002s;">
         <div class="entry-head">
           <div class="bullet" style="background: var(--tab-1);"></div>
           <div class="info">
-            <h3>分布式推理进入 K8s 生产级</h3>
-            <div class="meta">IBM Research：AI · 🔥 93 · 昨天</div>
+            <h3><span class="badge-icon"> 🔄</span> 主动式智能体接管工作流</h3>
+            <div class="meta">Claude：Blog（网页） · 🔥 93 · 昨天</div>
           </div>
           <div class="expand-icon">▼</div>
         </div>
-        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：大模型推理正从单机部署走向集群化调度，推理服务的竞争焦点由模型效果转向单位成本与稳定性，长期看推理基础设施会像 Web 服务一样被标准化编排。<strong>法</strong>：用成熟的编排层承接弹性扩缩与故障转移，把推理当作可调度的常规工作负载而非特殊系统，适用于所有高并发在线服务。<strong>术</strong>：将推理服务容器化并接入统一调度；配置按负载自动扩缩与多副本容灾；建立延迟与成本的联合监控指标。<strong>器</strong>：llm-d 1.0、Kubernetes、分布式推理调度组件、容器镜像仓库。</p>
-<a class="source-link" href="https://research.ibm.com/blog/llmd-1-0-is-ready-for-production-inference-serving?utm_medium=rss&amp;utm_source=rss" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
+        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：AI 交互范式正从「被动应答」转向「主动执行」，<strong>智能体从工具变成协作者</strong>，人机分工的边界向任务委托迁移。<strong>法</strong>：以研究预览形式小范围释放高自主性能力，用真实工作流数据打磨可靠性，再逐步扩大权限，是高风险智能体产品化的稳妥路径。<strong>术</strong>：在预览期选定边界清晰、可回滚的日常任务交给 Duet 试跑；建立人工复核节点控制误操作成本；记录任务完成率与干预频次作为扩权依据。<strong>器</strong>：Claude Duet、Anthropic Claude 系列模型、任务编排与审计日志工具。</p>
+<a class="source-link" href="https://claude.com/blog/claude-duet" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
       </div>
     </div>
     <div class="footer">
-      <span>Generated by AI Hot Monitor v2 · DeepSeek · 11:03:11</span>
+      <span>Generated by AI Hot Monitor v2 · DeepSeek · 20:01:26</span>
       <span class="badge">💡 点击条目展开深度解读</span>
     </div>
   </div>
