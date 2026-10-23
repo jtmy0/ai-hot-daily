@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="referrer" content="no-referrer">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'unsafe-inline'; img-src data:; connect-src 'none'; frame-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'; frame-ancestors 'none'">
+<title>Replit Monitoring Agent: Your very own software engineering team - AI热点快照</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','PingFang SC','Microsoft YaHei',sans-serif;background:#f8f9fa;color:#1a1a2e;line-height:1.8;min-height:100vh}
+.top-bar{background:#fff;border-bottom:1px solid #e5e7eb;padding:10px 20px;display:flex;align-items:center;gap:12px;position:sticky;top:0;z-index:10}
+.top-bar .logo{font-size:14px;font-weight:700;color:#0d9488}
+.top-bar .sep{color:#d1d5db}
+.top-bar .source{font-size:13px;color:#6b7280}
+.top-bar .back{margin-left:auto;font-size:13px;color:#0d9488;text-decoration:none}
+.top-bar .back:hover{text-decoration:underline}
+.container{max-width:760px;margin:0 auto;padding:40px 24px 80px}
+.article-title{font-size:1.8rem;font-weight:700;line-height:1.35;margin-bottom:16px;color:#1a1a2e}
+.article-meta{display:flex;flex-wrap:wrap;gap:16px;padding-bottom:20px;margin-bottom:28px;border-bottom:1px solid #e5e7eb;font-size:14px;color:#6b7280}
+.article-meta a{color:#0d9488;text-decoration:none}
+.article-meta a:hover{text-decoration:underline}
+.article-body{font-size:16.5px;line-height:1.85;color:#1f2937}
+.article-body p{margin-bottom:1.2em;text-align:justify}
+.article-body h1,.article-body h2,.article-body h3{font-size:1.25em;font-weight:700;margin:1.6em 0 0.6em;color:#1a1a2e}
+.article-body a{color:#0d9488}
+.article-body pre,.article-body code{background:#f1f5f9;border-radius:4px;font-size:0.9em}
+.article-body pre{padding:16px;overflow-x:auto;margin:1em 0}
+.article-body code{padding:2px 6px}
+.article-body blockquote{border-left:3px solid #0d9488;padding-left:16px;color:#4b5563;margin:1em 0}
+.article-body ul,.article-body ol{padding-left:1.6em;margin-bottom:1em}
+.article-body li{margin-bottom:0.4em}
+.article-body figure{margin:1.2em 0}
+.article-body figcaption{font-size:13px;color:#9ca3af;text-align:center;margin-top:6px}
+.footer{margin-top:48px;padding-top:20px;border-top:1px solid #e5e7eb;font-size:13px;color:#9ca3af;text-align:center}
+</style>
+</head>
+<body>
+<div class="top-bar">
+  <a class="back" href="../" style="font-size:13px;color:#6b7280;text-decoration:none">← 日报首页</a>
+  <span class="sep">|</span>
+  <span class="logo">AI热点快照</span>
+  <span class="sep">|</span>
+  <span class="source">Replit Blog</span>
+  <a class="back" href="https://replit.com/blog/replit-monitoring-agent" target="_blank" rel="noopener noreferrer">查看原文 ↗</a>
+</div>
+<div class="container">
+  <h1 class="article-title">Replit Monitoring Agent: Your very own software engineering team</h1>
+  <div class="article-meta">
+    <span>作者: Akram Hussein, Carl Cortright</span>
+    <span>来源: Replit Blog</span>
+    <span>快照日期: 2026-10-23</span>
+  </div>
+  <div class="article-body"><div><div><div><p>Anyone who has published an app knows that dreaded message from a user: <em>“Doesn’t work for me”.</em></p><p>At a large company, an on-call engineer gets paged, investigates the problem, and works to get the app running again. For most creators and small teams, that responsibility falls to the same person building the product, supporting customers, and trying to grow the business.</p><p>Today, we’re changing that.</p><p><strong>Replit Monitoring Agent</strong> gives every internal app builder and entrepreneur an autonomous on-call engineer for their app.</p><p>When a production issue occurs, the Monitoring Agent can investigate the alert, identify the cause, make and validate a fix, and deploy that fix to production. It then reports back with what happened and what changed.</p><p>Earlier this year, we launched <a href="https://replit.com/blog/app-monitoring" target="_blank" rel="noopener noreferrer nofollow">App Monitoring</a>, giving you production health checks and alerts when a published app went down. Now, we’re closing the loop. When you run apps on Replit, your agent doesn’t just tell you what broke, it makes the fix as well.</p><p>Now, instead of learning about outages from frustrated users, you can wake up and focus on what matters to you, with the peace of mind that your app’s uptime is being handled.</p><h3>How Monitoring Agent Works</h3><figure></figure><p>Once your app is in production, keeping it running means understanding what’s happening, responding when something breaks, and safely shipping a fix.</p><p><strong>Replit Monitoring Agent </strong>is a first-of-its-kind agent that can see, fix, and deploy changes autonomously for AI-app creators.</p><h4>See what is happening in production</h4><p>Agent can access your production logs and metrics, giving it the context to investigate errors, slowdowns, and failed deployments without you digging through logs.</p><h4>Fix issues before users report them</h4><p>With alerting and autofix enabled, <strong>Monitoring Agent</strong> is notified when an issue occurs. It investigates the cause, validates a fix, and emails you a summary of what happened.</p><h4>Deploy fixes automatically</h4><p>With auto-publish enabled, <strong>Monitoring Agent</strong> can deploy a validated fix and report back with what changed. You decide whether fixes are published automatically.</p><h3>Toward Autonomous Software Teams</h3><p>Replit was the first platform to enable agentic coding in the cloud. As agents become more capable, our focus is expanding from a single coding agent to <strong>autonomous software teams that can accomplish anything a modern software engineering team can do, and more.</strong></p><p>We believe the future of software is teams of agents working together to build, maintain, secure, and optimize software, while creators set the direction and stay in control.</p><p>Over the past six months, we’ve launched industry-leading systems for <a href="https://replit.com/blog/black-box-pen-tests" target="_blank" rel="noopener noreferrer nofollow">black box security scanning</a>, <a href="https://replit.com/blog/seo-agent" target="_blank" rel="noopener noreferrer nofollow">growth</a>, and now production monitoring. These are important steps toward autonomous agent teams that can manage any app, tool, or business built on Replit.</p><p><strong>All of this is in service of a simple idea: more people should be able to turn their ideas into something real.</strong> Building an app is only one part of that journey. Keeping it reliable, secure, discoverable, and improving over time has historically required an entire team. By giving every creator access to agents that can do that work, more people can create, launch, and grow software without needing to become experts in every discipline.</p><p>All you need is the idea and the ambition.</p><h3>Get Started</h3><p>Publish your app, open its Publishing settings, and enable monitoring alerts and auto-fix.</p><p>You can also turn on auto-publish to allow <strong>Monitoring Agent</strong> to deploy validated fixes automatically.</p><p><strong>Your app is live. Now its on-call engineer can be, too.</strong></p><p>For more information, see our <a href="https://docs.replit.com/features/publishing/monitoring-agent" target="_blank" rel="noopener noreferrer nofollow">documentation</a>.</p></div></div></div></div>
+  <div class="footer">
+    本文由 AI热点监控系统自动抓取 · 内容版权归原作者/网站所有<br>
+    快照仅用于学习交流，如需转载请访问原文
+  </div>
+</div>
+</body>
+</html>

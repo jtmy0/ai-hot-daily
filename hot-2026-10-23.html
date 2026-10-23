@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="referrer" content="no-referrer">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; script-src 'unsafe-inline'; img-src data:; connect-src 'none'; base-uri 'none'; form-action 'none'; frame-ancestors 'none'">
+<title>AI 热点日报 — 2026年10月23日</title>
+<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg-outer: #2d2d2d; --bg-page: #f8f6f1; --text-primary: #1a1a1a;
+  --text-secondary: #555; --text-muted: #999;
+  --tab-1: #98d4bb; --tab-2: #c7b8ea; --tab-3: #f4b8c5; --tab-4: #a8d8ea; --tab-5: #ffe6a7; --tab-6: #d4c5b9;
+  --font-display: 'Bodoni Moda', serif; --font-body: 'DM Sans', sans-serif; --border: #e0dcd4;
+  --expand-bg: #f0ede8;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html, body { height: 100%; overflow-x: hidden; }
+body { background: var(--bg-outer); font-family: var(--font-body); min-height: 100vh; display: flex; justify-content: center; align-items: flex-start; padding: clamp(1rem, 3vw, 3rem); }
+.notebook { position: relative; background: var(--bg-page); width: min(92vw, 920px); border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1), 0 20px 60px rgba(0,0,0,0.3); padding: clamp(2rem, 5vw, 4rem); padding-right: clamp(2.5rem, 6vw, 5rem); animation: pageIn 0.6s ease-out; }
+.notebook::before { content: ''; position: absolute; left: clamp(14px, 2vw, 24px); top: 0; bottom: 0; width: 2px; background: repeating-linear-gradient(to bottom, transparent 0px, transparent 30px, var(--border) 30px, var(--border) 32px); }
+.hole { position: absolute; left: clamp(8px, 1.5vw, 16px); width: clamp(10px, 1.5vw, 16px); height: clamp(10px, 1.5vw, 16px); border-radius: 50%; background: var(--bg-outer); border: 1.5px solid #bbb; }
+.hole:nth-child(1) { top: 12%; } .hole:nth-child(2) { top: 50%; } .hole:nth-child(3) { top: 88%; }
+
+.tabs { position: absolute; right: 0; top: 10%; display: flex; flex-direction: column; gap: 4px; z-index: 10; }
+.tab { padding: clamp(0.3rem, 0.8vw, 0.6rem) clamp(0.5rem, 1vw, 0.8rem); border-radius: 6px 0 0 6px; font-size: clamp(0.5rem, 1vh, 0.7rem); font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: rgba(0,0,0,0.6); writing-mode: vertical-rl; text-orientation: mixed; min-height: clamp(40px, 6vh, 60px); display: flex; align-items: center; justify-content: center; cursor: pointer; transition: transform 0.2s; border: none; background: none; font-family: inherit; }
+.tab:hover { transform: translateX(-4px); }
+.tab.active { transform: translateX(-6px); box-shadow: -2px 0 8px rgba(0,0,0,0.1); }
+.tab[data-cat="all"] { background: var(--text-primary); color: #fff; }
+.tab[data-cat="ai"] { background: var(--tab-1); }
+.tab[data-cat="dev"] { background: var(--tab-2); }
+.tab[data-cat="sec"] { background: var(--tab-3); }
+.tab[data-cat="biz"] { background: var(--tab-4); }
+.tab[data-cat="auto"] { background: var(--tab-5); }
+.tab[data-cat="other"] { background: var(--tab-6); }
+
+.header { margin-bottom: clamp(0.8rem, 2vw, 1.5rem); padding-bottom: clamp(0.6rem, 1.2vw, 1rem); border-bottom: 2px solid var(--text-primary); }
+.header h1 { font-family: var(--font-display); font-size: clamp(1.5rem, 4vw, 2.8rem); font-weight: 700; letter-spacing: -0.02em; color: var(--text-primary); }
+.header .subtitle { display: flex; justify-content: space-between; align-items: center; margin-top: 0.4rem; flex-wrap: wrap; gap: 0.5rem; }
+.header .date { font-family: var(--font-display); font-style: italic; font-size: clamp(0.7rem, 1.1vw, 0.95rem); color: var(--text-secondary); }
+.header .controls { display: flex; gap: 0.5rem; }
+.header .controls button { font-family: var(--font-body); font-size: clamp(0.55rem, 0.85vw, 0.72rem); padding: 0.25rem 0.6rem; border: 1px solid var(--border); border-radius: 4px; background: #fff; color: var(--text-secondary); cursor: pointer; transition: all 0.2s; }
+.header .controls button:hover { background: var(--text-primary); color: #fff; border-color: var(--text-primary); }
+.back-link { display: inline-flex; align-items: center; gap: 0.3em; font-size: clamp(0.6rem, 0.9vw, 0.75rem); color: var(--text-muted); text-decoration: none; margin-bottom: clamp(0.4rem, 0.8vw, 0.6rem); transition: color 0.2s; }
+.back-link:hover { color: var(--text-primary); }
+
+.entries { padding-left: clamp(0.5rem, 2vw, 1.5rem); }
+.entry { border-bottom: 1px solid var(--border); animation: fadeIn 0.4s ease-out backwards; transition: opacity 0.3s; }
+.entry.hidden { display: none; }
+.entry .entry-head { display: flex; gap: clamp(0.6rem, 1.5vw, 1.2rem); padding: clamp(0.6rem, 1.2vw, 1rem) 0; cursor: pointer; user-select: none; transition: padding-left 0.2s; }
+.entry .entry-head:hover { padding-left: 4px; }
+.entry .bullet { flex-shrink: 0; width: clamp(6px, 0.8vw, 8px); height: clamp(6px, 0.8vw, 8px); border-radius: 50%; margin-top: 0.55em; transition: transform 0.2s; }
+.entry.expanded .bullet { transform: scale(1.5); }
+.entry .info { flex: 1; min-width: 0; }
+.entry .info h3 { font-family: var(--font-body); font-size: clamp(0.8rem, 1.3vw, 1.05rem); font-weight: 500; line-height: 1.45; color: var(--text-primary); margin-bottom: 0.25rem; }
+.entry .info .meta { font-size: clamp(0.6rem, 0.9vw, 0.75rem); color: var(--text-muted); font-style: italic; }
+.entry .info .badge-icon { font-size: 0.85em; margin-right: 0.1em; }
+.entry .expand-icon { flex-shrink: 0; width: 20px; height: 20px; display: flex; align-items: center; justify-content: center; color: var(--text-muted); font-size: 12px; transition: transform 0.3s ease; margin-top: 0.3em; }
+.entry.expanded .expand-icon { transform: rotate(180deg); }
+
+.entry .detail-wrap { max-height: 0; overflow: hidden; transition: max-height 0.5s cubic-bezier(0.16, 1, 0.3, 1); }
+.entry.expanded .detail-wrap { max-height: 500px; }
+.entry .detail-inner { padding: clamp(0.5rem, 1vw, 0.8rem) 0 clamp(0.5rem, 1vw, 0.8rem) clamp(1.8rem, 3.5vw, 2.8rem); background: var(--expand-bg); border-radius: 6px; margin-bottom: clamp(0.4rem, 0.8vw, 0.6rem); border-left: 3px solid var(--border); }
+.entry .detail-inner p { font-size: clamp(0.72rem, 1.1vw, 0.9rem); line-height: 1.7; color: var(--text-secondary); }
+.entry .detail-inner p strong { color: var(--text-primary); font-weight: 600; }
+.entry .detail-inner .source-link { display: inline-flex; align-items: center; gap: 0.3em; margin-top: clamp(0.4rem, 0.7vw, 0.6rem); font-size: clamp(0.6rem, 0.9vw, 0.75rem); color: var(--text-muted); text-decoration: none; padding: 0.2rem 0.5rem; border: 1px solid var(--border); border-radius: 4px; transition: all 0.2s; }
+.entry .detail-inner .source-link:hover { color: var(--text-primary); border-color: var(--text-primary); background: rgba(0,0,0,0.03); }
+
+.footer { margin-top: clamp(0.8rem, 1.5vw, 1.5rem); padding-top: clamp(0.5rem, 1vw, 1rem); border-top: 1px solid var(--border); font-size: clamp(0.55rem, 0.85vw, 0.7rem); color: var(--text-muted); font-family: var(--font-display); font-style: italic; text-align: center; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem; }
+.footer .badge { display: inline-flex; align-items: center; gap: 0.3em; padding: 0.15rem 0.5rem; border: 1px solid var(--border); border-radius: 999px; font-style: normal; font-size: clamp(0.5rem, 0.75vw, 0.6rem); }
+
+@keyframes pageIn { from { opacity: 0; transform: scale(0.97); } to { opacity: 1; transform: scale(1); } }
+@keyframes fadeIn { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
+@media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.1s !important; } }
+</style>
+</head>
+<body>
+  <div class="notebook">
+    <div class="hole"></div><div class="hole"></div><div class="hole"></div>
+    <div class="tabs" id="tabs">
+      <button class="tab active" data-cat="all" title="全部">ALL</button>
+      <button class="tab" data-cat="ai" title="AI/大模型">AI</button>
+      <button class="tab" data-cat="dev" title="开发工具">DEV</button>
+      <button class="tab" data-cat="sec" title="安全">SEC</button>
+      <button class="tab" data-cat="biz" title="商业">BIZ</button>
+      <button class="tab" data-cat="auto" title="自动化">AUTO</button>
+      <button class="tab" data-cat="other" title="其他">OTHER</button>
+    </div>
+    <div class="header">
+      <a class="back-link" href="./">← 归档首页</a>
+      <h1>AI 热点日报</h1>
+      <div class="subtitle">
+        <span class="date">2026年10月23日，星期五 · 道法术器解读</span>
+        <div class="controls">
+          <button id="expandAll">展开全部</button>
+          <button id="collapseAll">收起全部</button>
+        </div>
+      </div>
+    </div>
+    <div class="entries" id="entries">
+      <div class="entry" data-cat="other" style="animation-delay: 0.1s;">
+        <div class="entry-head">
+          <div class="bullet" style="background: var(--tab-6);"></div>
+          <div class="info">
+            <h3>开源大模型转向稀疏效率战</h3>
+            <div class="meta">X：MiniMax (@MiniMax_AI) · 🔥 100 · 2小时前</div>
+          </div>
+          <div class="expand-icon">▼</div>
+        </div>
+        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：大模型竞争正从参数规模竞赛转向单位算力效率竞赛，稀疏激活架构让开源权重具备接近闭源的服务经济性，模型层利润空间被持续压缩。
+<strong>法</strong>：以<strong>开放权重换生态位</strong>，用推理成本优势切入高频调用场景，把竞争焦点从能力榜单转移到部署总成本。
+<strong>术</strong>：
+- 按每 token 激活 23B 估算实际推理成本，与闭源 API 做单位成本对比
+- 在自有流量峰值场景做灰度部署，验证长上下文与并发稳定性
+- 评估微调与量化后的精度衰减，确定可承接的业务边界
+<strong>器</strong>：MiniMax M3.1 Flash 权重、vLLM、SGLang、Hugging Face。</p>
+<a class="source-link" href="https://x.com/MiniMax_AI/status/2113436864904610008" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
+      </div>
+      <div class="entry" data-cat="ai" style="animation-delay: 0.18s;">
+        <div class="entry-head">
+          <div class="bullet" style="background: var(--tab-1);"></div>
+          <div class="info">
+            <h3>运维智能体接管故障闭环</h3>
+            <div class="meta">Replit：Blog（RSS） · 🔥 100 · 7小时前</div>
+          </div>
+          <div class="expand-icon">▼</div>
+        </div>
+        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：AI 产品价值正从辅助生成转向<strong>自主闭环执行</strong>，能读日志、定位问题、改代码、再部署的智能体，把运维从人盯监控变为机器自愈。
+<strong>法</strong>：把重复性高、反馈信号明确的运维流程封装为<strong>感知—决策—执行—验证</strong>闭环，让智能体在可回滚边界内自主行动。
+<strong>术</strong>：
+- 先接入告警与日志系统，限定智能体只处理已知故障类型
+- 设置自动修复的审批阈值与回滚开关，保留人工兜底
+- 统计修复成功率与误操作率，逐步扩大授权范围
+<strong>器</strong>：Replit Monitoring Agent、Sentry、PagerDuty、GitHub Actions。</p>
+<a class="source-link" href="https://replit.com/blog/replit-monitoring-agent" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
+      </div>
+      <div class="entry" data-cat="ai" style="animation-delay: 0.26s;">
+        <div class="entry-head">
+          <div class="bullet" style="background: var(--tab-1);"></div>
+          <div class="info">
+            <h3>小决策 API 化压低调用成本</h3>
+            <div class="meta">OpenAI：官网动态（RSS · 排除企业/客户案例） · 🔥 99 · 8小时前</div>
+          </div>
+          <div class="expand-icon">▼</div>
+        </div>
+        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：模型能力正在<strong>分层解耦</strong>，高频低复杂度决策从通用大模型剥离为专用轻量接口，推理成本与延迟成为产品设计的一等约束。
+<strong>法</strong>：按决策复杂度拆分调用链路，<strong>小决策走小模型</strong>，大模型只保留给需要推理与生成的环节，整体成本结构随之重构。
+<strong>术</strong>：
+- 梳理业务中的分类、路由、判定类调用，迁移至 Decisions API
+- 对比迁移前后的延迟与单次成本，设定成本下降目标
+- 建立降级策略，轻量接口异常时回退至通用模型
+<strong>器</strong>：OpenAI Decisions API、LangChain、Prometheus、Grafana。</p>
+<a class="source-link" href="https://openai.com/index/decisions-api" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
+      </div>
+      <div class="entry" data-cat="ai" style="animation-delay: 0.33999999999999997s;">
+        <div class="entry-head">
+          <div class="bullet" style="background: var(--tab-1);"></div>
+          <div class="info">
+            <h3>视频生成转向精细控制</h3>
+            <div class="meta">X：可灵 Kling AI (@Kling_ai) · 🔥 96 · 20小时前</div>
+          </div>
+          <div class="expand-icon">▼</div>
+        </div>
+        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：视频生成竞争已从画质比拼转向可控性比拼，首中尾帧与多参考图本质是把生成过程从抽卡变成可编排的工序，长期趋势是模型能力被封装为可复用的生产管线。<strong>法</strong>：把不可控的生成能力拆解为可指定的输入约束，用结构化条件替代反复试错，这一策略适用于所有创意生成类工具的产品化。<strong>术</strong>：将首中尾帧用于镜头转场与动作衔接，用多参考图锁定角色与场景一致性；建立提示词加参考图的模板库，把单次成功固化为可复用配置。<strong>器</strong>：Kling 4.0、OpenArt 平台、参考图与关键帧工作流。</p>
+<a class="source-link" href="https://x.com/Kling_ai/status/2113156632134005040" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
+      </div>
+      <div class="entry" data-cat="ai" style="animation-delay: 0.42000000000000004s;">
+        <div class="entry-head">
+          <div class="bullet" style="background: var(--tab-1);"></div>
+          <div class="info">
+            <h3>安全审计被智能体接管</h3>
+            <div class="meta">GitHub Trending · 🔥 100 · 11小时前</div>
+          </div>
+          <div class="expand-icon">▼</div>
+        </div>
+        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：安全审计正从人工经验驱动转向智能体分阶段执行加独立验证，核心变化是审计结论需要可机器复核的证据链，而非依赖个人判断。<strong>法</strong>：把复杂专业流程拆成多阶段任务，每阶段产出可独立验证的结果，再由另一环节交叉校验，该模式可迁移到合规审查、代码评审等高风险场景。<strong>术</strong>：将审计拆为侦察、检测、验证三段并定义各段输出格式；要求每条结论附带可复现的验证脚本；把智能体技能纳入 CI 流程做增量审计。<strong>器</strong>：cloudflare/security-audit-skill、编码智能体、GitHub Actions。</p>
+<a class="source-link" href="https://github.com/cloudflare/security-audit-skill" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
+      </div>
+      <div class="entry" data-cat="ai" style="animation-delay: 0.5s;">
+        <div class="entry-head">
+          <div class="bullet" style="background: var(--tab-1);"></div>
+          <div class="info">
+            <h3>默认自动模式成常态</h3>
+            <div class="meta">X：Claude (@claudeai) · 🔥 100 · 7小时前</div>
+          </div>
+          <div class="expand-icon">▼</div>
+        </div>
+        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：AI 产品交互正从用户显式选择模式转向默认自动决策，把复杂度吸收到系统内部，长期趋势是<strong>默认即最优</strong>成为产品设计的基本假设。<strong>法</strong>：用默认配置降低使用门槛，同时保留高级用户的手动开关，以默认值引导行为、以可选项保留控制权，适用于所有工具型产品的功能投放。<strong>术</strong>：梳理自动模式触发条件与回退规则，明确哪些操作需二次确认；对高风险动作保留显式授权；在团队内统一默认配置以避免行为不一致。<strong>器</strong>：Claude 网页端、桌面端与移动端、auto mode 开关。</p>
+<a class="source-link" href="https://x.com/claudeai/status/2113360845409583307" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
+      </div>
+      <div class="entry" data-cat="ai" style="animation-delay: 0.58s;">
+        <div class="entry-head">
+          <div class="bullet" style="background: var(--tab-1);"></div>
+          <div class="info">
+            <h3>医疗AI进入基准化竞争</h3>
+            <div class="meta">Microsoft AI：官方博客（网页） · 🔥 100 · 9小时前</div>
+          </div>
+          <div class="expand-icon">▼</div>
+        </div>
+        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：医疗AI的竞争焦点正从单点模型能力转向<strong>可验证的评测体系与临床可信度</strong>，登顶Science意味着学术背书成为商业化前置条件。<strong>法</strong>：以公开基准建立行业话语权，再用配套诊断系统承接落地需求，形成「定标准者得生态」的路径，适用于所有高监管行业的技术渗透。<strong>术</strong>：一是优先在权威期刊或基准平台发布评测结果，抢占标准定义权；二是将基准与自家产品绑定，形成评测即演示的闭环；三是针对监管机构准备可复现的验证材料。<strong>器</strong>：SDBench基准、MAI-DxO诊断系统、Science期刊平台。</p>
+<a class="source-link" href="https://microsoft.ai/news/building-medical-superintelligence/" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
+      </div>
+      <div class="entry" data-cat="sec" style="animation-delay: 0.66s;">
+        <div class="entry-head">
+          <div class="bullet" style="background: var(--tab-3);"></div>
+          <div class="info">
+            <h3>公共DNS因地缘合规退出</h3>
+            <div class="meta">Hacker News · 🔥 100 · 12小时前</div>
+          </div>
+          <div class="expand-icon">▼</div>
+        </div>
+        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：全球互联网正从<strong>统一开放的基础设施</strong>走向按司法辖区碎片化的合规网络，公共服务的运营成本越来越多来自法律而非技术。<strong>法</strong>：基础设施类产品必须把<strong>数据留存与跨境合规</strong>纳入架构设计，而非事后补救；退出单一市场是止损而非失败，资源应转向监管确定性更高的区域。<strong>术</strong>：一是梳理各辖区数据留存强制要求，评估留存成本与法律风险；二是对无法合规的市场制定有序退出与用户迁移方案；三是提前部署无日志架构与本地化节点以降低未来合规摩擦。<strong>器</strong>：Quad9 DNS解析器、无日志DNS架构、本地化递归解析节点。</p>
+<a class="source-link" href="https://quad9.net/news/blog/au-revoir-france/" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
+      </div>
+      <div class="entry" data-cat="ai" style="animation-delay: 0.74s;">
+        <div class="entry-head">
+          <div class="bullet" style="background: var(--tab-1);"></div>
+          <div class="info">
+            <h3>AI漏洞发现倒逼修复提速</h3>
+            <div class="meta">X：Rohan Paul (@rohanpaul_ai) · 🔥 96 · 22小时前</div>
+          </div>
+          <div class="expand-icon">▼</div>
+        </div>
+        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：AI正把漏洞发现从<strong>稀缺事件</strong>变成<strong>高频常态</strong>，攻防节奏由人工周期转向机器速度，防守方的修复窗口被系统性压缩。<strong>法</strong>：将AI用于攻击面自查，以攻促防，把「发现—验证—修复」链路自动化，使防守速度匹配发现速度，适用于所有暴露在公网的系统。<strong>术</strong>：一是立即排查PHP2Shell相关组件版本并打补丁；二是引入AI辅助代码审计与模糊测试做持续自查；三是建立高危漏洞的小时级响应流程与回滚预案。<strong>器</strong>：PHP2Shell漏洞扫描工具、AI代码审计平台、NSA修复公告与补丁源。</p>
+<a class="source-link" href="https://x.com/rohanpaul_ai/status/2113136583985766442" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
+      </div>
+      <div class="entry" data-cat="sec" style="animation-delay: 0.82s;">
+        <div class="entry-head">
+          <div class="bullet" style="background: var(--tab-3);"></div>
+          <div class="info">
+            <h3>披露窗口差是攻防常态</h3>
+            <div class="meta">Ars Technica：AI（RSS） · 🔥 98 · 12小时前</div>
+          </div>
+          <div class="expand-icon">▼</div>
+        </div>
+        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：漏洞从被发现到公开披露之间的时间差，是攻防双方力量对比的真实体现，这一窗口期长期存在且难以消除，披露节奏本身就是一种博弈工具。<strong>法</strong>：把<strong>披露时间差</strong>当作可管理的风险变量，而非等待被动响应，建立从情报获取到修复验证的闭环流程，适用于所有依赖第三方组件的系统。<strong>术</strong>：1. 建立组件清单与版本台账，明确 PHP 相关依赖的暴露面；2. 在官方补丁发布前预设临时缓解措施，如 WAF 规则与访问控制；3. 披露后 24 小时内完成扫描与优先级排序。<strong>器</strong>：CVE/NVD 情报源、WAF、资产测绘平台、依赖扫描工具。</p>
+<a class="source-link" href="https://arstechnica.com/security/2026/10/hackers-got-a-four-day-head-start-on-epic-php2shell-vulnerability/" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
+      </div>
+      <div class="entry" data-cat="ai" style="animation-delay: 0.9s;">
+        <div class="entry-head">
+          <div class="bullet" style="background: var(--tab-1);"></div>
+          <div class="info">
+            <h3>AI 把漏洞自查成本打下来</h3>
+            <div class="meta">X：OpenAI (@OpenAI) · 🔥 93 · 昨天</div>
+          </div>
+          <div class="expand-icon">▼</div>
+        </div>
+        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：安全能力正从专家稀缺资源转向<strong>可规模化分发的工具能力</strong>，AI 编码助手把原本需要安全团队介入的排查动作下放到普通开发者手中。<strong>法</strong>：用 AI 代理承担<strong>重复性排查与影响面评估</strong>，把人力集中在修复决策与架构改造上，这一分工模式可迁移到合规审计、代码迁移等场景。<strong>术</strong>：1. 用 Codex 技能对代码库做 PHP 版本与危险函数调用扫描；2. 输出受影响文件清单并按调用链排序；3. 将扫描步骤固化为 CI 环节，避免一次性排查。<strong>器</strong>：OpenAI Codex 技能、CI 流水线、静态分析工具、依赖管理平台。</p>
+<a class="source-link" href="https://x.com/OpenAI/status/2112945805686604033" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
+      </div>
+      <div class="entry" data-cat="ai" style="animation-delay: 0.98s;">
+        <div class="entry-head">
+          <div class="bullet" style="background: var(--tab-1);"></div>
+          <div class="info">
+            <h3>监控系统本身需要被监控</h3>
+            <div class="meta">Redwood Research：Blog（RSS） · 🔥 99 · 11小时前</div>
+          </div>
+          <div class="expand-icon">▼</div>
+        </div>
+        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：随着智能体自主性提升，<strong>监控与被监控之间的对抗</strong>成为长期结构性矛盾，任何监控系统都会面临被绕过或被利用的风险，红队测试从可选动作变为必要环节。<strong>法</strong>：对安全机制本身实施<strong>独立对抗性评估</strong>，由外部团队模拟规避路径，形成发现、修复、复测的循环，适用于权限系统、风控模型等所有防御性设计。<strong>术</strong>：1. 为监控系统设定明确的威胁模型与绕过假设；2. 引入第三方红队做定向规避测试并记录失败案例；3. 将测试结果转化为监控规则的回归用例。<strong>器</strong>：METR 评估框架、Redwood Research 红队方法、智能体日志审计平台。</p>
+<a class="source-link" href="https://blog.redwoodresearch.org/p/red-teaming-openais-internal-agent" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
+      </div>
+      <div class="entry" data-cat="ai" style="animation-delay: 1.06s;">
+        <div class="entry-head">
+          <div class="bullet" style="background: var(--tab-1);"></div>
+          <div class="info">
+            <h3>AI 做形式化证明走向工程化</h3>
+            <div class="meta">Anthropic：Research（发表成果 · 网页） · 🔥 93 · 昨天</div>
+          </div>
+          <div class="expand-icon">▼</div>
+        </div>
+        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：AI 在软件质量领域的角色正从辅助写代码转向承担可验证的正确性证明，安全与合规的信任基础将由机器可检验的证明而非人工评审来支撑。<strong>法</strong>：把高风险、可形式化定义的任务交给 AI 批量处理，再用机器可检验的证明作为验收标准，形成生成与验证的闭环，这一模式可迁移到芯片验证、协议实现、合约审计等场景。<strong>术</strong>：优先挑选接口稳定、规格明确的核心库做试点；建立证明产物入库与回归机制，防止代码变更后证明失效；把证明覆盖率纳入依赖选型的评估维度。<strong>器</strong>：Claude、Coq/Isabelle 等证明助手、开源库依赖清单与 CI 流水线。</p>
+<a class="source-link" href="https://www.anthropic.com/research/formal-verification" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
+      </div>
+      <div class="entry" data-cat="ai" style="animation-delay: 1.1400000000000001s;">
+        <div class="entry-head">
+          <div class="bullet" style="background: var(--tab-1);"></div>
+          <div class="info">
+            <h3>基础软件故障暴露单点依赖</h3>
+            <div class="meta">36kr · 🔥 95 · 3小时前</div>
+          </div>
+          <div class="expand-icon">▼</div>
+        </div>
+        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：互联网的脆弱性根源在于少数基础组件的深度耦合，AI 提升的是修复效率而非系统韧性，<strong>故障的发现与止损仍依赖人的应急能力</strong>。<strong>法</strong>：把不可替代的基础依赖当作单点风险来管理，用冗余、隔离和可回滚设计换取生存空间，而非寄望于更聪明的工具事后补救。<strong>术</strong>：梳理依赖树中标红的高危单点并准备替代方案；演练断网、断源场景下的降级路径；对关键组件锁定版本并保留离线镜像。<strong>器</strong>：依赖扫描工具、制品仓库镜像、灰度发布与回滚平台。</p>
+<a class="source-link" href="https://www.36kr.com/p/4037648095236992" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
+      </div>
+      <div class="entry" data-cat="ai" style="animation-delay: 1.2200000000000002s;">
+        <div class="entry-head">
+          <div class="bullet" style="background: var(--tab-1);"></div>
+          <div class="info">
+            <h3>AI 挖漏洞进入规模化阶段</h3>
+            <div class="meta">36kr · 🔥 100 · 18小时前</div>
+          </div>
+          <div class="expand-icon">▼</div>
+        </div>
+        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：漏洞发现成本被 AI 大幅压低，攻防节奏从人工挖掘转向机器批量扫描，<strong>防守方的窗口期在持续缩短</strong>，安全投入的边际收益取决于响应速度而非发现数量。<strong>法</strong>：把漏洞管理从发现驱动改为响应驱动，用自动化闭环压缩从告警到修复的时间，适用于所有面对高频外部探测的系统。<strong>术</strong>：建立 AI 扫描结果的去重与优先级排序规则；对高频命中类型做批量修复模板；把补丁发布周期压缩到天级并保留热修复通道。<strong>器</strong>：自动化漏洞扫描平台、补丁管理与资产台账系统、威胁情报订阅源。</p>
+<a class="source-link" href="https://www.36kr.com/p/4036566939292806" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
+      </div>
+    </div>
+    <div class="footer">
+      <span>Generated by AI Hot Monitor v2 · DeepSeek · 11:02:08</span>
+      <span class="badge">💡 点击条目展开深度解读</span>
+    </div>
+  </div>
+<script>
+document.querySelectorAll('.entry .entry-head').forEach(h => h.addEventListener('click', () => h.closest('.entry').classList.toggle('expanded')));
+document.getElementById('expandAll').addEventListener('click', () => document.querySelectorAll('.entry:not(.hidden)').forEach(e => e.classList.add('expanded')));
+document.getElementById('collapseAll').addEventListener('click', () => document.querySelectorAll('.entry').forEach(e => e.classList.remove('expanded')));
+document.querySelectorAll('.tab').forEach(tab => tab.addEventListener('click', () => {
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  tab.classList.add('active');
+  const cat = tab.dataset.cat;
+  document.querySelectorAll('.entry').forEach(e => {
+    if (cat === 'all' || e.dataset.cat === cat) { e.classList.remove('hidden'); } else { e.classList.add('hidden'); e.classList.remove('expanded'); }
+  });
+}));
+document.addEventListener('keydown', e => { if (e.key === 'Escape') document.querySelectorAll('.entry').forEach(el => el.classList.remove('expanded')); });
+</script>
+</body>
+</html>
