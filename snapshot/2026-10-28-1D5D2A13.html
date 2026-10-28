@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="referrer" content="no-referrer">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'unsafe-inline'; img-src data:; connect-src 'none'; frame-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'; frame-ancestors 'none'">
+<title>OpenAI asks outside experts, including a Nobel laureate, to check proofs its AI produced in math, computer science, and physics - AI热点快照</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','PingFang SC','Microsoft YaHei',sans-serif;background:#f8f9fa;color:#1a1a2e;line-height:1.8;min-height:100vh}
+.top-bar{background:#fff;border-bottom:1px solid #e5e7eb;padding:10px 20px;display:flex;align-items:center;gap:12px;position:sticky;top:0;z-index:10}
+.top-bar .logo{font-size:14px;font-weight:700;color:#0d9488}
+.top-bar .sep{color:#d1d5db}
+.top-bar .source{font-size:13px;color:#6b7280}
+.top-bar .back{margin-left:auto;font-size:13px;color:#0d9488;text-decoration:none}
+.top-bar .back:hover{text-decoration:underline}
+.container{max-width:760px;margin:0 auto;padding:40px 24px 80px}
+.article-title{font-size:1.8rem;font-weight:700;line-height:1.35;margin-bottom:16px;color:#1a1a2e}
+.article-meta{display:flex;flex-wrap:wrap;gap:16px;padding-bottom:20px;margin-bottom:28px;border-bottom:1px solid #e5e7eb;font-size:14px;color:#6b7280}
+.article-meta a{color:#0d9488;text-decoration:none}
+.article-meta a:hover{text-decoration:underline}
+.article-body{font-size:16.5px;line-height:1.85;color:#1f2937}
+.article-body p{margin-bottom:1.2em;text-align:justify}
+.article-body h1,.article-body h2,.article-body h3{font-size:1.25em;font-weight:700;margin:1.6em 0 0.6em;color:#1a1a2e}
+.article-body a{color:#0d9488}
+.article-body pre,.article-body code{background:#f1f5f9;border-radius:4px;font-size:0.9em}
+.article-body pre{padding:16px;overflow-x:auto;margin:1em 0}
+.article-body code{padding:2px 6px}
+.article-body blockquote{border-left:3px solid #0d9488;padding-left:16px;color:#4b5563;margin:1em 0}
+.article-body ul,.article-body ol{padding-left:1.6em;margin-bottom:1em}
+.article-body li{margin-bottom:0.4em}
+.article-body figure{margin:1.2em 0}
+.article-body figcaption{font-size:13px;color:#9ca3af;text-align:center;margin-top:6px}
+.footer{margin-top:48px;padding-top:20px;border-top:1px solid #e5e7eb;font-size:13px;color:#9ca3af;text-align:center}
+</style>
+</head>
+<body>
+<div class="top-bar">
+  <a class="back" href="../" style="font-size:13px;color:#6b7280;text-decoration:none">← 日报首页</a>
+  <span class="sep">|</span>
+  <span class="logo">AI热点快照</span>
+  <span class="sep">|</span>
+  <span class="source">The Decoder</span>
+  <a class="back" href="https://the-decoder.com/openai-asks-outside-experts-including-a-nobel-laureate-to-check-proofs-its-ai-produced-in-math-computer-science-and-physics/" target="_blank" rel="noopener noreferrer">查看原文 ↗</a>
+</div>
+<div class="container">
+  <h1 class="article-title">OpenAI asks outside experts, including a Nobel laureate, to check proofs its AI produced in math, computer science, and physics</h1>
+  <div class="article-meta">
+    <span>作者: Maximilian Schreiner</span>
+    <span>来源: The Decoder</span>
+    <span>快照日期: 2026-10-28</span>
+  </div>
+  <div class="article-body"><div><div>
+<p>So OpenAI asked outside experts to act as "shepherds" for the results. Based on their advice, the company is handling each field differently. OpenAI says it also translated the math and computer science proofs into Lean.</p>
+<p>Lean is a programming language that lets a computer check every step of a proof. That doesn't guarantee the result is error-free, though. Lean only checks whether the proof establishes the statement as it was written in Lean. Experts still have to decide whether that statement actually captures the intended problem.</p>
+<h2>If OpenAI is right, a core assumption in computer science is wrong</h2>
+<p>The computer science result centers on the <a href="https://en.wikipedia.org/wiki/Exponential_time_hypothesis" target="_blank" rel="noopener noreferrer nofollow">Exponential Time Hypothesis</a> (ETH). It concerns the Boolean satisfiability problem, or <a href="https://en.wikipedia.org/wiki/Boolean_satisfiability_problem" target="_blank" rel="noopener noreferrer nofollow">SAT</a>. SAT deals with a logical formula whose variables can only be true or false. The question is whether you can set the variables so the whole formula comes out true.</p>
+<p>With only a few variables, you can just try every combination. But each new variable doubles the number of possibilities. With 100 variables, you're already looking at a 31-digit number.</p>
+<p>Put simply, the ETH says there's no real shortcut. You can speed up the trial and error, but in the worst case, computing time still grows exponentially, increasing by a fixed factor with every added variable.</p>
+<p>OpenAI says the satisfiability problem is closely tied to the <a href="https://en.wikipedia.org/wiki/P_versus_NP_problem" target="_blank" rel="noopener noreferrer nofollow">P versus NP problem</a>. That's the famous open question of whether a problem whose solution can be checked quickly can also be solved quickly. With SAT, checking is easy because you just plug in a proposed answer and do the math. The hard part is finding one that works.</p>
+<p>SAT is considered the <a href="https://en.wikipedia.org/wiki/NP-completeness" target="_blank" rel="noopener noreferrer nofollow">textbook example of hard problems of this kind</a>. A fast method for solving it would instantly make thousands of other problems fast to solve too. Most experts believe no such method exists. That belief goes by the shorthand "P does not equal NP."</p>
+<p>The ETH goes further than that conjecture. It says not only that SAT is hard, but how hard. If the ETH falls, P could still differ from NP, so hard problems wouldn't automatically become easy.</p>
+<p>The ETH was widely accepted as true. Hundreds of papers in graph theory, computational biology, databases, and computational geometry build on it. They show, for example, that a problem can't be solved faster than a certain time if the ETH holds.</p>
+<p>Now OpenAI says its system has proved the ETH is false. If the proof holds, those papers lose their foundation. Their results wouldn't automatically be wrong, but they'd no longer be proven.</p>
+<p>OpenAI says the result could help researchers find better algorithms. Turning it into practical gains would still take a lot of research, though.</p>
+<h2>The practical payoff is unclear, but the theoretical fallout would be big</h2>
+<p>SAT matters a lot in practice. Specialized programs called <a href="https://en.wikipedia.org/wiki/SAT_solver" target="_blank" rel="noopener noreferrer nofollow">SAT solvers</a> check chip designs for errors and test software, for example.</p>
+<p>They often handle formulas with millions of variables already. That's because formulas from real-world applications are usually much easier than the worst case the ETH deals with. Speeding up only the worst case wouldn't automatically help these programs.</p>
+<p>MIT professor Ryan Williams struck a similarly cautious tone <a href="https://x.com/rrwilliams/status/2114860103207911484" target="_blank" rel="noopener noreferrer nofollow">on X</a>. When a user asked what everyday developers would notice first, Williams said nobody knows yet. At the current pace, he said, it's plausible that practical SAT solving could see serious progress within 12 months. "Or we may see nothing of the sort. I really don't know," he admitted.</p>
+<p>The result would also ripple through complexity theory itself, specifically the study of circuits, which are networks of simple logic gates like AND, OR, and NOT. If OpenAI's result holds, Williams says it would follow that a certain class of very demanding problems can't be solved with small circuits. "Small" here means that when the input doubles in length, the circuit needs at most about twice as many gates.</p>
+<h2>The people who came up with the ETH are checking whether it's wrong</h2>
+<p>Williams will independently check and explain the result together with Russell Impagliazzo and Ramamohan Paturi of UC San Diego. Impagliazzo and Paturi originally proposed the ETH along with Francis Zane. Williams writes that the group hasn't signed any nondisclosure agreements, is working unpaid, and plans to share interim findings as they go.</p>
+<p>In an <a href="https://docs.google.com/document/d/1adB0IhJgLzsmbfCgoLrtoJTjnlPf74UnyjMo35P5JHo/edit?usp=sharing" target="_blank" rel="noopener noreferrer nofollow">open letter</a>, the three also make clear that their involvement isn't an endorsement of the claim. A result this big needs careful, independent review, they write.</p>
+<p>At the group's request, OpenAI is publishing all the raw data, including the <a href="https://github.com/openai/math/blob/main/preprints/The-Exponential-Time-Hypothesis-is-False-October-25-2026/paper.pdf" target="_blank" rel="noopener noreferrer nofollow">written proof</a> and the <a href="https://github.com/openai/math/blob/main/lean/docs/378.md" target="_blank" rel="noopener noreferrer nofollow">Lean proof</a>. The company has also committed to funding a conference on what the result means for the field.</p>
+<h2>A decades-old wave conjecture may now hold in every dimension</h2>
+<p>The math result concerns a conjecture about waves like those in sound, light, or earthquakes. Mathematician Christopher Sogge proposed it in 1991.</p>
+<p>Waves can concentrate at a single spot, much like light at the focal point of a magnifying glass. The conjecture says this extreme concentration only lasts briefly. Averaged over time, waves behave more smoothly, or evenly, than the extreme case would suggest. That's why it's called the local smoothing conjecture.</p>
+<p>Until now, it had only been proven in two dimensions, for waves on a surface like water. <a href="https://annals.math.princeton.edu/2020/192-2/p06" target="_blank" rel="noopener noreferrer nofollow">Guth, Wang, and Zhang</a> did that in 2019. OpenAI says its models have now produced a proof for every dimension, including waves in space and in hypothetical spaces with even more dimensions.</p>
+<p>OpenAI says the result reaches beyond waves. Because the local smoothing conjecture is so basic to the field, two other well-known conjectures follow from it. They are the <a href="https://en.wikipedia.org/wiki/Kakeya_set" target="_blank" rel="noopener noreferrer nofollow">Kakeya conjecture</a> from geometry and Stein's restriction conjecture from <a href="https://en.wikipedia.org/wiki/Fourier_analysis" target="_blank" rel="noopener noreferrer nofollow">Fourier analysis</a>. Fourier analysis breaks signals like sounds into individual oscillations. Proving the local smoothing conjecture automatically proves both of these as well.</p>
+<p>The Kakeya conjecture shows how hard even these follow-on results are. <a href="https://www.ias.edu/news/once-century-proof-settles-maths-kakeya-conjecture" target="_blank" rel="noopener noreferrer nofollow">Wang and Zahl</a> only proved it for three dimensions in 2025. According to OpenAI, both conjectures would now be solved in all dimensions.</p>
+<p>Unlike the other two results, no dedicated group is shepherding this proof. OpenAI says it did reach out to an outside expert to discuss that kind of collaboration. On that person's advice, though, the company published the <a href="https://github.com/openai/math/blob/main/preprints/Local-smoothing-for-the-Euclidean-wave-equation-October-25-2026/paper.pdf" target="_blank" rel="noopener noreferrer nofollow">proof text</a> and the <a href="https://github.com/openai/math/blob/main/lean/docs/079.md" target="_blank" rel="noopener noreferrer nofollow">Lean proof</a> directly. That way, researchers can decide for themselves how to check the result.</p>
+<h2>OpenAI wants to put quantum field theory on solid mathematical ground</h2>
+<p>The physics result goes to the foundation of particle physics. Physicists describe elementary particles and the forces between them using <a href="https://en.wikipedia.org/wiki/Quantum_field_theory" target="_blank" rel="noopener noreferrer nofollow">quantum field theory</a>, which OpenAI calls the most important framework in modern theoretical physics. Its predictions are extremely accurate, but the theories lack an exact mathematical basis.</p>
+<p>Instead, physicists work with approximations, such as an <a href="https://en.wikipedia.org/wiki/Lattice_gauge_theory" target="_blank" rel="noopener noreferrer nofollow">imaginary lattice of points</a> that they keep making finer. It's still an open question whether this produces a unique, consistent theory, meaning whether a theory "exists" in the mathematical sense. Whether it describes nature correctly is a separate question.</p>
+<p>OpenAI says its AI has proved that certain quantum field theories exist in four dimensions, meaning three dimensions of space plus time. So far, nobody has pulled off such a proof in four dimensions for theories where particles interact with each other.</p>
+<p>The strong force sits at the center of it. It binds quarks into protons and neutrons, which in turn holds atomic nuclei together. Particles called gluons carry it. The proof covers three theories that build on each other like steps.</p>
+<p>The bottom step is <a href="https://en.wikipedia.org/wiki/Yang%E2%80%93Mills_theory" target="_blank" rel="noopener noreferrer nofollow">Yang-Mills theory</a>. It describes only gluons, without quarks. It's tied to one of the seven Millennium Prize Problems, each of which carries a $1 million prize from the Clay Mathematics Institute.</p>
+<p>The problem has two parts. The first is proving that Yang-Mills theory exists mathematically. The second is showing that it has a so-called <a href="https://en.wikipedia.org/wiki/Yang%E2%80%93Mills_existence_and_mass_gap" target="_blank" rel="noopener noreferrer nofollow">mass gap</a>. OpenAI explicitly says it has solved only the existence part. That means the Millennium Problem wouldn't be fully solved.</p>
+<p>The mass gap points to a puzzle. In the equations, gluons have no mass, and forces carried by massless particles normally reach very far. The electromagnetic force, which massless light carries, is one example. The strong force, by contrast, only acts over tiny distances, such as inside an atomic nucleus. Physicists explain this by saying gluons clump into structures that do have mass, and even the lightest of them isn't massless. The gap between zero and that smallest possible mass is called the mass gap. Computer simulations support it, but nobody has proven it mathematically.</p>
+<p>The second step is <a href="https://en.wikipedia.org/wiki/Quantum_chromodynamics" target="_blank" rel="noopener noreferrer nofollow">quantum chromodynamics</a> (QCD). It adds quarks and gives a complete description of the strong force.</p>
+<p>OpenAI says both theories can exist mathematically mainly because of <a href="https://en.wikipedia.org/wiki/Asymptotic_freedom" target="_blank" rel="noopener noreferrer nofollow">asymptotic freedom</a>. This means the strong force gets weaker as particles get closer. That keeps the math manageable even as the lattice gets finer and finer.</p>
+<p>The third step would normally be the <a href="https://en.wikipedia.org/wiki/Standard_Model" target="_blank" rel="noopener noreferrer nofollow">Standard Model of particle physics</a>. It describes three of the four fundamental forces, everything except gravity. According to OpenAI, though, it can't be extended to arbitrarily small distances, because some of its forces get stronger at small distances instead of weaker.</p>
+<p>That's why the proof covers the simplest <a href="https://en.wikipedia.org/wiki/Grand_Unified_Theory" target="_blank" rel="noopener noreferrer nofollow">grand unified theory</a>. It reduces the three forces to a single one and includes the Standard Model's force and matter particles. Like the strong force, this unified force can get weaker at small distances. No experiment has confirmed such theories, though.</p>
+<p>If the proof holds, all three steps would have a mathematical foundation. That wouldn't change any of physics' predictions. OpenAI hopes it will turn quantum field theory into a mathematically rigorous discipline.</p>
+<p>A group led by David Gross will shepherd the work. Gross shared the 2004 Nobel Prize in Physics for his work on asymptotic freedom. The group also includes Michael Douglas, Arthur Jaffe, Igor Klebanov, and Nikita Nekrasov. Jaffe helped write the Millennium Prize Problem on Yang-Mills theory.</p>
+<p>OpenAI says it has already translated the Yang-Mills proof into Lean. Unlike the computer science group, though, this group is holding back the AI's materials for now and plans to write up the result itself.</p>
+<h2>OpenAI's review process raises questions of its own</h2>
+<p>OpenAI admits the process comes with trade-offs. Whoever picks the first shepherds helps decide who gets involved first, the company writes, and some people end up knowing more sooner than others. OpenAI also says it's not yet clear which of the three approaches works best.</p>
+<p>OpenAI says it isn't claiming scientific credit for the discoveries. Credit should go to the groups explaining the results instead. The company appears to be responding to criticism after the <a href="https://the-decoder.com/openai-researcher-allegedly-pressured-mathematician-to-drop-anthropic-co-author-from-math-breakthrough-paper/" target="_blank" rel="noopener noreferrer nofollow">PR disaster over Navier-Stokes</a>.</p>
+<p>OpenAI has also pledged $5 million to the <a href="https://www.simonsfoundation.org/news/simons-foundation-launches-15m-effort-to-help-mathematicians-navigate-ai-era/" target="_blank" rel="noopener noreferrer nofollow">Simons Foundation</a> to fund workshops and conferences on AI results.</p>
+<p>Williams' group also uses its open letter to call for a broader debate that goes beyond the review. The questions are how to verify AI breakthroughs, who gets access to them, and who deserves the credit.</p></div></div></div>
+  <div class="footer">
+    本文由 AI热点监控系统自动抓取 · 内容版权归原作者/网站所有<br>
+    快照仅用于学习交流，如需转载请访问原文
+  </div>
+</div>
+</body>
+</html>
