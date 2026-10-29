@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="referrer" content="no-referrer">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'unsafe-inline'; img-src data:; connect-src 'none'; frame-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'; frame-ancestors 'none'">
+<title>GitHub Universe 2026: Evolving every layer of the stack - AI热点快照</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','PingFang SC','Microsoft YaHei',sans-serif;background:#f8f9fa;color:#1a1a2e;line-height:1.8;min-height:100vh}
+.top-bar{background:#fff;border-bottom:1px solid #e5e7eb;padding:10px 20px;display:flex;align-items:center;gap:12px;position:sticky;top:0;z-index:10}
+.top-bar .logo{font-size:14px;font-weight:700;color:#0d9488}
+.top-bar .sep{color:#d1d5db}
+.top-bar .source{font-size:13px;color:#6b7280}
+.top-bar .back{margin-left:auto;font-size:13px;color:#0d9488;text-decoration:none}
+.top-bar .back:hover{text-decoration:underline}
+.container{max-width:760px;margin:0 auto;padding:40px 24px 80px}
+.article-title{font-size:1.8rem;font-weight:700;line-height:1.35;margin-bottom:16px;color:#1a1a2e}
+.article-meta{display:flex;flex-wrap:wrap;gap:16px;padding-bottom:20px;margin-bottom:28px;border-bottom:1px solid #e5e7eb;font-size:14px;color:#6b7280}
+.article-meta a{color:#0d9488;text-decoration:none}
+.article-meta a:hover{text-decoration:underline}
+.article-body{font-size:16.5px;line-height:1.85;color:#1f2937}
+.article-body p{margin-bottom:1.2em;text-align:justify}
+.article-body h1,.article-body h2,.article-body h3{font-size:1.25em;font-weight:700;margin:1.6em 0 0.6em;color:#1a1a2e}
+.article-body a{color:#0d9488}
+.article-body pre,.article-body code{background:#f1f5f9;border-radius:4px;font-size:0.9em}
+.article-body pre{padding:16px;overflow-x:auto;margin:1em 0}
+.article-body code{padding:2px 6px}
+.article-body blockquote{border-left:3px solid #0d9488;padding-left:16px;color:#4b5563;margin:1em 0}
+.article-body ul,.article-body ol{padding-left:1.6em;margin-bottom:1em}
+.article-body li{margin-bottom:0.4em}
+.article-body figure{margin:1.2em 0}
+.article-body figcaption{font-size:13px;color:#9ca3af;text-align:center;margin-top:6px}
+.footer{margin-top:48px;padding-top:20px;border-top:1px solid #e5e7eb;font-size:13px;color:#9ca3af;text-align:center}
+</style>
+</head>
+<body>
+<div class="top-bar">
+  <a class="back" href="../" style="font-size:13px;color:#6b7280;text-decoration:none">← 日报首页</a>
+  <span class="sep">|</span>
+  <span class="logo">AI热点快照</span>
+  <span class="sep">|</span>
+  <span class="source">The GitHub Blog</span>
+  <a class="back" href="https://github.blog/news-insights/company-news/github-universe-2026-evolving-every-layer-of-the-stack/" target="_blank" rel="noopener noreferrer">查看原文 ↗</a>
+</div>
+<div class="container">
+  <h1 class="article-title">GitHub Universe 2026: Evolving every layer of the stack</h1>
+  <div class="article-meta">
+    <span>作者: Jay Parikh</span>
+    <span>来源: The GitHub Blog</span>
+    <span>快照日期: 2026-10-29</span>
+  </div>
+  <div class="article-body"><p>Our jobs as developers are changing. In a couple of years, we’ve gone from writing every line of code to working with AI assistants to orchestrating fleets of agents. But the goal hasn’t changed: ship completed software work. A feature, a bug fix, a security fix. Completed work, not more code, is the output that matters.</p>
+
+
+
+<p>Today at <a href="https://github.com/events/universe/recap?utm_source=gh-universe-blog-k2k&amp;utm_medium=blog&amp;utm_campaign=universe-2026" target="_blank" rel="noopener noreferrer nofollow">GitHub Universe</a>, we shared our vision for GitHub as the most comprehensive software delivery system in the world. We introduced products that bring that vision to life and showed how we’re rebuilding the infrastructure underneath it.</p>
+
+
+
+<h2>Our vision: From idea to completed software</h2>
+
+
+
+<p>The <a href="https://commandline.microsoft.com/new-agentic-software-delivery-primitives/" target="_blank" rel="noopener noreferrer nofollow">SDLC is no longer a linear path</a> from planning to coding to testing to deployment. A code change, a request from a colleague, or a production metric can trigger work anywhere in the system. Most of us (and our agents) jump between different stages, depending on the task at hand. Developers set the direction, make decisions, and stay accountable for what ships. Agents implement and verify changes. And everything feeds into and out of a continuous learning machine that makes the next cycle better.</p>
+
+
+
+<p>This agentic software delivery system solves for three things:</p>
+
+
+
+<ul>
+<li><strong>Velocity:</strong> get from idea to completed software as quickly, efficiently, and cost-effectively as possible</li>
+
+
+
+<li><strong>Intelligence:</strong> combine context across the platform with a continuous learning engine, so the system gets better as you use it</li>
+
+
+
+<li><strong>Quality:</strong> make completed work secure by default and catch bugs before they ship</li>
+</ul>
+
+
+
+<p>GitHub is built for developers and their agents. We’re also making the underlying primitives available, so you can build your own bespoke solutions. You stay in control of the work, the tools, and the cost.</p>
+
+
+
+<h2>New features and products that move the work forward</h2>
+
+
+
+<p>Today at Universe, we showed some of the latest products and features in action, starting with the GitHub Copilot app.</p>
+
+
+
+<h3>GitHub Copilot app: From issue to merge, in one app</h3>
+
+
+
+<p>The <a href="https://github.com/features/ai/github-app?utm_source=gh-universe-blog-app-feature&amp;utm_medium=blog&amp;utm_campaign=universe-2026" target="_blank" rel="noopener noreferrer nofollow">GitHub Copilot app</a> is designed from the ground up for agentic software delivery. It connects your agents and tools across projects, so you can direct the work without making every handoff. And it’s for more than producing code: you can write specs, present design discussions, or analyze telemetry in one agent-first surface.</p>
+
+
+
+<h3>Copilot Fusion: Multi-model orchestration at its finest</h3>
+
+
+
+<p>Different tasks need different models. Developers shouldn’t have to manage every model choice to get the right result at the right price. <a href="https://docs.github.com/copilot/concepts/models/copilot-fusion?utm_source=gh-universe-blog-fusion-docs&amp;utm_medium=blog&amp;utm_campaign=universe-2026" target="_blank" rel="noopener noreferrer nofollow">Copilot Fusion</a> evaluates what a task needs across reasoning, code generation, debugging, and tool use, then chooses how to execute across one or more models. In the Artificial Analysis Coding Agent Index, Fusion Max scored within two points of Opus 5.5 Max at half the cost and 40% less time per task.</p>
+
+
+
+<h3>Copilot projects: Give Copilot a goal</h3>
+
+
+
+<p>Available natively in the GitHub Copilot app starting today, <a href="https://docs.github.com/copilot/how-tos/github-copilot-app/working-with-projects?utm_source=gh-universe-blog-projects-docs&amp;utm_medium=blog&amp;utm_campaign=universe-2026" target="_blank" rel="noopener noreferrer nofollow">Copilot projects</a> let you run agent work across multiple repos in fully managed, parallel sessions. You have one place to track progress, make decisions, and direct what happens next. That means you can spend less time managing execution and more time deciding what’s worth building.</p>
+
+
+
+<h3>Session continuity: Keep working across surfaces</h3>
+
+
+
+<p>Your work shouldn’t restart when you switch devices or tools. <a href="https://docs.github.com/copilot/how-tos/copilot-on-github/use-copilot-agents/manage-and-track-agents?utm_source=gh-universe-blog-session-continuity-docs&amp;utm_medium=blog&amp;utm_campaign=universe-2026#continue-a-session-from-another-client" target="_blank" rel="noopener noreferrer nofollow">Session continuity</a> lets you start and follow the same cloud agent session across the GitHub app, VS Code, the CLI, and the web. Start from your phone at standup, steer it from VS Code at your desk, and check in on it from github.com at lunch. The agent keeps working in the cloud. Our multi-model harness that enables it is powerful, fast, and cost-efficient.</p>
+
+
+
+<h3>Copilot automations: Learning from the results</h3>
+
+
+
+<p><a href="https://docs.github.com/copilot/concepts/agent-capabilities/agent-powered-workflows-and-operations/about-automations?utm_source=gh-universe-blog-automations-docs&amp;utm_medium=blog&amp;utm_campaign=universe-2026" target="_blank" rel="noopener noreferrer nofollow">Copilot automations</a> let you create AI-powered workflows within your repo. They run in the cloud, and you can kick them off manually or set them up to respond to an event or run on a schedule. That lets you coordinate agents to handle tasks such as issue triage and code review. And now, automations can learn from their outcomes and propose improvements for you to review and approve. That’s the learning engine in practice. Use the results of the completed work to make the next run better.</p>
+
+
+
+<h3>Copilot code review Max: A deeper look at what ships</h3>
+
+
+
+<p>More code means more pull requests and more demand for review. Moving faster only helps if we can maintain the quality of what ships. <a href="https://docs.github.com/copilot/concepts/agent-capabilities/agent-powered-workflows-and-operations/code-review?utm_source=gh-universe-blog-code-review-overview-docs&amp;utm_medium=blog&amp;utm_campaign=universe-2026" target="_blank" rel="noopener noreferrer nofollow">Copilot code review</a> surfaces meaningful, actionable bugs that developers need to catch. Today, we introduced Copilot code review Max, which posted the highest F1 score on ReviewBench for high-severity issues. Lite and Balanced keep everyday reviews fast; the new Max provides a deeper look when a change needs it.</p>
+
+
+
+<h3>Copilot features without a separate enterprise subscription</h3>
+
+
+
+<p>Starting today, GitHub Enterprise customers can use all Copilot features without buying a separate subscription. That includes GitHub Copilot app, code review, automations, and more. You pay for the AI credits you use.</p>
+
+
+
+<p>This is available through <a href="https://github.com/enterprise/contact?utm_source=gh-universe-blog-contact-sales-form&amp;utm_medium=blog&amp;utm_campaign=universe-2026" target="_blank" rel="noopener noreferrer nofollow">GitHub Sales</a> today, with self-serve coming soon. Existing Copilot Business and Copilot Enterprise customers can keep their current plans or move over when they’re ready. GitHub also remains open and extensible. Keep using the tools your team depends on, including Cloudflare, Datadog, Figma, and more.</p>
+
+
+
+<h2>Our continued infrastructure investments</h2>
+
+
+
+<p>All of this depends on a foundation that’s fast, reliable, and built to scale. Agents are changing the volume and shape of software development. Adding capacity matters, but capacity alone won’t get us there. We’ve also had to change the architecture.</p>
+
+
+
+<p>So far this year, we’ve added:</p>
+
+
+
+<ul>
+<li>4 million CPU cores</li>
+
+
+
+<li>160 PB of high-speed storage</li>
+
+
+
+<li>50 Tb/s network capacity</li>
+</ul>
+
+
+
+<p>We’re also migrating <a href="https://github.blog/engineering/architecture-optimization/the-bridge-to-agent-scale-git-infrastructure/?utm_source=gh-universe-blog-git-infra-blog&amp;utm_medium=blog&amp;utm_campaign=universe-2026" target="_blank" rel="noopener noreferrer nofollow">to a multi-region deployment in Azure</a>, while continuing to serve incredible levels of traffic from developers around the world. We expect to complete the migration early next year. Those investments give us more room to grow. The next step is building the systems that handle the work.</p>
+
+
+
+<p>We’ve scaled Git for years as activity on GitHub has grown. The agentic era calls for a different ceiling on throughput and reliability. Three principles guide our new <a href="https://github.blog/engineering/architecture-optimization/building-git-infrastructure-for-agent-scale-development/?utm_source=gh-universe-blog-git-architecture-blog-1&amp;utm_medium=blog&amp;utm_campaign=universe-2026" target="_blank" rel="noopener noreferrer nofollow">Git architecture</a>: simplify the primitives, decouple storage from compute, and minimize coordination.</p>
+
+
+
+<p>Git’s just one example of the work we’re doing to scale the platform. We’ve done a lot of work across GitHub’s AI gateway, the harness, and much more.</p>
+
+
+
+<h2>Beyond the first 1%</h2>
+
+
+
+<p>Our jobs are changing, but developers are more important than ever. I think all the software we’ve written to date will amount to less than 1% of the software we’ll write in the next five years. The opportunity isn’t just to produce more code. It’s to solve problems we couldn’t solve before.</p>
+
+
+
+<p>That’s why we’re connecting the full software delivery system, giving developers better ways to work with agents, and evolving the infrastructure for what comes next. And we’re doing it on GitHub, where we can build together.</p>
+
+
+	
+	<h2>
+		Related posts	</h2>
+	
+
+
+<div>
+			<div>
+				<h2>We do newsletters, too</h2><p>Discover tips, technical guides, and best practices in our biweekly newsletter just for devs.</p>			</div>
+			<div>
+				<p>Your email address</p>
+			</div>
+		</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
+  <div class="footer">
+    本文由 AI热点监控系统自动抓取 · 内容版权归原作者/网站所有<br>
+    快照仅用于学习交流，如需转载请访问原文
+  </div>
+</div>
+</body>
+</html>
