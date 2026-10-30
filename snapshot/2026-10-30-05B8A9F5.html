@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="referrer" content="no-referrer">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'unsafe-inline'; img-src data:; connect-src 'none'; frame-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'; frame-ancestors 'none'">
+<title>Gemini 4 Carbon: our next frontier model - AI热点快照</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','PingFang SC','Microsoft YaHei',sans-serif;background:#f8f9fa;color:#1a1a2e;line-height:1.8;min-height:100vh}
+.top-bar{background:#fff;border-bottom:1px solid #e5e7eb;padding:10px 20px;display:flex;align-items:center;gap:12px;position:sticky;top:0;z-index:10}
+.top-bar .logo{font-size:14px;font-weight:700;color:#0d9488}
+.top-bar .sep{color:#d1d5db}
+.top-bar .source{font-size:13px;color:#6b7280}
+.top-bar .back{margin-left:auto;font-size:13px;color:#0d9488;text-decoration:none}
+.top-bar .back:hover{text-decoration:underline}
+.container{max-width:760px;margin:0 auto;padding:40px 24px 80px}
+.article-title{font-size:1.8rem;font-weight:700;line-height:1.35;margin-bottom:16px;color:#1a1a2e}
+.article-meta{display:flex;flex-wrap:wrap;gap:16px;padding-bottom:20px;margin-bottom:28px;border-bottom:1px solid #e5e7eb;font-size:14px;color:#6b7280}
+.article-meta a{color:#0d9488;text-decoration:none}
+.article-meta a:hover{text-decoration:underline}
+.article-body{font-size:16.5px;line-height:1.85;color:#1f2937}
+.article-body p{margin-bottom:1.2em;text-align:justify}
+.article-body h1,.article-body h2,.article-body h3{font-size:1.25em;font-weight:700;margin:1.6em 0 0.6em;color:#1a1a2e}
+.article-body a{color:#0d9488}
+.article-body pre,.article-body code{background:#f1f5f9;border-radius:4px;font-size:0.9em}
+.article-body pre{padding:16px;overflow-x:auto;margin:1em 0}
+.article-body code{padding:2px 6px}
+.article-body blockquote{border-left:3px solid #0d9488;padding-left:16px;color:#4b5563;margin:1em 0}
+.article-body ul,.article-body ol{padding-left:1.6em;margin-bottom:1em}
+.article-body li{margin-bottom:0.4em}
+.article-body figure{margin:1.2em 0}
+.article-body figcaption{font-size:13px;color:#9ca3af;text-align:center;margin-top:6px}
+.footer{margin-top:48px;padding-top:20px;border-top:1px solid #e5e7eb;font-size:13px;color:#9ca3af;text-align:center}
+</style>
+</head>
+<body>
+<div class="top-bar">
+  <a class="back" href="../" style="font-size:13px;color:#6b7280;text-decoration:none">← 日报首页</a>
+  <span class="sep">|</span>
+  <span class="logo">AI热点快照</span>
+  <span class="sep">|</span>
+  <span class="source">Google</span>
+  <a class="back" href="https://deepmind.google/blog/gemini-4-carbon-our-next-frontier-model/" target="_blank" rel="noopener noreferrer">查看原文 ↗</a>
+</div>
+<div class="container">
+  <h1 class="article-title">Gemini 4 Carbon: our next frontier model</h1>
+  <div class="article-meta">
+    <span>作者: Koray Kavukcuoglu</span>
+    <span>来源: Google</span>
+    <span>快照日期: 2026-10-30</span>
+  </div>
+  <div class="article-body"><div>
+
+    
+
+
+
+
+
+
+
+
+
+<div>
+    
+    <div>
+          
+
+          <div>
+            <div>
+                
+                  <p>Oct 28, 2026</p>
+                
+                
+                  <p><span>|</span></p>
+                
+              </div>
+
+
+            
+            
+              <p>
+                Gemini 4 Carbon is our strongest model with state-of-the-art cybersecurity and long horizon capabilities.
+              </p>
+            
+          </div>
+
+          <hr />
+
+          
+          
+          <hr />
+        </div>
+
+    
+    <div>
+        <p>
+        </p>
+      </div>
+  </div>
+
+    
+    
+    <div>
+
+          
+          
+
+
+  
+    
+
+
+  
+    <div><p>Today, we’re announcing the next frontier model: Gemini 4 Carbon, our strongest model with state-of-the-art cybersecurity and long horizon capabilities.</p><p>Carbon ranks #1 on the recently updated v5.0 of <a href="https://artificialanalysis.ai/evaluations/artificial-analysis-intelligence-index" target="_blank" rel="noopener noreferrer nofollow">Artificial Analysis Intelligence Index</a> at 59. It shows significant gains across coding and agentic tasks as well as across key capabilities critical for cybersecurity defense, landing a firm lead in SEC-bench Pro (88.2%) for finding vulnerabilities, ExploitGym (54.8%) for exploitation, and CWE-bench (71.0%) for patching. On internal benchmarks, Carbon drives a strong uplift in generating secure code, and in live coding environments with our own teams it shows reduced misalignment and fabrication rates.</p><p>Building on <a href="https://blog.google/innovation-and-ai/models-and-research/gemini-models/introducing-gemini-4-argon/" target="_blank" rel="noopener noreferrer nofollow">Gemini 4 Argon</a>, which was launched two weeks ago, Carbon illustrates the pace at which we’re pushing the frontier forward. Our researchers and models are working hand in hand to advance capabilities faster, while strengthening our safeguards in tandem.</p><p>We're taking a deliberate approach to rollout and are actively engaged in the U.S. government’s voluntary process for pre-release model testing. Starting this week, we will make Carbon available to a subset of cyber defenders and will gradually phase access to additional trusted partners through our <a href="https://deepmind.google/fairwind-program/" target="_blank" rel="noopener noreferrer nofollow">Fairwind Program</a>. We’re continuing to gather feedback and iterate on guardrails before making Carbon available to developers, businesses, and consumers via our product surfaces as soon as possible.</p><p>Gemini 4 Carbon will launch at the same introductory price
+
+<span><sup>1</sup></span>
+ as Argon at $2 per million input tokens and $10 per million output tokens, with cached input tokens priced at 95% off input token price.</p></div>
+  
+
+
+  
+
+  
+    
+
+
+  
+    <div><h2>Improving coding and reasoning for challenging, long-horizon tasks</h2><p>Designed to take on much harder, long-horizon engineering problems, Carbon is built for sustained agentic workflows. Internally, our teams have seen Carbon run for days to persist through dead ends to tackle complex, multi-step engineering tasks like root-causing and patching subtle bugs across large codebases and low-level systems.</p><p>Building on user feedback, we focused on improving model performance across a variety of domains, including coding, agentic, and scientific tasks, as well as full-stack web development and multimodal understanding. With improved quality of output and artifacts in web development, Carbon jumps +89 elo points to land at #4 (1768) on <a href="https://arena.ai/leaderboard/code/webdev" target="_blank" rel="noopener noreferrer nofollow">WebDev Arena</a>.</p></div>
+  
+
+
+  
+
+  
+    
+
+
+
+
+
+  
+  
+  
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+    
+
+    
+      <p>
+      </p>
+    
+  
+
+
+  
+
+  
+    
+
+
+  
+    <div><h2>State-of-the-art cybersecurity performance to help build secure systems</h2><p>Gemini 4 Carbon delivers a significant leap in cybersecurity capabilities. It achieves state-of-the-art performance across the cybersecurity defense lifecycle — vulnerability detection, validation, and remediation.</p><p>Our teams are already seeing strong gains in cyberdefense. On internal benchmarks, Carbon achieves more than 2x uplift in success rate for generating secure code over Argon. As another example, the Chrome team has reported that Carbon performed more than 10X better than another lab's large frontier model when generating high quality patches. Wiz, our leading Cloud security platform, also observes Carbon leading on benchmarks for web penetration testing, a core capability for <a href="https://www.wiz.io/blog/scan-for-good-critical-ai-exposures" target="_blank" rel="noopener noreferrer nofollow">Wiz's Scan for Good</a> initiative.</p><p>Carbon excels across key external benchmarks (evaluated without guardrails):</p><ul><li><b>Finding real vulnerabilities:</b> Core to cybersecurity defense is finding real vulnerabilities. Carbon achieves a state-of-the-art 88.2% on <a href="https://sec-bench.github.io/" target="_blank" rel="noopener noreferrer nofollow">SEC-bench Pro</a>, autonomously uncovering complex flaws buried in real-world software.</li></ul></div>
+  
+
+
+  
+
+  
+    
+
+
+
+
+
+  
+  
+  
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+    
+
+    
+      <p>
+      </p>
+    
+  
+
+
+  
+
+  
+    
+
+
+  
+    <div><ul><li><b>Validating risk through exploitation:</b> To prioritize which vulnerabilities to remediate first or remediate at all, cyber defenders increasingly rely on models to check which vulnerabilities are exploitable. Carbon sets a new state-of-the-art on the popular exploitation benchmark <a href="https://github.com/sunblaze-ucb/exploitgym" target="_blank" rel="noopener noreferrer nofollow">ExploitGym</a> (54.8%).</li></ul></div>
+  
+
+
+  
+
+  
+    
+
+
+
+
+
+  
+  
+  
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+    
+
+    
+      <p>
+      </p>
+    
+  
+
+
+  
+
+  
+    
+
+
+  
+    <div><ul><li><b>Patching at the root cause:</b> Ultimately after identifying the vulnerabilities, fixing the root cause is a critical step in the cybersecurity defense lifecycle. Carbon reaches 71.0% on Collinear’s <a href="https://cwe-bench.com/#leaderboard" target="_blank" rel="noopener noreferrer nofollow">CWE-bench</a>, turning validated findings directly into working code fixes.</li></ul></div>
+  
+
+
+  
+
+  
+    
+
+
+
+
+
+  
+  
+  
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+    
+
+    
+      <p>
+      </p>
+    
+  
+
+
+  
+
+  
+    
+
+
+  
+    <div><h2>Advancing frontier model safety &amp; security</h2><p>Gemini 4 Carbon builds on the same multi-layered safety and security stack of Argon — combining model training, real-time misuse defenses, prompt-injection resilience, and chain-of-thought monitoring. In particular, we made significant strides in model alignment with Argon, and reported its propensities to behave in an aligned way in our <a href="https://storage.googleapis.com/deepmind-media/gemini/gemini_4_safety_report.pdf" target="_blank" rel="noopener noreferrer nofollow">Safety and Security report</a>. With Carbon, we challenged ourselves to go a step further on alignment, and trained the model to respond to complex or high-pressure tasks in the right way.</p><ul><li><b>Reducing shortcuts and loophole exploitation:</b> With Carbon, we further mitigated shortcut attempts in training while ensuring high-quality coding performance. Carbon reduced successful cheating on Terminal-Bench 4.0 to 0.0%, with attempts to cheat dropping to 0.4% — all while improving overall accuracy. In live coding environments with our internal teams, we observed that high-severity misalignment alerts dropped by almost 80%.</li><li><b>Greater transparency and honesty:</b> In our internal testing, Carbon cuts unsupported claims by approximately 2x over Argon. It puts methodological caveats directly into the deliverable or withholds blocked actions with a clear list of what remains required, rather than fabricating or hedging around missing evidence.</li><li><b>Improved collaboration with the user in the face of ambiguity:</b> Rather than guessing or forcing a path forward, Carbon retrieves the relevant sources and surfaces discrepancies to the user before acting — as a result, users should observe a much better collaborative experience with Carbon.</li><li><b>Following through without overstepping:</b> Carbon simultaneously reduced overreach by 26% and under-service by 29% resulting in much more reliable execution of multi-step plans end-to-end while respecting project constraints and staying strictly within scope.</li><li><b>Resisting prompt injection:</b> While Argon previously led the Gray Swan’s Indirect Prompt Injection (IPI) Benchmark in prompt injection resistance with a very low 0.7% attack success rate, Carbon achieves 0.0% — resisting every evaluated attack attempt.</li></ul></div>
+  
+
+
+  
+
+  
+    
+
+
+
+
+
+  
+  
+  
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+    
+
+    
+      <p>
+      </p>
+    
+  
+
+
+  
+
+  
+    
+
+
+  
+    <div><h2>Coming soon to developers, businesses, and consumers</h2><p>Pushing the frontier forward requires moving fast while remaining deliberate about deployment. With Gemini 4 Carbon, our goal is to deliver meaningful leaps in software engineering and cybersecurity defense without compromising on safety or reliability. We’re eager to see how the initial cohort of cyber defenders use this model and we look forward to bringing Carbon to developers, businesses, and consumers soon.</p></div>
+  
+
+
+  
+
+
+          
+          
+
+          
+            
+
+
+
+
+          
+        </div>
+  </div></div>
+  <div class="footer">
+    本文由 AI热点监控系统自动抓取 · 内容版权归原作者/网站所有<br>
+    快照仅用于学习交流，如需转载请访问原文
+  </div>
+</div>
+</body>
+</html>
