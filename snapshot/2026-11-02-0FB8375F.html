@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="referrer" content="no-referrer">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'unsafe-inline'; img-src data:; connect-src 'none'; frame-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'; frame-ancestors 'none'">
+<title>史上首次！谷歌TPU在轨运行Gemma 4-36氪 - AI热点快照</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','PingFang SC','Microsoft YaHei',sans-serif;background:#f8f9fa;color:#1a1a2e;line-height:1.8;min-height:100vh}
+.top-bar{background:#fff;border-bottom:1px solid #e5e7eb;padding:10px 20px;display:flex;align-items:center;gap:12px;position:sticky;top:0;z-index:10}
+.top-bar .logo{font-size:14px;font-weight:700;color:#0d9488}
+.top-bar .sep{color:#d1d5db}
+.top-bar .source{font-size:13px;color:#6b7280}
+.top-bar .back{margin-left:auto;font-size:13px;color:#0d9488;text-decoration:none}
+.top-bar .back:hover{text-decoration:underline}
+.container{max-width:760px;margin:0 auto;padding:40px 24px 80px}
+.article-title{font-size:1.8rem;font-weight:700;line-height:1.35;margin-bottom:16px;color:#1a1a2e}
+.article-meta{display:flex;flex-wrap:wrap;gap:16px;padding-bottom:20px;margin-bottom:28px;border-bottom:1px solid #e5e7eb;font-size:14px;color:#6b7280}
+.article-meta a{color:#0d9488;text-decoration:none}
+.article-meta a:hover{text-decoration:underline}
+.article-body{font-size:16.5px;line-height:1.85;color:#1f2937}
+.article-body p{margin-bottom:1.2em;text-align:justify}
+.article-body h1,.article-body h2,.article-body h3{font-size:1.25em;font-weight:700;margin:1.6em 0 0.6em;color:#1a1a2e}
+.article-body a{color:#0d9488}
+.article-body pre,.article-body code{background:#f1f5f9;border-radius:4px;font-size:0.9em}
+.article-body pre{padding:16px;overflow-x:auto;margin:1em 0}
+.article-body code{padding:2px 6px}
+.article-body blockquote{border-left:3px solid #0d9488;padding-left:16px;color:#4b5563;margin:1em 0}
+.article-body ul,.article-body ol{padding-left:1.6em;margin-bottom:1em}
+.article-body li{margin-bottom:0.4em}
+.article-body figure{margin:1.2em 0}
+.article-body figcaption{font-size:13px;color:#9ca3af;text-align:center;margin-top:6px}
+.footer{margin-top:48px;padding-top:20px;border-top:1px solid #e5e7eb;font-size:13px;color:#9ca3af;text-align:center}
+</style>
+</head>
+<body>
+<div class="top-bar">
+  <a class="back" href="../" style="font-size:13px;color:#6b7280;text-decoration:none">← 日报首页</a>
+  <span class="sep">|</span>
+  <span class="logo">AI热点快照</span>
+  <span class="sep">|</span>
+  <span class="source">36kr</span>
+  <a class="back" href="https://www.36kr.com/p/4049789434156166" target="_blank" rel="noopener noreferrer">查看原文 ↗</a>
+</div>
+<div class="container">
+  <h1 class="article-title">史上首次！谷歌TPU在轨运行Gemma 4-36氪</h1>
+  <div class="article-meta">
+    <span>作者: 机器之心</span>
+    <span>来源: 36kr</span>
+    <span>快照日期: 2026-11-02</span>
+  </div>
+  <div class="article-body"><div><div>
+ 
+ 
+  <p>「写一首关于身处太空的俳句。」</p>
+  <p>几天前，谷歌的工程师通过地面站，将这样一条提示词发送给了运行在地球轨道上的卫星。</p>
+  <p>收到指令后，卫星搭载的 TPU 启动，预先部署的 Gemma 4 开始执行推理任务。随后，当卫星飞经挪威斯瓦尔巴群岛附近时，地面站终于收到了来自太空的回复。</p>
+  <blockquote>
+   <p>Blue marble below（蓝色星球在下）</p>
+   <p>Data streams in silent grace（数据悄然流转）</p>
+   <p>Starlight feeds my core.（星光供养我的核心）</p>
+  </blockquote>
+  <p>不久前，谷歌 CEO Sundar Pichai 兴奋地分享了这一消息，<strong>并将其称为 Project Suncatcher 的「Hello World」时刻。这也是数据中心级 TPU 首次在轨道上生成并回传完整的 AI 响应。</strong></p>
+  <p></p>
+  <p>从去年宣布要把 AI 算力送上太空，到如今真的收到来自轨道上的一首诗，谷歌的太空数据中心计划，终于迈出了实际运行的一步。</p>
+  <h2><strong>谷歌 TPU，真的在太空跑起来了</strong></h2>
+  <p>这次实验的起点，要追溯到一个月前。</p>
+  <p>10 月 1 日，谷歌与卫星公司 Planet 合作研制的 Project Suncatcher 原型卫星，搭乘 SpaceX 的 Transporter-18 拼车任务进入地球轨道。</p>
+  <p></p>
+  <p>在此后的数周里，工程团队陆续完成卫星各个系统的调试，启动主机及 TPU 计算设备，并开展早期机器学习测试。</p>
+  <p>直到本周，团队终于尝试让卫星执行一次真正的生成式 AI 任务。</p>
+  <p>完成首次响应后，团队还尝试让模型生成其他形式的太空主题诗歌，并通过自然语言提示词查询计算载荷的技术状态。谷歌表示，后续实验将逐步转向更加实际的系统测试，以观察 TPU 在轨道热应力和辐射环境下的表现。</p>
+  <p>据 TechCrunch 报道，<strong>这颗原型卫星搭载了四颗 Google TPU，最高可以提供约 1kW 的电力，但由于当前系统的供电限制，每次只能启动其中一颗 TPU，运行时间约为 20 分钟。</strong></p>
+  <p>这也让人想起一年前，谷歌刚刚提出这一计划时的情景。</p>
+  <p>2025 年 11 月，我们曾在 AI 太空竞赛？英伟达 H100 刚上天，谷歌 Project Suncatcher 也要将 TPU 送上天中介绍过这一项目。</p>
+  <p>按照最初公布的安排，谷歌计划在 2027 年初与 Planet 合作发射两颗原型卫星，测试 TPU 在轨运行以及星间光通信等关键技术。此后，谷歌进一步调整了实验进度，利用 Planet 的卫星平台提前开展第一阶段验证，并在今年 10 月成功将 TPU 送入轨道。</p>
+  <p>谷歌也并不是第一家将大模型带入太空的公司。</p>
+  <p>去年 11 月，初创公司 Starcloud 就把一颗搭载英伟达 H100 GPU 的 Starcloud-1 卫星送入轨道，并在随后完成了大语言模型运行以及基于 nanoGPT 的小型模型训练实验。</p>
+  <p>今年 8 月，SpaceX 与英伟达又宣布合作开发 Starmind AI1，计划使用 Rubin GPU 和 Vera CPU 构建更大规模的卫星计算载荷。</p>
+  <p>从英伟达 GPU 到谷歌 TPU，太空 AI 计算正在吸引越来越多科技公司参与。</p>
+  <h2><strong>从一颗 TPU，到真正的太空数据中心</strong></h2>
+  <p>为什么要如此大费周章，把 AI 芯片送上太空？</p>
+  <p>这个问题在过去一年里，反复出现在各家公司的评论区。</p>
+  <p>其实答案很简单，就是电力供应。</p>
+  <p>根据谷歌此前公布的研究结果，在适当的轨道条件下，<strong>太空太阳能电池板的发电量最高可以达到地面条件的约 8 倍。如果卫星运行在晨昏太阳同步轨道上，还能够获得接近持续的日照，甚至不用过多依赖大型电池。</strong></p>
+  <p>围绕这一目标，Project Suncatcher 采用的并不是建造一座大型空间站式数据中心的思路，而是让大量相对小型的卫星组成紧密编队，每颗卫星都搭载太阳能电池板和 TPU，再利用自由空间光通信技术把它们连接起来。</p>
+  <p>在谷歌此前发表、现已发表于《Joule》的研究论文中，团队展示了一个由 81 颗卫星组成的编队设计示例。这些卫星运行在平均高度约 650 公里的近地轨道上，整个集群半径约为 1 公里，部分相邻卫星之间的距离会在约 100 至 200 米的范围内变化。</p>
+  <p>为什么要让卫星飞得这么近？简单来说就是方便通信。</p>
+  <p>在地面数据中心，大规模模型训练通常需要把任务分配给许多加速器共同完成，而不同芯片之间又必须频繁交换中间计算结果。如果通信带宽不足或延迟过高，即使拥有足够多的计算芯片，整个系统的性能也可能受到严重限制。</p>
+  <p>谷歌希望将类似的分布式计算方式搬到太空，因此卫星之间需要建立远高于传统卫星通信需求的带宽连接。<strong>根据团队的研究，未来要实现与地面数据中心相近的计算能力，星间链路的传输速率需要达到 10 Tbps 。</strong></p>
+  <p>为了接近这一目标，谷歌正在研究利用密集波分复用和空间复用技术提高激光通信带宽，同时让卫星以相对紧密的编队运行。</p>
+  <p>此前的地面实验中，团队已经通过一对光通信收发设备实现了单向 800Gbps、双向合计 1.6Tbps 的传输速率。</p>
+  <p>这是相当可观的数字，但距离未来所需的星间通信能力仍有差距，而且地面设备之间的通信，与多颗卫星在轨道上持续高速运动时保持稳定连接，也完全不是同一种工程难度。</p>
+  <p>为了让数十乃至上百颗卫星长期保持合适的相对位置，谷歌还需要考虑地球非球形引力场、大气阻力以及轨道摄动等因素，并通过物理模型和机器学习方法辅助编队控制。</p>
+  <p>与此同时，卫星之间的数据交换只是问题的一部分，<strong>地面与卫星之间的数据传输问题更难解决。</strong></p>
+  <p>特别是对于需要频繁读取大量地面数据、更新模型参数或响应用户请求的任务，如何在通信窗口、传输带宽和延迟之间取得平衡，同样会影响实际运行效率。</p>
+  <p>相比之下，在轨处理地球观测卫星产生的数据，<strong>如果能够在轨道上直接完成图像分析，再将结果而不是全部原始数据传回地面，就有机会减轻下行通信负担。这是太空计算最有优势的领域。</strong></p>
+  <p>不过，谷歌的目标显然不止于此。它想验证的是，未来是否能够在太空中形成真正具有规模化能力的 AI 计算集群。</p>
+  <p>这种构想也遭到不少网友质疑。</p>
+  <p>此前 Reddit 的 r/space 社区中，有人专门提出一个问题：既然太空数据中心的建设和维护如此困难，为什么不把数据中心放在海底？</p>
+  <p>这一问题并非没有现实基础。微软此前开展的 Project Natick 就曾验证水下数据中心的运行可行性，而在冰岛、北欧等寒冷地区建设数据中心，也已经是降低部分冷却负担的一种现实选择。</p>
+  <p>上太空的问题在于，即使能够在太空中获取更多太阳能，所能提供计算能力真的值得这样大费周章吗？</p>
+  <p>答案显然还没有那么简单。</p>
+  <h2><strong>散热？太空辐射？成本？</strong></h2>
+  <p>10 月 30 日的消息公布后，X 上围绕太空数据中心可行性的讨论再次出现。</p>
+  <p>用户 Luke Leisher 颇为讽刺地表示：「这怎么可能？互联网最聪明的人不是告诉我，物理定律已经决定轨道数据中心完全不可能实现了吗？」</p>
+  <p></p>
+  <p>另一位用户 Robert de Negro 则提出了一个更具体的问题：<strong>真正的难点可能是规模。假如一颗卫星最终要搭载大量计算设备，那么管理数十甚至数百颗芯片产生的热量，与管理少量芯片完全是两回事。</strong></p>
+  <p></p>
+  <p>说到底，太空中的散热还是绕不开的问题。</p>
+  <p>在地球上，计算设备可以通过空气流动、液体冷却等方式带走热量，热量最终再通过相应设施排向周围环境。但在接近真空的太空中，没有可供利用的空气对流，芯片产生的废热最终主要依靠热辐射向外释放。</p>
+  <p>这意味着，<strong>太空数据中心必须通过导热结构和冷却工质，将计算设备产生的热量传递到具有足够面积的散热器，再以电磁辐射的方式排出。</strong></p>
+  <p>谷歌此前介绍过一套结合热管和散热器的冷却方案，并已经在模拟太空热环境的热真空实验舱内进行了测试。虽然这种技术路线在航天领域并不陌生，但随着计算设备的功率不断增加，散热系统的面积、质量以及与其他卫星设备的结构关系，都必须重新设计。</p>
+  <p>目前 Project Suncatcher 的原型卫星搭载四颗 TPU，却还只能一次启动一颗、持续运行约 20 分钟，正说明<strong>现阶段的功率和热管理能力距离大规模持续计算仍有很大提升空间。</strong></p>
+  <p>而且，散热问题最终又会回到成本上。</p>
+  <p>在 Hacker News 的相关讨论中，一些网友认为，争议并不在于人类是否知道如何通过热辐射散热，而在于<strong>为了排出足够多的热量，需要增加多少散热器、导热管路和其他配套设备。一旦这些额外重量被计算进去，卫星的发射成本也会随之上涨。</strong></p>
+  <p>另一个需要长时间验证的问题是太空辐射。</p>
+  <p>对于依靠太阳能发电的卫星来说，太阳光是重要的能源来源，<strong>但太阳高能粒子、银河宇宙射线等辐射环境也可能影响电子设备。</strong>高能粒子与芯片中的敏感区域发生相互作用时，可能造成存储器中的数据位翻转，导致原本的 0 变成 1，或让某些计算结果出现错误。</p>
+  <p>对此，谷歌此前已经开展过专门的地面实验。</p>
+  <p>研究团队使用 67MeV 质子束测试了第六代 Trillium TPU，观察总电离剂量和单粒子效应对芯片的影响。结果显示，<strong>高带宽内存系统是较为敏感的部分，但相关异常直到累积剂量达到约 2krad (Si) 时才开始出现，接近有屏蔽条件下预期五年任务剂量的三倍。</strong></p>
+  <p><strong>在单颗芯片最高 15krad (Si) 的测试剂量下，团队也没有观察到能够归因于总电离剂量的永久性硬故障。</strong></p>
+  <p>这样的结果让谷歌对现有 TPU 的太空适应性更加乐观，但地面粒子束实验毕竟无法完全模拟真实轨道环境中的长期辐射、热循环和其他复杂因素，因此此次卫星任务的重要目的之一，正是进一步验证芯片在真实环境下的表现。</p>
+  <p>即使散热和辐射问题都能得到工程上的解决，谷歌还必须面对计算设备的长期维护和更新换代。</p>
+  <p>地面数据中心可以随着 AI 芯片性能提升，逐步更换旧设备，供电、网络和冷却基础设施则能够继续使用。但对于卫星而言，芯片、太阳能电池板、散热器和通信系统往往高度集成，设备发生故障或计算芯片逐渐落后之后，如何继续利用其余基础设施，就成为一个复杂的问题。</p>
+  <p>Hacker News 上也有人特别指出，太空计算设施可能面临与地面数据中心不同的折旧逻辑：<strong>如果一颗卫星上的 GPU 或 TPU 已经失去竞争力，即使它的太阳能板和散热系统仍能使用，也未必容易继续发挥原有价值。</strong></p>
+  <p></p>
+  <p>这还没有考虑航天器可能遭遇的轨道碎片、微小陨石，以及卫星需要定期进行轨道维持、最终离轨处置等额外问题。</p>
+  <p>因此，关于太空数据中心的争论，最后往往都会落到同一个问题上：成本。</p>
+  <p>谷歌此前发表的研究论文中，就专门对未来的发射成本进行了分析，并给出了一个重要的参考数字 —— <strong>每公斤 200 美元</strong>。</p>
+  <p>在这一假设下，将发射成本按照设备使用寿命和供电功率摊销后，可能对应<strong>每千瓦每年约 810 美元的成本</strong>。</p>
+  <p>作为对照，论文引用的美国地面数据中心能源支出约为<strong>每千瓦每年 570 至 3000 美元</strong>。</p>
+  <p></p>
+  <p>这么看来，太空数据中心有一定的可行性。但谷歌这个计算非常粗糙，Reddit 上还有网友一眼就看到问题。</p>
+  <h2><strong>「发射成本每公斤 200 美元？」</strong></h2>
+  <p>谷歌这个计算有个假设前提，那就是未来火箭复用能力和发射规模继续提高，并能够维持历史上观察到的成本下降趋势。</p>
+  <p>按照论文估算，<strong>要沿着这一趋势在 2035 年前后达到每公斤 200 美元的成本水平，可能需要实现每年约 180 次 Starship 发射的规模。</strong></p>
+  <p>显然是有点乐观估计的成分了。</p>
+  <p>事实上，谷歌自己也不傻，并没有对太空数据中心的短期商业化抱有期待。</p>
+  <p>今年 10 月 1 日，在接受 NPR 采访时，Project Suncatcher 项目负责人 Travis Beals 就表示，他不认为太空数据中心能够在未来五年内变得比地面更加便宜，真正形成经济竞争力可能还需要更长时间。</p>
+  <p>谷歌将 Project Suncatcher 定义为一项长期的「登月计划」，接下来，按照目前公布的路线，谷歌计划在 2027 年发射两颗具备高速光通信能力的卫星，进一步验证星间互联以及分布式机器学习任务所需的技术条件。</p>
+  <p>至于将这一系统进一步扩展成真正具有商业竞争力的太空数据中心，还需要更长时间的技术积累，以及发射成本、硬件可靠性和系统架构等多方面的共同进步。</p>
+  <p>对于谷歌试图建立的太空 AI 计算网络而言，这首小诗还只是第一声回应。</p>
+  <p>参考链接：</p>
+  <p>https://blog.google/innovation-and-ai/models-and-research/google-research/project-suncatcher-satellite-response/</p>
+  <p>https://research.google/blog/exploring-a-space-based-scalable-ai-infrastructure-system-design/</p>
+  <p>https://doi.org/10.1016/j.joule.2026.102678</p>
+  <p>https://services.google.com/fh/files/misc/suncatcher_paper.pdf</p>
+  <p>https://techcrunch.com/2026/10/30/googles-first-data-center-satellite-is-online-and-writing-poetry/</p>
+  <p>https://www.opb.org/article/2026/10/01/google-launches-project-suncatcher-a-step-towards-ai-data-centers-in-space/</p>
+  <p>本文来自微信公众号 <a href="https://mp.weixin.qq.com/s?__biz=MzA3MzI4MjgzMw==&amp;mid=2651071375&amp;idx=2&amp;sn=f453a147228e8eee55774ee48b1d265d&amp;chksm=85bc85c6c9c6a9f67e863a2d23262fd222414fdf2a4d06bb4ccf8c0e7949dbddd7c57c56c8e1&amp;scene=0&amp;xtrack=1#rd" target="_blank" rel="noopener noreferrer nofollow">“机器之心”（ID：almosthuman2014）</a>，作者：关注AI的，36氪经授权发布。</p>
+ 
+</div></div></div>
+  <div class="footer">
+    本文由 AI热点监控系统自动抓取 · 内容版权归原作者/网站所有<br>
+    快照仅用于学习交流，如需转载请访问原文
+  </div>
+</div>
+</body>
+</html>
