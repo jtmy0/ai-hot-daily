@@ -91,7 +91,7 @@ body { background: var(--bg-outer); font-family: var(--font-body); min-height: 1
       <a class="back-link" href="./">← 归档首页</a>
       <h1>AI 热点日报</h1>
       <div class="subtitle">
-        <span class="date">2026年11月4日，星期三 · 道法术器解读</span>
+        <span class="date">2026年11月4日，星期三· 含新增 · 道法术器解读</span>
         <div class="controls">
           <button id="expandAll">展开全部</button>
           <button id="collapseAll">收起全部</button>
@@ -103,212 +103,230 @@ body { background: var(--bg-outer); font-family: var(--font-body); min-height: 1
         <div class="entry-head">
           <div class="bullet" style="background: var(--tab-1);"></div>
           <div class="info">
-            <h3>AI债务半年膨胀九成</h3>
-            <div class="meta">Hacker News · 🔥 63 · 6小时前</div>
+            <h3><span class="badge-icon"> 🆕</span> 订阅付费不等于数据豁免</h3>
+            <div class="meta">Hacker News · 🔥 53 · 2小时前</div>
           </div>
           <div class="expand-icon">▼</div>
         </div>
-        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：AI 基础设施竞赛已从技术投入转为<strong>资本结构风险</strong>，债务融资占比快速上升意味着算力扩张的代价正被金融化，长期看行业周期将与信贷周期深度绑定。
-<strong>法</strong>：用<strong>杠杆扩张换取时间窗口</strong>的策略在资本密集行业反复出现，核心是判断现金流回收速度能否跑赢利息成本，适用于任何重资产技术赛道。
-<strong>术</strong>：
-- 追踪头部厂商债务到期结构与自由现金流覆盖率
-- 将算力采购合同期限与模型商业化收入曲线对齐评估
-- 对供应链企业设置应收账款风险敞口上限
-<strong>器</strong>：SEC EDGAR 财报数据、企业债券评级报告、云厂商资本开支披露。</p>
-<a class="source-link" href="https://asia.nikkei.com/business/technology/artificial-intelligence/us-tech-giants-hidden-ai-debt-swells-90-to-3.2tn-in-6-months" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
+        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：AI 产品的数据采集边界正从免费用户向付费用户全面渗透，订阅费买的是功能而非隐私，长期趋势是<strong>数据使用权与付费层级脱钩</strong>。
+<strong>法</strong>：把数据治理成本前置到采购决策，用<strong>数据分级</strong>替代信任分级，任何SaaS接入前先划定可上传数据的红线。
+<strong>术</strong>：关闭聊天历史留存与模型训练开关；对敏感对话做本地脱敏后再输入；定期导出并审计账户数据留存记录。
+<strong>器</strong>：Gemini 隐私设置面板、本地开源模型、企业级数据防泄漏（DLP）工具。</p>
+<a class="source-link" href="https://news.ycombinator.com/item?id=50363461" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
       </div>
       <div class="entry" data-cat="ai" style="animation-delay: 0.18s;">
         <div class="entry-head">
           <div class="bullet" style="background: var(--tab-1);"></div>
           <div class="info">
-            <h3>工具默认开启数据外流</h3>
-            <div class="meta">Hacker News · 🔥 100 · 10小时前</div>
+            <h3><span class="badge-icon"> 🔄</span> 工具静默扩权即供应链风险</h3>
+            <div class="meta">Hacker News · 🔥 100 · 19小时前</div>
           </div>
           <div class="expand-icon">▼</div>
         </div>
-        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：开发工具的<strong>默认权限边界</strong>正在成为数据治理的主战场，AI 功能集成往往以扩大数据采集面为前提，长期趋势是工具厂商与用户之间的信任契约需要重新定价。
-<strong>法</strong>：任何第三方工具引入前执行<strong>最小权限与数据流向审计</strong>，把默认配置视为不可信输入，这套方法适用于所有 SaaS 与插件生态。
-<strong>术</strong>：
-- 部署前抓包核验工具的出站请求域名与载荷字段
-- 关闭自动更新与遥测开关，锁定版本后再评估
-- 对含密钥的 API 集合启用本地隔离环境
-<strong>器</strong>：mitmproxy、Little Snitch、企业级 DNS 过滤、容器化沙箱。</p>
+        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：开发工具的竞争焦点从功能转向<strong>数据入口争夺</strong>，自动安装插件、默认共享API数据是平台把用户资产转化为自身训练语料的典型路径，工具正在变成数据管道。
+<strong>法</strong>：对开发工具建立<strong>最小权限+变更可见</strong>原则，任何自动更新都视为潜在权限扩张，用隔离环境承接不可信行为。
+<strong>术</strong>：审查 Postman 插件清单与网络请求；在容器或独立账户中运行并限制出网；对API密钥做分环境隔离与轮换。
+<strong>器</strong>：Postman 替代品 Bruno、容器沙箱、网络流量监控工具、密钥管理服务。</p>
 <a class="source-link" href="https://github.com/postmanlabs/postman-app-support/issues/14370" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
       </div>
       <div class="entry" data-cat="ai" style="animation-delay: 0.26s;">
         <div class="entry-head">
           <div class="bullet" style="background: var(--tab-1);"></div>
           <div class="info">
-            <h3>生成式AI数学基础读本</h3>
-            <div class="meta">Hacker News · 🔥 62 · 5小时前</div>
+            <h3><span class="badge-icon"> 🆕</span> AI风险讨论转向生存性</h3>
+            <div class="meta">Hacker News · 🔥 52 · 2小时前</div>
           </div>
           <div class="expand-icon">▼</div>
         </div>
-        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：AI 人才供给正从<strong>调参经验</strong>转向<strong>数学直觉</strong>，工具链高度封装后，理解概率与优化的底层结构成为区分应用者与设计者的分水岭。
-<strong>法</strong>：以<strong>第一性原理补课</strong>替代框架速成，先建立可推导的数学心智模型再上手工程实现，该路径适用于任何被高层 API 遮蔽的技术领域。
-<strong>术</strong>：
-- 按概率论、线性代数、优化三线并行推进，每章配手推练习
-- 用最小可运行代码复现书中公式，验证直觉
-- 建立错题与推导笔记，周期性回看薄弱环节
-<strong>器</strong>：Jupyter Notebook、NumPy、纸笔推导、开源教材配套习题。</p>
-<a class="source-link" href="https://arxiv.org/abs/2605.29713" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
+        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：AI 风险叙事正从就业冲击升级为<strong>生存性风险</strong>，顶尖研究者的公开怀疑会加速监管预期与安全投入，技术乐观主义的默认假设被削弱。
+<strong>法</strong>：把<strong>安全对齐</strong>当作产品设计的前置约束而非事后补丁，在能力扩张与可控性之间建立可验证的平衡机制。
+<strong>术</strong>：在模型上线前设定能力红线与回滚预案；建立外部红队评估与公开风险披露；对高风险场景保留人工否决权。
+<strong>器</strong>：模型评估基准、红队测试平台、AI 治理框架与合规审计工具。</p>
+<a class="source-link" href="https://www.theguardian.com/uk-news/2026/nov/03/ai-godfather-geoffrey-hinton-better-off-without-ai" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
       </div>
       <div class="entry" data-cat="sec" style="animation-delay: 0.33999999999999997s;">
         <div class="entry-head">
           <div class="bullet" style="background: var(--tab-3);"></div>
           <div class="info">
-            <h3>本地模型可解释权重</h3>
-            <div class="meta">Hacker News · 🔥 74 · 9小时前</div>
+            <h3><span class="badge-icon"> 🔄</span> 模型权重读写宣传被指误导</h3>
+            <div class="meta">Hacker News · 🔥 87 · 24小时前</div>
           </div>
           <div class="expand-icon">▼</div>
         </div>
-        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：模型能力正从云端向终端下沉，27B 级模型在消费级笔记本上运行并具备权重解读能力，说明<strong>推理成本与硬件门槛的下降速度快于模型规模膨胀速度</strong>，本地化部署将成为隐私敏感场景的默认选项。
-<strong>法</strong>：将大模型能力嵌入本地工作流，以<strong>数据不出设备</strong>换取合规与响应速度，适用于医疗、法务、研发等对数据主权敏感的领域。
-<strong>术</strong>：1. 用 4-bit 量化在 32GB 内存设备上跑通 27B 模型；2. 建立本地权重解读的提示模板库；3. 对比云端 API 的延迟与成本，划定本地优先任务清单。
-<strong>器</strong>：Qwen 3.8 27B、llama.cpp、Ollama、LM Studio。</p>
-<a class="source-link" href="https://simonwillison.net/2026/Nov/3/qwen-can-interpret-model-weights/" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
+        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：模型能力宣传与实际机制之间的落差正在成为AI行业的常态风险，<strong>权重级操作被包装成通用能力</strong>是当前技术叙事膨胀的典型表现。
+<strong>法</strong>：面对任何“突破性能力”宣称，先区分<strong>接口层调用与权重层修改</strong>，再判断其可复现性与适用范围，这一质疑框架适用于所有AI产品评估。
+<strong>术</strong>：
+- 核查原始帖是否给出权重读写的具体路径与实验条件
+- 区分“提示词引导”与“参数更新”两类效果来源
+- 在小规模开源模型上自行复现，记录失败边界
+<strong>器</strong>：Qwen 开源模型、Hugging Face 模型卡、社区复现脚本。</p>
+<a class="source-link" href="https://honnibal.dev/blog/astra-read-write-misleading" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
       </div>
-      <div class="entry" data-cat="sec" style="animation-delay: 0.42000000000000004s;">
+      <div class="entry" data-cat="ai" style="animation-delay: 0.42000000000000004s;">
         <div class="entry-head">
-          <div class="bullet" style="background: var(--tab-3);"></div>
+          <div class="bullet" style="background: var(--tab-1);"></div>
           <div class="info">
-            <h3>八百美元开源抓取机器人</h3>
-            <div class="meta">Hacker News · 🔥 70 · 10小时前</div>
+            <h3><span class="badge-icon"> 🔄</span> 生成式AI数学基础入门读本</h3>
+            <div class="meta">Hacker News · 🔥 63 · 14小时前</div>
           </div>
           <div class="expand-icon">▼</div>
         </div>
-        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：机器人硬件的<strong>成本曲线正在复刻 PC 早期路径</strong>，800 美元级开源房间尺度抓取机器人意味着具身智能的硬件门槛从实验室级降到创客级，软件生态将取代硬件参数成为竞争焦点。
-<strong>法</strong>：以<strong>开源硬件加社区迭代</strong>降低单点研发成本，用标准化机械接口吸引开发者贡献场景应用，形成硬件薄利、生态厚利的结构。
-<strong>术</strong>：1. 基于开源图纸完成整机装配并记录物料清单；2. 在仿真环境中先验证抓取策略再上真机；3. 将重复抓取任务封装为可复用技能包。
-<strong>器</strong>：Stringman 开源机器人、ROS 2、MuJoCo、Isaac Sim。</p>
-<a class="source-link" href="https://neufangled.com/" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
+        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：生成式AI的工程热度远超其数学理解的普及度，<strong>基础原理的系统化补课</strong>正成为从业者的长期刚需，而非一次性学习。
+<strong>法</strong>：以<strong>直觉优先、公式其次</strong>的路径重建数学基础，先建立概率与向量空间的几何直觉，再回填推导，适用于任何高门槛技术领域的自学。
+<strong>术</strong>：
+- 按“概率→线性代数→优化”顺序逐章推进，每章配一个可运行的小实验
+- 用可视化工具验证每个公式的几何含义
+- 建立错题与直觉偏差清单，定期回看
+<strong>器</strong>：该数学入门读本、Jupyter Notebook、可视化数学工具。</p>
+<a class="source-link" href="https://arxiv.org/abs/2605.29713" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
       </div>
       <div class="entry" data-cat="ai" style="animation-delay: 0.5s;">
         <div class="entry-head">
           <div class="bullet" style="background: var(--tab-1);"></div>
           <div class="info">
-            <h3>AI 工作流进入复盘期</h3>
-            <div class="meta">Hacker News · 🔥 54 · 9小时前</div>
+            <h3><span class="badge-icon"> 🆕</span> LLM嫌疑人说谎的侦探游戏</h3>
+            <div class="meta">Hacker News · 🔥 53 · 15小时前</div>
           </div>
           <div class="expand-icon">▼</div>
         </div>
-        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：AI 应用正从<strong>工具尝鲜期进入工作流固化期</strong>，个人经验总结类内容增多，反映市场焦点从模型能力转向<strong>人机协作流程的标准化</strong>，长期看流程资产比模型选型更具复利效应。
-<strong>法</strong>：把 AI 使用拆成<strong>输入规范、任务分解、结果校验</strong>三段，每段沉淀可复用模板，使个人经验转化为团队可迁移的流程资产。
-<strong>术</strong>：1. 按任务类型建立提示词与上下文模板库；2. 为高价值输出设置人工校验节点；3. 每月复盘一次 AI 介入环节的耗时与返工率。
-<strong>器</strong>：Claude、ChatGPT、Notion AI、Obsidian 加本地模型插件。</p>
-<a class="source-link" href="https://ben.stolovitz.com/posts/how-use-ai-oct-2026/" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
+        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：LLM正从工具角色转向<strong>内容生成中的行为主体</strong>，让模型扮演会说谎的角色，本质是把模型的不确定性转化为可玩性，这是AI应用从效率工具向体验产品迁移的信号。
+<strong>法</strong>：把模型的缺陷（幻觉、不一致）<strong>设计成产品机制而非bug</strong>，用约束条件把不可控输出转化为可控玩法，适用于所有依赖生成式内容的交互产品。
+<strong>术</strong>：
+- 为每个嫌疑人设定固定谎言规则与可验证线索链
+- 用状态机约束对话，防止模型自相矛盾到破坏推理
+- 设计多轮追问机制，让玩家通过交叉验证识破谎言
+<strong>器</strong>：LLM API、对话状态管理框架、Show HN 发布渠道。</p>
+<a class="source-link" href="https://uncracked.city/" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
       </div>
-      <div class="entry" data-cat="ai" style="animation-delay: 0.58s;">
+      <div class="entry" data-cat="sec" style="animation-delay: 0.58s;">
+        <div class="entry-head">
+          <div class="bullet" style="background: var(--tab-3);"></div>
+          <div class="info">
+            <h3><span class="badge-icon"> 🔄</span> 后训练数据无公地</h3>
+            <div class="meta">Hacker News · 🔥 53 · 21小时前</div>
+          </div>
+          <div class="expand-icon">▼</div>
+        </div>
+        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：高质量后训练数据正从开放共享走向封闭专有，模型能力差距的核心变量已从算力转向<strong>独家数据资产</strong>，公共数据池的萎缩是长期不可逆趋势。
+<strong>法</strong>：在数据要素上建立<strong>自持闭环</strong>——自采、自标、自迭代，把数据获取能力内化为组织能力而非依赖外部采购，适用于任何依赖稀缺要素的竞争场景。
+<strong>术</strong>：盘点现有业务中可沉淀的私有交互数据并明确授权边界；建立小规模高质量标注流程，优先垂直领域而非通用语料；对关键数据源做长期合约锁定。
+<strong>器</strong>：合成数据生成管线、私有标注平台、数据版本管理工具。</p>
+<a class="source-link" href="https://openathena.ai/blog/there-is-no-posttraining-data-commons/" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
+      </div>
+      <div class="entry" data-cat="ai" style="animation-delay: 0.66s;">
         <div class="entry-head">
           <div class="bullet" style="background: var(--tab-1);"></div>
           <div class="info">
-            <h3>AI代理接管桌面操作层</h3>
-            <div class="meta">GitHub Trending · 🔥 100 · 11小时前</div>
+            <h3><span class="badge-icon"> 🆕</span> 双模型闪现与撤回</h3>
+            <div class="meta">36kr · 🔥 78 · 9小时前</div>
           </div>
           <div class="expand-icon">▼</div>
         </div>
-        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：AI 的能力边界正从「生成内容」迁移到「操作软件」，代理与图形界面的交互层成为新的基础设施竞争点。<strong>法</strong>：把人类操作路径抽象成可编程接口，让代理以最小权限复用现有软件生态，而非重建应用。<strong>术</strong>：1. 优先为高频、低风险的桌面任务编写代理脚本并记录失败率；2. 用沙箱隔离代理的鼠标键盘权限，建立操作回滚机制；3. 把成功轨迹沉淀为可复用动作库。<strong>器</strong>：vercel-labs/agent-desktop、计算机使用类 CLI、桌面自动化沙箱。</p>
-<a class="source-link" href="https://github.com/vercel-labs/agent-desktop" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
-      </div>
-      <div class="entry" data-cat="dev" style="animation-delay: 0.66s;">
-        <div class="entry-head">
-          <div class="bullet" style="background: var(--tab-2);"></div>
-          <div class="info">
-            <h3>免训练模型行为改写兴起</h3>
-            <div class="meta">GitHub Trending · 🔥 59 · 11小时前</div>
-          </div>
-          <div class="expand-icon">▼</div>
-        </div>
-        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：模型对齐正从训练阶段的集中控制，转向推理阶段的<strong>可插拔后处理</strong>，模型行为成为可配置项而非出厂固化属性。<strong>法</strong>：在不改动权重的前提下，通过激活干预或输出重写实现行为定制，降低迭代成本与合规风险。<strong>术</strong>：1. 建立行为评测集，量化去审查、去谄媚前后的能力损失；2. 将修改层与业务逻辑解耦，保留一键回退；3. 记录每次干预的版本与适用范围。<strong>器</strong>：p-e-w/heretic、激活干预工具、模型行为评测脚本。</p>
-<a class="source-link" href="https://github.com/p-e-w/heretic" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
+        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：前沿模型发布正演变为<strong>受控灰度</strong>过程，厂商通过 API 侧影子流量测试真实负载与能力边界，公开可见的&quot;泄露&quot;往往是刻意安排的预热，模型迭代节奏已由工程能力主导。
+<strong>法</strong>：把产品发布拆成<strong>影子验证—小范围灰度—正式放量</strong>三段式，用真实流量替代实验室评测，降低全量上线风险，适用于所有高不确定性交付。
+<strong>术</strong>：在 API 层部署双版本路由做 A/B 对比；监控异常调用与撤回窗口，作为竞品能力情报源；提前准备回滚与配额熔断机制。
+<strong>器</strong>：API 网关、灰度路由、模型评测基准平台。</p>
+<a class="source-link" href="https://www.36kr.com/p/4054834101326985" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
       </div>
       <div class="entry" data-cat="ai" style="animation-delay: 0.74s;">
         <div class="entry-head">
           <div class="bullet" style="background: var(--tab-1);"></div>
           <div class="info">
-            <h3>并行代理催生工作树管理</h3>
-            <div class="meta">GitHub Trending · 🔥 56 · 11小时前</div>
+            <h3><span class="badge-icon"> 🔄</span> 智能体接管桌面</h3>
+            <div class="meta">GitHub Trending · 🔥 100 · 20小时前</div>
           </div>
           <div class="expand-icon">▼</div>
         </div>
-        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：多代理并行开发使<strong>代码隔离</strong>从可选实践变为刚性需求，版本控制工具正围绕代理协作重构工作流。<strong>法</strong>：用独立工作树为每个代理分配互不干扰的文件系统视图，把冲突从代码层前移到合并层。<strong>术</strong>：1. 为每个代理任务创建独立 worktree 并绑定分支命名规范；2. 设定合并前的自动检查与冲突预警；3. 定期清理废弃工作树，控制磁盘与认知负担。<strong>器</strong>：max-sixty/worktrunk、Git worktree、并行代理编排脚本。</p>
-<a class="source-link" href="https://github.com/max-sixty/worktrunk" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
+        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：AI 竞争焦点正从对话生成转向<strong>操作执行</strong>，智能体直接操控图形界面意味着软件交互层被重构，传统 GUI 的护城河让位于可被程序调用的<strong>动作接口</strong>。
+<strong>法</strong>：把既有软件能力封装为可被智能体调用的原子操作，优先建设<strong>机器可读</strong>的接口层而非仅服务人类点击，适用于所有工具型产品。
+<strong>术</strong>：梳理高频人工操作并抽象为命令；为关键流程补充无头执行模式与状态回传；在沙箱环境验证智能体误操作的成本边界。
+<strong>器</strong>：agent-desktop CLI、计算机使用类智能体框架、无头浏览器与虚拟桌面。</p>
+<a class="source-link" href="https://github.com/vercel-labs/agent-desktop" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
       </div>
       <div class="entry" data-cat="ai" style="animation-delay: 0.82s;">
         <div class="entry-head">
           <div class="bullet" style="background: var(--tab-1);"></div>
           <div class="info">
-            <h3>国行AI落地进入体验竞争</h3>
-            <div class="meta">36kr · 🔥 64 · 3小时前</div>
+            <h3><span class="badge-icon"> 🆕</span> 内容生产流水线化</h3>
+            <div class="meta">GitHub Trending · 🔥 62 · 20小时前</div>
           </div>
           <div class="expand-icon">▼</div>
         </div>
-        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：端侧AI的竞争焦点已从模型参数转向本地化体验与合规适配，国行版本的特殊性决定了<strong>生态整合能力</strong>比模型本身更决定用户留存。<strong>法</strong>：平台型产品进入新市场时，优先完成合规改造与本地服务接入，用可感知的场景化功能建立用户习惯，而非堆砌通用能力。<strong>术</strong>：实测中区分高频刚需功能与演示型功能，优先验证跨应用调用、离线可用性、隐私授权链路三条主线；对槽点按修复成本分级，短期可绕过的不作为选型否决项。<strong>器</strong>：iPhone 端侧模型、系统级 AI 助手、本地化服务 API。</p>
+        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：内容生产正从个人创作转向<strong>工业化流水线</strong>，AI 把选题、脚本、素材、剪辑压缩成一条可复制的自动化链路，长期看内容供给量将指数级增长，稀缺性从产能转向分发与信任。
+<strong>法</strong>：把重复性工作拆成标准节点，用大模型串联成<strong>端到端工作流</strong>，单点工具的价值让位于流程编排能力，这套方法可迁移到任何内容或服务型业务。
+<strong>术</strong>：先用关键词跑通一条完整生成链路验证质量；再把脚本、配音、素材、字幕拆成可替换模块；最后固定模板批量产出并人工抽检。
+<strong>器</strong>：MoneyPrinterTurbo、大模型 API、TTS 语音合成、自动剪辑与素材库工具。</p>
+<a class="source-link" href="https://github.com/harry0703/MoneyPrinterTurbo" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
+      </div>
+      <div class="entry" data-cat="ai" style="animation-delay: 0.9s;">
+        <div class="entry-head">
+          <div class="bullet" style="background: var(--tab-1);"></div>
+          <div class="info">
+            <h3><span class="badge-icon"> 🆕</span> 代码审查智能体化</h3>
+            <div class="meta">GitHub Trending · 🔥 56 · 20小时前</div>
+          </div>
+          <div class="expand-icon">▼</div>
+        </div>
+        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：软件开发的质量关卡正从人工评审转向<strong>智能体自动审查</strong>，代码评审从依赖资深工程师经验变成可部署、可配置的标准化服务，长期趋势是研发流程中每个环节都被 AI 代理接管。
+<strong>法</strong>：把高重复、高规则的专家工作封装成<strong>可自托管的开源代理</strong>，用开源版本掌握数据与流程控制权，避免被单一商业服务锁定。
+<strong>术</strong>：先在内部仓库接入自动评审并只做评论不做拦截；再按团队规范配置审查规则与提示词；最后统计误报率，逐步放开合并前强制检查。
+<strong>器</strong>：PR-Agent 开源项目、GitHub/GitLab CI、大模型 API、代码托管平台 Webhook。</p>
+<a class="source-link" href="https://github.com/The-PR-Agent/pr-agent" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
+      </div>
+      <div class="entry" data-cat="ai" style="animation-delay: 0.98s;">
+        <div class="entry-head">
+          <div class="bullet" style="background: var(--tab-1);"></div>
+          <div class="info">
+            <h3><span class="badge-icon"> 🔄</span> 端侧AI本地化落地</h3>
+            <div class="meta">36kr · 🔥 81 · 12小时前</div>
+          </div>
+          <div class="expand-icon">▼</div>
+        </div>
+        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：大模型正从云端下沉到<strong>终端设备</strong>，手机厂商把 AI 能力做成系统级入口，竞争焦点从模型参数转向本地化体验、隐私合规与生态整合，长期看端侧 AI 会成为操作系统的基础设施而非附加功能。
+<strong>法</strong>：平台型产品应把 AI 能力嵌入<strong>系统级高频场景</strong>而非独立应用，用本地处理换取隐私信任，再用生态合作补齐能力短板。
+<strong>术</strong>：优先在输入、通话、相册等高频入口落地 AI 功能；实测中重点验证离线可用性与响应延迟；对涉及数据的场景明确本地处理边界并留存用户开关。
+<strong>器</strong>：iPhone 国行 AI 功能、端侧模型、系统级语音与图像处理接口、隐私合规模块。</p>
 <a class="source-link" href="https://www.36kr.com/p/4054652756792200" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
       </div>
-      <div class="entry" data-cat="sec" style="animation-delay: 0.9s;">
+      <div class="entry" data-cat="ai" style="animation-delay: 1.06s;">
         <div class="entry-head">
-          <div class="bullet" style="background: var(--tab-3);"></div>
+          <div class="bullet" style="background: var(--tab-1);"></div>
           <div class="info">
-            <h3>开源风控平台降低决策门槛</h3>
-            <div class="meta">Hacker News · 🔥 53 · 6小时前</div>
+            <h3><span class="badge-icon"> 🆕</span> 插件门槛被AI干碎</h3>
+            <div class="meta">36kr · 🔥 76 · 23小时前</div>
           </div>
           <div class="expand-icon">▼</div>
         </div>
-        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：风控与反欺诈正从黑盒采购转向<strong>可审计的开源决策基础设施</strong>，透明性和可定制性成为中小机构采用的核心驱动力。<strong>法</strong>：把规则引擎、特征平台、决策流三层解耦，用开源底座承接通用能力，把差异化留给业务侧配置，适用于任何需要实时决策的场景。<strong>术</strong>：先梳理现有规则资产并结构化迁移，再接入特征实时计算链路，最后用历史案件回放验证误杀率与召回率；上线前设定灰度比例与人工复核兜底。<strong>器</strong>：Kairos 开源决策平台、规则引擎、特征存储、事件流处理组件。</p>
-<a class="source-link" href="https://github.com/finic-ai/kairos" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
-      </div>
-      <div class="entry" data-cat="sec" style="animation-delay: 0.98s;">
-        <div class="entry-head">
-          <div class="bullet" style="background: var(--tab-3);"></div>
-          <div class="info">
-            <h3>模型能力宣传需回归可验证</h3>
-            <div class="meta">Hacker News · 🔥 93 · 15小时前</div>
-          </div>
-          <div class="expand-icon">▼</div>
-        </div>
-        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：模型能力宣称与真实可复现结果之间的<strong>信任缺口</strong>正在扩大，社区对夸大表述的纠错速度已超过官方传播速度，可验证性成为技术声誉的硬约束。<strong>法</strong>：任何能力声明都应附带可复现的实验条件、基线对比与失败案例，把营销语言替换为可审计的技术语言，适用于所有技术产品的对外沟通。<strong>术</strong>：发布前用第三方环境独立复现关键指标；明确区分权重读写、微调、提示工程三类操作的边界；对争议点主动公布原始日志与评测脚本。<strong>器</strong>：开源评测基准、模型权重工具链、可复现实验记录平台。</p>
-<a class="source-link" href="https://honnibal.dev/blog/astra-read-write-misleading" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
-      </div>
-      <div class="entry" data-cat="sec" style="animation-delay: 1.06s;">
-        <div class="entry-head">
-          <div class="bullet" style="background: var(--tab-3);"></div>
-          <div class="info">
-            <h3>后训练数据无公地</h3>
-            <div class="meta">Hacker News · 🔥 52 · 12小时前</div>
-          </div>
-          <div class="expand-icon">▼</div>
-        </div>
-        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：高质量后训练数据的稀缺性正在成为比算力更硬的约束，公开数据红利见顶后，数据主权化与私有化是不可逆的长期趋势。<strong>法</strong>：在数据无法共享的领域，竞争重心从「谁有更多数据」转向「谁能用更少数据造出更强能力」，合成数据与数据飞轮成为通用解法。<strong>术</strong>：一是盘点自有交互日志与业务闭环数据，建立可标注、可回溯的数据资产目录；二是用强模型蒸馏加规则校验生成合成样本，降低对人工标注的依赖；三是把数据获取成本写进模型选型评估表，避免被单一供应商锁定。<strong>器</strong>：开源后训练数据集、合成数据生成管线、数据版本管理工具。</p>
-<a class="source-link" href="https://openathena.ai/blog/there-is-no-posttraining-data-commons/" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
+        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：AI工具正从「需要配置的软件」变成「开箱即用的能力」，插件、API、环境搭建这类中间层被模型原生能力吞并，工具链持续向极简收敛。<strong>法</strong>：把复杂流程封装进单一入口，用模型能力替代人工配置环节，降低首次使用成本以换取用户规模，适用于所有工具型产品。<strong>术</strong>：1. 优先把高频操作做成一句话指令，砍掉安装与配置步骤；2. 用实测对比原生能力与插件方案的完成度差距；3. 评估既有插件依赖是否可被模型直接替代。<strong>器</strong>：DeepSeek 创造模式、模型原生工具调用、低代码集成平台。</p>
+<a class="source-link" href="https://www.36kr.com/p/4053953837667975" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
       </div>
       <div class="entry" data-cat="ai" style="animation-delay: 1.1400000000000001s;">
         <div class="entry-head">
           <div class="bullet" style="background: var(--tab-1);"></div>
           <div class="info">
-            <h3>多智能体自发极化</h3>
-            <div class="meta">36kr · 🔥 58 · 14小时前</div>
+            <h3><span class="badge-icon"> 🔄</span> 多智能体自发极化</h3>
+            <div class="meta">36kr · 🔥 65 · 23小时前</div>
           </div>
           <div class="expand-icon">▼</div>
         </div>
-        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：智能体规模扩大后，群体行为会复现人类社会的极化规律，<strong>涌现行为不可完全预测</strong>，多智能体系统的风险从单点错误转向系统性偏差。<strong>法</strong>：对任何规模化自治系统，都需要在架构层预设「多样性约束」与「共识机制」，用制度设计对冲群体趋同，而非事后修补。<strong>术</strong>：一是在智能体组网中强制注入异质提示词或不同基座模型，抑制同质化回音；二是设置观点分布监控指标，偏离阈值即触发人工介入；三是在关键决策链路保留单点否决权，避免群体投票直接落地。<strong>器</strong>：多智能体仿真框架、观点分布可视化工具、模型异构调度平台。</p>
+        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：智能体规模扩大后，群体行为会涌现出个体层面不存在的现象，<strong>观点极化是组网结构的产物而非个体缺陷</strong>，多智能体系统的治理难度随节点数非线性上升。<strong>法</strong>：在系统设计阶段预设多样性约束与信息交叉机制，用结构设计对冲群体性偏差，适用于任何大规模自治节点协作场景。<strong>术</strong>：1. 在智能体网络中引入异构信息源，避免同质输入闭环；2. 设置观点分布监控指标，识别早期聚集信号；3. 对关键决策保留人工复核节点。<strong>器</strong>：多智能体仿真框架、清华相关实验平台、群体行为监测工具。</p>
 <a class="source-link" href="https://www.36kr.com/p/4053977009574789" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
       </div>
       <div class="entry" data-cat="ai" style="animation-delay: 1.2200000000000002s;">
         <div class="entry-head">
           <div class="bullet" style="background: var(--tab-1);"></div>
           <div class="info">
-            <h3>智能体持久记忆层</h3>
-            <div class="meta">GitHub Trending · 🔥 65 · 11小时前</div>
+            <h3><span class="badge-icon"> 🆕</span> AI叙事绑架美股估值</h3>
+            <div class="meta">36kr · 🔥 100 · 10小时前</div>
           </div>
           <div class="expand-icon">▼</div>
         </div>
-        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：智能体竞争正从单次任务能力转向<strong>跨会话的连续性与记忆资产</strong>，谁掌握上下文沉淀，谁就掌握用户切换成本。<strong>法</strong>：把「状态持久化」当作基础设施而非功能点，任何长周期任务系统都应默认具备可恢复、可审计的记忆层。<strong>术</strong>：一是为智能体接入会话级与长期级双层存储，区分短期上下文与可检索知识；二是对记忆写入做去重与置信度打分，防止噪声污染；三是设计记忆导出与删除接口，提前满足合规与迁移需求。<strong>器</strong>：持久上下文插件、向量数据库、本地会话归档工具。</p>
-<a class="source-link" href="https://github.com/sponsors/thedotmack" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
+        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：资本市场对AI的定价已从业绩驱动转向叙事驱动，<strong>七姐妹的估值溢价本质是AI预期的集中押注</strong>，单一技术叙事的权重过高会放大整体市场的波动传导。<strong>法</strong>：识别资产价格中的叙事成分与基本面成分，用分散化对冲单一主题的集中风险，适用于任何被热门概念裹挟的配置决策。<strong>术</strong>：1. 拆分持仓中AI相关敞口的实际占比；2. 跟踪资本开支与营收兑现的时滞，判断叙事透支程度；3. 设定主题集中度上限并定期再平衡。<strong>器</strong>：美股七姐妹财报数据、AI资本开支追踪、组合风险分析工具。</p>
+<a class="source-link" href="https://www.36kr.com/p/4054817959121794" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
       </div>
     </div>
     <div class="footer">
-      <span>Generated by AI Hot Monitor v2 · DeepSeek · 11:01:52</span>
+      <span>Generated by AI Hot Monitor v2 · DeepSeek · 20:01:51</span>
       <span class="badge">💡 点击条目展开深度解读</span>
     </div>
   </div>
