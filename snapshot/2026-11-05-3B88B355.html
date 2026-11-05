@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="referrer" content="no-referrer">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'unsafe-inline'; img-src data:; connect-src 'none'; frame-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'; frame-ancestors 'none'">
+<title>Claude工程师Agent大教程：如何防止被AI养废-36氪 - AI热点快照</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','PingFang SC','Microsoft YaHei',sans-serif;background:#f8f9fa;color:#1a1a2e;line-height:1.8;min-height:100vh}
+.top-bar{background:#fff;border-bottom:1px solid #e5e7eb;padding:10px 20px;display:flex;align-items:center;gap:12px;position:sticky;top:0;z-index:10}
+.top-bar .logo{font-size:14px;font-weight:700;color:#0d9488}
+.top-bar .sep{color:#d1d5db}
+.top-bar .source{font-size:13px;color:#6b7280}
+.top-bar .back{margin-left:auto;font-size:13px;color:#0d9488;text-decoration:none}
+.top-bar .back:hover{text-decoration:underline}
+.container{max-width:760px;margin:0 auto;padding:40px 24px 80px}
+.article-title{font-size:1.8rem;font-weight:700;line-height:1.35;margin-bottom:16px;color:#1a1a2e}
+.article-meta{display:flex;flex-wrap:wrap;gap:16px;padding-bottom:20px;margin-bottom:28px;border-bottom:1px solid #e5e7eb;font-size:14px;color:#6b7280}
+.article-meta a{color:#0d9488;text-decoration:none}
+.article-meta a:hover{text-decoration:underline}
+.article-body{font-size:16.5px;line-height:1.85;color:#1f2937}
+.article-body p{margin-bottom:1.2em;text-align:justify}
+.article-body h1,.article-body h2,.article-body h3{font-size:1.25em;font-weight:700;margin:1.6em 0 0.6em;color:#1a1a2e}
+.article-body a{color:#0d9488}
+.article-body pre,.article-body code{background:#f1f5f9;border-radius:4px;font-size:0.9em}
+.article-body pre{padding:16px;overflow-x:auto;margin:1em 0}
+.article-body code{padding:2px 6px}
+.article-body blockquote{border-left:3px solid #0d9488;padding-left:16px;color:#4b5563;margin:1em 0}
+.article-body ul,.article-body ol{padding-left:1.6em;margin-bottom:1em}
+.article-body li{margin-bottom:0.4em}
+.article-body figure{margin:1.2em 0}
+.article-body figcaption{font-size:13px;color:#9ca3af;text-align:center;margin-top:6px}
+.footer{margin-top:48px;padding-top:20px;border-top:1px solid #e5e7eb;font-size:13px;color:#9ca3af;text-align:center}
+</style>
+</head>
+<body>
+<div class="top-bar">
+  <a class="back" href="../" style="font-size:13px;color:#6b7280;text-decoration:none">← 日报首页</a>
+  <span class="sep">|</span>
+  <span class="logo">AI热点快照</span>
+  <span class="sep">|</span>
+  <span class="source">36kr</span>
+  <a class="back" href="https://www.36kr.com/p/4056027738116995" target="_blank" rel="noopener noreferrer">查看原文 ↗</a>
+</div>
+<div class="container">
+  <h1 class="article-title">Claude工程师Agent大教程：如何防止被AI养废-36氪</h1>
+  <div class="article-meta">
+    <span>作者: 量子位</span>
+    <span>来源: 36kr</span>
+    <span>快照日期: 2026-11-05</span>
+  </div>
+  <div class="article-body"><div><div>
+ 
+ 
+  <blockquote>
+   <p><strong>AI越来越聪明，人类却越来越懒得动脑了！</strong></p>
+  </blockquote>
+  <p>刚刚，前Google Cloud AI总监、现Claude Code工程师<strong>Addy Osmani</strong>专门发文讨论了这个相当扎心的问题。</p>
+  <p>在他看来，那些天天指挥Agent写代码的工程师们，可能已经不知不觉陷入了一种状态——<strong>认知投降（Cognitive Surrender）。</strong></p>
+  <p>说白了就是AI写啥，你信啥。</p>
+  <p>代码能跑，测试全绿，那就大手一挥，“批准！”。</p>
+  <p>可当真有人问起这段代码为什么这么写时，自己却答不上来。</p>
+  <p></p>
+  <p>于是，这位亲手参与打造AI编程工具的工程师，决定亲自给大家支个有意思的招：</p>
+  <blockquote>
+   <p><strong>让Agent写完代码，再出几道题考考你。</strong></p>
+  </blockquote>
+  <p>答不上来？那就先别急着合并代码。（doge）</p>
+  <p></p>
+  <p></p>
+  <h2><strong>AI越聪明，人越容易被“养废”</strong></h2>
+  <p>Addy Osmani何许人也？</p>
+  <p>他硕士毕业于英国华威大学，此前在Google工作了14年多，参与过Chrome DevTools、Lighthouse等开发者工具项目，如今则加入Anthropic，参与Claude Code相关工作。</p>
+  <p></p>
+  <p>△</p>
+  <p>而且，他还是出了名的<strong>热门教程高产户</strong>。</p>
+  <p>从Claude Code使用技巧，到Agent工作流、代码审查，几乎隔三差五就有新教程。</p>
+  <p>不过这一次，他把目光投向了一个越来越现实的问题：</p>
+  <blockquote>
+   <p><strong>当AI生成的东西越来越靠谱，人类还会认真检查吗？</strong></p>
+  </blockquote>
+  <p></p>
+  <p>以前咱们写代码，还得自己哼哧哼哧查资料、琢磨方案、动手调试。</p>
+  <p>但现在呢？</p>
+  <p>一句Prompt丢过去，Agent可能几分钟就把活干完了。</p>
+  <p>更要命的是，随着模型能力的提升，AI写出的代码也越来越像那么回事。</p>
+  <p>不仅变量命名规范，逻辑看着也顺，测试还一片绿。</p>
+  <p>于是大家逐渐习惯了第一次认真检查，第二次扫两眼，第三次直接点通过…</p>
+  <p>久而久之，人类就这么从亲自写代码，变成了给Agent盖章的。</p>
+  <p></p>
+  <p>△</p>
+  <p>Addy将这种情况形容为<strong>认知投降（Cognitive Surrender）</strong>。</p>
+  <p>它并非一夜之间发生，有一个逐渐加深的过程。</p>
+  <p>起初可能只是<strong>“认知卸载”</strong>：我们只是把具体工作交给AI，但自己仍然理解任务，也能判断结果；</p>
+  <p>接着开始<strong>“判断让渡”</strong>，AI给出的答案逐渐成为下一步工作的默认依据；</p>
+  <p>最后就到了<strong>“认知投降”</strong>：</p>
+  <blockquote>
+   <p><strong>行了行了，AI说得肯定有道理，那就听它的吧。</strong></p>
+  </blockquote>
+  <p>至此，连原本应该由自己完成的判断，我们也统统拱手交了出去。</p>
+  <p></p>
+  <p>△</p>
+  <p>Addy举了个非常典型的例子：</p>
+  <blockquote>
+   <p>假如Agent一口气提交了一个600行代码的PR（拉取请求）。</p>
+   <p>开发者一看，结构清晰、测试通过，ok放心合并。</p>
+   <p>殊不知，<strong>Agent可能在某个不起眼的地方，悄悄改了事务处理顺序，或者调整了某个边界条件。</strong></p>
+  </blockquote>
+  <p>这些改动没有在当时立刻报错。</p>
+  <p>但等到系统真出了问题，开发者才突然发现，<strong>自己甚至解释不清这段代码为什么这么运行。</strong></p>
+  <p></p>
+  <p>最麻烦的还在后面。</p>
+  <p>Addy认为，长期这样使用Agent，还会积累出一种新的技术债务——<strong>理解债（Comprehension Debt）</strong>：</p>
+  <p>代码写得越来越多，系统功能越来越复杂。</p>
+  <p>可开发者对代码的理解，却没能跟着一起增长。</p>
+  <p>于是，等到真正需要修改某个功能时，大家才恍然发现，<strong>这座代码大厦虽然盖起来了，却越来越没人摸得清内部结构</strong>，只能茫然地面面相觑，太烧心。</p>
+  <p></p>
+  <p>当然，这并不意味着每一行AI生成的代码都要亲自读完。</p>
+  <p>Addy也提到，Claude Code团队也不会要求工程师随时记住整个代码库，他们会在需要修改某一部分时，借助Claude重新理解相关逻辑。</p>
+  <p>只是这里有个前提：</p>
+  <blockquote>
+   <p><strong>你必须得知道自己懂什么，又有哪些地方还没搞懂。</strong></p>
+  </blockquote>
+  <p>否则，代码写得越快，你的理解债也可能欠得越多。</p>
+  <p></p>
+  <h2><strong>防沉迷小妙招：让Agent反过来考咱们</strong></h2>
+  <p>那么问题来了。</p>
+  <p>Agent现在这么能写，咱们究竟该怎样跟上它的速度呢？</p>
+  <p></p>
+  <p>Addy在长文里分享了不少自己的实操干货。</p>
+  <p>其中最有意思的一招，就是<strong>让Agent变成考官</strong>。</p>
+  <p>咱假设啊，Claude刚刚完成了一项大型代码修改。</p>
+  <p>先别急着点通过。</p>
+  <p>我们可以先让它总结这次到底改了哪些地方、为什么这么改，再根据修改内容给我们自己出几道题，并立一条规矩：</p>
+  <blockquote>
+   <p><strong>只有测验全部答对，代码才能合并。</strong></p>
+  </blockquote>
+  <p>这样一来，我们就能真正清楚和理解自己究竟批准了什么，避免出现不必要的错误。</p>
+  <p></p>
+  <p>除此之外，Addy还多分享了几招，我也都给大家梳理出来啦( ￣▽￣)σ。</p>
+  <h4><strong>妙招1：写Prompt之前，自己先动脑列出需求清单</strong></h4>
+  <p>Addy提到，现在的Agent确实太擅长补全需求了。</p>
+  <p>哪怕我们自己还没想明白要什么，它也能交出一份像模像样的作品。</p>
+  <p>可问题恰恰出在这里，需求里那些没说清楚的目标、限制和取舍，可能就这么被AI替你决定了。</p>
+  <p></p>
+  <p>Addy把这种情况称为<strong>“意图债”（Intent Debt）</strong>。</p>
+  <p></p>
+  <p>所以他建议，下达任务之前，<strong>我们最好先用自己的话写一份简短的需求说明。</strong></p>
+  <p>包括面向谁、想解决什么问题、哪些事情不需要做，以及做到什么程度才算完成。</p>
+  <p>先想清楚，再让Agent开工。</p>
+  <p>如果连续调整两轮Prompt仍然得不到想要的结果，那咱们就该回头重新梳理需求了，而不是继续往上堆提示词。</p>
+  <h4><strong>妙招2：让Agent主动交代，它背着你做了哪些决定</strong></h4>
+  <p>这一点尤其适合长时间运行的任务。</p>
+  <p>因为Agent在执行过程中，可能会自行选择默认参数、调整实现范围，甚至在不同需求发生冲突时做出取舍。</p>
+  <p>这些决定，它未必会主动写进最后的总结里，甚至自然到难以察觉。</p>
+  <p>所以，比起只问一句“完成了吗”，Addy建议我们不妨继续追问：</p>
+  <p><strong>你做了哪些我没有明确授权的决定？</strong></p>
+  <p><strong>哪些地方依赖了自己的假设？</strong></p>
+  <p><strong>还有什么没验证？</strong></p>
+  <p>以及，<strong>哪些改动可能影响其他功能？</strong></p>
+  <p>这样一来，大家至少就能看清Agent在执行过程中作出了哪些取舍，再可以根据代码和测试结果逐步核对Agent自己交代的内容了。</p>
+  <p></p>
+  <h4><strong>妙招3：别光看测试全绿，还得问它没测什么</strong></h4>
+  <p>Addy特别提醒，<strong>所谓绿色的测试结果只证明测试覆盖到的条件通过了。</strong></p>
+  <p>如果边界情况根本没有写进测试，Agent照样可以交出一份看起来很漂亮的报告。</p>
+  <p>因此，他建议大家仔细查看<strong>实际执行了哪些测试</strong>、<strong>返回了什么结果</strong>，<strong>再去读AI生成的总结</strong>。</p>
+  <p>对于高风险修改，还可以增加独立检查，让另一个Agent从不同角度寻找问题。</p>
+  <p></p>
+  <h4><strong>妙招4：Agent可以多开，但重要任务必须要保留原始材料和验证依据</strong></h4>
+  <p>现在估计有不少的小伙伴们已经开始同时指挥多个Agent了。</p>
+  <p>一个负责写前端，一个负责改后端，还有一个负责测试。</p>
+  <p>效率简直是芜湖起飞。</p>
+  <p>但与此同时，就跟人与人之间的传话会有损耗一样，当多个Agent协作时，一个Agent的总结很容易直接成为下一个Agent的输入；</p>
+  <p>传着传着，到了最后，整个工作流可能就已经离原始资料越来越远，导致原始信息里那些关键细节可能早就丢了…</p>
+  <p></p>
+  <p>△</p>
+  <p>Addy因此提醒，<strong>重要任务必须要保留原始材料和验证依据。</strong></p>
+  <p>至于那些已经多到根本审不过来的任务，要么补上自动化检查，要么先减少并行数量。</p>
+  <p>不然，继续增加Agent数量，只会让待审核的内容越堆越高。</p>
+  <p>Addy对此给出的判断也相当犀利：</p>
+  <blockquote>
+   <p><strong>当你生成的内容已经多到无法负责时，你做的就不再是审查，而是在赌它没问题。</strong></p>
+  </blockquote>
+  <p></p>
+  <h4><strong>妙招5：每周留点时间，让自己回归古法手搓代码</strong></h4>
+  <p>这招听上去甚至有点复古。</p>
+  <p><strong>都2026年了，Claude工程师居然还劝大家偶尔别用Claude？</strong></p>
+  <p></p>
+  <p>但Addy认为，<strong>长期不使用的技能确实可能逐渐退化；</strong></p>
+  <p>偶尔脱离Agent独立完成任务，也能帮助大家随时校准自己当前的真实水平。</p>
+  <p>所以他建议大家，<strong>每周至少安排一次不依赖Agent的独立编码练习。</strong></p>
+  <p>每个月也可以顺手盘点一下：</p>
+  <p><strong>自己已经把哪些技能交给了AI？</strong></p>
+  <p><strong>哪些能力可以放心外包，哪些又必须继续掌握？</strong></p>
+  <p>这样做还有一个额外好处。</p>
+  <p>那就是至少还能知道，离开AI后，自己现在究竟还能干些什么。</p>
+  <p></p>
+  <p>在文章的最后，Addy还分享了一个极其简单的自测办法，那就是<strong>每次向Agent提问前，先写下自己预期会发生什么。</strong></p>
+  <p><strong>等AI交卷后，再试着找出一件它可能没检查到的事。</strong></p>
+  <p>这样一来，我们至少就能保证在整个工作中，<strong>脑子也跟着转了两下。</strong></p>
+  <p></p>
+  <p>Anyway，分享完这些干货后，Addy还留下了一个值得所有AI重度用户认真思考的灵魂拷问：</p>
+  <blockquote>
+   <p><strong>家人们都说实话啊，要是明天AI集体罢工，你们觉得自己能撑几天不崩溃呢？</strong></p>
+  </blockquote>
+  <p>嘶…是啊，能撑几天呢？</p>
+  <p>别人不知道，反正对我这种选择困难症晚期患者来说，多少有点天塌了。（泪目）</p>
+  <p>毕竟，出个门需要AI帮忙规划行程，找个路得问AI，就连去餐厅吃顿饭，都恨不得先让豆包帮我研究一下菜单，看看哪道菜最值得点。</p>
+  <p>这么一想想，AI要是真集体罢工了，我可能连今天的午饭吃啥都真的得重新学起咯。（捂脸）</p>
+  <p></p>
+  <h2><strong>One More Thing</strong></h2>
+  <p>其实吧，最有节目效果的果然还是在最后。</p>
+  <p>洋洋洒洒地教完大家怎么防止被AI养废后，Addy居然还在文章末尾骄傲地晒出了一张<strong>AI检测报告</strong>；</p>
+  <p>Pangram检测结果显示：</p>
+  <blockquote>
+   <p><strong>人类撰写90%，AI生成10%，AI辅助0%。</strong></p>
+  </blockquote>
+  <p></p>
+  <p>哈哈哈哈，合着前面苦口婆心劝大家别把脑子外包给AI，最后自己也没忘了亲自交作业：</p>
+  <blockquote>
+   <p><strong>放心，这篇劝你们动脑子的文章，我也是真动脑写了！</strong></p>
+  </blockquote>
+  <p>好好好，<strong>真·知行合一。</strong>（doge）</p>
+  <p></p>
+  <p>参考链接：[1]https://x.com/addyosmani/status/2117512471930167377</p>
+  <p>本文来自微信公众号<a href="https://mp.weixin.qq.com/s/kp1BKbV2xVHpFE7dp7u37A" target="_blank" rel="noopener noreferrer nofollow">“量子位”</a>，作者：文婷，36氪经授权发布。</p>
+ 
+</div></div></div>
+  <div class="footer">
+    本文由 AI热点监控系统自动抓取 · 内容版权归原作者/网站所有<br>
+    快照仅用于学习交流，如需转载请访问原文
+  </div>
+</div>
+</body>
+</html>
