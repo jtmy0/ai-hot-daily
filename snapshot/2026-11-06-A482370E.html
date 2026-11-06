@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="referrer" content="no-referrer">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'unsafe-inline'; img-src data:; connect-src 'none'; frame-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'; frame-ancestors 'none'">
+<title>突发：李飞飞最新 AI 成果发布，把世界模型装进复古掌机，单张图实时跑出 15 帧-36氪 - AI热点快照</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','PingFang SC','Microsoft YaHei',sans-serif;background:#f8f9fa;color:#1a1a2e;line-height:1.8;min-height:100vh}
+.top-bar{background:#fff;border-bottom:1px solid #e5e7eb;padding:10px 20px;display:flex;align-items:center;gap:12px;position:sticky;top:0;z-index:10}
+.top-bar .logo{font-size:14px;font-weight:700;color:#0d9488}
+.top-bar .sep{color:#d1d5db}
+.top-bar .source{font-size:13px;color:#6b7280}
+.top-bar .back{margin-left:auto;font-size:13px;color:#0d9488;text-decoration:none}
+.top-bar .back:hover{text-decoration:underline}
+.container{max-width:760px;margin:0 auto;padding:40px 24px 80px}
+.article-title{font-size:1.8rem;font-weight:700;line-height:1.35;margin-bottom:16px;color:#1a1a2e}
+.article-meta{display:flex;flex-wrap:wrap;gap:16px;padding-bottom:20px;margin-bottom:28px;border-bottom:1px solid #e5e7eb;font-size:14px;color:#6b7280}
+.article-meta a{color:#0d9488;text-decoration:none}
+.article-meta a:hover{text-decoration:underline}
+.article-body{font-size:16.5px;line-height:1.85;color:#1f2937}
+.article-body p{margin-bottom:1.2em;text-align:justify}
+.article-body h1,.article-body h2,.article-body h3{font-size:1.25em;font-weight:700;margin:1.6em 0 0.6em;color:#1a1a2e}
+.article-body a{color:#0d9488}
+.article-body pre,.article-body code{background:#f1f5f9;border-radius:4px;font-size:0.9em}
+.article-body pre{padding:16px;overflow-x:auto;margin:1em 0}
+.article-body code{padding:2px 6px}
+.article-body blockquote{border-left:3px solid #0d9488;padding-left:16px;color:#4b5563;margin:1em 0}
+.article-body ul,.article-body ol{padding-left:1.6em;margin-bottom:1em}
+.article-body li{margin-bottom:0.4em}
+.article-body figure{margin:1.2em 0}
+.article-body figcaption{font-size:13px;color:#9ca3af;text-align:center;margin-top:6px}
+.footer{margin-top:48px;padding-top:20px;border-top:1px solid #e5e7eb;font-size:13px;color:#9ca3af;text-align:center}
+</style>
+</head>
+<body>
+<div class="top-bar">
+  <a class="back" href="../" style="font-size:13px;color:#6b7280;text-decoration:none">← 日报首页</a>
+  <span class="sep">|</span>
+  <span class="logo">AI热点快照</span>
+  <span class="sep">|</span>
+  <span class="source">36kr</span>
+  <a class="back" href="https://www.36kr.com/p/4057553085404038" target="_blank" rel="noopener noreferrer">查看原文 ↗</a>
+</div>
+<div class="container">
+  <h1 class="article-title">突发：李飞飞最新 AI 成果发布，把世界模型装进复古掌机，单张图实时跑出 15 帧-36氪</h1>
+  <div class="article-meta">
+    <span>作者: 爱范儿</span>
+    <span>来源: 36kr</span>
+    <span>快照日期: 2026-11-06</span>
+  </div>
+  <div class="article-body"><div><div>
+ 
+ 
+  <p>点下生成按钮，然后对着转圈的进度条干等好几分钟。过去玩 3D 世界模型或者视频生成的朋友，估计都被那种漫长的渲染折磨得没脾气了。</p>
+  <p>就在今天，李飞飞创办的 World Labs<strong>发布了一款名为 Frameboy 的研究预览版 Demo，直接把自家的自回归世界模型 Atlas 拉进了实时交互时代。</strong></p>
+  <p></p>
+  <p>官方博客🔗 https://www.worldlabs.ai/blog/atlas-realtime</p>
+  <p>只需要打开浏览器，<strong>云端 GPU 就能以最高 15 fps 的帧率把画面实时串流过来，让你像打游戏一样自由操控镜头，在单张图片生成的 3D 世界里随便溜达。</strong></p>
+  <p>哪怕是不小心走错了方向、试了个烂点子，试错成本也几乎归零，鼠标一划就能换个角度继续探索。</p>
+  <p>更有意思的是，此次更新也是今年 9 月底 AMD 宣布斥资 82 亿美元（约合人民币 550 亿元）全股票收购 World Labs 之后，李飞飞这支顶尖空间智能团队交出的又一份技术答卷。</p>
+  <h2><strong>把世界模型装进复古掌机，单张图实时跑出 15 帧</strong></h2>
+  <p>要把此次更新看明白，得先提一嘴两个月前刚亮相的 Atlas。</p>
+  <p>作为一个自回归世界模型，Atlas 当时最大的卖点是可以逐帧生成画面，并支持像素级精度的相机视角控制，无论是拿一张图脑补出虚拟 3D 世界，还是用几张多视角照片还原真实地标、去建筑工地看进度、给电影勘景都不在话下。</p>
+  <p>但问题也很现实，就是太慢了。</p>
+  <p>如果每次调整一下机位，都得等上几十秒甚至好几分钟才能看到渲染结果，创作者在搭场景和规划运镜时就会变得束手束脚，每次按生成键都像在开盲盒。</p>
+  <p></p>
+  <p>为了缓解世界模型漫长的生成等待，<strong>团队对 Atlas 进行了深度推理优化，并推出了搭载这一优化版模型的实时交互 Demo Frameboy，</strong>复古掌机式的设计也让人很容易联想到经典的 Game Boy。</p>
+  <p>现在，当画面生成速度提升到最高每秒 15 帧，用户已经明显感觉不到点击生成那个割裂的动作了。</p>
+  <p>你只需要在浏览器里推拉摇移相机，云端就会源源不断地把新视角的画面实时推流到屏幕上。</p>
+  <p>拿官方放出的客厅对比演示来说，以前用慢速模型手动迭代，用户得小心翼翼地在房间里点四个关键帧机位，按下生成干等视频出来，发现角度不对再拖拽重试，来回折腾好几轮。</p>
+  <p></p>
+  <p>而在 Frameboy 的实时模式下，你直接开着虚拟相机在房间里转圈就行，视野所及之处，画面同步实时更新。</p>
+  <p>如果熟悉 World Labs 去年的研究预览项目 RTFM，可能会觉得复古掌机形态有点眼熟。</p>
+  <p>不过相比当年那个轻量级的帧生成模型，如今的 Atlas 不光模型规模大得多、吞下的数据量高出好几个数量级，能力边界也完全不同了。</p>
+  <p><strong>去年的 RTFM 主要只能在已有的几个视角之间做插值过渡，而现在的 Atlas 哪怕只喂给它一张静态图片或者一段文字描述，都能从零把整个周边场景给脑补出来，放进 Frameboy 的空间上下文里任你交互探索。</strong></p>
+  <p></p>
+  <p>同时，它也完整保留并升级了多视角新视图合成能力，输入几张真实世界名胜古迹的多角度照片，就能在浏览器里直接开启一场赛博实景漫游。</p>
+  <h2><strong>上传图片，亲手搭个 3D 游乐场</strong></h2>
+  <p>光在官方预设好的几个场景里逛，显然还不够过瘾。</p>
+  <p>为了让大家能亲手搭出自己的 3D 世界，World Labs 还把实时串流能力塞进了自家的网页端应用 Viewfinder 里，做成了实时渲染叠加模式，<strong>目前正处于封闭测试阶段并已开放候补名单申请。</strong></p>
+  <p><strong>在 Viewfinder 里，你可以拿自己上传的图片当起点，操控虚拟相机一步步往外走，一帧一帧地把整个 3D 空间搭建起来。</strong></p>
+  <p>Atlas 每生成新的一帧，都会同步输出色彩与深度信息，帮你在视觉上对齐整个三维空间结构。</p>
+  <p></p>
+  <p>等场景主体搭得差不多了，直接一键唤起 Frameboy 叠加层，刚才还在逐帧构建的静态工程，瞬间就能变成实时串流的 3D 游乐场。</p>
+  <p>团队对未来的定位非常清晰，就是<strong>想让 Atlas 这样的世界模型成为下一代生成式渲染器。</strong></p>
+  <p></p>
+  <p>不过官方在博客最后也没有回避目前的算力门槛。</p>
+  <p>现阶段 Frameboy 必须运行在云端的高性能 GPU 服务器上，跟传统的本地渲染比起来，成本绝对算不上便宜。</p>
+  <p>但回顾计算机图形学的历史，任何一项颠覆性技术在刚诞生时往往都是又慢又贵的，随着底层硬件与软件算法的协同演进，今天昂贵的云端实验室玩具，迟早会变成白菜价的普及工具。</p>
+  <h2><strong>550 亿联姻苏姿丰，加速贴近底层硬件</strong></h2>
+  <p>恰恰是在软硬协同降本提速这件事上，如今的 World Labs 可以说是找到了最合适的靠山。</p>
+  <p>就在一个多月前的 9 月 28 日，芯片巨头 AMD 刚刚官宣了一项重磅收购协议，拟以 82 亿美元的全股票交易将成立仅两年的 World Labs 收入囊中。</p>
+  <p>预计在今年底完成交割的这笔交易，直接创下了 AMD 历史上仅次于赛灵思的第二大收购纪录。</p>
+  <p>算起来，这家总部位于旧金山、由李飞飞与 Justin Johnson、Ben Mildenhall、Christoph Lassner 联合创办的明星独角兽，在前一轮融资时的估值还是 50 亿美元。</p>
+  <p>根据收购安排，交易完成后李飞飞将正式出任 AMD 执行副总裁兼首席科学家，直接向苏姿丰汇报；而原有的研发团队将完整保留，继续由 Justin Johnson 和 Ben Mildenhall 带队死磕空间模型与物理 AI。</p>
+  <p></p>
+  <p>当时外界还在讨论，一家卖芯片的硬件大厂，为什么要花 550 亿人民币去买一支研究 3D 世界模型的算法团队？</p>
+  <p><strong>现在结合 Frameboy 对极致推理速度的渴求，两边的考量就再清晰不过了。</strong></p>
+  <p><strong>对苏姿丰来说，大语言模型之后的下一个必争之地，是涵盖机器人仿真、空间理解与三维重建的物理 AI。</strong></p>
+  <p>收下 World Labs，AMD 就能在第一时间摸清下一代世界模型的真实算力负载特征，从而反向指导自家 GPU 架构、AI 芯片和 ROCm 软件栈的路线规划，在机器人与空间计算赛道跟英伟达正面掰手腕。</p>
+  <p>而对李飞飞团队来说，就像她在收购公告里所言，下一代 AI 需要模型研究、系统与算力的紧密协同。</p>
+  <p>以前在云端跑个实时世界模型还得心疼昂贵的 GPU 账单，如今直接和自家芯片团队一起贴身打磨硬件与底层算子，距离把实时生成式 3D 渲染真正塞进千家万户的终端设备里，显然又近了一大步。</p>
+  <p>本文来自微信公众号<a href="https://mp.weixin.qq.com/s/hkTnfhmzbYMuUfdo6Gh8nQ" target="_blank" rel="noopener noreferrer nofollow">“APPSO”</a>，作者：发现明日产品的APPSO，36氪经授权发布。</p>
+ 
+</div></div></div>
+  <div class="footer">
+    本文由 AI热点监控系统自动抓取 · 内容版权归原作者/网站所有<br>
+    快照仅用于学习交流，如需转载请访问原文
+  </div>
+</div>
+</body>
+</html>
