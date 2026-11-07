@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="referrer" content="no-referrer">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'unsafe-inline'; img-src data:; connect-src 'none'; frame-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'; frame-ancestors 'none'">
+<title>Libghostty 1.0 - AI热点快照</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','PingFang SC','Microsoft YaHei',sans-serif;background:#f8f9fa;color:#1a1a2e;line-height:1.8;min-height:100vh}
+.top-bar{background:#fff;border-bottom:1px solid #e5e7eb;padding:10px 20px;display:flex;align-items:center;gap:12px;position:sticky;top:0;z-index:10}
+.top-bar .logo{font-size:14px;font-weight:700;color:#0d9488}
+.top-bar .sep{color:#d1d5db}
+.top-bar .source{font-size:13px;color:#6b7280}
+.top-bar .back{margin-left:auto;font-size:13px;color:#0d9488;text-decoration:none}
+.top-bar .back:hover{text-decoration:underline}
+.container{max-width:760px;margin:0 auto;padding:40px 24px 80px}
+.article-title{font-size:1.8rem;font-weight:700;line-height:1.35;margin-bottom:16px;color:#1a1a2e}
+.article-meta{display:flex;flex-wrap:wrap;gap:16px;padding-bottom:20px;margin-bottom:28px;border-bottom:1px solid #e5e7eb;font-size:14px;color:#6b7280}
+.article-meta a{color:#0d9488;text-decoration:none}
+.article-meta a:hover{text-decoration:underline}
+.article-body{font-size:16.5px;line-height:1.85;color:#1f2937}
+.article-body p{margin-bottom:1.2em;text-align:justify}
+.article-body h1,.article-body h2,.article-body h3{font-size:1.25em;font-weight:700;margin:1.6em 0 0.6em;color:#1a1a2e}
+.article-body a{color:#0d9488}
+.article-body pre,.article-body code{background:#f1f5f9;border-radius:4px;font-size:0.9em}
+.article-body pre{padding:16px;overflow-x:auto;margin:1em 0}
+.article-body code{padding:2px 6px}
+.article-body blockquote{border-left:3px solid #0d9488;padding-left:16px;color:#4b5563;margin:1em 0}
+.article-body ul,.article-body ol{padding-left:1.6em;margin-bottom:1em}
+.article-body li{margin-bottom:0.4em}
+.article-body figure{margin:1.2em 0}
+.article-body figcaption{font-size:13px;color:#9ca3af;text-align:center;margin-top:6px}
+.footer{margin-top:48px;padding-top:20px;border-top:1px solid #e5e7eb;font-size:13px;color:#9ca3af;text-align:center}
+</style>
+</head>
+<body>
+<div class="top-bar">
+  <a class="back" href="../" style="font-size:13px;color:#6b7280;text-decoration:none">← 日报首页</a>
+  <span class="sep">|</span>
+  <span class="logo">AI热点快照</span>
+  <span class="sep">|</span>
+  <span class="source">Mitchell Hashimoto</span>
+  <a class="back" href="https://mitchellh.com/writing/libghostty-1-0" target="_blank" rel="noopener noreferrer">查看原文 ↗</a>
+</div>
+<div class="container">
+  <h1 class="article-title">Libghostty 1.0</h1>
+  <div class="article-meta">
+    
+    <span>来源: Mitchell Hashimoto</span>
+    <span>快照日期: 2026-11-07</span>
+  </div>
+  <div class="article-body"><div><div><p><code>libghostty-vt</code> 1.0 is here. <a href="https://lib.ghostty.org/" target="_blank" rel="noopener noreferrer nofollow">libghostty</a> is a
+portable, high-performance C library for terminal emulation, extracted
+directly from the core of Ghostty. The 1.0 release means both the library
+itself and the C ABI are now stable.</p>
+<p>A little over a year ago, I wrote that
+<span>libghostty is coming</span>. At the time,
+the Zig module had just been merged, the C API didn't exist, and nobody
+but Ghostty was a consumer. Today, the C API is a complete terminal emulator,
+it runs in production for millions of people across hundreds of products,
+both free and commercial, and it has a real, enforced ABI stability policy.</p>
+<p>This post is about how we got here and what 1.0 actually means.<sup><span>1</span></sup></p>
+<hr />
+<h2>Who Is Already Using It</h2>
+<p>Since starting the Ghostty project in 2022, the most common question I've
+been asked is "why?". I already answered this in the
+<span>libghostty is coming</span>
+post, so feel free to read that if you wish. Today, I'd rather answer this
+by showing the broad industry impact libghostty <em>has already had</em>. I believe
+this strongly validates its existence.</p>
+<p>A year ago, I used a
+<a href="https://github.com/JetBrains/jediterm/pull/311" target="_blank" rel="noopener noreferrer nofollow">bug in JediTerm</a>,
+the terminal emulator in JetBrains IDEs, as an example of why terminal
+emulation is hard to get right. A year later,
+<a href="https://blog.jetbrains.com/platform/2026/10/jetbrains-terminal-now-uses-ghostty/" target="_blank" rel="noopener noreferrer nofollow">the terminal in JetBrains IDEs now runs on libghostty</a>.
+Every IntelliJ, PyCharm, GoLand, etc. user now has a libghostty-powered
+terminal. Based on a report by JetBrains, that's over 12.5 million
+active users.</p>
+<p>Neovim has an <a href="https://github.com/neovim/neovim/pull/39773" target="_blank" rel="noopener noreferrer nofollow">approved pull request</a>
+replacing libvterm with <code>libghostty-vt</code>. Among other things, it closes a
+<a href="https://github.com/neovim/neovim/issues/4997" target="_blank" rel="noopener noreferrer nofollow">10-year-old issue</a>
+about reflowing scrollback on resize. The maintainers are waiting on a
+tagged release before merging so that distributions can package the
+dependency separately, and the release today should enable that.</p>
+<p>KDE developers are
+<a href="https://blogs.kde.org/2026/11/01/introducing-kwi/" target="_blank" rel="noopener noreferrer nofollow">experimenting with a Konsole replacement</a>
+built on it. Vercel's Turborepo <a href="https://github.com/vercel/turborepo/pull/13135" target="_blank" rel="noopener noreferrer nofollow">uses it</a>
+to render task output in its TUI. <a href="https://devenv.sh/blog/2026/05/07/devenv-21-nix-with-zsh-fish-and-nushell-via-libghostty/" target="_blank" rel="noopener noreferrer nofollow">devenv</a>
+uses it to drive shells. Antithesis
+<a href="https://wickstrom.tech/2026-04-30-bombadil-terminal-experiment.html" target="_blank" rel="noopener noreferrer nofollow">used it to fuzz TUI programs</a>
+and found real bugs in btop and others. <a href="https://github.com/dakra/ghostel" target="_blank" rel="noopener noreferrer nofollow">Ghostel</a>
+brings it to Emacs. <a href="https://github.com/coder/ghostty-web" target="_blank" rel="noopener noreferrer nofollow">ghostty-web</a>
+is the WASM build with an Xterm.js-compatible API. Commercial products
+like <a href="https://orbstack.dev/" target="_blank" rel="noopener noreferrer nofollow">OrbStack</a> embed it. And a whole wave of
+new terminals and "agentic" coding tools, such as
+<a href="https://github.com/herdrdev/herdr" target="_blank" rel="noopener noreferrer nofollow">herdr</a> and
+<a href="https://github.com/manaflow-ai/cmux" target="_blank" rel="noopener noreferrer nofollow">cmux</a>, have been built on it
+rather than writing yet another emulator.</p>
+<p>There are community bindings for Rust, Go, JavaScript, Swift, Python,
+.NET, Elixir, Dart, Java, and more, and the
+<a href="https://github.com/Uzaaft/awesome-libghostty" target="_blank" rel="noopener noreferrer nofollow">awesome-libghostty</a>
+list tracks well over a hundred projects.</p>
+<p>More people today use a terminal powered by libghostty than use Ghostty
+the application, by a very large multiple. And libghostty is having
+a much larger impact than being "just" a terminal emulator.<sup><span>2</span></sup></p>
+<hr />
+<h2>ABI Stability</h2>
+<p>1.0 means <code>libghostty-vt</code> follows semantic versioning and has strict
+<a href="https://en.wikipedia.org/wiki/Application_binary_interface" target="_blank" rel="noopener noreferrer nofollow">ABI compatibility</a>
+promises so that packagers across distributions and operating systems
+can be confident packaging <code>libghostty-vt</code> and program developers can be
+confident dynamically linking against it.</p>
+<p>Beyond providing useful features, I believe the hallmark of a high-quality
+and enduring C library is ABI stability. So from the start, I took inspiration
+from C libraries I enjoyed working with and designed the API to have
+a strong, stable ABI that allows for future additions.</p>
+<p>Every object is an opaque handle. The hundreds of values you might read or
+write go through a small set of enum-keyed getters and setters, so we
+can add new values easily without introducing a new symbol. Programs with
+newer headers linked against an older libghostty get <code>GHOSTTY_UNSUPPORTED</code>
+results instead of crashes or undefined behavior. The few non-opaque structs
+we have carry their size so that fields can be appended later, or contain
+reserved padding. Enums are pinned to <code>int</code> on every compiler, as much as
+the C standard allows.</p>
+<p>Our CI enforces our ABI policy. Every change is checked with
+<a href="https://sourceware.org/libabigail/" target="_blank" rel="noopener noreferrer nofollow">libabigail</a> against a committed baseline
+on Linux, and against golden type manifests on macOS and WebAssembly.</p>
+<p>On ELF platforms, every exported symbol is also versioned, so the dynamic
+loader refuses to load a mismatched library by name rather than failing in
+some mysterious way later.</p>
+<hr />
+<h2>Packaging</h2>
+<p>In addition to ABI stability, the 1.0 release brings along the proper
+build tooling, tarballs, dependency licensing manifests, documentation,
+and more to enable every major operating system and distribution to
+package <code>libghostty-vt</code> through standard official tooling.</p>
+<p>Libghostty has its own release cycle, separate from Ghostty the
+application. And it has its own tarballs with only the files and dependencies
+libghostty needs, resulting in smaller sizes and simpler licensing
+verification and compatibility.</p>
+<p>Each release publishes a signed source tarball along with a companion
+dependencies tarball containing every Zig package in Zig's own cache
+layout, so a distribution can build the library completely offline. The
+build installs the shared and static libraries with a proper SONAME,
+headers, pkg-config files, and a CMake package config, and it honors
+<code>--prefix</code>, <code>DESTDIR</code>, and <code>lib64</code>. Debug info is kept by default so
+distros can split it out. All of this is documented in
+<a href="https://github.com/ghostty-org/ghostty/blob/main/PACKAGING-LIBGHOSTTY.md" target="_blank" rel="noopener noreferrer nofollow">PACKAGING-LIBGHOSTTY.md</a>,
+which ships with the tarball.</p>
+<hr />
+<h2>Dependencies and Licensing</h2>
+<p><code>libghostty-vt</code> is MIT licensed. At runtime it needs nothing beyond
+libc, and it can be built fully freestanding if you don't want that
+either.<sup><span>3</span></sup></p>
+<p>The library compiles in a small number of permissively licensed
+dependencies: <a href="https://github.com/simdutf/simdutf" target="_blank" rel="noopener noreferrer nofollow">simdutf</a> and
+<a href="https://github.com/google/highway" target="_blank" rel="noopener noreferrer nofollow">Google Highway</a> for SIMD, a compact
+Unicode table for grapheme data, and
+<a href="https://github.com/google/wuffs" target="_blank" rel="noopener noreferrer nofollow">Wuffs</a> for image decoding in the
+Kitty graphics protocol. Both simdutf and Highway are built
+<span>without libc++</span>, so there is no C++
+standard library dependency.</p>
+<p>There is no copyleft code anywhere in the
+dependency tree. Every dependency is listed in a machine-readable
+manifest with its version, SPDX license, and hash, specifically so
+distros can fill in their bundled-library metadata more easily.</p>
+<p>If a distro would rather dynamically link the system simdutf or Highway,
+there's a build flag for that.</p>
+<hr />
+<h2>Portability</h2>
+<p><code>libghostty-vt</code> is highly portable. The table below lists all the platforms
+and architectures that we build and test (full unit tests plus running all
+examples) in CI:</p>
+<table><thead><tr><th>Platform</th><th>Architectures</th></tr></thead><tbody><tr><td>Linux (glibc, musl)</td><td><code>x86_64</code>, <code>aarch64</code></td></tr><tr><td>macOS 13+</td><td><code>x86_64</code>, <code>aarch64</code></td></tr><tr><td>iOS 13+</td><td><code>aarch64</code></td></tr><tr><td>FreeBSD</td><td><code>x86_64</code>, <code>aarch64</code></td></tr><tr><td>Windows</td><td><code>x86_64</code></td></tr><tr><td>Android</td><td><code>aarch64</code>, <code>x86_64</code>, <code>arm</code></td></tr><tr><td>WebAssembly</td><td><code>wasm32</code> (freestanding)</td></tr></tbody></table>
+<p>There is a second set of platforms we build in CI but do not run tests for.
+These systems all have known users; we just haven't set up the machinery
+for automated testing:</p>
+<table><thead><tr><th>Platform</th><th>Architectures</th></tr></thead><tbody><tr><td>Bare metal</td><td><code>riscv32</code>, <code>thumb</code></td></tr><tr><td>WebAssembly (WASI)</td><td><code>wasm32</code></td></tr><tr><td>Windows</td><td><code>arm64</code></td></tr><tr><td>illumos</td><td><code>x86_64</code></td></tr><tr><td>32-bit x86</td><td><code>x86</code></td></tr></tbody></table>
+<p>Each of the tested platforms gets the artifacts it expects:</p>
+<ul>
+<li><strong>Linux and FreeBSD</strong> get a shared library with a proper SONAME and
+versioned symbols, a static library, headers, pkg-config files, and
+a CMake package config.</li>
+<li><strong>macOS and iOS</strong> get a <code>dylib</code> with an <code>@rpath</code> install name and
+compatibility version, plus an XCFramework covering macOS, iOS, and
+the iOS simulator that drops straight into Xcode or Swift Package
+Manager.</li>
+<li><strong>Windows</strong> gets a DLL with a <code>.pdb</code>, an import library, and a static
+library. The library is built with the GNU ABI, but MSVC programs
+link against it through the import library and CI verifies this.</li>
+<li><strong>Android</strong> gets a shared library built against the NDK with 16 KB
+page size support, as required by Android 15+.</li>
+<li><strong>WebAssembly</strong> ships in two flavors, one optimized for speed and one
+for size, and the small one is under a megabyte with every feature
+enabled. If you only need a read-only viewer, subsystems like input
+encoding, search, selection, and Kitty graphics can be compiled out
+with a build flag, which roughly halves the module. Every function
+stays exported and simply returns <code>GHOSTTY_UNSUPPORTED</code> so your code
+doesn't have to change.<sup><span>4</span></sup></li>
+</ul>
+<p>Portability isn't just about the ability to build and run. It's also
+about resource usage and being able to work in a wide variety of
+resource environments.</p>
+<p>For resource usage, the library creates no threads, allocates only through
+an allocator you can customize, and uses minimal compute and memory.
+I've run 10,000 active terminals, each with a live shell producing output,
+on a Linux server with 4 cores and 8 GB of RAM. In this test, I had to use
+<code>dash</code> because <code>bash</code> used far more RAM than <code>libghostty-vt</code> and wouldn't fit
+into the 8 GB budget.</p>
+<hr />
+<h2>What's Next</h2>
+<p>Libghostty 1.0 is a major milestone.</p>
+<p>You can now create a terminal in <a href="https://github.com/ghostty-org/ghostling" target="_blank" rel="noopener noreferrer nofollow">~1,500 lines of C</a>
+that has more features and better performance than just about any terminal
+that existed in 2025, and most today in 2026.<sup><span>5</span></sup> And thanks to the rich
+ecosystem of language bindings, you can do this in every major programming
+language. You get this for free. For almost no effort. You can just do it.</p>
+<p><code>libghostty-vt</code> is a generalized library, so we will focus on stability
+while implementing as many terminal protocols as exist
+(giving options to enable/disable them, of course) so that embedders
+have the luxury of choice.</p>
+<p>Every bug any <code>libghostty-vt</code> embedder reports makes everyone else in
+the ecosystem better. Every feature we ship in <code>libghostty-vt</code> becomes
+available to everyone quickly and safely. Terminals can move faster with
+less fragmentation.</p>
+<p>Thank you to everyone who contributed to the library, wrote bindings,
+filed bugs, and shipped something on top of it while the API was still
+experimental. As with all open source, this was the work of a large
+community.</p>
+<p>Docs, examples, and downloads are at <a href="https://lib.ghostty.org/" target="_blank" rel="noopener noreferrer nofollow">lib.ghostty.org</a>.</p>
+<p>Boo. 👻</p>
+<h2>Footnotes</h2>
+<ol>
+<li>
+<p>As usual, I hate that I have to do this for every post, but I want to
+note this post was completely hand-written with no AI assistance. <span>↩</span></p>
+</li>
+<li>
+<p>The numbers are rough because most consumers don't report usage, but
+JetBrains alone reports
+<a href="https://www.jetbrains.com/lp/annualreport-2026/" target="_blank" rel="noopener noreferrer nofollow">12.5 million recurring active users</a>,
+and that's before counting everything else on the list. <span>↩</span></p>
+</li>
+<li>
+<p>In the original post I wrote "not even libc!" The default build does
+link libc, because the SIMD paths use it and the default allocator is
+<code>malloc</code>. Turn off SIMD and the library is freestanding, which is
+how it runs on bare-metal RISC-V and ARM targets. <span>↩</span></p>
+</li>
+<li>
+<p>The feature flags aren't WASM-specific; they work on every target.
+They're likely useful for things like embedded devices too. <span>↩</span></p>
+</li>
+<li>
+<p>"Features" here means the set of terminal protocols and sequences
+understood, and "performance" means parsing throughput and memory
+usage, since those are the parts <code>libghostty-vt</code> provides. <span>↩</span></p>
+</li>
+</ol>
+</div></div></div>
+  <div class="footer">
+    本文由 AI热点监控系统自动抓取 · 内容版权归原作者/网站所有<br>
+    快照仅用于学习交流，如需转载请访问原文
+  </div>
+</div>
+</body>
+</html>
