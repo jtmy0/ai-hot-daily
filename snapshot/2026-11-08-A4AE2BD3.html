@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="referrer" content="no-referrer">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'unsafe-inline'; img-src data:; connect-src 'none'; frame-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'; frame-ancestors 'none'">
+<title>Every Windows 11 app should kill Electron, and Discord just showed why: no “Starting” screen and 70% less RAM, even with two accounts signed in - AI热点快照</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','PingFang SC','Microsoft YaHei',sans-serif;background:#f8f9fa;color:#1a1a2e;line-height:1.8;min-height:100vh}
+.top-bar{background:#fff;border-bottom:1px solid #e5e7eb;padding:10px 20px;display:flex;align-items:center;gap:12px;position:sticky;top:0;z-index:10}
+.top-bar .logo{font-size:14px;font-weight:700;color:#0d9488}
+.top-bar .sep{color:#d1d5db}
+.top-bar .source{font-size:13px;color:#6b7280}
+.top-bar .back{margin-left:auto;font-size:13px;color:#0d9488;text-decoration:none}
+.top-bar .back:hover{text-decoration:underline}
+.container{max-width:760px;margin:0 auto;padding:40px 24px 80px}
+.article-title{font-size:1.8rem;font-weight:700;line-height:1.35;margin-bottom:16px;color:#1a1a2e}
+.article-meta{display:flex;flex-wrap:wrap;gap:16px;padding-bottom:20px;margin-bottom:28px;border-bottom:1px solid #e5e7eb;font-size:14px;color:#6b7280}
+.article-meta a{color:#0d9488;text-decoration:none}
+.article-meta a:hover{text-decoration:underline}
+.article-body{font-size:16.5px;line-height:1.85;color:#1f2937}
+.article-body p{margin-bottom:1.2em;text-align:justify}
+.article-body h1,.article-body h2,.article-body h3{font-size:1.25em;font-weight:700;margin:1.6em 0 0.6em;color:#1a1a2e}
+.article-body a{color:#0d9488}
+.article-body pre,.article-body code{background:#f1f5f9;border-radius:4px;font-size:0.9em}
+.article-body pre{padding:16px;overflow-x:auto;margin:1em 0}
+.article-body code{padding:2px 6px}
+.article-body blockquote{border-left:3px solid #0d9488;padding-left:16px;color:#4b5563;margin:1em 0}
+.article-body ul,.article-body ol{padding-left:1.6em;margin-bottom:1em}
+.article-body li{margin-bottom:0.4em}
+.article-body figure{margin:1.2em 0}
+.article-body figcaption{font-size:13px;color:#9ca3af;text-align:center;margin-top:6px}
+.footer{margin-top:48px;padding-top:20px;border-top:1px solid #e5e7eb;font-size:13px;color:#9ca3af;text-align:center}
+</style>
+</head>
+<body>
+<div class="top-bar">
+  <a class="back" href="../" style="font-size:13px;color:#6b7280;text-decoration:none">← 日报首页</a>
+  <span class="sep">|</span>
+  <span class="logo">AI热点快照</span>
+  <span class="sep">|</span>
+  <span class="source">Windows Latest</span>
+  <a class="back" href="https://www.windowslatest.com/2026/11/06/every-windows-11-app-should-kill-electron-and-discord-just-showed-why-no-starting-screen-and-70-less-ram-even-with-two-accounts-signed-in/" target="_blank" rel="noopener noreferrer">查看原文 ↗</a>
+</div>
+<div class="container">
+  <h1 class="article-title">Every Windows 11 app should kill Electron, and Discord just showed why: no “Starting” screen and 70% less RAM, even with two accounts signed in</h1>
+  <div class="article-meta">
+    <span>作者: Abhijith M B</span>
+    <span>来源: Windows Latest</span>
+    <span>快照日期: 2026-11-08</span>
+  </div>
+  <div class="article-body"><div><div>
+            <div><figure><a href="https://www.windowslatest.com/wp-content/uploads/2026/11/Discords-current-Electron-client-and-its-new-Rust-client-launching-side-by-side-on-two-Lenovo-ThinkPads-running-Windows-11.jpg" target="_blank" rel="noopener noreferrer nofollow"></a><figcaption>Discord’s current Electron client and its new Rust client launching side by side on two Lenovo ThinkPads running Windows 11</figcaption></figure></div>
+            <p>Discord’s new Rust client had its friends list loaded before the current Electron app could get past its loading screen, in a 15-second clip that we found on the X account of Discord co-founder and CTO <strong>Stanislav Vishnevskiy</strong>. The video had 2.3 million views at the time of writing, and Discord employees have confirmed that both apps were launched from a cold start.</p>
+<p>Vishnevskiy also revealed that the <a href="https://www.windowslatest.com/2026/11/05/discord-is-killing-its-electron-app-that-can-eat-4gb-of-ram-on-windows-11-and-the-rust-rebuild-uses-just-290mb/" target="_blank" rel="noopener noreferrer nofollow">290.2MB RAM usage on the Task Manager</a> of the new client, which shows up as Discord Phoenix, came with two accounts signed in at once, which justifies the already efficient RAM usage.</p>
+<figure><figcaption>Discord Rust for Windows 11</figcaption></figure>
+<h2>Discord’s Rust client opens before the Electron app finishes loading</h2>
+<p><em>“The new Discord client using less RAM is just part of the story. Clicking around feels instant, I can’t go back. Check out the boot time,”</em> Vishnevskiy <a href="https://x.com/svishnevskiy/status/2118398632236073156" target="_blank" rel="noopener noreferrer nofollow">wrote on X</a>, and Discord’s official account also <a href="https://x.com/discord/status/2118401057571369252" target="_blank" rel="noopener noreferrer nofollow">shared the clip</a> with the current client on the left and the Rust rebuild on the right.</p>
+<p>
+<a href="https://www.windowslatest.com/wp-content/uploads/2026/11/Electron-Discord-vs-Rust-Discord-where-the-new-client-opens-must-faster-than-the-old-one.mp4" target="_blank" rel="noopener noreferrer nofollow">https://www.windowslatest.com/wp-content/uploads/2026/11/Electron-Discord-vs-Rust-Discord-where-the-new-client-opens-must-faster-than-the-old-one.mp4</a></p>
+<p>We went through the video frame by frame. What’s impressive is that the current client is opened first and shows a blank dark window for about three seconds, followed by a tip that reads <em>“In the ancient days, Discord started as a browser-only app.”</em> Funnily enough, the Electron app still carries a browser engine today.</p>
+<p>The new client is double-clicked roughly a second and a half later, yet its window fades in within a second. When the old app reaches its interface, about five seconds after launch, the Rust version already has the friends list loaded, while the Electron client briefly says <em>“There are no friends online at this time.”</em></p>
+<figure><figcaption>Discord Windows app. Credit: Windows Latest</figcaption></figure>
+<p>Of course, people on X asked if the new app simply popped out of the system tray. <em>“Both are cold starts, it’s really that fast. We’ve been using it internally now for a while and the first time I tried it I thought I’d forgot to close it when I opened it fresh,”</em> replied Coral, who leads audio and video at Discord.</p>
+<p>Travis, who works on socials and community at Discord and filmed the clip, added that a tray launch would mean <em>“the friends list would have already been loaded!”</em> Vishnevskiy thanked him for <em>“finding these janky old laptops,”</em> which are ThinkPads with a Copilot key, so 2024 or newer, which I wouldn’t dare call janky or old. They’re beautiful machines!</p>
+<h2>The new Discord app skips the “Starting” screen and updates in the background</h2>
+<p>As you’d already know, the current app usually checks for updates and shows a “Starting” screen when you open it, which one person on X said <em>“takes like 5-10s every time.”</em> Asked why the new client skips it, coral said, <em>“It bootstraps so fast + is a new architecture so we don’t need that modal at all. We auto-update in the background.”</em></p>
+<figure><figcaption>Discord starting animation. Credit: Windows Latest</figcaption></figure>
+<p>Discord isn’t handing updates to the Microsoft Store or Windows’ Update Orchestration Platform either, as Coral said <em>“We do not at this moment”</em> when asked.</p>
+<h2>Discord’s Rust client uses about 70% less RAM with two accounts signed in</h2>
+<p>When one reply called 290MB <em>“still vile”</em> for a chat app, Vishnevskiy said, <em>“Those 4k avatar decorations gotta render somewhere ;) but joking aside this client is actually running 2 accounts concurrently which is supported in new client.”</em></p>
+<p>Today’s <a href="https://support.discord.com/hc/en-us/articles/4412732047127" target="_blank" rel="noopener noreferrer nofollow">Account Switcher</a> lets you add up to five accounts and swap between them. Asked if the new client could keep work and personal accounts running <em>“without needing to tear down the client in between,”</em> Vishnevskiy replied <em>“Yup.” </em>Again, impressive and exciting.</p>
+<figure><figcaption>Discord idle RAM usage. Credit: Windows Latest</figcaption></figure>
+<p>For comparison, a Discord employee said in December 2025 that normal usage is under 1GB, while the company <a href="https://www.windowslatest.com/2025/12/06/discord-admits-its-windows-11-app-is-a-resource-hog-tests-auto-restart-when-ram-usage-exceeds-4gb/" target="_blank" rel="noopener noreferrer nofollow">tested auto-restarting the app at 4GB</a>. So, 290.2MB is about 70% below the 1GB mark, and on our PCs, the Electron app usually idles at 1-2GB. To be clear, it’s a snapshot from an early build, and Discord hasn’t published a like-for-like benchmark of both clients, but we’ll be doing that test when we get hands-on with the Rust version.</p>
+<p>Discord did try to fix Electron from the inside. Its September <a href="https://discord.com/blog/discord-patch-notes-september-8-2026" target="_blank" rel="noopener noreferrer nofollow">patch notes</a> say the Electron 42 upgrade cut median CPU usage by about 17%, but <em>“at the cost of a smaller regression to p50 memory usage (~4%).”</em> Even the <a href="https://www.windowslatest.com/2026/09/27/electron-is-one-of-windows-11s-biggest-ram-offenders-and-discords-game-mode-doesnt-fix-it/" target="_blank" rel="noopener noreferrer nofollow">Game Mode toggle</a> it tested later doesn’t mention RAM.</p>
+<h2>Discord is replacing Electron with GPUI, not Tauri</h2>
+<p>Electron <a href="https://www.electronjs.org/docs/latest/tutorial/process-model" target="_blank" rel="noopener noreferrer nofollow">inherits its multi-process architecture from Chromium</a>, so every Electron app comes with its own browser engine, with a main process and a renderer process for each window. Tauri, which many guessed Discord would pick, uses Rust for app logic but builds the interface in HTML, CSS and JavaScript inside the <a href="https://v2.tauri.app/start/" target="_blank" rel="noopener noreferrer nofollow">system’s webview</a>, which is WebView2 on Windows.</p>
+<p>Discord went with <a href="https://www.gpui.rs/" target="_blank" rel="noopener noreferrer nofollow">GPUI</a>, <em>“A fast, hybrid immediate and retained mode, GPU-accelerated UI framework for Rust”</em> from the makers of the Zed code editor. GPUI draws the interface on the GPU without any HTML, and Rust, which Discord has used since 2018, manages memory without a garbage collector.</p>
+<table>
+<thead>
+<tr>
+<th>Technology</th>
+<th>What it is</th>
+<th>Role in Discord</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Rust</td>
+<td>Programming language</td>
+<td>New client and shared app code</td>
+</tr>
+<tr>
+<td>GPUI</td>
+<td>Rust UI framework from Zed</td>
+<td>Draws the new desktop app</td>
+</tr>
+<tr>
+<td>Electron</td>
+<td>Chromium and Node.js runtime</td>
+<td>Current desktop app, being removed</td>
+</tr>
+<tr>
+<td>Tauri</td>
+<td>Rust framework using the system webview</td>
+<td>Not used</td>
+</tr>
+<tr>
+<td>React Native</td>
+<td>Mobile app framework</td>
+<td>Current mobile apps, being removed</td>
+</tr>
+</tbody>
+</table>
+
+<p>Why not WinUI, you ask? (At least, I thought of it). Discord hasn’t mentioned it, and it was unlikely to, as Microsoft’s <a href="https://www.windowslatest.com/2026/06/04/microsoft-is-killing-windows-11s-web-app-slop-encourages-devs-to-build-native-apps-using-winui/" target="_blank" rel="noopener noreferrer nofollow">native framework</a> only runs on Windows, while GPUI already powers Zed on Windows, macOS and Linux. Discord has its own patches on top of GPUI, and Vishnevskiy said <em>“we will see what we can upstream if relevant to the community.”</em></p>
+<p>Web tech stays where it makes sense, as YouTube embeds and Activities will use the system webview. <em>“We use the native webview similar to Tauri,”</em> Vishnevskiy said about Activities.</p>
+<h2>Discord’s mobile apps drop React Native, and the web app moves to WebAssembly</h2>
+<p>Phones keep native interfaces but will share app code with desktop through Rust. On React Native, Vishnevskiy explained, <em>“Since the beginning the iOS app started as React native, Android was ported to React Native couple years ago to achieve parity as it was always lagging in features.”</em></p>
+<p>The browser version will keep rendering HTML, but <em>“logic will be WASM instead of JS.”</em> WebAssembly (WASM) lets code written in languages like Rust run inside a browser, so the web app can share the Rust code too. As for the look, whether you like it or not, <em>“The app looks and works identically to the current one,”</em> Vishnevskiy said.</p>
+<h2>Discord’s Rust client goes into private testing soon</h2>
+<p>If you can’t to try it out, Discord marketing director <strong>Ryan K. Rigney</strong> said, <em>“Going into private testing soon. Gonna take our time to make sure it’s stable and secure first. Won’t be long, tho.” </em>I would rather wait for them to iron out any bugs.</p>
+<p></p>
+<p><strong>Mark Smith</strong>, Discord’s VP of Engineering, added that <em>“accessibility and security are just as important to us as performance,”</em> and Coral confirmed the new client keeps your login token in the system keyring, which is <a href="https://support.microsoft.com/topic/1b5c916a-6a16-889f-8581-fc16e8165ac0" target="_blank" rel="noopener noreferrer nofollow">Credential Manager</a> on Windows 10 and 11.</p>
+<p>Of course, Discord is not just doing all this work for Windows. When asked if it works on Linux, Rigney replied, <em>“Yes,”</em> and Coral said, <em>“a lot of people run Mac internally!”</em> Discord hasn’t announced a public release date yet.</p>
+<h2>Discord just made WhatsApp and Teams look worse on Windows 11</h2>
+<p>Electron made it easier for Discord to ship one desktop app on Windows, macOS, and Linux for a decade. But Discord has now shown that a chat app with millions of users can drop the bundled browser without a redesign.</p>
+<figure><figcaption>WhatsApp, Teams and Discord combined using 1.5GB RAM while being idle. Credit: Windows Latest</figcaption></figure>
+<p>As for the owners of the biggest messaging platforms for regular users and enterprises, Meta and Microsoft are running out of excuses. WhatsApp went from a native app that idled under 100MB to a <a href="https://www.windowslatest.com/2026/06/13/whatsapp-is-eating-1-2gb-ram-on-windows-11-even-as-microsoft-kills-web-app-slop/" target="_blank" rel="noopener noreferrer nofollow">WebView2 wrapper using up to 1.2GB</a>, and I uninstalled it. Microsoft Teams also uses WebView2, took up 963MB <a href="https://www.windowslatest.com/2026/06/11/microsoft-claims-ms-teams-is-more-responsive-now-but-it-still-eats-your-pcs-ram-doing-nothing/" target="_blank" rel="noopener noreferrer nofollow">doing nothing in our tests</a>, and it doesn’t look like Redmond cares enough to go native, despite pushing WinUI.</p>
+<p>Ironically, AI got us here. Data centers soaked up DRAM supply, prices shot up, and Windows chief Pavan Davuluri now says <em>“memory is top of mind for us right now in the industry”</em> as Microsoft <a href="https://www.windowslatest.com/2026/10/04/rising-cost-of-memory-microsoft-explains-why-windows-11-will-use-less-ram/" target="_blank" rel="noopener noreferrer nofollow">trims Windows 11’s RAM usage</a>. Apps that kept <a href="https://www.windowslatest.com/2025/12/07/ram-prices-soar-but-popular-windows-11-apps-are-using-more-ram-due-to-electron-web-components/" target="_blank" rel="noopener noreferrer nofollow">asking for more RAM</a> are finally going on a diet, and we’ve come full circle.</p>
+<p>Are you waiting to try the Rust-based Discord when it rolls out?</p>
+	
+	
+
+        
+                </div></div></div>
+  <div class="footer">
+    本文由 AI热点监控系统自动抓取 · 内容版权归原作者/网站所有<br>
+    快照仅用于学习交流，如需转载请访问原文
+  </div>
+</div>
+</body>
+</html>
