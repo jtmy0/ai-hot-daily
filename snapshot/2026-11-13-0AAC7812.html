@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="referrer" content="no-referrer">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'unsafe-inline'; img-src data:; connect-src 'none'; frame-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'; frame-ancestors 'none'">
+<title>agentrun/README.md at main · Parcha-ai/agentrun - AI热点快照</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','PingFang SC','Microsoft YaHei',sans-serif;background:#f8f9fa;color:#1a1a2e;line-height:1.8;min-height:100vh}
+.top-bar{background:#fff;border-bottom:1px solid #e5e7eb;padding:10px 20px;display:flex;align-items:center;gap:12px;position:sticky;top:0;z-index:10}
+.top-bar .logo{font-size:14px;font-weight:700;color:#0d9488}
+.top-bar .sep{color:#d1d5db}
+.top-bar .source{font-size:13px;color:#6b7280}
+.top-bar .back{margin-left:auto;font-size:13px;color:#0d9488;text-decoration:none}
+.top-bar .back:hover{text-decoration:underline}
+.container{max-width:760px;margin:0 auto;padding:40px 24px 80px}
+.article-title{font-size:1.8rem;font-weight:700;line-height:1.35;margin-bottom:16px;color:#1a1a2e}
+.article-meta{display:flex;flex-wrap:wrap;gap:16px;padding-bottom:20px;margin-bottom:28px;border-bottom:1px solid #e5e7eb;font-size:14px;color:#6b7280}
+.article-meta a{color:#0d9488;text-decoration:none}
+.article-meta a:hover{text-decoration:underline}
+.article-body{font-size:16.5px;line-height:1.85;color:#1f2937}
+.article-body p{margin-bottom:1.2em;text-align:justify}
+.article-body h1,.article-body h2,.article-body h3{font-size:1.25em;font-weight:700;margin:1.6em 0 0.6em;color:#1a1a2e}
+.article-body a{color:#0d9488}
+.article-body pre,.article-body code{background:#f1f5f9;border-radius:4px;font-size:0.9em}
+.article-body pre{padding:16px;overflow-x:auto;margin:1em 0}
+.article-body code{padding:2px 6px}
+.article-body blockquote{border-left:3px solid #0d9488;padding-left:16px;color:#4b5563;margin:1em 0}
+.article-body ul,.article-body ol{padding-left:1.6em;margin-bottom:1em}
+.article-body li{margin-bottom:0.4em}
+.article-body figure{margin:1.2em 0}
+.article-body figcaption{font-size:13px;color:#9ca3af;text-align:center;margin-top:6px}
+.footer{margin-top:48px;padding-top:20px;border-top:1px solid #e5e7eb;font-size:13px;color:#9ca3af;text-align:center}
+</style>
+</head>
+<body>
+<div class="top-bar">
+  <a class="back" href="../" style="font-size:13px;color:#6b7280;text-decoration:none">← 日报首页</a>
+  <span class="sep">|</span>
+  <span class="logo">AI热点快照</span>
+  <span class="sep">|</span>
+  <span class="source">GitHub</span>
+  <a class="back" href="https://github.com/Parcha-ai/agentrun/blob/main/README.md" target="_blank" rel="noopener noreferrer">查看原文 ↗</a>
+</div>
+<div class="container">
+  <h1 class="article-title">agentrun/README.md at main · Parcha-ai/agentrun</h1>
+  <div class="article-meta">
+    
+    <span>来源: GitHub</span>
+    <span>快照日期: 2026-11-13</span>
+  </div>
+  <div class="article-body"><div><div><p>
+  <a href="https://agentrun.ai/" target="_blank" rel="noopener noreferrer nofollow"></a>
+</p>
+<p>
+  <b>Run smarter agents. Use fewer tokens.</b>
+</p>
+<p>
+  <span>Our code review bill went up 36x this year. Now a review costs us 18 cents. See how ↓</span>
+</p>
+<p>
+  <a href="https://www.npmjs.com/package/@parcha/agentrun" target="_blank" rel="noopener noreferrer nofollow"></a>
+  <a href="https://github.com/Parcha-ai/agentrun/actions/workflows/ci.yml?query=branch%3Amain" target="_blank" rel="noopener noreferrer nofollow"></a>
+  <span></span>
+  <a href="https://agentrun.ai/docs" target="_blank" rel="noopener noreferrer nofollow"></a>
+</p>
+<p>
+  <a href="https://render.com/deploy?repo=https://github.com/Parcha-ai/agentrun" target="_blank" rel="noopener noreferrer nofollow"></a>
+   
+  <span></span>
+</p>
+<p>
+  <span>Quickstart</span> ·
+  <span>Case studies</span> ·
+  <span>Tour</span> ·
+  <span>Templates</span> ·
+  <span>Deploy</span> ·
+  <a href="https://agentrun.ai/docs" target="_blank" rel="noopener noreferrer nofollow">Docs</a>
+</p>
+<p>AgentRun is an open-source platform that supercharges your agents. It adds self-improvement, durable execution and a
+control plane on top of your favorite agent harness. Your agents become smarter, more fault tolerant and use fewer
+tokens with every run.</p>
+<p>
+  <a href="https://agentrun.ai/" target="_blank" rel="noopener noreferrer nofollow"></a>
+  <br /><sub>An agent's Learning tab: what it kept, and what changed since. Demo data from the console's recorded fixtures.</sub>
+</p>
+<p></p><h2>Case studies</h2><span></span><p></p>
+<p>
+  <span></span>
+  <span></span>
+</p>
+<p><strong>Code review.</strong> Greptile started charging a dollar a review in March, then our agents took off, and our bill went
+from $180 a month to $6,451. So we built our own reviewer on a cheap model and tuned it on our own PRs. It costs 18 cents a review, and on 30 PRs
+it had never seen it caught 1.6x the real bugs Greptile did. <span>How we built it</span> · <span>Tune one on your repo</span></p>
+<p><strong>Merchant codes.</strong> We let Opus figure out how to classify merchants, then handed what it learned to a cheap model.
+Same job, $0.89 down to $0.12 a merchant. <span>How it works</span> · <span>Do it with your own job</span></p>
+<p></p><h2>Why AgentRun</h2><span></span><p></p>
+<p>Agents are great at figuring things out. The problem is they figure out the same things over and over. Give an agent
+a job it has done a hundred times and it rediscovers the same API, rereads the same docs and rebuilds the same plan, and
+you pay for every token of it.</p>
+<p>Bring your agent on the harness it runs best on: Claude Code, Codex, OpenCode or pi. AgentRun does everything around it:</p>
+<ul>
+<li><strong>It learns the work.</strong> After each run, the agent keeps what will help next time: a note, a skill, or a workflow
+that does the job without the loop. The next run starts from there.</li>
+<li><strong>It never loses a run.</strong> Every run lives in one store. Kill the server mid-run, start it again, and the run carries
+on. Give each agent the computer the job needs: a sandbox, a Linux desktop, an Android phone or a browser.</li>
+<li><strong>You stay in control.</strong> Approvals, spend caps and one console for every agent: what needs you, what failed, what's
+running and what it cost.</li>
+</ul>
+<p>You don't build the plumbing: provider integrations, recovery, run tracking and learning are all here. Run it on your
+laptop with one command, in one container, or as a server with runners. Apache-2.0.</p>
+<p></p><h2>Start in three steps</h2><span></span><p></p>
+<p>You need Node 24.22.3 or newer, on macOS or Linux.</p>
+<ol>
+<li>
+<p><strong>Start it.</strong></p>
+<div><pre>npx @parcha/agentrun</pre></div>
+<p>It starts the server and one runner on port 7340 (or the next free one), keeps everything in <code>~/.agentrun</code>, and
+opens the console in your browser.</p>
+</li>
+<li>
+<p><strong>Add one model key.</strong> In the console, set a password, then add a key under <strong>Settings → Model keys</strong>. One
+<code>OPENROUTER_API_KEY</code> gives every harness a model. An Anthropic key runs pi and Claude Code; an OpenAI key runs pi,
+Codex and OpenCode.</p>
+</li>
+<li>
+<p><strong>Run your first agent.</strong> Open <strong>Templates</strong>, apply <strong>KYB due diligence</strong>, and start a run with a company's name and
+website. It needs nothing but your model key. When it finishes, the run's <strong>Report</strong> tab has a due diligence report
+with a verdict and every claim cited. Then open the agent's <strong>Learning</strong> tab to see what it kept for next time.</p>
+</li>
+</ol>
+<p>Rather have your coding agent do it? Tell it: <code>Read agentrun.ai/SKILL.md and set up AgentRun for me</code>.</p>
+
+Docker, sandboxes and running it on a server
+<p>If Docker is running on your machine, new agents get a Docker sandbox with a shell. Its image builds on first use,
+which takes a few minutes, and the console says when it's ready. Without Docker, agents still read and write files,
+but get no shell.</p>
+<p>Want your own server with a URL? <span>Deploy it to Render</span> in one click.</p>
+
+<p></p><h2>Take the tour</h2><span></span><p></p>
+<p><strong>Workflows that make the call.</strong> A step can ask a fast typed question, see how sure the answer is, and pick a route.
+Here the model leans approve at 0.61, below the workflow's 0.75 bar, so the case goes to review.</p>
+<p>
+  <span></span>
+</p>
+<p><strong>Every agent in one place.</strong> Mission Control opens first: what needs you, what failed, what's running and what it
+cost, by day, by harness and by tool.</p>
+<p>
+  <span></span>
+</p>
+<p><strong>Every agent is an API.</strong> Start a run from the Playground, then copy the same request into your code.</p>
+<p>
+  <span></span>
+</p>
+<p><strong>You stay in control.</strong> An agent can stop and ask you, and the run waits until you answer.</p>
+<p>
+  <span></span>
+</p>
+<p></p><h2>Agents that learn the work</h2><span></span><p></p>
+<p>Turn it on with <code>"learning": true</code> in an agent's definition. At the end of every run, the agent gets one more turn to
+say what it would keep. AgentRun checks it, grades it, and commits the keepers to the agent's own git folder. The next
+run starts from there.</p>
+
+  <div>
+      <pre>flowchart LR
+    start["Run starts from&lt;br/&gt;the agent's main"] --&gt; work["Run does the job"]
+    work --&gt; propose["Last turn proposes&lt;br/&gt;notes, a skill, a workflow"]
+    propose --&gt; check["Code checks,&lt;br/&gt;then one grader"]
+    check --&gt;|kept| commit["Commit to main"]
+    commit --&gt; start
+</pre>
+    </div>
+  <span>
+    <span>
+      <span>Loading</span>
+</span>
+  </span>
+
+
+<ul>
+<li><strong>Notes</strong> are short markdown files, one fact each, in Claude Code's memory format.</li>
+<li><strong>Skills</strong> are how to do a job again, and only a run that finished the job can write one.</li>
+<li><strong>Learned workflows</strong> run as one tool call on any harness, under the run's own cap and tool permissions. Once a
+learned skill has served 3 runs, the next run is asked for that job as a workflow draft, and a draft is dry-run
+before it's kept: no model is asked and no tool runs.</li>
+</ul>
+<p>The agent's <strong>Learning</strong> tab shows every note, skill and workflow and the log of changes, and each run shows which
+notes it was given and opened. Retire anything there, or with <code>npx @parcha/agentrun learning retire</code> and the note's
+ETag. Git keeps the history, so a retired note can come back.</p>
+
+What gets kept, and what gets dropped
+<p>Each agent has a learning folder: plain git with one branch, <code>main</code>. A run reads the index of active notes in its
+instructions and gets the learned skills beside its own. Code checks every proposal first. An item that breaks a rule of
+its own (a size or count limit, its name, its shape) is left out and the rest goes on. A secret or a hidden character
+anywhere in the answer, a file outside the folder, a deletion or a full index drops the whole answer, since no item of
+it can be trusted. Then one grader judges what it says, and AgentRun commits what passes. A risky rule waits for your
+OK. A rule the run found in a page or a pasted email, or a note that holds an account number, is dropped.</p>
+<p>Once an agent's notes outgrow the learning budget, each run gets the ones that bear on its first message, whole, and a
+line for each of the rest. A run that only ran a learned workflow isn't asked what to keep.</p>
+
+<p></p><h2>Workflows</h2><span></span><p></p>
+<p>A lot of agents don't need to be agents. Write repeatable work as a typed workflow: tool calls, model steps and fast
+typed decisions (yes or no, pick one, a score, each with its confidence), with an agent to fall back on when a case is
+unclear. AgentRun runs it as an agent's revision, under the agent's tool permissions and a cap like any run, and a
+trigger can start one.</p>
+<p>
+  <span></span>
+  <br /><sub>An illustration of the control flow in <code>examples/support-answer.mjs</code>, not a recording of a model run.</sub>
+</p>
+<p>Watch any workflow run node by node, pause it and resume it, and read every decision and why it was made:</p>
+<p>
+  <span></span>
+</p>
+
+What a workflow looks like
+<p>A workflow is a JSON document of typed steps:</p>
+<div><pre>{
+  <span>"v"</span>: <span>2</span>, <span>"name"</span>: <span><span>"</span>read-site<span>"</span></span>,
+  <span>"schemas"</span>: {
+    <span>"In"</span>:   { <span>"type"</span>: <span><span>"</span>object<span>"</span></span>, <span>"required"</span>: [<span><span>"</span>website<span>"</span></span>], <span>"properties"</span>: { <span>"website"</span>: { <span>"type"</span>: <span><span>"</span>string<span>"</span></span> } } },
+    <span>"Page"</span>: { <span>"type"</span>: <span><span>"</span>object<span>"</span></span>, <span>"required"</span>: [<span><span>"</span>ok<span>"</span></span>], <span>"properties"</span>: { <span>"ok"</span>: { <span>"type"</span>: <span><span>"</span>boolean<span>"</span></span> } } }
+  },
+  <span>"input"</span>:  { <span>"schemaId"</span>: <span><span>"</span>In<span>"</span></span> },
+  <span>"output"</span>: { <span>"schemaId"</span>: <span><span>"</span>Page<span>"</span></span>, <span>"path"</span>: <span><span>"</span>home<span>"</span></span> },
+  <span>"root"</span>: { <span>"node"</span>: <span><span>"</span>chain<span>"</span></span>, <span>"steps"</span>: [
+    { <span>"node"</span>: <span><span>"</span>call<span>"</span></span>, <span>"label"</span>: <span><span>"</span>Read the home page<span>"</span></span>, <span>"via"</span>: <span><span>"</span>tool<span>"</span></span>, <span>"tool"</span>: <span><span>"</span>web_fetch<span>"</span></span>,
+      <span>"args"</span>: { <span>"url"</span>: <span><span>"</span>{website}<span>"</span></span> }, <span>"out"</span>: <span><span>"</span>Page<span>"</span></span>, <span>"as"</span>: <span><span>"</span>home<span>"</span></span>, <span>"deadline_s"</span>: <span>60</span> }
+  ] }
+}</pre></div>
+<p>Steps can call tools, run a model, ask a fast typed question, branch on the answer, map over a list in parallel, loop a
+bounded number of times, call other workflows, or hand the hard case to an agent. Save one as an agent's <code>workflow</code>
+field; <code>npx @parcha/agentrun workflows validate</code> checks it first. The <span>workflow language</span> also
+runs on its own inside your app, with a <span>TypeScript builder</span>.</p>
+
+<p></p><h2>Runs that survive</h2><span></span><p></p>
+<p>Every agent, revision, run and step lives in one store. Stop the server mid-run and start it again, and the run carries
+on. With several runners, another runner picks up a dead runner's runs once their 30-second lease runs out. A finished
+step is never run again; a write a crash cut off mid-call is marked interrupted rather than retried, so you can check it.</p>
+<p></p><h2>You stay in control</h2><span></span><p></p>
+<ul>
+<li><strong>Approvals.</strong> Each tool is allowed, asks you first, or is denied. A call that asks waits on the run's page until you
+answer. "Never ask" lets an agent run unattended, and a deny set on the server still holds over it.</li>
+<li><strong>Spend caps.</strong> Give a run a cap and it pauses there instead of failing, and tells you the least it needs to go on.
+A cost AgentRun can't price reads "unknown", never $0.</li>
+<li><strong>Questions.</strong> An agent can stop and ask you, and the run waits until you answer.</li>
+<li><strong>One console.</strong> Each run has a live Timeline, its files and, for a browser, a screen you can take over.</li>
+</ul>
+<p></p><h2>Templates</h2><span></span><p></p>
+<p>Five ready-made agents. Apply one in one screen, make it yours, and measure it with its own eval cases. Each template is
+one folder: the agent's instructions, its skills, its rules and its eval cases. <strong>Templates → Apply</strong> grants nothing
+until you tick each MCP tool yourself.</p>
+<table>
+<thead>
+<tr>
+<th>Template</th>
+<th>What it does</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>code-review</code></td>
+<td>Reviews a pull request with eight independent reviewers on a read-only checkout (or a pasted diff), merges and verifies their findings, quotes the line behind each, and returns them as JSON. It sets up its own GitHub trigger</td>
+</tr>
+<tr>
+<td><code>kyb</code></td>
+<td>Due diligence on one company: registries, owners, sanctions lists, dated adverse media, and a verdict with every claim cited</td>
+</tr>
+<tr>
+<td><code>market-monitor</code></td>
+<td>Every Monday, a digest of what changed at the companies you watch, each item dated and linked</td>
+</tr>
+<tr>
+<td><code>inbound-lead</code></td>
+<td>Researches each lead a webhook sends and scores it 0 to 100 against your ideal customer profile</td>
+</tr>
+<tr>
+<td><code>release-notes</code></td>
+<td>Turns the pull requests merged since the last release into release notes, left as a draft issue for a person</td>
+</tr>
+</tbody>
+</table>
+<p><code>npx @parcha/agentrun template eval DIR</code> runs a template's eval cases as real runs on a throwaway server and grades
+them. <span>Template packages</span> has the folder format.</p>
+<p>Want a template to know your code? <span>Tune a template on your own code</span> walks
+through the loop we ran on <code>code-review</code>.</p>
+<p><strong>Triggers</strong> start capped runs on their own: schedules, signed webhooks and GitHub pull request events.</p>
+<p></p><h2>Harnesses and computers</h2><span></span><p></p>
+<p><strong>Harnesses.</strong> Name one in the agent's definition with <code>harness</code>. Approvals, caps, computers, triggers and learning work
+the same on each. <code>npx @parcha/agentrun server capabilities</code> says which harnesses your server runs.</p>
+<table>
+<thead>
+<tr>
+<th>Harness</th>
+<th><code>harness</code></th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>pi</td>
+<td><code>pi</code></td>
+<td>The default</td>
+</tr>
+<tr>
+<td>Claude Code</td>
+<td><code>claude-agent</code></td>
+<td>Installs itself on first use</td>
+</tr>
+<tr>
+<td>Codex</td>
+<td><code>codex</code></td>
+<td>Installs itself on first use</td>
+</tr>
+<tr>
+<td>OpenCode</td>
+<td><code>opencode</code></td>
+<td>Needs its <code>opencode-ai</code> package beside the server; AgentRun prints the line that installs it</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Computers.</strong> An agent gets a computer with one setting. It gets the tools for that kind and nothing else, and changing
+the computer changes nothing else about the agent.</p>
+<div><pre><span>computer</span>:
+  <span>kind</span>: <span>sandbox        </span><span><span>#</span> none, sandbox, desktop, phone or browser</span>
+  <span>provider</span>: <span>daytona    </span><span><span>#</span> one you connected in Settings → Computers (none takes no provider)</span></pre></div>
+<table>
+<thead>
+<tr>
+<th>Kind</th>
+<th>What the agent can do</th>
+<th>Providers</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>none</code></td>
+<td>Read and write files in its run folder; no shell (with Archil, commands run on Archil's exec)</td>
+<td>none needed</td>
+</tr>
+<tr>
+<td><code>sandbox</code></td>
+<td>Run code, install packages, keep processes in the background, on Linux</td>
+<td>Docker, Daytona, Modal, E2B</td>
+</tr>
+<tr>
+<td><code>desktop</code></td>
+<td>See a Linux screen, move the mouse, type</td>
+<td>Orgo, E2B, Docker (your own image with an X server)</td>
+</tr>
+<tr>
+<td><code>phone</code></td>
+<td>Tap, swipe, type, open apps and read the screen on Android</td>
+<td>phone harness (a rented cloud Android)</td>
+</tr>
+<tr>
+<td><code>browser</code></td>
+<td>Browse the web, and hand the controls to you at any point</td>
+<td>Browserbase, Kernel</td>
+</tr>
+</tbody>
+</table>
+<p>Every kind but <code>none</code> names its provider. An agent with no computer setting gets the Docker sandbox where the server
+has Docker, and no computer otherwise. Remote computers bill through your own account with the vendor.</p>
+
+Keys, run files, taking over, and conformance
+<ul>
+<li><strong>Keys.</strong> Add a vendor's key once in <strong>Settings → Computers</strong>. Your server seals it and shows it only as set or
+missing; it never enters the agent's computer. <strong>Test connection</strong> makes one read at the vendor and starts nothing.</li>
+<li><strong>The run's files.</strong> By default a run's folder lives on your server and the Docker sandbox mounts it. Turn on an
+Archil disk in Settings and the folder lives there instead, so a Daytona, Modal or E2B sandbox mounts the same folder.
+Those three run only with an Archil disk, and with Archil on the Docker sandbox is refused.</li>
+<li><strong>Watching and taking over.</strong> A browser run streams to the run's <strong>Screen</strong> tab through your own server, never
+through a vendor link. Take the controls, then hand them back. The agent can also stop and ask you to take over, for
+a login or a captcha.</li>
+<li><strong>Proof.</strong> Each provider has a conformance suite for its kind. Run it against the vendor yourself, from a checkout
+after <code>npm ci &amp;&amp; npm run build</code>:
+<code>npm run conformance -w @parcha/agentrun-computer -- --provider docker --kind sandbox</code>.</li>
+</ul>
+<p><span><code>@parcha/agentrun-computer</code></span> is the protocol underneath: one small daemon in every
+computer and one provider per vendor.</p>
+
+<p></p><h2>How it fits together</h2><span></span><p></p>
+
+  <div>
+      <pre>flowchart LR
+    you["Console · CLI · API"] --&gt; server["Server"]
+    server --&gt; store["One store&lt;br/&gt;SQLite or Postgres"]
+    runner["Runners"] --&gt;|claim runs| store
+    runner --&gt; hands["Hands&lt;br/&gt;run folder + computer"]
+</pre>
+    </div>
+  <span>
+    <span>
+      <span>Loading</span>
+</span>
+  </span>
+
+
+<ul>
+<li><strong>Server.</strong> Serves the API at <code>/v2</code> and the console. It writes runs and commands to the store and reads it back for
+you. It runs no agent loop itself when you start it with <code>--no-runner</code>.</li>
+<li><strong>Store.</strong> Agents, revisions, runs and every run's journal, in one place. SQLite in the data folder by default, or
+Postgres with <code>AGENTRUN_STORE_URL</code>.</li>
+<li><strong>Runners.</strong> Each runner claims runs from the store and runs many at once. Every approval check, cap and model call
+happens here. Add runners to scale out.</li>
+<li><strong>Hands.</strong> Where the agent's tools act. Each run has a run folder for its files. A sandbox mounts that folder at
+<code>/workspace</code> and the tools run inside it; a desktop, phone or browser leaves the folder on the runner.</li>
+</ul>
+<p></p><h2>From the terminal and from code</h2><span></span><p></p>
+<p><code>npx @parcha/agentrun</code> is also the server's CLI. Run these in a second terminal while the server is up; the CLI finds
+it and its token by itself. The script makes an agent, starts a run capped at $1, lets the agent ask you a question,
+answers it, and reads the file the agent wrote. With Docker on, the first run waits for the sandbox image.</p>
+<div><pre><span><span>#</span> 1. Make an agent that can write files and ask you things.</span>
+cat <span>&gt;</span> agent.json <span><span>&lt;&lt;</span>'<span>EOF</span>'</span>
+<span>{"definition": {"id": "notes", "version": 1, "name": "Notes",</span>
+<span>  "instructions": "Do what you are asked, and write what you make to a file.",</span>
+<span>  "skills": [], "tools": ["write", "ask_person"]}}</span>
+<span><span>EOF</span></span>
+npx @parcha/agentrun agents create --body @agent.json
+
+<span><span>#</span> 2. Start a capped run and wait. It stops to ask you which region (exit code 8: it waits on you).</span>
+npx @parcha/agentrun runs start notes --max-cost-usd 1 --wait \
+  --body <span><span>'</span>{"input": {"content": "Ask me which region to cover, then write region.md about it."}}<span>'</span></span> <span>&gt;</span> out.json
+
+<span><span>#</span> 3. Answer, wait for it to finish, and read what it wrote.</span>
+run=<span><span>$(</span>node -p <span><span>'</span>require("./out.json").run_id<span>'</span></span><span>)</span></span>
+npx @parcha/agentrun runs message <span><span>"</span><span>$run</span><span>"</span></span> --content <span><span>"</span>Europe<span>"</span></span>
+npx @parcha/agentrun runs <span>wait</span> <span><span>"</span><span>$run</span><span>"</span></span> <span>&gt;</span> out.json
+npx @parcha/agentrun runs read-file <span><span>"</span><span>$run</span><span>"</span></span> region.md</pre></div>
+<p><code>runs wait</code> exits 0 when the run completed, 1 when it failed, and 8 when it waits on you: a question, its cap, or an
+approval. <code>runs timeline RUN_ID --follow</code> streams each step as it happens, and every run carries a <code>console_url</code> to its
+page. <code>npx @parcha/agentrun help</code> lists every command; <code>npx @parcha/agentrun skill install --claude</code> (or <code>--codex</code>)
+teaches your coding agent the CLI.</p>
+
+The same run from TypeScript or Python
+<p>With the TypeScript client (<code>npm install @parcha/agentrun-client</code>, no dependencies). The client reads its server and
+token from the environment; the server prints both when it starts (with <code>npx @parcha/agentrun</code>, the token is in
+<code>~/.agentrun/.token</code>, and the address is normally <code>http://127.0.0.1:7340</code>):</p>
+<div><pre><span>export</span> AGENTRUN_BASE_URL=http://127.0.0.1:7340/v2
+<span>export</span> AGENTRUN_API_KEY=<span><span>$(</span>cat <span>~</span>/.agentrun/.token<span>)</span></span></pre></div>
+<div><pre><span>import</span> <span>{</span> <span>AgentRun</span> <span>}</span> <span>from</span> <span>"@parcha/agentrun-client"</span><span>;</span>
+
+<span>const</span> <span>client</span> <span>=</span> <span>new</span> <span>AgentRun</span><span>(</span><span>)</span><span>;</span> <span>// AGENTRUN_BASE_URL and AGENTRUN_API_KEY</span>
+<span>const</span> <span>started</span> <span>=</span> <span>await</span> <span>client</span><span>.</span><span>runs</span><span>.</span><span>start</span><span>(</span><span>"notes"</span><span>,</span> <span>{</span> <span>input</span>: <span>{</span> <span>content</span>: <span>"Ask me which region to cover, then write region.md about it."</span> <span>}</span><span>,</span> <span>max_cost_usd</span>: <span>1</span> <span>}</span><span>)</span><span>;</span>
+<span>let</span> <span>run</span> <span>=</span> <span>await</span> <span>client</span><span>.</span><span>runs</span><span>.</span><span>wait</span><span>(</span><span>started</span><span>.</span><span>run_id</span><span>)</span><span>;</span>
+<span>if</span> <span>(</span><span>run</span><span>.</span><span>pending</span><span>?.</span><span>kind</span> <span>===</span> <span>"question"</span><span>)</span> <span>await</span> <span>client</span><span>.</span><span>runs</span><span>.</span><span>message</span><span>(</span><span>run</span><span>.</span><span>run_id</span><span>,</span> <span>{</span> <span>content</span>: <span>"Europe"</span> <span>}</span><span>)</span><span>;</span>
+<span>run</span> <span>=</span> <span>await</span> <span>client</span><span>.</span><span>runs</span><span>.</span><span>wait</span><span>(</span><span>run</span><span>.</span><span>run_id</span><span>)</span><span>;</span>
+<span>console</span><span>.</span><span>log</span><span>(</span><span>run</span><span>.</span><span>status</span><span>,</span> <span>run</span><span>.</span><span>cost</span><span>.</span><span>usd</span><span>)</span><span>;</span></pre></div>
+<p>The Python client is <code>pip install parcha-agentrun</code>, with the same methods
+(<span>TypeScript client</span>, <span>Python client</span>).</p>
+
+<p></p><h2>Deploy it</h2><span></span><p></p>
+<p><strong>Render, in one click.</strong></p>
+<p><a href="https://render.com/deploy?repo=https://github.com/Parcha-ai/agentrun" target="_blank" rel="noopener noreferrer nofollow"></a></p>
+<p>The button deploys <span><code>render.yaml</code></span>: one 1 CPU / 2 GB instance with a 10 GB disk, the published image (no
+build), and the token and seal key generated for you. It needs a card on your Render workspace: about $25 a month for
+the instance and $2.50 for the disk, at Render's prices when this was written. In Render's form, paste
+<code>OPENROUTER_API_KEY</code>. We recommend an OpenRouter key with a dollar cap and an expiration date. Do not share this key with
+anyone. When it's live, open its URL and paste <code>AGENTRUN_TOKEN</code> from the service's Environment tab to set your password.</p>
+
+Docker Compose: a server and two runners
+<p>On a Linux machine with Docker:</p>
+<div><pre>git clone https://github.com/Parcha-ai/agentrun <span>&amp;&amp;</span> <span>cd</span> agentrun/deploy
+<span>printf</span> <span><span>'</span>AGENTRUN_SEAL_KEY=%s\n<span>'</span></span> <span><span>"</span><span><span>$(</span>openssl rand -base64 32<span>)</span></span><span>"</span></span> <span>&gt;</span> .env <span>&amp;&amp;</span> chmod 600 .env
+<span>echo</span> <span><span>'</span>OPENROUTER_API_KEY=...<span>'</span></span> <span>&gt;&gt;</span> .env
+docker compose up -d --build
+docker compose logs server     <span><span>#</span> the console's link, the first visit's setup code and, the first time, the token</span></pre></div>
+<p>The port is published on this machine's loopback only; put a TLS proxy in front before you open it to anyone else.
+This compose file has no Docker socket, so its agents get file tools and <code>web_fetch</code> but no shell. For a Docker
+sandbox, use the single-server <code>compose.yaml</code> at the repository's root (Docker Engine 26 or later), run the server on
+the host, or use a Daytona or E2B computer with an Archil disk.</p>
+
+
+Runners on Postgres
+<p>Set <code>AGENTRUN_STORE_URL</code> to a <code>postgres://</code> URL on the server and every runner (the compose file's <code>pg</code> profile runs
+one), start the server with <code>--no-runner</code>, and start each runner from the same image with
+<code>runner --data /data --name &lt;name&gt;</code>. Give every process the same <code>AGENTRUN_SEAL_KEY</code>. Runners still share the <code>/data</code>
+volume in this release.</p>
+
+<p><span>Deploying AgentRun</span> covers runners, health checks and upgrades.</p>
+<p></p><h2>Security</h2><span></span><p></p>
+<p>Every saved secret (model and tool keys, MCP credentials, sign-ins, webhook signing secrets) is sealed under one key,
+<code>AGENTRUN_SEAL_KEY</code>; keep it, because losing it loses what it sealed. Secrets are write-only: the console shows each
+one as set or missing, and only the console can paste, replace or remove one (your signed-in session, or the
+launcher's console on loopback when accounts are off). A key set where the server starts wins over a pasted one. The
+API token can't write a secret or approve a tool call. A run gets only the keys its own model and tools need, and
+nothing a run learns can keep a secret it was handed. <span>SECURITY.md</span> says how to report a vulnerability.</p>
+<p></p><h2>Docs</h2><span></span><p></p>
+<ul>
+<li><span>AgentRun Server</span>: the API, models, tools, MCP servers, triggers, spend caps, learning and
+safety, in full</li>
+<li><a href="https://agentrun.ai/docs/quickstart" target="_blank" rel="noopener noreferrer nofollow">Quickstart on agentrun.ai</a> and the <a href="https://agentrun.ai/docs" target="_blank" rel="noopener noreferrer nofollow">docs</a></li>
+<li><span>The CLI's skill</span> and <span>every command</span></li>
+<li><span>Deploying</span>, <span>computers</span>, <span>templates</span></li>
+<li><span>The workflow language</span>, <span>authoring</span>, <span>the guide</span></li>
+<li><span>Changelog</span> and <span>contributing</span></li>
+</ul>
+<p></p><h2>Coming next</h2><span></span><p></p>
+<ul>
+<li>A computer chosen per call, not only per agent</li>
+<li>First-party computers</li>
+<li>iPhone, macOS and Windows computers</li>
+<li>Watching and taking over a desktop or phone run, as a browser run does today</li>
+<li>Composio as a tool catalog</li>
+<li>Harnesses over the Agent Client Protocol</li>
+<li>A Slack trigger and a Parallel monitor trigger</li>
+</ul>
+<p></p><h2>License and thanks</h2><span></span><p></p>
+<p>Apache-2.0. Copyright 2026 Parcha Labs, Inc. Built by <a href="https://grep.ai/" target="_blank" rel="noopener noreferrer nofollow">Grep.ai</a>.</p>
+<p>AgentRun builds on <a href="https://github.com/earendil-works/pi" target="_blank" rel="noopener noreferrer nofollow">pi</a> by Earendil Works (MIT), the agent loop and durable
+runtime under it; <a href="https://github.com/browserbase/stagehand" target="_blank" rel="noopener noreferrer nofollow">Stagehand</a> and the
+<a href="https://github.com/browserbase/sdk-node" target="_blank" rel="noopener noreferrer nofollow">Browserbase Node SDK</a>; the
+<a href="https://github.com/typesafe-ai/typesafe-sdk-js" target="_blank" rel="noopener noreferrer nofollow">TypeSafe JavaScript SDK</a>; Archil's
+<a href="https://github.com/archil-data/archil-sdk" target="_blank" rel="noopener noreferrer nofollow">disk SDK</a>; and
+<a href="https://github.com/vercel-labs/durable-harness" target="_blank" rel="noopener noreferrer nofollow">vercel-labs/durable-harness</a> (Apache-2.0), whose ideas and code the
+durable harnesses build on. Each keeps its own license; each package's NOTICE lists what it carries.</p>
+</div></div></div>
+  <div class="footer">
+    本文由 AI热点监控系统自动抓取 · 内容版权归原作者/网站所有<br>
+    快照仅用于学习交流，如需转载请访问原文
+  </div>
+</div>
+</body>
+</html>
