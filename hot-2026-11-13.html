@@ -91,7 +91,7 @@ body { background: var(--bg-outer); font-family: var(--font-body); min-height: 1
       <a class="back-link" href="./">← 归档首页</a>
       <h1>AI 热点日报</h1>
       <div class="subtitle">
-        <span class="date">2026年11月13日，星期五 · 道法术器解读</span>
+        <span class="date">2026年11月13日，星期五· 含新增 · 道法术器解读</span>
         <div class="controls">
           <button id="expandAll">展开全部</button>
           <button id="collapseAll">收起全部</button>
@@ -103,203 +103,212 @@ body { background: var(--bg-outer); font-family: var(--font-body); min-height: 1
         <div class="entry-head">
           <div class="bullet" style="background: var(--tab-1);"></div>
           <div class="info">
-            <h3>前沿模型本地化部署加速</h3>
-            <div class="meta">Hacker News · 🔥 51 · 4小时前</div>
+            <h3><span class="badge-icon"> 🔄</span> Gemini 4 Hydrogen与编排…</h3>
+            <div class="meta">Hacker News · 🔥 56 · 17小时前</div>
           </div>
           <div class="expand-icon">▼</div>
         </div>
-        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：前沿模型能力正从云端垄断走向本地化分发，算力与模型权重的去中心化是长期不可逆趋势，开源权重与消费级硬件的结合将持续压缩闭源 API 的溢价空间。
-<strong>法</strong>：把模型能力当作可下载资产而非租赁服务，优先评估本地部署的<strong>总拥有成本</strong>与数据主权收益，适用于对隐私、延迟、离线可用性敏感的各类场景。
-<strong>术</strong>：先量化本地推理的显存与吞吐门槛，再对比云端 API 的单位调用成本；对敏感数据流做本地化改造试点；建立模型版本与硬件的兼容矩阵。
-<strong>器</strong>：Edge0-145B 权重、消费级 GPU、量化推理框架、本地推理服务端。</p>
-<a class="source-link" href="https://edge0.ai/blog/introducing-edge0-145b-frontier-ai-capabilities-on-your-own-computer" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
+        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：模型能力竞争已进入系统级编排阶段，单一模型参数不再是护城河，<strong>多模型协同调度</strong>才是长期趋势。<strong>法</strong>：将复杂任务拆解为子任务，由编排层动态分配至不同专精模型，再聚合结果，此策略可迁移至任何多智能体系统设计。<strong>术</strong>：1. 先梳理任务链路，识别可并行与串行节点；2. 为每类子任务选定最匹配模型而非统一用大模型；3. 建立编排层的失败重试与结果校验机制。<strong>器</strong>：Gemini 4 Hydrogen、Orchestrator 编排框架、多模型路由中间件。</p>
+<a class="source-link" href="https://antigravity.google/blog/gemini-4-hydrogen-in-google-antigravity/" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
       </div>
       <div class="entry" data-cat="ai" style="animation-delay: 0.18s;">
         <div class="entry-head">
           <div class="bullet" style="background: var(--tab-1);"></div>
           <div class="info">
-            <h3>Gemini 4 迭代节奏加快</h3>
-            <div class="meta">Hacker News · 🔥 58 · 9小时前</div>
+            <h3><span class="badge-icon"> 🔄</span> 本地跑通前沿级大模型</h3>
+            <div class="meta">Hacker News · 🔥 54 · 13小时前</div>
           </div>
           <div class="expand-icon">▼</div>
         </div>
-        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：头部模型厂商的竞争已从单点能力突破转为<strong>迭代速度与生态整合</strong>的比拼，版本号快速推进本质是用发布节奏锁定开发者心智与迁移成本。
-<strong>法</strong>：把模型选型从一次性决策改为<strong>持续评估机制</strong>，用可替换的抽象层隔离供应商锁定，适用于任何依赖外部 AI 能力的业务架构。
-<strong>术</strong>：建立季度模型评测基线，覆盖质量、延迟、成本三项指标；在应用层封装统一调用接口；对关键任务保留双供应商回退路径。
-<strong>器</strong>：Gemini 4 Hydrogen、多模型路由网关、标准化评测集。</p>
-<a class="source-link" href="https://blog.google/innovation-and-ai/models-and-research/gemini-models/introducing-gemini-4-hydrogen/" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
+        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：前沿能力正从云端垄断走向<strong>端侧下沉</strong>，隐私、延迟与成本三重压力推动本地化部署成为长期方向。<strong>法</strong>：以量化压缩与推理优化换取可接受的性能损失，用<strong>本地优先、云端兜底</strong>的混合架构平衡能力与合规，适用于所有对数据敏感的场景。<strong>术</strong>：1. 评估本地硬件显存与目标模型的量化版本匹配度；2. 对高频低复杂度任务走本地，复杂任务路由至云端；3. 建立本地模型的版本更新与回滚流程。<strong>器</strong>：Edge0-145B、GGUF/量化推理框架、本地 GPU 工作站。</p>
+<a class="source-link" href="https://edge0.ai/blog/introducing-edge0-145b-frontier-ai-capabilities-on-your-own-computer" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
       </div>
-      <div class="entry" data-cat="ai" style="animation-delay: 0.26s;">
+      <div class="entry" data-cat="sec" style="animation-delay: 0.26s;">
         <div class="entry-head">
-          <div class="bullet" style="background: var(--tab-1);"></div>
+          <div class="bullet" style="background: var(--tab-3);"></div>
           <div class="info">
-            <h3>编排层成模型竞争焦点</h3>
-            <div class="meta">Hacker News · 🔥 55 · 8小时前</div>
+            <h3><span class="badge-icon"> 🆕</span> Postgres老漏洞变RCE</h3>
+            <div class="meta">Hacker News · 🔥 53 · 18小时前</div>
           </div>
           <div class="expand-icon">▼</div>
         </div>
-        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：模型能力趋同后，价值重心向<strong>编排与调度层</strong>转移，谁能把多模型、多工具、多任务协同做好，谁就掌握实际交付的控制权。
-<strong>法</strong>：将单一模型调用升级为<strong>任务编排架构</strong>，按任务类型动态分配模型与工具，适用于复杂工作流、多步骤自动化等场景。
-<strong>术</strong>：拆解业务流程为可编排的子任务节点；为每个节点设定模型与工具的路由规则；加入失败重试与结果校验环节。
-<strong>器</strong>：Gemini 4 Orchestrator、工作流编排引擎、多模型路由组件。</p>
-<a class="source-link" href="https://antigravity.google/blog/gemini-4-hydrogen-in-google-antigravity/" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
+        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：<strong>遗留系统的历史缺陷</strong>不会随时间消失，只会在攻击面扩大时被重新激活，安全债的复利效应长期存在。<strong>法</strong>：将漏洞管理从被动修补转为<strong>攻击面持续测绘</strong>，对超龄组件建立专项审计清单，此方法适用于任何长期运行的基础设施。<strong>术</strong>：1. 盘点运行超过十年的数据库与中间件版本；2. 对类型混淆类历史 CVE 做回归验证，确认补丁真实生效；3. 限制数据库进程权限，切断提权至 RCE 的链路。<strong>器</strong>：Postgres、CVE 数据库、静态分析与模糊测试工具。</p>
+<a class="source-link" href="https://mehmetince.net/part-3-6-how-i-ended-up-turning-a-22-year-old-postgresql-type-confusion-primitive-into-rce-cve-2026-6460/" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
       </div>
       <div class="entry" data-cat="ai" style="animation-delay: 0.33999999999999997s;">
         <div class="entry-head">
           <div class="bullet" style="background: var(--tab-1);"></div>
           <div class="info">
-            <h3>安全能力下沉为开发工具</h3>
-            <div class="meta">GitHub Trending · 🔥 68 · 11小时前</div>
+            <h3><span class="badge-icon"> 🆕</span> AI代理支付协议落地搜索</h3>
+            <div class="meta">Hacker News · 🔥 52 · 9小时前</div>
           </div>
           <div class="expand-icon">▼</div>
         </div>
-        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：安全审查正从上线前的独立环节，内嵌为编码阶段的自动化能力，漏洞发现与修复的周期被压缩到提交级别。<strong>法</strong>：把高门槛专业能力封装成CLI和SDK，让开发者在原有工作流内直接调用，是能力产品化的通用路径。<strong>术</strong>：1. 在CI流水线中接入扫描步骤，设定阻断阈值；2. 用SDK把校验逻辑嵌入代码评审机器人；3. 建立漏洞修复的自动化建议与人工复核双轨。<strong>器</strong>：OpenAI Codex Security CLI、TypeScript SDK、GitHub Actions、静态分析工具链。</p>
-<a class="source-link" href="https://github.com/openai/codex-security" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
+        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：AI代理正从信息消费者变为经济行为主体，机器对机器的自动结算将成为互联网基础设施的默认能力，支付协议之争实质是下一代流量入口之争。
+<strong>法</strong>：在AI代理高频调用的接口层嵌入<strong>微支付与身份验证</strong>，把免费流量转化为可计量的机器收入，适用于所有API型服务。
+<strong>术</strong>：评估现有API的调用成本与滥用风险；在代理接入路径上试点按次计费或额度包；监控机器流量的结算成功率与欺诈率。
+<strong>器</strong>：Brave Search API、x402协议、链上结算与代理钱包。</p>
+<a class="source-link" href="https://brave.com/blog/search-api-agentic-payments/" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
       </div>
       <div class="entry" data-cat="ai" style="animation-delay: 0.42000000000000004s;">
         <div class="entry-head">
           <div class="bullet" style="background: var(--tab-1);"></div>
           <div class="info">
-            <h3>推理引擎走向底层标准化</h3>
-            <div class="meta">GitHub Trending · 🔥 55 · 11小时前</div>
+            <h3><span class="badge-icon"> 🔄</span> OpenAI开源安全扫描工具</h3>
+            <div class="meta">GitHub Trending · 🔥 70 · 20小时前</div>
           </div>
           <div class="expand-icon">▼</div>
         </div>
-        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：模型能力与推理执行持续解耦，<strong>推理层成为独立的基础设施赛道</strong>，跨硬件、跨模型的统一运行时比单一模型更具长期价值。<strong>法</strong>：以极致性能的底层实现占领开发者默认选项，通过社区生态和硬件适配广度构建护城河，适用于所有基础设施类项目。<strong>术</strong>：1. 评估本地推理方案时优先测试量化格式与硬件后端兼容性；2. 将推理引擎与业务代码解耦，保留切换空间；3. 关注内存占用与首token延迟两项核心指标。<strong>器</strong>：llama.cpp、GGUF量化格式、CUDA/Metal/Vulkan后端、Ollama等封装层。</p>
-<a class="source-link" href="https://github.com/ggml-org/llama.cpp" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
+        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：安全能力正从人工审计转向<strong>AI驱动的自动化闭环</strong>，漏洞发现、验证、修复被压缩进同一条流水线，安全左移成为工程默认项。
+<strong>法</strong>：把安全检测嵌入CI/CD，用<strong>发现即验证即修复</strong>的闭环替代事后扫描，任何交付型团队都可复用该模式。
+<strong>术</strong>：在代码合并前接入CLI扫描并设阻断阈值；用SDK把漏洞验证结果回写工单系统；对高危项建立自动修复与人工复核双轨。
+<strong>器</strong>：openai/codex-security CLI、TypeScript SDK、GitHub Actions。</p>
+<a class="source-link" href="https://github.com/openai/codex-security" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
       </div>
       <div class="entry" data-cat="ai" style="animation-delay: 0.5s;">
         <div class="entry-head">
           <div class="bullet" style="background: var(--tab-1);"></div>
           <div class="info">
-            <h3>算力管制留下可识别痕迹</h3>
-            <div class="meta">Hacker News · 🔥 53 · 5小时前</div>
+            <h3><span class="badge-icon"> 🆕</span> Anthropic上市信号解读</h3>
+            <div class="meta">Hacker News · 🔥 63 · 昨天</div>
           </div>
           <div class="expand-icon">▼</div>
         </div>
-        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：<strong>算力供给结构会沉淀为模型的技术特征</strong>，硬件管制不再只是产能问题，而是可被外部观测和归因的竞争变量。<strong>法</strong>：在资源受限条件下，通过架构优化和训练策略补偿硬件差距，同时把供应链合规纳入技术选型的前置约束。<strong>术</strong>：1. 模型评测中增加硬件来源与训练成本的归因维度；2. 采购与研发规划同步评估出口管制情景；3. 建立多硬件后端的训练与推理冗余方案。<strong>器</strong>：GPU出口管制清单、模型指纹分析工具、国产算力平台、分布式训练框架。</p>
-<a class="source-link" href="https://unemploymentlabs.com/checkpoint-forensics" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
+        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：头部大模型公司进入<strong>公开市场融资阶段</strong>，行业竞争从技术叙事转向收入与毛利验证，资本周期开始约束模型研发节奏。
+<strong>法</strong>：以<strong>可审计的营收结构</strong>换取长期资本，把算力投入转化为可披露的单位经济模型，适用于所有重资产技术赛道。
+<strong>术</strong>：梳理API、订阅、企业定制三条收入线的毛利；测算推理成本下降曲线对盈亏平衡的影响；提前准备合规披露与关联交易口径。
+<strong>器</strong>：SEC披露文件、云算力合约、企业级API计费平台。</p>
+<a class="source-link" href="https://ipo.anthropic.com/us/" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
       </div>
-      <div class="entry" data-cat="ai" style="animation-delay: 0.58s;">
+      <div class="entry" data-cat="sec" style="animation-delay: 0.58s;">
         <div class="entry-head">
-          <div class="bullet" style="background: var(--tab-1);"></div>
+          <div class="bullet" style="background: var(--tab-3);"></div>
           <div class="info">
-            <h3>AI应用审核成新瓶颈</h3>
-            <div class="meta">Hacker News · 🔥 52 · 6小时前</div>
+            <h3><span class="badge-icon"> 🆕</span> 硬件订阅化催生自建替代</h3>
+            <div class="meta">Hacker News · 🔥 58 · 19小时前</div>
           </div>
           <div class="expand-icon">▼</div>
         </div>
-        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：AI生成内容的爆发正在让平台审核从人工判断转向规则博弈，应用商店的审核周期与不确定性成为AI应用上线的结构性成本。<strong>法</strong>：在平台规则模糊期，将审核风险前置为产品设计约束，用可解释的合规叙事降低被拒概率。<strong>术</strong>：提交前准备AI功能边界说明与内容过滤机制文档；对合成类功能做分级开关，避免审核时全量暴露；建立被拒后的快速申诉模板与版本回滚预案。<strong>器</strong>：App Store Review Guidelines、Google Play Policy Center、AI内容审核API（如OpenAI Moderation）。</p>
-<a class="source-link" href="https://synthanatomy.com/2026/11/ai-is-turning-apples-app-review-process-into-a-nightmare-for-developers.html" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
+        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：硬件厂商把基础功能锁进订阅墙，本质是把一次性售卖转为持续收租，但这也持续制造出用户自建替代方案的动机，<strong>软硬件解耦与用户主权回归</strong>是长期趋势。
+<strong>法</strong>：当封闭生态的订阅成本超过自建门槛时，用户会转向开源或自研工具；任何依赖锁定用户变现的产品，都在为替代方案积累需求。
+<strong>术</strong>：先梳理设备通信协议与接口，确认可绕过官方云服务；用开源固件或本地脚本复刻核心功能；把自建方案开源，形成社区维护的替代生态。
+<strong>器</strong>：开源固件项目、本地串口/网络协议抓包工具、GitHub 社区、树莓派等低成本控制板。</p>
+<a class="source-link" href="https://github.com/simpsoka/zigzag" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
       </div>
       <div class="entry" data-cat="dev" style="animation-delay: 0.66s;">
         <div class="entry-head">
           <div class="bullet" style="background: var(--tab-2);"></div>
           <div class="info">
-            <h3>小设备跑大模型成趋势</h3>
-            <div class="meta">Hacker News · 🔥 55 · 12小时前</div>
+            <h3><span class="badge-icon"> 🔄</span> 端侧小模型走向可用</h3>
+            <div class="meta">Hacker News · 🔥 55 · 21小时前</div>
           </div>
           <div class="expand-icon">▼</div>
         </div>
-        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：模型压缩与端侧推理的成熟正在把AI能力从云端下沉到边缘，算力分布从集中走向分散是长期方向。<strong>法</strong>：在资源受限场景优先做量化与蒸馏，用工程优化换取可部署性，而非追求参数规模。<strong>术</strong>：先对目标设备做内存与算力基线测试；采用4-bit量化与算子融合降低推理开销；用llama.cpp或MLC做跨平台验证，再决定是否上NPU加速。<strong>器</strong>：llama.cpp、MLC-LLM、ONNX Runtime、GGUF量化格式。</p>
+        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：大模型能力下沉到小设备是算力成本与隐私需求共同推动的长期方向，<strong>推理侧优化比参数规模更能决定落地速度</strong>，端侧 AI 正从演示走向实用。
+<strong>法</strong>：用模型量化、蒸馏与专用推理引擎，把能力压缩到有限算力上；先在低配设备跑通最小可用场景，再逐步扩展，避免一步追求全能力。
+<strong>术</strong>：优先做 4bit 量化与算子融合，压缩显存占用；针对目标设备选专用推理框架而非通用框架；用真实低配设备做基准测试，记录延迟与内存峰值。
+<strong>器</strong>：llama.cpp、GGUF 量化格式、ONNX Runtime、Ollama、低功耗 ARM 设备。</p>
 <a class="source-link" href="https://github.com/hyperionaidev/smolmaxxing/" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
       </div>
-      <div class="entry" data-cat="ai" style="animation-delay: 0.74s;">
+      <div class="entry" data-cat="sec" style="animation-delay: 0.74s;">
         <div class="entry-head">
-          <div class="bullet" style="background: var(--tab-1);"></div>
+          <div class="bullet" style="background: var(--tab-3);"></div>
           <div class="info">
-            <h3>自改进Agent开源化加速</h3>
-            <div class="meta">Hacker News · 🔥 51 · 9小时前</div>
+            <h3><span class="badge-icon"> 🆕</span> 云依赖单点故障常态化</h3>
+            <div class="meta">Hacker News · 🔥 55 · 7小时前</div>
           </div>
           <div class="expand-icon">▼</div>
         </div>
-        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：Agent从单次调用走向可自我迭代的托管服务，开源降低了实验门槛，竞争焦点转向任务闭环质量与运行稳定性。<strong>法</strong>：用开源框架快速搭建可观测的Agent流水线，以任务成功率而非功能数量作为迭代指标。<strong>术</strong>：先定义可量化的任务成功标准与失败回放机制；接入日志与追踪工具定位Agent决策断点；用沙箱环境限制自改进循环的副作用范围。<strong>器</strong>：AgentRun、LangSmith、OpenTelemetry、Docker沙箱。</p>
-<a class="source-link" href="https://github.com/Parcha-ai/agentrun/blob/main/README.md" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
+        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：核心办公与通信能力高度集中于少数云厂商，<strong>集中度越高，单点故障的波及面越大</strong>，长时宕机从偶发事件变为结构性风险，业务连续性设计正从可选项变为必选项。
+<strong>法</strong>：对关键业务做依赖分级，识别不可替代的云服务；为高优先级流程准备降级通道与离线预案，把可用性目标从厂商 SLA 转为自己可控的冗余设计。
+<strong>术</strong>：列出依赖单一厂商的关键流程并标注可接受中断时长；为邮件与协作配置备用通道或本地缓存；定期演练宕机切换，验证预案真实可用。
+<strong>器</strong>：多厂商邮件网关、本地备份与离线协作工具、状态监控与告警平台、开源协作套件。</p>
+<a class="source-link" href="https://twitter.com/MSFT365Status/status/2121079061774491735" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
       </div>
       <div class="entry" data-cat="ai" style="animation-delay: 0.82s;">
         <div class="entry-head">
           <div class="bullet" style="background: var(--tab-1);"></div>
           <div class="info">
-            <h3>设计系统转向智能体就绪</h3>
-            <div class="meta">GitHub Trending · 🔥 100 · 11小时前</div>
+            <h3><span class="badge-icon"> 🔄</span> 编码智能体接入官方最佳实践</h3>
+            <div class="meta">GitHub Trending · 🔥 100 · 20小时前</div>
           </div>
           <div class="expand-icon">▼</div>
         </div>
-        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：设计系统的价值锚点正从服务人类设计师转向同时服务AI智能体，组件库的接口规范与语义描述成为新的竞争维度。<strong>法</strong>：把产品资产改造为机器可读、可调用的结构化资源，让智能体成为第一等使用者，这一策略可迁移到文档、API、知识库等所有数字资产。<strong>术</strong>：梳理现有组件的属性与状态定义，补充面向智能体的语义标注与调用契约；建立可定制层与核心层的边界，避免智能体改动破坏基础一致性；用自动化测试验证智能体生成结果的合规性。<strong>器</strong>：meta/astryx、Figma 变量体系、Storybook、组件级 JSON Schema。</p>
-<a class="source-link" href="https://github.com/meta/astryx" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
+        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：AI 编码助手的竞争焦点正从模型能力转向知识时效性，浏览器厂商开始主动为智能体提供权威规范源，<strong>知识供给的标准化</strong>成为长期趋势。
+<strong>法</strong>：将领域权威规范封装为智能体可直接消费的结构化知识源，让工具跟随规范演进而非依赖模型记忆，适用于任何快速迭代的技术领域。
+<strong>术</strong>：把该仓库接入编码智能体的上下文检索链路；在代码审查规则中引用其条目作为依据；定期同步上游更新避免规范漂移。
+<strong>器</strong>：GoogleChrome/modern-web-guidance-src、Chrome 团队 Web 规范文档、各类编码智能体。</p>
+<a class="source-link" href="https://github.com/GoogleChrome/modern-web-guidance-src" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
       </div>
-      <div class="entry" data-cat="ai" style="animation-delay: 0.9s;">
+      <div class="entry" data-cat="dev" style="animation-delay: 0.9s;">
         <div class="entry-head">
-          <div class="bullet" style="background: var(--tab-1);"></div>
+          <div class="bullet" style="background: var(--tab-2);"></div>
           <div class="info">
-            <h3>编码智能体需要工程技能包</h3>
-            <div class="meta">GitHub Trending · 🔥 72 · 11小时前</div>
+            <h3><span class="badge-icon"> 🆕</span> Tailscale 数据面独立工具</h3>
+            <div class="meta">GitHub Trending · 🔥 55 · 20小时前</div>
           </div>
           <div class="expand-icon">▼</div>
         </div>
-        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：AI编码智能体的能力瓶颈正从模型推理转向工程规范供给，谁能把团队最佳实践沉淀为智能体可执行的技能，谁就能稳定产出生产级代码。<strong>法</strong>：将隐性工程经验显性化为可复用、可版本化的技能模块，让智能体按需加载，这一方法适用于任何需要人机协作交付的复杂流程。<strong>术</strong>：盘点团队高频代码审查意见，提炼为原子化技能条目；为每条技能配套正反例与验收标准；建立技能库的版本管理与回归测试，防止技能漂移。<strong>器</strong>：addyosmani/agent-skills、Claude Code、Cursor Rules、ESLint 自定义规则。</p>
-<a class="source-link" href="https://github.com/addyosmani/agent-skills" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
+        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：网络工具正从<strong>控制面与数据面捆绑</strong>走向解耦，用户希望复用成熟加密传输能力而不被平台账号体系绑定，这是基础设施去中心化的一贯方向。
+<strong>法</strong>：把平台的核心传输能力剥离为独立轻量工具，降低使用门槛并扩大适用场景，是基础设施产品扩大渗透的通用路径。
+<strong>术</strong>：评估在无 Tailscale 账号环境下复用其数据面的可行性；对比 netcat 在跨网段场景的加密与穿透差异；小范围试点后决定是否纳入运维工具箱。
+<strong>器</strong>：tailscale/tailcat、netcat、Tailscale 数据面。</p>
+<a class="source-link" href="https://github.com/tailscale/tailcat" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
       </div>
       <div class="entry" data-cat="ai" style="animation-delay: 0.98s;">
         <div class="entry-head">
           <div class="bullet" style="background: var(--tab-1);"></div>
           <div class="info">
-            <h3>网页最佳实践需持续供给智能体</h3>
-            <div class="meta">GitHub Trending · 🔥 70 · 11小时前</div>
+            <h3><span class="badge-icon"> 🆕</span> Claude 服务故障暴露单点依赖</h3>
+            <div class="meta">Hacker News · 🔥 53 · 2小时前</div>
           </div>
           <div class="expand-icon">▼</div>
         </div>
-        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：前端最佳实践的生命周期越来越短，智能体的训练数据必然滞后，持续向智能体注入最新规范将成为基础设施级需求。<strong>法</strong>：建立规范源到智能体上下文的自动化同步管道，用版本化知识替代一次性提示词，这一策略可复用于安全规范、合规要求等快速演进的领域。<strong>术</strong>：将官方指南结构化拆分为可检索条目并标注生效日期；在智能体工作流中接入检索步骤，按任务动态拉取相关规范；设置规范过期告警，定期比对上游更新。<strong>器</strong>：GoogleChrome/modern-web-guidance-src、MCP 协议、向量检索库、CI 定时同步任务。</p>
-<a class="source-link" href="https://github.com/GoogleChrome/modern-web-guidance-src" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
+        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：头部 AI 服务的高可用性仍是稀缺品，<strong>单点依赖风险</strong>随 AI 深入生产流程而放大，多模型冗余将从可选项变为架构刚需。
+<strong>法</strong>：对关键 AI 能力做多供应商抽象层设计，把故障切换成本前置到架构阶段而非事故响应阶段，适用于所有依赖外部 API 的业务系统。
+<strong>术</strong>：为调用链路增加超时与降级策略；维护至少一个可切换的备用模型端点；记录故障窗口内的请求失败率用于容量规划。
+<strong>器</strong>：claude.ai、Claude Code、platform.claude.com、多模型路由中间件。</p>
+<a class="source-link" href="https://status.claude.com/incidents/nn11wk485zfn" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
       </div>
       <div class="entry" data-cat="ai" style="animation-delay: 1.06s;">
         <div class="entry-head">
           <div class="bullet" style="background: var(--tab-1);"></div>
           <div class="info">
-            <h3>AI同事独立环境成新范式</h3>
-            <div class="meta">GitHub Trending · 🔥 58 · 11小时前</div>
+            <h3><span class="badge-icon"> 🆕</span> B2A模式崛起 Agent赛道分化</h3>
+            <div class="meta">36kr · 🔥 63 · 12小时前</div>
           </div>
           <div class="expand-icon">▼</div>
         </div>
-        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：AI Agent 正从对话助手进化为拥有独立运行环境的数字员工，每个 Agent 配备浏览器、文件系统和工具链，意味着<strong>执行边界从生成内容扩展到完成工作</strong>，这是长期不可逆的方向。
-<strong>法</strong>：给智能体分配隔离的沙箱环境而非共享上下文，用<strong>环境隔离换取任务自主性</strong>，该策略可复用于任何多 Agent 协作系统。
-<strong>术</strong>：为每个 Agent 配置独立容器与文件目录；限定工具权限白名单防止越权操作；建立任务产物回收与审计机制。
-<strong>器</strong>：CopilotKit、OpenBot、容器沙箱、浏览器自动化工具。</p>
-<a class="source-link" href="https://github.com/CopilotKit/OpenBot" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
+        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：AI应用正从「人操作软件」转向「Agent操作软件」，商业模式从卖工具订阅转向卖任务结果，<strong>B2A（Business to Agent）</strong> 是继B2B、B2C之后的第三种入口形态。<strong>法</strong>：先占据Agent的调用入口，再反向定义服务标准，适用于所有平台型生态的卡位战。<strong>术</strong>：梳理14大应用场景中高频、可验证、低容错的环节优先接入；把Infra能力封装成Agent可直接调用的API而非控制台；用任务完成率而非DAU作为核心指标。<strong>器</strong>：Agent框架、MCP类协议、向量数据库、可观测性平台。</p>
+<a class="source-link" href="https://www.36kr.com/p/4066736981316486" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
       </div>
-      <div class="entry" data-cat="ai" style="animation-delay: 1.1400000000000001s;">
+      <div class="entry" data-cat="other" style="animation-delay: 1.1400000000000001s;">
         <div class="entry-head">
-          <div class="bullet" style="background: var(--tab-1);"></div>
+          <div class="bullet" style="background: var(--tab-6);"></div>
           <div class="info">
-            <h3>终端编码Agent争夺入口</h3>
-            <div class="meta">GitHub Trending · 🔥 54 · 11小时前</div>
+            <h3><span class="badge-icon"> 🆕</span> 马斯克裁撤多模态团队</h3>
+            <div class="meta">36kr · 🔥 100 · 9小时前</div>
           </div>
           <div class="expand-icon">▼</div>
         </div>
-        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：编码 Agent 的竞争焦点正从模型能力转向<strong>入口位置</strong>，终端作为开发者最高频的工作界面，成为 AI 编程工具必争之地，开源方案加速这一入口的平民化。
-<strong>法</strong>：把 AI 能力嵌入用户已有工作流而非要求迁移到新平台，<strong>降低切换成本即提升采用率</strong>，适用于所有工具型产品。
-<strong>术</strong>：在终端内完成代码生成、执行与回滚闭环；接入本地仓库上下文提升准确率；保留人工确认环节控制误改风险。
-<strong>器</strong>：Qwen Code、终端 CLI、本地代码仓库、开源模型。</p>
-<a class="source-link" href="https://github.com/QwenLM/qwen-code" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
+        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：大模型竞争已从「全模态铺摊子」进入「算力与人才向主线收敛」阶段，<strong>裁撤非核心团队是资源重配而非技术否定</strong>，长期看多模态能力会以更低的边际成本被集成。<strong>法</strong>：在资源约束下做减法，把有限算力集中到能形成差异化壁垒的单点，适用于所有技术密集型组织的战略收缩。<strong>术</strong>：评估自身多模态需求是自研还是调用第三方API更划算；把团队重组窗口期用于锁定关键人才；对外沟通强调路线调整而非能力放弃。<strong>器</strong>：主流多模态API、开源视觉语言模型、算力调度平台。</p>
+<a class="source-link" href="https://www.36kr.com/p/4066963413554305" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
       </div>
       <div class="entry" data-cat="ai" style="animation-delay: 1.2200000000000002s;">
         <div class="entry-head">
           <div class="bullet" style="background: var(--tab-1);"></div>
           <div class="info">
-            <h3>推理引擎跨后端统一化</h3>
-            <div class="meta">GitHub Trending · 🔥 51 · 11小时前</div>
+            <h3><span class="badge-icon"> 🆕</span> AI辅助筛查发现无症状肠癌</h3>
+            <div class="meta">toutiao · 🔥 75 · 刚刚</div>
           </div>
           <div class="expand-icon">▼</div>
         </div>
-        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：LLM 推理引擎正走向<strong>跨硬件后端统一</strong>，同一套引擎同时支持 Metal、CUDA、Vulkan，说明推理层与硬件层的解耦是长期趋势，算力调度将更灵活。
-<strong>法</strong>：用抽象层屏蔽底层硬件差异，<strong>一次开发多端部署</strong>，该策略可复用于任何需要跨平台适配的基础设施项目。
-<strong>术</strong>：优先评估目标硬件的算子覆盖度；对关键算子做后端特化优化；建立跨后端一致性测试基准。
-<strong>器</strong>：Metal、CUDA、Vulkan、开源推理引擎。</p>
-<a class="source-link" href="https://github.com/sponsors/ashhart" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
+        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：AI在医疗领域的价值正从「辅助诊断提效」转向「<strong>发现人类医生漏掉的病灶</strong>」，本质是把筛查从症状驱动变成数据驱动，长期会重塑体检和早筛的定价逻辑。<strong>法</strong>：在容错率低但漏检代价高的场景优先落地AI，用「人机双读+AI兜底」降低系统性漏诊，适用于所有高风险决策行业。<strong>术</strong>：把AI定位为第二读者而非替代者以规避责任争议；用无症状人群的回顾性数据验证灵敏度；建立AI提示后的复核闭环并留痕。<strong>器</strong>：医学影像AI、肠镜辅助诊断系统、结构化电子病历平台。</p>
+<a class="source-link" href="https://www.toutiao.com/trending/7707495873978040858/" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
       </div>
     </div>
     <div class="footer">
-      <span>Generated by AI Hot Monitor v2 · DeepSeek · 11:01:34</span>
+      <span>Generated by AI Hot Monitor v2 · DeepSeek · 20:01:42</span>
       <span class="badge">💡 点击条目展开深度解读</span>
     </div>
   </div>
