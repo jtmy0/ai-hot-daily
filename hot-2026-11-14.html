@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="referrer" content="no-referrer">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; script-src 'unsafe-inline'; img-src data:; connect-src 'none'; base-uri 'none'; form-action 'none'; frame-ancestors 'none'">
+<title>AI 热点日报 — 2026年11月14日</title>
+<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg-outer: #2d2d2d; --bg-page: #f8f6f1; --text-primary: #1a1a1a;
+  --text-secondary: #555; --text-muted: #999;
+  --tab-1: #98d4bb; --tab-2: #c7b8ea; --tab-3: #f4b8c5; --tab-4: #a8d8ea; --tab-5: #ffe6a7; --tab-6: #d4c5b9;
+  --font-display: 'Bodoni Moda', serif; --font-body: 'DM Sans', sans-serif; --border: #e0dcd4;
+  --expand-bg: #f0ede8;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html, body { height: 100%; overflow-x: hidden; }
+body { background: var(--bg-outer); font-family: var(--font-body); min-height: 100vh; display: flex; justify-content: center; align-items: flex-start; padding: clamp(1rem, 3vw, 3rem); }
+.notebook { position: relative; background: var(--bg-page); width: min(92vw, 920px); border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1), 0 20px 60px rgba(0,0,0,0.3); padding: clamp(2rem, 5vw, 4rem); padding-right: clamp(2.5rem, 6vw, 5rem); animation: pageIn 0.6s ease-out; }
+.notebook::before { content: ''; position: absolute; left: clamp(14px, 2vw, 24px); top: 0; bottom: 0; width: 2px; background: repeating-linear-gradient(to bottom, transparent 0px, transparent 30px, var(--border) 30px, var(--border) 32px); }
+.hole { position: absolute; left: clamp(8px, 1.5vw, 16px); width: clamp(10px, 1.5vw, 16px); height: clamp(10px, 1.5vw, 16px); border-radius: 50%; background: var(--bg-outer); border: 1.5px solid #bbb; }
+.hole:nth-child(1) { top: 12%; } .hole:nth-child(2) { top: 50%; } .hole:nth-child(3) { top: 88%; }
+
+.tabs { position: absolute; right: 0; top: 10%; display: flex; flex-direction: column; gap: 4px; z-index: 10; }
+.tab { padding: clamp(0.3rem, 0.8vw, 0.6rem) clamp(0.5rem, 1vw, 0.8rem); border-radius: 6px 0 0 6px; font-size: clamp(0.5rem, 1vh, 0.7rem); font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: rgba(0,0,0,0.6); writing-mode: vertical-rl; text-orientation: mixed; min-height: clamp(40px, 6vh, 60px); display: flex; align-items: center; justify-content: center; cursor: pointer; transition: transform 0.2s; border: none; background: none; font-family: inherit; }
+.tab:hover { transform: translateX(-4px); }
+.tab.active { transform: translateX(-6px); box-shadow: -2px 0 8px rgba(0,0,0,0.1); }
+.tab[data-cat="all"] { background: var(--text-primary); color: #fff; }
+.tab[data-cat="ai"] { background: var(--tab-1); }
+.tab[data-cat="dev"] { background: var(--tab-2); }
+.tab[data-cat="sec"] { background: var(--tab-3); }
+.tab[data-cat="biz"] { background: var(--tab-4); }
+.tab[data-cat="auto"] { background: var(--tab-5); }
+.tab[data-cat="other"] { background: var(--tab-6); }
+
+.header { margin-bottom: clamp(0.8rem, 2vw, 1.5rem); padding-bottom: clamp(0.6rem, 1.2vw, 1rem); border-bottom: 2px solid var(--text-primary); }
+.header h1 { font-family: var(--font-display); font-size: clamp(1.5rem, 4vw, 2.8rem); font-weight: 700; letter-spacing: -0.02em; color: var(--text-primary); }
+.header .subtitle { display: flex; justify-content: space-between; align-items: center; margin-top: 0.4rem; flex-wrap: wrap; gap: 0.5rem; }
+.header .date { font-family: var(--font-display); font-style: italic; font-size: clamp(0.7rem, 1.1vw, 0.95rem); color: var(--text-secondary); }
+.header .controls { display: flex; gap: 0.5rem; }
+.header .controls button { font-family: var(--font-body); font-size: clamp(0.55rem, 0.85vw, 0.72rem); padding: 0.25rem 0.6rem; border: 1px solid var(--border); border-radius: 4px; background: #fff; color: var(--text-secondary); cursor: pointer; transition: all 0.2s; }
+.header .controls button:hover { background: var(--text-primary); color: #fff; border-color: var(--text-primary); }
+.back-link { display: inline-flex; align-items: center; gap: 0.3em; font-size: clamp(0.6rem, 0.9vw, 0.75rem); color: var(--text-muted); text-decoration: none; margin-bottom: clamp(0.4rem, 0.8vw, 0.6rem); transition: color 0.2s; }
+.back-link:hover { color: var(--text-primary); }
+
+.entries { padding-left: clamp(0.5rem, 2vw, 1.5rem); }
+.entry { border-bottom: 1px solid var(--border); animation: fadeIn 0.4s ease-out backwards; transition: opacity 0.3s; }
+.entry.hidden { display: none; }
+.entry .entry-head { display: flex; gap: clamp(0.6rem, 1.5vw, 1.2rem); padding: clamp(0.6rem, 1.2vw, 1rem) 0; cursor: pointer; user-select: none; transition: padding-left 0.2s; }
+.entry .entry-head:hover { padding-left: 4px; }
+.entry .bullet { flex-shrink: 0; width: clamp(6px, 0.8vw, 8px); height: clamp(6px, 0.8vw, 8px); border-radius: 50%; margin-top: 0.55em; transition: transform 0.2s; }
+.entry.expanded .bullet { transform: scale(1.5); }
+.entry .info { flex: 1; min-width: 0; }
+.entry .info h3 { font-family: var(--font-body); font-size: clamp(0.8rem, 1.3vw, 1.05rem); font-weight: 500; line-height: 1.45; color: var(--text-primary); margin-bottom: 0.25rem; }
+.entry .info .meta { font-size: clamp(0.6rem, 0.9vw, 0.75rem); color: var(--text-muted); font-style: italic; }
+.entry .info .badge-icon { font-size: 0.85em; margin-right: 0.1em; }
+.entry .expand-icon { flex-shrink: 0; width: 20px; height: 20px; display: flex; align-items: center; justify-content: center; color: var(--text-muted); font-size: 12px; transition: transform 0.3s ease; margin-top: 0.3em; }
+.entry.expanded .expand-icon { transform: rotate(180deg); }
+
+.entry .detail-wrap { max-height: 0; overflow: hidden; transition: max-height 0.5s cubic-bezier(0.16, 1, 0.3, 1); }
+.entry.expanded .detail-wrap { max-height: 500px; }
+.entry .detail-inner { padding: clamp(0.5rem, 1vw, 0.8rem) 0 clamp(0.5rem, 1vw, 0.8rem) clamp(1.8rem, 3.5vw, 2.8rem); background: var(--expand-bg); border-radius: 6px; margin-bottom: clamp(0.4rem, 0.8vw, 0.6rem); border-left: 3px solid var(--border); }
+.entry .detail-inner p { font-size: clamp(0.72rem, 1.1vw, 0.9rem); line-height: 1.7; color: var(--text-secondary); }
+.entry .detail-inner p strong { color: var(--text-primary); font-weight: 600; }
+.entry .detail-inner .source-link { display: inline-flex; align-items: center; gap: 0.3em; margin-top: clamp(0.4rem, 0.7vw, 0.6rem); font-size: clamp(0.6rem, 0.9vw, 0.75rem); color: var(--text-muted); text-decoration: none; padding: 0.2rem 0.5rem; border: 1px solid var(--border); border-radius: 4px; transition: all 0.2s; }
+.entry .detail-inner .source-link:hover { color: var(--text-primary); border-color: var(--text-primary); background: rgba(0,0,0,0.03); }
+
+.footer { margin-top: clamp(0.8rem, 1.5vw, 1.5rem); padding-top: clamp(0.5rem, 1vw, 1rem); border-top: 1px solid var(--border); font-size: clamp(0.55rem, 0.85vw, 0.7rem); color: var(--text-muted); font-family: var(--font-display); font-style: italic; text-align: center; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem; }
+.footer .badge { display: inline-flex; align-items: center; gap: 0.3em; padding: 0.15rem 0.5rem; border: 1px solid var(--border); border-radius: 999px; font-style: normal; font-size: clamp(0.5rem, 0.75vw, 0.6rem); }
+
+@keyframes pageIn { from { opacity: 0; transform: scale(0.97); } to { opacity: 1; transform: scale(1); } }
+@keyframes fadeIn { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
+@media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.1s !important; } }
+</style>
+</head>
+<body>
+  <div class="notebook">
+    <div class="hole"></div><div class="hole"></div><div class="hole"></div>
+    <div class="tabs" id="tabs">
+      <button class="tab active" data-cat="all" title="全部">ALL</button>
+      <button class="tab" data-cat="ai" title="AI/大模型">AI</button>
+      <button class="tab" data-cat="dev" title="开发工具">DEV</button>
+      <button class="tab" data-cat="sec" title="安全">SEC</button>
+      <button class="tab" data-cat="biz" title="商业">BIZ</button>
+      <button class="tab" data-cat="auto" title="自动化">AUTO</button>
+      <button class="tab" data-cat="other" title="其他">OTHER</button>
+    </div>
+    <div class="header">
+      <a class="back-link" href="./">← 归档首页</a>
+      <h1>AI 热点日报</h1>
+      <div class="subtitle">
+        <span class="date">2026年11月14日，星期六 · 道法术器解读</span>
+        <div class="controls">
+          <button id="expandAll">展开全部</button>
+          <button id="collapseAll">收起全部</button>
+        </div>
+      </div>
+    </div>
+    <div class="entries" id="entries">
+      <div class="entry" data-cat="sec" style="animation-delay: 0.1s;">
+        <div class="entry-head">
+          <div class="bullet" style="background: var(--tab-3);"></div>
+          <div class="info">
+            <h3>FAA全国停飞暴露系统脆弱</h3>
+            <div class="meta">Hacker News · 🔥 100 · 6小时前</div>
+          </div>
+          <div class="expand-icon">▼</div>
+        </div>
+        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：关键基础设施的集中式管控在提升效率的同时，也制造了单点失效的放大效应，一次系统故障即可让全国空域停摆，这类风险随系统复杂度上升而递增而非递减。<strong>法</strong>：对高耦合关键系统建立<strong>分级熔断与降级运行机制</strong>，用可控的小范围停摆替代全局崩溃，适用于航空、电网、支付清算等任何集中调度型基础设施。<strong>术</strong>：梳理系统内所有单点依赖，为每类故障预设降级预案并定期演练；建立跨区域冗余调度能力，避免全国统一指令成为唯一路径；将故障响应时间纳入运维KPI考核。<strong>器</strong>：FAA空中交通管制系统、航班调度平台、冗余通信与备份调度系统。</p>
+<a class="source-link" href="https://www.nbcnews.com/news/us-news/faa-orders-nationwide-ground-stop-departing-flights-reasons-safety-rcna609247" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
+      </div>
+      <div class="entry" data-cat="ai" style="animation-delay: 0.18s;">
+        <div class="entry-head">
+          <div class="bullet" style="background: var(--tab-1);"></div>
+          <div class="info">
+            <h3>Claude Code转向并行代理</h3>
+            <div class="meta">Hacker News · 🔥 51 · 3小时前</div>
+          </div>
+          <div class="expand-icon">▼</div>
+        </div>
+        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：AI编程工具正从<strong>单轮对话助手</strong>演进为<strong>多代理并行执行系统</strong>，竞争焦点从模型能力转向任务编排与无人值守的工程化能力，这是Agent落地的必然方向。<strong>法</strong>：把复杂任务拆解为可并行的子任务，由多个代理分工执行、统一收敛结果，该模式可迁移到数据分析、内容生产、测试运维等任何可分解的流程型工作。<strong>术</strong>：先将任务拆成互不依赖的子模块并定义清晰接口；为并行代理设置统一的产出格式与冲突合并规则；保留人工审核节点，避免无人值守下的错误累积。<strong>器</strong>：Claude Code、多代理编排框架、Git版本控制与CI流水线。</p>
+<a class="source-link" href="https://alphasignal.ai/news/anthropic-upgrades-claude-code-projects-to-run-parallel-ai-workers-hands-free" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
+      </div>
+      <div class="entry" data-cat="ai" style="animation-delay: 0.26s;">
+        <div class="entry-head">
+          <div class="bullet" style="background: var(--tab-1);"></div>
+          <div class="info">
+            <h3>AI挖掘哥德尔手稿定理</h3>
+            <div class="meta">Hacker News · 🔥 63 · 10小时前</div>
+          </div>
+          <div class="expand-icon">▼</div>
+        </div>
+        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：AI正从<strong>生成内容</strong>转向<strong>发现知识</strong>，在形式化数学等可验证领域率先突破，长期看将重塑学术研究的产出方式与优先级分配。<strong>法</strong>：把AI用于<strong>高验证成本、高结构化程度</strong>的领域做辅助发现，人类负责提出问题与判定价值，机器负责穷举与形式化验证，该分工可复制到法律条文检索、代码审计等场景。<strong>术</strong>：先把手稿等非结构化资料数字化并转为机器可读格式；用形式化证明工具对AI输出做机器验证，剔除不可靠结论；建立人机协作的成果归属与复核流程。<strong>器</strong>：定理证明助手（Lean、Coq）、手稿OCR与数字化工具、大模型推理接口。</p>
+<a class="source-link" href="https://www.theguardian.com/science/2026/nov/13/kurt-godel-notebooks-ai-helps-unlock-hidden-discoveries-man-who-transformed-maths" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
+      </div>
+      <div class="entry" data-cat="ai" style="animation-delay: 0.33999999999999997s;">
+        <div class="entry-head">
+          <div class="bullet" style="background: var(--tab-1);"></div>
+          <div class="info">
+            <h3>安全能力下沉为开发者工具</h3>
+            <div class="meta">GitHub Trending · 🔥 70 · 11小时前</div>
+          </div>
+          <div class="expand-icon">▼</div>
+        </div>
+        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：安全能力正从独立产品下沉为嵌入开发流程的基础设施，漏洞发现与修复的闭环被压缩进编码环节，长期趋势是<strong>安全左移成为默认配置</strong>而非附加选项。
+<strong>法</strong>：把专业能力封装成CLI与SDK，让使用者在原有工作流内零成本调用，适用于任何想把高门槛能力普及化的场景。
+<strong>术</strong>：在CI流水线中接入扫描步骤，对存量仓库做一次基线扫描建立漏洞清单，按修复建议批量验证误报率。
+<strong>器</strong>：Codex Security CLI、TypeScript SDK、GitHub Actions。</p>
+<a class="source-link" href="https://github.com/openai/codex-security" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
+      </div>
+      <div class="entry" data-cat="sec" style="animation-delay: 0.42000000000000004s;">
+        <div class="entry-head">
+          <div class="bullet" style="background: var(--tab-3);"></div>
+          <div class="info">
+            <h3>世界模型靠实验数据说话</h3>
+            <div class="meta">Hacker News · 🔥 58 · 9小时前</div>
+          </div>
+          <div class="expand-icon">▼</div>
+        </div>
+        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：AI架构路线的胜负不取决于论文声量，而取决于<strong>可复现的实验证据</strong>，世界模型领域正从概念叙事进入工程验证阶段。
+<strong>法</strong>：用大规模对照实验替代单点结论，把模糊的架构之争转化为可量化的指标对比，任何技术选型都适用。
+<strong>术</strong>：先固定评测基准与随机种子，再逐项消融变量，记录失败案例而非只报成功结果。
+<strong>器</strong>：JEPA系列模型、开源训练框架、实验追踪工具。</p>
+<a class="source-link" href="https://haddyalchaer.com/jepa" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
+      </div>
+      <div class="entry" data-cat="sec" style="animation-delay: 0.5s;">
+        <div class="entry-head">
+          <div class="bullet" style="background: var(--tab-3);"></div>
+          <div class="info">
+            <h3>低成本手段打击高价值节点</h3>
+            <div class="meta">Hacker News · 🔥 56 · 2小时前</div>
+          </div>
+          <div class="expand-icon">▼</div>
+        </div>
+        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：现代冲突的效能比正在重构，<strong>廉价精确打击对高价值固定设施的杠杆率远超传统兵力对抗</strong>，炼油、电网这类节点天然脆弱。
+<strong>法</strong>：避开正面消耗，锁定对方体系中修复成本最高、替代周期最长的单点，用非对称投入放大战果。
+<strong>术</strong>：优先评估目标的修复周期而非摧毁难度，计算打击后的产能缺口持续时间，关注备件与工程能力的瓶颈。
+<strong>器</strong>：远程无人机、产能与出口统计数据、卫星影像分析平台。</p>
+<a class="source-link" href="https://english.nv.ua/nation/thirteen-day-drone-blitz-paralyzes-36-of-moscow-s-oil-50658616.html" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
+      </div>
+      <div class="entry" data-cat="ai" style="animation-delay: 0.58s;">
+        <div class="entry-head">
+          <div class="bullet" style="background: var(--tab-1);"></div>
+          <div class="info">
+            <h3>编码代理接入Web规范</h3>
+            <div class="meta">GitHub Trending · 🔥 100 · 11小时前</div>
+          </div>
+          <div class="expand-icon">▼</div>
+        </div>
+        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：AI编码代理的能力上限正从模型参数转向外部知识供给，谁掌握权威、结构化、可被机器消费的规范源，谁就定义代理输出的质量基线。<strong>法</strong>：将领域最佳实践沉淀为代理可直接检索的规范仓库，用版本化文档替代一次性提示词，使知识更新与模型迭代解耦。<strong>术</strong>：把团队编码规范整理成结构化文档并纳入代理上下文；建立规范变更与代理行为的回归校验；优先覆盖安全与可访问性等高频出错项。<strong>器</strong>：Chrome modern-web-guidance 仓库、GitHub、各类编码代理。</p>
+<a class="source-link" href="https://github.com/GoogleChrome/modern-web-guidance-src" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
+      </div>
+      <div class="entry" data-cat="dev" style="animation-delay: 0.66s;">
+        <div class="entry-head">
+          <div class="bullet" style="background: var(--tab-2);"></div>
+          <div class="info">
+            <h3>Tailscale数据面独立复用</h3>
+            <div class="meta">GitHub Trending · 🔥 57 · 11小时前</div>
+          </div>
+          <div class="expand-icon">▼</div>
+        </div>
+        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：网络产品的价值正从控制面编排下沉到数据面能力，控制面负责身份与策略，数据面可被单独拆出复用，基础设施趋向模块化组合。<strong>法</strong>：把成熟产品的底层传输能力剥离为独立工具，降低接入门槛，以单点工具带动整体生态采用。<strong>术</strong>：在已有 Tailscale 网络中直接用 tailcat 做点对点调试与文件传输；评估数据面独立后对身份校验与访问审计的影响；将临时调试通道纳入安全策略白名单。<strong>器</strong>：tailcat、Tailscale 数据面、netcat。</p>
+<a class="source-link" href="https://github.com/tailscale/tailcat" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
+      </div>
+      <div class="entry" data-cat="ai" style="animation-delay: 0.74s;">
+        <div class="entry-head">
+          <div class="bullet" style="background: var(--tab-1);"></div>
+          <div class="info">
+            <h3>代理协作进入评审工作台</h3>
+            <div class="meta">GitHub Trending · 🔥 53 · 11小时前</div>
+          </div>
+          <div class="expand-icon">▼</div>
+        </div>
+        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：AI代理从生成工具演化为协作主体，人类角色转向规划、决策与评审，工作流重心从写代码迁移到管代理，可审计的中间产物成为核心资产。<strong>法</strong>：为代理任务建立计划、标注、评审的闭环工作台，把隐式推理外化为可讨论的文档，降低返工与失控风险。<strong>术</strong>：任务启动前要求代理输出可批注的计划；对关键决策点设置人工确认闸门；将评审记录沉淀为后续任务的上下文。<strong>器</strong>：plannotator、GitHub、编码代理。</p>
+<a class="source-link" href="https://github.com/backnotprop/plannotator" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
+      </div>
+      <div class="entry" data-cat="ai" style="animation-delay: 0.82s;">
+        <div class="entry-head">
+          <div class="bullet" style="background: var(--tab-1);"></div>
+          <div class="info">
+            <h3>编码代理接管浏览器调试</h3>
+            <div class="meta">GitHub Trending · 🔥 52 · 11小时前</div>
+          </div>
+          <div class="expand-icon">▼</div>
+        </div>
+        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：AI 编码代理正从生成代码走向操作真实运行环境，浏览器调试接口的标准化意味着代理能力边界从文本层扩展到运行时层，这是长期趋势而非单点工具。<strong>法</strong>：把成熟的人机界面（DevTools）封装为机器可调用的协议接口，让代理复用既有生态而非重建，适用于所有存量工具链的 AI 化改造。<strong>术</strong>：将 MCP 服务接入本地代理工作流，先用只读能力（抓取控制台日志、网络请求）验证稳定性，再开放页面操作权限；对敏感域设置白名单，避免代理误触生产环境。<strong>器</strong>：chrome-devtools-mcp、Chrome DevTools Protocol、MCP 客户端（Claude Desktop、Cursor 等）。</p>
+<a class="source-link" href="https://github.com/ChromeDevTools/chrome-devtools-mcp" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
+      </div>
+      <div class="entry" data-cat="sec" style="animation-delay: 0.9s;">
+        <div class="entry-head">
+          <div class="bullet" style="background: var(--tab-3);"></div>
+          <div class="info">
+            <h3>实时数据地图成公共基础设施</h3>
+            <div class="meta">Hacker News · 🔥 52 · 4小时前</div>
+          </div>
+          <div class="expand-icon">▼</div>
+        </div>
+        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：突发事件中，<strong>实时可视化数据的公共价值已超过官方通报</strong>，个人开发者用公开数据源构建的地图正在承担准公共服务职能，这一模式会随数据开放度提升而常态化。<strong>法</strong>：以公开 API 为原料、以事件窗口为流量入口，用最小成本构建可复用的实时看板，把一次性热点转化为长期数据产品。<strong>术</strong>：优先接入 ADS-B Exchange、FAA 状态页等稳定数据源并做降级容错；用静态托管加定时拉取控制成本；在事件结束后保留历史快照，形成可检索的档案价值。<strong>器</strong>：ADS-B Exchange、Leaflet/MapLibre、GitHub Pages、Cloudflare Workers。</p>
+<a class="source-link" href="https://grounds.top/" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
+      </div>
+      <div class="entry" data-cat="sec" style="animation-delay: 0.98s;">
+        <div class="entry-head">
+          <div class="bullet" style="background: var(--tab-3);"></div>
+          <div class="info">
+            <h3>小模型专用化路线成型</h3>
+            <div class="meta">Hacker News · 🔥 54 · 8小时前</div>
+          </div>
+          <div class="expand-icon">▼</div>
+        </div>
+        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：模型竞争正从参数规模转向<strong>任务专用化与可评估性</strong>，能公开训练、评测、用例闭环的小模型在垂直场景中比通用大模型更具部署优势，这是成本与可控性驱动的长期分化。<strong>法</strong>：以评测集为锚点反向设计训练数据，把「训练—评估—用例」做成可复现的公开闭环，让模型能力可被外部验证而非仅靠宣传。<strong>术</strong>：先定义 3 至 5 个高频决策场景并标注基准答案；用公开评测结果指导数据配比；发布时同步给出失败案例与适用边界，降低集成方试错成本。<strong>器</strong>：Perplexity Decider、开源评测框架（lm-evaluation-harness）、Hugging Face 模型卡。</p>
+<a class="source-link" href="https://www.perplexity.ai/hub/blog/perplexity-decider" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
+      </div>
+      <div class="entry" data-cat="ai" style="animation-delay: 1.06s;">
+        <div class="entry-head">
+          <div class="bullet" style="background: var(--tab-1);"></div>
+          <div class="info">
+            <h3>LLM股票分析走向零成本自动化</h3>
+            <div class="meta">GitHub Trending · 🔥 57 · 11小时前</div>
+          </div>
+          <div class="expand-icon">▼</div>
+        </div>
+        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：金融分析的门槛正被LLM与开源工具组合持续拉低，从专业机构专属转向个人可零成本部署，<strong>信息处理能力的民主化</strong>是不可逆趋势。
+<strong>法</strong>：用LLM做多源信息聚合与结构化输出，把数据采集、分析、推送串成自动化流水线，<strong>以流程自动化替代人工盯盘</strong>，可迁移至任何信息密集型决策场景。
+<strong>术</strong>：先接入免费行情与新闻源做数据层；再用LLM生成结构化决策摘要而非直接下单；最后用定时任务实现零成本推送，人工复核后再执行。
+<strong>器</strong>：GitHub开源项目、LLM API、免费行情接口、定时任务平台。</p>
+<a class="source-link" href="https://github.com/sponsors/ZhuLinsen" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
+      </div>
+      <div class="entry" data-cat="sec" style="animation-delay: 1.1400000000000001s;">
+        <div class="entry-head">
+          <div class="bullet" style="background: var(--tab-3);"></div>
+          <div class="info">
+            <h3>FAA地面停飞解除暴露系统脆弱性</h3>
+            <div class="meta">Hacker News · 🔥 56 · 2小时前</div>
+          </div>
+          <div class="expand-icon">▼</div>
+        </div>
+        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：关键基础设施的<strong>单点故障风险</strong>随系统复杂度上升而放大，一次停飞即可瘫痪全国航空网络，冗余与快速恢复能力成为长期竞争力核心。
+<strong>法</strong>：建立<strong>分级熔断与快速恢复机制</strong>，在故障发生时优先保障安全边界，再以最短路径恢复运行，适用于任何高可用系统设计。
+<strong>术</strong>：梳理关键系统的单点依赖清单；预设分级停飞与恢复预案并定期演练；公开恢复时间线以管理外部预期。
+<strong>器</strong>：FAA通知系统、航空运行监控平台、应急通信与状态发布渠道。</p>
+<a class="source-link" href="https://www.fly.faa.gov/adv/adv_otherdis?adv_date=11142026&amp;advn=5" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
+      </div>
+      <div class="entry" data-cat="other" style="animation-delay: 1.2200000000000002s;">
+        <div class="entry-head">
+          <div class="bullet" style="background: var(--tab-6);"></div>
+          <div class="info">
+            <h3>英伟达的真正麻烦在生态依赖</h3>
+            <div class="meta">36kr · 🔥 100 · 16小时前</div>
+          </div>
+          <div class="expand-icon">▼</div>
+        </div>
+        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：算力龙头的长期风险不在单个高管去留，而在<strong>客户自研芯片与生态替代</strong>的持续推进，硬件垄断终将被软件生态与成本压力稀释。
+<strong>法</strong>：以<strong>生态锁定对冲硬件周期</strong>，通过软件栈、开发者社区与全栈方案提高迁移成本，适用于所有平台型硬件企业。
+<strong>术</strong>：评估客户自研芯片的替代进度与成本差；跟踪CUDA生态的迁移壁垒是否松动；关注供应链与地缘政策对交付的扰动。
+<strong>器</strong>：CUDA生态、自研AI芯片、云厂商算力平台、供应链数据源。</p>
+<a class="source-link" href="https://www.36kr.com/p/4068070220257154" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
+      </div>
+    </div>
+    <div class="footer">
+      <span>Generated by AI Hot Monitor v2 · DeepSeek · 11:01:33</span>
+      <span class="badge">💡 点击条目展开深度解读</span>
+    </div>
+  </div>
+<script>
+document.querySelectorAll('.entry .entry-head').forEach(h => h.addEventListener('click', () => h.closest('.entry').classList.toggle('expanded')));
+document.getElementById('expandAll').addEventListener('click', () => document.querySelectorAll('.entry:not(.hidden)').forEach(e => e.classList.add('expanded')));
+document.getElementById('collapseAll').addEventListener('click', () => document.querySelectorAll('.entry').forEach(e => e.classList.remove('expanded')));
+document.querySelectorAll('.tab').forEach(tab => tab.addEventListener('click', () => {
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  tab.classList.add('active');
+  const cat = tab.dataset.cat;
+  document.querySelectorAll('.entry').forEach(e => {
+    if (cat === 'all' || e.dataset.cat === cat) { e.classList.remove('hidden'); } else { e.classList.add('hidden'); e.classList.remove('expanded'); }
+  });
+}));
+document.addEventListener('keydown', e => { if (e.key === 'Escape') document.querySelectorAll('.entry').forEach(el => el.classList.remove('expanded')); });
+</script>
+</body>
+</html>

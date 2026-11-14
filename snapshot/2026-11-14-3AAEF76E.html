@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="referrer" content="no-referrer">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'unsafe-inline'; img-src data:; connect-src 'none'; frame-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'; frame-ancestors 'none'">
+<title>Anthropic Upgrades Claude Code Projects to Run Parallel AI Workers Hands-Free - AI热点快照</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','PingFang SC','Microsoft YaHei',sans-serif;background:#f8f9fa;color:#1a1a2e;line-height:1.8;min-height:100vh}
+.top-bar{background:#fff;border-bottom:1px solid #e5e7eb;padding:10px 20px;display:flex;align-items:center;gap:12px;position:sticky;top:0;z-index:10}
+.top-bar .logo{font-size:14px;font-weight:700;color:#0d9488}
+.top-bar .sep{color:#d1d5db}
+.top-bar .source{font-size:13px;color:#6b7280}
+.top-bar .back{margin-left:auto;font-size:13px;color:#0d9488;text-decoration:none}
+.top-bar .back:hover{text-decoration:underline}
+.container{max-width:760px;margin:0 auto;padding:40px 24px 80px}
+.article-title{font-size:1.8rem;font-weight:700;line-height:1.35;margin-bottom:16px;color:#1a1a2e}
+.article-meta{display:flex;flex-wrap:wrap;gap:16px;padding-bottom:20px;margin-bottom:28px;border-bottom:1px solid #e5e7eb;font-size:14px;color:#6b7280}
+.article-meta a{color:#0d9488;text-decoration:none}
+.article-meta a:hover{text-decoration:underline}
+.article-body{font-size:16.5px;line-height:1.85;color:#1f2937}
+.article-body p{margin-bottom:1.2em;text-align:justify}
+.article-body h1,.article-body h2,.article-body h3{font-size:1.25em;font-weight:700;margin:1.6em 0 0.6em;color:#1a1a2e}
+.article-body a{color:#0d9488}
+.article-body pre,.article-body code{background:#f1f5f9;border-radius:4px;font-size:0.9em}
+.article-body pre{padding:16px;overflow-x:auto;margin:1em 0}
+.article-body code{padding:2px 6px}
+.article-body blockquote{border-left:3px solid #0d9488;padding-left:16px;color:#4b5563;margin:1em 0}
+.article-body ul,.article-body ol{padding-left:1.6em;margin-bottom:1em}
+.article-body li{margin-bottom:0.4em}
+.article-body figure{margin:1.2em 0}
+.article-body figcaption{font-size:13px;color:#9ca3af;text-align:center;margin-top:6px}
+.footer{margin-top:48px;padding-top:20px;border-top:1px solid #e5e7eb;font-size:13px;color:#9ca3af;text-align:center}
+</style>
+</head>
+<body>
+<div class="top-bar">
+  <a class="back" href="../" style="font-size:13px;color:#6b7280;text-decoration:none">← 日报首页</a>
+  <span class="sep">|</span>
+  <span class="logo">AI热点快照</span>
+  <span class="sep">|</span>
+  <span class="source">Hacker News</span>
+  <a class="back" href="https://alphasignal.ai/news/anthropic-upgrades-claude-code-projects-to-run-parallel-ai-workers-hands-free" target="_blank" rel="noopener noreferrer">查看原文 ↗</a>
+</div>
+<div class="container">
+  <h1 class="article-title">Anthropic Upgrades Claude Code Projects to Run Parallel AI Workers Hands-Free</h1>
+  <div class="article-meta">
+    <span>作者: AlphaSignal Newsroom</span>
+    <span>来源: Hacker News</span>
+    <span>快照日期: 2026-11-14</span>
+  </div>
+  <div class="article-body"><div><div>
+<p>Anthropic has updated <a href="https://claude.com/form/projects?utm_source=alphasignal" target="_blank" rel="noopener noreferrer nofollow">Claude Code Projects</a> with proactive coordinator messages, read-only thread sharing, reminders, branching commands, and improved artifact navigation. The changes reduce the monitoring required when several cloud sessions work in parallel.</p>
+<p>Each project is a long-running conversation with a coordinator that assigns work to threads. Every thread runs as an independent Claude Code cloud session with its own repository copy and Git branch. The coordinator directs the project from thread reports, while overlapping code changes surface as standard Git merge conflicts when branches are combined.</p>
+<h2>The coordinator reports without prompting</h2>
+<p>The coordinator now answers questions directly in project chat and posts status updates as threads progress. Previously, developers had to monitor the thread list to find sessions waiting for input. The updated behavior brings pending decisions, completed tasks, and blocked work into the main conversation.</p>
+<h2>Read-only links stop at local access</h2>
+<p>Individual threads can now be shared through read-only links with anyone signed in to Claude. A developer can open the thread menu, select <strong>Share</strong>, and send the generated URL without exposing the rest of the project.</p>
+<p>Threads that accessed a local computer remain unshareable. The restriction prevents shared transcripts from exposing local file contents, shell output, or other machine data gathered during the session.</p>
+<h2>Park a thread or branch the work</h2>
+<div><table>
+<thead>
+<tr>
+<th>Control</th>
+<th>Behavior</th>
+<th>Best use</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Reminders</strong></td>
+<td>Hide a thread until a specified time, then return it to the thread list and notify the coordinator.</td>
+<td>Work that depends on a later review, deployment, or external response.</td>
+</tr>
+<tr>
+<td><code>/btw</code></td>
+<td>Open a separate thread for a tangent while preserving the current thread’s goal and context.</td>
+<td>Investigating a related issue without diverting active work.</td>
+</tr>
+<tr>
+<td><code>/fork</code></td>
+<td>Create a new thread from the current thread’s state.</td>
+<td>Testing an alternative implementation or debugging path.</td>
+</tr>
+</tbody>
+</table></div>
+<p>The two slash commands were already available in regular Claude Code sessions. Their addition to Projects brings the same branching workflow to coordinated, multi-thread work.</p>
+<h2>Artifacts surface sooner</h2>
+<p>The threads panel now places recently opened, updated, and pinned threads in a row at the top. Each thread can also display thumbnails for generated documents, diagrams, and other artifacts, with the previews controlled through view settings.</p>
+<p>The redesign simplifies project settings and local-folder access as well. Anthropic has released the changes on the web, desktop clients, and the latest mobile app.</p>
+<h2>Parallelism draws from the same allowance</h2>
+<p>Anthropic introduced the public beta on September 17 for Pro and Max subscribers who joined the waitlist. Team and Enterprise plans remain unsupported. Eligible subscribers who lack access can still <a href="https://claude.com/form/projects?utm_source=alphasignal" target="_blank" rel="noopener noreferrer nofollow">join the waitlist</a>.</p>
+<p>Projects carry no separate fee, but every worker consumes the subscriber’s existing Claude Code allowance. Anthropic limits accounts to 200 new threads per day across all projects. A thread that reaches a usage limit pauses and resumes automatically when capacity becomes available.</p>
+<p>Project usage appears separately in the usage controls, and developers can choose the model and effort level for the coordinator and worker threads. New projects default to Opus for both roles, with low effort for the coordinator and high effort for workers. Several high-effort sessions running at once can exhaust plan limits faster than a single Claude Code session.</p>
+<h2>Where many threads pay off</h2>
+<p>Projects fit engineering work that can be divided into independent tasks and reconciled through branches and pull requests. Anthropic’s examples include:</p>
+<ul>
+<li><strong>Performance work:</strong> Assign separate threads to profile endpoints, test optimizations, and open pull requests. A target such as p75 checkout latency refers to the response time at or below which 75% of requests finish.</li>
+<li><strong>Cross-repository migrations:</strong> Connect API, web, and mobile repositories, then create one thread per codebase and report the required merge order.</li>
+<li><strong>Batch changes:</strong> Distribute refactors, dependency upgrades, test repairs, or bug-triage items across parallel sessions.</li>
+</ul>
+<p>Tasks with strict dependencies still require developers to sequence pull requests and resolve conflicts. Projects also remain cloud-only and limited to Claude Code, while parallel workers draw from the same plan limits. Small changes that fit one branch and one context window generally consume fewer resources in a regular Claude Code session.</p>
+</div></div></div>
+  <div class="footer">
+    本文由 AI热点监控系统自动抓取 · 内容版权归原作者/网站所有<br>
+    快照仅用于学习交流，如需转载请访问原文
+  </div>
+</div>
+</body>
+</html>
