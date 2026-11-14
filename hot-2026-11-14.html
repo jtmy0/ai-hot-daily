@@ -91,7 +91,7 @@ body { background: var(--bg-outer); font-family: var(--font-body); min-height: 1
       <a class="back-link" href="./">← 归档首页</a>
       <h1>AI 热点日报</h1>
       <div class="subtitle">
-        <span class="date">2026年11月14日，星期六 · 道法术器解读</span>
+        <span class="date">2026年11月14日，星期六· 含新增 · 道法术器解读</span>
         <div class="controls">
           <button id="expandAll">展开全部</button>
           <button id="collapseAll">收起全部</button>
@@ -99,207 +99,117 @@ body { background: var(--bg-outer); font-family: var(--font-body); min-height: 1
       </div>
     </div>
     <div class="entries" id="entries">
-      <div class="entry" data-cat="sec" style="animation-delay: 0.1s;">
+      <div class="entry" data-cat="ai" style="animation-delay: 0.1s;">
         <div class="entry-head">
-          <div class="bullet" style="background: var(--tab-3);"></div>
+          <div class="bullet" style="background: var(--tab-1);"></div>
           <div class="info">
-            <h3>FAA全国停飞暴露系统脆弱</h3>
-            <div class="meta">Hacker News · 🔥 100 · 6小时前</div>
+            <h3><span class="badge-icon"> 🆕</span> AI技能自学路径重排</h3>
+            <div class="meta">Hacker News · 🔥 51 · 5小时前</div>
           </div>
           <div class="expand-icon">▼</div>
         </div>
-        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：关键基础设施的集中式管控在提升效率的同时，也制造了单点失效的放大效应，一次系统故障即可让全国空域停摆，这类风险随系统复杂度上升而递增而非递减。<strong>法</strong>：对高耦合关键系统建立<strong>分级熔断与降级运行机制</strong>，用可控的小范围停摆替代全局崩溃，适用于航空、电网、支付清算等任何集中调度型基础设施。<strong>术</strong>：梳理系统内所有单点依赖，为每类故障预设降级预案并定期演练；建立跨区域冗余调度能力，避免全国统一指令成为唯一路径；将故障响应时间纳入运维KPI考核。<strong>器</strong>：FAA空中交通管制系统、航班调度平台、冗余通信与备份调度系统。</p>
-<a class="source-link" href="https://www.nbcnews.com/news/us-news/faa-orders-nationwide-ground-stop-departing-flights-reasons-safety-rcna609247" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
+        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：AI技能的价值重心正从模型训练转向任务编排与验证，稀缺的不是会调API的人，而是能把模糊需求拆成可验证流程的人。<strong>法</strong>：以产出物倒推学习路径，先锁定一个可交付的工作流，再补齐其中缺失的环节，避免按课程目录线性学习。<strong>术</strong>：选一个高频重复任务做端到端自动化，记录失败案例形成评估集；把提示词、检索、工具调用分层拆开单独测试；用真实数据跑回归，确认改动不退化。<strong>器</strong>：Claude/ChatGPT、LangChain、n8n、Dify、本地向量库。</p>
+<a class="source-link" href="https://news.ycombinator.com/item?id=50494696" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
       </div>
       <div class="entry" data-cat="ai" style="animation-delay: 0.18s;">
         <div class="entry-head">
           <div class="bullet" style="background: var(--tab-1);"></div>
           <div class="info">
-            <h3>Claude Code转向并行代理</h3>
-            <div class="meta">Hacker News · 🔥 51 · 3小时前</div>
+            <h3><span class="badge-icon"> 🆕</span> 算力稀缺的资本闭环</h3>
+            <div class="meta">Hacker News · 🔥 71 · 9小时前</div>
           </div>
           <div class="expand-icon">▼</div>
         </div>
-        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：AI编程工具正从<strong>单轮对话助手</strong>演进为<strong>多代理并行执行系统</strong>，竞争焦点从模型能力转向任务编排与无人值守的工程化能力，这是Agent落地的必然方向。<strong>法</strong>：把复杂任务拆解为可并行的子任务，由多个代理分工执行、统一收敛结果，该模式可迁移到数据分析、内容生产、测试运维等任何可分解的流程型工作。<strong>术</strong>：先将任务拆成互不依赖的子模块并定义清晰接口；为并行代理设置统一的产出格式与冲突合并规则；保留人工审核节点，避免无人值守下的错误累积。<strong>器</strong>：Claude Code、多代理编排框架、Git版本控制与CI流水线。</p>
-<a class="source-link" href="https://alphasignal.ai/news/anthropic-upgrades-claude-code-projects-to-run-parallel-ai-workers-hands-free" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
+        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：算力供给方通过资本手段影响需求侧，是<strong>垂直整合的经典路径</strong>，长期看硬件厂商会从卖设备转向卖产能与生态绑定。<strong>法</strong>：当上游供给集中且下游分散时，用投资或补贴锁定客户订单，把市场风险转化为资产负债表风险，换取定价权。<strong>术</strong>：评估采购成本时把供应商投资关系纳入考量，识别真实供需；对关键算力做多源备份，避免单一绑定；关注租赁价格与二手市场作为稀缺性的反向指标。<strong>器</strong>：Nvidia GPU、云厂商算力租赁、CoreWeave、二手GPU交易平台。</p>
+<a class="source-link" href="https://www.techpowerup.com/354814/nvidia-allegedly-engineered-scarcity-by-funding-ai-startups-to-buy-its-gpus" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
       </div>
       <div class="entry" data-cat="ai" style="animation-delay: 0.26s;">
         <div class="entry-head">
           <div class="bullet" style="background: var(--tab-1);"></div>
           <div class="info">
-            <h3>AI挖掘哥德尔手稿定理</h3>
-            <div class="meta">Hacker News · 🔥 63 · 10小时前</div>
+            <h3><span class="badge-icon"> 🔄</span> 编码代理接入浏览器调试</h3>
+            <div class="meta">GitHub Trending · 🔥 77 · 20小时前</div>
           </div>
           <div class="expand-icon">▼</div>
         </div>
-        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：AI正从<strong>生成内容</strong>转向<strong>发现知识</strong>，在形式化数学等可验证领域率先突破，长期看将重塑学术研究的产出方式与优先级分配。<strong>法</strong>：把AI用于<strong>高验证成本、高结构化程度</strong>的领域做辅助发现，人类负责提出问题与判定价值，机器负责穷举与形式化验证，该分工可复制到法律条文检索、代码审计等场景。<strong>术</strong>：先把手稿等非结构化资料数字化并转为机器可读格式；用形式化证明工具对AI输出做机器验证，剔除不可靠结论；建立人机协作的成果归属与复核流程。<strong>器</strong>：定理证明助手（Lean、Coq）、手稿OCR与数字化工具、大模型推理接口。</p>
-<a class="source-link" href="https://www.theguardian.com/science/2026/nov/13/kurt-godel-notebooks-ai-helps-unlock-hidden-discoveries-man-who-transformed-maths" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
+        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：AI编码代理的瓶颈已从生成代码转向<strong>获取运行时反馈</strong>，能读取真实运行状态的代理才会形成闭环，浏览器调试接口成为代理的基础设施。<strong>法</strong>：把人类调试工具协议化、暴露为代理可调用的接口，让代理在真实环境中自我验证，而非依赖静态代码推断。<strong>术</strong>：在代理工作流中接入页面快照与控制台日志，作为修改后的验证步骤；限定代理可执行的操作范围，防止误改生产环境；把复现步骤固化为可重跑的脚本。<strong>器</strong>：chrome-devtools-mcp、Chrome DevTools Protocol、Claude Code、Cursor。</p>
+<a class="source-link" href="https://github.com/ChromeDevTools/chrome-devtools-mcp" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
       </div>
       <div class="entry" data-cat="ai" style="animation-delay: 0.33999999999999997s;">
         <div class="entry-head">
           <div class="bullet" style="background: var(--tab-1);"></div>
           <div class="info">
-            <h3>安全能力下沉为开发者工具</h3>
-            <div class="meta">GitHub Trending · 🔥 70 · 11小时前</div>
+            <h3><span class="badge-icon"> 🔄</span> 安全能力下沉为开发工具链</h3>
+            <div class="meta">GitHub Trending · 🔥 74 · 20小时前</div>
           </div>
           <div class="expand-icon">▼</div>
         </div>
-        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：安全能力正从独立产品下沉为嵌入开发流程的基础设施，漏洞发现与修复的闭环被压缩进编码环节，长期趋势是<strong>安全左移成为默认配置</strong>而非附加选项。
-<strong>法</strong>：把专业能力封装成CLI与SDK，让使用者在原有工作流内零成本调用，适用于任何想把高门槛能力普及化的场景。
-<strong>术</strong>：在CI流水线中接入扫描步骤，对存量仓库做一次基线扫描建立漏洞清单，按修复建议批量验证误报率。
-<strong>器</strong>：Codex Security CLI、TypeScript SDK、GitHub Actions。</p>
+        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：安全能力正从独立审计环节下沉为开发工具链的内置组件，AI 代码生成提速后，漏洞发现与修复必须同步前置，否则交付速度会被安全审查反噬。<strong>法</strong>：把高成本专业能力封装成 CLI 与 SDK，嵌入既有工作流而非另建平台，是能力产品化的通用路径。<strong>术</strong>：1. 在 CI 流水线中接入扫描步骤，设定阻断阈值；2. 用 SDK 把漏洞验证结果回写工单系统；3. 先在小范围仓库灰度，统计误报率再全量。<strong>器</strong>：OpenAI Codex Security CLI、TypeScript SDK、GitHub Actions、SAST 扫描工具。</p>
 <a class="source-link" href="https://github.com/openai/codex-security" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
       </div>
-      <div class="entry" data-cat="sec" style="animation-delay: 0.42000000000000004s;">
+      <div class="entry" data-cat="ai" style="animation-delay: 0.42000000000000004s;">
         <div class="entry-head">
-          <div class="bullet" style="background: var(--tab-3);"></div>
+          <div class="bullet" style="background: var(--tab-1);"></div>
           <div class="info">
-            <h3>世界模型靠实验数据说话</h3>
-            <div class="meta">Hacker News · 🔥 58 · 9小时前</div>
+            <h3><span class="badge-icon"> 🆕</span> AI 编码红利受制于工程约束</h3>
+            <div class="meta">Hacker News · 🔥 60 · 21小时前</div>
           </div>
           <div class="expand-icon">▼</div>
         </div>
-        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：AI架构路线的胜负不取决于论文声量，而取决于<strong>可复现的实验证据</strong>，世界模型领域正从概念叙事进入工程验证阶段。
-<strong>法</strong>：用大规模对照实验替代单点结论，把模糊的架构之争转化为可量化的指标对比，任何技术选型都适用。
-<strong>术</strong>：先固定评测基准与随机种子，再逐项消融变量，记录失败案例而非只报成功结果。
-<strong>器</strong>：JEPA系列模型、开源训练框架、实验追踪工具。</p>
-<a class="source-link" href="https://haddyalchaer.com/jepa" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
+        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：代码生成速度提升并不自动转化为软件质量提升，瓶颈已从编写转移到需求澄清、架构决策与验证环节，<strong>工程系统的复杂度不会因工具变快而降低</strong>。<strong>法</strong>：评估 AI 工具价值时，以端到端交付周期而非单点编码速度为准，识别流程中真正的约束点再投入。<strong>术</strong>：1. 记录引入 AI 前后的需求到上线全链路耗时；2. 拆分编码、评审、测试各环节占比，定位新瓶颈；3. 对瓶颈环节优先做流程改造而非换工具。<strong>器</strong>：DORA 指标集、价值流分析工具、代码评审平台。</p>
+<a class="source-link" href="https://www.youtube.com/watch?v=IRK8h67ol7Q" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
       </div>
       <div class="entry" data-cat="sec" style="animation-delay: 0.5s;">
         <div class="entry-head">
           <div class="bullet" style="background: var(--tab-3);"></div>
           <div class="info">
-            <h3>低成本手段打击高价值节点</h3>
-            <div class="meta">Hacker News · 🔥 56 · 2小时前</div>
+            <h3><span class="badge-icon"> 🔄</span> 世界模型研究回归实验验证</h3>
+            <div class="meta">Hacker News · 🔥 59 · 18小时前</div>
           </div>
           <div class="expand-icon">▼</div>
         </div>
-        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：现代冲突的效能比正在重构，<strong>廉价精确打击对高价值固定设施的杠杆率远超传统兵力对抗</strong>，炼油、电网这类节点天然脆弱。
-<strong>法</strong>：避开正面消耗，锁定对方体系中修复成本最高、替代周期最长的单点，用非对称投入放大战果。
-<strong>术</strong>：优先评估目标的修复周期而非摧毁难度，计算打击后的产能缺口持续时间，关注备件与工程能力的瓶颈。
-<strong>器</strong>：远程无人机、产能与出口统计数据、卫星影像分析平台。</p>
-<a class="source-link" href="https://english.nv.ua/nation/thirteen-day-drone-blitz-paralyzes-36-of-moscow-s-oil-50658616.html" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
+        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：世界模型赛道正从概念叙事转向<strong>可复现的实验证据</strong>，大规模试错积累的经验数据成为区分真实进展与营销话术的分水岭。<strong>法</strong>：在快速演进的 AI 领域，用高密度小规模实验建立私有认知资产，比追随公开结论更能形成判断优势。<strong>术</strong>：1. 固定基线配置，单变量迭代并完整记录失败样本；2. 建立实验台账，标注假设、改动与结果；3. 定期横向对比公开复现结果，校准自身结论。<strong>器</strong>：JEPA 系列模型、实验追踪工具如 Weights &amp; Biases、开源复现仓库。</p>
+<a class="source-link" href="https://haddyalchaer.com/jepa" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
       </div>
-      <div class="entry" data-cat="ai" style="animation-delay: 0.58s;">
+      <div class="entry" data-cat="sec" style="animation-delay: 0.58s;">
+        <div class="entry-head">
+          <div class="bullet" style="background: var(--tab-3);"></div>
+          <div class="info">
+            <h3><span class="badge-icon"> 🆕</span> ggml 1.0 落地端侧推理</h3>
+            <div class="meta">Hacker News · 🔥 59 · 10小时前</div>
+          </div>
+          <div class="expand-icon">▼</div>
+        </div>
+        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：端侧推理框架进入版本稳定期，意味着 AI 能力正从云端集中式供给转向设备本地化部署，这一趋势由隐私成本、延迟成本和算力成本三重压力长期驱动。<strong>法</strong>：基础设施项目以 1.0 版本为信号完成从实验品到生产依赖的切换，生态参与者应在此节点重新评估技术栈锁定风险与迁移窗口。<strong>术</strong>：核查现有推理链路是否依赖 0.x 版本的非稳定 API，制定升级与回滚预案；在目标硬件上跑基准测试对比量化前后吞吐与精度损失；将框架版本纳入依赖锁定清单，避免被动跟随破坏性变更。<strong>器</strong>：ggml、llama.cpp、GGUF 量化格式、本地 CPU/边缘设备推理环境。</p>
+<a class="source-link" href="https://github.com/ggml-org/ggml/releases/tag/v1.0.0" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
+      </div>
+      <div class="entry" data-cat="ai" style="animation-delay: 0.66s;">
         <div class="entry-head">
           <div class="bullet" style="background: var(--tab-1);"></div>
           <div class="info">
-            <h3>编码代理接入Web规范</h3>
-            <div class="meta">GitHub Trending · 🔥 100 · 11小时前</div>
+            <h3><span class="badge-icon"> 🔄</span> 编码代理接入规范知识源</h3>
+            <div class="meta">GitHub Trending · 🔥 100 · 20小时前</div>
           </div>
           <div class="expand-icon">▼</div>
         </div>
-        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：AI编码代理的能力上限正从模型参数转向外部知识供给，谁掌握权威、结构化、可被机器消费的规范源，谁就定义代理输出的质量基线。<strong>法</strong>：将领域最佳实践沉淀为代理可直接检索的规范仓库，用版本化文档替代一次性提示词，使知识更新与模型迭代解耦。<strong>术</strong>：把团队编码规范整理成结构化文档并纳入代理上下文；建立规范变更与代理行为的回归校验；优先覆盖安全与可访问性等高频出错项。<strong>器</strong>：Chrome modern-web-guidance 仓库、GitHub、各类编码代理。</p>
+        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：AI 编码代理的竞争焦点正从模型能力转向<strong>上下文质量</strong>，谁能向代理稳定供给权威、版本化的最佳实践，谁就掌握输出可靠性的上游。<strong>法</strong>：把团队规范、框架文档、安全基线整理为机器可读的结构化知识源，供代理按需检索，而非依赖模型记忆，这一策略可复用于任何需要约束生成质量的场景。<strong>术</strong>：将编码规范拆分为可检索的条目并标注适用版本；在代理工作流中配置文档源优先级，冲突时以官方源为准；定期比对代理产出与规范条目，量化偏离率并回补缺失文档。<strong>器</strong>：modern-web-guidance-src、Chrome 团队 Web 最佳实践文档、编码代理的文档检索插件。</p>
 <a class="source-link" href="https://github.com/GoogleChrome/modern-web-guidance-src" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
-      </div>
-      <div class="entry" data-cat="dev" style="animation-delay: 0.66s;">
-        <div class="entry-head">
-          <div class="bullet" style="background: var(--tab-2);"></div>
-          <div class="info">
-            <h3>Tailscale数据面独立复用</h3>
-            <div class="meta">GitHub Trending · 🔥 57 · 11小时前</div>
-          </div>
-          <div class="expand-icon">▼</div>
-        </div>
-        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：网络产品的价值正从控制面编排下沉到数据面能力，控制面负责身份与策略，数据面可被单独拆出复用，基础设施趋向模块化组合。<strong>法</strong>：把成熟产品的底层传输能力剥离为独立工具，降低接入门槛，以单点工具带动整体生态采用。<strong>术</strong>：在已有 Tailscale 网络中直接用 tailcat 做点对点调试与文件传输；评估数据面独立后对身份校验与访问审计的影响；将临时调试通道纳入安全策略白名单。<strong>器</strong>：tailcat、Tailscale 数据面、netcat。</p>
-<a class="source-link" href="https://github.com/tailscale/tailcat" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
       </div>
       <div class="entry" data-cat="ai" style="animation-delay: 0.74s;">
         <div class="entry-head">
           <div class="bullet" style="background: var(--tab-1);"></div>
           <div class="info">
-            <h3>代理协作进入评审工作台</h3>
-            <div class="meta">GitHub Trending · 🔥 53 · 11小时前</div>
+            <h3><span class="badge-icon"> 🆕</span> DeepSeek 全家桶低价抢位</h3>
+            <div class="meta">zhihu · 🔥 58 · 21小时前</div>
           </div>
           <div class="expand-icon">▼</div>
         </div>
-        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：AI代理从生成工具演化为协作主体，人类角色转向规划、决策与评审，工作流重心从写代码迁移到管代理，可审计的中间产物成为核心资产。<strong>法</strong>：为代理任务建立计划、标注、评审的闭环工作台，把隐式推理外化为可讨论的文档，降低返工与失控风险。<strong>术</strong>：任务启动前要求代理输出可批注的计划；对关键决策点设置人工确认闸门；将评审记录沉淀为后续任务的上下文。<strong>器</strong>：plannotator、GitHub、编码代理。</p>
-<a class="source-link" href="https://github.com/backnotprop/plannotator" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
-      </div>
-      <div class="entry" data-cat="ai" style="animation-delay: 0.82s;">
-        <div class="entry-head">
-          <div class="bullet" style="background: var(--tab-1);"></div>
-          <div class="info">
-            <h3>编码代理接管浏览器调试</h3>
-            <div class="meta">GitHub Trending · 🔥 52 · 11小时前</div>
-          </div>
-          <div class="expand-icon">▼</div>
-        </div>
-        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：AI 编码代理正从生成代码走向操作真实运行环境，浏览器调试接口的标准化意味着代理能力边界从文本层扩展到运行时层，这是长期趋势而非单点工具。<strong>法</strong>：把成熟的人机界面（DevTools）封装为机器可调用的协议接口，让代理复用既有生态而非重建，适用于所有存量工具链的 AI 化改造。<strong>术</strong>：将 MCP 服务接入本地代理工作流，先用只读能力（抓取控制台日志、网络请求）验证稳定性，再开放页面操作权限；对敏感域设置白名单，避免代理误触生产环境。<strong>器</strong>：chrome-devtools-mcp、Chrome DevTools Protocol、MCP 客户端（Claude Desktop、Cursor 等）。</p>
-<a class="source-link" href="https://github.com/ChromeDevTools/chrome-devtools-mcp" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
-      </div>
-      <div class="entry" data-cat="sec" style="animation-delay: 0.9s;">
-        <div class="entry-head">
-          <div class="bullet" style="background: var(--tab-3);"></div>
-          <div class="info">
-            <h3>实时数据地图成公共基础设施</h3>
-            <div class="meta">Hacker News · 🔥 52 · 4小时前</div>
-          </div>
-          <div class="expand-icon">▼</div>
-        </div>
-        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：突发事件中，<strong>实时可视化数据的公共价值已超过官方通报</strong>，个人开发者用公开数据源构建的地图正在承担准公共服务职能，这一模式会随数据开放度提升而常态化。<strong>法</strong>：以公开 API 为原料、以事件窗口为流量入口，用最小成本构建可复用的实时看板，把一次性热点转化为长期数据产品。<strong>术</strong>：优先接入 ADS-B Exchange、FAA 状态页等稳定数据源并做降级容错；用静态托管加定时拉取控制成本；在事件结束后保留历史快照，形成可检索的档案价值。<strong>器</strong>：ADS-B Exchange、Leaflet/MapLibre、GitHub Pages、Cloudflare Workers。</p>
-<a class="source-link" href="https://grounds.top/" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
-      </div>
-      <div class="entry" data-cat="sec" style="animation-delay: 0.98s;">
-        <div class="entry-head">
-          <div class="bullet" style="background: var(--tab-3);"></div>
-          <div class="info">
-            <h3>小模型专用化路线成型</h3>
-            <div class="meta">Hacker News · 🔥 54 · 8小时前</div>
-          </div>
-          <div class="expand-icon">▼</div>
-        </div>
-        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：模型竞争正从参数规模转向<strong>任务专用化与可评估性</strong>，能公开训练、评测、用例闭环的小模型在垂直场景中比通用大模型更具部署优势，这是成本与可控性驱动的长期分化。<strong>法</strong>：以评测集为锚点反向设计训练数据，把「训练—评估—用例」做成可复现的公开闭环，让模型能力可被外部验证而非仅靠宣传。<strong>术</strong>：先定义 3 至 5 个高频决策场景并标注基准答案；用公开评测结果指导数据配比；发布时同步给出失败案例与适用边界，降低集成方试错成本。<strong>器</strong>：Perplexity Decider、开源评测框架（lm-evaluation-harness）、Hugging Face 模型卡。</p>
-<a class="source-link" href="https://www.perplexity.ai/hub/blog/perplexity-decider" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
-      </div>
-      <div class="entry" data-cat="ai" style="animation-delay: 1.06s;">
-        <div class="entry-head">
-          <div class="bullet" style="background: var(--tab-1);"></div>
-          <div class="info">
-            <h3>LLM股票分析走向零成本自动化</h3>
-            <div class="meta">GitHub Trending · 🔥 57 · 11小时前</div>
-          </div>
-          <div class="expand-icon">▼</div>
-        </div>
-        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：金融分析的门槛正被LLM与开源工具组合持续拉低，从专业机构专属转向个人可零成本部署，<strong>信息处理能力的民主化</strong>是不可逆趋势。
-<strong>法</strong>：用LLM做多源信息聚合与结构化输出，把数据采集、分析、推送串成自动化流水线，<strong>以流程自动化替代人工盯盘</strong>，可迁移至任何信息密集型决策场景。
-<strong>术</strong>：先接入免费行情与新闻源做数据层；再用LLM生成结构化决策摘要而非直接下单；最后用定时任务实现零成本推送，人工复核后再执行。
-<strong>器</strong>：GitHub开源项目、LLM API、免费行情接口、定时任务平台。</p>
-<a class="source-link" href="https://github.com/sponsors/ZhuLinsen" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
-      </div>
-      <div class="entry" data-cat="sec" style="animation-delay: 1.1400000000000001s;">
-        <div class="entry-head">
-          <div class="bullet" style="background: var(--tab-3);"></div>
-          <div class="info">
-            <h3>FAA地面停飞解除暴露系统脆弱性</h3>
-            <div class="meta">Hacker News · 🔥 56 · 2小时前</div>
-          </div>
-          <div class="expand-icon">▼</div>
-        </div>
-        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：关键基础设施的<strong>单点故障风险</strong>随系统复杂度上升而放大，一次停飞即可瘫痪全国航空网络，冗余与快速恢复能力成为长期竞争力核心。
-<strong>法</strong>：建立<strong>分级熔断与快速恢复机制</strong>，在故障发生时优先保障安全边界，再以最短路径恢复运行，适用于任何高可用系统设计。
-<strong>术</strong>：梳理关键系统的单点依赖清单；预设分级停飞与恢复预案并定期演练；公开恢复时间线以管理外部预期。
-<strong>器</strong>：FAA通知系统、航空运行监控平台、应急通信与状态发布渠道。</p>
-<a class="source-link" href="https://www.fly.faa.gov/adv/adv_otherdis?adv_date=11142026&amp;advn=5" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
-      </div>
-      <div class="entry" data-cat="other" style="animation-delay: 1.2200000000000002s;">
-        <div class="entry-head">
-          <div class="bullet" style="background: var(--tab-6);"></div>
-          <div class="info">
-            <h3>英伟达的真正麻烦在生态依赖</h3>
-            <div class="meta">36kr · 🔥 100 · 16小时前</div>
-          </div>
-          <div class="expand-icon">▼</div>
-        </div>
-        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：算力龙头的长期风险不在单个高管去留，而在<strong>客户自研芯片与生态替代</strong>的持续推进，硬件垄断终将被软件生态与成本压力稀释。
-<strong>法</strong>：以<strong>生态锁定对冲硬件周期</strong>，通过软件栈、开发者社区与全栈方案提高迁移成本，适用于所有平台型硬件企业。
-<strong>术</strong>：评估客户自研芯片的替代进度与成本差；跟踪CUDA生态的迁移壁垒是否松动；关注供应链与地缘政策对交付的扰动。
-<strong>器</strong>：CUDA生态、自研AI芯片、云厂商算力平台、供应链数据源。</p>
-<a class="source-link" href="https://www.36kr.com/p/4068070220257154" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
+        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：大模型 API 定价正沿<strong>推理成本曲线</strong>持续下探，价格战本质是把模型能力商品化，利润向应用层与数据层转移，这是算力规模效应下的长期结构。<strong>法</strong>：以低价 API 为底座，把自建模型的固定成本转为可变成本，将资源集中投向场景数据与工作流壁垒，适用于所有被基础能力商品化冲击的领域。<strong>术</strong>：按调用量测算迁移前后的总成本，含重试与失败开销；对关键任务保留多供应商路由，避免单一低价依赖；把节省的预算投入私有数据清洗与评测集建设，形成不可替代的差异化。<strong>器</strong>：DeepSeek 全家桶 API、多模型路由网关、私有评测集与成本监控面板。</p>
+<a class="source-link" href="https://www.zhihu.com/question/2104704747362054197" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
       </div>
     </div>
     <div class="footer">
-      <span>Generated by AI Hot Monitor v2 · DeepSeek · 11:01:33</span>
+      <span>Generated by AI Hot Monitor v2 · DeepSeek · 20:01:33</span>
       <span class="badge">💡 点击条目展开深度解读</span>
     </div>
   </div>
