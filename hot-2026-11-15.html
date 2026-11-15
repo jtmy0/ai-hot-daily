@@ -91,7 +91,7 @@ body { background: var(--bg-outer); font-family: var(--font-body); min-height: 1
       <a class="back-link" href="./">← 归档首页</a>
       <h1>AI 热点日报</h1>
       <div class="subtitle">
-        <span class="date">2026年11月15日，星期日 · 道法术器解读</span>
+        <span class="date">2026年11月15日，星期日· 含新增 · 道法术器解读</span>
         <div class="controls">
           <button id="expandAll">展开全部</button>
           <button id="collapseAll">收起全部</button>
@@ -103,212 +103,194 @@ body { background: var(--bg-outer); font-family: var(--font-body); min-height: 1
         <div class="entry-head">
           <div class="bullet" style="background: var(--tab-3);"></div>
           <div class="info">
-            <h3>星舰回收验证复用闭环</h3>
-            <div class="meta">Hacker News · 🔥 100 · 6小时前</div>
+            <h3><span class="badge-icon"> 🔄</span> 星舰回收成功，复用闭环成型</h3>
+            <div class="meta">Hacker News · 🔥 100 · 15小时前</div>
           </div>
           <div class="expand-icon">▼</div>
         </div>
-        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：可复用运载能力是降低入轨成本的核心变量，火箭回收从技术验证走向工程化常态，意味着发射经济性正在被重写，太空产业从一次性消耗转向资产化运营。
-<strong>法</strong>：把高成本一次性投入拆解为可回收、可迭代的资产单元，通过重复使用摊薄单次成本，适用于任何重资产、高单价行业。
-<strong>术</strong>：跟踪回收成功率与翻修周期的公开数据，判断复用成本拐点；评估自身业务中哪些环节可转为可复用模块；建立单次成本与资产周转率的对照指标。
-<strong>器</strong>：Starship 超重型运载系统、回收塔机械臂、发射遥测数据平台。</p>
+        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：可复用重型运载的每一次成功回收，都在把发射成本从一次性消耗品逻辑推向航空式运营逻辑，长期趋势是入轨运力变成可定价、可排期的<strong>基础设施</strong>。<strong>法</strong>：用快速迭代的实物试验替代长周期仿真验证，允许失败、快速归因、下一发即修正，这套<strong>试错-收敛</strong>循环适用于任何硬件成本已低于验证成本的领域。<strong>术</strong>：把回收成功率、单公斤入轨成本、复飞周转天数作为核心跟踪指标；评估自身业务是否具备被低成本运力重构的可能；提前布局对发射频次敏感的上下游。<strong>器</strong>：Starship 超重型系统、猛禽发动机、SpaceX 发射与回收测控链路。</p>
 <a class="source-link" href="https://www.spacex.com/launches/starship-flight-15" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
       </div>
       <div class="entry" data-cat="sec" style="animation-delay: 0.18s;">
         <div class="entry-head">
           <div class="bullet" style="background: var(--tab-3);"></div>
           <div class="info">
-            <h3>低代码应用泄露隐私数据</h3>
-            <div class="meta">Hacker News · 🔥 92 · 9小时前</div>
+            <h3><span class="badge-icon"> 🔄</span> 低代码应用泄露隐私数据</h3>
+            <div class="meta">Hacker News · 🔥 83 · 18小时前</div>
           </div>
           <div class="expand-icon">▼</div>
         </div>
-        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：低代码与 AI 生成应用把开发门槛降到接近零，但安全责任并未随之转移，<strong>默认配置即公开暴露</strong>成为结构性风险，工具普及速度远超安全素养普及速度。
-<strong>法</strong>：任何降低生产门槛的技术，都必须同步内置安全默认值，把权限校验从可选配置改为强制前置，适用于所有自助式平台。
-<strong>术</strong>：上线前逐项检查数据库读写权限与公开访问开关；对用户数据字段做最小化采集与脱敏；建立自动化扫描，定期检测公开可访问的接口与集合。
-<strong>器</strong>：Lovable、Supabase 行级权限策略、安全扫描与渗透测试工具。</p>
+        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：低代码与 AI 生成应用把开发门槛降到接近零，但<strong>安全责任</strong>没有同步下放，权限配置与数据暴露面成为平台化生产的结构性短板，泄露会随应用数量线性放大。<strong>法</strong>：把安全默认值前置到生成环节，用<strong>最小权限</strong>和默认私有作为产品出厂设定，而非交给用户事后配置，这是所有降低门槛的工具都必须补的课。<strong>术</strong>：上线前审计数据库读写规则与公开访问开关；对用户数据做字段级分类，敏感项默认加密或脱敏；建立自动化扫描，定期检测可匿名访问的接口与页面。<strong>器</strong>：Lovable 等 AI 应用生成平台、Supabase/Firebase 权限规则、接口暴露面扫描工具。</p>
 <a class="source-link" href="https://www.crissyfield.de/research/lovable-en/" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
       </div>
       <div class="entry" data-cat="ai" style="animation-delay: 0.26s;">
         <div class="entry-head">
           <div class="bullet" style="background: var(--tab-1);"></div>
           <div class="info">
-            <h3>浏览器调试接入编码智能体</h3>
-            <div class="meta">GitHub Trending · 🔥 77 · 11小时前</div>
+            <h3><span class="badge-icon"> 🔄</span> 两百行 Jax 复现 DeepSeek …</h3>
+            <div class="meta">Hacker News · 🔥 59 · 21小时前</div>
           </div>
           <div class="expand-icon">▼</div>
         </div>
-        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：编码智能体的瓶颈已从生成代码转向获取真实运行环境反馈，<strong>能观测、能操作运行时的智能体</strong>才具备闭环调试能力，工具链正围绕智能体重新设计接口。
-<strong>法</strong>：把人类使用的专业工具封装为智能体可调用的标准协议接口，让模型直接操作真实环境而非依赖文本描述，适用于所有调试与运维场景。
-<strong>术</strong>：将 MCP 服务接入本地开发环境，让智能体读取控制台与网络请求；为常用调试动作定义标准化工具描述；限定智能体操作权限，避免误改生产配置。
-<strong>器</strong>：chrome-devtools-mcp、Chrome DevTools Protocol、MCP 协议、主流编码智能体客户端。</p>
-<a class="source-link" href="https://github.com/ChromeDevTools/chrome-devtools-mcp" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
+        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：前沿模型的架构知识正在快速<strong>商品化</strong>，权重与论文公开后，复现成本从团队级降到个人级，竞争重心从模型结构转向数据、算力调度与工程效率。<strong>法</strong>：用最小可运行实现验证对系统的理解，把复杂系统拆到能在一屏代码内跑通的粒度，这种<strong>降维复现</strong>是掌握黑盒技术最快的学习路径。<strong>术</strong>：先跑通前向与推理，再逐步补训练与并行；对照官方配置逐层核对张量形状与路由逻辑；把复现结果与原实现做数值对齐测试。<strong>器</strong>：Jax、DeepSeek V3 开源权重与配置、Flax/Equinox、GPU/TPU 计算资源。</p>
+<a class="source-link" href="https://github.com/Vaibhaav-Tiwari/deepseek-v3-jax" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
       </div>
-      <div class="entry" data-cat="ai" style="animation-delay: 0.33999999999999997s;">
+      <div class="entry" data-cat="sec" style="animation-delay: 0.33999999999999997s;">
         <div class="entry-head">
-          <div class="bullet" style="background: var(--tab-1);"></div>
+          <div class="bullet" style="background: var(--tab-3);"></div>
           <div class="info">
-            <h3>终端AI编码代理开源化</h3>
-            <div class="meta">GitHub Trending · 🔥 53 · 11小时前</div>
+            <h3><span class="badge-icon"> 🆕</span> 容器运行时向轻量化演进</h3>
+            <div class="meta">Hacker News · 🔥 52 · 7小时前</div>
           </div>
           <div class="expand-icon">▼</div>
         </div>
-        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：AI编码工具正从IDE插件形态向终端原生代理迁移，本质是开发入口的争夺——谁占据开发者最高频的操作界面，谁就掌握上下文与工作流数据。长期看，编码代理会像git一样成为开发环境的基础设施而非附加功能。
-<strong>法</strong>：把能力嵌入用户已有工作流而非要求用户迁移，是工具类产品降低采用成本的通用法则；开源则用于快速积累生态贡献与信任。
-<strong>术</strong>：1. 在现有终端环境中做小范围集成测试，评估代理对既有脚本与CI流程的兼容性；2. 对比闭源方案，记录开源代理在私有代码库上的可定制点；3. 建立内部提示词与权限边界规范后再放开使用。
-<strong>器</strong>：Qwen Code、终端模拟器、Git、CI/CD流水线。</p>
-<a class="source-link" href="https://github.com/QwenLM/qwen-code" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
+        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：容器运行时正从 Docker 单极格局走向多实现竞争，轻量、安全隔离与可组合性成为长期演进方向，底层基础设施的替换成本持续下降。<strong>法</strong>：在成熟基础设施层寻找<strong>单点性能与安全痛点</strong>做垂直替代，以兼容标准接口降低迁移门槛，是基础设施创业的通用路径。<strong>术</strong>：先用现有容器镜像做兼容性验证；在边缘或高密度场景做基准测试对比资源占用；评估与 Kubernetes CRI 的对接成熟度。<strong>器</strong>：Kiri 容器运行时、containerd、Kubernetes CRI、Docker。</p>
+<a class="source-link" href="https://runkiri.com/" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
       </div>
       <div class="entry" data-cat="ai" style="animation-delay: 0.42000000000000004s;">
         <div class="entry-head">
           <div class="bullet" style="background: var(--tab-1);"></div>
           <div class="info">
-            <h3>大模型极简复现成风</h3>
-            <div class="meta">Hacker News · 🔥 62 · 12小时前</div>
+            <h3><span class="badge-icon"> 🔄</span> 浏览器调试接口向智能体开放</h3>
+            <div class="meta">GitHub Trending · 🔥 79 · 20小时前</div>
           </div>
           <div class="expand-icon">▼</div>
         </div>
-        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：前沿模型的实现门槛正被持续压低，<strong>架构知识快速商品化</strong>，竞争重心从“能否复现”转向“数据、算力与工程调优”。极简复现的流行说明模型透明度和可审计性正成为社区评价技术的新标准。
-<strong>法</strong>：用最小可行实现验证对系统的理解，再逐步加复杂度；这一“先跑通再优化”的路径适用于任何黑箱技术的逆向学习。
-<strong>术</strong>：1. 以极简实现为基线，逐模块替换验证各组件贡献；2. 记录显存与吞吐数据，形成可对比的性能档案；3. 将复现代码作为团队理解模型内部机制的教学材料。
-<strong>器</strong>：Jax、DeepSeek V3、GPU算力平台、模型权重与配置文档。</p>
-<a class="source-link" href="https://github.com/Vaibhaav-Tiwari/deepseek-v3-jax" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
+        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：AI 编码智能体的瓶颈正从代码生成转向<strong>运行时反馈闭环</strong>，谁能把真实执行环境的观测能力暴露给智能体，谁就掌握下一层入口。<strong>法</strong>：将成熟工具的<strong>能力接口化</strong>，通过标准协议供智能体调用，是传统开发工具接入 AI 生态的最低成本路径。<strong>术</strong>：把 MCP 服务接入本地编码智能体；为页面调试、网络请求、性能分析配置自动化调用链；限定权限范围避免智能体误操作生产环境。<strong>器</strong>：chrome-devtools-mcp、Chrome DevTools、MCP 协议、Claude Code 等编码智能体。</p>
+<a class="source-link" href="https://github.com/ChromeDevTools/chrome-devtools-mcp" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
       </div>
       <div class="entry" data-cat="ai" style="animation-delay: 0.5s;">
         <div class="entry-head">
           <div class="bullet" style="background: var(--tab-1);"></div>
           <div class="info">
-            <h3>编码代理接入规范知识库</h3>
-            <div class="meta">GitHub Trending · 🔥 100 · 11小时前</div>
+            <h3><span class="badge-icon"> 🔄</span> 终端编码智能体开源竞速</h3>
+            <div class="meta">GitHub Trending · 🔥 53 · 20小时前</div>
           </div>
           <div class="expand-icon">▼</div>
         </div>
-        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：编码代理的瓶颈已从生成能力转向<strong>知识时效性与准确性</strong>，把权威最佳实践直接喂给代理，意味着AI辅助开发进入“知识治理”阶段。长期趋势是标准组织与平台方争夺代理的知识源定义权。
-<strong>法</strong>：为AI系统建立可版本化、可追溯的权威知识源，比反复调提示词更能稳定输出质量，适用于所有依赖外部知识的智能系统。
-<strong>术</strong>：1. 梳理团队高频踩坑的Web规范条目，映射到官方指南；2. 将指南源接入代理的检索或上下文注入流程并定期同步；3. 建立输出抽检机制，验证代理引用是否与最新规范一致。
-<strong>器</strong>：modern-web-guidance-src、Chrome团队Web规范文档、编码代理的检索插件。</p>
-<a class="source-link" href="https://github.com/GoogleChrome/modern-web-guidance-src" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
+        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：编码智能体正从 IDE 插件形态向<strong>终端原生</strong>迁移，开源模型厂商以免费智能体绑定自家模型生态，竞争焦点从模型能力转向开发者工作流占有率。<strong>法</strong>：以开源客户端加自有模型的分发组合抢占入口，用<strong>工作流嵌入</strong>替代单点功能竞争，适用于所有模型厂商的生态卡位。<strong>术</strong>：在隔离环境中试跑并对比多模型输出质量；评估终端集成对现有 CI 与脚本流程的兼容性；关注模型切换与私有部署的可行性。<strong>器</strong>：qwen-code、Qwen 系列模型、终端 CLI、GitHub Trending。</p>
+<a class="source-link" href="https://github.com/QwenLM/qwen-code" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
       </div>
       <div class="entry" data-cat="ai" style="animation-delay: 0.58s;">
         <div class="entry-head">
           <div class="bullet" style="background: var(--tab-1);"></div>
           <div class="info">
-            <h3>办公套件走向可编程化</h3>
-            <div class="meta">GitHub Trending · 🔥 70 · 11小时前</div>
+            <h3><span class="badge-icon"> 🔄</span> 编码智能体编排层兴起</h3>
+            <div class="meta">GitHub Trending · 🔥 51 · 20小时前</div>
           </div>
           <div class="expand-icon">▼</div>
         </div>
-        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：办公软件的价值重心正从成品功能转向可嵌入的编辑与计算内核，文档能力被拆解为可被第三方产品调用的基础设施。<strong>法</strong>：把核心能力封装成 SDK 对外输出，用生态集成替代单点功能竞争，适用于任何具备底层技术积累的平台型产品。<strong>术</strong>：优先评估自身业务中重复建设的文档、表格、协作模块，用 SDK 替换自研；在集成前验证协作冲突处理与文件格式兼容性；将节省的研发资源投入差异化场景。<strong>器</strong>：Univer Office SDK、开源表格与文档引擎、协同编辑服务。</p>
-<a class="source-link" href="https://github.com/dream-num/univer" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
-      </div>
-      <div class="entry" data-cat="ai" style="animation-delay: 0.66s;">
-        <div class="entry-head">
-          <div class="bullet" style="background: var(--tab-1);"></div>
-          <div class="info">
-            <h3>推理引擎跨后端统一</h3>
-            <div class="meta">GitHub Trending · 🔥 52 · 11小时前</div>
-          </div>
-          <div class="expand-icon">▼</div>
-        </div>
-        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：模型推理的竞争焦点从算法层下移到运行时层，跨 Metal、CUDA、Vulkan 的统一后端意味着硬件碎片化正被软件抽象抹平。<strong>法</strong>：以单一代码路径覆盖多硬件后端，降低部署边际成本，是基础设施类项目的通用打法。<strong>术</strong>：在目标硬件上实测吞吐与首 token 延迟，而非只看理论算力；确认量化精度与算子覆盖是否满足业务模型；将推理引擎与调度层解耦，保留后端替换空间。<strong>器</strong>：Metal、CUDA、Vulkan、开源 LLM 推理引擎。</p>
-<a class="source-link" href="https://github.com/sponsors/ashhart" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
-      </div>
-      <div class="entry" data-cat="ai" style="animation-delay: 0.74s;">
-        <div class="entry-head">
-          <div class="bullet" style="background: var(--tab-1);"></div>
-          <div class="info">
-            <h3>编码智能体进入编排层</h3>
-            <div class="meta">GitHub Trending · 🔥 51 · 11小时前</div>
-          </div>
-          <div class="expand-icon">▼</div>
-        </div>
-        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：编码智能体的竞争从单模型能力转向多智能体编排与交付流水线，自托管工作流成为企业控制代码与数据边界的关键抓手。<strong>法</strong>：用统一编排层屏蔽不同编码代理的差异，把代理当作可替换执行单元，适用于所有多模型协作场景。<strong>术</strong>：先梳理现有开发流程中可自动化的交付节点；用编排层接入 CodeBuddy、Codex、Claude Code 并设定统一权限与审计；对生成代码强制走评审与测试门禁再合入。<strong>器</strong>：Tencent LoopForge、CodeBuddy、Codex、Claude Code。</p>
+        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：编码智能体正从单点工具走向多模型协同，<strong>编排层成为新的价值高地</strong>，模型本身趋于商品化，谁能调度多个智能体稳定交付谁就掌握议价权。
+<strong>法</strong>：把异构能力封装成可复用工作流，用统一调度层屏蔽底层模型差异，<strong>降低单一供应商锁定风险</strong>，适用于任何多模型并存的场景。
+<strong>术</strong>：先梳理团队高频编码任务并拆成标准步骤；用自托管方式接入多个编码智能体做并行与回退；建立任务成功率与成本基线，按结果切换模型。
+<strong>器</strong>：LoopForge、CodeBuddy、Codex、Claude Code、GitHub Trending。</p>
 <a class="source-link" href="https://github.com/Tencent/LoopForge" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
+      </div>
+      <div class="entry" data-cat="biz" style="animation-delay: 0.66s;">
+        <div class="entry-head">
+          <div class="bullet" style="background: var(--tab-4);"></div>
+          <div class="info">
+            <h3><span class="badge-icon"> 🆕</span> 具身智能落地建筑场景</h3>
+            <div class="meta">36kr · 🔥 65 · 7小时前</div>
+          </div>
+          <div class="expand-icon">▼</div>
+        </div>
+        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：具身智能的商业化正从演示走向<strong>垂直行业刚需场景</strong>，建筑等劳动力短缺、标准化程度提升的领域率先跑出订单，<strong>订单复合增长比融资额更能验证真实需求</strong>。
+<strong>法</strong>：选择人力成本高、作业标准化、安全风险大的细分场景切入，用可量化交付指标替代概念叙事，<strong>以复购和订单增速证明产品力</strong>。
+<strong>术</strong>：锁定单一工序做深而非全场景铺开；与总包方绑定获取真实工地数据闭环；用订单复合增长率与单机回本周期作为核心对外指标。
+<strong>器</strong>：具身智能建筑机器人、36氪创投数据、行业订单与融资披露平台。</p>
+<a class="source-link" href="https://www.36kr.com/p/4070571639067782" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
+      </div>
+      <div class="entry" data-cat="sec" style="animation-delay: 0.74s;">
+        <div class="entry-head">
+          <div class="bullet" style="background: var(--tab-3);"></div>
+          <div class="info">
+            <h3><span class="badge-icon"> 🆕</span> 类型强制工具受关注</h3>
+            <div class="meta">Hacker News · 🔥 52 · 7小时前</div>
+          </div>
+          <div class="expand-icon">▼</div>
+        </div>
+        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：AI 生成代码占比上升，<strong>类型约束成为人机协作的质量闸门</strong>，静态检查工具从可选规范升级为保障 AI 产出可维护性的基础设施。
+<strong>法</strong>：把质量要求前置为机器可执行的强制规则，<strong>用工具约束替代人工评审兜底</strong>，适用于任何 AI 参与生产的工程流程。
+<strong>术</strong>：在 CI 中强制类型注解检查并阻断不合规提交；对存量代码分批加注解而非一次性改造；将类型覆盖率纳入合并门槛指标。
+<strong>器</strong>：Gawain、Python 类型注解、CI 流水线、Hacker News。</p>
+<a class="source-link" href="https://github.com/matheuzgomes/gawain" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
       </div>
       <div class="entry" data-cat="ai" style="animation-delay: 0.82s;">
         <div class="entry-head">
           <div class="bullet" style="background: var(--tab-1);"></div>
           <div class="info">
-            <h3>Agent前端交互协议标准化</h3>
-            <div class="meta">GitHub Trending · 🔥 50 · 11小时前</div>
+            <h3><span class="badge-icon"> 🔄</span> 编码代理接入网页规范</h3>
+            <div class="meta">GitHub Trending · 🔥 100 · 20小时前</div>
           </div>
           <div class="expand-icon">▼</div>
         </div>
-        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：Agent 能力再强，最终价值都要通过用户触点兑现，交互协议标准化是 Agent 从演示走向生产环境的必经环节。<strong>法</strong>：在生态碎片化早期抢占协议层，用开源标准换取开发者默认集成，再以兼容性优势锁定上下游。<strong>术</strong>：优先在自有前端产品中接入 AG-UI 验证流式事件与状态同步；将 Agent 输出抽象为可复用组件，降低多端适配成本；跟踪协议版本演进，避免过早深度绑定。<strong>器</strong>：AG-UI Protocol、GitHub Trending、主流前端框架与 Agent 运行时。</p>
-<a class="source-link" href="https://github.com/ag-ui-protocol/ag-ui" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
+        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：AI 编码代理的瓶颈已从生成能力转向知识时效性，网页最佳实践持续演进，代理若停留在训练数据时点就会输出过时代码，规范供给正成为代理基础设施的一部分。<strong>法</strong>：把易变的领域知识从模型权重中剥离，做成可版本化、可增量拉取的外部知识源，让代理在运行时对齐最新标准，而非依赖重新训练。<strong>术</strong>：将该项目作为代理的检索上下文接入，在生成前端代码前强制查询；建立规范版本与项目依赖版本的映射；定期比对代理输出与规范差异，形成回归用例。<strong>器</strong>：GoogleChrome/modern-web-guidance-src、Chrome 团队 Web 规范文档、各类编码代理的上下文注入机制。</p>
+<a class="source-link" href="https://github.com/GoogleChrome/modern-web-guidance-src" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
       </div>
-      <div class="entry" data-cat="sec" style="animation-delay: 0.9s;">
+      <div class="entry" data-cat="ai" style="animation-delay: 0.9s;">
         <div class="entry-head">
-          <div class="bullet" style="background: var(--tab-3);"></div>
+          <div class="bullet" style="background: var(--tab-1);"></div>
           <div class="info">
-            <h3>GPU高价与循环融资疑云</h3>
-            <div class="meta">Hacker News · 🔥 65 · 5小时前</div>
+            <h3><span class="badge-icon"> 🔄</span> 代理协作转向人工把关</h3>
+            <div class="meta">GitHub Trending · 🔥 85 · 20小时前</div>
           </div>
           <div class="expand-icon">▼</div>
         </div>
-        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：算力供给方在需求刚性期倾向用金融结构维持定价权，<strong>硬件垄断利润正部分转化为资本运作收益</strong>，这是产业成熟前的典型特征。<strong>法</strong>：识别供应商是否通过投资客户、回购承诺等方式制造需求闭环，把采购决策建立在真实利用率而非生态绑定上。<strong>术</strong>：核算单位算力实际成本时纳入融资条款与残值风险；分散采购来源，保留第二供应商议价空间；对循环交易结构做尽调，警惕需求虚增。<strong>器</strong>：GPU 租赁平台、云厂商竞价实例、第三方算力比价工具。</p>
-<a class="source-link" href="https://www.techspot.com/news/114558-nvidia-deliberately-kept-gpu-prices-high-through-circular.html" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
+        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：代理自主性提升后，稀缺资源从生成能力转为审查与决策能力，人机协作的重心正从写代码迁移到定义意图、审阅产出，可审计的中间态成为刚需。<strong>法</strong>：在代理工作流中插入结构化的人工检查点，把计划、注释、评审做成显式产物，使决策可追溯、可回滚，适用于任何高自主度自动化流程。<strong>术</strong>：在任务启动前要求代理输出可批注的计划文档；对关键变更设置强制评审门禁；将注释沉淀为团队知识库，反哺后续任务提示。<strong>器</strong>：backnotprop/plannotator、Git 评审流程、代理任务编排平台。</p>
+<a class="source-link" href="https://github.com/backnotprop/plannotator" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
       </div>
-      <div class="entry" data-cat="sec" style="animation-delay: 0.98s;">
+      <div class="entry" data-cat="ai" style="animation-delay: 0.98s;">
         <div class="entry-head">
-          <div class="bullet" style="background: var(--tab-3);"></div>
+          <div class="bullet" style="background: var(--tab-1);"></div>
           <div class="info">
-            <h3>隐私概念被重新定义之争</h3>
-            <div class="meta">Hacker News · 🔥 80 · 14小时前</div>
+            <h3><span class="badge-icon"> 🔄</span> 办公套件SDK化开放生态</h3>
+            <div class="meta">GitHub Trending · 🔥 70 · 20小时前</div>
           </div>
           <div class="expand-icon">▼</div>
         </div>
-        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：隐私边界从来不是技术问题而是<strong>权力与商业利益的再分配</strong>，每次技术跃迁都会伴随定义权的争夺，长期趋势是默认采集扩大、用户需主动退出。<strong>法</strong>：把隐私策略从合规成本转为产品差异化，用透明度和最小采集建立信任资产，在监管收紧前完成数据架构改造。<strong>术</strong>：盘点数据采集链路，区分必要与非必要字段；默认关闭非核心数据共享，提供一键导出与删除；在隐私政策中用具体场景替代模糊表述。<strong>器</strong>：数据映射工具、隐私增强计算方案、合规审计平台。</p>
-<a class="source-link" href="https://www.eff.org/deeplinks/2026/11/tech-companies-are-trying-shift-entire-concept-privacy-again" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
+        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：办公软件正从封闭成品转向可嵌入的能力层，编辑、计算、协作被拆成 SDK 对外输出，AI 办公的竞争点从功能堆叠转为谁能成为他人产品的底层组件。<strong>法</strong>：把核心能力组件化、接口化，以 SDK 形式嵌入第三方场景，用生态覆盖换取分发规模，再以协作与文件格式形成锁定。<strong>术</strong>：评估现有产品的表格与文档内核是否可替换为 SDK；优先在内部工具中试点嵌入，验证协作与格式兼容；梳理数据迁移与权限模型，避免被单一供应商绑定。<strong>器</strong>：dream-num/univer Office SDK、电子表格与文档协作引擎、文件格式转换工具链。</p>
+<a class="source-link" href="https://github.com/dream-num/univer" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
       </div>
-      <div class="entry" data-cat="sec" style="animation-delay: 1.06s;">
+      <div class="entry" data-cat="dev" style="animation-delay: 1.06s;">
         <div class="entry-head">
-          <div class="bullet" style="background: var(--tab-3);"></div>
+          <div class="bullet" style="background: var(--tab-2);"></div>
           <div class="info">
-            <h3>意大利重罚Meta数据垄断</h3>
-            <div class="meta">Hacker News · 🔥 72 · 13小时前</div>
+            <h3><span class="badge-icon"> 🆕</span> WiFi审计工具开源化普及</h3>
+            <div class="meta">GitHub Trending · 🔥 61 · 20小时前</div>
           </div>
           <div class="expand-icon">▼</div>
         </div>
-        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：数据主权与平台垄断的冲突正从反垄断罚款升级为结构性监管，<strong>用户数据不再是平台可自由变现的资产</strong>，而是受属地法律约束的战略资源。
-<strong>法</strong>：跨国平台需建立<strong>监管套利成本核算机制</strong>，将合规成本前置到产品设计，而非事后罚款。
-<strong>术</strong>：1. 按司法辖区拆分数据采集与使用链路，做差异化授权；2. 将罚款风险折算进用户获取成本模型；3. 提前布局本地化数据信托或代理架构。
-<strong>器</strong>：GDPR合规工具链、OneTrust、数据映射平台。</p>
-<a class="source-link" href="https://www.reuters.com/world/italy-fines-meta-887-million-over-android-users-data-access-2026-11-14/" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
+        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：无线安全审计工具从商业闭源走向开源社区驱动，反映安全能力正从专家特权下沉为普遍可及的基础设施，攻防门槛同步降低。<strong>法</strong>：将高门槛专业能力封装为开箱即用的开源工具，以社区协作替代商业授权，适用于安全、运维、数据分析等垂直领域的能力民主化路径。<strong>术</strong>：在隔离实验环境中部署测试，先审计自有网络资产建立基线；将扫描结果纳入定期安全巡检流程；关注工具更新与漏洞披露节奏。<strong>器</strong>：airgorah、Aircrack-ng、Wireshark、Kali Linux。</p>
+<a class="source-link" href="https://github.com/martin-olivier/airgorah" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
       </div>
       <div class="entry" data-cat="ai" style="animation-delay: 1.1400000000000001s;">
         <div class="entry-head">
           <div class="bullet" style="background: var(--tab-1);"></div>
           <div class="info">
-            <h3>Claude交易技能包开源</h3>
-            <div class="meta">GitHub Trending · 🔥 72 · 11小时前</div>
+            <h3><span class="badge-icon"> 🔄</span> 跨后端LLM推理引擎兴起</h3>
+            <div class="meta">GitHub Trending · 🔥 52 · 20小时前</div>
           </div>
           <div class="expand-icon">▼</div>
         </div>
-        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：<strong>AI能力正从通用对话下沉为垂直场景的技能封装</strong>，交易分析这类高价值领域率先被模块化，模型本身不再是壁垒，技能编排才是。
-<strong>法</strong>：把领域知识拆成<strong>可复用的技能单元</strong>，用统一接口挂载到通用模型上，实现低边际成本复制。
-<strong>术</strong>：1. 梳理交易决策链路，拆成行情、技术面、风控三个技能；2. 用Claude Code的skill机制封装并版本化；3. 回测验证技能组合的稳定性再上线。
-<strong>器</strong>：Claude Code、claude-trading-skills、技术指标库TA-Lib。</p>
-<a class="source-link" href="https://github.com/tradermonty/claude-trading-skills" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
+        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：LLM推理层正从绑定单一硬件生态转向<strong>跨后端统一抽象</strong>，Metal、CUDA、Vulkan 并存意味着算力供给多元化，推理成本与硬件锁定风险同步下降。<strong>法</strong>：以统一中间层屏蔽底层硬件差异，让上层应用一次开发多端部署，适用于所有依赖异构算力的基础设施类产品。<strong>术</strong>：评估现有硬件组合下的推理吞吐与延迟；用统一引擎替换多套专用推理栈降低维护成本；在边缘与云端分别验证后端兼容性。<strong>器</strong>：ashhart 推理引擎、Metal、CUDA、Vulkan、llama.cpp。</p>
+<a class="source-link" href="https://github.com/sponsors/ashhart" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
       </div>
       <div class="entry" data-cat="ai" style="animation-delay: 1.2200000000000002s;">
         <div class="entry-head">
           <div class="bullet" style="background: var(--tab-1);"></div>
           <div class="info">
-            <h3>Agent协作工作台开源</h3>
-            <div class="meta">GitHub Trending · 🔥 67 · 11小时前</div>
+            <h3><span class="badge-icon"> 🆕</span> 模型能力认知差即套利空间</h3>
+            <div class="meta">v2ex · 🔥 66</div>
           </div>
           <div class="expand-icon">▼</div>
         </div>
-        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：<strong>多智能体协作的瓶颈已从模型能力转向人类介入的接口设计</strong>，谁能让人高效地审阅、批注、纠偏Agent输出，谁就掌握工作流入口。
-<strong>法</strong>：把Agent从黑箱执行者改造为<strong>可观测、可干预的协作者</strong>，用人工在环机制换取可控性与信任。
-<strong>术</strong>：1. 为Agent输出设计结构化批注层，记录决策依据；2. 建立计划-执行-复核三段式流程；3. 把人工反馈沉淀为可检索的上下文资产。
-<strong>器</strong>：plannotator、Claude Code、Git版本控制。</p>
-<a class="source-link" href="https://github.com/backnotprop/plannotator" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
+        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：模型实际能力与公众认知之间存在<strong>持续的信息差</strong>，深度使用者的经验总结本身就是稀缺资产，认知差直接转化为效率差与商业机会。<strong>法</strong>：在新技术扩散早期投入深度实测，把一手体验沉淀为可复用的方法论与提示词资产，先于市场形成判断优势。<strong>术</strong>：针对具体任务设计对照测试记录成功率与耗时；将有效用法固化为团队内部模板；定期复盘模型版本迭代带来的能力变化。<strong>器</strong>：DeepSeek、harness 评测框架、提示词管理工具、版本对比记录表。</p>
+<a class="source-link" href="https://www.v2ex.com/t/1257214" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
       </div>
     </div>
     <div class="footer">
-      <span>Generated by AI Hot Monitor v2 · DeepSeek · 11:01:36</span>
+      <span>Generated by AI Hot Monitor v2 · DeepSeek · 20:01:37</span>
       <span class="badge">💡 点击条目展开深度解读</span>
     </div>
   </div>
