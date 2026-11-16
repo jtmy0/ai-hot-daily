@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="referrer" content="no-referrer">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'unsafe-inline'; img-src data:; connect-src 'none'; frame-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'; frame-ancestors 'none'">
+<title>Protomaps: Self-hosting map tiles has gotten cheap and easy — Bruce Röttgers - AI热点快照</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','PingFang SC','Microsoft YaHei',sans-serif;background:#f8f9fa;color:#1a1a2e;line-height:1.8;min-height:100vh}
+.top-bar{background:#fff;border-bottom:1px solid #e5e7eb;padding:10px 20px;display:flex;align-items:center;gap:12px;position:sticky;top:0;z-index:10}
+.top-bar .logo{font-size:14px;font-weight:700;color:#0d9488}
+.top-bar .sep{color:#d1d5db}
+.top-bar .source{font-size:13px;color:#6b7280}
+.top-bar .back{margin-left:auto;font-size:13px;color:#0d9488;text-decoration:none}
+.top-bar .back:hover{text-decoration:underline}
+.container{max-width:760px;margin:0 auto;padding:40px 24px 80px}
+.article-title{font-size:1.8rem;font-weight:700;line-height:1.35;margin-bottom:16px;color:#1a1a2e}
+.article-meta{display:flex;flex-wrap:wrap;gap:16px;padding-bottom:20px;margin-bottom:28px;border-bottom:1px solid #e5e7eb;font-size:14px;color:#6b7280}
+.article-meta a{color:#0d9488;text-decoration:none}
+.article-meta a:hover{text-decoration:underline}
+.article-body{font-size:16.5px;line-height:1.85;color:#1f2937}
+.article-body p{margin-bottom:1.2em;text-align:justify}
+.article-body h1,.article-body h2,.article-body h3{font-size:1.25em;font-weight:700;margin:1.6em 0 0.6em;color:#1a1a2e}
+.article-body a{color:#0d9488}
+.article-body pre,.article-body code{background:#f1f5f9;border-radius:4px;font-size:0.9em}
+.article-body pre{padding:16px;overflow-x:auto;margin:1em 0}
+.article-body code{padding:2px 6px}
+.article-body blockquote{border-left:3px solid #0d9488;padding-left:16px;color:#4b5563;margin:1em 0}
+.article-body ul,.article-body ol{padding-left:1.6em;margin-bottom:1em}
+.article-body li{margin-bottom:0.4em}
+.article-body figure{margin:1.2em 0}
+.article-body figcaption{font-size:13px;color:#9ca3af;text-align:center;margin-top:6px}
+.footer{margin-top:48px;padding-top:20px;border-top:1px solid #e5e7eb;font-size:13px;color:#9ca3af;text-align:center}
+</style>
+</head>
+<body>
+<div class="top-bar">
+  <a class="back" href="../" style="font-size:13px;color:#6b7280;text-decoration:none">← 日报首页</a>
+  <span class="sep">|</span>
+  <span class="logo">AI热点快照</span>
+  <span class="sep">|</span>
+  <span class="source">Bruce Röttgers</span>
+  <a class="back" href="https://bruceroettgers.eu/blog/protomaps/" target="_blank" rel="noopener noreferrer">查看原文 ↗</a>
+</div>
+<div class="container">
+  <h1 class="article-title">Protomaps: Self-hosting map tiles has gotten cheap and easy — Bruce Röttgers</h1>
+  <div class="article-meta">
+    
+    <span>来源: Bruce Röttgers</span>
+    <span>快照日期: 2026-11-16</span>
+  </div>
+  <div class="article-body"><div><div><p>I came across Protomaps in research for my latest project, <a href="https://mapboard.bruceroettgers.eu/" target="_blank" rel="noopener noreferrer nofollow">Mapboard</a>.<sup><span>1</span></sup> For most non-commercial projects, commercial APIs become prohibitively expensive if you ever go viral (Mapbox, for instance, charges <a href="https://www.mapbox.com/pricing" target="_blank" rel="noopener noreferrer nofollow">$5 per 1k map loads</a> once you’ve exhausted the free tier).</p>
+<p>PMTiles, part of the <a href="https://protomaps.com/" target="_blank" rel="noopener noreferrer nofollow">Protomaps</a> ecosystem, is a tile format that ships in a single file, accessible via Range requests, and is thus extremely portable and easy to deploy. For CDNs that support caching Range requests of large files, it requires no effort besides down- and uploading it to storage. For others, like Cloudflare, you can <a href="https://docs.protomaps.com/deploy/cloudflare" target="_blank" rel="noopener noreferrer nofollow">utilize an edge function</a> to translate between the traditional x/y/z URL path and Range requests.</p>
+<h2>Getting some Maps</h2>
+<p>If all you want is the world map, getting it is as simple as going to the <a href="https://maps.protomaps.com/builds/" target="_blank" rel="noopener noreferrer nofollow">build page</a> and downloading the latest daily build.</p>
+<p>However, more fun can be had with the <a href="https://github.com/protomaps/go-pmtiles" target="_blank" rel="noopener noreferrer nofollow">CLI</a>. For example, you can <a href="https://docs.protomaps.com/guide/getting-started#_3-extract-any-area" target="_blank" rel="noopener noreferrer nofollow">extract data</a> for only a bounding box or specific zoom levels, to get a significantly smaller file.</p>
+<h2>Deploying to Bunny.net</h2>
+<p>One great CDN for deploying this is <a href="https://bunny.net/?ref=9o9z1a5ws8" target="_blank" rel="noopener noreferrer nofollow">Bunny.net</a> <em>(affiliate link)</em>. They support HTTP Range requests, don’t collect personal data by default,<sup><span>2</span></sup> are headquartered in the EU, and offer low-cost access to a global network of CDN and edge storage servers.</p>
+<p><a href="https://bunny.net/pricing/" target="_blank" rel="noopener noreferrer nofollow">Pricing</a> varies based on region and replication factor of the edge storage. But generally you pay $0.01/GB ($0.005/GB on the smaller Volume network) for bandwidth to Europe and North America, and $0.01/GB/month (no replication) to $0.055/GB/month (maximum replication) for storage. A high degree of replication mostly matters for latency in case of a cache miss (as the data is further replicated when it’s cached at the CDN PoPs).</p>
+<p>In practical terms, storing the 139GB world map with replication to most continents (5x) will run you about $5/month in storage fees. Loading a map of Europe on a laptop and zooming in on a city causes about 5MB of data to be transmitted, which would be $0.00005 — further navigations and reloads will be less expensive as more of the map gets cached locally. At $0.05/1k map loads that could be 100x cheaper than Mapbox. However, the actual bandwidth of course varies (less for people that bounce immediately, possibly tens of MB for heavy users). For Mapbox you only pay a flat fee per visit.</p>
+<h3>Uploading the file</h3>
+<p>It’s a good idea to create a storage zone with S3 compatibility enabled, as uploading via the HTTP API timed out after 15 minutes for me.</p>
+<p>Then, with <a href="https://rclone.org/" target="_blank" rel="noopener noreferrer nofollow">rclone</a> installed, you can download and stream the file to the Bunny storage zone. Preferably in <a href="https://en.wikipedia.org/wiki/Tmux" target="_blank" rel="noopener noreferrer nofollow">tmux</a> or from a temporary VPS, if your connection isn’t great.</p>
+<pre><code><span><span>rclone</span><span> config</span><span> create</span><span> bunnycdn</span><span> s3</span><span> \</span></span>
+<span><span>  provider=Other</span><span> \</span></span>
+<span><span>  access_key_id="&lt;zone-name&gt;"</span><span> \</span></span>
+<span><span>  secret_access_key="&lt;storage-key&gt;"</span><span> \</span></span>
+<span><span>  endpoint="https://&lt;primary-region&gt;-s3.storage.bunnycdn.com"</span></span>
+<span></span>
+<span><span>rclone</span><span> copyurl</span><span> "&lt;build-url&gt;"</span><span> "bunnycdn:&lt;zone-name&gt;/&lt;filename&gt;.pmtiles"</span><span> \</span></span>
+<span><span>  --s3-chunk-size</span><span> 256M</span><span> \</span></span>
+<span><span>  --progress</span></span></code></pre>
+<h3>Configuring the pull zone</h3>
+<p>Theoretically, at this point you just need to create a pull zone, select the storage zone as an origin, and you’re done. Practically, it would be sensible to change some settings.</p>
+<p>Allowed CORS origins can be configured under Security &gt; General &gt; Allowed referrers, so that other websites cannot embed your tiles.</p>
+<p>You’ll also want to verify under Caching that “Optimize for large object delivery” is enabled, as this makes it possible to cache Range requests.</p>
+<p>You might also want to dissuade people from downloading the whole file and leaving you with a large CDN bill. The most practical way I’ve found for this is limiting the download speed to 10kB/s after 10MB transmitted in a single request (using the “Download speed limits” and “Limit after” settings under “Network limits”). Regular usage should never reach this amount. You may further want to introduce a requests/second limit (do note that legitimate usage can also quickly reach high numbers here) or a monthly bandwidth limit for the pull zone.</p>
+<h2>Embedding the Map</h2>
+<p>With the tiles deployed, the only thing left to do is to embed them in your website via MapLibre GL, for example. To do this, you’ll need to install the <code>pmtiles</code> npm package and add the protocol and a style to MapLibre as detailed in the <a href="https://docs.protomaps.com/pmtiles/maplibre" target="_blank" rel="noopener noreferrer nofollow">official installation guide</a>.</p>
+<p>Congratulations, you now host your own cost-effective and highly available map of the world!</p>
+<span>notes (2)</span><ol>
+<li>
+<p>Basically, Excalidraw but on a map for travel planning. Launch post coming soon. <span>↑</span></p>
+</li>
+<li>
+<p>The last octet of IP addresses is dropped. If you transmit personal data via the CDN, that is of course still processed. <span>↑</span></p>
+</li>
+</ol><h2><span>newsletter</span></h2><p>Stay updated on new blog posts and projects by me; sent less than once per week.</p><h2><span>written by</span></h2><p>Hi, I’m Bruce, a Computer Science student at ETH Zurich. I build mobile apps, websites and other products, and I write about the interesting things I run into along the way. <span>More about me →</span></p><p>Please send an email if you wish to comment on this post. I will share select replies here with the author's permission.</p></div></div></div>
+  <div class="footer">
+    本文由 AI热点监控系统自动抓取 · 内容版权归原作者/网站所有<br>
+    快照仅用于学习交流，如需转载请访问原文
+  </div>
+</div>
+</body>
+</html>
