@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="referrer" content="no-referrer">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'unsafe-inline'; img-src data:; connect-src 'none'; frame-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'; frame-ancestors 'none'">
+<title>Universal XSS in uBlock Origin from website-driven element picker - AI热点快照</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','PingFang SC','Microsoft YaHei',sans-serif;background:#f8f9fa;color:#1a1a2e;line-height:1.8;min-height:100vh}
+.top-bar{background:#fff;border-bottom:1px solid #e5e7eb;padding:10px 20px;display:flex;align-items:center;gap:12px;position:sticky;top:0;z-index:10}
+.top-bar .logo{font-size:14px;font-weight:700;color:#0d9488}
+.top-bar .sep{color:#d1d5db}
+.top-bar .source{font-size:13px;color:#6b7280}
+.top-bar .back{margin-left:auto;font-size:13px;color:#0d9488;text-decoration:none}
+.top-bar .back:hover{text-decoration:underline}
+.container{max-width:760px;margin:0 auto;padding:40px 24px 80px}
+.article-title{font-size:1.8rem;font-weight:700;line-height:1.35;margin-bottom:16px;color:#1a1a2e}
+.article-meta{display:flex;flex-wrap:wrap;gap:16px;padding-bottom:20px;margin-bottom:28px;border-bottom:1px solid #e5e7eb;font-size:14px;color:#6b7280}
+.article-meta a{color:#0d9488;text-decoration:none}
+.article-meta a:hover{text-decoration:underline}
+.article-body{font-size:16.5px;line-height:1.85;color:#1f2937}
+.article-body p{margin-bottom:1.2em;text-align:justify}
+.article-body h1,.article-body h2,.article-body h3{font-size:1.25em;font-weight:700;margin:1.6em 0 0.6em;color:#1a1a2e}
+.article-body a{color:#0d9488}
+.article-body pre,.article-body code{background:#f1f5f9;border-radius:4px;font-size:0.9em}
+.article-body pre{padding:16px;overflow-x:auto;margin:1em 0}
+.article-body code{padding:2px 6px}
+.article-body blockquote{border-left:3px solid #0d9488;padding-left:16px;color:#4b5563;margin:1em 0}
+.article-body ul,.article-body ol{padding-left:1.6em;margin-bottom:1em}
+.article-body li{margin-bottom:0.4em}
+.article-body figure{margin:1.2em 0}
+.article-body figcaption{font-size:13px;color:#9ca3af;text-align:center;margin-top:6px}
+.footer{margin-top:48px;padding-top:20px;border-top:1px solid #e5e7eb;font-size:13px;color:#9ca3af;text-align:center}
+</style>
+</head>
+<body>
+<div class="top-bar">
+  <a class="back" href="../" style="font-size:13px;color:#6b7280;text-decoration:none">← 日报首页</a>
+  <span class="sep">|</span>
+  <span class="logo">AI热点快照</span>
+  <span class="sep">|</span>
+  <span class="source">loops</span>
+  <a class="back" href="https://iter.ca/post/ubo-uxss/" target="_blank" rel="noopener noreferrer">查看原文 ↗</a>
+</div>
+<div class="container">
+  <h1 class="article-title">Universal XSS in uBlock Origin from website-driven element picker</h1>
+  <div class="article-meta">
+    <span>作者: Smitty van Bodegom</span>
+    <span>来源: loops</span>
+    <span>快照日期: 2026-11-16</span>
+  </div>
+  <div class="article-body"><div>
+    
+    <div><p>
+    By
+    
+    · <span>Nov 15, 2026</span>
+    </p></div>
+    <div>
+      
+        
+        
+        
+        
+          
+          
+          
+          
+            <p>Earlier this month I found a one-click universal XSS issue with uBlock Origin (the MV2 Firefox version, although a similar but less problematic issue also affected the MV3 version, uBO Lite), where a malicious website could trick the extension into adding arbitrary trusted filters. Trusted filters can inject JavaScript code into pages, and so the malicious website could create a trusted filter on another website and run arbitrary JS in the context of any site. This issue is fixed now; you can read <a href="https://github.com/gorhill/uBlock/security/advisories/GHSA-cmqw-9r2w-6wv2" target="_blank" rel="noopener noreferrer nofollow">the GitHub advisory</a> for some more details.</p>
+<p>GPT-5.6 Sol did most of the hard work of finding the issue. I figured there might be some kind of UXSS from filter injection, so I asked it to take a look, and it found the issue. I then checked and verified the issue it proposed. I wrote all of the prose in this post myself; Claude wrote most of the code for the PoC.</p>
+<h2>The issue</h2>
+<p>uBlock Origin has an element picker that you can pull up by right-clicking on the page. You can use this to create a filter rule to block an element on the page without leaving the page.</p>
+<p></p>
+<p>The element picker is implemented by injecting an iframe to a URL like <code>moz-extension://76b2331a-894c-4d25-8b89-fcce37e79cc4/web_accessible_resources/epicker-ui.html</code>. That page can talk to the extension background script and tell it to add filters.</p>
+<p>Basically the attack here is:</p>
+<ol>
+<li>Figure out the element picker URL</li>
+<li>Create our own invisible (opacity 0) iframe that embeds it</li>
+<li>Drive the picker to put the filter we want in it</li>
+<li>Position the invisible iframe to trick the user into pressing the invisible “Create” button</li>
+</ol>
+<h3>Figuring out the element picker URL</h3>
+<p>On Firefox, the only information we needed to figure out was the extension internal UUID which is random per-installation.</p>
+<p>On the default setup uBO has a <code>lootdest.*##+js(no-fetch-if, adsbygoogle, war:googlesyndication_adsbygoogle.js)</code> filter rule (from uAssets), which hooks <code>fetch</code>. From inside the <code>fetch</code> hook, it makes an XHR request to <code>moz-extension://&lt;extension UUID&gt;/web_accessible_resources/googlesyndication_adsbygoogle.js</code> and returns the response from that as the fetch body, instead of actually making the request. The filter rule is intended to replace a network request for JS from an ad server with a dummy script that has the correct API but doesn’t do anything.</p>
+<p>But the attacker website can itself hook the XHR made from inside the <code>no-fetch-if</code> hook to extract the random extension UUID.</p>
+<div><pre><code><span><span><span>const</span> <span>origOpen</span> <span>=</span> <span>XMLHttpRequest</span>.<span>prototype</span>.<span>open</span>;
+</span></span><span><span><span>XMLHttpRequest</span>.<span>prototype</span>.<span>open</span> <span>=</span> <span>function</span>(<span>m</span>, <span>url</span>, ...<span>a</span>) {
+</span></span><span><span>    <span>const</span> <span>e</span> <span>=</span> <span>/^moz-extension:\/\/[^/]+/</span>.<span>exec</span>(<span>url</span>);
+</span></span><span><span>    <span>if</span> (<span>e</span>) {
+</span></span><span><span>        <span>e</span>[<span>0</span>] <span>// &lt;- has the extension UUID!
+</span></span></span><span><span><span></span>    }
+</span></span><span><span>    <span>return</span> <span>origOpen</span>.<span>call</span>(<span>this</span>, <span>m</span>, <span>url</span>, ...<span>a</span>);
+</span></span><span><span>};
+</span></span></code></pre></div><p>Then the attacker website can run <code>fetch('/adsbygoogle.js').catch(() =&gt; {});</code> to trigger the filter, and make their hooked XHR run. Note that there are several ways that the extension internal UUID could be leaked; it’s not just this one filter rule.</p>
+<h3>Creating an iframe</h3>
+<p>Then you can use that to iframe the element picker. Given an iframe element in the page, you just set its src to <code>`moz-extension://${origin}/web_accessible_resources/epicker-ui.html`</code>.</p>
+<h3>Sending messages to it</h3>
+<p>Now we can drive the element picker. We can create a MessageChannel and do <code>iframe.contentWindow.postMessage({ what: 'epickerStart' }, '*', [ch.port2]);</code> to send it to the picker iframe. Then we talk to it: it sends us a <code>start</code> message, we send it a <code>showDialog</code> message with a filter and a <code>resultsetDetails</code> message<sup><span>1</span></sup> to enable the create button and set <code>opt</code>.</p>
+<p>Normally the picker restricts what filters you can enter, and doesn’t let you add scriptlet filters. But there’s a trick we can do to add arbitrary filters. There’s an <code>opt</code> field we set in the second message which is normally the type of network request to match (like <code>image</code>), and gets appended to the filter with a <code>$</code> if set, like <code>$image</code>. But since we control it, we can put a newline in it and make it <code>"image\ngoogle.com##+js(trusted-rpnt, script, ...)"</code> to inject an arbitrary trusted filter that injects a script.<sup><span>2</span></sup></p>
+<p>This is where the main issue is - the element picker shouldn’t accept messages from the attacker. One of the fixes was having a secret password that the real element picker gets from the content script, that the element picker sends in the initial postMessage.</p>
+<h3>Getting the click</h3>
+<p>I didn’t bother actually implementing this, but malicious websites could overlay stuff on top of the embedded element picker or make it invisible by setting the iframe opacity to 0. So as long as the website can get the user to click on the page, it can add arbitrary trusted filters for arbitrary domains.</p>
+<p>Filters added by the element picker are always treated as trusted (at least until a recompile), which is why it can add a trusted filter. If the user later changes their custom filters it would cause a recompile, clearing the filter trust. But in practice the attacker could just immediately open the victim webpage, so this doesn’t help much.</p>
+
+  
+
+<div>
+<hr />
+<ol>
+<li>
+<p>Originally I sent that message in reply to a <code>dialogSetFilter</code> message from the picker, but it turns out you can just send it right away instead of waiting to reply. <span>↩︎</span></p>
+</li>
+<li>
+<p>Assuming the shown filter is a network filter. <span>↩︎</span></p>
+</li>
+</ol>
+</div>
+
+          
+        
+        <hr />
+      
+      
+        
+      
+    </div>
+    
+  </div></div>
+  <div class="footer">
+    本文由 AI热点监控系统自动抓取 · 内容版权归原作者/网站所有<br>
+    快照仅用于学习交流，如需转载请访问原文
+  </div>
+</div>
+</body>
+</html>
