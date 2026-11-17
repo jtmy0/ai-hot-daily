@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="referrer" content="no-referrer">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; script-src 'unsafe-inline'; img-src data:; connect-src 'none'; base-uri 'none'; form-action 'none'; frame-ancestors 'none'">
+<title>AI 热点日报 — 2026年11月17日</title>
+<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg-outer: #2d2d2d; --bg-page: #f8f6f1; --text-primary: #1a1a1a;
+  --text-secondary: #555; --text-muted: #999;
+  --tab-1: #98d4bb; --tab-2: #c7b8ea; --tab-3: #f4b8c5; --tab-4: #a8d8ea; --tab-5: #ffe6a7; --tab-6: #d4c5b9;
+  --font-display: 'Bodoni Moda', serif; --font-body: 'DM Sans', sans-serif; --border: #e0dcd4;
+  --expand-bg: #f0ede8;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html, body { height: 100%; overflow-x: hidden; }
+body { background: var(--bg-outer); font-family: var(--font-body); min-height: 100vh; display: flex; justify-content: center; align-items: flex-start; padding: clamp(1rem, 3vw, 3rem); }
+.notebook { position: relative; background: var(--bg-page); width: min(92vw, 920px); border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1), 0 20px 60px rgba(0,0,0,0.3); padding: clamp(2rem, 5vw, 4rem); padding-right: clamp(2.5rem, 6vw, 5rem); animation: pageIn 0.6s ease-out; }
+.notebook::before { content: ''; position: absolute; left: clamp(14px, 2vw, 24px); top: 0; bottom: 0; width: 2px; background: repeating-linear-gradient(to bottom, transparent 0px, transparent 30px, var(--border) 30px, var(--border) 32px); }
+.hole { position: absolute; left: clamp(8px, 1.5vw, 16px); width: clamp(10px, 1.5vw, 16px); height: clamp(10px, 1.5vw, 16px); border-radius: 50%; background: var(--bg-outer); border: 1.5px solid #bbb; }
+.hole:nth-child(1) { top: 12%; } .hole:nth-child(2) { top: 50%; } .hole:nth-child(3) { top: 88%; }
+
+.tabs { position: absolute; right: 0; top: 10%; display: flex; flex-direction: column; gap: 4px; z-index: 10; }
+.tab { padding: clamp(0.3rem, 0.8vw, 0.6rem) clamp(0.5rem, 1vw, 0.8rem); border-radius: 6px 0 0 6px; font-size: clamp(0.5rem, 1vh, 0.7rem); font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: rgba(0,0,0,0.6); writing-mode: vertical-rl; text-orientation: mixed; min-height: clamp(40px, 6vh, 60px); display: flex; align-items: center; justify-content: center; cursor: pointer; transition: transform 0.2s; border: none; background: none; font-family: inherit; }
+.tab:hover { transform: translateX(-4px); }
+.tab.active { transform: translateX(-6px); box-shadow: -2px 0 8px rgba(0,0,0,0.1); }
+.tab[data-cat="all"] { background: var(--text-primary); color: #fff; }
+.tab[data-cat="ai"] { background: var(--tab-1); }
+.tab[data-cat="dev"] { background: var(--tab-2); }
+.tab[data-cat="sec"] { background: var(--tab-3); }
+.tab[data-cat="biz"] { background: var(--tab-4); }
+.tab[data-cat="auto"] { background: var(--tab-5); }
+.tab[data-cat="other"] { background: var(--tab-6); }
+
+.header { margin-bottom: clamp(0.8rem, 2vw, 1.5rem); padding-bottom: clamp(0.6rem, 1.2vw, 1rem); border-bottom: 2px solid var(--text-primary); }
+.header h1 { font-family: var(--font-display); font-size: clamp(1.5rem, 4vw, 2.8rem); font-weight: 700; letter-spacing: -0.02em; color: var(--text-primary); }
+.header .subtitle { display: flex; justify-content: space-between; align-items: center; margin-top: 0.4rem; flex-wrap: wrap; gap: 0.5rem; }
+.header .date { font-family: var(--font-display); font-style: italic; font-size: clamp(0.7rem, 1.1vw, 0.95rem); color: var(--text-secondary); }
+.header .controls { display: flex; gap: 0.5rem; }
+.header .controls button { font-family: var(--font-body); font-size: clamp(0.55rem, 0.85vw, 0.72rem); padding: 0.25rem 0.6rem; border: 1px solid var(--border); border-radius: 4px; background: #fff; color: var(--text-secondary); cursor: pointer; transition: all 0.2s; }
+.header .controls button:hover { background: var(--text-primary); color: #fff; border-color: var(--text-primary); }
+.back-link { display: inline-flex; align-items: center; gap: 0.3em; font-size: clamp(0.6rem, 0.9vw, 0.75rem); color: var(--text-muted); text-decoration: none; margin-bottom: clamp(0.4rem, 0.8vw, 0.6rem); transition: color 0.2s; }
+.back-link:hover { color: var(--text-primary); }
+
+.entries { padding-left: clamp(0.5rem, 2vw, 1.5rem); }
+.entry { border-bottom: 1px solid var(--border); animation: fadeIn 0.4s ease-out backwards; transition: opacity 0.3s; }
+.entry.hidden { display: none; }
+.entry .entry-head { display: flex; gap: clamp(0.6rem, 1.5vw, 1.2rem); padding: clamp(0.6rem, 1.2vw, 1rem) 0; cursor: pointer; user-select: none; transition: padding-left 0.2s; }
+.entry .entry-head:hover { padding-left: 4px; }
+.entry .bullet { flex-shrink: 0; width: clamp(6px, 0.8vw, 8px); height: clamp(6px, 0.8vw, 8px); border-radius: 50%; margin-top: 0.55em; transition: transform 0.2s; }
+.entry.expanded .bullet { transform: scale(1.5); }
+.entry .info { flex: 1; min-width: 0; }
+.entry .info h3 { font-family: var(--font-body); font-size: clamp(0.8rem, 1.3vw, 1.05rem); font-weight: 500; line-height: 1.45; color: var(--text-primary); margin-bottom: 0.25rem; }
+.entry .info .meta { font-size: clamp(0.6rem, 0.9vw, 0.75rem); color: var(--text-muted); font-style: italic; }
+.entry .info .badge-icon { font-size: 0.85em; margin-right: 0.1em; }
+.entry .expand-icon { flex-shrink: 0; width: 20px; height: 20px; display: flex; align-items: center; justify-content: center; color: var(--text-muted); font-size: 12px; transition: transform 0.3s ease; margin-top: 0.3em; }
+.entry.expanded .expand-icon { transform: rotate(180deg); }
+
+.entry .detail-wrap { max-height: 0; overflow: hidden; transition: max-height 0.5s cubic-bezier(0.16, 1, 0.3, 1); }
+.entry.expanded .detail-wrap { max-height: 500px; }
+.entry .detail-inner { padding: clamp(0.5rem, 1vw, 0.8rem) 0 clamp(0.5rem, 1vw, 0.8rem) clamp(1.8rem, 3.5vw, 2.8rem); background: var(--expand-bg); border-radius: 6px; margin-bottom: clamp(0.4rem, 0.8vw, 0.6rem); border-left: 3px solid var(--border); }
+.entry .detail-inner p { font-size: clamp(0.72rem, 1.1vw, 0.9rem); line-height: 1.7; color: var(--text-secondary); }
+.entry .detail-inner p strong { color: var(--text-primary); font-weight: 600; }
+.entry .detail-inner .source-link { display: inline-flex; align-items: center; gap: 0.3em; margin-top: clamp(0.4rem, 0.7vw, 0.6rem); font-size: clamp(0.6rem, 0.9vw, 0.75rem); color: var(--text-muted); text-decoration: none; padding: 0.2rem 0.5rem; border: 1px solid var(--border); border-radius: 4px; transition: all 0.2s; }
+.entry .detail-inner .source-link:hover { color: var(--text-primary); border-color: var(--text-primary); background: rgba(0,0,0,0.03); }
+
+.footer { margin-top: clamp(0.8rem, 1.5vw, 1.5rem); padding-top: clamp(0.5rem, 1vw, 1rem); border-top: 1px solid var(--border); font-size: clamp(0.55rem, 0.85vw, 0.7rem); color: var(--text-muted); font-family: var(--font-display); font-style: italic; text-align: center; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem; }
+.footer .badge { display: inline-flex; align-items: center; gap: 0.3em; padding: 0.15rem 0.5rem; border: 1px solid var(--border); border-radius: 999px; font-style: normal; font-size: clamp(0.5rem, 0.75vw, 0.6rem); }
+
+@keyframes pageIn { from { opacity: 0; transform: scale(0.97); } to { opacity: 1; transform: scale(1); } }
+@keyframes fadeIn { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
+@media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.1s !important; } }
+</style>
+</head>
+<body>
+  <div class="notebook">
+    <div class="hole"></div><div class="hole"></div><div class="hole"></div>
+    <div class="tabs" id="tabs">
+      <button class="tab active" data-cat="all" title="全部">ALL</button>
+      <button class="tab" data-cat="ai" title="AI/大模型">AI</button>
+      <button class="tab" data-cat="dev" title="开发工具">DEV</button>
+      <button class="tab" data-cat="sec" title="安全">SEC</button>
+      <button class="tab" data-cat="biz" title="商业">BIZ</button>
+      <button class="tab" data-cat="auto" title="自动化">AUTO</button>
+      <button class="tab" data-cat="other" title="其他">OTHER</button>
+    </div>
+    <div class="header">
+      <a class="back-link" href="./">← 归档首页</a>
+      <h1>AI 热点日报</h1>
+      <div class="subtitle">
+        <span class="date">2026年11月17日，星期二 · 道法术器解读</span>
+        <div class="controls">
+          <button id="expandAll">展开全部</button>
+          <button id="collapseAll">收起全部</button>
+        </div>
+      </div>
+    </div>
+    <div class="entries" id="entries">
+      <div class="entry" data-cat="sec" style="animation-delay: 0.1s;">
+        <div class="entry-head">
+          <div class="bullet" style="background: var(--tab-3);"></div>
+          <div class="info">
+            <h3>顶尖CS课程免费开放</h3>
+            <div class="meta">Hacker News · 🔥 100 · 6小时前</div>
+          </div>
+          <div class="expand-icon">▼</div>
+        </div>
+        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：顶尖计算机教育资源的边际分发成本趋近于零，名校课程从稀缺的录取资格转变为公开的基础设施，长期看学历信号价值下降、可验证的实操能力价值上升。
+<strong>法</strong>：把<strong>高成本权威内容免费化</strong>作为获客与品牌杠杆，用课程建立标准与生态入口，再通过认证、企业培训、人才输送变现，适用于任何知识密集型行业。
+<strong>术</strong>：按岗位能力图谱筛选课程而非按学校名气；以项目产出替代证书作为能力凭证；将课程内容与内部培训体系对齐，降低新人培养周期。
+<strong>器</strong>：YouTube、CMU 公开课、开源课程仓库、在线评测平台。</p>
+<a class="source-link" href="https://www.cs.cmu.edu/learn/" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
+      </div>
+      <div class="entry" data-cat="ai" style="animation-delay: 0.18s;">
+        <div class="entry-head">
+          <div class="bullet" style="background: var(--tab-1);"></div>
+          <div class="info">
+            <h3>浏览器调试接入编码智能体</h3>
+            <div class="meta">GitHub Trending · 🔥 73 · 11小时前</div>
+          </div>
+          <div class="expand-icon">▼</div>
+        </div>
+        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：AI 编码工具的能力瓶颈正从模型生成质量转向<strong>运行时反馈闭环</strong>，谁能把真实环境的调试、日志、渲染结果喂回智能体，谁就掌握下一层入口。
+<strong>法</strong>：将成熟开发者工具的既有能力封装为<strong>标准化协议接口</strong>，让智能体复用而非重建，是工具类产品接入 AI 生态的最低成本路径。
+<strong>术</strong>：优先把调试、网络请求、性能剖析三类能力暴露给智能体；在 CI 中让智能体读取真实报错而非模拟数据；对工具调用做权限与副作用隔离。
+<strong>器</strong>：Chrome DevTools、MCP 协议、Chrome DevTools MCP、主流编码智能体客户端。</p>
+<a class="source-link" href="https://github.com/ChromeDevTools/chrome-devtools-mcp" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
+      </div>
+      <div class="entry" data-cat="ai" style="animation-delay: 0.26s;">
+        <div class="entry-head">
+          <div class="bullet" style="background: var(--tab-1);"></div>
+          <div class="info">
+            <h3>系统层采集开发工具数据</h3>
+            <div class="meta">Hacker News · 🔥 68 · 4小时前</div>
+          </div>
+          <div class="expand-icon">▼</div>
+        </div>
+        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：操作系统正从被动平台变为<strong>行为数据采集层</strong>，开发工具使用习惯属于高价值竞争情报，平台方与工具方对数据主权的争夺会持续加剧。
+<strong>法</strong>：默认开启、逐项关闭的隐私设计本质是<strong>用用户惰性换取数据规模</strong>，对抗策略是把数据最小化与可审计性做成采购硬指标。
+<strong>术</strong>：审计系统遥测开关与网络出站请求；在开发机上隔离敏感仓库与工具链；对团队统一配置隐私基线并定期复核。
+<strong>器</strong>：Windows 隐私设置、组策略、本地 DNS 与流量监控工具、开源遥测拦截脚本。</p>
+<a class="source-link" href="https://xusheng.dev/posts/windows-coding-agent-telemetry/" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
+      </div>
+      <div class="entry" data-cat="ai" style="animation-delay: 0.33999999999999997s;">
+        <div class="entry-head">
+          <div class="bullet" style="background: var(--tab-1);"></div>
+          <div class="info">
+            <h3>办公套件SDK化开放</h3>
+            <div class="meta">GitHub Trending · 🔥 100 · 11小时前</div>
+          </div>
+          <div class="expand-icon">▼</div>
+        </div>
+        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：办公软件正从封闭成品转向可嵌入的SDK能力层，文档编辑、计算、协作被拆解为可复用模块，长期趋势是<strong>办公能力基础设施化</strong>，应用层竞争转向谁能更快组装场景。
+<strong>法</strong>：把核心能力封装为SDK对外输出，以开源或低门槛集成扩大生态，再通过托管服务与企业定制变现，适用于所有工具型产品的平台化路径。
+<strong>术</strong>：1. 评估现有业务中可拆分的编辑、表格、协作模块；2. 用SDK做一次最小集成验证替换成本；3. 关注协作与文件格式兼容的边界条件。
+<strong>器</strong>：Univer Office SDK、GitHub Trending、开源协作框架。</p>
+<a class="source-link" href="https://github.com/dream-num/univer" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
+      </div>
+      <div class="entry" data-cat="ai" style="animation-delay: 0.42000000000000004s;">
+        <div class="entry-head">
+          <div class="bullet" style="background: var(--tab-1);"></div>
+          <div class="info">
+            <h3>智能体技能评测框架</h3>
+            <div class="meta">GitHub Trending · 🔥 74 · 11小时前</div>
+          </div>
+          <div class="expand-icon">▼</div>
+        </div>
+        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：AI智能体从演示走向生产，瓶颈已从模型能力转为<strong>质量可控性</strong>，评测、质量门禁、语义覆盖成为智能体规模落地的前置条件，长期看评测层会像CI一样成为标配。
+<strong>法</strong>：为智能体建立分层质量门禁，把技能与插件纳入可量化评分体系，用语义覆盖替代人工抽检，适用于所有需要上线的AI功能模块。
+<strong>术</strong>：1. 先定义技能的成功与失败判定标准；2. 设置多级门禁，低分技能阻断发布；3. 用语义覆盖度定位评测盲区。
+<strong>器</strong>：NVIDIA SkillEvaluator、GitHub Trending、智能体插件体系。</p>
+<a class="source-link" href="https://github.com/NVIDIA/SkillEvaluator" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
+      </div>
+      <div class="entry" data-cat="ai" style="animation-delay: 0.5s;">
+        <div class="entry-head">
+          <div class="bullet" style="background: var(--tab-1);"></div>
+          <div class="info">
+            <h3>智能体前端交互协议</h3>
+            <div class="meta">GitHub Trending · 🔥 72 · 11小时前</div>
+          </div>
+          <div class="expand-icon">▼</div>
+        </div>
+        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：智能体与前端应用的连接正从各自私有对接走向<strong>标准化协议</strong>，交互层标准化会降低集成成本，长期趋势是智能体像浏览器插件一样即插即用，协议层成为生态入口。
+<strong>法</strong>：以开放协议定义智能体与界面的通信契约，先占领集成入口再扩展能力，适用于所有需要多方对接的交互型技术。
+<strong>术</strong>：1. 梳理现有智能体与前端的事件与状态同步需求；2. 按协议规范实现一次端到端联调；3. 评估协议对多智能体并发的支持边界。
+<strong>器</strong>：AG-UI协议、GitHub Trending、前端智能体集成框架。</p>
+<a class="source-link" href="https://github.com/ag-ui-protocol/ag-ui" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
+      </div>
+      <div class="entry" data-cat="ai" style="animation-delay: 0.58s;">
+        <div class="entry-head">
+          <div class="bullet" style="background: var(--tab-1);"></div>
+          <div class="info">
+            <h3>Agent协作转向过程管控</h3>
+            <div class="meta">GitHub Trending · 🔥 69 · 11小时前</div>
+          </div>
+          <div class="expand-icon">▼</div>
+        </div>
+        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：Agent能力越强，瓶颈越从生成质量转向过程可控，人机协作的重心正从下达指令迁移到中途干预与审阅。<strong>法</strong>：把不可见的推理链变成可批注、可回滚的结构化工作区，用人在环上的节点控制替代事后验收，适用于所有长链路自动化任务。<strong>术</strong>：在关键决策点设置人工确认卡口；将计划、执行、评审拆为独立可标注阶段；保留每次干预记录用于复盘调优。<strong>器</strong>：plannotator、GitHub Trending 项目页、Agent 工作流编排平台。</p>
+<a class="source-link" href="https://github.com/backnotprop/plannotator" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
+      </div>
+      <div class="entry" data-cat="ai" style="animation-delay: 0.66s;">
+        <div class="entry-head">
+          <div class="bullet" style="background: var(--tab-1);"></div>
+          <div class="info">
+            <h3>Agent技能走向标准化封装</h3>
+            <div class="meta">GitHub Trending · 🔥 64 · 11小时前</div>
+          </div>
+          <div class="expand-icon">▼</div>
+        </div>
+        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：Agent 竞争正从模型能力转向技能资产，可复用、可组合的标准化技能库将成为平台生态的护城河。<strong>法</strong>：把高频任务沉淀为遵循统一协议的技能模块，通过 MCP 等接口挂载到任意 Agent，实现一次封装多处复用。<strong>术</strong>：梳理团队重复性任务清单，优先封装调用频次最高的三项；按统一规范定义输入输出与失败回退；在 MCP 服务器上做灰度验证再全量接入。<strong>器</strong>：stitch-skills、Stitch MCP server、google-labs-code 仓库。</p>
+<a class="source-link" href="https://github.com/google-labs-code/stitch-skills" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
+      </div>
+      <div class="entry" data-cat="ai" style="animation-delay: 0.74s;">
+        <div class="entry-head">
+          <div class="bullet" style="background: var(--tab-1);"></div>
+          <div class="info">
+            <h3>多智能体接管科研流水线</h3>
+            <div class="meta">GitHub Trending · 🔥 59 · 11小时前</div>
+          </div>
+          <div class="expand-icon">▼</div>
+        </div>
+        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：科研写作正被拆解为可编排的多智能体流水线，产出效率提升的同时，原创性与评审可信度成为新的稀缺资源。<strong>法</strong>：将复杂知识生产拆成检索、构思、撰写、校验等角色分工，由多个专精 Agent 串行协作并交叉审核，替代单模型一次性生成。<strong>术</strong>：先固定文献检索与事实核验环节作为质量闸门；为每个 Agent 设定明确职责边界与交付格式；人工保留选题与终审两个不可让渡节点。<strong>器</strong>：paper-orchestra、google-research 仓库、多智能体编排框架。</p>
+<a class="source-link" href="https://github.com/google-research/paper-orchestra" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
+      </div>
+      <div class="entry" data-cat="other" style="animation-delay: 0.82s;">
+        <div class="entry-head">
+          <div class="bullet" style="background: var(--tab-6);"></div>
+          <div class="info">
+            <h3>李飞飞团队并入AMD</h3>
+            <div class="meta">36kr · 🔥 82 · 2小时前</div>
+          </div>
+          <div class="expand-icon">▼</div>
+        </div>
+        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：AI竞争已从单点模型能力转向<strong>算力与人才的一体化整合</strong>，头部芯片厂商正通过并购直接获取顶尖研究团队，把学术影响力转化为产品定义权。<strong>法</strong>：以资本并购替代长期自研孵化，快速补齐软件栈与人才短板，适用于任何硬件厂商追赶生态领先者的场景。<strong>术</strong>：梳理目标团队的核心技术资产与专利归属；在交割前锁定关键人员留任条款；将研究团队与产品线并置，缩短从论文到芯片设计的反馈周期。<strong>器</strong>：AMD 的 ROCm 软件栈、Instinct 系列加速卡、PyTorch 生态。</p>
+<a class="source-link" href="https://www.36kr.com/p/4073110549517189" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
+      </div>
+      <div class="entry" data-cat="sec" style="animation-delay: 0.9s;">
+        <div class="entry-head">
+          <div class="bullet" style="background: var(--tab-3);"></div>
+          <div class="info">
+            <h3>摩根大通系统故障连锁</h3>
+            <div class="meta">Hacker News · 🔥 94 · 9小时前</div>
+          </div>
+          <div class="expand-icon">▼</div>
+        </div>
+        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：金融基础设施的<strong>高度耦合</strong>使单点技术故障迅速扩散为跨机构服务中断，系统韧性正取代功能丰富度成为核心竞争指标。<strong>法</strong>：把故障域隔离和降级预案前置到架构设计阶段，而非事后补救，适用于所有强依赖实时性的在线服务。<strong>术</strong>：绘制跨机构依赖拓扑，识别单点故障传导路径；为关键链路设置独立熔断与人工兜底通道；定期做跨行联合演练并公开恢复时长指标。<strong>器</strong>：分布式追踪系统、混沌工程平台、多活容灾架构。</p>
+<a class="source-link" href="https://apnews.com/article/bank-outage-chase-wells-fargo-truist-50fee2693c22f597fa6ca51a97ef2cda" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
+      </div>
+      <div class="entry" data-cat="ai" style="animation-delay: 0.98s;">
+        <div class="entry-head">
+          <div class="bullet" style="background: var(--tab-1);"></div>
+          <div class="info">
+            <h3>Claude技能包走红开源</h3>
+            <div class="meta">GitHub Trending · 🔥 80 · 11小时前</div>
+          </div>
+          <div class="expand-icon">▼</div>
+        </div>
+        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：AI编程工具的价值正从模型本身转移到<strong>可复用的技能与工作流封装</strong>，社区沉淀的提示与工具组合成为新的分发单元。<strong>法</strong>：把高频任务拆解为标准化技能模块并开源共享，以生态贡献换取工具链话语权，适用于任何平台型 AI 产品。<strong>术</strong>：按任务域归类技能并统一命名与调用约定；为每个技能附最小可复现示例；建立版本与安全审查机制，避免外部技能引入风险。<strong>器</strong>：Claude Code、斜杠命令机制、GitHub 开源协作流程。</p>
+<a class="source-link" href="https://github.com/sponsors/elementalsouls" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
+      </div>
+      <div class="entry" data-cat="ai" style="animation-delay: 1.06s;">
+        <div class="entry-head">
+          <div class="bullet" style="background: var(--tab-1);"></div>
+          <div class="info">
+            <h3>交易能力被封装成技能包</h3>
+            <div class="meta">GitHub Trending · 🔥 73 · 11小时前</div>
+          </div>
+          <div class="expand-icon">▼</div>
+        </div>
+        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：金融分析的核心能力正从人的经验判断迁移到可复用的技能模块，AI代理接管信息处理与信号生成，人的角色收缩为策略设定与风险兜底。<strong>法</strong>：把垂直领域的专业流程拆解为标准化技能，挂载到通用代理框架上，用低边际成本复制专家能力，适用于任何知识密集型行业。<strong>术</strong>：先明确交易逻辑与风控边界再选技能；用历史数据回测技能输出而非直接实盘；把仓位管理留在人工环节，只让代理做信号与复盘。<strong>器</strong>：Claude Code、GitHub 技能仓库、行情数据接口、回测框架。</p>
+<a class="source-link" href="https://github.com/tradermonty/claude-trading-skills" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
+      </div>
+      <div class="entry" data-cat="ai" style="animation-delay: 1.1400000000000001s;">
+        <div class="entry-head">
+          <div class="bullet" style="background: var(--tab-1);"></div>
+          <div class="info">
+            <h3>代理开始直接操作媒体文件</h3>
+            <div class="meta">GitHub Trending · 🔥 60 · 11小时前</div>
+          </div>
+          <div class="expand-icon">▼</div>
+        </div>
+        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：AI代理的能力边界正从文本生成扩展到对本地文件和专业工具的<strong>实际操控</strong>，机器可读的接口契约成为代理接入一切软件的前提。<strong>法</strong>：为工具设计结构化、可校验的调用契约，让代理无需理解界面即可稳定执行，这是所有软件被代理化的通用路径。<strong>术</strong>：优先把高频操作封装成带明确输入输出规范的命令；用 MCP 服务暴露能力而非开放裸命令行；对文件写入操作加沙箱与回滚机制。<strong>器</strong>：FFmpeg、MCP 服务端、本地视频编辑工具、代理运行时。</p>
+<a class="source-link" href="https://github.com/sponsors/kajisho5" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
+      </div>
+      <div class="entry" data-cat="ai" style="animation-delay: 1.2200000000000002s;">
+        <div class="entry-head">
+          <div class="bullet" style="background: var(--tab-1);"></div>
+          <div class="info">
+            <h3>跨平台舆情研究被代理化</h3>
+            <div class="meta">GitHub Trending · 🔥 54 · 11小时前</div>
+          </div>
+          <div class="expand-icon">▼</div>
+        </div>
+        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：信息研究的瓶颈已从获取转向<strong>筛选与聚合</strong>，代理跨平台抓取并压缩成结论，正在替代人工浏览式调研，研究工作的价值向提问质量和验证环节转移。<strong>法</strong>：把多源异构信息采集固化为可重复调用的技能，输出结构化摘要而非原始链接堆砌，任何需要跨源比对的场景都可套用。<strong>术</strong>：明确研究问题与时间窗口再调用技能；对代理给出的结论做抽样溯源核验；把高频主题沉淀为固定技能而非每次重跑。<strong>器</strong>：Reddit、X、YouTube、Hacker News、Polymarket 数据源、代理技能框架。</p>
+<a class="source-link" href="https://github.com/mvanhorn/last30days-skill" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
+      </div>
+    </div>
+    <div class="footer">
+      <span>Generated by AI Hot Monitor v2 · DeepSeek · 11:01:48</span>
+      <span class="badge">💡 点击条目展开深度解读</span>
+    </div>
+  </div>
+<script>
+document.querySelectorAll('.entry .entry-head').forEach(h => h.addEventListener('click', () => h.closest('.entry').classList.toggle('expanded')));
+document.getElementById('expandAll').addEventListener('click', () => document.querySelectorAll('.entry:not(.hidden)').forEach(e => e.classList.add('expanded')));
+document.getElementById('collapseAll').addEventListener('click', () => document.querySelectorAll('.entry').forEach(e => e.classList.remove('expanded')));
+document.querySelectorAll('.tab').forEach(tab => tab.addEventListener('click', () => {
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  tab.classList.add('active');
+  const cat = tab.dataset.cat;
+  document.querySelectorAll('.entry').forEach(e => {
+    if (cat === 'all' || e.dataset.cat === cat) { e.classList.remove('hidden'); } else { e.classList.add('hidden'); e.classList.remove('expanded'); }
+  });
+}));
+document.addEventListener('keydown', e => { if (e.key === 'Escape') document.querySelectorAll('.entry').forEach(el => el.classList.remove('expanded')); });
+</script>
+</body>
+</html>
