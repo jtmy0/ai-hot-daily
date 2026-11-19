@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="referrer" content="no-referrer">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'unsafe-inline'; img-src data:; connect-src 'none'; frame-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'; frame-ancestors 'none'">
+<title>Ruby2Shell (GHSA-34m4-m9fh-gqp5) - AI热点快照</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','PingFang SC','Microsoft YaHei',sans-serif;background:#f8f9fa;color:#1a1a2e;line-height:1.8;min-height:100vh}
+.top-bar{background:#fff;border-bottom:1px solid #e5e7eb;padding:10px 20px;display:flex;align-items:center;gap:12px;position:sticky;top:0;z-index:10}
+.top-bar .logo{font-size:14px;font-weight:700;color:#0d9488}
+.top-bar .sep{color:#d1d5db}
+.top-bar .source{font-size:13px;color:#6b7280}
+.top-bar .back{margin-left:auto;font-size:13px;color:#0d9488;text-decoration:none}
+.top-bar .back:hover{text-decoration:underline}
+.container{max-width:760px;margin:0 auto;padding:40px 24px 80px}
+.article-title{font-size:1.8rem;font-weight:700;line-height:1.35;margin-bottom:16px;color:#1a1a2e}
+.article-meta{display:flex;flex-wrap:wrap;gap:16px;padding-bottom:20px;margin-bottom:28px;border-bottom:1px solid #e5e7eb;font-size:14px;color:#6b7280}
+.article-meta a{color:#0d9488;text-decoration:none}
+.article-meta a:hover{text-decoration:underline}
+.article-body{font-size:16.5px;line-height:1.85;color:#1f2937}
+.article-body p{margin-bottom:1.2em;text-align:justify}
+.article-body h1,.article-body h2,.article-body h3{font-size:1.25em;font-weight:700;margin:1.6em 0 0.6em;color:#1a1a2e}
+.article-body a{color:#0d9488}
+.article-body pre,.article-body code{background:#f1f5f9;border-radius:4px;font-size:0.9em}
+.article-body pre{padding:16px;overflow-x:auto;margin:1em 0}
+.article-body code{padding:2px 6px}
+.article-body blockquote{border-left:3px solid #0d9488;padding-left:16px;color:#4b5563;margin:1em 0}
+.article-body ul,.article-body ol{padding-left:1.6em;margin-bottom:1em}
+.article-body li{margin-bottom:0.4em}
+.article-body figure{margin:1.2em 0}
+.article-body figcaption{font-size:13px;color:#9ca3af;text-align:center;margin-top:6px}
+.footer{margin-top:48px;padding-top:20px;border-top:1px solid #e5e7eb;font-size:13px;color:#9ca3af;text-align:center}
+</style>
+</head>
+<body>
+<div class="top-bar">
+  <a class="back" href="../" style="font-size:13px;color:#6b7280;text-decoration:none">← 日报首页</a>
+  <span class="sep">|</span>
+  <span class="logo">AI热点快照</span>
+  <span class="sep">|</span>
+  <span class="source">Veria Labs</span>
+  <a class="back" href="https://verialabs.com/ruby2shell/" target="_blank" rel="noopener noreferrer">查看原文 ↗</a>
+</div>
+<div class="container">
+  <h1 class="article-title">Ruby2Shell (GHSA-34m4-m9fh-gqp5)</h1>
+  <div class="article-meta">
+    
+    <span>来源: Veria Labs</span>
+    <span>快照日期: 2026-11-19</span>
+  </div>
+  <div class="article-body"><div><div>  <h2>Affected software <span></span></h2> <div> <h3>Ruby versions <span></span></h3> <table> <thead> <tr> <th>Ruby series</th> <th>Affected</th> <th>Fixed in</th> </tr> </thead> <tbody> <tr> <td>4.0</td> <td><strong>4.0.0</strong> to <strong>4.0.9</strong></td> <td><strong>4.0.10</strong></td> </tr> <tr> <td>3.4</td> <td><strong>3.4.0</strong> to <strong>3.4.12</strong></td> <td><strong>3.4.13</strong></td> </tr> <tr> <td>3.3</td> <td><strong>3.3.0</strong> to <strong>3.3.13</strong></td> <td><strong>3.3.14</strong></td> </tr> <tr> <td>3.2 and older</td> <td>All releases back to <strong>2.4.0</strong></td> <td>EOL</td> </tr> </tbody> </table> <h3>Your deployment <span></span></h3> <p>
+The bug is reachable from the following frameworks in their default configuration. Other frameworks are not exposed by default, but <b>application code that upcases strings received in a legacy encoding may also be vulnerable.</b> </p> <table> <thead> <tr> <th>Framework</th> <th>Status on an affected Ruby</th> </tr> </thead> <tbody> <tr> <td>Rails</td> <td><span>Affected</span></td> </tr> <tr> <td>Sinatra (classic style)</td> <td><span>Affected</span></td> </tr> <tr> <td>Other frameworks and plain Rack</td> <td><span>Not exposed by default</span></td> </tr> </tbody> </table> <h3>Self-hosted software <span></span></h3> <p>
+The latest version of the following popular software bundles an affected Ruby.
+</p> <table> <thead> <tr> <th>Software</th> <th>Bundled Ruby</th> <th>Status</th> </tr> </thead> <tbody> <tr> <td>GitLab <strong>19.6.0</strong></td> <td><strong>3.3.13</strong></td> <td><span>Affected</span></td> </tr> <tr> <td>GitHub Enterprise Server <strong>3.22.5</strong></td> <td><strong>4.0.9</strong></td> <td><span>Affected</span></td> </tr> <tr> <td>Mastodon <strong>4.7.6</strong></td> <td><strong>4.0.10</strong></td> <td><span>Fixed</span></td> </tr> <tr> <td>OpenProject <strong>17.9.8</strong></td> <td><strong>4.0.10</strong></td> <td><span>Fixed</span></td> </tr> <tr> <td>
+Discourse, base image
+<strong>2.0.20261119-0203</strong> </td> <td><strong>4.0.10</strong></td> <td><span>Fixed</span></td> </tr> <tr> <td>Chatwoot <strong>4.20.0</strong></td> <td><strong>3.4.4</strong></td> <td><span>Affected</span></td> </tr> </tbody> </table> <p>
+Updated
+19 November 2026 at 12:00 UTC.
+</p> </div>  <div> <h3>Your deployment <span></span></h3> <p>
+Upgrade Ruby to a fixed release:
+<strong>3.3.14</strong>, <strong>3.4.13</strong> or
+<strong>4.0.10</strong>.
+</p> <h3>Self-hosted software <span></span></h3> <p>
+Install the vendor's fixed release. See
+<span>Self-hosted software</span> for fixed versions
+              of popular products.
+</p> </div>  <h2>Technical details <span></span></h2> <div> <h3>Root cause <span></span></h3> <p>
+Most of Ruby's single-byte encodings have no capital
+<code>ß</code>. Upcasing it writes two bytes, <code>SS</code>, but
+              the loop only bounds-checks one (<code>to &lt; to_end</code>).
+</p> <div><figure><pre><code><div><p><span>while</span><span> (</span><span>*</span><span>pp </span><span>&lt;</span><span> end </span><span>&amp;&amp;</span><span> to </span><span>&lt;</span><span> to_end) {</span><span>    /* room for one byte */</span></p></div><div><p><span><span>    </span></span><span>code </span><span>=</span><span> </span><span>*</span><span>(</span><span>*</span><span>pp)</span><span>++</span><span>;</span></p></div><div><p><span>    </span><span>if</span><span> (code </span><span>==</span><span> SHARP_s) {</span></p></div><div><p><span>        </span><span>if</span><span> (flags </span><span>&amp;</span><span> ONIGENC_CASE_UPCASE) {</span></p></div><div><p><span>            </span><span>*</span><span>to</span><span>++</span><span> </span><span>=</span><span> </span><span>'S'</span><span>;</span><span>              /* first byte */</span></p></div><div><p><span><span>            </span></span><span>code </span><span>=</span><span> </span><span>'S'</span><span>;</span></p></div><div><p><span><span>        </span></span><span>}</span></p></div><div><p><span><span>        </span></span><span>/* ... */</span></p></div><div><p><span><span>    </span></span><span>}</span></p></div><div><p><span><span>    </span></span><span>/* ... */</span></p></div><div><p><span>    </span><span>*</span><span>to</span><span>++</span><span> </span><span>=</span><span> code;</span><span>                     /* second byte, unchecked */</span></p></div><div><p><span>}</span></p></div></code></pre></figure></div> <p>
+The output buffer is allocated as the input length plus 20
+              bytes. Each <code>ß</code> adds one byte to the output, so an
+              input with 21 of them overflows the buffer by one byte.
+</p> <p>
+The same loop is in several ISO-8859 and Windows-125x encodings
+              and has been there since Ruby 2.4.0. It is reached by
+<code>upcase</code>, <code>swapcase</code>,
+<code>downcase(:fold)</code> and <code>casecmp?</code>.
+</p> <p>
+UTF-8 strings take a different code path and are not affected.
+</p> <p>
+Fixed upstream in
+<a href="https://github.com/ruby/ruby/commit/d582f8f13d700d8e39714d3a8f11eb4bd2bc69f0" target="_blank" rel="noopener noreferrer nofollow"><code>ruby/ruby@d582f8f</code></a>.
+</p> <h3>Primitive <span></span></h3> <p>
+A one-byte heap overflow. The byte written is <code>S</code>
+(<code>0x53</code>) when upcasing or <code>s</code>
+(<code>0x73</code>) when case-folding, and it lands directly
+              after the output buffer. The attacker controls the size of the
+              buffer through the input length.
+</p> <p>
+Copying the result out of the buffer then reads one byte out of
+              bounds.
+</p> </div>   <h2>Proof of concept <span></span></h2> <p>
+We'll be publishing a proof of concept in a week, once people
+              have had time to upgrade.
+</p>  </div></div></div>
+  <div class="footer">
+    本文由 AI热点监控系统自动抓取 · 内容版权归原作者/网站所有<br>
+    快照仅用于学习交流，如需转载请访问原文
+  </div>
+</div>
+</body>
+</html>
