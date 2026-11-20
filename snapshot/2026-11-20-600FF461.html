@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="referrer" content="no-referrer">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'unsafe-inline'; img-src data:; connect-src 'none'; frame-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'; frame-ancestors 'none'">
+<title>刚刚，DeepSeek张博创业曝光：开源个人Agent-36氪 - AI热点快照</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','PingFang SC','Microsoft YaHei',sans-serif;background:#f8f9fa;color:#1a1a2e;line-height:1.8;min-height:100vh}
+.top-bar{background:#fff;border-bottom:1px solid #e5e7eb;padding:10px 20px;display:flex;align-items:center;gap:12px;position:sticky;top:0;z-index:10}
+.top-bar .logo{font-size:14px;font-weight:700;color:#0d9488}
+.top-bar .sep{color:#d1d5db}
+.top-bar .source{font-size:13px;color:#6b7280}
+.top-bar .back{margin-left:auto;font-size:13px;color:#0d9488;text-decoration:none}
+.top-bar .back:hover{text-decoration:underline}
+.container{max-width:760px;margin:0 auto;padding:40px 24px 80px}
+.article-title{font-size:1.8rem;font-weight:700;line-height:1.35;margin-bottom:16px;color:#1a1a2e}
+.article-meta{display:flex;flex-wrap:wrap;gap:16px;padding-bottom:20px;margin-bottom:28px;border-bottom:1px solid #e5e7eb;font-size:14px;color:#6b7280}
+.article-meta a{color:#0d9488;text-decoration:none}
+.article-meta a:hover{text-decoration:underline}
+.article-body{font-size:16.5px;line-height:1.85;color:#1f2937}
+.article-body p{margin-bottom:1.2em;text-align:justify}
+.article-body h1,.article-body h2,.article-body h3{font-size:1.25em;font-weight:700;margin:1.6em 0 0.6em;color:#1a1a2e}
+.article-body a{color:#0d9488}
+.article-body pre,.article-body code{background:#f1f5f9;border-radius:4px;font-size:0.9em}
+.article-body pre{padding:16px;overflow-x:auto;margin:1em 0}
+.article-body code{padding:2px 6px}
+.article-body blockquote{border-left:3px solid #0d9488;padding-left:16px;color:#4b5563;margin:1em 0}
+.article-body ul,.article-body ol{padding-left:1.6em;margin-bottom:1em}
+.article-body li{margin-bottom:0.4em}
+.article-body figure{margin:1.2em 0}
+.article-body figcaption{font-size:13px;color:#9ca3af;text-align:center;margin-top:6px}
+.footer{margin-top:48px;padding-top:20px;border-top:1px solid #e5e7eb;font-size:13px;color:#9ca3af;text-align:center}
+</style>
+</head>
+<body>
+<div class="top-bar">
+  <a class="back" href="../" style="font-size:13px;color:#6b7280;text-decoration:none">← 日报首页</a>
+  <span class="sep">|</span>
+  <span class="logo">AI热点快照</span>
+  <span class="sep">|</span>
+  <span class="source">36kr</span>
+  <a class="back" href="https://www.36kr.com/p/4077377119245191" target="_blank" rel="noopener noreferrer">查看原文 ↗</a>
+</div>
+<div class="container">
+  <h1 class="article-title">刚刚，DeepSeek张博创业曝光：开源个人Agent-36氪</h1>
+  <div class="article-meta">
+    <span>作者: 量子位</span>
+    <span>来源: 36kr</span>
+    <span>快照日期: 2026-11-20</span>
+  </div>
+  <div class="article-body"><div><div>
+ 
+ 
+  <p>聚是一团火，散是满天星。</p>
+  <p>刚刚，前DeepSeek V1作者、DeepSeek-VL项目负责人<strong>Tony Zhang（张博）</strong>，正式公布了自己的新创业项目：<strong>Linger</strong>。</p>
+  <p>方向，正是当下最火的个人<strong>Personal Agent</strong>。</p>
+  <p>路线也是比较有意思，当同行都在做APP，他们优先选择了电脑。</p>
+  <p>这意味着，Linger能操纵你电脑已有的网页、邮件箱、日历，无需折腾一大堆登录凭据。</p>
+  <p>遇到卡住的地方，你也可以直接上手接管。</p>
+  <p>另外一个点，作为中间层的Linger，支持接入各个第三方模型。</p>
+  <p>并且专门为本地LLM做了优化。</p>
+  <p>具体来说，一块12GB显存的RTX 3060显卡，就能跑起一个125B参数的<strong>Qwen3.8-Flash-Next</strong>，并且<strong>是45.5 tokens/秒的生成速度。</strong></p>
+  <p></p>
+  <p>对了，还有个蛮重要的事情——</p>
+  <p><strong>这套系统是开源的。。。</strong></p>
+  <p>至于为什么？</p>
+  <p>在官宣帖中，Tony Zhang引用了PC崛起的历史：</p>
+  <blockquote>
+   <p>1960年代，计算是中心化的，直到PC将权力交到每个人手中。如今，AI在数据中心训练，然后以token的形式租给你。</p>
+   <p>我们相信智能应该是分布式的。你的上下文、你的数据，以及驱动它们的智能，都应该完全由你拥有。</p>
+  </blockquote>
+  <p>所以今天，他们开源了Linger，一个生活在你个人电脑上的专属Agent。</p>
+  <p></p>
+  <p>也是延续大肥鲸优良传统了😭。</p>
+  <h2><strong>一个「会主动，能自学」的AI</strong></h2>
+  <p>Linger的的核心，是名为「Another Me」的Agent系统。</p>
+  <p>它首先是一个记忆中枢。</p>
+  <p>Linger会在本地读取你的收件箱、日历、聊天记录和会议，每晚自动将这些信息整理成个人知识库（Wiki），供所有Agent查询。</p>
+  <p>在衡量长期对话记忆能力的LoCoMo基准测试中，<strong>Linger的准确率达到了95%</strong>，超过了Mem0、MemOS等多个记忆增强型AI系统。</p>
+  <p></p>
+  <p>有了这些，Linger便能更好地主动工作。</p>
+  <p>它会默默观察你的信息流，根据事件的重要性和紧急性决定何时提醒你。周一收到客户邮件，要求周五前给报价，它不会立刻打扰，而是等到周三早上再弹出提醒。</p>
+  <p>但如果是会议时间变更，它会立即通知。</p>
+  <p></p>
+  <p>这个Agent还会从你的反馈中自我学习，Linger称之为「隐式强化」。</p>
+  <p>比如，当它提醒你一张发票快到期了，你回复说「上周就收到了，应该当时就告诉我」。系统会记下一个线索。</p>
+  <p>如果下一次另一张发票出现类似情况，你再次表达了相同的偏好，系统就会自动生成一条规则：<strong>「供应商发票→立即提醒」</strong>。</p>
+  <p></p>
+  <p>反之，如果你连续两次对「快递提醒」表现出不感兴趣（比如直接忽略或回复「不用告诉我」），它也会学会以后保持沉默。</p>
+  <p>你也可以直接下指令，一次性教会它。比如告诉它：「客户的回复，要立刻通知我」，或者「晚上9点后，会议变更这种事不用马上说」。</p>
+  <p>这种持续的交互和学习，让Agent越来越懂你的工作习惯，成为一个真正个性化的助理。</p>
+  <p>除此之外，Linger还能：</p>
+  <p><strong>操作桌面和浏览器</strong>。</p>
+  <p>就是开头说的，Linger能直接使用你电脑上已经登录的Chrome、各种App，无需重新配置。</p>
+  <p><strong>组建Agent团队</strong>。</p>
+  <p>这点就是DeepSeek之前解释过的Super Agent原理了。</p>
+  <p>你下达一个复杂任务时，Another Me会调用或创建不同职能的Agent，协同完成工作。</p>
+  <p>而你，只用停留在和Linger的这一个Session。</p>
+  <p><strong>语音交互</strong>。</p>
+  <p>这点主要就是服务于办公场景了。</p>
+  <p>Linger能实时转录会议，会后直接向Agent提问会议内容，并让它跟进待办事项。</p>
+  <p>总而言之呢，就是一个专为办公场景优化的Personal Agent。</p>
+  <p>不过，也有网友对这一产品定位不太理解：</p>
+  <blockquote>
+   <p>为什么不基于DeepSeek harness开发🤣跟ds-bot有何区别呢</p>
+  </blockquote>
+  <p>对此，Tony Zhang回应道：</p>
+  <blockquote>
+   <p>Linger的重点是把模型和harness一起优化：12GB显卡就能本地跑125B模型，不按token付费，数据也不出本机。</p>
+   <p>从产品定位上看：DS-Bot的核心是Bot与Bot、Bot与群组的协作；Linger的核心是人与自己的Agent、Agent与本地环境。</p>
+  </blockquote>
+  <p></p>
+  <h2><strong>12GB显卡，跑125B模型</strong></h2>
+  <p>让消费级硬件运行千亿大模型，Linger的核心技术是一个名为<strong>PolyStrata</strong>的MoE推理引擎。</p>
+  <p>它的原理可以理解为一种智能分层存储机制。</p>
+  <p>对于一个庞大的MoE（专家混合）模型，PolyStrata会把最常用、最活跃的「专家模块」放在最快的GPU显存里，将不那么常用的放在内存中，而使用频率最低的则放在SSD固态硬盘上。</p>
+  <p>当模型需要调用某个专家时，系统会动态地在GPU、内存和SSD之间移动数据。这样一来，就不需要把整个几十上百GB的模型全部塞进有限的显存里。</p>
+  <p>效果立竿见影。</p>
+  <p>根据官方数据，<strong>一个125B参数的Qwen3.8-Flash-Next模型，在一台配备12GB RTX 3060和64GB内存的电脑上，可以实现45.5 tokens/秒的生成速度。</strong></p>
+  <p>在更强的RTX 5090（32GB）上，速度则飙升至179 tokens/秒。</p>
+  <p>为了让用户更方便地用上本地大模型，Linger还做了一个「模型自动驾驶（Model Autopilot）」功能。</p>
+  <p>它会自动检测你的硬件配置（GPU、显存、内存），然后从49个语言模型、两种推理引擎、多种量化方案和不同上下文长度的组合中，为你推荐并安装性能最强的模型。</p>
+  <p></p>
+  <p>根据SimplexAI的评分体系，不同配置的本地设备可以获得媲美主流云端大模型的能力：</p>
+  <p><strong>8GB显卡+32GB内存</strong>：得分35.4，约等于<strong>Gemini 2.5 Pro</strong>。</p>
+  <p><strong>Mac 24GB统一内存</strong>：得分51.9，约等于<strong>Claude Opus 4.5</strong>。</p>
+  <p><strong>12GB显卡+32GB内存</strong>：得分57.3，约等于<strong>Claude Opus 4.6</strong>。</p>
+  <p>这意味着，你的游戏本或MacBook，将拥有一个真正强大的、7x24小时待命、没有token费用、并且数据完全不出本地的AI大脑。</p>
+  <h2><strong>DeepSeek-VL负责人再创业</strong></h2>
+  <p>Linger背后，是一支有着深厚技术背景的团队，其创始人Tony Zhang的履历尤为亮眼。</p>
+  <p>（毕竟是DeepSeek系嘛…）</p>
+  <p></p>
+  <p>Tony Zhang本科毕业于浙江大学，2019年在香港科技大学取得博士学位，随后加入<strong>微软亚洲研究院（MSRA）</strong>，长期从事计算机视觉和生成模型研究，是VQ-Diffusion、Rodin 3D数字人等多个知名项目的作者。</p>
+  <p>2023年，他加入<strong>DeepSeek</strong>，担任AI科学家。</p>
+  <p>在这里，他不仅参与了早期语言模型<strong>DeepSeek LLM V1系列</strong>的研发，更是视觉语言大模型<strong>DeepSeek-VL的项目负责人（Project Lead）</strong>。这款模型在真实世界场景下的图像、文档、图表理解能力备受好评。</p>
+  <p>离开DeepSeek后，Tony Zhang进入浙江大学任教，担任百人计划研究员、博士生导师，并创立了Simplex AI。</p>
+  <p>Linger就是Simplex AI的最新作品。</p>
+  <p></p>
+  <p>而作为Linger技术核心，那个专为本地部署而生的推理引擎？</p>
+  <p>据Tony Zhang透露，由团队里一位18岁的天才少年构建。</p>
+  <p><strong>18岁？高中刚毕业？</strong></p>
+  <p>本文来自微信公众号<a href="https://mp.weixin.qq.com/s/k458mZAGBNwpxIi3F08SwA" target="_blank" rel="noopener noreferrer nofollow">“量子位”</a>，作者：Jay，36氪经授权发布。</p>
+ 
+</div></div></div>
+  <div class="footer">
+    本文由 AI热点监控系统自动抓取 · 内容版权归原作者/网站所有<br>
+    快照仅用于学习交流，如需转载请访问原文
+  </div>
+</div>
+</body>
+</html>

@@ -91,7 +91,7 @@ body { background: var(--bg-outer); font-family: var(--font-body); min-height: 1
       <a class="back-link" href="./">← 归档首页</a>
       <h1>AI 热点日报</h1>
       <div class="subtitle">
-        <span class="date">2026年11月20日，星期五 · 道法术器解读</span>
+        <span class="date">2026年11月20日，星期五· 含新增 · 道法术器解读</span>
         <div class="controls">
           <button id="expandAll">展开全部</button>
           <button id="collapseAll">收起全部</button>
@@ -99,198 +99,198 @@ body { background: var(--bg-outer); font-family: var(--font-body); min-height: 1
       </div>
     </div>
     <div class="entries" id="entries">
-      <div class="entry" data-cat="sec" style="animation-delay: 0.1s;">
-        <div class="entry-head">
-          <div class="bullet" style="background: var(--tab-3);"></div>
-          <div class="info">
-            <h3>Postgres 19 登陆云数据平台</h3>
-            <div class="meta">Hacker News · 🔥 51 · 2小时前</div>
-          </div>
-          <div class="expand-icon">▼</div>
-        </div>
-        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：数据库竞争已从单机功能比拼转向<strong>云原生分发能力</strong>的较量，开源内核加托管服务的组合正在成为基础设施的默认形态。<strong>法</strong>：把成熟开源项目做成多云托管服务，用兼容性降低迁移成本，再靠运维自动化和弹性计费获取持续收入，这一模式可复用于任何基础软件商业化。<strong>术</strong>：评估现有 Postgres 版本与 19 的兼容差异，优先在非核心业务做灰度升级；利用托管平台的备份与只读副本能力设计回滚方案；把版本升级纳入季度基础设施预算而非临时项目。<strong>器</strong>：Postgres 19、Neon、Databricks Lakebase、pg_upgrade、逻辑复制。</p>
-<a class="source-link" href="https://www.databricks.com/blog/postgresql-19-available-lakebase" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
-      </div>
-      <div class="entry" data-cat="ai" style="animation-delay: 0.18s;">
+      <div class="entry" data-cat="ai" style="animation-delay: 0.1s;">
         <div class="entry-head">
           <div class="bullet" style="background: var(--tab-1);"></div>
           <div class="info">
-            <h3>Anthropic 纳斯达克首秀</h3>
-            <div class="meta">Hacker News · 🔥 100 · 10小时前</div>
+            <h3><span class="badge-icon"> 🆕</span> AI设计CPU架构并完成验证</h3>
+            <div class="meta">Hacker News · 🔥 59 · 2小时前</div>
           </div>
           <div class="expand-icon">▼</div>
         </div>
-        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：头部 AI 公司正从风险投资驱动转向<strong>公开市场定价</strong>，资本结构变化会倒逼收入透明化和商业化节奏加快，行业进入用财报说话的阶段。<strong>法</strong>：技术领先者通过上市获得低成本资金与品牌背书，再用资金锁定算力和人才，形成强者恒强的循环，适用于任何重资产技术赛道。<strong>术</strong>：关注招股书中的收入构成与毛利率，区分 API 收入与订阅收入占比；跟踪算力采购承诺对现金流的影响；把模型能力迭代节奏与季度业绩指引对照，判断增长可持续性。<strong>器</strong>：纳斯达克、SEC 披露文件、S-1 招股书、算力采购合约。</p>
-<a class="source-link" href="https://www.reuters.com/business/finance/anthropics-historic-debut-put-ais-promise-peril-wall-st-test-2026-11-19/" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
+        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：芯片设计的瓶颈正从制造工艺转向架构探索，AI 进入硬件设计闭环意味着<strong>设计空间搜索从人力驱动变为算力驱动</strong>，长期看硬件迭代周期将被压缩。
+<strong>法</strong>：把高维、验证成本高的设计问题交给机器做大规模并行探索，人类只负责定义约束与验收标准，这套方法可迁移到材料、药物、编译器优化等任何<strong>搜索空间大且可自动验证</strong>的领域。
+<strong>术</strong>：1. 先建立可自动运行的验证与仿真环境，否则 AI 产出无法闭环；2. 用形式化约束替代人工评审，把验收标准写成可执行检查；3. 保留人工抽检环节，防止验证器本身被绕过。
+<strong>器</strong>：RTL 仿真器、形式化验证工具、EDA 平台、AI 搜索与强化学习框架。</p>
+<a class="source-link" href="https://architectlabs.com/blog/frostbite" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
+      </div>
+      <div class="entry" data-cat="sec" style="animation-delay: 0.18s;">
+        <div class="entry-head">
+          <div class="bullet" style="background: var(--tab-3);"></div>
+          <div class="info">
+            <h3><span class="badge-icon"> 🆕</span> 病毒注射让胰腺癌停止进展</h3>
+            <div class="meta">Hacker News · 🔥 100 · 19小时前</div>
+          </div>
+          <div class="expand-icon">▼</div>
+        </div>
+        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：溶瘤病毒这类<strong>活体疗法</strong>正从实验室走向早期临床，核心趋势是治疗手段从外部药物转向可自我复制的生物程序，早期样本量小但方向明确。
+<strong>法</strong>：面对高失败率、长周期的前沿领域，正确策略是<strong>用小样本早期信号换取资源倾斜</strong>，而不是等大规模数据齐全再行动，适用于所有高风险研发决策。
+<strong>术</strong>：1. 关注三例患者的缓解持续时间与免疫应答指标，而非单看肿瘤缩小；2. 追踪后续剂量爬坡与对照组设计；3. 对同类溶瘤病毒管线做横向对比，判断是平台效应还是个案。
+<strong>器</strong>：临床试验注册平台、溶瘤病毒载体平台、免疫组化与影像评估工具。</p>
+<a class="source-link" href="https://www.newscientist.com/article/2528235-pancreatic-cancer-halted-by-virus-injection-in-three-patients/" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
       </div>
       <div class="entry" data-cat="ai" style="animation-delay: 0.26s;">
         <div class="entry-head">
           <div class="bullet" style="background: var(--tab-1);"></div>
           <div class="info">
-            <h3>Claude 攻克黑洞物理难题</h3>
-            <div class="meta">Hacker News · 🔥 71 · 10小时前</div>
+            <h3><span class="badge-icon"> 🔄</span> Claude解出两个黑洞物理难题</h3>
+            <div class="meta">Hacker News · 🔥 82 · 19小时前</div>
           </div>
           <div class="expand-icon">▼</div>
         </div>
-        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：AI 正从语言任务扩展到<strong>科学发现辅助</strong>，在形式化推理和符号计算领域形成可验证的产出，科研分工将被重新划分。<strong>法</strong>：把 AI 定位为假设生成与推导验证的协作者，人类负责问题定义和结果审查，这一人机分工可迁移到任何高门槛知识生产场景。<strong>术</strong>：选择有明确验证标准的子问题交给模型推导；要求模型给出完整推理链而非结论；用独立数值方法或符号工具交叉验证结果后再采信。<strong>器</strong>：Claude、符号计算工具、数值模拟环境、arXiv 预印本平台。</p>
+        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：大模型正从语言任务扩展到<strong>形式化推理与科学发现</strong>，关键变化不是模型更聪明，而是推理过程可被符号系统校验，这让 AI 产出首次具备学术可信度。
+<strong>法</strong>：把开放问题拆成可机器验证的子命题，让模型生成候选解、由形式化工具判定对错，形成<strong>生成加验证</strong>的闭环，可复用于数学、代码、定理证明等任何有明确判定标准的领域。
+<strong>术</strong>：1. 优先选择有自动判定器的问题，避免无法验证的开放式命题；2. 要求模型输出完整推导链而非结论，便于逐行核查；3. 由领域专家复核物理假设是否成立，模型只保证逻辑自洽。
+<strong>器</strong>：Claude、Lean/Coq 形式化证明助手、符号计算工具、arXiv 论文检索。</p>
 <a class="source-link" href="https://www.anthropic.com/research/claude-black-hole-physics" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
       </div>
       <div class="entry" data-cat="ai" style="animation-delay: 0.33999999999999997s;">
         <div class="entry-head">
           <div class="bullet" style="background: var(--tab-1);"></div>
           <div class="info">
-            <h3>Agent竞争转向数据供给层</h3>
-            <div class="meta">GitHub Trending · 🔥 70 · 11小时前</div>
+            <h3><span class="badge-icon"> 🆕</span> DeepSeek系创业开源个人Agent</h3>
+            <div class="meta">36kr · 🔥 93 · 11小时前</div>
           </div>
           <div class="expand-icon">▼</div>
         </div>
-        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：智能体能力上限不再由模型参数决定，而由可调用的实时数据广度决定，数据接入层正成为独立的基础设施赛道。<strong>法</strong>：把分散的数据源封装成统一接口，让上层应用按需调用，是平台型工具穿越模型迭代周期的通用路径。<strong>术</strong>：优先接入高频刚需数据源形成最小可用集；用统一schema屏蔽各源差异降低集成成本；以调用量而非订阅数衡量增长质量。<strong>器</strong>：Firecrawl、550+数据提供方接口、网页抓取与结构化解析管线。</p>
-<a class="source-link" href="https://github.com/firecrawl/firecrawl" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
+        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：大模型能力正在从云端API向个人终端下沉，开源个人Agent的涌现说明竞争焦点已从模型参数转向<strong>任务执行闭环</strong>，谁能把模型能力封装成可自主完成多步任务的代理，谁就掌握下一代入口。<strong>法</strong>：以开源换取开发者生态，用社区贡献反哺产品迭代，再以托管服务或企业版变现，这是基础设施型项目的通用路径。<strong>术</strong>：1. 优先接入开源Agent框架做二次封装，验证真实任务完成率而非演示效果；2. 评估本地部署的算力与隐私成本，明确哪些场景必须离线；3. 关注其工具调用协议是否兼容主流生态，避免锁定。<strong>器</strong>：DeepSeek系列模型、开源Agent框架、本地推理运行时。</p>
+<a class="source-link" href="https://www.36kr.com/p/4077377119245191" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
       </div>
       <div class="entry" data-cat="ai" style="animation-delay: 0.42000000000000004s;">
         <div class="entry-head">
           <div class="bullet" style="background: var(--tab-1);"></div>
           <div class="info">
-            <h3>长转短工具吃掉内容产能</h3>
-            <div class="meta">GitHub Trending · 🔥 53 · 11小时前</div>
+            <h3><span class="badge-icon"> 🔄</span> Firecrawl做Agent知识基础设…</h3>
+            <div class="meta">GitHub Trending · 🔥 81 · 20小时前</div>
           </div>
           <div class="expand-icon">▼</div>
         </div>
-        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：内容生产的瓶颈已从拍摄转向分发适配，<strong>一次生产、多平台切片</strong>成为短视频时代的默认工作流。<strong>法</strong>：把重复性后期工序封装成一键流水线，用开源降低采用门槛，再靠模板与平台适配建立粘性。<strong>术</strong>：先跑通长视频自动切片与字幕对齐；再针对抖音、小红书、TikTok分别预设画幅与文案模板；最后把封面生成纳入同一管线减少人工返工。<strong>器</strong>：AutoClip、开源视频剪辑桌面端、多平台发布适配模块。</p>
-<a class="source-link" href="https://github.com/zhouxiaoka/autoclip" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
+        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：Agent的能力上限不取决于模型本身，而取决于<strong>可获取的上下文质量</strong>，数据抓取与清洗层正成为独立的基础设施赛道，长期趋势是数据供给与推理能力解耦。<strong>法</strong>：把非结构化网页转化为结构化、可检索的输入，通过聚合多数据源形成网络效应，适用于所有需要外部知识注入的智能系统。<strong>术</strong>：1. 在Agent项目中先接入统一抓取层，避免为每个站点重复写解析器；2. 对抓取结果做去重与可信度过滤，防止脏数据污染上下文；3. 评估其550+数据源覆盖与自身业务场景的重合度，测算自建成本。<strong>器</strong>：Firecrawl、网页抓取与解析服务、向量检索库。</p>
+<a class="source-link" href="https://github.com/firecrawl/firecrawl" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
       </div>
       <div class="entry" data-cat="ai" style="animation-delay: 0.5s;">
         <div class="entry-head">
           <div class="bullet" style="background: var(--tab-1);"></div>
           <div class="info">
-            <h3>模型排名进入高频洗牌期</h3>
-            <div class="meta">Hacker News · 🔥 59 · 3小时前</div>
+            <h3><span class="badge-icon"> 🆕</span> 本地AI与开放模型硬件前景</h3>
+            <div class="meta">Hacker News · 🔥 66 · 20小时前</div>
           </div>
           <div class="expand-icon">▼</div>
         </div>
-        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：模型能力差距正在收窄，<strong>榜单名次的半衰期越来越短</strong>，单一评测登顶不再构成长期壁垒。<strong>法</strong>：以任务级评测替代总分排名，把选型决策绑定到具体场景指标，而非通用榜单位次。<strong>术</strong>：建立内部小样本评测集覆盖真实业务任务；对候选模型做成本与延迟的联合对比；设定季度复评机制避免锁定单一供应商。<strong>器</strong>：Models Engineering Index、Gemini 4 Neon、内部评测脚本与路由层。</p>
-<a class="source-link" href="https://git-aarvin.github.io/mei/" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
+        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：推理成本下降与隐私需求上升共同推动AI从集中式云服务向<strong>端侧分布式部署</strong>迁移，开放模型与语音交互的结合意味着硬件形态将围绕低延迟、离线可用重新设计。<strong>法</strong>：在算力受限的终端上做模型量化与剪枝，以语音等自然交互降低使用门槛，用开放权重换取硬件厂商的定制空间，适用于所有边缘智能产品。<strong>术</strong>：1. 评估目标硬件的内存与功耗预算，选择参数量匹配的开放模型；2. 优先落地语音唤醒与离线指令等高频低复杂度场景；3. 建立模型更新与回滚机制，避免端侧固件僵化。<strong>器</strong>：开放权重模型、端侧推理框架、语音识别与合成工具链。</p>
+<a class="source-link" href="https://thedataexchange.media/pete-warden-moonshine/" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
       </div>
-      <div class="entry" data-cat="ai" style="animation-delay: 0.58s;">
+      <div class="entry" data-cat="dev" style="animation-delay: 0.58s;">
         <div class="entry-head">
-          <div class="bullet" style="background: var(--tab-1);"></div>
+          <div class="bullet" style="background: var(--tab-2);"></div>
           <div class="info">
-            <h3>技能框架把方法论产品化</h3>
-            <div class="meta">GitHub Trending · 🔥 100 · 11小时前</div>
+            <h3><span class="badge-icon"> 🆕</span> 平台依赖是独立开发者死穴</h3>
+            <div class="meta">v2ex · 🔥 100</div>
           </div>
           <div class="expand-icon">▼</div>
         </div>
-        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：AI 智能体的竞争重心正从模型能力转向工程化方法论，把开发经验固化成可复用的技能框架，是让智能体从演示走向生产的关键一步。<strong>法</strong>：把隐性经验显性化为结构化技能包，让智能体按标准流程执行，这套思路可迁移到任何需要人机协作的复杂工作流。<strong>术</strong>：先梳理团队高频重复的开发环节，拆成原子化技能单元；为每个技能定义输入输出与验收标准；在小范围任务中验证后再扩展。<strong>器</strong>：obra 技能框架、GitHub 开源协作平台、智能体开发工具链。</p>
-<a class="source-link" href="https://github.com/sponsors/obra" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
+        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：应用商店是分发渠道而非合作伙伴，平台规则的解释权与执行权完全单向，开发者规模再大也不改变议价权为零的结构。<strong>法</strong>：把平台视为可替换的流量入口而非生存根基，核心资产（用户关系、支付链路、数据）必须落在自有可控载体上，任何单一渠道收入占比设硬上限。<strong>术</strong>：立即导出用户联系方式与交易记录建立自有触达通道；将账号合规风险纳入产品设计，避免功能踩线；准备第二分发渠道（Web、安卓、第三方商店）作为备份。<strong>器</strong>：自建邮件列表、Stripe/Paddle 独立支付、PWA、安卓侧载与第三方应用商店。</p>
+<a class="source-link" href="https://www.v2ex.com/t/1258411" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
       </div>
       <div class="entry" data-cat="ai" style="animation-delay: 0.66s;">
         <div class="entry-head">
           <div class="bullet" style="background: var(--tab-1);"></div>
           <div class="info">
-            <h3>跨平台调研技能降低信息成本</h3>
-            <div class="meta">GitHub Trending · 🔥 74 · 11小时前</div>
+            <h3><span class="badge-icon"> 🆕</span> AI资本化与终端入口争夺</h3>
+            <div class="meta">36kr · 🔥 69 · 12小时前</div>
           </div>
           <div class="expand-icon">▼</div>
         </div>
-        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：信息分散在多个平台是长期结构性问题，智能体技能的价值在于把跨源检索与聚合变成一次调用，<strong>信息获取成本持续下降</strong>是不可逆趋势。<strong>法</strong>：将多源数据采集封装为单一技能接口，用户只描述目标，由技能负责调度各平台并汇总，适用于竞品分析、舆情监测等场景。<strong>术</strong>：明确调研主题与时间窗口；配置各平台检索参数与去重规则；对输出做来源标注与可信度分级。<strong>器</strong>：last30days-skill、Reddit、X、YouTube、Hacker News、Polymarket。</p>
-<a class="source-link" href="https://github.com/mvanhorn/last30days-skill" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
+        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：头部 AI 公司进入公开市场意味着竞争从技术叙事转为<strong>财务叙事</strong>，估值需要持续营收兑现；同时模型能力向终端硬件下沉，入口争夺取代参数竞赛成为主线。<strong>法</strong>：技术领先窗口正在收窄，把模型能力封装进高频使用场景（终端、办公、垂直工作流）比继续堆参数更能锁定用户与收入。<strong>术</strong>：评估自身业务是否处在被终端厂商整合的链路上，提前做接口适配；关注上市后披露的营收结构，判断哪类应用层公司先被挤压；对依赖单一模型 API 的产品做多模型抽象层。<strong>器</strong>：OpenAI 终端合作生态、Anthropic 公开财报、多模型路由层（LiteLLM 等）。</p>
+<a class="source-link" href="https://www.36kr.com/p/4077339293242504" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
       </div>
       <div class="entry" data-cat="ai" style="animation-delay: 0.74s;">
         <div class="entry-head">
           <div class="bullet" style="background: var(--tab-1);"></div>
           <div class="info">
-            <h3>CLI 成为智能体接入标准层</h3>
-            <div class="meta">GitHub Trending · 🔥 72 · 11小时前</div>
+            <h3><span class="badge-icon"> 🆕</span> AI技能包成新型软件资产</h3>
+            <div class="meta">GitHub Trending · 🔥 100 · 20小时前</div>
           </div>
           <div class="expand-icon">▼</div>
         </div>
-        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：软件生态正从面向人转向面向智能体，<strong>命令行接口成为智能体调用一切软件的统一入口</strong>，这比图形界面更易被自动化编排。<strong>法</strong>：用标准化接口层屏蔽底层软件差异，让智能体以统一方式操作异构工具，该策略可复用于任何需要批量集成的系统。<strong>术</strong>：盘点现有软件是否具备可脚本化接口；优先为高频工具封装 CLI 适配层；建立调用日志与权限边界。<strong>器</strong>：CLI-Anything、CLI-Hub、各类命令行工具与智能体运行时。</p>
-<a class="source-link" href="https://github.com/HKUDS/CLI-Anything" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
+        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：AI 编程助手的价值正从模型本身转移到<strong>可复用的技能与工作流封装</strong>，提示词与工具调用被工程化为可分发的模块，形成新的开源资产类别。<strong>法</strong>：把团队重复性工作沉淀为标准化技能包，用版本管理维护，让能力脱离个人经验成为组织资产，降低对个别工程师的依赖。<strong>术</strong>：梳理高频重复任务（漏洞排查、代码审计、红队测试）优先封装；为每个技能定义明确输入输出与失败回退；在内部仓库做版本与权限管理，避免直接引入未经审计的第三方技能包。<strong>器</strong>：Claude Code 技能包、slash command、GitHub 私有仓库、内部技能注册表。</p>
+<a class="source-link" href="https://github.com/sponsors/elementalsouls" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
       </div>
       <div class="entry" data-cat="ai" style="animation-delay: 0.82s;">
         <div class="entry-head">
           <div class="bullet" style="background: var(--tab-1);"></div>
           <div class="info">
-            <h3>小模型训练平民化加速</h3>
-            <div class="meta">GitHub Trending · 🔥 56 · 11小时前</div>
+            <h3><span class="badge-icon"> 🔄</span> Agent技能框架方法论化</h3>
+            <div class="meta">GitHub Trending · 🔥 83 · 20小时前</div>
           </div>
           <div class="expand-icon">▼</div>
         </div>
-        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：大模型能力下放正从推理端延伸到训练端，64M 级模型可在两小时内从零训出，说明训练门槛的下降速度远超预期，模型能力将像软件一样被普遍持有和定制。
-<strong>法</strong>：把复杂系统拆成最小可运行闭环，用极小规模验证全流程，再按需放大，这一策略适用于任何高门槛技术的学习与落地。
-<strong>术</strong>：先跑通官方最小训练脚本确认环境；再替换自有语料做小规模微调；最后对比基线记录损失曲线与生成质量。
-<strong>器</strong>：MiniMind 项目、PyTorch、单卡消费级 GPU。</p>
-<a class="source-link" href="https://github.com/jingyaogong/minimind" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
+        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：AI Agent 的竞争重心正从模型能力转向工程化方法论，可复用的技能框架比单点工具更具长期价值。<strong>法</strong>：将隐性开发经验封装为显性技能模块，形成可组合、可迭代的标准化资产，适用于任何知识密集型协作场景。<strong>术</strong>：1. 梳理团队高频任务，抽象为独立技能单元；2. 建立技能版本管理与复用机制；3. 用真实项目验证框架有效性后再推广。<strong>器</strong>：obra 技能框架、GitHub 仓库管理、Agent 编排工具。</p>
+<a class="source-link" href="https://github.com/sponsors/obra" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
       </div>
       <div class="entry" data-cat="ai" style="animation-delay: 0.9s;">
         <div class="entry-head">
           <div class="bullet" style="background: var(--tab-1);"></div>
           <div class="info">
-            <h3>推理部署优化成主战场</h3>
-            <div class="meta">GitHub Trending · 🔥 56 · 11小时前</div>
+            <h3><span class="badge-icon"> 🔄</span> 软件Agent原生化改造</h3>
+            <div class="meta">GitHub Trending · 🔥 79 · 20小时前</div>
           </div>
           <div class="expand-icon">▼</div>
         </div>
-        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：模型竞争的重心正从训练转向推理，<strong>单位算力的推理效率</strong>决定 AI 应用的商业可行性，部署优化工具因此成为基础设施级资产。
-<strong>法</strong>：在硬件异构的现实下，用统一中间表示屏蔽芯片差异，实现一次转换多端部署，这是跨平台工程的标准解法。
-<strong>术</strong>：先用模型转换工具导出中间格式；再针对目标硬件做量化与算子融合；最后用基准脚本对比延迟与精度损失。
-<strong>器</strong>：OpenVINO、ONNX、Intel CPU/GPU/NPU。</p>
-<a class="source-link" href="https://github.com/openvinotoolkit/openvino" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
+        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：软件交互层正在经历从图形界面向 Agent 原生接口的迁移，CLI 成为人机与机机协作的通用协议层。<strong>法</strong>：把现有软件能力抽象为标准化命令行接口，降低 Agent 调用门槛，这一策略可复用于任何需要被自动化编排的系统。<strong>术</strong>：1. 盘点核心功能并设计幂等 CLI 命令；2. 输出结构化结果便于 Agent 解析；3. 通过 CLI-Hub 注册分发扩大调用面。<strong>器</strong>：CLI-Anything、CLI-Hub、HKUDS 开源工具链。</p>
+<a class="source-link" href="https://github.com/HKUDS/CLI-Anything" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
       </div>
-      <div class="entry" data-cat="dev" style="animation-delay: 0.98s;">
+      <div class="entry" data-cat="ai" style="animation-delay: 0.98s;">
         <div class="entry-head">
-          <div class="bullet" style="background: var(--tab-2);"></div>
+          <div class="bullet" style="background: var(--tab-1);"></div>
           <div class="info">
-            <h3>知识库工具走向一体化</h3>
-            <div class="meta">GitHub Trending · 🔥 54 · 11小时前</div>
+            <h3><span class="badge-icon"> 🔄</span> 跨平台信息聚合技能</h3>
+            <div class="meta">GitHub Trending · 🔥 75 · 20小时前</div>
           </div>
           <div class="expand-icon">▼</div>
         </div>
-        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：文档、白板、数据库的边界正在消融，<strong>知识工作的一体化</strong>是长期方向，单一功能工具将被整合型平台替代，开源方案正在侵蚀 Notion、Miro 的腹地。
-<strong>法</strong>：以开源内核加本地优先的数据架构切入成熟品类，用数据主权和可自托管换取用户信任，是挑战闭源巨头的通用路径。
-<strong>术</strong>：先自托管部署验证协作体验；再评估数据导出与迁移成本；最后按团队规模测算自建与订阅的总拥有成本。
-<strong>器</strong>：AFFiNE、Docker、自建对象存储。</p>
-<a class="source-link" href="https://github.com/sponsors/toeverything" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
+        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：信息获取的瓶颈已从数据稀缺转为数据分散，跨源聚合与去噪能力成为 Agent 的核心竞争力。<strong>法</strong>：用单一技能封装多平台检索与交叉验证流程，把碎片化信源转化为结构化结论，适用于调研、舆情、竞品分析等场景。<strong>术</strong>：1. 定义统一查询接口覆盖 Reddit、X、YouTube 等源；2. 设置时间窗口与可信度权重过滤噪声；3. 输出带来源标注的摘要便于复核。<strong>器</strong>：last30days-skill、Reddit/X/YouTube/HN/Polymarket API、Agent 技能运行时。</p>
+<a class="source-link" href="https://github.com/mvanhorn/last30days-skill" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
       </div>
       <div class="entry" data-cat="ai" style="animation-delay: 1.06s;">
         <div class="entry-head">
           <div class="bullet" style="background: var(--tab-1);"></div>
           <div class="info">
-            <h3>开源Agent切入CI/CD可靠性</h3>
-            <div class="meta">GitHub Trending · 🔥 51 · 11小时前</div>
+            <h3><span class="badge-icon"> 🆕</span> Agent技能库走向标准化</h3>
+            <div class="meta">GitHub Trending · 🔥 62 · 20小时前</div>
           </div>
           <div class="expand-icon">▼</div>
         </div>
-        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：软件交付的瓶颈正从写代码转向保障流水线稳定，AI Agent 进入运维环节是确定性趋势，可靠性工程从人工值守变为机器自治。<strong>法</strong>：把重复性排障工作交给 Agent，用开源社区积累故障样本形成数据壁垒，再以托管服务变现，适用于所有高重复、高时效的运维场景。<strong>术</strong>：先在非核心仓库接入 Agent 做告警归因试点；建立失败案例回流机制持续喂数据；用 MTTR 下降幅度作为验收指标。<strong>器</strong>：opensre、GitHub Actions、Prometheus、Grafana。</p>
-<a class="source-link" href="https://github.com/Tracer-Cloud/opensre" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
+        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：Agent 生态正从各自造轮子转向技能复用与协议标准化，MCP 这类接口层成为智能体能力扩展的公共基础设施，长期看技能库会像 npm 包一样形成分发市场。<strong>法</strong>：把智能体能力拆成可独立安装、可组合的原子技能，通过统一协议对接，任何 Agent 平台都能复用同一套能力资产。<strong>术</strong>：1. 先梳理业务中重复出现的操作，抽象为单一职责技能；2. 按 MCP 规范定义输入输出与权限边界；3. 建立技能版本管理与回归测试，避免协议升级导致断裂。<strong>器</strong>：Stitch MCP server、google-labs-code/stitch-skills、MCP 协议规范。</p>
+<a class="source-link" href="https://github.com/google-labs-code/stitch-skills" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
       </div>
       <div class="entry" data-cat="ai" style="animation-delay: 1.1400000000000001s;">
         <div class="entry-head">
           <div class="bullet" style="background: var(--tab-1);"></div>
           <div class="info">
-            <h3>OpenAI硬件复用苹果供应链</h3>
-            <div class="meta">36kr · 🔥 57 · 3小时前</div>
+            <h3><span class="badge-icon"> 🔄</span> 小模型训练门槛降至小时级</h3>
+            <div class="meta">GitHub Trending · 🔥 59 · 20小时前</div>
           </div>
           <div class="expand-icon">▼</div>
         </div>
-        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：AI 竞争正从模型层下沉到<strong>硬件入口</strong>，谁掌握终端谁掌握用户数据与使用场景，消费电子十年积累的供应链能力成为新护城河。<strong>法</strong>：新品类不必自建制造体系，直接嫁接成熟供应链与设计班底，用<strong>人才与产能的现成资产</strong>压缩从定义到量产的周期，适用于所有硬件创业。<strong>术</strong>：优先锁定有量产经验的工业设计与制造团队；在定义阶段就与代工厂同步工艺约束；用首代产品验证交互范式而非追求销量。<strong>器</strong>：苹果班底设计团队、果链代工体系、OpenAI 模型能力。</p>
-<a class="source-link" href="https://www.36kr.com/p/4076762242602886" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
+        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：大模型能力下沉与训练成本骤降是长期趋势，64M 级模型两小时可训意味着模型训练从少数实验室的专属能力变成开发者可日常验证的工程动作，教育与原型验证市场将被激活。<strong>法</strong>：用极小规模、极短周期的完整训练闭环替代黑盒调用，先跑通数据到推理的全链路，再按需放大规模。<strong>术</strong>：1. 用公开小数据集跑通分词、预训练、微调、推理四步；2. 记录每步耗时与显存占用，建立成本基线；3. 在 64M 模型上验证想法后再决定是否扩容。<strong>器</strong>：jingyaogong/minimind、PyTorch、单卡消费级 GPU。</p>
+<a class="source-link" href="https://github.com/jingyaogong/minimind" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
       </div>
       <div class="entry" data-cat="ai" style="animation-delay: 1.2200000000000002s;">
         <div class="entry-head">
           <div class="bullet" style="background: var(--tab-1);"></div>
           <div class="info">
-            <h3>Anthropic上市引发估值分歧</h3>
-            <div class="meta">36kr · 🔥 52 · 3小时前</div>
+            <h3><span class="badge-icon"> 🔄</span> 推理部署优化成落地关键</h3>
+            <div class="meta">GitHub Trending · 🔥 58 · 20小时前</div>
           </div>
           <div class="expand-icon">▼</div>
         </div>
-        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：大模型公司进入<strong>公开市场定价</strong>阶段，行业从技术叙事转向收入与成本核算，资本对 AI 的耐心开始用财报周期衡量。<strong>法</strong>：技术公司上市即接受<strong>单位经济模型</strong>检验，收入增速、推理成本、客户留存三项指标取代参数规模成为估值锚点，适用于所有重资产技术赛道。<strong>术</strong>：跟踪招股书中的毛利率与算力支出占比；对比企业客户续约率判断需求真实性；关注锁定期解禁后的抛压节奏。<strong>器</strong>：IPO 招股书、SEC 披露文件、云厂商算力账单。</p>
-<a class="source-link" href="https://www.36kr.com/p/4077268679086982" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
+        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：模型能力趋同后，竞争重心从训练转向推理效率与部署成本，推理优化工具链的成熟度直接决定 AI 应用能否规模化盈利，异构硬件适配是长期主线。<strong>法</strong>：把模型转换、量化、图优化与硬件后端解耦，形成一次转换多端部署的流水线，降低对单一芯片厂商的绑定。<strong>术</strong>：1. 用统一中间表示导出模型，再针对目标硬件做量化；2. 建立延迟与吞吐基准，对比优化前后差异；3. 在边缘与云端分别验证精度损失是否可接受。<strong>器</strong>：OpenVINO、ONNX、Intel CPU/GPU 及边缘设备。</p>
+<a class="source-link" href="https://github.com/openvinotoolkit/openvino" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
       </div>
     </div>
     <div class="footer">
-      <span>Generated by AI Hot Monitor v2 · DeepSeek · 11:01:23</span>
+      <span>Generated by AI Hot Monitor v2 · DeepSeek · 20:01:18</span>
       <span class="badge">💡 点击条目展开深度解读</span>
     </div>
   </div>
