@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="referrer" content="no-referrer">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'unsafe-inline'; img-src data:; connect-src 'none'; frame-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'; frame-ancestors 'none'">
+<title>揭秘Anthropic的「暴利」真相：缓存税-36氪 - AI热点快照</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','PingFang SC','Microsoft YaHei',sans-serif;background:#f8f9fa;color:#1a1a2e;line-height:1.8;min-height:100vh}
+.top-bar{background:#fff;border-bottom:1px solid #e5e7eb;padding:10px 20px;display:flex;align-items:center;gap:12px;position:sticky;top:0;z-index:10}
+.top-bar .logo{font-size:14px;font-weight:700;color:#0d9488}
+.top-bar .sep{color:#d1d5db}
+.top-bar .source{font-size:13px;color:#6b7280}
+.top-bar .back{margin-left:auto;font-size:13px;color:#0d9488;text-decoration:none}
+.top-bar .back:hover{text-decoration:underline}
+.container{max-width:760px;margin:0 auto;padding:40px 24px 80px}
+.article-title{font-size:1.8rem;font-weight:700;line-height:1.35;margin-bottom:16px;color:#1a1a2e}
+.article-meta{display:flex;flex-wrap:wrap;gap:16px;padding-bottom:20px;margin-bottom:28px;border-bottom:1px solid #e5e7eb;font-size:14px;color:#6b7280}
+.article-meta a{color:#0d9488;text-decoration:none}
+.article-meta a:hover{text-decoration:underline}
+.article-body{font-size:16.5px;line-height:1.85;color:#1f2937}
+.article-body p{margin-bottom:1.2em;text-align:justify}
+.article-body h1,.article-body h2,.article-body h3{font-size:1.25em;font-weight:700;margin:1.6em 0 0.6em;color:#1a1a2e}
+.article-body a{color:#0d9488}
+.article-body pre,.article-body code{background:#f1f5f9;border-radius:4px;font-size:0.9em}
+.article-body pre{padding:16px;overflow-x:auto;margin:1em 0}
+.article-body code{padding:2px 6px}
+.article-body blockquote{border-left:3px solid #0d9488;padding-left:16px;color:#4b5563;margin:1em 0}
+.article-body ul,.article-body ol{padding-left:1.6em;margin-bottom:1em}
+.article-body li{margin-bottom:0.4em}
+.article-body figure{margin:1.2em 0}
+.article-body figcaption{font-size:13px;color:#9ca3af;text-align:center;margin-top:6px}
+.footer{margin-top:48px;padding-top:20px;border-top:1px solid #e5e7eb;font-size:13px;color:#9ca3af;text-align:center}
+</style>
+</head>
+<body>
+<div class="top-bar">
+  <a class="back" href="../" style="font-size:13px;color:#6b7280;text-decoration:none">← 日报首页</a>
+  <span class="sep">|</span>
+  <span class="logo">AI热点快照</span>
+  <span class="sep">|</span>
+  <span class="source">36kr</span>
+  <a class="back" href="https://www.36kr.com/p/4081737353270405" target="_blank" rel="noopener noreferrer">查看原文 ↗</a>
+</div>
+<div class="container">
+  <h1 class="article-title">揭秘Anthropic的「暴利」真相：缓存税-36氪</h1>
+  <div class="article-meta">
+    <span>作者: 新智元</span>
+    <span>来源: 36kr</span>
+    <span>快照日期: 2026-11-23</span>
+  </div>
+  <div class="article-body"><div><div>
+ 
+ 
+  <p>这两天，AI 开发者圈被一条透着魔幻的帖子炸翻了。</p>
+  <p>发帖的是 Java 界响当当的传奇人物、Java Champion 得主 Vlad Mihalcea。</p>
+  <p>他盯着自己过去一年的 Claude 账单，直接发出了灵魂拷问：<strong>「我彻底看不懂 Anthropic 的商业模式了。我的 Pro 套餐一年才花 200 美元，结果我生生用掉了 160 亿个 Token——要是按 API 按量计费，这笔账得高达 10 万美元！」</strong></p>
+  <p></p>
+  <p>10 万美元的东西，200 美元卖给你？这哪是科技公司，这分明是硅谷活菩萨在拿投资人的钱撒币做慈善啊。</p>
+  <p>如果你觉得这只是某个「肝帝」程序员的极端个案，那最近刚出炉的一份实测数据只会让你更怀疑人生。</p>
+  <p>就在 2026 年 11 月 20 日，有硬核玩家通过真实使用数据反推了三大 AI 订阅的每周等效额度：</p>
+  <p>每月 20 美元的 Claude Pro 套餐（跑 Opus 5.5 + Claude Code），每周能啃下约 8.18 亿 Token；要是升级到 200 美元/月的 Claude Ultra 或 ChatGPT Pro，每周的 Token 消耗量直接飙到 81.8 亿和 93.85 亿，连相对克制的 Google AI Ultra 20X 也能给到 51.64 亿。</p>
+  <p>半导体分析机构 SemiAnalysis 甚至算过一笔总账：花 200 美元/月买 Claude 顶级订阅，最高能薅出价值 8000 美元/月的等效 API 用量，而 OpenAI 这边更是高达 14000 美元/月——账面上看，厂商贴了整整 40 到 70 倍的血本。</p>
+  <p></p>
+  <p></p>
+  <p>看到这儿，不少吃瓜群众已经开始替 Anthropic 捏把汗了：这生意还怎么做？怕不是明天就要算力崩盘、原地退市？</p>
+  <p>就在大家议论纷纷时，知名技术通讯《The Pragmatic Engineer》创始人 Gergely Orosz 出来解惑了：</p>
+  <p><strong>「所有软件工程师都必须搞懂一件事：推理工程的第一课就是——读 KV 缓存便宜到近乎免费，推测解码又让长会话效率暴涨。而编程场景偏偏把这两项技术用到了极致。这就是为什么 AI 推理其实超级赚钱！」</strong></p>
+  <p></p>
+  <p>好家伙，原来我们以为自己在疯狂「薅羊毛」，其实人家在后台数钱数到手抽筋。</p>
+  <p>这笔账到底是怎么算过来的？今天咱们就把 Anthropic 商业模式背后的赚钱逻辑扒个底朝天。</p>
+  <h2><strong>160亿Token的幻觉，Coding Agent是个「重度复读机」</strong></h2>
+  <p>要破案，咱们得先搞清楚一个问题：Vlad 烧掉的那 160 亿个 Token，真的都是 Claude 绞尽脑汁、一个字一个字敲出来的「原创内容」吗？</p>
+  <p><strong>绝对不是。</strong></p>
+  <p>在早期的聊天机器人时代，你问一句、AI 答一句，Token 消耗是线性增长的。但现在是<strong>Coding Agent（编程智能体）</strong>的时代，整个游戏规则全变了。</p>
+  <p>一个编程智能体干活，本质上是一个疯狂死循环的「复读机」：</p>
+  <p>它先通读你整个代码库的上下文（假设有 N 个 Token），想了一秒钟，决定调用一个工具去搜文件；工具返回了几行结果，它把新结果拼在后面，<strong>再把之前所有的上下文从头到尾重新读一遍</strong>；接着调用下一个工具跑单元测试，返回报错，再从头重读一遍。</p>
+  <p>如果一次任务调用了 T 次工具，模型总计要读取的输入 Token 数量就会飙升到 N×T 的量级。会话越长、工具调得越勤，总 Token 数就呈平方级爆炸。</p>
+  <p></p>
+  <p>很多开发者一直以为，账单里最贵的是单价高昂的「输出 Token」（Output Tokens）。</p>
+  <p>Typesafe 联合创始人兼 CEO Diogo Almieda 专门写了个模拟器，用 Fable 5 的定价重放了英伟达 Open-SWE-Traces 的真实编程轨迹，结果发现：<strong>真正用来生成代码和回复的输出 Token，只占总账单的 9% 到 18%！</strong></p>
+  <p></p>
+  <p>另一位开发者 Martin Alderson 模拟了一个 6 万 Token 上下文、100 轮对话的 Opus 5 会话，结果显示<strong>约 76% 的账单全花在了「缓存读取（Cache Reads）」上</strong>。</p>
+  <p>换句话说，在真实的编程 Agent 场景里，超过 90% 的 Token 消耗，其实都是模型在反复读取自己几秒钟前刚看过的历史记录。</p>
+  <p>说到这儿你可能会问：就算它是在反复「重读」，那也是读了 160 亿个 Token 啊，GPU 不费电吗？凭什么这就能让 Anthropic 赚得盆满钵满？</p>
+  <p>这就得请出第一张真正的底牌了。</p>
+  <h2><strong>底牌一：KV缓存，AI厂商的「零边际成本印钞机」</strong></h2>
+  <p>别被「KV 缓存（KV Cache）」这种词吓住，理解大模型推理的物理成本，其实只需要记住三件事：</p>
+  <p><strong>第一步：预填充（Prefill）——费算力。</strong>当模型第一次读你的代码库时，GPU 必须开足马力做大量矩阵运算，把这些文字转化成机器能理解的中间状态（激活值），然后顺手存进显存里。这存下来的「读书笔记」，就是<strong>KV 缓存</strong>。一旦写完缓存，下次再读同样的内容时，<strong>完全不需要重新计算</strong>。</p>
+  <p><strong>第二步：解码（Decode）——费显存带宽。</strong>模型开始往外吐字（生成输出 Token）时，每吐出一个字，都得把整个 KV 缓存从高带宽显存（HBM）里搬运出来看一遍。这一步计算量很小，但数据搬运量巨大。这也是为什么各家 API 的输出 Token 单价往往比输入贵 5 倍——<strong>解码阶段的显存带宽，才是大模型推理真正的物理瓶颈。</strong></p>
+  <p><strong>第三步：工具调用——只是按了个「暂停键」。</strong>当 Coding Agent 停下来去跑个 grep 或者执行一段脚本时，之前算好的整个 KV 缓存其实就安安静静地躺在内存里。让一堆字节在内存里躺几秒钟，既不消耗算力，也不占用显存带宽。</p>
+  <p>现在，最荒诞、也最暴利的一幕出现了。</p>
+  <p>当模型一口气生成输出时，它每生成一个字都要把整个 KV 缓存读一遍，厂商并不额外收你「读缓存费」，因为这笔开销早就打包算在昂贵的输出单价里了。</p>
+  <p><strong>可一旦 Agent 停下来调了个工具再继续，API 立刻板起脸，对着躺在内存里纹丝未动、几乎零计算成本的同一份 KV 缓存，再按 Token 数量收你一笔「缓存读取费」。</strong></p>
+  <p>Diogo Almieda 把这事总结得极为辛辣：<strong>你之所以在工具调用后还要为 KV 缓存买单，没有什么深奥的技术苦衷，纯粹就是因为——「厂商就这么定价，你爱用不用。」</strong></p>
+  <p></p>
+  <p>Anthropic 自己早就无意间把底细漏出来了。</p>
+  <p>如果你去翻 Claude API 的文档，会发现一个极其耐人寻味的细节：<strong>缓存读取的 Token，根本不计入 API 的输入速率限制（Rate Limits）！</strong></p>
+  <p></p>
+  <p>你想想，速率限制是干嘛用的？是用来保护服务器别被流量打爆的。</p>
+  <p>Anthropic 敢把缓存读取排除在限流之外，等于拿大喇叭对着全世界喊：「这玩意儿压根不占我多少真实算力，你们随便读！」</p>
+  <p>至于 OpenAI，早年更是免费跑了一年多的自动前缀缓存，直到推出 GPT-5.6 才学着 Anthropic 给缓存写入加上了 1.25 倍的溢价。</p>
+  <p>把这层窗户纸捅破，Vlad 那 10 万美元的悬案就瞬间水落石出了。</p>
+  <p><strong>那 10 万美元，并不是 Anthropic 的真实成本，而是建立在「对几乎免费的缓存读取层层加价」之上的 API 价目表算出来的。</strong></p>
+  <p>对按量付费的企业客户，编程 Agent 每多调一次工具，厂商就多收一笔<strong>「缓存税」。</strong>这笔钱几乎不花成本，推理利润率自然越报越高。</p>
+  <p>而对每月付 20 美元或 200 美元的订阅用户，Anthropic 把这笔「缓存税」免了，让你放开了烧几十亿、上百亿 Token。账面上看像是倒贴了几十倍，实际上厂商真正花出去的硬件成本，很可能只是标价的一个零头。</p>
+  <p>不过零头也是钱。SemiAnalysis 10 月估算，订阅只贡献 Anthropic 约一成营收，却吃掉四成以上的推理算力，把套餐用到顶的重度用户，多半还是要它倒贴。</p>
+  <h2><strong>底牌二：推测解码——把GPU的「摸鱼时间」榨干</strong></h2>
+  <p>如果说 KV 缓存把「读输入」的成本打到了地板上，那刚才提到的真正物理瓶颈——<strong>「吐输出」的解码阶段</strong>，Anthropic 又是怎么省钱提速的？</p>
+  <p>这就轮到 Gergely Orosz 点出的第二张底牌登场了：<strong>推测解码（Speculative Decoding）。</strong></p>
+  <p>前面说过，模型在解码吐字时，主要卡在显存带宽上，导致 GPU 内部极其昂贵的算力核心大部分时间其实处于「闲置摸鱼」的状态。就像一位米其林大厨站在灶台前，90% 的时间都在干等配菜员端菜上来。</p>
+  <p>推测解码干的事，就是把大厨的摸鱼时间彻底榨干。</p>
+  <p>厂商会在大模型旁边配一个极快的小模型（或者专门的预测器）当「速记员」，让它先一口气盲猜出接下来的好几个 Token，然后打包塞给大模型，让大模型利用闲置算力，<strong>一次前向计算就同时验证这好几个字猜得对不对</strong>。猜对了直接全部放行，猜错了再打回去重写。</p>
+  <p>你猜哪种场景，最适合「盲猜」？写诗不行，因为诗人下一句可能天马行空；<strong>但写代码简直是天作之合！</strong></p>
+  <p>代码充满了高度可预测的结构：固定的语法括号、重复出现的变量名、照搬上下文里的函数签名、对现有代码做微小的重构修改……小模型猜代码，一猜一个准，接受率高得吓人。</p>
+  <p>结果就是，<strong>原本需要搬运五六次显存才能吐出来的代码，现在搬运一次就全搞定了。</strong></p>
+  <p>现在把两张底牌合在一起看，一幅完美到令人拍案叫绝的商业拼图就出来了：</p>
+  <p><strong>输入端靠 KV 缓存：Agent 疯狂重读上下文？几乎零算力成本，API 照收缓存费，订阅制轻松给超高额度；</strong></p>
+  <p><strong>输出端靠推测解码：代码高度可预测，用闲置算力把生成速度和吞吐量拉满，进一步压低单次会话的真实成本。</strong></p>
+  <p>哪怕如今大模型越来越商品化、开源模型步步紧逼，前沿实验室的推理毛利率反而越做越高，秘密就藏在这里。</p>
+  <h2><strong>看透底牌后，谁在赢，谁在交学费？</strong></h2>
+  <p>拆解完这套「推理经济学」，我们再回过头看眼下的 AI 江湖，很多看似矛盾的现象瞬间就变得通透起来，而不同角色的应对策略，其实已经泾渭分明。</p>
+  <p><strong>首先，如果你是普通个人开发者，别纠结了，继续安心「薅」订阅套餐就是最划算的买卖。</strong></p>
+  <p>无论是 200 美元一年的 Pro，还是 200 美元一个月的顶级档，厂商用极低的边际成本换你的长期留存和生态粘性，这是一场罕见的双赢。下次再看到后台动辄几十亿的 Token 统计，大可会心一笑。</p>
+  <p><strong>如果你是正在做 AI Agent 的技术团队，千万别踩「智能路由（Smart Routing）」的坑！</strong></p>
+  <p>很多团队为了省钱，喜欢在 Agent 里加个路由器：难题发给 Opus，简单步骤切给便宜的 Sonnet。听着很聪明？其实亏到姥姥家了。</p>
+  <p>因为<strong>KV 缓存无法在不同模型之间共享！</strong></p>
+  <p>实测算过一笔账：在一个 10 万 Token 上下文的 Opus 5 会话里，哪怕下一步只需要生成 1000 个 Token，只要你中途切给便宜模型，就得被迫把 10 万上下文从头重新写入新模型的缓存——结果「省钱操作」反倒让这一步的成本暴涨了近<strong>3 倍</strong>，还换来了一个更笨的模型。</p>
+  <p>这里有一个反直觉的结论：<strong>对长上下文Coding Agent来说，最便宜的模型未必能完成最便宜的任务。真正决定成本的，不只是模型单价，还有每次切换会浪费多少缓存。</strong></p>
+  <p>真正有效的省钱架构，是让子智能体（Subagent）干那种「不继承主上下文」的脏活累活（比如去代码库里搜完 5 万 Token 的日志，只提炼 200 个字汇报给主智能体），从源头控制主上下文膨胀。</p>
+  <p><strong>最后，对于大规模跑 Agent 的企业来说，开源自部署的大潮已经挡不住了。</strong></p>
+  <p>正如 Diogo Almieda 指出的，如果企业天天用 API 跑海量 Agent，本质上是在把 KV 缓存带来的巨大成本红利拱手让给闭源厂商。</p>
+  <p>这也是为什么过去一年，大批科技巨头开始果断「逃离」闭源 API：Uber 靠架构优化把单 Token 成本砍了 50%，AT&amp;T 降了 56%，Pinterest 更是狂降 90%；金融科技巨头 Revolut 干脆自购 56 块英伟达 B200 裸金属服务器自己跑。</p>
+  <p>还有越来越多团队通过 Modal、Fireworks、Baseten 这类专业推理云，跑起 DeepSeek 4.1 Flash、GLM 5.3、Kimi K3.1 Pro 等开源权重模型——唯有自己掌控推理栈，才能把 KV 缓存省下来的真金白银留在自己兜里。</p>
+  <p>好消息是，高昂的「缓存税」已经开始出现松动的裂痕。最近 Fable 5.1 刚刚把缓存读取价格从每百万 Token 1 美元直接腰斩再腰斩，砍到了 0.25 美元。</p>
+  <p>还没完。11月9日，Fable 5.2发布，缓存读取价格再次降至0.20美元。</p>
+  <p><strong>短短两个多月，缓存读取价格比Fable 5时代便宜了整整80%。</strong></p>
+  <p></p>
+  <p>更耐人寻味的是，Anthropic自己承认，仅仅降低缓存读取价格，就有望让复杂编程和Agent任务的整体使用成本下降最多约45%。</p>
+  <p>这说明对于疯狂调用工具、反复读取上下文的Coding Agent来说，缓存早已不是一项可有可无的优化，而是决定整笔账单的关键变量。</p>
+  <p>随着推理工程彻底从「黑盒魔术」变成软件工程师的必修常识，靠信息差赚暴利的红利期终究会慢慢收窄。</p>
+  <h3>参考资料：</h3>
+  <p>https://x.com/GergelyOrosz/status/2123795984002232634</p>
+  <p>https://x.com/vlad_mihalcea/status/2123753559191617993</p>
+  <p>https://x.com/CompleteSkeptic/article/2097738214589215173</p>
+  <p>https://newsletter.pragmaticengineer.com/p/inference-engineering-for-software-engineers</p>
+  <p>https://newsletter.pragmaticengineer.com/p/what-is-inference-engineering</p>
+  <p>本文来自微信公众号<a href="https://mp.weixin.qq.com/s/jg6jS7tdLV4FQQym25vWVA" target="_blank" rel="noopener noreferrer nofollow">“新智元”</a>，作者：所罗门，36氪经授权发布。</p>
+ 
+</div></div></div>
+  <div class="footer">
+    本文由 AI热点监控系统自动抓取 · 内容版权归原作者/网站所有<br>
+    快照仅用于学习交流，如需转载请访问原文
+  </div>
+</div>
+</body>
+</html>
