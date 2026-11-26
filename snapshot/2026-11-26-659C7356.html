@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="referrer" content="no-referrer">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'unsafe-inline'; img-src data:; connect-src 'none'; frame-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'; frame-ancestors 'none'">
+<title>Update on a security incident involving 1Password’s backend systems. | 1Password - AI热点快照</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','PingFang SC','Microsoft YaHei',sans-serif;background:#f8f9fa;color:#1a1a2e;line-height:1.8;min-height:100vh}
+.top-bar{background:#fff;border-bottom:1px solid #e5e7eb;padding:10px 20px;display:flex;align-items:center;gap:12px;position:sticky;top:0;z-index:10}
+.top-bar .logo{font-size:14px;font-weight:700;color:#0d9488}
+.top-bar .sep{color:#d1d5db}
+.top-bar .source{font-size:13px;color:#6b7280}
+.top-bar .back{margin-left:auto;font-size:13px;color:#0d9488;text-decoration:none}
+.top-bar .back:hover{text-decoration:underline}
+.container{max-width:760px;margin:0 auto;padding:40px 24px 80px}
+.article-title{font-size:1.8rem;font-weight:700;line-height:1.35;margin-bottom:16px;color:#1a1a2e}
+.article-meta{display:flex;flex-wrap:wrap;gap:16px;padding-bottom:20px;margin-bottom:28px;border-bottom:1px solid #e5e7eb;font-size:14px;color:#6b7280}
+.article-meta a{color:#0d9488;text-decoration:none}
+.article-meta a:hover{text-decoration:underline}
+.article-body{font-size:16.5px;line-height:1.85;color:#1f2937}
+.article-body p{margin-bottom:1.2em;text-align:justify}
+.article-body h1,.article-body h2,.article-body h3{font-size:1.25em;font-weight:700;margin:1.6em 0 0.6em;color:#1a1a2e}
+.article-body a{color:#0d9488}
+.article-body pre,.article-body code{background:#f1f5f9;border-radius:4px;font-size:0.9em}
+.article-body pre{padding:16px;overflow-x:auto;margin:1em 0}
+.article-body code{padding:2px 6px}
+.article-body blockquote{border-left:3px solid #0d9488;padding-left:16px;color:#4b5563;margin:1em 0}
+.article-body ul,.article-body ol{padding-left:1.6em;margin-bottom:1em}
+.article-body li{margin-bottom:0.4em}
+.article-body figure{margin:1.2em 0}
+.article-body figcaption{font-size:13px;color:#9ca3af;text-align:center;margin-top:6px}
+.footer{margin-top:48px;padding-top:20px;border-top:1px solid #e5e7eb;font-size:13px;color:#9ca3af;text-align:center}
+</style>
+</head>
+<body>
+<div class="top-bar">
+  <a class="back" href="../" style="font-size:13px;color:#6b7280;text-decoration:none">← 日报首页</a>
+  <span class="sep">|</span>
+  <span class="logo">AI热点快照</span>
+  <span class="sep">|</span>
+  <span class="source">Hacker News</span>
+  <a class="back" href="https://1password.com/blog/update-on-nov-2026-security-incident" target="_blank" rel="noopener noreferrer">查看原文 ↗</a>
+</div>
+<div class="container">
+  <h1 class="article-title">Update on a security incident involving 1Password’s backend systems. | 1Password</h1>
+  <div class="article-meta">
+    
+    <span>来源: Hacker News</span>
+    <span>快照日期: 2026-11-26</span>
+  </div>
+  <div class="article-body"><div><div><h2><b>What happened</b></h2><p>On November 19, 2026, 1Password began investigating indications that an attacker gained access to an employee’s corporate GitHub account. The actor used the account to access source code and push malicious code to backend services, which downloaded administrative data pertaining to our customers. This data included customer names and email addresses, in addition to non-secret internal metadata about the account. At no time were customer vault contents accessed by, or available to, the attacker.</p><h2><b>What information was affected</b></h2><p>The attacker downloaded account records for a subset of our users. These records include:</p><ul><li><p>Names and email addresses</p></li><li><p>Account and user identifiers, and account creation and last sign-in times</p></li><li><p>Public keys (which are public by design, this has no impact to user security)</p></li><li><p><a href="https://1password.com/blog/developers-how-we-use-srp-and-you-can-too" target="_blank" rel="noopener noreferrer nofollow"><span><span>Secure Remote Password</span></span></a> protocol parameters (which cannot be used to access your account) </p></li><li><p>Tokens present in certain emailed links for invitations, provisioning and account recovery</p></li><li><p>Other non-secret account metadata relative to our internal architecture (e.g. version numeric identifiers, file numeric identifiers)</p></li></ul><p>The attacker also copied source code from private repositories and gained access to our CI/CD system. Our source code is not customer data, and contains no user secrets. CI/CD contains infrastructure related secrets in order for our product to work. We have triggered a rotation of all credentials which may have been exposed, and there is no impact to 1Password’s services, availability, or product security. </p><p>When we send an email to a customer to accept a provisioning invite to an account, or to accept recovery of their account, it contains a token. A provisioning invite is specifically used for our <a href="https://support.1password.com/cs/scim/" target="_blank" rel="noopener noreferrer nofollow"><span><span>SCIM Bridge</span></span></a> or <a href="https://support.1password.com/provisioning/" target="_blank" rel="noopener noreferrer nofollow"><span><span>Hosted Provisioning</span></span></a>. During this incident there were a small number of users in this state, who have been specifically notified. This token is used to complete the invitation or recovery process, but only when combined with an SSO sign-in or a six digit code sent to the user's registered email address. The token is not able to get access to the account by itself. In order to reduce the ability for a malicious third party to successfully guess the code, we’ve expanded the code from six numeric digits to ten alphanumeric digits. This makes brute force guessing practically impossible.</p><h2><b>What was not affected</b></h2><ul><li><p>Your vaults and the items in them</p></li><li><p>The keys that protect your vaults </p><ul><li><p>1Password does not store your account password or secret key</p></li></ul></li><li><p>Account recovery keys</p></li><li><p>1Password apps and browser extensions</p></li></ul><h2><b>What we’ve done</b></h2><ul><li><p>Disabled the affected GitHub account, revoked the stolen token, and removed the access the attacker created.</p></li><li><p>Rotated or revoked all internal credentials which may have been exposed.</p></li><li><p>Lengthened the codes used in invitation and recovery emails from six digits to ten characters as a precautionary measure.</p></li><li><p>Tightened internal GitHub, CI/CD, and endpoint controls, and added new detections for this kind of attack.</p></li><li><p>Validated no internal evidence of user account takeovers or compromise using any exposed account provisioning tokens. </p></li><li><p>Brought in independent cybersecurity experts to validate our containment approaches and remediation efforts.</p></li></ul><h2><b>What you can do</b></h2><ul><li><p>Be cautious about phishing attempts in the form of unexpected emails, texts or calls that mention 1Password, invitations, or account recovery attempts. </p></li><li><p>1Password will never contact you to ask for your account password or Secret Key. Only enter them in the official 1Password app, or on our official website, and only when you’ve opened the app or typed the address yourself. Your Secret Key is only needed the first time you sign in on a new device or browser. </p></li><li><p>Keep your Secret Key and account password safe.</p></li><li><p>If you see something suspicious, tell us at support@1password.com.</p></li></ul><h2><b>Our commitment to you</b></h2><p>You trust us with some of the most sensitive information you have. 1Password is designed so that a breach of our systems can’t expose your vault contents. Your vault secrets are encrypted with keys that only you hold, so we can’t access them, and neither can an attacker who gets into our servers. </p><p>We are committed to transparency in the interests of our customers' security and the security of the broader industry, which is why we have published and maintained our <a href="https://agilebits.github.io/security-design/" target="_blank" rel="noopener noreferrer nofollow"><span><span>Security Whitepaper</span></span></a> since 2015.  We’ll keep this blog post current, and we’ll update it if we find anything that changes what we’ve said here. </p></div></div></div>
+  <div class="footer">
+    本文由 AI热点监控系统自动抓取 · 内容版权归原作者/网站所有<br>
+    快照仅用于学习交流，如需转载请访问原文
+  </div>
+</div>
+</body>
+</html>
