@@ -91,7 +91,7 @@ body { background: var(--bg-outer); font-family: var(--font-body); min-height: 1
       <a class="back-link" href="./">← 归档首页</a>
       <h1>AI 热点日报</h1>
       <div class="subtitle">
-        <span class="date">2026年11月26日，星期四 · 道法术器解读</span>
+        <span class="date">2026年11月26日，星期四· 含新增 · 道法术器解读</span>
         <div class="controls">
           <button id="expandAll">展开全部</button>
           <button id="collapseAll">收起全部</button>
@@ -99,225 +99,207 @@ body { background: var(--bg-outer); font-family: var(--font-body); min-height: 1
       </div>
     </div>
     <div class="entries" id="entries">
-      <div class="entry" data-cat="sec" style="animation-delay: 0.1s;">
-        <div class="entry-head">
-          <div class="bullet" style="background: var(--tab-3);"></div>
-          <div class="info">
-            <h3>密码管理器安全事件警示</h3>
-            <div class="meta">Hacker News · 🔥 100 · 10小时前</div>
-          </div>
-          <div class="expand-icon">▼</div>
-        </div>
-        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：安全产品的信任一旦受损极难修复，密码管理器作为<strong>信任链顶端</strong>的单点，其安全事件暴露的是整个凭证集中化架构的系统性风险，长期趋势是凭证管理从集中托管向<strong>去中心化与零信任</strong>演进。
-<strong>法</strong>：任何以信任为核心资产的产品，都需建立<strong>纵深防御与最小权限</strong>原则，把单点失守的爆炸半径压到最小，这一策略适用于所有托管敏感数据的平台。
-<strong>术</strong>：立即审计自身凭证管理链路，确认是否启用多因素认证与硬件密钥；梳理主密码与恢复密钥的离线备份；对关键账户启用独立密码与定期轮换。
-<strong>器</strong>：1Password、Bitwarden、YubiKey 硬件密钥、Passkey 无密码认证。</p>
-<a class="source-link" href="https://1password.com/blog/update-on-nov-2026-security-incident" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
-      </div>
-      <div class="entry" data-cat="ai" style="animation-delay: 0.18s;">
+      <div class="entry" data-cat="ai" style="animation-delay: 0.1s;">
         <div class="entry-head">
           <div class="bullet" style="background: var(--tab-1);"></div>
           <div class="info">
-            <h3>智能体数据基础设施升温</h3>
-            <div class="meta">GitHub Trending · 🔥 84 · 11小时前</div>
+            <h3><span class="badge-icon"> 🆕</span> AI代理接入受权限约束</h3>
+            <div class="meta">Hacker News · 🔥 52 · 2小时前</div>
           </div>
           <div class="expand-icon">▼</div>
         </div>
-        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：AI 竞争重心正从模型能力转向<strong>数据供给能力</strong>，智能体的上限取决于可获取、可清洗、可结构化的外部数据，长期趋势是数据接入层成为智能体时代的<strong>基础设施入口</strong>。
-<strong>法</strong>：在应用层同质化之前，先占据上游数据管道，用统一接口聚合分散数据源形成<strong>切换成本</strong>，这是平台型产品的通用打法。
-<strong>术</strong>：优先接入高频业务数据源并做结构化清洗；为智能体设计统一检索与抓取接口；用缓存与增量更新控制调用成本与延迟。
-<strong>器</strong>：firecrawl、向量数据库、RAG 检索框架、550+ 数据提供方接口。</p>
-<a class="source-link" href="https://github.com/firecrawl/firecrawl" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
+        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：AI代理正从能力展示阶段进入权限治理阶段，平台方通过协议层预设能力边界，本质是把代理纳入既有权限体系而非另建通道。<strong>法</strong>：以协议标准化代理接入，用最小权限原则约束每个动作，能力开放与风险隔离同步设计，适用于所有平台型AI集成。<strong>术</strong>：接入前逐项核对代理被授予的权限清单；对发送、删除、支付类动作设置人工确认或二次授权；在测试环境验证越权路径后再上线。<strong>器</strong>：Google MCP Servers、Gmail API、OAuth 权限范围配置。</p>
+<a class="source-link" href="https://techstackups.com/articles/google-workspace-ai-agents-mcp/" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
+      </div>
+      <div class="entry" data-cat="sec" style="animation-delay: 0.18s;">
+        <div class="entry-head">
+          <div class="bullet" style="background: var(--tab-3);"></div>
+          <div class="info">
+            <h3><span class="badge-icon"> 🔄</span> 密码管理器成高价值目标</h3>
+            <div class="meta">Hacker News · 🔥 95 · 19小时前</div>
+          </div>
+          <div class="expand-icon">▼</div>
+        </div>
+        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：安全事件的重心正从单点漏洞转向供应链与信任枢纽，密码管理器聚合全部凭证，一旦被触及即形成系统性风险，攻防焦点随之集中。<strong>法</strong>：把凭证管理视为单点故障源，按零信任思路做分层隔离与可撤销设计，任何单一工具失守都不应导致全域沦陷。<strong>术</strong>：立即核查受影响版本与官方通告范围；轮换高风险账户主密码并启用硬件密钥二次验证；对核心账户启用独立恢复码离线保存。<strong>器</strong>：1Password、硬件安全密钥、TOTP 验证器、离线恢复码。</p>
+<a class="source-link" href="https://1password.com/blog/update-on-nov-2026-security-incident" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
       </div>
       <div class="entry" data-cat="ai" style="animation-delay: 0.26s;">
         <div class="entry-head">
           <div class="bullet" style="background: var(--tab-1);"></div>
           <div class="info">
-            <h3>长视频自动剪辑工具开源</h3>
-            <div class="meta">GitHub Trending · 🔥 77 · 11小时前</div>
+            <h3><span class="badge-icon"> 🔄</span> 数据接入层成代理基建</h3>
+            <div class="meta">GitHub Trending · 🔥 83 · 20小时前</div>
           </div>
           <div class="expand-icon">▼</div>
         </div>
-        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：内容生产的边际成本正被 AI 压向<strong>接近零</strong>，长内容到短内容的批量再生产成为标准工序，长期趋势是<strong>一人多产</strong>的内容工厂模式取代传统剪辑分工。
-<strong>法</strong>：把重复性劳动拆解为可自动化的流水线环节，用<strong>模板化加批量化</strong>替代人工逐条处理，该策略可迁移到任何内容再加工场景。
-<strong>术</strong>：先用长视频跑通自动切片与字幕生成；固定封面与文案模板保证多平台一致性；人工只做选题与终审，把剪辑交给流水线。
-<strong>器</strong>：AutoClip、抖音、小红书、TikTok、Reels、YouTube Shorts。</p>
-<a class="source-link" href="https://github.com/zhouxiaoka/autoclip" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
+        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：代理竞争的关键正从模型能力转向数据供给质量，谁能稳定获取结构化、可追溯的外部数据，谁就掌握代理效果的上限，数据接入层成为新的基础设施。<strong>法</strong>：把数据获取抽象为独立服务层，统一处理抓取、清洗、缓存与合规，使上层代理与具体数据源解耦，换场景可复用。<strong>术</strong>：优先接入有明确许可条款的数据源并记录来源；对抓取结果做去重与结构化校验；设置速率限制与失败重试，避免被封禁。<strong>器</strong>：Firecrawl、550+ 数据提供方接口、向量数据库与缓存层。</p>
+<a class="source-link" href="https://github.com/firecrawl/firecrawl" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
       </div>
       <div class="entry" data-cat="ai" style="animation-delay: 0.33999999999999997s;">
         <div class="entry-head">
           <div class="bullet" style="background: var(--tab-1);"></div>
           <div class="info">
-            <h3>两小时训练小模型降低门槛</h3>
-            <div class="meta">GitHub Trending · 🔥 75 · 11小时前</div>
+            <h3><span class="badge-icon"> 🔄</span> 长视频自动切片工具开源</h3>
+            <div class="meta">GitHub Trending · 🔥 74 · 20小时前</div>
           </div>
           <div class="expand-icon">▼</div>
         </div>
-        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：大模型能力正从少数机构垄断走向个人可复现，模型小型化与训练流程标准化是不可逆的长期趋势，<strong>算力门槛下移</strong>比参数规模竞赛更具扩散效应。
-<strong>法</strong>：把复杂系统拆成最小可运行单元，用<strong>低成本复现</strong>换取理解深度，再逐步放大规模，适用于任何技术学习与产品验证场景。
-<strong>术</strong>：1. 先跑通官方最小配置，记录每一步耗时与显存占用；2. 修改单一变量（数据量、层数）观察效果差异；3. 将训练脚本容器化，便于迁移到不同硬件。
-<strong>器</strong>：minimind 仓库、PyTorch、单卡消费级 GPU、Colab 或本地 Docker 环境。</p>
-<a class="source-link" href="https://github.com/jingyaogong/minimind" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
+        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：内容生产正从人工精剪转向流水线自动化，短视频的分发密度成为流量竞争的核心变量，剪辑环节的人力成本被持续压缩至接近零。<strong>法</strong>：把重复性劳动封装为<strong>一键式流水线</strong>，用标准化输出适配多平台规则，是内容工业化可复用的路径。<strong>术</strong>：先用长视频素材跑通自动切片与字幕生成，再按平台比例与时长规范批量导出，最后人工只做选题与终审。<strong>器</strong>：AutoClip、抖音/小红书/TikTok/Reels 发布后台、自动字幕与封面生成模块。</p>
+<a class="source-link" href="https://github.com/zhouxiaoka/autoclip" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
       </div>
       <div class="entry" data-cat="ai" style="animation-delay: 0.42000000000000004s;">
         <div class="entry-head">
           <div class="bullet" style="background: var(--tab-1);"></div>
           <div class="info">
-            <h3>推理部署优化成落地关键</h3>
-            <div class="meta">GitHub Trending · 🔥 56 · 11小时前</div>
+            <h3><span class="badge-icon"> 🔄</span> 两小时训练64M小模型</h3>
+            <div class="meta">GitHub Trending · 🔥 72 · 20小时前</div>
           </div>
           <div class="expand-icon">▼</div>
         </div>
-        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：模型竞争重心正从训练转向<strong>推理效率与部署成本</strong>，谁能把模型跑得更便宜更快，谁就掌握商业化主动权，这一趋势在边缘设备上尤为明显。
-<strong>法</strong>：用<strong>统一中间表示加硬件适配层</strong>解耦模型与芯片，一次优化多端复用，适用于所有需要跨平台交付的软件系统。
-<strong>术</strong>：1. 将模型转换为 IR 格式后做量化压缩，对比精度损失；2. 在目标硬件上做基准测试，锁定瓶颈算子；3. 建立版本化部署流水线，避免每次手动调参。
-<strong>器</strong>：OpenVINO 工具套件、ONNX、Intel CPU/GPU/NPU、模型量化与基准测试工具。</p>
-<a class="source-link" href="https://github.com/openvinotoolkit/openvino" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
+        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：大模型能力下沉为<strong>教学级基础设施</strong>，训练门槛从算力集群降到单机可复现，理解模型原理的成本大幅降低。<strong>法</strong>：用极小规模可复现项目建立<strong>完整链路认知</strong>，从数据、分词、训练到推理全流程走通，再迁移到更大规模场景。<strong>术</strong>：按项目文档准备数据与依赖，在单卡环境完成两小时训练，记录损失曲线并对比不同超参对效果的影响。<strong>器</strong>：MiniMind、PyTorch、单卡 GPU 或消费级显卡、开源训练脚本与数据集。</p>
+<a class="source-link" href="https://github.com/jingyaogong/minimind" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
       </div>
       <div class="entry" data-cat="ai" style="animation-delay: 0.5s;">
         <div class="entry-head">
           <div class="bullet" style="background: var(--tab-1);"></div>
           <div class="info">
-            <h3>AI功能引发版权与授权争议</h3>
-            <div class="meta">Hacker News · 🔥 59 · 6小时前</div>
+            <h3><span class="badge-icon"> 🔄</span> OpenVINO优化推理部署</h3>
+            <div class="meta">GitHub Trending · 🔥 56 · 20小时前</div>
           </div>
           <div class="expand-icon">▼</div>
         </div>
-        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：AI 功能嵌入成熟软件正引发<strong>数据授权与创作者权益</strong>的长期博弈，工具默认开启的智能能力与用户对作品控制权之间存在结构性冲突。
-<strong>法</strong>：在引入 AI 能力时坚持<strong>默认最小授权、显式告知、可回退</strong>三原则，适用于所有涉及用户数据的产品设计。
-<strong>术</strong>：1. 更新前查阅条款中关于内容使用与模型训练的表述；2. 关闭非必要的云端同步与智能分析开关；3. 保留原始文件副本，避免版本升级后不可逆修改。
-<strong>器</strong>：Photoshop 设置面板、本地备份工具、开源替代软件如 GIMP 与 Krita。</p>
-<a class="source-link" href="https://www.theverge.com/ai-artificial-intelligence/1041227/the-new-york-times-warns-photographers-not-to-update-photoshop-over-ai-features" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
+        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：AI 竞争重心从训练转向<strong>推理部署效率</strong>，模型能否在边缘与异构硬件上低成本跑起来，决定落地速度。<strong>法</strong>：用统一工具链做模型转换与硬件适配，把<strong>一次训练、多端部署</strong>作为工程默认选项，降低平台绑定风险。<strong>术</strong>：先将模型转换为中间表示格式，再针对目标硬件做量化与算子优化，最后用基准测试对比延迟与精度损失。<strong>器</strong>：OpenVINO、ONNX、Intel CPU/GPU/NPU、模型量化与性能分析工具。</p>
+<a class="source-link" href="https://github.com/openvinotoolkit/openvino" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
       </div>
-      <div class="entry" data-cat="sec" style="animation-delay: 0.58s;">
+      <div class="entry" data-cat="ai" style="animation-delay: 0.58s;">
         <div class="entry-head">
-          <div class="bullet" style="background: var(--tab-3);"></div>
+          <div class="bullet" style="background: var(--tab-1);"></div>
           <div class="info">
-            <h3>整数分解论文引密码学关注</h3>
-            <div class="meta">Hacker News · 🔥 69 · 13小时前</div>
+            <h3><span class="badge-icon"> 🔄</span> 内容授权成AI时代新战场</h3>
+            <div class="meta">Hacker News · 🔥 63 · 15小时前</div>
           </div>
           <div class="expand-icon">▼</div>
         </div>
-        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：整数分解与离散对数是公钥密码学的数学根基，相关算法研究的公开化意味着<strong>密码学安全边际正被持续重新评估</strong>，长期趋势是算法进步与密钥长度扩张的军备竞赛。
-<strong>法</strong>：对基础数学难题的持续投入，本质是在为未来安全体系<strong>提前定价风险</strong>，任何依赖数学困难性的系统都应建立算法进展的持续监测机制。
-<strong>术</strong>：梳理现有系统所依赖的数学假设；跟踪论文中的复杂度改进幅度而非结论标题；对长期敏感数据评估抗量子与抗算法进步的迁移路径。
-<strong>器</strong>：Google 研究论文、密码学预印本平台、NIST 后量子密码标准。</p>
-<a class="source-link" href="https://github.com/google-research/google-research/tree/master/cogentic_research_papers" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
+        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：生成式AI对训练数据的渴求，正把内容版权从法律边缘议题推成核心商业变量，创作者与平台的关系进入重新定价期。
+<strong>法</strong>：内容方以<strong>授权许可</strong>替代一次性买断，把存量作品转为持续收租的资产，适用于所有依赖原创素材的行业。
+<strong>术</strong>：梳理自有素材的授权边界与平台条款变更；在更新前留存旧版本与合同证据；对AI功能默认开启保持审慎，先评估数据回流范围。
+<strong>器</strong>：Photoshop、Adobe 内容凭证、版权存证与合同管理工具。</p>
+<a class="source-link" href="https://www.theverge.com/ai-artificial-intelligence/1041227/the-new-york-times-warns-photographers-not-to-update-photoshop-over-ai-features" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
       </div>
       <div class="entry" data-cat="ai" style="animation-delay: 0.66s;">
         <div class="entry-head">
           <div class="bullet" style="background: var(--tab-1);"></div>
           <div class="info">
-            <h3>多智能体编程成主流方向</h3>
-            <div class="meta">Hacker News · 🔥 52 · 9小时前</div>
+            <h3><span class="badge-icon"> 🆕</span> 算力瓶颈转向光互连环节</h3>
+            <div class="meta">36kr · 🔥 71 · 24小时前</div>
           </div>
           <div class="expand-icon">▼</div>
         </div>
-        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：软件开发正从单人单模型交互转向<strong>多智能体分工协作</strong>，本质是把软件工程的组织分工逻辑复制到模型层，长期趋势是工程能力从写代码转向编排与验收。
-<strong>法</strong>：将复杂任务拆分为可独立验证的子任务，由不同角色智能体分别承担并交叉校验，适用于任何需要并行处理与质量把关的复杂流程。
-<strong>术</strong>：先定义清晰的接口与验收标准再分配智能体角色；为每个子任务设置独立测试用例；保留人工审查环节防止错误级联放大。
-<strong>器</strong>：多智能体编排框架、代码评审智能体、CI 自动化流水线。</p>
-<a class="source-link" href="https://www.kalzumeus.com/2026/11/25/multiagent-coding-is-the-future/" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
+        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：AI集群规模扩张后，瓶颈从单芯片算力转向<strong>芯片间与集群间的数据传输</strong>，光通信成为算力基础设施的刚性配套，这一趋势随模型规模单调增强。
+<strong>法</strong>：沿着算力扩张的<strong>物理约束</strong>寻找卡位环节，而非追逐最热的主芯片，任何基础设施升级都可套用此路径。
+<strong>术</strong>：拆解光模块、光引擎、硅光与交换芯片的国产化率与产能；跟踪头部厂商的资本开支与长约订单；区分短期题材与真实出货节奏。
+<strong>器</strong>：光模块、硅光集成、CPO 共封装光学、英伟达网络互连方案。</p>
+<a class="source-link" href="https://www.36kr.com/p/4085062673749895" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
       </div>
       <div class="entry" data-cat="ai" style="animation-delay: 0.74s;">
         <div class="entry-head">
           <div class="bullet" style="background: var(--tab-1);"></div>
           <div class="info">
-            <h3>Claude技能包转向安全攻防</h3>
-            <div class="meta">GitHub Trending · 🔥 100 · 11小时前</div>
+            <h3><span class="badge-icon"> 🆕</span> 模型安全信任出现内部裂痕</h3>
+            <div class="meta">36kr · 🔥 78 · 8小时前</div>
           </div>
           <div class="expand-icon">▼</div>
         </div>
-        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：AI 编程助手的能力正从通用生成转向<strong>垂直场景的技能封装</strong>，安全攻防这类高门槛领域成为技能包落点，长期趋势是模型能力被模块化、可复用化。
-<strong>法</strong>：把领域专家的隐性经验固化为可调用的技能单元，降低专业门槛并提升一致性，适用于任何经验密集、流程标准化的专业工作。
-<strong>术</strong>：先盘点高频重复的专业操作并写成技能描述；为每个技能设定输入输出边界与失败回退；在受控环境中验证技能包的实际命中率。
-<strong>器</strong>：Claude Code 技能包、斜杠命令、红队测试工具链。</p>
-<a class="source-link" href="https://github.com/sponsors/elementalsouls" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
+        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：前沿模型能力增长快于安全验证能力，<strong>内部人先于外部监管失去信心</strong>，安全从合规成本变成决定商业化的前置条件。
+<strong>法</strong>：把安全评估从发布后补救前移到研发流程内，用<strong>红队与第三方审计</strong>替代自我声明，适用于所有高风险技术产品。
+<strong>术</strong>：建立模型上线前的独立评测门槛与留痕；对高风险能力设置分级访问与熔断；引入外部审计并公开关键结论。
+<strong>器</strong>：红队测试平台、模型评测基准、访问控制与审计日志系统。</p>
+<a class="source-link" href="https://www.36kr.com/p/4086059854845828" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
       </div>
       <div class="entry" data-cat="ai" style="animation-delay: 0.82s;">
         <div class="entry-head">
           <div class="bullet" style="background: var(--tab-1);"></div>
           <div class="info">
-            <h3>软件全面Agent化改造</h3>
-            <div class="meta">GitHub Trending · 🔥 83 · 11小时前</div>
+            <h3><span class="badge-icon"> 🆕</span> 模型限流暴露算力硬约束</h3>
+            <div class="meta">Hacker News · 🔥 59 · 8小时前</div>
           </div>
           <div class="expand-icon">▼</div>
         </div>
-        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：软件交互正从图形界面向智能体接口迁移，<strong>Agent-Native 将成为继云原生之后的新架构范式</strong>，长期看所有软件都需提供机器可调用的能力层。
-<strong>法</strong>：把现有软件能力封装为标准化 CLI 或 API 接口，让智能体可直接编排调用，<strong>以接口层而非界面层作为集成入口</strong>，适用于任何需要被自动化系统接入的产品。
-<strong>术</strong>：盘点核心功能并抽象为原子命令；为每个命令补齐参数校验与结构化输出；在 CLI-Hub 类目录中注册以获取智能体流量。
-<strong>器</strong>：CLI-Anything、CLI-Hub、Claude Code、各类 Agent 运行时。</p>
-<a class="source-link" href="https://github.com/HKUDS/CLI-Anything" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
+        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：前沿模型的能力增长正被推理算力供给锁死，厂商用差异化限流把稀缺资源导向高价值场景，<strong>免费或低价高配时代正在收口</strong>。
+<strong>法</strong>：资源稀缺时按使用强度分层定价与限流，用配额差异引导用户行为，把成本压力转化为产品分层，适用于任何重资产服务。
+<strong>术</strong>：盘点业务对特定模型的调用占比，为高频链路准备降级模型与缓存层；把限流阈值写进容量预案，按 40% 加速消耗做压力测算。
+<strong>器</strong>：GPT-6.2、Astra、Sol 模型配额面板、API 网关限流组件、本地小模型兜底。</p>
+<a class="source-link" href="https://twitter.com/thsottiaux/status/2125784147889393806" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
       </div>
-      <div class="entry" data-cat="ai" style="animation-delay: 0.9s;">
+      <div class="entry" data-cat="sec" style="animation-delay: 0.9s;">
         <div class="entry-head">
-          <div class="bullet" style="background: var(--tab-1);"></div>
+          <div class="bullet" style="background: var(--tab-3);"></div>
           <div class="info">
-            <h3>多源社媒情报聚合技能</h3>
-            <div class="meta">GitHub Trending · 🔥 79 · 11小时前</div>
+            <h3><span class="badge-icon"> 🆕</span> 量子引力代数化路径受关注</h3>
+            <div class="meta">Hacker News · 🔥 51 · 6小时前</div>
           </div>
           <div class="expand-icon">▼</div>
         </div>
-        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：信息优势正从<strong>数据获取能力转向跨源聚合与语义提炼能力</strong>，单一平台数据价值递减，跨平台交叉验证成为决策刚需。
-<strong>法</strong>：将分散在多个平台的非结构化内容统一采集、去重、聚类后交由模型总结，<strong>用多源交叉降低单一信源偏差</strong>，可复用于舆情、竞品、选题等场景。
-<strong>术</strong>：确定 3-5 个高信噪比信源并配置采集频率；设定时间窗口与关键词过滤；输出结构化摘要并标注来源与时间戳以便溯源。
-<strong>器</strong>：last30days-skill、Reddit、X、YouTube、Hacker News、Polymarket。</p>
-<a class="source-link" href="https://github.com/mvanhorn/last30days-skill" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
+        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：基础物理的突破越来越依赖<strong>数学形式化先行</strong>，把几何问题转成代数结构是长期主线，短期不产出工程价值但决定未来几十年的技术底座。
+<strong>法</strong>：面对无解难题先换表示法而非硬算，把连续几何离散成可计算的代数对象，这一降维思路可迁移到任何复杂系统建模。
+<strong>术</strong>：跟踪该论文的预印本与引用链，判断是否给出可检验预言；用符号计算工具复现核心推导，评估与圈量子引力、弦论框架的兼容性。
+<strong>器</strong>：arXiv 预印本平台、零锥几何工具、Mathematica/SymPy 符号计算。</p>
+<a class="source-link" href="https://arxiv.org/abs/2611.34924" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
       </div>
       <div class="entry" data-cat="ai" style="animation-delay: 0.98s;">
         <div class="entry-head">
           <div class="bullet" style="background: var(--tab-1);"></div>
           <div class="info">
-            <h3>智能体技能框架方法论</h3>
-            <div class="meta">GitHub Trending · 🔥 77 · 11小时前</div>
+            <h3><span class="badge-icon"> 🔄</span> 技能包成AI代理新分发层</h3>
+            <div class="meta">GitHub Trending · 🔥 100 · 20小时前</div>
           </div>
           <div class="expand-icon">▼</div>
         </div>
-        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：AI 工程正从提示词技巧走向<strong>可复用的技能资产化与工程化方法论</strong>，技能库沉淀将取代一次性对话成为团队核心资产。
-<strong>法</strong>：把重复性任务抽象为带明确输入输出契约的技能模块，<strong>以版本化技能库替代散落提示词</strong>，配合开发流程规范形成可迭代的工程体系。
-<strong>术</strong>：梳理高频任务并拆分为原子技能；为每个技能定义触发条件、输入格式与验收标准；建立评审与版本管理机制后接入开发流程。
-<strong>器</strong>：obra 技能框架、Claude Code、Git 版本管理、CI 流水线。</p>
-<a class="source-link" href="https://github.com/sponsors/obra" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
+        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：AI 编程代理的竞争正从模型能力转向<strong>技能与工作流的分发</strong>，85 个技能、16 个斜杠命令的打包方式说明提示词工程正在产品化、模块化。
+<strong>法</strong>：把领域经验封装成可复用、可组合的技能单元，用标准入口（斜杠命令）降低调用门槛，让能力像软件包一样被安装和迭代。
+<strong>术</strong>：先审计技能包的权限与外部调用范围，红队类工具需隔离环境运行；按团队高频任务裁剪技能子集，建立版本锁定与更新审查流程。
+<strong>器</strong>：Claude Code、技能包仓库、斜杠命令机制、隔离沙箱与代码审计工具。</p>
+<a class="source-link" href="https://github.com/sponsors/elementalsouls" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
       </div>
-      <div class="entry" data-cat="dev" style="animation-delay: 1.06s;">
+      <div class="entry" data-cat="ai" style="animation-delay: 1.06s;">
         <div class="entry-head">
-          <div class="bullet" style="background: var(--tab-2);"></div>
+          <div class="bullet" style="background: var(--tab-1);"></div>
           <div class="info">
-            <h3>开源知识库挑战Notion</h3>
-            <div class="meta">GitHub Trending · 🔥 67 · 11小时前</div>
+            <h3><span class="badge-icon"> 🔄</span> 智能体技能框架方法论化</h3>
+            <div class="meta">GitHub Trending · 🔥 77 · 20小时前</div>
           </div>
           <div class="expand-icon">▼</div>
         </div>
-        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：知识管理工具正从封闭SaaS走向开源可自托管，用户对数据主权和定制化的需求持续上升，单一平台垄断格局被逐步侵蚀。<strong>法</strong>：以开源核心加托管增值服务的双轨模式切入成熟品类，用免费自托管获取信任与社区贡献，再以企业版变现，适用于所有工具型产品的后发突围。<strong>术</strong>：先自托管部署验证协作与迁移成本；将团队文档从封闭平台导入测试数据兼容性；评估插件与API扩展能力是否满足长期集成需求。<strong>器</strong>：AFFiNE、Notion、Miro、GitHub Sponsors。</p>
-<a class="source-link" href="https://github.com/sponsors/toeverything" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
+        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：AI 应用正从模型能力比拼转向工程化方法沉淀，智能体开发进入标准化、可复用的技能框架阶段，长期看方法论资产比单点模型更稀缺。<strong>法</strong>：将开发流程拆解为可组合技能模块，用框架约束智能体行为边界，使经验可迁移到任意业务场景。<strong>术</strong>：先梳理团队高频任务清单，映射为技能单元；用框架定义输入输出与失败回退；在真实项目中跑通一条链路再扩展。<strong>器</strong>：obra 技能框架、GitHub 仓库、智能体编排工具。</p>
+<a class="source-link" href="https://github.com/sponsors/obra" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
       </div>
       <div class="entry" data-cat="ai" style="animation-delay: 1.1400000000000001s;">
         <div class="entry-head">
           <div class="bullet" style="background: var(--tab-1);"></div>
           <div class="info">
-            <h3>形式化验证门槛降低</h3>
-            <div class="meta">Hacker News · 🔥 63 · 5小时前</div>
+            <h3><span class="badge-icon"> 🔄</span> 跨平台舆情研究智能体</h3>
+            <div class="meta">GitHub Trending · 🔥 74 · 20小时前</div>
           </div>
           <div class="expand-icon">▼</div>
         </div>
-        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：AI辅助形式化证明正把高门槛的数学验证推向工程可用，代码与数学的正确性验证从专家手工劳动转向人机协作流水线，长期看将重塑软件质量保障体系。<strong>法</strong>：用大模型承担证明草稿与引理拆解，人类聚焦关键判断，把昂贵验证流程压缩为可迭代的短周期，适用于任何高可靠性要求的工程领域。<strong>术</strong>：选取小规模定理做端到端验证跑通工具链；对比精简版与完整版证明的覆盖差异；将验证步骤纳入CI以持续回归。<strong>器</strong>：Lean、Anthropic GRH验证材料、Hacker News讨论区。</p>
-<a class="source-link" href="https://github.com/lsernau/grh-lean" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
+        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：信息分散在多平台是长期结构，智能体的核心价值正从生成内容转向<strong>跨源聚合与验证</strong>，研究型技能成为刚需。<strong>法</strong>：把多平台检索封装为单一技能入口，用统一提示词调度不同数据源，输出结构化结论而非原始链接堆砌。<strong>术</strong>：明确研究问题与时间窗口；配置各平台检索参数与去重规则；对结论标注来源与置信度。<strong>器</strong>：last30days-skill、Reddit、X、YouTube、HN、Polymarket。</p>
+<a class="source-link" href="https://github.com/mvanhorn/last30days-skill" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
       </div>
       <div class="entry" data-cat="ai" style="animation-delay: 1.2200000000000002s;">
         <div class="entry-head">
           <div class="bullet" style="background: var(--tab-1);"></div>
           <div class="info">
-            <h3>AI编码工具图解设计</h3>
-            <div class="meta">GitHub Trending · 🔥 85 · 11小时前</div>
+            <h3><span class="badge-icon"> 🔄</span> 软件全面智能体原生化</h3>
+            <div class="meta">GitHub Trending · 🔥 73 · 20小时前</div>
           </div>
           <div class="expand-icon">▼</div>
         </div>
-        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：AI编码助手已进入多工具并存阶段，围绕它们的说明性设计与知识传播成为独立需求，工具生态越碎片化，解释与对比类内容的价值越高。<strong>法</strong>：在工具爆发期做横向对比与可视化解读，抢占认知入口，把复杂选型问题转化为可复用图表，适用于任何多玩家竞争的技术赛道。<strong>术</strong>：梳理主流编码工具的能力矩阵与差异点；用统一视觉规范产出对比图；随版本更新维护图表并标注时效。<strong>器</strong>：Claude Code、Codex、GitHub Copilot、Cursor、Factory Droid、Qoder。</p>
-<a class="source-link" href="https://github.com/sponsors/cathrynlavery" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
+        <div class="detail-wrap"><div class="detail-inner"><p><strong>道</strong>：软件交互正从图形界面向<strong>命令行与智能体原生接口</strong>迁移，CLI 成为智能体调用一切软件的最低成本通道，长期看所有工具都需提供机器可读入口。<strong>法</strong>：以 CLI 作为统一抽象层，把软件能力暴露为可脚本化命令，再由智能体编排组合，降低集成成本。<strong>术</strong>：盘点现有工具是否具备稳定 CLI；为缺失工具封装薄适配层；用 CLI-Hub 统一注册与发现。<strong>器</strong>：CLI-Anything、CLI-Hub、clianything.cc。</p>
+<a class="source-link" href="https://github.com/HKUDS/CLI-Anything" target="_blank" rel="noopener noreferrer nofollow">阅读原文 ↗</a></div></div>
       </div>
     </div>
     <div class="footer">
-      <span>Generated by AI Hot Monitor v2 · DeepSeek · 11:01:24</span>
+      <span>Generated by AI Hot Monitor v2 · DeepSeek · 20:01:05</span>
       <span class="badge">💡 点击条目展开深度解读</span>
     </div>
   </div>
